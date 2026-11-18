@@ -1,7 +1,7 @@
 # Quadratic assignment, QAPLIB tai40a
 
 **Task id:** `qaplib-tai40a`\
-**Status:** ready\
+**Status:** requires_setup\
 **Direction:** minimize\
 **Family:** `qap` (suite/_lib/arnew)\
 **Areas:** optimization

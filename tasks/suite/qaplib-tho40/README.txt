@@ -1,7 +1,7 @@
 # Quadratic assignment, QAPLIB tho40
 
 **Task id:** `qaplib-tho40`\
-**Status:** ready\
+**Status:** requires_setup\
 **Direction:** minimize\
 **Family:** `qap` (suite/_lib/arnew)\
 **Areas:** optimization

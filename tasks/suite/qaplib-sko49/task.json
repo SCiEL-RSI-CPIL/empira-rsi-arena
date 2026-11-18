@@ -7,7 +7,7 @@
     "open-problems-2026-11"
   ],
   "kind": "native",
-  "status": "ready",
+  "status": "requires_setup",
   "sources": [
     {
       "url": "https://doi.org/10.7488/ds/3428",
@@ -108,7 +108,8 @@
       ],
       "timeout": 120,
       "validity_key": "valid"
-    }
+    },
+    "declared_status": "requires_setup"
   },
   "limitations": [
     "Same evaluator contract as the existing QAPLIB tasks tai256c, tho150 and wil100 in autoresearch-tasks.",

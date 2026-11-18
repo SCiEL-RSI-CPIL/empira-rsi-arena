@@ -1,7 +1,7 @@
 # CVRP XL-n2074-k264
 
 **Task id:** `cvrplib-xl-n2074-k264`\
-**Status:** ready\
+**Status:** requires_setup\
 **Direction:** minimize\
 **Family:** `cvrp` (suite/_lib/arnew)\
 **Areas:** optimization

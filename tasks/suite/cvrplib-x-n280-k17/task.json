@@ -7,7 +7,7 @@
     "open-problems-2026-11"
   ],
   "kind": "native",
-  "status": "ready",
+  "status": "requires_setup",
   "sources": [
     {
       "url": "https://galgos.inf.puc-rio.br/cvrplib/",
@@ -96,7 +96,8 @@
       ],
       "timeout": 300,
       "validity_key": "valid"
-    }
+    },
+    "declared_status": "requires_setup"
   },
   "limitations": [
     "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record.",

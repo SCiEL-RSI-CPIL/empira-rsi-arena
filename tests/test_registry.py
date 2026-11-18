@@ -71,7 +71,7 @@ def test_current_source_dependency_declarations_agree(catalog):
 
 def test_evaluator_definition_can_require_setup_without_claiming_runtime_readiness(catalog):
     pending = [task for task in catalog["tasks"] if task["executable"] and task["declared_status"] == "requires_setup"]
-    assert len(pending) == 441
+    assert len(pending) == 609
     assert all(task["runtime_readiness"] == "not_verified" for task in pending)
     assert validate_catalog(catalog) is catalog
     pending[0]["declared_status"] = "blocked"

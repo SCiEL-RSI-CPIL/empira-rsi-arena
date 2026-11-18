@@ -1,7 +1,7 @@
 # Quadratic assignment, QAPLIB sko42
 
 **Task id:** `qaplib-sko42`\
-**Status:** ready\
+**Status:** requires_setup\
 **Direction:** minimize\
 **Family:** `qap` (suite/_lib/arnew)\
 **Areas:** optimization

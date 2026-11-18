@@ -1,7 +1,7 @@
 # Quadratic assignment, QAPLIB tai150b
 
 **Task id:** `qaplib-tai150b`\
-**Status:** ready\
+**Status:** requires_setup\
 **Direction:** minimize\
 **Family:** `qap` (suite/_lib/arnew)\
 **Areas:** optimization

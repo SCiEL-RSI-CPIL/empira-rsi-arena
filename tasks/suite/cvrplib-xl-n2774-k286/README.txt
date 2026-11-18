@@ -1,7 +1,7 @@
 # CVRP XL-n2774-k286
 
 **Task id:** `cvrplib-xl-n2774-k286`\
-**Status:** ready\
+**Status:** requires_setup\
 **Direction:** minimize\
 **Family:** `cvrp` (suite/_lib/arnew)\
 **Areas:** optimization

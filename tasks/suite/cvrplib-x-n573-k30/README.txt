@@ -1,7 +1,7 @@
 # CVRP X-n573-k30
 
 **Task id:** `cvrplib-x-n573-k30`\
-**Status:** ready\
+**Status:** requires_setup\
 **Direction:** minimize\
 **Family:** `cvrp` (suite/_lib/arnew)\
 **Areas:** optimization
