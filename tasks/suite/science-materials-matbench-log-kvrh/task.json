@@ -1,0 +1,214 @@
+{
+  "schema_version": "1.0",
+  "id": "science-materials-matbench-log-kvrh",
+  "name": "Matbench v0.1 log_kvrh",
+  "description": "Predict the base-10 logarithm of the bulk modulus of a crystal (Voigt-Reuss-Hill average in GPa, calculated by density functional theory) from its crystal structure (Matbench v0.1 task log_kvrh, 10987 samples). The evaluation uses the five official folds: for every fold the candidate is called once, in a separate process, with the other four folds and their target values as training data, and must predict the held-out fold within 300 seconds.",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "requires_setup",
+  "sources": [
+    {
+      "url": "https://matbench.materialsproject.org/",
+      "type": "benchmark",
+      "locator": "matbench_log_kvrh"
+    },
+    {
+      "url": "https://doi.org/10.1038/srep34256",
+      "type": "paper",
+      "locator": "A Statistical Learning Framework for Materials Science: Application to Elastic Moduli of k-nary Inorganic Polycrystalline Compounds"
+    },
+    {
+      "url": "https://doi.org/10.1038/sdata.2015.9",
+      "type": "paper",
+      "locator": "Charting the complete elastic properties of inorganic crystalline compounds"
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevLett.120.145301",
+      "type": "paper",
+      "locator": "Crystal Graph Convolutional Neural Networks for an Accurate and Interpretable Prediction of Material Properties"
+    },
+    {
+      "url": "https://doi.org/10.1038/s41524-020-00406-3",
+      "type": "benchmark",
+      "locator": "Dunn et al. (2020), Benchmarking materials property prediction methods: the Matbench test set and Automatminer reference algorithm (npj Comput Mater): benchmark paper defining the tasks, the nested cross-validation and the metrics; Crossref title verified."
+    },
+    {
+      "url": "https://matbench.materialsproject.org/Benchmark%20Info/matbench_v0.1/",
+      "type": "benchmark",
+      "locator": "Task table of matbench_v0.1: matbench_log_kvrh: regression/structure, log10(K_VRH), 10,987 samples.."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "sklearn"
+    ],
+    "environment_variables": [],
+    "datasets": "matbench_log_kvrh.json.gz from ml.materialsproject.org, folds from the official validation file"
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "specified_only",
+    "benchmark": "Matbench v0.1 log_kvrh",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "matbench",
+    "science_family": "matbench",
+    "parameters": {
+      "task": "log_kvrh",
+      "classification": false,
+      "best_known": 0.0491,
+      "wall": 300
+    },
+    "interface": "fit_predict(train_inputs, train_targets, test_inputs, info) -> list of len(test_inputs) numbers. Every input is a dict with the keys lattice (the three lattice vectors in angstrom, a 3 x 3 list), species (the element symbol of every site) and frac_coords (the fractional coordinates of every site). info has task, input_type, target, unit, fold, n_train and n_test. Score: mean over the five folds of the held-out mean absolute error, minimized.",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard",
+      "area": "materials_science",
+      "secondary_area": "physics",
+      "areas": [
+        "materials_science",
+        "physics",
+        "machine_learning"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "matbench_log_kvrh.json.gz from ml.materialsproject.org, folds from the official validation file"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "matbench",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:sklearn",
+        "file:data/matbench/log_kvrh.json"
+      ],
+      "timeout": 2400,
+      "validity_key": "valid"
+    },
+    "declared_status": "requires_setup"
+  },
+  "limitations": [
+    "Leaders are graph neural networks and tuned ensembles; the leaderboard snapshot has no date.",
+    "Regression MAE averaged over the five official folds.",
+    "The record was found in a hashed snapshot of its source; it is not replayed. See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "real_instance_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "scripts/test_new_families.py",
+    "tests": "scripts/test_new_families.py",
+    "upstream_reproduction": false,
+    "record_level": "record_matches_pinned_source",
+    "unsure": false,
+    "record_validation": {
+      "record": 0.0491,
+      "checks": [
+        "0.0491 appears within the matbench_log_kvrh section of the pinned leaderboard page"
+      ],
+      "sources": [
+        "sources/matbench_leaderboard.html",
+        "data/matbench/log_kvrh.json"
+      ],
+      "notes": [
+        "the snapshot has no date on the page"
+      ],
+      "validated": "2026-11-18"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "model",
+    "domain": "natural_science",
+    "data": "public_benchmark",
+    "verification": "sampled",
+    "reference": "leaderboard",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "materials_science",
+    "secondary_area": "physics",
+    "areas": [
+      "materials_science",
+      "physics",
+      "machine_learning"
+    ],
+    "important_to_science": true
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "Each cited paper has the prediction of the task's materials property from composition or structure as its main objective; the Matbench paper is a benchmark paper and is listed under extra_sources only.",
+    "scientific_problem": "Predict the base-10 logarithm of the DFT Voigt-Reuss-Hill bulk modulus (GPa) of an inorganic crystal from its structure.",
+    "importance_rationale": "The bulk modulus measures resistance to compression and underlies the design of hard and stiff materials, while DFT elastic calculations are costly, so a learned predictor screens large structure sets.",
+    "papers": [
+      {
+        "title": "A Statistical Learning Framework for Materials Science: Application to Elastic Moduli of k-nary Inorganic Polycrystalline Compounds",
+        "url": "https://doi.org/10.1038/srep34256",
+        "task_relation": "The task predicts the log VRH bulk modulus, the target of this paper, with free choice of model.",
+        "primary_goal": "Predict bulk and shear moduli of inorganic compounds with statistical learning.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Charting the complete elastic properties of inorganic crystalline compounds",
+        "url": "https://doi.org/10.1038/sdata.2015.9",
+        "task_relation": "The scored bulk moduli come from this elastic database.",
+        "primary_goal": "Compute the full elastic tensors of inorganic crystals by DFT to chart their mechanical properties.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Crystal Graph Convolutional Neural Networks for an Accurate and Interpretable Prediction of Material Properties",
+        "url": "https://doi.org/10.1103/PhysRevLett.120.145301",
+        "task_relation": "Among the paper's properties are the bulk and shear moduli of Materials Project crystals; the task predicts the log bulk modulus with free choice of model.",
+        "primary_goal": "Learn crystal properties directly from the atomic connections of a structure, with a graph neural network trained on Materials Project DFT data (eight properties).",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  },
+  "source_specification": {
+    "name": "Matbench v0.1 log_kvrh",
+    "slug": "science-materials-matbench-log-kvrh",
+    "description": "Predict the base-10 logarithm of the bulk modulus of a crystal (Voigt-Reuss-Hill average in GPa, calculated by density functional theory) from its crystal structure (Matbench v0.1 task log_kvrh, 10987 samples). The evaluation uses the five official folds: for every fold the candidate is called once, in a separate process, with the other four folds and their target values as training data, and must predict the held-out fold within 300 seconds.",
+    "benchmark": "Matbench v0.1 log_kvrh",
+    "dataset": "matbench_log_kvrh.json.gz from ml.materialsproject.org, folds from the official validation file",
+    "metric": "score",
+    "direction": "minimize",
+    "source_url": "https://matbench.materialsproject.org/",
+    "source_locator": "matbench_log_kvrh",
+    "upstream_path": null,
+    "requirements": [
+      "py:numpy",
+      "py:sklearn",
+      "file:data/matbench/log_kvrh.json"
+    ],
+    "execution_notes": "matbench_log_kvrh.json.gz from ml.materialsproject.org, folds from the official validation file"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "id": "qaplib-tai80b",
+  "name": "Quadratic assignment, QAPLIB tai80b",
+  "description": "Quadratic assignment problem, QAPLIB instance tai80b: given two 80 x 80 integer matrices a and b, find a permutation p of 0..79 that minimises the cost, the sum over all i and j of a[i, j] * b[p[i], p[j]]. In the usual reading one matrix holds the flows between facilities and the other the distances between locations, and p assigns the one to the other; the cost formula is what is scored.",
+  "protocol": "recreated_verified",
+  "family": "qap",
+  "direction": "minimize",
+  "contract": "solve(a, b) -> permutation p of 0..n-1 (a list of n integers, each exactly once). a and b are the first and second matrix of the QAPLIB file (int64 arrays of shape (n, n), passed as copies). Score: the exact integer cost, the sum over all i and j of a[i, j] * b[p[i], p[j]], minimized.",
+  "parameters": {
+    "instance": "tai80b",
+    "n": 80,
+    "lower_bound": 786298800,
+    "best_known": 818415043
+  },
+  "requires": [
+    "py:numpy",
+    "file:data/qap/tai80b.dat"
+  ],
+  "timeout": 120,
+  "notes": [
+    "Best known 818415043, best lower bound 786298800 (QAPLIB).",
+    "tai80b.dat from the QAPLIB deposit (Edinburgh DataShare, doi 10.7488/ds/3428, CC BY 4.0)",
+    "Taillard random asymmetric instance with 80 facilities, generated to resemble real-life instances: a symmetric distance-type matrix of Euclidean flavour and a sparse, non-uniform, asymmetric flow matrix (QAPLIB: 'asymmetric and randomly generated').",
+    "Same evaluator contract as the existing QAPLIB tasks tai256c, tho150 and wil100 in autoresearch-tasks.",
+    "The record construction is public, so a candidate can embed the QAPLIB solution file; compare only genuinely searched results."
+  ],
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "areas": [
+      "optimization"
+    ],
+    "important_to_science": true
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "Quadratic assignment, QAPLIB tai80b",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "minimize",
+  "sources": [
+    {
+      "url": "https://doi.org/10.7488/ds/3428",
+      "type": "benchmark",
+      "locator": "tai80b"
+    },
+    {
+      "url": "https://qaplib.mgi.polymtl.ca/",
+      "type": "benchmark",
+      "locator": "QAPLIB, table of instances and solutions: tai80b (best known value and lower bound)"
+    },
+    {
+      "url": "https://doi.org/10.2307/1907742",
+      "type": "paper",
+      "locator": "Assignment Problems and the Location of Economic Activities"
+    },
+    {
+      "url": "https://doi.org/10.1016/S0167-8191(05)80147-4",
+      "type": "paper",
+      "locator": "Robust taboo search for the quadratic assignment problem"
+    },
+    {
+      "url": "https://doi.org/10.1016/0966-8349(95)00008-6",
+      "type": "paper",
+      "locator": "Comparison of iterative searches for the quadratic assignment problem"
+    },
+    {
+      "url": "https://coral.ise.lehigh.edu/data-sets/qaplib/",
+      "type": "benchmark",
+      "locator": "QAPLIB instance descriptions (sections Skorin-Kapov, Taillard, Thonemann and Boelte, Wilhelm and Ward), best known values with their method codes, and lower bounds."
+    },
+    {
+      "url": "https://doi.org/10.1023/A:1008293323270",
+      "type": "paper",
+      "locator": "Burkard, Karisch and Rendl (1997), QAPLIB - a quadratic assignment problem library: instance definitions and conventions (library paper, not evidence)."
+    }
+  ],
+  "limitations": [
+    "Same evaluator contract as the existing QAPLIB tasks tai256c, tho150 and wil100 in autoresearch-tasks.",
+    "The record construction is public, so a candidate can embed the QAPLIB solution file; compare only genuinely searched results.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://doi.org/10.7488/ds/3428"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "Each cited paper has the quadratic assignment problem, or the search for good QAPLIB solutions, as its main objective; the evaluator scores exactly the QAP cost of a permutation on the pinned instance.",
+    "scientific_problem": "Find a minimum-cost Koopmans-Beckmann quadratic assignment of 80 facilities to 80 locations for the QAPLIB instance tai80b, which is not solved to optimality.",
+    "importance_rationale": "The quadratic assignment problem models facility and hospital layout, keyboard design, backboard wiring and the generation of grey patterns. It is NP-hard and hard in practice: QAPLIB instances above about 30 facilities are mostly unsolved, and the best known solutions of the larger ones have stood for many years, so a cheaper permutation is a new best known solution of a standard open instance.",
+    "papers": [
+      {
+        "title": "Assignment Problems and the Location of Economic Activities",
+        "url": "https://doi.org/10.2307/1907742",
+        "task_relation": "The task's objective is the Koopmans-Beckmann quadratic assignment cost of the QAPLIB instance tai80b.",
+        "primary_goal": "Formulate the assignment of indivisible economic activities to locations, introducing the quadratic assignment problem.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Robust taboo search for the quadratic assignment problem",
+        "url": "https://doi.org/10.1016/S0167-8191(05)80147-4",
+        "task_relation": "QAPLIB credits the best known solution of tai80b to robust tabu search (Ro-TS), which this paper introduces; tai80b is an asymmetric random Taillard 'b' instance.",
+        "primary_goal": "Introduce the robust tabu search heuristic for the quadratic assignment problem and report results on test instances.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Comparison of iterative searches for the quadratic assignment problem",
+        "url": "https://doi.org/10.1016/0966-8349(95)00008-6",
+        "task_relation": "QAPLIB cites a 1994 Taillard report for the Taillard 'b' instances; this paper, which describes the generator of random instances with Euclidean-type distances and non-uniform flows, appears to be its published version.",
+        "primary_goal": "Compare iterative search methods for the quadratic assignment problem on uniform random, structured and real-life instances, and describe a generator of more realistic random instances.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  }
+}

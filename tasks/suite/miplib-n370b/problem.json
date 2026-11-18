@@ -1,0 +1,92 @@
+{
+  "id": "miplib-n370b",
+  "name": "MIPLIB 2017 open instance n370b",
+  "description": "Find a feasible solution of the MIPLIB 2017 instance n370b with as low an objective value as possible (a maximisation model is negated, so that lower is better for every instance). A solution is feasible when every variable bound, every row bound and the integrality of every integer variable hold within an absolute tolerance of 1e-6 on the values as they are returned; integer variables are not rounded first.",
+  "protocol": "recreated",
+  "family": "miplib",
+  "direction": "minimize",
+  "contract": "solve(model) -> numpy array of num_cols values, one per column. model has name, mps_path (the uncompressed MPS file), num_cols, num_rows, A (scipy CSR matrix of the rows), col_cost, col_lower, col_upper, row_lower, row_upper, integrality (bool array), offset, maximise and indicators (a list of (row, column, value): such a row has to hold only when that column equals the value; empty for most instances). Score: col_cost @ x + offset in minimisation form (negated when maximise is true), minimized; an infeasible vector is invalid.",
+  "parameters": {
+    "instance": "n370b",
+    "best_known": 1216765.915459148
+  },
+  "requires": [
+    "py:numpy",
+    "py:scipy",
+    "py:highspy",
+    "file:data/miplib/n370b.mps.gz"
+  ],
+  "timeout": 900,
+  "notes": [
+    "Listed objective 1216765.915459148 (in the model's own sense).",
+    "https://miplib.zib.de/WebData/instances/n370b.mps.gz (size varies; some files are large)",
+    "Fixed charge transportation problem submitted by J. Aronson to MIPLIB 2010; no further origin documented.",
+    "The objective listed on the open-instances page may have been improved since 2026-11-11 (the list did not change between 2026-11-02 and 2026-11-11).",
+    "Candidates may call HiGHS through highspy; a stronger solver is a method, not a discovery by the workflow."
+  ],
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "areas": [
+      "optimization"
+    ],
+    "important_to_science": false
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "MIPLIB 2017 open instance n370b",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "minimize",
+  "sources": [
+    {
+      "url": "https://miplib.zib.de/tag_open.html",
+      "type": "benchmark",
+      "locator": "n370b"
+    },
+    {
+      "url": "https://doi.org/10.1007/s12532-020-00194-3",
+      "type": "benchmark",
+      "locator": "Gleixner et al. (2021), MIPLIB 2017: data-driven compilation of the 6th mixed-integer programming library (benchmark paper, not evidence)."
+    },
+    {
+      "url": "https://miplib.zib.de/",
+      "type": "benchmark",
+      "locator": "Instance pages with submitter, group, status and best known objective."
+    }
+  ],
+  "limitations": [
+    "The objective listed on the open-instances page may have been improved since 2026-11-11 (the list did not change between 2026-11-02 and 2026-11-11).",
+    "Candidates may call HiGHS through highspy; a stronger solver is a method, not a discovery by the workflow.",
+    "The record was found in a hashed snapshot of its source; it is not replayed. See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://miplib.zib.de/tag_open.html"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "unreviewed",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reason": "No qualifying paper whose main objective is the problem this instance models has been established for this task. MIPLIB 2017 is a benchmark library, and its paper is not such evidence. This label describes the available evidence, not proof that the task has no scientific value.",
+    "papers": [],
+    "scientific_problem": "Find a feasible solution with the best objective value of the mixed-integer program n370b, an open instance of MIPLIB 2017.",
+    "reviewed_at": "2026-11-11"
+  }
+}

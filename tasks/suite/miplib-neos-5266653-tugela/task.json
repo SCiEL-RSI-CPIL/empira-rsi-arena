@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "id": "miplib-neos-5266653-tugela",
+  "name": "MIPLIB 2017 open instance neos-5266653-tugela",
+  "description": "Find a feasible solution of the MIPLIB 2017 instance neos-5266653-tugela with as low an objective value as possible (a maximisation model is negated, so that lower is better for every instance). A solution is feasible when every variable bound, every row bound and the integrality of every integer variable hold within an absolute tolerance of 1e-6 on the values as they are returned; integer variables are not rounded first.",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "requires_setup",
+  "sources": [
+    {
+      "url": "https://miplib.zib.de/tag_open.html",
+      "type": "benchmark",
+      "locator": "neos-5266653-tugela"
+    },
+    {
+      "url": "https://doi.org/10.1007/s12532-020-00194-3",
+      "type": "benchmark",
+      "locator": "Gleixner et al. (2021), MIPLIB 2017: data-driven compilation of the 6th mixed-integer programming library (benchmark paper, not evidence)."
+    },
+    {
+      "url": "https://miplib.zib.de/",
+      "type": "benchmark",
+      "locator": "Instance pages with submitter, group, status and best known objective."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "scipy",
+      "highspy"
+    ],
+    "environment_variables": [],
+    "datasets": "https://miplib.zib.de/WebData/instances/neos-5266653-tugela.mps.gz (size varies; some files are large)"
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "specified_only",
+    "benchmark": "MIPLIB 2017 open instance neos-5266653-tugela",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "miplib",
+    "science_family": "miplib",
+    "parameters": {
+      "instance": "neos-5266653-tugela",
+      "best_known": 65257.573990387
+    },
+    "interface": "solve(model) -> numpy array of num_cols values, one per column. model has name, mps_path (the uncompressed MPS file), num_cols, num_rows, A (scipy CSR matrix of the rows), col_cost, col_lower, col_upper, row_lower, row_upper, integrality (bool array), offset, maximise and indicators (a list of (row, column, value): such a row has to hold only when that column equals the value; empty for most instances). Score: col_cost @ x + offset in minimisation form (negated when maximise is true), minimized; an infeasible vector is invalid.",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "combinatorial_optimisation",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "published_value",
+      "area": "optimization",
+      "areas": [
+        "optimization"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "https://miplib.zib.de/WebData/instances/neos-5266653-tugela.mps.gz (size varies; some files are large)"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "miplib",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:scipy",
+        "py:highspy",
+        "file:data/miplib/neos-5266653-tugela.mps.gz"
+      ],
+      "timeout": 900,
+      "validity_key": "valid"
+    },
+    "declared_status": "requires_setup"
+  },
+  "limitations": [
+    "The objective listed on the open-instances page may have been improved since 2026-11-11 (the list did not change between 2026-11-02 and 2026-11-11).",
+    "Candidates may call HiGHS through highspy; a stronger solver is a method, not a discovery by the workflow.",
+    "The starting program finds no feasible solution of this instance (HiGHS with a 30 s limit, run of 2026-11-11), so a search starts from an invalid candidate.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "real_instance_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "scripts/test_new_families.py",
+    "tests": "scripts/test_new_families.py",
+    "upstream_reproduction": true,
+    "record_level": "record_reproduced",
+    "unsure": false,
+    "record_validation": {
+      "record": 65257.573990387,
+      "checks": [
+        "open-instances page lists 65257.57399038699",
+        "published solution file header =obj= 65257.573990387",
+        "the published solution, checked by our verifier: feasible within 1e-6, objective 65257.573990387005"
+      ],
+      "sources": [
+        "sources/miplib_tag_open.html",
+        "sources/miplib_details/neos-5266653-tugela.html",
+        "sources/miplib_sol/neos-5266653-tugela.sol.gz",
+        "data/miplib/neos-5266653-tugela.mps.gz"
+      ],
+      "notes": [],
+      "validated": "2026-11-11"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "areas": [
+      "optimization"
+    ],
+    "important_to_science": false
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "unreviewed",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reason": "No qualifying paper whose main objective is the problem this instance models has been established for this task. MIPLIB 2017 is a benchmark library, and its paper is not such evidence. This label describes the available evidence, not proof that the task has no scientific value.",
+    "papers": [],
+    "scientific_problem": "Find a feasible solution with the best objective value of the mixed-integer program neos-5266653-tugela, an open instance of MIPLIB 2017.",
+    "reviewed_at": "2026-11-11"
+  },
+  "source_specification": {
+    "name": "MIPLIB 2017 open instance neos-5266653-tugela",
+    "slug": "miplib-neos-5266653-tugela",
+    "description": "Find a feasible solution of the MIPLIB 2017 instance neos-5266653-tugela with as low an objective value as possible (a maximisation model is negated, so that lower is better for every instance). A solution is feasible when every variable bound, every row bound and the integrality of every integer variable hold within an absolute tolerance of 1e-6 on the values as they are returned; integer variables are not rounded first.",
+    "benchmark": "MIPLIB 2017 open instance neos-5266653-tugela",
+    "dataset": "https://miplib.zib.de/WebData/instances/neos-5266653-tugela.mps.gz (size varies; some files are large)",
+    "metric": "score",
+    "direction": "minimize",
+    "source_url": "https://miplib.zib.de/tag_open.html",
+    "source_locator": "neos-5266653-tugela",
+    "upstream_path": null,
+    "requirements": [
+      "py:numpy",
+      "py:scipy",
+      "py:highspy",
+      "file:data/miplib/neos-5266653-tugela.mps.gz"
+    ],
+    "execution_notes": "https://miplib.zib.de/WebData/instances/neos-5266653-tugela.mps.gz (size varies; some files are large)"
+  }
+}

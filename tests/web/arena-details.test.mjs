@@ -1,6 +1,7 @@
 // Read-only DOM behavior with synthetic fixtures; no research execution.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { PAGE_SIZE } from '../../web/arena-model.js';
 import {
   source,
   task,
@@ -176,12 +177,11 @@ test('scientific direction cards retain exact corpus counts and open real chemis
       doc.getElementById('arena-result-count').textContent,
       `${expected.length} of ${catalog.tasks.length.toLocaleString('en-US')} tasks`,
     );
-    assert.deepEqual(
-      [...doc.querySelectorAll('#arena-results .arena-task-id')]
-        .map((node) => node.textContent)
-        .sort(),
-      expected.map((item) => item.id).sort(),
-    );
+    const shown = [...doc.querySelectorAll('#arena-results .arena-task-id')].map((node) => node.textContent);
+    const expectedIds = new Set(expected.map((item) => item.id));
+    assert.equal(shown.length, Math.min(expected.length, PAGE_SIZE));
+    assert.equal(new Set(shown).size, shown.length);
+    assert.ok(shown.every((ident) => expectedIds.has(ident)));
     const example = doc.querySelector('[data-field-detail="chemistry-materials"] .field-example a');
     const id = new URL(example.href).searchParams.get('task'),
       record = catalog.tasks.find((item) => item.id === id);

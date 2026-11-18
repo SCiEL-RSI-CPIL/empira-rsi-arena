@@ -28,6 +28,7 @@ FAMILY_IDS = {label: ident for ident, label, _, _ in FAMILIES[:-1]}
 SUPPLEMENT_FAMILIES = {
     "sciel-supplement": "SCiEL supplement",
     "kaggle-santa-2025": "Community supplement",
+    "open-problems-2026-11": "Science supplement",
     **{ident: "Science supplement" for ident in (
         "science-tcs", "science-cosmology", "science-particle", "science-quantum",
         "science-climate", "science-chemistry", "science-biology_expansion",

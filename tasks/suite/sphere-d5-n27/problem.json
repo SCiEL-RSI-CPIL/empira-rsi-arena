@@ -1,0 +1,139 @@
+{
+  "id": "sphere-d5-n27",
+  "name": "Spherical code, 27 points in dimension 5",
+  "description": "Place 27 points on the unit sphere in R^5 so that the smallest angle between two of them is as large as possible (a spherical code). The angle between two points is the angle at the centre of the sphere, the arccosine of the inner product of the two unit vectors.",
+  "protocol": "recreated_verified",
+  "family": "sphere",
+  "direction": "maximize",
+  "contract": "construct() -> array of shape (27, 5): one point per row (the verifier scales every row to unit length; a zero or non-finite row is invalid). Score: smallest angle between two points in degrees, maximized.",
+  "parameters": {
+    "dim": 5,
+    "n": 27,
+    "best_known": 66.318051845
+  },
+  "requires": [
+    "py:numpy"
+  ],
+  "timeout": 300,
+  "notes": [
+    "The code listed for this size in Cohn's table of spherical codes reaches 66.318051845 degrees (computed by this task's verifier from the table's coordinates, read 2026-11-15). Sloane's table of 1994-96, the source of the first version of this task, reaches 66.317520858 degrees after a local re-optimisation: 0.00053 degrees less.",
+    "No data files are needed to run the task. The record comes from the coordinates at https://spherical-codes.org/data/5/27, which only the record validation reads (scripts/prepare_new_data.py --family sphere).",
+    "Spherical code with 27 points in R^5, scored by the smallest pairwise angle; the reference is the code listed for this size in Cohn's table of spherical codes.",
+    "The listed code is the best known one, found by computer search and not proven optimal (sizes that are proven have no task).",
+    "The table is updated all the time: codes of this family were improved in 2022 to 2026. The record is the state on 2026-11-15 and will fall behind.",
+    "A result counts as an improvement only above the record by more than 1e-5 degrees, a margin against numerical slack in the listed coordinates."
+  ],
+  "labels": {
+    "scientific_contribution": "open_problem",
+    "science_tier": 1,
+    "artifact": "construction",
+    "domain": "mathematics",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "mathematics",
+    "secondary_area": "theoretical_computer_science",
+    "areas": [
+      "mathematics",
+      "theoretical_computer_science",
+      "optimization"
+    ],
+    "important_to_science": true
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "Spherical code, 27 points in dimension 5",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "maximize",
+  "sources": [
+    {
+      "url": "https://hdl.handle.net/1721.1/153543",
+      "type": "archive",
+      "locator": "Henry Cohn, Table of spherical codes (data set; the current table is at https://spherical-codes.org): dimension 5, 27 points"
+    },
+    {
+      "url": "https://neilsloane.com/packings/index.html",
+      "type": "benchmark",
+      "locator": "Sloane's tables of 1994-96, dimension 5, 27 points: the source of the first version of this task, kept for comparison"
+    },
+    {
+      "url": "https://doi.org/10.1080/10586458.2009.10128893",
+      "type": "paper",
+      "locator": "Finding and Investigating Exact Spherical Codes"
+    },
+    {
+      "url": "https://arxiv.org/abs/0805.0776",
+      "type": "paper",
+      "locator": "Wang, Finding and investigating exact spherical codes: the preprint of the paper cited above, the version that was read."
+    },
+    {
+      "url": "https://doi.org/10.1007/s00454-011-9392-2",
+      "type": "paper",
+      "locator": "Musin and Tarasov (2012), The Strong Thirteen Spheres Problem: solves the Tammes problem for n = 13 in R^3 (the main suite task math-tammes-sphere-13-points uses it); not an n of this family."
+    },
+    {
+      "url": "https://doi.org/10.1080/10586458.2015.1022842",
+      "type": "paper",
+      "locator": "Musin and Tarasov (2015), The Tammes Problem for N = 14: computer-assisted proof for n = 14 in R^3; the family starts at n = 16."
+    },
+    {
+      "url": "https://doi.org/10.5281/zenodo.23450670",
+      "type": "paper",
+      "locator": "mt0-svg (2026), The Tammes problem for fifteen points: a preprint, not peer reviewed, on whose strength Cohn's table marks n = 15 in R^3 as optimal; that size has no task for this reason."
+    },
+    {
+      "url": "https://arxiv.org/abs/0708.3947",
+      "type": "paper",
+      "locator": "Bachoc and Vallentin, Optimality and uniqueness of the (4,10,1/6) spherical code: semidefinite-programming proof for 10 points in R^4; the family starts at n = 11 there."
+    },
+    {
+      "url": "https://doi.org/10.4233/uuid:91af805a-376c-4ef8-aec5-e6ce08ae20a7",
+      "type": "paper",
+      "locator": "Leijenhorst (2025), On the computation of three and four-point bounds in discrete geometry and analytic number theory (doctoral thesis, TU Delft): cited by Cohn's table for the optimality of 12 points in R^4, a size the family leaves out for this reason."
+    },
+    {
+      "url": "https://doi.org/10.1090/s0894-0347-06-00546-7",
+      "type": "paper",
+      "locator": "Cohn and Kumar (2007), Universally optimal distribution of points on spheres: proves optimality of special codes such as the 600-cell (4, 120) and the 5-dimensional 16-point code, which the family leaves out."
+    }
+  ],
+  "limitations": [
+    "The listed code is the best known one, found by computer search and not proven optimal (sizes that are proven have no task).",
+    "The table is updated all the time: codes of this family were improved in 2022 to 2026. The record is the state on 2026-11-15 and will fall behind.",
+    "A result counts as an improvement only above the record by more than 1e-5 degrees, a margin against numerical slack in the listed coordinates.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://hdl.handle.net/1721.1/153543"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-15",
+    "reason": "The paper's main objective is to find the best spherical codes of N points in R^n by computer search, in dimensions 4 and 5 among others, and to show that the codes it finds exist exactly; the task poses the same problem for one N.",
+    "scientific_problem": "Find 27 points on the unit sphere of R^5 whose smallest pairwise angle is as large as possible, that is a spherical code of maximal minimum angle; the reference is the best code known for this size, as listed in Cohn's table of spherical codes.",
+    "importance_rationale": "Maximising the minimum angle of n points on a sphere is the Tammes problem (dimension 3, from the packing of pollen-grain apertures) and, in higher dimension, the spherical code problem of coding theory and sphere packing. Optimality is proven only for few n (n <= 14 and 24 in R^3, with a proof for 15 claimed in 2026, and a handful of special codes in R^4 and R^5), so the listed codes for larger n are the best known, not proven, and a larger minimum angle would be a new best code.",
+    "papers": [
+      {
+        "title": "Finding and Investigating Exact Spherical Codes",
+        "url": "https://doi.org/10.1080/10586458.2009.10128893",
+        "task_relation": "The task is the same problem for 27 points in R^5. The paper's searches reach 72 points in R^4 and 50 points in R^5 and report three improved codes in R^4 (40, 68 and 71 points); the task family goes to 130 points, so its larger sizes pose the paper's problem beyond the sizes the paper searched.",
+        "primary_goal": "Find good spherical codes of N points in R^n by energy minimisation from many random starts (dimensions 3 to 8), prove that the codes found exist exactly by writing their inner products as algebraic numbers, and catalogue them.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  }
+}

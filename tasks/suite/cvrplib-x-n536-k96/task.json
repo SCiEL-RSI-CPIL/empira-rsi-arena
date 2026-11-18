@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0",
+  "id": "cvrplib-x-n536-k96",
+  "name": "CVRP X-n536-k96",
+  "description": "Route identical vehicles of capacity 371 from one depot to serve the 535 customers of the CVRPLIB X-set instance X-n536-k96. Every customer is visited exactly once, the total demand on a route may not exceed the capacity, and every route starts and ends at the depot. The number of routes is free (the k in the instance name does not limit it). Minimise the total cost: the sum over all routes of the Euclidean distances between consecutive stops, the legs from and to the depot included, each distance rounded to the nearest integer.",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/",
+      "type": "benchmark",
+      "locator": "X-n536-k96"
+    },
+    {
+      "url": "https://doi.org/10.1287/mnsc.6.1.80",
+      "type": "paper",
+      "locator": "The Truck Dispatching Problem"
+    },
+    {
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/instances",
+      "type": "benchmark",
+      "locator": "CVRPLIB instance table: X-n536-k96 (customers, vehicle capacity, best known solution, optimality column), the instance file and the set conventions (Euclidean distance rounded to the nearest integer, total distance as cost, number of routes free)."
+    },
+    {
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/updates/",
+      "type": "archive",
+      "locator": "CVRPLIB update log (7 pages, read in full): dated entries naming who reported each improved best known solution of X-n536-k96 and with which method."
+    },
+    {
+      "url": "https://doi.org/10.1016/j.ejor.2016.08.012",
+      "type": "paper",
+      "locator": "Uchoa, Pecin, Pessoa, Poggi, Vidal and Subramanian (2017), New benchmark instances for the Capacitated Vehicle Routing Problem (Crossref: European Journal of Operational Research, March 2017): the X instance set, its generator and attributes; a benchmark paper, so not counted as evidence."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "CVRPLIB X instance file X-n536-k96.vrp (galgos.inf.puc-rio.br/cvrplib, download/instance/id)"
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "specified_only",
+    "benchmark": "CVRP X-n536-k96",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "cvrp",
+    "science_family": "cvrp",
+    "parameters": {
+      "instance": "X-n536-k96",
+      "best_known": 94832
+    },
+    "interface": "solve(inst) -> list of routes; a route is a list of customer ids from 1 to n in visiting order (the depot is node 0 and is not listed; empty routes are ignored). inst is a dict with n (number of customers), capacity, coords (array of shape (n + 1, 2), row 0 is the depot), demand (integer array of length n + 1, demand[0] = 0) and name. Score: the total cost, minimized.",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "combinatorial_optimisation",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "published_value",
+      "area": "optimization",
+      "areas": [
+        "optimization"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "CVRPLIB X instance file X-n536-k96.vrp (galgos.inf.puc-rio.br/cvrplib, download/instance/id)"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "cvrp",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/cvrp/X-n536-k96.vrp"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "real_instance_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "scripts/test_new_families.py",
+    "tests": "scripts/test_new_families.py",
+    "upstream_reproduction": true,
+    "record_level": "record_reproduced",
+    "unsure": false,
+    "record_validation": {
+      "record": 94832,
+      "checks": [
+        "published routes evaluated by our verifier = 94832",
+        "equals the cost in the .sol file and in the registry"
+      ],
+      "sources": [
+        "sources/cvrplib_bks/X-n536-k96.sol",
+        "sources/cvrplib_instances.html",
+        "data/cvrp/X-n536-k96.vrp"
+      ],
+      "notes": [],
+      "validated": "2026-11-18"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "areas": [
+      "optimization"
+    ],
+    "important_to_science": true
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "The cited paper poses the capacitated vehicle routing problem that the evaluator scores exactly on the pinned CVRPLIB X instance; where CVRPLIB credits a best known solution to a method paper, an override adds that paper, and the instance-set paper stays under extra_sources.",
+    "scientific_problem": "Find a minimum-cost set of capacity-feasible vehicle routes from one depot that serves every customer of the CVRPLIB X instance X-n536-k96.",
+    "importance_rationale": "The capacitated vehicle routing problem is the core model of distribution logistics (delivery, collection and service fleets). It is NP-hard; the X instances of 100 to 1,000 customers were generated to cover the attributes that make it hard, and the 39 that CVRPLIB lists as not proven optimal are open, so a cheaper set of routes is a new best known solution of an open standard instance.",
+    "papers": [
+      {
+        "title": "The Truck Dispatching Problem",
+        "url": "https://doi.org/10.1287/mnsc.6.1.80",
+        "task_relation": "The task's objective is the capacitated vehicle routing cost (rounded Euclidean distances, free number of routes) on the fixed CVRPLIB instance X-n536-k96.",
+        "primary_goal": "Formulate and solve the routing of a fleet of capacitated trucks from a terminal to service stations, introducing the capacitated vehicle routing problem.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  },
+  "source_specification": {
+    "name": "CVRP X-n536-k96",
+    "slug": "cvrplib-x-n536-k96",
+    "description": "Route identical vehicles of capacity 371 from one depot to serve the 535 customers of the CVRPLIB X-set instance X-n536-k96. Every customer is visited exactly once, the total demand on a route may not exceed the capacity, and every route starts and ends at the depot. The number of routes is free (the k in the instance name does not limit it). Minimise the total cost: the sum over all routes of the Euclidean distances between consecutive stops, the legs from and to the depot included, each distance rounded to the nearest integer.",
+    "benchmark": "CVRP X-n536-k96",
+    "dataset": "CVRPLIB X instance file X-n536-k96.vrp (galgos.inf.puc-rio.br/cvrplib, download/instance/id)",
+    "metric": "score",
+    "direction": "minimize",
+    "source_url": "https://galgos.inf.puc-rio.br/cvrplib/",
+    "source_locator": "X-n536-k96",
+    "upstream_path": null,
+    "requirements": [
+      "py:numpy",
+      "file:data/cvrp/X-n536-k96.vrp"
+    ],
+    "execution_notes": "CVRPLIB X instance file X-n536-k96.vrp (galgos.inf.puc-rio.br/cvrplib, download/instance/id)"
+  }
+}
