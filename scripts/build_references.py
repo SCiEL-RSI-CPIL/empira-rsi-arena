@@ -16,7 +16,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from arena.registry import get_catalog
-from arena.references import summarize, validate_references
+from arena.references import EXPANSION_REPORTS, summarize, validate_references
 from arena.task_source_reader import TaskSourceReader
 
 LABELS = {
@@ -37,6 +37,17 @@ LABELS = {
     "erdos_minimum_overlap": "C5 upper bound: 2 max(correlate(h,1-h)) / N",
     "sums_differences": "C6 lower bound from finite-set difference / sum cardinalities",
     "science_lj_cluster": "Total Lennard-Jones energy: 4 Σ(r⁻¹² − r⁻⁶), reduced units",
+    "science_frontier_combinatorics_cage": "Vertices of a k-regular graph of girth ≥ g",
+    "science_frontier_combinatorics_covering_code": "Codewords of a q-ary covering code of the stated radius",
+    "science_frontier_combinatorics_covering_design": "Blocks of a (v, k, t) covering design",
+    "science_frontier_combinatorics_dts": "Scope (largest entry) of a difference triangle set",
+    "science_frontier_combinatorics_qap": "Quadratic assignment cost Σ a[i,j]·b[p(i),p(j)]",
+    "science_frontier_combinatorics_superpermutation": "Length of a word containing every permutation of n symbols",
+    "science_frontier_physics_circles_in_circle": "Common radius of n disjoint circles in the unit circle",
+    "science_frontier_physics_circles_in_square": "Common radius of n disjoint circles in the unit square",
+    "science_frontier_physics_spheres_in_cube": "Common radius of n disjoint spheres in the unit cube",
+    "science_frontier_physics_log_energy": "Logarithmic energy Σ log(1/|xᵢ − xⱼ|) on the unit sphere",
+    "science_frontier_physics_sphere_covering": "Covering radius of n points on the unit sphere, degrees",
 }
 RAW_LABELS = {**LABELS,
     "llmsr_equation": "NMSE on the in-distribution test split",
@@ -79,13 +90,20 @@ def build(source: Path, catalog: dict, *, registry_root=None) -> dict:
         return result
 
     smoke = indexed(report["tasks"], "suite receipt")
-    science_path = "validation/science-expansion-report.json"
-    science_report = read(science_path) if science_path in tracked else None
-    if science_report is not None and science_report.get("mode") != "science_expansion_validation":
-        raise ValueError("Unrecognized science execution report mode")
-    science = indexed(science_report["tasks"], "science receipt") if science_report else {}
+    science, created = {}, [report["generated"]]
+    for science_path, mode in EXPANSION_REPORTS.items():
+        if science_path not in tracked:
+            continue
+        science_report = read(science_path)
+        if science_report.get("mode") != mode:
+            raise ValueError("Unrecognized science execution report mode")
+        created.append(science_report.get("created_at", ""))
+        for task_id, (index, row) in indexed(science_report["tasks"], "science receipt").items():
+            if task_id in science:
+                raise ValueError(f"Task has two expansion receipts: {task_id}")
+            science[task_id] = (index, row, science_path, science_report["created_at"])
     imported_hashes = read("import-receipt.json").get("upstream_hashes", {}) if reader.bundled else {}
-    as_of = (max(report["generated"], science_report.get("created_at", "") if science_report else "")[:10]
+    as_of = (max(created)[:10]
              if reader.bundled else subprocess.check_output(
                  [*reader.git, "show", "-s", "--format=%cs", reader.pin], text=True).strip())
 
@@ -250,13 +268,13 @@ def build(source: Path, catalog: dict, *, registry_root=None) -> dict:
         if task_id in science:
             # The newer expansion includes changed configurations under old IDs.
             # Even a blocked expansion row supersedes any older suite score.
-            index, row = science[task_id]
+            index, row, science_path, science_created = science[task_id]
             receipt = None
             if row["status"] == "ok":
                 identity = science_receipt(row, task, evaluation["evaluator_source"])
                 receipt = (index, {**row, "direction": row["result"]["direction"],
                                    "combined_score": row["result"].get("combined_score")})
-                receipt_path, recorded_at = science_path, row.get("finished_at", science_report["created_at"])
+                receipt_path, recorded_at = science_path, row.get("finished_at", science_created)
             else:
                 evaluation["notes"].append("The science expansion report records no successful source execution for this configuration; an older suite score is not carried forward.")
         elif receipt is None:
