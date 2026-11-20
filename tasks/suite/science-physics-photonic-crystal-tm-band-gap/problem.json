@@ -1,0 +1,118 @@
+{
+  "protocol": "recreated_verified",
+  "family": "physics_research_photonic_band_gap",
+  "direction": "maximize",
+  "contract": "design(problem) -> 32 x 32 nested list of 0/1 pixels of one square unit cell (1 = dielectric with epsilon 12, 0 = air), invariant under the square symmetry group about the cell centre (cell == cell[::-1] row-wise and column-wise and cell == its transpose). problem gives pixels 32, eps_low 1, eps_high 12, lower_band 4 and polarization TM. design runs in a sandboxed subprocess with a 120 s CPU budget. The evaluator computes TM bands with a 289-plane-wave Galerkin method using the exact Fourier coefficients of the pixel map, on 30 wave vectors covering the boundary and interior of the irreducible Brillouin zone. Score (maximize): gap-midgap ratio 2 (min omega_5 - max omega_4) / (min omega_5 + max omega_4) between TM bands 4 and 5; negative when the bands overlap",
+  "parameters": {
+    "lower_band": 4,
+    "cpu_seconds": 120
+  },
+  "requires": [
+    "py:numpy",
+    "py:scipy"
+  ],
+  "timeout": 200,
+  "notes": [
+    "The plane-wave model is converged to about 0.1 percentage points of gap-midgap ratio on test structures (289 versus 625 plane waves), and it reproduces the MPB tutorial's TM gap of the rod crystal (epsilon 12, radius 0.2) within 0.2 percentage points, the difference coming from the pixelated circle. Band extrema are searched on 30 wave vectors only, which is standard for symmetric cells but can miss extrema between samples. The symmetry requirement and the 32-pixel grid follow the setting of Men et al. (2010); the score is not comparable with their eigenvalue-based gap measure."
+  ],
+  "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
+  "id": "science-physics-photonic-crystal-tm-band-gap",
+  "name": "Physics: photonic-crystal unit cell with a large higher-order TM band gap",
+  "paper_ids": [
+    "science-physics_research"
+  ],
+  "description": "Design a symmetric 32x32-pixel unit cell of air and dielectric (epsilon 12) for a two-dimensional square-lattice photonic crystal that opens the largest gap between the fourth and fifth TM bands. The evaluator solves the band structure with an exact-coefficient plane-wave method over the irreducible Brillouin zone and scores the gap-midgap ratio.",
+  "benchmark": "Physics: photonic-crystal unit cell with a large higher-order TM band gap",
+  "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+  "paper_direction": null,
+  "sources": [
+    {
+      "url": "https://doi.org/10.1137/S0036139998338455",
+      "type": "paper",
+      "locator": "Cox and Dobson (1999), Maximizing band gaps in two-dimensional photonic crystals: the gap-maximization problem for TM and TE polarizations on a square lattice."
+    },
+    {
+      "url": "https://doi.org/10.1016/j.jcp.2010.01.023",
+      "type": "paper",
+      "locator": "Men, Nguyen, Freund, Parrilo and Peraire (2010): band-gap optimization of symmetric square-lattice cells on a 1/32 grid with air and a dielectric, including higher TM gaps such as the fourth."
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevLett.100.153904",
+      "type": "paper",
+      "locator": "Sigmund and Hougaard (2008), Geometric properties of optimal photonic crystals: topology-optimized band-gap structures."
+    },
+    {
+      "url": "https://mpb.readthedocs.io/en/latest/Python_Tutorial/",
+      "type": "repository",
+      "locator": "MPB Python tutorial: the rod crystal (epsilon 12, radius 0.2a) has TM gaps of 38.95 % (bands 1-2) and 3.84 % (bands 4-5); used to check the local solver."
+    }
+  ],
+  "limitations": [
+    "The evaluator is a 289-plane-wave Galerkin solver on a 32-pixel grid: designs are scored under this discretization, which is converged to about 0.1 percentage points on test structures but is not a full-wave simulation of a fabricated device.",
+    "Band extrema are searched on 30 wave vectors of the irreducible zone (boundary plus interior samples), standard for symmetric cells but able to miss extrema between samples.",
+    "Only one polarization and one gap (TM bands 4-5) are optimized; complete band gaps and fabrication constraints such as minimum feature size are not part of the score.",
+    "Published optimized gaps (Men et al. 2010) use an eigenvalue-based gap ratio and a finite-element discretization, so they are not directly comparable with this score."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "science-physics_research",
+      "title": "Physics research: source-based research tasks",
+      "url": "https://doi.org/10.1002/3527603794.ch4"
+    }
+  ],
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "as_of": "2026-10-10",
+    "statement": "No published value under this exact discretization and gap measure. For context, the textbook rod crystal (the seed) gives 0.043 here, close to the 3.84 % reported by the MPB tutorial for the same nominal structure, and a 150-second greedy pixel-flip search run during task construction reached 0.311.",
+    "sources": [
+      {
+        "title": "MPB Python tutorial",
+        "url": "https://mpb.readthedocs.io/en/latest/Python_Tutorial/"
+      }
+    ]
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Find the arrangement of dielectric and air in a periodic unit cell that opens the largest photonic band gap at a chosen pair of bands.",
+    "importance_rationale": "Band gaps are what make photonic crystals useful for waveguiding, lasers and cavities; maximizing them over the material distribution is a well-posed inverse-design problem that produced new crystal geometries, and higher-order gaps are harder than the first.",
+    "papers": [
+      {
+        "title": "Maximizing band gaps in two-dimensional photonic crystals",
+        "url": "https://doi.org/10.1137/S0036139998338455",
+        "primary_goal": "Formulate and solve the problem of maximizing photonic band gaps over the dielectric distribution in a unit cell.",
+        "task_relation": "The task is the same optimization, restricted to a two-material 32x32 symmetric cell and the TM 4-5 gap, with the band structure computed by a plane-wave method.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Bandgap optimization of two-dimensional photonic crystals using semidefinite programming and subspace methods",
+        "url": "https://doi.org/10.1016/j.jcp.2010.01.023",
+        "primary_goal": "Compute optimized photonic-crystal structures with large band gaps, including higher TM and TE gaps.",
+        "task_relation": "Uses the same square-lattice symmetric-cell setting and higher-gap targets that the task adopts.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "The cited papers' main goal is maximizing photonic band gaps by designing the unit cell, exactly what the evaluator scores.",
+    "verification_basis": "Crossref metadata inspected; the plane-wave solver reproduces analytic free-photon bands, the exact Fourier coefficients of test cells and the published MPB tutorial gap of the rod crystal within 0.2 percentage points, and is converged in the plane-wave cutoff.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  },
+  "labels": {
+    "area": "physics",
+    "domain": "natural_science",
+    "scientific_contribution": "method",
+    "artifact": "construction",
+    "data": "none",
+    "verification": "exact",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  }
+}

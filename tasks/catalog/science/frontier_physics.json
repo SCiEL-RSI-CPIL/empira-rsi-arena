@@ -1,0 +1,856 @@
+[
+  {
+    "id": "science-frontier-physics-circles-in-circle-50",
+    "name": "Fifty equal circles in a circle",
+    "description": "Place the centres of 50 equal, non-overlapping circles inside a circle of radius 1 so that their common radius is as large as possible. The best known packing, with radius 0.1258254895304, was found by Graham, Lubachevsky, Nurmela and Östergård in 1998 and is not proven optimal.",
+    "family": "science_frontier_physics_circles_in_circle",
+    "status": "ready",
+    "parameters": {
+      "n": 50,
+      "published": 0.12582548953040418
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1016/S0012-365X(97)00050-2",
+        "type": "paper",
+        "locator": "Graham, Lubachevsky, Nurmela and Östergård (1998), Dense packings of congruent circles in a circle: the problem and the billiards-based packings for N up to 65 that still hold the record for N = 50."
+      },
+      {
+        "url": "https://www.packomania.com/cci/cci.html",
+        "type": "benchmark",
+        "locator": "E. Specht, Packomania table of equal circles in a circle (last update 2024-12-25), row N = 50: radius 0.125825489530404188680567705027, reference [8]; coordinates in cci/txt/cci50.txt."
+      }
+    ],
+    "limitations": [
+      "Optimality is proven only for N <= 13 and N = 19 (bold entries of the Packomania table); computer-assisted proofs for N = 15 were announced there on 2026-10-11. The record table also notes a queue of unprocessed submissions, so it may change.",
+      "The record coordinates are public (Packomania), so a candidate can reproduce the record from memory or by downloading it beforehand; scores measure the returned construction, not the search that produced it.",
+      "Scores are double-precision radii of the returned centres. A score above the record by at most 1e-11 is reported as a tie; a larger gain is a candidate new record that should be confirmed in higher precision and submitted to the record table before it is claimed.",
+      "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the radius from the returned array but does not sandbox the program."
+    ],
+    "labels": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "None; the record value is embedded as a parameter and no file is read at evaluation time."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-11",
+      "tests": "tests/test_frontier_physics.py",
+      "evidence": "validation/frontier_physics-checks.json",
+      "human_results": "validation/human-results/frontier_physics.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.12582548953040418,
+      "statement": "The best known packing of 50 equal circles in a circle of radius 1 has circle radius 0.125825489530404188680567705027 (Packomania, last update 2024-12-25), credited to Graham, Lubachevsky, Nurmela and Östergård (1998). It has stood since 1998; no optimality proof is known.",
+      "sources": [
+        {
+          "title": "The best known packings of equal circles in a circle (Packomania)",
+          "url": "https://www.packomania.com/cci/cci.html",
+          "authors": "Eckard Specht",
+          "year": 2024
+        },
+        {
+          "title": "Dense packings of congruent circles in a circle",
+          "url": "https://doi.org/10.1016/S0012-365X(97)00050-2",
+          "authors": "R. L. Graham, B. D. Lubachevsky, K. J. Nurmela, P. R. J. Östergård",
+          "year": 1998
+        }
+      ],
+      "comparability": "Same instance and objective: N = 50, container radius 1, maximize the common circle radius; the published centre file scores 0.12582548953040407 with this evaluator (difference 1.1e-16).",
+      "as_of": "2026-10-11",
+      "attribution": "human"
+    }
+  },
+  {
+    "id": "science-frontier-physics-circles-in-circle-300",
+    "name": "Three hundred equal circles in a circle",
+    "description": "Place the centres of 300 equal, non-overlapping circles inside a circle of radius 1 so that their common radius is as large as possible. The best known packing, with radius 0.0531542991469, was found by Lai, Hao, Yue, Lü and Fu in 2021 and is not proven optimal.",
+    "family": "science_frontier_physics_circles_in_circle",
+    "status": "ready",
+    "parameters": {
+      "n": 300,
+      "published": 0.053154299146851186
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1016/j.ejor.2021.08.044",
+        "type": "paper",
+        "locator": "Lai, Hao, Yue, Lü and Fu (2022), Iterated dynamic thresholding search for packing equal circles into a circular container: the search method behind the 2021 records for N = 126 to 319."
+      },
+      {
+        "url": "https://www.packomania.com/cci/cci.html",
+        "type": "benchmark",
+        "locator": "E. Specht, Packomania table of equal circles in a circle (last update 2024-12-25), row N = 300: radius 0.053154299146851187500993025786, reference [21] (Lai, Hao, Yue, Lu and Fu, September 2021); coordinates in cci/txt/cci300.txt."
+      }
+    ],
+    "limitations": [
+      "Optimality is proven only for N <= 13 and N = 19 (bold entries of the Packomania table); computer-assisted proofs for N = 15 were announced there on 2026-10-11. The record table also notes a queue of unprocessed submissions, so it may change.",
+      "The record coordinates are public (Packomania), so a candidate can reproduce the record from memory or by downloading it beforehand; scores measure the returned construction, not the search that produced it.",
+      "Scores are double-precision radii of the returned centres. A score above the record by at most 1e-11 is reported as a tie; a larger gain is a candidate new record that should be confirmed in higher precision and submitted to the record table before it is claimed.",
+      "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the radius from the returned array but does not sandbox the program."
+    ],
+    "labels": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "None; the record value is embedded as a parameter and no file is read at evaluation time."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-11",
+      "tests": "tests/test_frontier_physics.py",
+      "evidence": "validation/frontier_physics-checks.json",
+      "human_results": "validation/human-results/frontier_physics.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.053154299146851186,
+      "statement": "The best known packing of 300 equal circles in a circle of radius 1 has circle radius 0.053154299146851187500993025786 (Packomania, last update 2024-12-25), credited to X. Lai, J.-K. Hao, D. Yue, Z. Lü and Z.-H. Fu (September 2021; method published in 2022). Records near this size were improved again in 2023 and 2024; no optimality proof is known.",
+      "sources": [
+        {
+          "title": "The best known packings of equal circles in a circle (Packomania)",
+          "url": "https://www.packomania.com/cci/cci.html",
+          "authors": "Eckard Specht",
+          "year": 2024
+        },
+        {
+          "title": "Iterated dynamic thresholding search for packing equal circles into a circular container",
+          "url": "https://doi.org/10.1016/j.ejor.2021.08.044",
+          "authors": "X. Lai, J.-K. Hao, D. Yue, Z. Lü, Z.-H. Fu",
+          "year": 2022
+        }
+      ],
+      "comparability": "Same instance and objective: N = 300, container radius 1, maximize the common circle radius; the published centre file scores 0.0531542991468511 with this evaluator (difference 8.3e-17).",
+      "as_of": "2026-10-11",
+      "attribution": "human"
+    }
+  },
+  {
+    "id": "science-frontier-physics-circles-in-square-50",
+    "name": "Fifty equal circles in a square",
+    "description": "Place the centres of 50 equal, non-overlapping circles inside a unit square so that their common radius is as large as possible. The best known packing, with radius 0.071377103865, was found by Boll, Donovan, Graham and Lubachevsky in 2000 and is not proven optimal.",
+    "family": "science_frontier_physics_circles_in_square",
+    "status": "ready",
+    "parameters": {
+      "n": 50,
+      "published": 0.071377103865
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.37236/1524",
+        "type": "paper",
+        "locator": "Boll, Donovan, Graham and Lubachevsky (2000), Improving dense packings of equal disks in a square: new record packings including N = 50."
+      },
+      {
+        "url": "https://www.packomania.com/csq/csq.html",
+        "type": "benchmark",
+        "locator": "E. Specht, Packomania table of equal circles in a square (last update 2026-09-10), row N = 50: radius 0.071377103865, reference [14]; coordinates in csq/txt/csq50.txt."
+      }
+    ],
+    "limitations": [
+      "Optimality is proven only for N <= 30 and N = 36 (bold entries of the Packomania table). Packomania publishes these records with 12 decimals, so ties are judged with the 1e-11 margin.",
+      "The record coordinates are public (Packomania), so a candidate can reproduce the record from memory or by downloading it beforehand; scores measure the returned construction, not the search that produced it.",
+      "Scores are double-precision radii of the returned centres. A score above the record by at most 1e-11 is reported as a tie; a larger gain is a candidate new record that should be confirmed in higher precision and submitted to the record table before it is claimed.",
+      "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the radius from the returned array but does not sandbox the program."
+    ],
+    "labels": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "None; the record value is embedded as a parameter and no file is read at evaluation time."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-11",
+      "tests": "tests/test_frontier_physics.py",
+      "evidence": "validation/frontier_physics-checks.json",
+      "human_results": "validation/human-results/frontier_physics.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.071377103865,
+      "statement": "The best known packing of 50 equal circles in a unit square has circle radius 0.071377103865 (Packomania, last update 2026-09-10), credited to Boll, Donovan, Graham and Lubachevsky (2000). No optimality proof is known (proofs exist for N <= 30 and N = 36).",
+      "sources": [
+        {
+          "title": "The best known packings of equal circles in a square (Packomania)",
+          "url": "https://www.packomania.com/csq/csq.html",
+          "authors": "Eckard Specht",
+          "year": 2026
+        },
+        {
+          "title": "Improving dense packings of equal disks in a square",
+          "url": "https://doi.org/10.37236/1524",
+          "authors": "D. W. Boll, J. Donovan, R. L. Graham, B. D. Lubachevsky",
+          "year": 2000
+        }
+      ],
+      "comparability": "Same instance and objective: N = 50, unit square, maximize the common circle radius; the published centre file (12 decimals) scores 0.07137710386398553 with this evaluator (difference -1.0e-12, within the published precision).",
+      "as_of": "2026-10-11",
+      "attribution": "human"
+    }
+  },
+  {
+    "id": "science-frontier-physics-circles-in-square-200",
+    "name": "Two hundred equal circles in a square",
+    "description": "Place the centres of 200 equal, non-overlapping circles inside a unit square so that their common radius is as large as possible. The best known packing, with radius 0.036612798904, is credited to Huang, Ye and Cantrell (2010) and is not proven optimal.",
+    "family": "science_frontier_physics_circles_in_square",
+    "status": "ready",
+    "parameters": {
+      "n": 200,
+      "published": 0.036612798904
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1016/j.orl.2010.07.004",
+        "type": "paper",
+        "locator": "Huang and Ye (2010), Greedy vacancy search algorithm for packing equal circles in a square: the search method credited, with D. W. Cantrell's refinements, for the N = 200 record."
+      },
+      {
+        "url": "https://www.packomania.com/csq/csq.html",
+        "type": "benchmark",
+        "locator": "E. Specht, Packomania table of equal circles in a square (last update 2026-09-10), row N = 200: radius 0.036612798904, references [25,24] (Huang and Ye 2010; D. W. Cantrell 2010); coordinates in csq/txt/csq200.txt."
+      }
+    ],
+    "limitations": [
+      "Optimality is proven only for N <= 30 and N = 36 (bold entries of the Packomania table). Packomania publishes these records with 12 decimals, so ties are judged with the 1e-11 margin.",
+      "The record coordinates are public (Packomania), so a candidate can reproduce the record from memory or by downloading it beforehand; scores measure the returned construction, not the search that produced it.",
+      "Scores are double-precision radii of the returned centres. A score above the record by at most 1e-11 is reported as a tie; a larger gain is a candidate new record that should be confirmed in higher precision and submitted to the record table before it is claimed.",
+      "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the radius from the returned array but does not sandbox the program."
+    ],
+    "labels": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "None; the record value is embedded as a parameter and no file is read at evaluation time."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-11",
+      "tests": "tests/test_frontier_physics.py",
+      "evidence": "validation/frontier_physics-checks.json",
+      "human_results": "validation/human-results/frontier_physics.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.036612798904,
+      "statement": "The best known packing of 200 equal circles in a unit square has circle radius 0.036612798904 (Packomania, last update 2026-09-10), credited to W. Huang, T. Ye and D. W. Cantrell (2010). Many neighbouring sizes were improved in 2022; no optimality proof is known.",
+      "sources": [
+        {
+          "title": "The best known packings of equal circles in a square (Packomania)",
+          "url": "https://www.packomania.com/csq/csq.html",
+          "authors": "Eckard Specht",
+          "year": 2026
+        },
+        {
+          "title": "Greedy vacancy search algorithm for packing equal circles in a square",
+          "url": "https://doi.org/10.1016/j.orl.2010.07.004",
+          "authors": "W. Huang, T. Ye",
+          "year": 2010
+        }
+      ],
+      "comparability": "Same instance and objective: N = 200, unit square, maximize the common circle radius; the published centre file (12 decimals) scores 0.03661279890330394 with this evaluator (difference -7.0e-13, within the published precision).",
+      "as_of": "2026-10-11",
+      "attribution": "human"
+    }
+  },
+  {
+    "id": "science-frontier-physics-spheres-in-cube-50",
+    "name": "Fifty equal spheres in a cube",
+    "description": "Place the centres of 50 equal, non-overlapping spheres inside a unit cube so that their common radius is as large as possible. The best known packing, with radius 0.1359545126417, is credited to Hugo Pfoertner and is not proven optimal.",
+    "family": "science_frontier_physics_spheres_in_cube",
+    "status": "ready",
+    "parameters": {
+      "n": 50,
+      "published": 0.13595451264166358
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.37236/1786",
+        "type": "paper",
+        "locator": "Gensane (2004), Dense packings of equal spheres in a cube: the problem, its equivalence with spreading points in a cube, and record packings for N up to 32."
+      },
+      {
+        "url": "https://www.packomania.com/scu/scu.html",
+        "type": "benchmark",
+        "locator": "E. Specht, Packomania table of equal spheres in a cube (last update 2026-10-08), row N = 50: radius 0.135954512641663590961947158274, credited to H. Pfoertner (reference [7], 2005); coordinates in scu/txt/scu50.txt."
+      }
+    ],
+    "limitations": [
+      "Optimality is proven only for a few small N (for example N = 14, Joós 2009); the Packomania table was being revised on 2026-10-04 to 2026-10-08 with new submissions for other sizes, so it may change.",
+      "The record coordinates are public (Packomania), so a candidate can reproduce the record from memory or by downloading it beforehand; scores measure the returned construction, not the search that produced it.",
+      "Scores are double-precision radii of the returned centres. A score above the record by at most 1e-11 is reported as a tie; a larger gain is a candidate new record that should be confirmed in higher precision and submitted to the record table before it is claimed.",
+      "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the radius from the returned array but does not sandbox the program."
+    ],
+    "labels": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "None; the record value is embedded as a parameter and no file is read at evaluation time."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-11",
+      "tests": "tests/test_frontier_physics.py",
+      "evidence": "validation/frontier_physics-checks.json",
+      "human_results": "validation/human-results/frontier_physics.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.13595451264166358,
+      "statement": "The best known packing of 50 equal spheres in a unit cube has sphere radius 0.135954512641663590961947158274 (Packomania, last update 2026-10-08), credited to Hugo Pfoertner (table reference dated 2005). No optimality proof is known.",
+      "sources": [
+        {
+          "title": "The best known packings of equal spheres in a cube (Packomania)",
+          "url": "https://www.packomania.com/scu/scu.html",
+          "authors": "Eckard Specht",
+          "year": 2026
+        },
+        {
+          "title": "Dense packings of equal spheres in a cube",
+          "url": "https://doi.org/10.37236/1786",
+          "authors": "T. Gensane",
+          "year": 2004
+        }
+      ],
+      "comparability": "Same instance and objective: N = 50, unit cube, maximize the common sphere radius; the published centre file scores 0.13595451264166356 with this evaluator (difference 2.8e-17).",
+      "as_of": "2026-10-11",
+      "attribution": "human"
+    }
+  },
+  {
+    "id": "science-frontier-physics-spheres-in-cube-100",
+    "name": "One hundred equal spheres in a cube",
+    "description": "Place the centres of 100 equal, non-overlapping spheres inside a unit cube so that their common radius is as large as possible. The best known packing, with radius 0.1113823475125, was found by Eckard Specht's search program and is not proven optimal.",
+    "family": "science_frontier_physics_spheres_in_cube",
+    "status": "ready",
+    "parameters": {
+      "n": 100,
+      "published": 0.11138234751247975
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.37236/1786",
+        "type": "paper",
+        "locator": "Gensane (2004), Dense packings of equal spheres in a cube: the problem and its equivalence with spreading points in a cube."
+      },
+      {
+        "url": "https://www.packomania.com/scu/scu.html",
+        "type": "benchmark",
+        "locator": "E. Specht, Packomania table of equal spheres in a cube (last update 2026-10-08), row N = 100: radius 0.111382347512479750227357863499, reference [31] (program scu, 2010-2012); coordinates in scu/txt/scu100.txt."
+      }
+    ],
+    "limitations": [
+      "Optimality is proven only for a few small N (for example N = 14, Joós 2009); the Packomania table was being revised on 2026-10-04 to 2026-10-08 with new submissions for other sizes, so it may change.",
+      "The record coordinates are public (Packomania), so a candidate can reproduce the record from memory or by downloading it beforehand; scores measure the returned construction, not the search that produced it.",
+      "Scores are double-precision radii of the returned centres. A score above the record by at most 1e-11 is reported as a tie; a larger gain is a candidate new record that should be confirmed in higher precision and submitted to the record table before it is claimed.",
+      "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the radius from the returned array but does not sandbox the program."
+    ],
+    "labels": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "None; the record value is embedded as a parameter and no file is read at evaluation time."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-11",
+      "tests": "tests/test_frontier_physics.py",
+      "evidence": "validation/frontier_physics-checks.json",
+      "human_results": "validation/human-results/frontier_physics.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.11138234751247975,
+      "statement": "The best known packing of 100 equal spheres in a unit cube has sphere radius 0.111382347512479750227357863499 (Packomania, last update 2026-10-08), credited to E. Specht's program scu (2010-2012). Several neighbouring sizes were improved between 2012 and October 2026; no optimality proof is known.",
+      "sources": [
+        {
+          "title": "The best known packings of equal spheres in a cube (Packomania)",
+          "url": "https://www.packomania.com/scu/scu.html",
+          "authors": "Eckard Specht",
+          "year": 2026
+        },
+        {
+          "title": "Dense packings of equal spheres in a cube",
+          "url": "https://doi.org/10.37236/1786",
+          "authors": "T. Gensane",
+          "year": 2004
+        }
+      ],
+      "comparability": "Same instance and objective: N = 100, unit cube, maximize the common sphere radius; the published centre file scores 0.11138234751247973 with this evaluator (difference 1.4e-17).",
+      "as_of": "2026-10-11",
+      "attribution": "human"
+    }
+  },
+  {
+    "id": "science-frontier-physics-sphere-covering-50",
+    "name": "Covering the sphere with 50 equal caps",
+    "description": "Place 50 points on the unit sphere so that the largest angular distance from any point of the sphere to its nearest chosen point (the covering radius) is as small as possible. The best known covering, with radius 18.3000226 degrees, was found by Hardin, Sloane and Smith in 1994 and is not proven optimal.",
+    "family": "science_frontier_physics_sphere_covering",
+    "status": "ready",
+    "parameters": {
+      "n": 50,
+      "published": 18.3000226
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1017/S0305004100070134",
+        "type": "paper",
+        "locator": "Tarnai and Gáspár (1991), Covering a sphere by equal circles, and the rigidity of its graph: the covering problem, conjectured coverings for N = 15-20 and sporadic larger N."
+      },
+      {
+        "url": "https://cohn.mit.edu/sloane/",
+        "type": "benchmark",
+        "locator": "Hardin, Sloane and Smith table of coverings by N spherical caps in 3 dimensions (calculations of 1994, maintained by H. Cohn; radii rounded up), row N = 50: 18.3000226 degrees; coordinates in cov3-50.txt (also neilsloane.com/coverings/dim3/cover.3.50.txt)."
+      }
+    ],
+    "limitations": [
+      "The table gives covering radii rounded up to 1e-7 degrees; a covering counts as a new record only when it is below the table value by more than 1e-7 degrees. Optimal coverings are proven only for small N; the table value for N = 50 dates from 1994, and the value for N = 130 is Henry Cohn's 2026 improvement of the 1994 value.",
+      "Points are normalised to the unit sphere before scoring, so only directions matter; the record coordinates are public, so scores measure the returned construction, not the search that produced it.",
+      "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the score from the returned array but does not sandbox the program."
+    ],
+    "labels": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "scipy"
+      ],
+      "datasets": "None; the record value is embedded as a parameter and no file is read at evaluation time."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-11",
+      "tests": "tests/test_frontier_physics.py",
+      "evidence": "validation/frontier_physics-checks.json",
+      "human_results": "validation/human-results/frontier_physics.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 18.3000226,
+      "statement": "The best known covering of the sphere by 50 equal caps has angular covering radius 18.3000226 degrees (rounded up), from the table of R. H. Hardin, N. J. A. Sloane and W. D. Smith (1994), now maintained by H. Cohn, who invites improvements. No optimality proof is known for N = 50.",
+      "sources": [
+        {
+          "title": "Sloane's tables of point configurations on spheres (coverings by N spherical caps in 3 dimensions)",
+          "url": "https://cohn.mit.edu/sloane/",
+          "authors": "R. H. Hardin, N. J. A. Sloane, W. D. Smith; maintained by H. Cohn",
+          "year": 1994
+        },
+        {
+          "title": "Covering a sphere by equal circles, and the rigidity of its graph",
+          "url": "https://doi.org/10.1017/S0305004100070134",
+          "authors": "T. Tarnai, Zs. Gáspár",
+          "year": 1991
+        }
+      ],
+      "comparability": "Same instance and objective: N = 50 points on the unit sphere, minimize the covering radius in degrees; the published coordinates (12 decimals) score 18.30002258488077 degrees with this evaluator, consistent with the rounded-up table value.",
+      "as_of": "2026-10-11",
+      "attribution": "human"
+    }
+  },
+  {
+    "id": "science-frontier-physics-sphere-covering-130",
+    "name": "Covering the sphere with 130 equal caps",
+    "description": "Place 130 points on the unit sphere so that the largest angular distance from any point of the sphere to its nearest chosen point (the covering radius) is as small as possible. The best known covering has radius 11.3153512 degrees: in 2026 Henry Cohn improved the 1994 value of Hardin, Sloane and Smith (11.3165625 degrees). It is not proven optimal.",
+    "family": "science_frontier_physics_sphere_covering",
+    "status": "ready",
+    "parameters": {
+      "n": 130,
+      "published": 11.3153512
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1017/S0305004100070134",
+        "type": "paper",
+        "locator": "Tarnai and Gáspár (1991), Covering a sphere by equal circles, and the rigidity of its graph: the covering problem, conjectured coverings for N = 15-20 and sporadic larger N."
+      },
+      {
+        "url": "https://cohn.mit.edu/sloane/",
+        "type": "benchmark",
+        "locator": "Hardin, Sloane and Smith table of coverings by N spherical caps in 3 dimensions (calculations of 1994, maintained by H. Cohn; radii rounded up), row N = 130, read 2026-11-20: 11.3153512 degrees, credited to Henry Cohn, 2026 (the 1994 value was 11.3165625 degrees); coordinate files are named cov3-N.txt in the table's data set (whether its cov3-130.txt is the 2026 covering was not checked), and neilsloane.com/coverings/dim3/cover.3.130.txt is the 1994 covering."
+      }
+    ],
+    "limitations": [
+      "The table gives covering radii rounded up to 1e-7 degrees; a covering counts as a new record only when it is below the table value by more than 1e-7 degrees. Optimal coverings are proven only for small N; the table value for N = 50 dates from 1994, and the value for N = 130 is Henry Cohn's 2026 improvement of the 1994 value.",
+      "Points are normalised to the unit sphere before scoring, so only directions matter; the record coordinates are public, so scores measure the returned construction, not the search that produced it.",
+      "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the score from the returned array but does not sandbox the program."
+    ],
+    "labels": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "scipy"
+      ],
+      "datasets": "None; the record value is embedded as a parameter and no file is read at evaluation time."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-11",
+      "tests": "tests/test_frontier_physics.py",
+      "evidence": "validation/frontier_physics-checks.json",
+      "human_results": "validation/human-results/frontier_physics.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 11.3153512,
+      "statement": "The best known covering of the sphere by 130 equal caps has angular covering radius 11.3153512 degrees (rounded up), Henry Cohn's 2026 improvement of the value 11.3165625 in the table of R. H. Hardin, N. J. A. Sloane and W. D. Smith (1994), now maintained by H. Cohn, who invites improvements. No optimality proof is known for N = 130.",
+      "sources": [
+        {
+          "title": "Sloane's tables of point configurations on spheres (coverings by N spherical caps in 3 dimensions)",
+          "url": "https://cohn.mit.edu/sloane/",
+          "authors": "R. H. Hardin, N. J. A. Sloane, W. D. Smith; maintained by H. Cohn",
+          "year": 1994
+        },
+        {
+          "title": "Covering a sphere by equal circles, and the rigidity of its graph",
+          "url": "https://doi.org/10.1017/S0305004100070134",
+          "authors": "T. Tarnai, Zs. Gáspár",
+          "year": 1991
+        }
+      ],
+      "comparability": "Same instance and objective: N = 130 points on the unit sphere, minimize the covering radius in degrees; the 1994 coordinates (12 decimals) score 11.316562480308567 degrees with this evaluator, consistent with the rounded-up 1994 table value 11.3165625; the 2026 covering has not been scored with this evaluator.",
+      "as_of": "2026-11-20",
+      "attribution": "human"
+    }
+  },
+  {
+    "id": "science-frontier-physics-log-energy-100",
+    "name": "Minimal logarithmic energy of 100 points on the sphere",
+    "description": "Place 100 points on the unit sphere to minimize the logarithmic energy, the sum over all pairs of log(1/distance), the energy in Smale's 7th problem. The lowest published energy, -1083.377140539, is not proven minimal.",
+    "family": "science_frontier_physics_log_energy",
+    "status": "ready",
+    "parameters": {
+      "n": 100,
+      "published": -1083.377140539012
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.4310/MRL.1994.v1.n6.a3",
+        "type": "paper",
+        "locator": "Rakhmanov, Saff and Zhou (1994), Minimal discrete energy on the sphere: the minimal logarithmic and Riesz energy problems and numerical minima."
+      },
+      {
+        "url": "https://doi.org/10.1007/s10955-014-1107-7",
+        "type": "paper",
+        "locator": "Nerattini, Brauchart and Kiessling (2014), supplement table 6.2 (s = 0): putatively minimal standardized pair energy v_0(100) = -0.21886406879576, i.e. E = -1083.377140539."
+      },
+      {
+        "url": "https://doi.org/10.5281/zenodo.17923310",
+        "type": "archive",
+        "locator": "Amore, Figueroa and Ramos (2025), CC BY 4.0 dataset of local minima of the logarithmic energy; LocalMinima.zip, member 100.zip (39 minima for N = 100), whose lowest minimum reproduces the tabulated value to 2.9e-10."
+      }
+    ],
+    "limitations": [
+      "The record is the lowest published value we could check: the tables of Nerattini, Brauchart and Kiessling (2014), compiled from Rakhmanov, Saff and Zhou (1995) and Calef (2009), and the 2025 landscape survey of Amore, Figueroa and Ramos. R. Womersley's published point sets could not be accessed when the task was prepared, so a lower value in sources we could not read cannot be excluded.",
+      "Points are normalised to the unit sphere before scoring, so only directions matter; the record coordinates are public, so scores measure the returned construction, not the search that produced it.",
+      "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the score from the returned array but does not sandbox the program."
+    ],
+    "labels": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "None; the record value is embedded as a parameter and no file is read at evaluation time."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-11",
+      "tests": "tests/test_frontier_physics.py",
+      "evidence": "validation/frontier_physics-checks.json",
+      "human_results": "validation/human-results/frontier_physics.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": -1083.377140539012,
+      "statement": "The lowest published logarithmic energy we found for 100 points on the unit sphere is E = -1083.377140539 (standardized pair energy v_0 = -0.21886406879576 in the data tables of Nerattini, Brauchart and Kiessling 2014, compiled from Rakhmanov, Saff and Zhou 1995 and Calef 2009). The lowest of the 39 local minima published by Amore, Figueroa and Ramos (2025) attains it to 2.9e-10. No minimizer is proven for this N; rigorous results exist only for a few small N such as N = 6 and N = 12.",
+      "sources": [
+        {
+          "title": "Optimal N-point configurations on the sphere: \"magic\" numbers and Smale's 7th problem",
+          "url": "https://doi.org/10.1007/s10955-014-1107-7",
+          "authors": "R. Nerattini, J. S. Brauchart, M. K.-H. Kiessling",
+          "year": 2014
+        },
+        {
+          "title": "Minimal discrete energy on the sphere",
+          "url": "https://doi.org/10.4310/MRL.1994.v1.n6.a3",
+          "authors": "E. A. Rakhmanov, E. B. Saff, Y. M. Zhou",
+          "year": 1994
+        },
+        {
+          "title": "Exploring the energy landscape of the logarithmic potential: local minima and stationary states",
+          "url": "https://arxiv.org/abs/2512.12416",
+          "authors": "P. Amore, V. Figueroa, R. Ramos",
+          "year": 2025
+        },
+        {
+          "title": "Mathematical problems for the next century",
+          "url": "https://doi.org/10.1007/BF03025291",
+          "authors": "S. Smale",
+          "year": 1998
+        }
+      ],
+      "comparability": "Same instance and objective: N = 100 points on the unit sphere, natural logarithm, chordal distances, minimize sum_(i<j) log(1/|x_i - x_j|); E = v_0 * N(N-1)/2 with the tabulated v_0.",
+      "as_of": "2026-10-11",
+      "attribution": "human"
+    }
+  },
+  {
+    "id": "science-frontier-physics-log-energy-150",
+    "name": "Minimal logarithmic energy of 150 points on the sphere",
+    "description": "Place 150 points on the unit sphere to minimize the logarithmic energy, the sum over all pairs of log(1/distance), the energy in Smale's 7th problem. The lowest published energy, -2364.632242592, is not proven minimal.",
+    "family": "science_frontier_physics_log_energy",
+    "status": "ready",
+    "parameters": {
+      "n": 150,
+      "published": -2364.6322425919598
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.4310/MRL.1994.v1.n6.a3",
+        "type": "paper",
+        "locator": "Rakhmanov, Saff and Zhou (1994), Minimal discrete energy on the sphere: the minimal logarithmic and Riesz energy problems and numerical minima."
+      },
+      {
+        "url": "https://doi.org/10.1007/s10955-014-1107-7",
+        "type": "paper",
+        "locator": "Nerattini, Brauchart and Kiessling (2014), supplement table 6.2 (s = 0): putatively minimal standardized pair energy v_0(150) = -0.21160020067937, i.e. E = -2364.632242592."
+      },
+      {
+        "url": "https://doi.org/10.5281/zenodo.17923310",
+        "type": "archive",
+        "locator": "Amore, Figueroa and Ramos (2025), CC BY 4.0 dataset of local minima of the logarithmic energy; LocalMinima.zip, member 150.zip (6094 minima for N = 150), whose lowest minimum reproduces the tabulated value to 9.0e-11."
+      }
+    ],
+    "limitations": [
+      "The record is the lowest published value we could check: the tables of Nerattini, Brauchart and Kiessling (2014), compiled from Rakhmanov, Saff and Zhou (1995) and Calef (2009), and the 2025 landscape survey of Amore, Figueroa and Ramos. R. Womersley's published point sets could not be accessed when the task was prepared, so a lower value in sources we could not read cannot be excluded.",
+      "Points are normalised to the unit sphere before scoring, so only directions matter; the record coordinates are public, so scores measure the returned construction, not the search that produced it.",
+      "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the score from the returned array but does not sandbox the program."
+    ],
+    "labels": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "None; the record value is embedded as a parameter and no file is read at evaluation time."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-11",
+      "tests": "tests/test_frontier_physics.py",
+      "evidence": "validation/frontier_physics-checks.json",
+      "human_results": "validation/human-results/frontier_physics.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": -2364.6322425919598,
+      "statement": "The lowest published logarithmic energy we found for 150 points on the unit sphere is E = -2364.632242592 (standardized pair energy v_0 = -0.21160020067937 in the data tables of Nerattini, Brauchart and Kiessling 2014, compiled from Rakhmanov, Saff and Zhou 1995 and Calef 2009). The lowest of the 6094 local minima published by Amore, Figueroa and Ramos (2025) attains it to 9.0e-11. No minimizer is proven for this N; rigorous results exist only for a few small N such as N = 6 and N = 12.",
+      "sources": [
+        {
+          "title": "Optimal N-point configurations on the sphere: \"magic\" numbers and Smale's 7th problem",
+          "url": "https://doi.org/10.1007/s10955-014-1107-7",
+          "authors": "R. Nerattini, J. S. Brauchart, M. K.-H. Kiessling",
+          "year": 2014
+        },
+        {
+          "title": "Minimal discrete energy on the sphere",
+          "url": "https://doi.org/10.4310/MRL.1994.v1.n6.a3",
+          "authors": "E. A. Rakhmanov, E. B. Saff, Y. M. Zhou",
+          "year": 1994
+        },
+        {
+          "title": "Exploring the energy landscape of the logarithmic potential: local minima and stationary states",
+          "url": "https://arxiv.org/abs/2512.12416",
+          "authors": "P. Amore, V. Figueroa, R. Ramos",
+          "year": 2025
+        },
+        {
+          "title": "Mathematical problems for the next century",
+          "url": "https://doi.org/10.1007/BF03025291",
+          "authors": "S. Smale",
+          "year": 1998
+        }
+      ],
+      "comparability": "Same instance and objective: N = 150 points on the unit sphere, natural logarithm, chordal distances, minimize sum_(i<j) log(1/|x_i - x_j|); E = v_0 * N(N-1)/2 with the tabulated v_0.",
+      "as_of": "2026-10-11",
+      "attribution": "human"
+    }
+  }
+]

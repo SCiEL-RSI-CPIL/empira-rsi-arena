@@ -1,0 +1,79 @@
+# Earth science: Great Lakes wave height from buoy meteorology
+
+**Source collection:** [Earth and environmental science research: source-based research tasks](../../papers/science-earth_research.md)\
+**Task id:** `science-earth-great-lakes-wave-hindcast`\
+**Protocol:** `recreated`\
+**Direction:** minimize\
+
+## Task
+
+Learn how wind and other meteorology at seven NOAA buoys on Lakes Superior, Michigan, Huron and Erie generate waves from 2009-2018 records, then hindcast the hourly significant wave height for 2019-2024 from the buoys' meteorology alone. The score is the root-mean-square error of the hindcast wave heights.
+
+Source-derived local benchmark; the exact objective and adaptations are specified below.
+
+## Candidate interface
+
+hindcast_waves(train, test) -> dict {buoy: float array (n_targets,)} of significant wave height (m, 0 to 20) at the target hours of each buoy. train and test map the NDBC buoys 45001, 45006 (Lake Superior), 45002, 45007 (Lake Michigan), 45003, 45008 (Lake Huron) and 45005 (Lake Erie) to dicts with lat, lon, hour (hours since 2009-01-01 00 UTC, one value per observed hour, ascending) and hourly arrays wdir (deg true, direction the wind comes from), wspd and gst (m/s, at the buoy's anemometer height), pres (hPa), atmp, wtmp and dewp (deg C), NaN when missing (for each field the valid value closest to the full hour). train covers 2009-2018 and also holds the wave fields wvht (significant wave height, m), dpd and apd (dominant and average period, s) and mwd (deg); test covers 2019-2024 without wave fields and holds target_index (float indices into hour where a wave height was observed). Meteorology at any test hour, earlier or later, may be used. The candidate runs in a separate sandboxed process (numpy, scipy, scikit-learn and pandas importable; no file, network or subprocess access; one thread) with 180 s of CPU time for fitting and all predictions together; seed any randomness so that results are deterministic. Score: root-mean-square error (m) over all 177719 target hours; lower is better. Missing buoys, wrong shapes, NaN or values outside [0, 20] m are invalid
+
+## State of the art
+
+No published value exists for this protocol. The evaluator's reference (per buoy and 30-degree wind sector, least squares in the square of the 3-record mean wind speed) scores 0.219 m; the seed (per buoy, linear in the square of the concurrent wind speed) scores 0.285 m.
+
+Reference value: no documented value for this finite instance (reviewed 2026-10-10).
+
+- [Application of a simple numerical wave prediction model to Lake Erie](https://doi.org/10.1029/JC089iC03p03586)
+
+## Labels
+
+Scientific contribution: `method` (tier 2); artifact `model`, domain `natural_science`, data `real_measurements`, verification `simulation`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+
+Research area: `earth_and_environment`.
+
+## Importance to science
+
+A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.
+
+Evidence status: **supported**.
+
+Underlying problem: Predict wind-generated wave heights from wind and atmospheric conditions on fetch-limited water bodies.
+
+Why it matters: Wave forecasts and hindcasts on the Great Lakes protect shipping, recreation and coasts (erosion, flooding); fetch- and duration-limited wave growth is a classic problem of physical oceanography with direct operational use.
+
+- [Application of a simple numerical wave prediction model to Lake Erie](https://doi.org/10.1029/JC089iC03p03586): Main research objective: Predict Great Lakes wave heights from observed winds with a simple numerical model and verify them against measurements. Task connection: The task scores wave-height hindcasts from observed meteorology against buoy measurements on the Great Lakes.
+- [Reconciling Discrepancies in the Observed Growth of Wind-generated Waves](https://doi.org/10.1175/1520-0485(1992)022<1389:RDITOG>2.0.CO;2): Main research objective: Establish consistent growth laws relating wind-wave height to wind speed and fetch. Task connection: Such growth laws are the physical basis candidates can exploit; the task verifies predicted heights on held-out years.
+
+The cited papers' main goal is predicting wind-wave growth and heights, the problem the local task scores; no reproduction of their numbers is claimed.
+
+## Evaluation protocol
+
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Scores are recomputed from pinned public data prepared by scripts/prepare_earth.py; held-out data never enter the candidate's sandboxed process. The held-out observations are public, so a fixed candidate should be checked on later data before any scientific claim.
+
+## Run
+
+```
+python evaluator.py initial_program.py
+```
+
+The evaluator prints a JSON result with `combined_score` (the value SCiEL maximizes), `score` (the task metric in its own direction), `valid` and `error`. `config.yaml` is a ready SCiEL configuration; copied SCiEL examples keep their upstream configuration.
+
+## Requirements
+
+- `py:numpy`
+- `file:data/earth/waves/ndbc_great_lakes_2009_2024.json.gz`
+
+## Sources
+
+- paper: https://doi.org/10.1029/JC089iC03p03586 (Schwab et al. (1984): a simple parametric numerical wave prediction model for Lake Erie driven by observed winds and verified against wave measurements.)
+- paper: https://doi.org/10.1175/1520-0485(1992)022<1389:RDITOG>2.0.CO;2 (Kahma and Calkoen (1992): fetch-limited growth laws of wind-generated waves, the physics behind fetch- and duration-limited wave models.)
+- paper: https://doi.org/10.1098/rsta.1985.0054 (Donelan, Hamilton and Hui (1985): wave growth and spectra measured in Lake Ontario.)
+- archive: https://www.ndbc.noaa.gov/data/historical/stdmet/ (NOAA NDBC historical standard meteorological files of buoys 45001, 45002, 45003, 45005, 45006, 45007 and 45008, 2009-2024 (public domain; retrieved 2026-10-10).)
+
+## Limitations
+
+- Only point meteorology at the buoys is available, not the wind field over the lake, so fetch and duration effects must be inferred statistically; operational wave models use gridded winds and are not comparable.
+- Buoys are deployed only in the ice-free season and the hindcast uses each buoy's own record, so the score covers open-water months at these seven locations only.
+- Since 2019 the archive holds 10-minute records; the evaluator keeps, for every field, the valid value closest to each full hour, so some hourly values come from up to 30 minutes away.
+- A better score is a better statistical or physical wave hindcast at these buoys, not a scientific discovery; the held-out observations are public, so search feedback on this split can overfit it.
+- The candidate runs in a sandboxed child process that never receives 2019-2024 wave observations; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy.

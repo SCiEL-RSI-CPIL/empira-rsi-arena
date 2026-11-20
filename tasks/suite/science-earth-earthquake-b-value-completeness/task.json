@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0",
+  "id": "science-earth-earthquake-b-value-completeness",
+  "name": "Earth science: Gutenberg-Richter b-value from incomplete earthquake catalogues",
+  "description": "Estimate the Gutenberg-Richter b-value and the magnitude of completeness of 600 synthetic earthquake catalogues whose small events are missed according to a realistic detection probability. The score is the mean absolute error of the estimated b-values against the generating values.",
+  "paper_ids": [
+    "science-earth_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1785/0120040007",
+      "type": "paper",
+      "locator": "Woessner and Wiemer (2005): methods to estimate the magnitude of completeness and their effect on b-value estimates, compared on synthetic and real catalogues; the seed is their maximum-curvature method with the +0.2 correction."
+    },
+    {
+      "url": "https://doi.org/10.1111/j.1365-246X.1993.tb04663.x",
+      "type": "paper",
+      "locator": "Ogata and Katsura (1993): Gutenberg-Richter magnitudes thinned by a cumulative-normal detection rate, the generating model of the catalogues."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "Generated locally by python3 scripts/prepare_earth.py (fixed seed; hash in catalog/earth-data-lock.json); no download.",
+    "preparation_dependencies": [
+      "scipy"
+    ]
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Earth science: Gutenberg-Richter b-value from incomplete earthquake catalogues",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "earth_research_b_value",
+    "science_family": "earth_research_b_value",
+    "parameters": {},
+    "interface": "estimate_b_and_mc(catalogues) -> float array (600, 2) of [b-value, magnitude of completeness] for each catalogue. catalogues is a list of 600 float arrays of earthquake magnitudes reported in 0.1 bins. Each synthetic catalogue has Gutenberg-Richter magnitudes (b drawn from 0.6-1.4) starting 3 sigma below mu and thinned by the detection probability Phi((m - mu) / sigma) (mu from 0.5-3.0, sigma from 0.05-0.5), with 150-5000 detected events. The candidate runs in a separate sandboxed process (numpy, scipy, scikit-learn and pandas importable; no file, network or subprocess access; one thread) with 120 s of CPU time for fitting and all predictions together; seed any randomness so that results are deterministic. Score: mean absolute error of b over the 600 catalogues; lower is better. The completeness estimate is compared with the 95 percent detection magnitude mu + 1.645 sigma and reported but not scored. Wrong shapes, NaN, b outside [0.1, 3] or Mc outside [-2, 10] are invalid",
+    "label_spec": {
+      "area": "earth_and_environment",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "data": "synthetic",
+      "verification": "simulation",
+      "reference": "none"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "additional_requires": [
+      "file:data/earth/completeness/synthetic_catalogues.json.gz"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "earth_research_b_value",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/earth/completeness/synthetic_catalogues.json.gz"
+      ],
+      "timeout": 240,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "The catalogues are synthetic: one stationary b-value and detection function per catalogue, no aftershock incompleteness, magnitude errors or mixed magnitude types; real catalogues are harder.",
+    "The generating model (Gutenberg-Richter times cumulative-normal detection) is stated in the contract, so a candidate can fit it exactly; the score then measures statistical efficiency on this model rather than robustness to model error.",
+    "The generator and its seed are in the evaluator's source; a candidate that re-implements them could reproduce the truth, so results are only meaningful for candidates that use the magnitudes alone.",
+    "A better score is a better estimator on this benchmark, not a seismological discovery.",
+    "The candidate runs in a sandboxed child process that never receives the generating parameters; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "validation": {
+    "level": "source_seed_executed",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-10-11",
+    "evidence": "validation/earth-checks.json",
+    "tests": "tests/test_earth_mc.py"
+  },
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "as_of": "2026-10-11",
+    "statement": "No published value exists for this generator. The seed (maximum curvature + 0.2, Aki-Utsu estimator) has a b-value mean absolute error of 0.097 with a bias of -0.077; the Aki-Utsu estimator applied above the true 95 percent detection magnitude, which a candidate does not know, has 0.069.",
+    "sources": [
+      {
+        "title": "Assessing the Quality of Earthquake Catalogues: Estimating the Magnitude of Completeness and Its Uncertainty",
+        "url": "https://doi.org/10.1785/0120040007"
+      }
+    ]
+  },
+  "labels": {
+    "area": "earth_and_environment",
+    "domain": "natural_science",
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "data": "synthetic",
+    "verification": "simulation",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Estimate the Gutenberg-Richter b-value and the magnitude of completeness of an earthquake catalogue.",
+    "importance_rationale": "The b-value sets the expected rate of large earthquakes relative to small ones in every seismic hazard and earthquake forecast model, and its estimate is biased unless the completeness magnitude is handled correctly.",
+    "papers": [
+      {
+        "title": "Assessing the Quality of Earthquake Catalogues: Estimating the Magnitude of Completeness and Its Uncertainty",
+        "url": "https://doi.org/10.1785/0120040007",
+        "primary_goal": "Compare methods for estimating the magnitude of completeness and quantify their effect on b-value estimates.",
+        "task_relation": "The task scores b-value and completeness estimators on synthetic incomplete catalogues, as the paper does.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Analysis of temporal and spatial heterogeneity of magnitude frequency distribution inferred from earthquake catalogues",
+        "url": "https://doi.org/10.1111/j.1365-246X.1993.tb04663.x",
+        "primary_goal": "Estimate the magnitude-frequency distribution, including the detection rate of small events, from catalogues.",
+        "task_relation": "The catalogues are generated with the paper's detection model; candidates may estimate it.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both cited papers have estimating the magnitude-frequency distribution and completeness of catalogues as their main goal, the problem the local task scores; no reproduction of their numbers is claimed.",
+    "verification_basis": "Crossref metadata checked on 2026-10-11; the seed's negative b bias matches the behaviour of maximum-curvature Mc reported for incomplete catalogues; evaluator run on the generated data.",
+    "reviewed_at": "2026-10-11",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

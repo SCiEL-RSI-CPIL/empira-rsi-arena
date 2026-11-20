@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "id": "science-earth-socal-earthquake-forecast",
+  "name": "Earth science: one-day earthquake forecasts for southern California",
+  "description": "Fit an earthquake occurrence model on the 1981-2015 southern California ComCat catalogue and, for every day of 2016-2024, forecast the expected number of magnitude 3.45 or larger earthquakes in each 0.1-degree cell using only events before that day. The score is the information gain per earthquake of the Poisson likelihood over a time-independent smoothed-seismicity reference.",
+  "paper_ids": [
+    "science-earth_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1785/0120050067",
+      "type": "paper",
+      "locator": "Helmstetter, Kagan and Jackson (2006): one-day forecasts of southern California earthquakes on a 0.1-degree grid, comparing short-term (clustering) and time-independent models by likelihood."
+    },
+    {
+      "url": "https://doi.org/10.1080/01621459.1988.10478560",
+      "type": "paper",
+      "locator": "Ogata (1988): the epidemic-type aftershock sequence (ETAS) point-process model of earthquake occurrence."
+    },
+    {
+      "url": "https://doi.org/10.1785/0120090192",
+      "type": "paper",
+      "locator": "Zechar, Gerstenberger and Rhoades (2010): Poisson joint-likelihood tests of gridded earthquake forecasts used by CSEP; the task uses the joint log-likelihood and reports the N-test ratio."
+    },
+    {
+      "url": "https://earthquake.usgs.gov/fdsnws/event/1/",
+      "type": "archive",
+      "locator": "USGS ANSS Comprehensive Catalog (ComCat, doi:10.5066/F7MS3QZH), FDSN event service: earthquakes with magnitude >= 2.5 in 31-38 N, 122-113 W, 1981-2024 (public domain; retrieved 2026-10-10)."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Earth science: one-day earthquake forecasts for southern California",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "earth_research_socal_quakes",
+    "science_family": "earth_research_socal_quakes",
+    "parameters": {},
+    "interface": "fit_quake_model(training, grid) -> model; model.forecast(history, day) -> float array (50, 70) of the expected number of target earthquakes (magnitude >= 3.45, depth <= 30 km) during [day, day + 1) in each 0.1-degree cell: row i is latitude 32.0 + 0.1 i to 32.1 + 0.1 i deg N, column j is longitude -121.0 + 0.1 j to -120.9 + 0.1 j deg E (grid['lat_edges'] (51,), grid['lon_edges'] (71,)). training and history are dicts of numpy arrays t (days since 1981-01-01 00:00 UTC), lat, lon (deg), depth (km) and mag of all ComCat earthquakes with magnitude >= 2.5 in 31-38 N, 122-113 W, sorted by time; training holds the events before 2016-01-01. grid also gives target_min_magnitude 3.45, target_max_depth_km 30, first_forecast_day 12783 (2016-01-01) and last_forecast_day 16070 (2024-12-31). Forecasts are requested in order for every day from 2016-01-01 to 2024-12-31 (day is the float day number); history then holds every event before 00:00 UTC of that day and nothing later. The candidate runs in a separate sandboxed process (numpy, scipy, scikit-learn and pandas importable; no file, network or subprocess access; one thread) with 300 s of CPU time for fitting and all predictions together; seed any randomness so that results are deterministic. Score: information gain per target earthquake (nats) of the joint Poisson log-likelihood of the observed daily cell counts (1047 target events) over the evaluator's time-independent reference (1981-2015 epicentres smoothed with a 0.15-degree Gaussian kernel and scaled to the 1981-2015 target rate); higher is better. Rates below 1e-10, NaN, wrong shapes or daily totals above 1e4 are invalid",
+    "label_spec": {
+      "area": "earth_and_environment",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "data": "real_measurements",
+      "verification": "simulation",
+      "reference": "none"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "additional_requires": [
+      "file:data/earth/quakes/comcat_socal_m2.5_1981_2024.json.gz"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "earth_research_socal_quakes",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/earth/quakes/comcat_socal_m2.5_1981_2024.json.gz"
+      ],
+      "timeout": 600,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "The test region is a 0.1-degree rectangle (32-37 N, 121-114 W) rather than the CSEP southern California polygon; it includes offshore and northern Baja California cells where the catalogue is less complete.",
+    "ComCat mixes magnitude types (mostly local and moment magnitudes) and is incomplete in the hours after large mainshocks; targets are the catalogue as distributed, not a homogenised or declustered catalogue.",
+    "Forecasts are issued once per day at 00:00 UTC and verified on daily cell counts; magnitudes and depths of target events are not scored (no magnitude or depth test).",
+    "The 2016-2024 period is dominated by the 2019 Ridgecrest sequence, so the score mostly reflects aftershock forecasting skill for one large sequence; the information gain is an estimate with substantial sampling uncertainty.",
+    "ComCat is a live catalogue; if past events are revised, the derived-file hash check fails and the data must be re-recorded, which changes scores slightly.",
+    "A better score is a better statistical forecast model on these years, not a scientific discovery; the held-out catalogue is public, so search feedback on this fixed split can overfit it.",
+    "The candidate runs in a sandboxed child process that never receives events after a forecast day starts; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "validation": {
+    "level": "source_seed_executed",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-10-10",
+    "evidence": "validation/earth-checks.json",
+    "tests": "tests/test_earth_quakes.py"
+  },
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "as_of": "2026-10-10",
+    "statement": "No published value exists for this exact protocol (region, period, M >= 3.45 targets and reference). For context, the seed (time-independent smoothing with a 0.1-degree kernel) gains 0.12 nats per earthquake over the reference and an untuned Omori-Utsu clustering model about 1.4 nats; Helmstetter et al. (2006) found short-term clustering models far more informative than time-independent ones for southern California daily forecasts.",
+    "sources": [
+      {
+        "title": "Comparison of Short-Term and Time-Independent Earthquake Forecast Models for Southern California",
+        "url": "https://doi.org/10.1785/0120050067"
+      }
+    ]
+  },
+  "labels": {
+    "area": "earth_and_environment",
+    "domain": "natural_science",
+    "scientific_contribution": "method",
+    "artifact": "model",
+    "data": "real_measurements",
+    "verification": "simulation",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Forecast where and when earthquakes will occur in the next day from the past earthquake catalogue (short-term earthquake forecasting).",
+    "importance_rationale": "Short-term, clustering-based earthquake forecasts underlie operational aftershock forecasting and time-dependent seismic hazard; likelihood testing of such forecasts in CSEP is how forecasting skill is established.",
+    "papers": [
+      {
+        "title": "Comparison of Short-Term and Time-Independent Earthquake Forecast Models for Southern California",
+        "url": "https://doi.org/10.1785/0120050067",
+        "primary_goal": "Build and compare one-day and time-independent earthquake forecast models for southern California on a 0.1-degree grid using likelihood scores.",
+        "task_relation": "The task scores the same kind of daily gridded forecast by the joint Poisson log-likelihood; it uses a rectangular region, M >= 3.45 targets and the 2016-2024 ComCat catalogue instead of the paper's setting.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Statistical Models for Earthquake Occurrences and Residual Analysis for Point Processes",
+        "url": "https://doi.org/10.1080/01621459.1988.10478560",
+        "primary_goal": "Model earthquake occurrence as a self-exciting point process (ETAS) and assess the fit to catalogues.",
+        "task_relation": "ETAS-type clustering models are the natural candidates; the task scores their forecasts on held-out days.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "The cited papers' main goal is statistical earthquake forecasting and occurrence modelling, the problem the local task scores; no reproduction of their numbers is claimed.",
+    "verification_basis": "Crossref metadata of the papers and DataCite metadata of ComCat checked on 2026-10-10; the derived target count (1047) equals the ComCat count service for the same query; evaluator run on the pinned catalogue.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

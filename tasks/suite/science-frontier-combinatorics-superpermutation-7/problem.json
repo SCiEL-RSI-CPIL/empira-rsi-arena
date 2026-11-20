@@ -1,0 +1,139 @@
+{
+  "protocol": "recreated_verified",
+  "family": "science_frontier_combinatorics_superpermutation",
+  "direction": "minimize",
+  "contract": "construct(n) -> a word over the symbols 1..n, given as a string of the digits 1..n or a list of integers; the evaluator passes this task's n. Valid when every permutation of 1..n occurs as n consecutive symbols (every window is checked). Score: the length of the word, minimized; at most n * n! symbols.",
+  "parameters": {
+    "n": 7,
+    "published": 5905
+  },
+  "requires": [
+    "py:numpy"
+  ],
+  "timeout": 120,
+  "notes": [
+    "Independent exact verifier over all windows of the word. The published record construction for every task was scored with this evaluator and reproduces the published value exactly (validation/human-results/frontier_combinatorics.json). The seed is the classic recursive construction of length 1! + ... + n!; unit tests check the known minimal lengths 9, 33 and 153 for n = 3, 4, 5."
+  ],
+  "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
+  "id": "science-frontier-combinatorics-superpermutation-7",
+  "name": "Shortest superpermutation on seven symbols",
+  "paper_ids": [
+    "science-frontier_combinatorics"
+  ],
+  "description": "Write the shortest word over the symbols 1 to 7 that contains every one of the 5040 permutations of 1..7 as seven consecutive symbols. The shortest known word has 5905 symbols (A. Teodorescu, August 2026) and the best published lower bound is 5884.",
+  "benchmark": "Shortest superpermutation on seven symbols",
+  "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+  "paper_direction": null,
+  "sources": [
+    {
+      "url": "https://groups.google.com/g/superpermutators/c/D5sKkV2jBuc",
+      "type": "archive",
+      "locator": "Superpermutators mailing list, 18 August 2026: A. Teodorescu posts four length-5905 superpermutations for n = 7 (two distinct up to symmetry) found with G. Egan's PermutationChains.c and KernelFinder.c; A. Balint and S. Street confirm that they contain all 5040 permutations."
+    },
+    {
+      "url": "https://www.gregegan.net/SCIENCE/Superpermutations/Superpermutations.html",
+      "type": "archive",
+      "locator": "G. Egan's page: the previous record 5906 (Egan and Houston, 27 February 2019), its word, and the search programs."
+    },
+    {
+      "url": "https://arxiv.org/abs/1408.5108",
+      "type": "paper",
+      "locator": "R. Houston (2014), Tackling the minimal superpermutation problem."
+    },
+    {
+      "url": "https://oeis.org/A180632/a180632.pdf",
+      "type": "paper",
+      "locator": "Anonymous 4chan poster, R. Houston, J. Pantone and V. Vatter (2018): lower bound n! + (n-1)! + (n-2)! + n - 3, which is 5884 for n = 7."
+    },
+    {
+      "url": "https://oeis.org/A180632",
+      "type": "benchmark",
+      "locator": "OEIS A180632 (minimal superpermutation lengths): a(7) <= 5906 recorded in 2019."
+    }
+  ],
+  "limitations": [
+    "The 5905 record was announced on a mailing list and checked there by several members; it has no peer-reviewed publication yet.",
+    "A lower bound of 5898 was also claimed on the same list in August 2026 without review; the published lower bound remains 5884.",
+    "The recursive seed has length 5913 = 1! + 2! + ... + 7!.",
+    "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+    "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "science-frontier_combinatorics",
+      "title": "Open combinatorial design, coding and assignment problems with published records: source-based research tasks",
+      "url": "https://doi.org/10.5281/zenodo.10779736"
+    }
+  ],
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": 5905,
+    "statement": "The shortest known superpermutation on 7 symbols has length 5905, posted by A. Teodorescu on 18 August 2026 and found with G. Egan's PermutationChains.c over millions of kernels from KernelFinder.c; it improved 5906 (G. Egan and R. Houston, 2019) and 5907 (B. Coanda, 2019). The best published lower bound is 5884 (Houston, Pantone and Vatter, 2018).",
+    "sources": [
+      {
+        "title": "n=7 superpermutation of length 5905 (superpermutators mailing list)",
+        "url": "https://groups.google.com/g/superpermutators/c/D5sKkV2jBuc",
+        "authors": "A. Teodorescu",
+        "year": 2026
+      },
+      {
+        "title": "Superpermutations",
+        "url": "https://www.gregegan.net/SCIENCE/Superpermutations/Superpermutations.html",
+        "authors": "G. Egan",
+        "year": 2019
+      },
+      {
+        "title": "A lower bound on the length of the shortest superpattern",
+        "url": "https://oeis.org/A180632/a180632.pdf",
+        "authors": "Anonymous 4chan poster, R. Houston, J. Pantone, V. Vatter",
+        "year": 2018
+      }
+    ],
+    "comparability": "Same object and objective: a word over 1..7 containing all 5040 permutations as contiguous blocks, shortest length. The posted word (first attachment) scores 5905 (valid) with this evaluator; Egan's 2019 word scores 5906.",
+    "as_of": "2026-10-12",
+    "attribution": "human"
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Determine the minimal length of a superpermutation on seven symbols: a word containing each of the 5040 permutations of 1..7 as a contiguous block.",
+    "importance_rationale": "The minimal superpermutation problem is a well-known open problem in combinatorics on words. The conjecture that 1! + 2! + ... + n! is minimal failed in 2014, exact values are known only up to n = 5, and the lower-bound question is tied to Hamiltonian paths in Cayley graphs of the symmetric group; for seven symbols the gap between the lower bound 5884 and the best constructions is open.",
+    "papers": [
+      {
+        "title": "Tackling the minimal superpermutation problem",
+        "url": "https://arxiv.org/abs/1408.5108",
+        "primary_goal": "Find shorter superpermutations and study the minimal superpermutation problem through travelling-salesman formulations.",
+        "task_relation": "The task asks for a shorter superpermutation on seven symbols than the best known one (5905).",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Containing all permutations",
+        "url": "https://doi.org/10.1080/00029890.2021.1835384",
+        "primary_goal": "Survey and advance the problems of words and permutations that contain all permutations, including minimal superpermutations.",
+        "task_relation": "Describes the superpermutation problem, its bounds and the constructions this task measures against.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both papers have the minimal superpermutation problem as their main objective, and the evaluator checks exactly that every permutation of 1..7 occurs as a block of the returned word.",
+    "verification_basis": "Crossref and arXiv metadata inspected; the record read from the superpermutators mailing list (18 August 2026) and cross-checked with the superpermutation article on Wikipedia and OEIS A180632; the posted word and Egan's 2019 word re-scored with the evaluator.",
+    "reviewed_at": "2026-10-12",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  },
+  "labels": {
+    "scientific_contribution": "open_problem",
+    "artifact": "construction",
+    "domain": "mathematics",
+    "area": "mathematics",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 1,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  }
+}

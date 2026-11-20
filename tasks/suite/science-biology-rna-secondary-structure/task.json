@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0",
+  "id": "science-biology-rna-secondary-structure",
+  "name": "Biology: RNA secondary-structure prediction against Rfam consensus structures",
+  "description": "Predict the secondary structure of 90 non-coding RNA sequences from 47 Rfam families that have experimentally determined three-dimensional structures. The evaluator compares the predicted base pairs with the family's consensus pairing projected onto each sequence and scores the mean F1.",
+  "paper_ids": [
+    "science-biology_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1073/pnas.0401799101",
+      "type": "paper",
+      "locator": "Mathews et al. (2004): incorporating chemical modification constraints into a dynamic programming algorithm for RNA secondary structure prediction, the problem and accuracy measures used here."
+    },
+    {
+      "url": "https://doi.org/10.1186/1748-7188-6-26",
+      "type": "paper",
+      "locator": "Lorenz et al. (2011), ViennaRNA Package 2.0: the thermodynamic folding algorithms that define the state of practice for single-sequence prediction."
+    },
+    {
+      "url": "https://doi.org/10.1093/nar/gkaa1047",
+      "type": "archive",
+      "locator": "Rfam (CC0): seed alignments and consensus secondary structures; this task uses Rfam.3d.seed.gz, the families with three-dimensional structures."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "Derived from the pinned Rfam 3D seed alignments by python3 scripts/prepare_bio_physics.py (hashes in catalog/bio_physics-data-lock.json)."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Biology: RNA secondary-structure prediction against Rfam consensus structures",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "biology_research_rna_structure",
+    "science_family": "biology_research_rna_structure",
+    "parameters": {
+      "cpu_seconds": 180
+    },
+    "interface": "predict_structure(sequence) -> dot-bracket string of the same length as sequence, containing only '.', '(' and ')' with balanced brackets. sequence is an ACGU string of 40 to 150 nucleotides from an Rfam family that has a three-dimensional structure. predict_structure is called once per sequence in a sandboxed subprocess with a 180 s CPU budget for all 90 sequences. Score (maximize): mean F1 of the predicted base-pair set against the reference pairs, i.e. the harmonic mean of sensitivity and precision; sensitivity and precision are reported separately",
+    "label_spec": {
+      "area": "biology",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "additional_requires": [
+      "file:data/bio_physics/rna/rfam_consensus_structures.json.gz"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "biology_research_rna_structure",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/bio_physics/rna/rfam_consensus_structures.json.gz"
+      ],
+      "timeout": 240,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "Reference structures are consensus structures from comparative sequence analysis projected onto individual sequences, not per-sequence experimental structures; pseudoknots, non-canonical pairs and pairs involving gapped columns are dropped.",
+    "Only canonical nested pairs with a span of at least four nucleotides are scored, and at most two sequences per family are used, so the set is small (90 sequences, 47 families).",
+    "ViennaRNA is available in the environment, so a candidate can call a thermodynamic folding engine; an improvement over that engine on this set is a method result on 47 families, not a general advance in RNA folding.",
+    "Families describing viral elements or CRISPR loci are excluded by name, so the set is biased towards riboswitches, ribozymes, small RNAs and spliceosomal RNAs.",
+    "Rfam's CURRENT directory tracks the latest release; the derived file's hash pins the exact sequences and structures used."
+  ],
+  "validation": {
+    "level": "source_seed_executed",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-10-10",
+    "evidence": "validation/bio_physics-checks.json",
+    "tests": "tests/test_bio_rna.py"
+  },
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "as_of": "2026-10-10",
+    "statement": "No published value for this exact set. Measured during task construction: ViennaRNA 2.6.4 minimum-free-energy folding reaches mean F1 0.609, and the Nussinov-style seed 0.401.",
+    "sources": [
+      {
+        "title": "ViennaRNA Package 2.0",
+        "url": "https://doi.org/10.1186/1748-7188-6-26"
+      }
+    ]
+  },
+  "labels": {
+    "area": "biology",
+    "domain": "natural_science",
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Predict which bases pair with which in a non-coding RNA molecule from its sequence alone.",
+    "importance_rationale": "Secondary structure determines how structured RNAs function, and single-sequence prediction accuracy has plateaued around 60-70 % of pairs for thermodynamic models, so improvements are an active research goal.",
+    "papers": [
+      {
+        "title": "Incorporating chemical modification constraints into a dynamic programming algorithm for prediction of RNA secondary structure",
+        "url": "https://doi.org/10.1073/pnas.0401799101",
+        "primary_goal": "Improve the accuracy of RNA secondary-structure prediction and measure it as sensitivity and precision of predicted base pairs.",
+        "task_relation": "The task scores predicted base-pair sets against reference structures with the same sensitivity and precision combined into F1.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "ViennaRNA Package 2.0",
+        "url": "https://doi.org/10.1186/1748-7188-6-26",
+        "primary_goal": "Provide and improve algorithms for predicting RNA secondary structure from sequence.",
+        "task_relation": "Defines the state of practice the task measures against; the evaluator used it as an independent baseline (mean F1 0.609).",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "The cited papers' main goal is RNA secondary-structure prediction from sequence, exactly what the evaluator scores.",
+    "verification_basis": "Crossref metadata inspected; the Rfam 3D seed alignments (CC0) were downloaded and parsed, the projected reference pairs checked to be canonical and nested, and a ViennaRNA baseline was computed with the same scorer.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

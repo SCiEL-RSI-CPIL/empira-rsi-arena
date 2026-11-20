@@ -1,0 +1,81 @@
+# Software engineering: history-based test prioritisation in continuous integration (ABB IOF/ROL)
+
+**Source collection:** [Software engineering research: source-based research tasks](../../papers/science-software_engineering.md)\
+**Task id:** `science-software-ci-prioritization-iofrol`\
+**Protocol:** `recreated`\
+**Direction:** maximize\
+
+## Task
+
+Order the test cases of each of the 320 continuous-integration cycles of ABB's IOF/ROL system so that failing tests run early, using only the verdicts of earlier cycles. Each cycle's verdicts are revealed after its order is committed; the score is the mean APFD over cycles with both failing and passing tests.
+
+Source-derived local benchmark; the exact objective and adaptations are specified below.
+
+## Candidate interface
+
+prioritize(cycle, history) -> list of int. cycle = {'cycle': int, 'tests': [{'id': int, 'duration': int}, ...]} lists the test cases of one continuous-integration cycle, sorted by id (durations are the data set's approximate run times). history lists every earlier cycle in order as {'cycle': int, 'tests': [{'id', 'duration', 'failed': bool}, ...]}. Return a permutation of the cycle's test ids, the test to run first first. A cycle's verdicts are revealed, by appending it to history, only after its order has been committed. Score: mean APFD over the cycles that contain both failing and passing tests, maximised; APFD = 1 - (sum of the 1-based positions of the m failing tests) / (n m) + 1 / (2 n) for a cycle of n tests, so a random order scores 0.5 in expectation. prioritize() is called once per cycle, all cycles in one sandboxed subprocess (no files, network or subprocesses; 60 s CPU in total, 2 GB); module-level state persists between calls. It should be deterministic (seed any randomness, do not read clocks); an invalid order makes the evaluation invalid.
+
+## State of the art
+
+Published results on this data use NAPFD under a time budget or other aggregations, so no directly comparable value is embedded; the best possible score for this metric (failing tests first) is reported in the evaluator details.
+
+Reference value: no documented value for this finite instance (reviewed 2026-10-10).
+
+- [Reinforcement learning for automatic test case prioritization and selection in continuous integration](https://doi.org/10.1145/3092703.3092709)
+
+Parameters: `{"dataset": "iofrol", "cpu_seconds": 60}`
+
+## Labels
+
+Scientific contribution: `method` (tier 2); artifact `program`, domain `software_engineering`, data `public_benchmark`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+
+Research area: `software_engineering`.
+
+## Importance to science
+
+A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.
+
+Evidence status: **supported**.
+
+Underlying problem: Regression test prioritisation in continuous integration: order a cycle's tests from their execution history so that failures are revealed as early as possible.
+
+Why it matters: Continuous integration runs large regression suites many times a day; earlier failure detection shortens feedback to developers and lowers testing cost, and history-based prioritisation is a main research line for it.
+
+- [Reinforcement learning for automatic test case prioritization and selection in continuous integration](https://doi.org/10.1145/3092703.3092709): Main research objective: Prioritise and select test cases in continuous integration from their history so that failing tests are executed early. Task connection: The task uses this paper's ABB data and the same online setting, in which verdicts become known after each cycle.
+- [Techniques for improving regression testing in continuous integration development environments](https://doi.org/10.1145/2635868.2635910): Main research objective: Make regression testing in continuous integration cheaper and faster by selecting and prioritising tests from failure history. Task connection: The task's candidate is such a history-based prioritisation policy.
+- [Prioritizing test cases for regression testing](https://doi.org/10.1109/32.962562): Main research objective: Order regression tests to increase the rate of fault detection, measured by APFD. Task connection: The task scores orders with APFD.
+
+## Evaluation protocol
+
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Data: the ABB Paint Control and IOF/ROL CI data sets of Spieker et al. (ISSTA 2017) from HelgeS/atcs-data (MIT) at commit 85bae8b6. Repeated executions of a test within one cycle are merged (failed if any execution failed). The metric is plain APFD over cycles with both outcomes; the source paper reports NAPFD under a 50 % time budget and other studies use APFD over all failing cycles (reported in the details), so published numbers are not directly comparable. Each failing test is counted as one fault because the data sets do not link failures to faults.
+
+## Run
+
+```
+python evaluator.py initial_program.py
+```
+
+The evaluator prints a JSON result with `combined_score` (the value SCiEL maximizes), `score` (the task metric in its own direction), `valid` and `error`. `config.yaml` is a ready SCiEL configuration; copied SCiEL examples keep their upstream configuration.
+
+## Requirements
+
+- `py:numpy`
+- `file:data/software/tcp/iofrol.json`
+
+## Sources
+
+- paper: https://doi.org/10.1145/3092703.3092709 (Spieker, Gotlieb, Marijan and Mossige (ISSTA 2017): reinforcement learning for test prioritisation and selection in CI; introduces the ABB Paint Control and IOF/ROL data.)
+- repository: https://bitbucket.org/HelgeS/atcs-data/src/85bae8b6dd58ef7d49c4c15690ba628a5187d4f7/ (Pinned atcs-data commit (MIT licence): paintcontrol.csv and iofrol.csv with cycle, test, duration and verdict columns.)
+- paper: https://doi.org/10.1145/2635868.2635910 (Elbaum, Rothermel and Penix (FSE 2014): history-based test prioritisation and selection in continuous integration at Google.)
+- paper: https://doi.org/10.1109/32.962562 (Rothermel, Untch, Chu and Harrold (TSE 2001): test case prioritisation and the APFD metric.)
+
+## Limitations
+
+- The verdicts are historical: the order cannot change which tests fail, and every test of a cycle is assumed to run.
+- Plain APFD with each failing test counted as one fault; the source paper reports NAPFD under a time budget, so its numbers are not directly comparable. Durations are given to the candidate but not used by the metric.
+- Repeated executions of a test within one cycle are merged (failed if any execution failed); the data set's LastRun and LastResults columns and its row order are not passed on.
+- Ordering failing tests first gives 0.815 on this data; a last-verdict heuristic (the seed) gives 0.585, and 99 of the 320 cycles contain a single test.
+- The verdicts are public; embedding them is outside the contract but cannot be checked automatically.
+- The suite's evaluator template imports the candidate module in the evaluator process before scoring; every scored call runs in the sandbox, which cannot read the held-out data, but deliberately hostile import-time code could. Untrusted evaluations should run in a container without the prepared files.

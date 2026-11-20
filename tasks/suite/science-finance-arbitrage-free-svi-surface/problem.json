@@ -1,0 +1,106 @@
+{
+  "protocol": "recreated_verified",
+  "family": "science_finance_svi_surface",
+  "direction": "minimize",
+  "contract": "fit_surface(quotes) -> (8, 5) array of raw SVI parameters [a, b, rho, m, sigma], one row per maturity in increasing order; total implied variance w(k) = a + b*(rho*(k - m) + sqrt((k - m)^2 + sigma^2)) in log-forward moneyness k = ln(K/F). quotes = {'spot': 4468.17, 'maturities': (8,) years (days/365), 'maturity_days', 'zero_rates', 'forwards' (spot*exp(r*T), no dividends), 'strikes': (13,), 'implied_vol': (8, 13), 'log_moneyness': (8, 13), 'total_variance': (8, 13)} for DAX index options on 2002-07-05. Valid only without static arbitrage: b >= 0, |rho| < 1, sigma >= 1e-4, a + b*sigma*sqrt(1 - rho^2) > 0, wing slopes b(1 + |rho|) <= 2, Durrleman's g(k) >= -1e-10 and w_{i+1}(k) - w_i(k) >= -1e-10 on a dense grid of |k| <= 6 refined near every vertex, and wing slopes b(1 +- rho) non-decreasing in maturity. Score: root-mean-square error of the fitted implied volatilities sqrt(w/T) against the 104 quotes, in volatility points (minimize)",
+  "parameters": {},
+  "requires": [
+    "py:numpy",
+    "file:data/finance/dax_2002_surface.csv"
+  ],
+  "timeout": 300,
+  "notes": [
+    "Static no-arbitrage conditions of Gatheral and Jacquier (2014) for raw SVI slices, checked numerically on a dense log-moneyness grid with tolerance 1e-10 plus exact wing conditions. Reference checks: the evaluator flags Gatheral and Jacquier's arbitrageable example (Vogt's parameters) with g(k) < 0 for k in about [0.64, 1.26]; the sign of g agrees with an independent finite-difference density of the implied Black prices; and an independent Heston pricer and Levenberg-Marquardt calibration on the same DAX quotes reproduces QuantLib's published calibration error 177.2 (177.23), validating forwards, rates and maturities. The arbitrage check is a dense numerical check on |k| <= 6, not a proof for every strike."
+  ],
+  "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
+  "id": "science-finance-arbitrage-free-svi-surface",
+  "name": "Finance: Arbitrage-free SVI implied-volatility surface for DAX options",
+  "paper_ids": [
+    "science-finance_expansion"
+  ],
+  "description": "Fit a raw SVI smile to each of the eight maturities of a real DAX option implied-volatility surface (2002-07-05, 104 quotes) without static arbitrage. The evaluator checks butterfly and calendar-spread arbitrage on a dense moneyness grid and scores the root-mean-square implied-volatility error in volatility points.",
+  "benchmark": "Finance: Arbitrage-free SVI implied-volatility surface for DAX options",
+  "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+  "paper_direction": null,
+  "sources": [
+    {
+      "url": "https://doi.org/10.1080/14697688.2013.819986",
+      "type": "paper",
+      "locator": "Gatheral and Jacquier (2014): raw SVI parameterization, Durrleman's condition g(k) >= 0 for butterfly arbitrage (Lemma 2.2), calendar-spread condition on total variance, wing bound, and the arbitrageable Vogt example (Section 3)."
+    },
+    {
+      "url": "https://github.com/lballabio/QuantLib/blob/ea1ca12e7311813abc42353ab88e127b60ee9848/test-suite/hestonmodel.cpp",
+      "type": "repository",
+      "locator": "QuantLib test-suite/hestonmodel.cpp at a pinned commit: getDAXCalibrationMarketData() (13 strikes x 8 maturities, spot 4468.17, zero rates) and testDAXCalibration's reference error 177.2."
+    },
+    {
+      "url": "https://doi.org/10.2139/ssrn.1412333",
+      "type": "paper",
+      "locator": "A. Sepp, Pricing European-style options under jump diffusion processes with stochastic volatility: QuantLib's test attributes the DAX quotes of 2002-07-05 to this paper."
+    }
+  ],
+  "limitations": [
+    "One historical surface with 104 quotes (mid implied volatilities without bid-ask spreads); a better fit on this surface is a development result, and quotes may themselves contain small arbitrages or rounding to four decimals.",
+    "The no-arbitrage check is numerical: Durrleman's g and calendar spreads are evaluated on a dense grid of |k| <= 6 refined near every SVI vertex with tolerance 1e-10, plus exact wing conditions; it is not a proof for every strike, and the surface between quoted maturities is not checked.",
+    "The candidate is restricted to raw SVI slices; other arbitrage-free parameterizations (for example SSVI, which is a special case, or non-parametric surfaces) must be expressed as raw SVI per maturity.",
+    "Forwards use QuantLib's zero rates and no dividends (the DAX is a total-return index); maturities use the original day counts rather than QuantLib's week-rounded ones."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "science-finance_expansion",
+      "title": "Finance and economics research: source-based research tasks",
+      "url": "https://doi.org/10.1093/rfs/hhm075"
+    }
+  ],
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "statement": "No published SVI fit to this surface is known. An unconstrained per-slice SVI least-squares fit reaches about 0.275 volatility points but violates the arbitrage conditions; a simple slice-by-slice constrained fit reaches about 0.284; the flat seed scores about 5.95. For comparison, QuantLib's five-parameter Heston calibration to the same quotes has squared error 177.2 (about 1.31 volatility points RMSE with week-rounded maturities).",
+    "sources": [
+      {
+        "title": "Arbitrage-free SVI volatility surfaces",
+        "url": "https://doi.org/10.1080/14697688.2013.819986"
+      },
+      {
+        "title": "QuantLib test-suite/hestonmodel.cpp (testDAXCalibration)",
+        "url": "https://github.com/lballabio/QuantLib/blob/ea1ca12e7311813abc42353ab88e127b60ee9848/test-suite/hestonmodel.cpp"
+      }
+    ],
+    "as_of": "2026-10-06"
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Construct an implied-volatility surface that fits option quotes closely while excluding static arbitrage (butterfly and calendar spreads).",
+    "importance_rationale": "Arbitrage-free volatility surfaces are required to price and hedge exotic and illiquid options consistently; fits that admit arbitrage imply negative probabilities and exploitable price inconsistencies.",
+    "papers": [
+      {
+        "title": "Arbitrage-free SVI volatility surfaces",
+        "url": "https://doi.org/10.1080/14697688.2013.819986",
+        "primary_goal": "Characterize and construct SVI implied-volatility surfaces free of static arbitrage and calibrate them to option data.",
+        "task_relation": "The task scores raw SVI slices fitted to a real DAX surface under the paper's butterfly (Durrleman) and calendar-spread conditions.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "The cited paper's main goal is exactly arbitrage-free calibration of SVI implied-volatility surfaces.",
+    "reviewed_at": "2026-10-06",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "domain": "finance",
+    "area": "finance",
+    "data": "real_measurements",
+    "verification": "exact",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  }
+}

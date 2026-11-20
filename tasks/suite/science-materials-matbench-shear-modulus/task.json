@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "id": "science-materials-matbench-shear-modulus",
+  "name": "Matbench: shear modulus of inorganic crystals",
+  "description": "Predict the base-10 logarithm of the DFT Voigt-Reuss-Hill shear modulus (GPa) of 10987 inorganic crystals from their structure. The evaluator scores the mean absolute error over Matbench's five official cross-validation folds.",
+  "paper_ids": [
+    "science-chemistry_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1038/srep34256",
+      "type": "paper",
+      "locator": "de Jong et al. (2016): statistical learning of bulk and shear moduli of inorganic polycrystalline compounds."
+    },
+    {
+      "url": "https://doi.org/10.1038/sdata.2015.9",
+      "type": "paper",
+      "locator": "de Jong et al. (2015): DFT elastic tensors of inorganic crystals; source of the targets."
+    },
+    {
+      "url": "https://doi.org/10.1038/s41524-020-00406-3",
+      "type": "benchmark",
+      "locator": "Dunn et al. (2020): Matbench v0.1 tasks, nested cross-validation protocol and MAE metric."
+    },
+    {
+      "url": "https://github.com/materialsproject/matbench/tree/936176db18ca4cd7b38cbd957c017a5bac770c6b",
+      "type": "repository",
+      "locator": "matbench_v0.1_validation.json (official folds) and stored per-fold predictions of published submissions (pinned commit)."
+    },
+    {
+      "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_log_gvrh/",
+      "type": "benchmark",
+      "locator": "Per-task Matbench v0.1 leaderboard (mean MAE over the five folds)."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "rdkit",
+      "scikit-learn"
+    ],
+    "environment_variables": [],
+    "datasets": "matbench_log_gvrh with the official folds. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Matbench: shear modulus of inorganic crystals",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_materials_matbench_structure",
+    "science_family": "science_materials_matbench_structure",
+    "parameters": {
+      "task": "log_gvrh"
+    },
+    "interface": "fit_predict(train_inputs, train_targets, test_inputs, info) -> list of len(test_inputs) floats. Inputs are ordered crystal structures {'lattice': 3x3 lattice vectors as rows (Angstrom), 'species': element symbols, 'frac_coords': fractional coordinates per site}. Called once per official Matbench v0.1 fold (five calls, KFold(5, shuffle, random_state=18012019)), each in a fresh process that receives that fold's training inputs with targets and its held-out inputs without targets; info = {'task', 'input_type', 'target', 'unit', 'fold', 'n_train', 'n_test'}. Runs in a separate process that receives only these arguments (no test values), with at most 4 threads (OMP/MKL/OpenBLAS set to 4), no network, no subprocesses and no read access to the repository or prepared data; numpy, scipy, scikit-learn, pandas, RDKit and torch are importable; wall-clock limit 170 s per fold. Score: mean over the five folds of the held-out mean absolute error in target units (minimize), the Matbench leaderboard metric",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard"
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup_instructions": [
+      "python3 scripts/prepare_chemistry.py",
+      "catalog/chemistry-data-lock.json"
+    ],
+    "additional_requires": [
+      "file:data/chemistry/matbench/log_gvrh.json"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_materials_matbench_structure",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:rdkit",
+        "py:sklearn",
+        "file:data/chemistry/matbench/log_gvrh.json"
+      ],
+      "timeout": 900,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "All targets are public in the Matbench files and every sample is a test sample of one fold; candidates or settings tuned on these folds overfit, so treat scores as development scores.",
+    "Leaderboard entries were trained without this task's limits (170 s and at most 4 CPU threads per fold, CPU only), so leaderboard values are reference points rather than targets attainable under the same budget.",
+    "Targets are DFT moduli filtered for mechanical consistency, not measurements; 10987 samples.",
+    "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/chemistry-checks.json",
+    "tests": "tests/test_chem_predictions.py"
+  },
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": 0.067,
+    "statement": "Best mean MAE on the Matbench v0.1 leaderboard for matbench_log_gvrh: 0.067 log10(GPa) (coNGN), read on 2026-10-10.",
+    "sources": [
+      {
+        "title": "Matbench leaderboard: matbench_log_gvrh",
+        "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_log_gvrh/"
+      }
+    ],
+    "as_of": "2026-10-10"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "model",
+    "domain": "natural_science",
+    "area": "materials_science",
+    "data": "public_benchmark",
+    "verification": "sampled",
+    "reference": "leaderboard",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Predict the shear modulus of inorganic crystals from their structure.",
+    "importance_rationale": "Elastic moduli govern hardness, ductility and mechanical design; computing them by DFT is costly, so learned predictors screen for hard or ductile materials.",
+    "papers": [
+      {
+        "title": "A Statistical Learning Framework for Materials Science: Application to Elastic Moduli of k-nary Inorganic Polycrystalline Compounds",
+        "url": "https://doi.org/10.1038/srep34256",
+        "primary_goal": "Predict bulk and shear moduli of inorganic compounds with statistical learning.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task predicts the log VRH shear modulus."
+      },
+      {
+        "title": "Charting the complete elastic properties of inorganic crystalline compounds",
+        "url": "https://doi.org/10.1038/sdata.2015.9",
+        "primary_goal": "Compute the full elastic tensors of inorganic crystals to chart their mechanical properties.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The scored targets come from this elastic database."
+      }
+    ],
+    "reason": "The cited papers' main objective is the underlying problem the task scores; the local data, splits and limits are stated in the task's limitations.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

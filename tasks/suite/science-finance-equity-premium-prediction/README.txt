@@ -1,0 +1,83 @@
+# Finance: Out-of-sample equity-premium prediction
+
+**Source collection:** [Finance and economics research: source-based research tasks](../../papers/science-finance_expansion.md)\
+**Task id:** `science-finance-equity-premium-prediction`\
+**Protocol:** `recreated`\
+**Direction:** maximize\
+
+## Task
+
+Forecast next month's US equity premium (the log S&P 500 return over the T-bill rate) from the Welch-Goyal predictors observed up to the forecast origin. The evaluator recomputes the out-of-sample R^2 against the prevailing historical mean over 732 monthly forecasts from 1965-01 to 2025-12.
+
+Source-derived local benchmark; the exact objective and adaptations are specified below.
+
+## Candidate interface
+
+forecast_premium(history) -> float: forecast of next month's log equity premium log(1+R_m) - log(1+R_f) (decimal, |forecast| <= 0.5). history is a dict of 1-D float arrays from 1871-01 through the forecast origin month t (NaN where a series is unavailable): the Welch-Goyal columns 'Index', 'D12', 'E12', 'b/m', 'tbl', 'AAA', 'BAA', 'lty', 'ntis', 'Rfree', 'infl', 'ltr', 'corpr', 'svar', 'csp', 'CRSP_SPvw', 'CRSP_SPvwx' (decimal rates; inflation of month t is withheld because the CPI is published with a lag), 'yyyymm' (integers) and 'equity_premium' (log excess return of each month, NaN before 1926-01). Called once per origin for the 732 targets 1965-01..2025-12. Score: Campbell-Thompson out-of-sample R^2 in percent against the prevailing mean of the equity premium since 1926-01 (maximize; the seed scores exactly 0)
+
+## State of the art
+
+No published value exists for this exact protocol (log premia, targets 1965-01 to 2025-12, 2025 data vintage). Welch and Goyal (2008) and Goyal, Welch and Zafirov (2024) find negative out-of-sample R^2 for most single predictors; with Campbell-Thompson restrictions the best monthly values in Welch and Goyal's Table 3 are about 0.3% on 1927-2004 data, and Rapach, Strauss and Zhou (2010) report gains from combining forecasts. The prevailing-mean seed scores exactly 0.
+
+Reference value: no documented value for this finite instance (reviewed 2026-10-06).
+
+- [A Comprehensive Look at The Empirical Performance of Equity Premium Prediction](https://doi.org/10.1093/rfs/hhm014)
+- [Predicting Excess Stock Returns Out of Sample: Can Anything Beat the Historical Average?](https://doi.org/10.1093/rfs/hhm055)
+- [A Comprehensive 2022 Look at the Empirical Performance of Equity Premium Prediction](https://doi.org/10.1093/rfs/hhae044)
+- [Out-of-Sample Equity Premium Prediction: Combination Forecasts and Links to the Real Economy](https://doi.org/10.1093/rfs/hhp063)
+
+Parameters: `{"start": 196501, "end": 202512}`
+
+## Labels
+
+Scientific contribution: `discovery` (tier 1); artifact `model`, domain `finance`, data `real_measurements`, verification `sampled`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+
+Research area: `finance`.
+
+## Importance to science
+
+A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.
+
+Evidence status: **supported**.
+
+Underlying problem: Determine whether the US equity premium is predictable out of sample from valuation ratios, interest rates and other economic variables.
+
+Why it matters: Return predictability is central to asset-pricing theory (time-varying risk premia) and to long-horizon investment decisions; decades of in-sample evidence fail out of sample, so forecasts that reliably beat the historical mean remain an open empirical question.
+
+- [A Comprehensive Look at The Empirical Performance of Equity Premium Prediction](https://doi.org/10.1093/rfs/hhm014): Main research objective: Assess whether variables proposed in the literature predict the equity premium in sample and out of sample. Task connection: The task uses the same predictor data (updated to 2025), recursive forecasts and prevailing-mean benchmark, scoring the out-of-sample R^2 of a candidate forecasting rule.
+- [Predicting Excess Stock Returns Out of Sample: Can Anything Beat the Historical Average?](https://doi.org/10.1093/rfs/hhm055): Main research objective: Determine whether predictors of excess stock returns beat the historical average out of sample, in particular under simple economic restrictions. Task connection: The task's score is the Campbell-Thompson out-of-sample R^2 against the historical average.
+
+Both cited papers have equity-premium predictability as their main research question, which is exactly what the task measures.
+
+## Evaluation protocol
+
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Recursive (expanding-window) monthly forecasts as in Welch and Goyal (2008) and Campbell and Thompson (2008) on the 2025 update of the Welch-Goyal data; out-of-sample R^2 is unadjusted and uses log equity premia. Published tables use other samples, adjusted R^2 or simple returns, so no published value is reproduced; the prevailing-mean benchmark is checked to score exactly 0 and the statistics are checked on synthetic data.
+
+## Run
+
+```
+python evaluator.py initial_program.py
+```
+
+The evaluator prints a JSON result with `combined_score` (the value SCiEL maximizes), `score` (the task metric in its own direction), `valid` and `error`. `config.yaml` is a ready SCiEL configuration; copied SCiEL examples keep their upstream configuration.
+
+## Requirements
+
+- `py:numpy`
+- `file:data/finance/goyal_welch_monthly.csv`
+
+## Sources
+
+- paper: https://doi.org/10.1093/rfs/hhm014 (Welch and Goyal (2008): predictor definitions, recursive out-of-sample forecasts against the prevailing mean, one-month publication lag for inflation (Sections 1-5, Table 3 for monthly data).)
+- paper: https://doi.org/10.1093/rfs/hhm055 (Campbell and Thompson (2008): out-of-sample R^2 against the historical average and economically motivated forecast restrictions.)
+- paper: https://doi.org/10.1093/rfs/hhae044 (Goyal, Welch and Zafirov (2024): updated and revised predictor data and evidence through 2021; the data file used here extends it to 2025.)
+- archive: https://sites.google.com/view/agoyal145 (Amit Goyal's data page: updated Welch-Goyal monthly predictor data to 2025-12 (file pinned by SHA-256 in catalog/finance-data-lock.json).)
+
+## Limitations
+
+- The evaluation months are public. A candidate that reads the prepared file, embeds remembered returns or is tuned on 1965-2025 can look ahead; the interface only passes data up to the origin. Treat scores as development scores and freeze a candidate before testing it on later months.
+- Monthly out-of-sample R^2 values in this literature are fractions of a percent with sampling error of the same order; the Clark-West statistic is reported, but a small positive score is not by itself evidence of predictability.
+- One data vintage (the 2025 update, which revises some historical series) is used as if it were available in real time; apart from the one-month inflation lag, publication delays and revisions of the predictors are not modelled.
+- The score uses log equity premia and the unadjusted out-of-sample R^2; it does not measure economic value (certainty-equivalent gains, trading costs or leverage limits), and csp is only available until 2002-12.

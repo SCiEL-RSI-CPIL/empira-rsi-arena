@@ -1,0 +1,109 @@
+{
+  "protocol": "recreated_verified",
+  "family": "science_frontier_physics_circles_in_square",
+  "direction": "maximize",
+  "contract": "construct() -> array of shape (N, 2): centres of N equal circles inside the square [-1/2, 1/2]^2 (side 1). Score: the largest common radius r = min(min_{i<j} |c_i - c_j| / 2, min_i min_k (1/2 - |c_ik|)) for which the circles are disjoint and inside the square, computed in double precision; maximize. A centre on or outside the square, coincident centres, a wrong shape or non-finite values make the candidate invalid.",
+  "parameters": {
+    "n": 50,
+    "published": 0.071377103865
+  },
+  "requires": [
+    "py:numpy"
+  ],
+  "timeout": 120,
+  "notes": [
+    "Independent implementation; the published record constructions (Packomania, the Hardin-Sloane-Smith covering table, the Amore-Figueroa-Ramos log-energy minima) were scored with this evaluator and reproduce the published values (validation/human-results/frontier_physics.json). No optimality is claimed for any value; a score beyond the record by more than the stated margin is a candidate new record that needs independent high-precision confirmation."
+  ],
+  "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
+  "id": "science-frontier-physics-circles-in-square-50",
+  "name": "Fifty equal circles in a square",
+  "paper_ids": [
+    "science-frontier_physics"
+  ],
+  "description": "Place the centres of 50 equal, non-overlapping circles inside a unit square so that their common radius is as large as possible. The best known packing, with radius 0.071377103865, was found by Boll, Donovan, Graham and Lubachevsky in 2000 and is not proven optimal.",
+  "benchmark": "Fifty equal circles in a square",
+  "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+  "paper_direction": null,
+  "sources": [
+    {
+      "url": "https://doi.org/10.37236/1524",
+      "type": "paper",
+      "locator": "Boll, Donovan, Graham and Lubachevsky (2000), Improving dense packings of equal disks in a square: new record packings including N = 50."
+    },
+    {
+      "url": "https://www.packomania.com/csq/csq.html",
+      "type": "benchmark",
+      "locator": "E. Specht, Packomania table of equal circles in a square (last update 2026-09-10), row N = 50: radius 0.071377103865, reference [14]; coordinates in csq/txt/csq50.txt."
+    }
+  ],
+  "limitations": [
+    "Optimality is proven only for N <= 30 and N = 36 (bold entries of the Packomania table). Packomania publishes these records with 12 decimals, so ties are judged with the 1e-11 margin.",
+    "The record coordinates are public (Packomania), so a candidate can reproduce the record from memory or by downloading it beforehand; scores measure the returned construction, not the search that produced it.",
+    "Scores are double-precision radii of the returned centres. A score above the record by at most 1e-11 is reported as a tie; a larger gain is a candidate new record that should be confirmed in higher precision and submitted to the record table before it is claimed.",
+    "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the radius from the returned array but does not sandbox the program."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "science-frontier_physics",
+      "title": "Open packing, covering and energy problems with published records: source-based research tasks",
+      "url": "https://doi.org/10.1016/S0012-365X(97)00050-2"
+    }
+  ],
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": 0.071377103865,
+    "statement": "The best known packing of 50 equal circles in a unit square has circle radius 0.071377103865 (Packomania, last update 2026-09-10), credited to Boll, Donovan, Graham and Lubachevsky (2000). No optimality proof is known (proofs exist for N <= 30 and N = 36).",
+    "sources": [
+      {
+        "title": "The best known packings of equal circles in a square (Packomania)",
+        "url": "https://www.packomania.com/csq/csq.html",
+        "authors": "Eckard Specht",
+        "year": 2026
+      },
+      {
+        "title": "Improving dense packings of equal disks in a square",
+        "url": "https://doi.org/10.37236/1524",
+        "authors": "D. W. Boll, J. Donovan, R. L. Graham, B. D. Lubachevsky",
+        "year": 2000
+      }
+    ],
+    "comparability": "Same instance and objective: N = 50, unit square, maximize the common circle radius; the published centre file (12 decimals) scores 0.07137710386398553 with this evaluator (difference -1.0e-12, within the published precision).",
+    "as_of": "2026-10-11",
+    "attribution": "human"
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Find the largest common radius of 50 non-overlapping equal circles inside a square (equivalently, spread 50 points in a square).",
+    "importance_rationale": "Dense packings of equal discs and spheres in containers are classical problems of discrete geometry and models of confined hard-particle systems; optima are proven only for small N, and record tables kept for decades are still being improved by new global-optimisation methods.",
+    "papers": [
+      {
+        "title": "Improving dense packings of equal disks in a square",
+        "url": "https://doi.org/10.37236/1524",
+        "primary_goal": "Find denser packings of N equal disks in a square and report new record packings.",
+        "evidence_role": "primary_problem",
+        "task_relation": "It reports the N = 50 record packing that the task's score is compared with."
+      }
+    ],
+    "reason": "The cited papers' main objective is the underlying problem the task scores; the record table, instance size and precision limits are stated in the task's limitations.",
+    "reviewed_at": "2026-10-11",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  },
+  "labels": {
+    "scientific_contribution": "open_problem",
+    "artifact": "construction",
+    "domain": "mathematics",
+    "area": "mathematics",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 1,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  }
+}

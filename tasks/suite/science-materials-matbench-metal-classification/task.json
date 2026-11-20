@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0",
+  "id": "science-materials-matbench-metal-classification",
+  "name": "Matbench: metal or non-metal from composition",
+  "description": "Classify 4921 inorganic compounds as metals or non-metals from their composition alone, using experimental band-gap reports. The evaluator scores the balanced accuracy (Matbench's ROC AUC for label predictions) over the five official cross-validation folds.",
+  "paper_ids": [
+    "science-chemistry_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1021/acs.jpclett.8b00124",
+      "type": "paper",
+      "locator": "Zhuo, Mansouri Tehrani and Brgoch (2018): machine-learning classification of metals and prediction of band gaps from composition; source of the labels."
+    },
+    {
+      "url": "https://doi.org/10.1038/s41524-020-00406-3",
+      "type": "benchmark",
+      "locator": "Dunn et al. (2020): Matbench v0.1 tasks, nested cross-validation protocol and MAE metric."
+    },
+    {
+      "url": "https://github.com/materialsproject/matbench/tree/936176db18ca4cd7b38cbd957c017a5bac770c6b",
+      "type": "repository",
+      "locator": "matbench_v0.1_validation.json (official folds) and stored per-fold predictions of published submissions (pinned commit)."
+    },
+    {
+      "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_expt_is_metal/",
+      "type": "benchmark",
+      "locator": "Per-task Matbench v0.1 leaderboard (mean ROC AUC over the five folds)."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "rdkit",
+      "scikit-learn"
+    ],
+    "environment_variables": [],
+    "datasets": "matbench_expt_is_metal with the official folds. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Matbench: metal or non-metal from composition",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_materials_matbench_classification",
+    "science_family": "science_materials_matbench_classification",
+    "parameters": {
+      "task": "expt_is_metal"
+    },
+    "interface": "fit_predict(train_inputs, train_targets, test_inputs, info) -> list of len(test_inputs) labels, each 0 or 1 (1 = metal). Inputs are compositions {'formula': str, 'composition': {element: amount}}; training targets are 0/1. Called once per official Matbench v0.1 fold (five calls), each in a fresh process that receives that fold's training inputs with labels and its held-out inputs without labels; info = {'task', 'input_type', 'target', 'unit', 'fold', 'n_train', 'n_test'}. Runs in a separate process that receives only these arguments (no test values), with at most 4 threads (OMP/MKL/OpenBLAS set to 4), no network, no subprocesses and no read access to the repository or prepared data; numpy, scipy, scikit-learn, pandas, RDKit and torch are importable; wall-clock limit 170 s per fold. Score: mean over the five folds of the ROC AUC of the labels, which equals the balanced accuracy, as Matbench computes it for label submissions (maximize); accuracy and F1 are reported",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard"
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup_instructions": [
+      "python3 scripts/prepare_chemistry.py",
+      "catalog/chemistry-data-lock.json"
+    ],
+    "additional_requires": [
+      "file:data/chemistry/matbench/expt_is_metal.json"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_materials_matbench_classification",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:rdkit",
+        "py:sklearn",
+        "file:data/chemistry/matbench/expt_is_metal.json"
+      ],
+      "timeout": 900,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "All labels are public in the Matbench file and every sample is a test sample of one fold; candidates or settings tuned on these folds overfit, so treat scores as development scores.",
+    "Leaderboard entries were trained without this task's limits (170 s and at most 4 CPU threads per fold), so leaderboard values are reference points.",
+    "Only 0/1 labels are accepted, so the score is the balanced accuracy; ROC AUC from probabilities, which Matbench also accepts, would not be comparable with the leaderboard entries that submitted labels. Labels are deduplicated by composition, so polymorphs share one label.",
+    "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/chemistry-checks.json",
+    "tests": "tests/test_chem_predictions.py"
+  },
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": 0.9598,
+    "statement": "Best mean ROC AUC on the Matbench v0.1 leaderboard for matbench_expt_is_metal: 0.9598 (Darwin; label predictions, equal to its balanced accuracy), read on 2026-10-10.",
+    "sources": [
+      {
+        "title": "Matbench leaderboard: matbench_expt_is_metal",
+        "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_expt_is_metal/"
+      }
+    ],
+    "as_of": "2026-10-10"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "model",
+    "domain": "natural_science",
+    "area": "materials_science",
+    "data": "public_benchmark",
+    "verification": "sampled",
+    "reference": "leaderboard",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Decide from composition alone whether an inorganic compound is a metal or a non-metal.",
+    "importance_rationale": "Metallicity is the first screen for electronic, photovoltaic and thermoelectric applications, and composition-only classifiers screen compounds whose structures are unknown.",
+    "papers": [
+      {
+        "title": "Predicting the Band Gaps of Inorganic Solids by Machine Learning",
+        "url": "https://doi.org/10.1021/acs.jpclett.8b00124",
+        "primary_goal": "Classify inorganic solids as metals or non-metals and predict band gaps from composition with machine learning.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task uses the metal/non-metal labels collected there and scores composition-based classifiers."
+      }
+    ],
+    "reason": "The cited papers' main objective is the underlying problem the task scores; the local data, splits and limits are stated in the task's limitations.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}
