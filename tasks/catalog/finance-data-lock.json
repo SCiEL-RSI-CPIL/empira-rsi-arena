@@ -1,0 +1,650 @@
+{
+  "schema": "artask.data-lock/1",
+  "package": "finance",
+  "reviewed_on": "2026-10-06",
+  "raw_cache": ".cache/finance-raw",
+  "data_directory": "suite/_lib/data/finance",
+  "note": "Raw files are fetched from the pinned URLs and verified by SHA-256 of the decoded payload; derived tables are byte-stable functions of them (suite/_lib/autoresearch_suite/finance_sources.py).",
+  "sources": [
+    {
+      "id": "french-ff3-factors-monthly",
+      "publisher": "Kenneth R. French Data Library",
+      "description": "Fama/French 3 factors and the one-month T-bill rate, monthly, percent",
+      "url": "https://web.archive.org/web/20251112034422id_/https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_CSV.zip",
+      "original_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_CSV.zip",
+      "archived": "20251112034422",
+      "vintage": "CRSP 202509 (file header: 'created using the 202509 CRSP database')",
+      "license": "No explicit license is stated. Copyright Eugene F. Fama and Kenneth R. French; the files are posted publicly on the Kenneth R. French Data Library and are widely used for academic research. Fetched at preparation time from a pinned Internet Archive snapshot; not redistributed by this repository.",
+      "sha256": "e2f62b8086b4ad2f39b3a49a840bed3b8ba84497bdb3312d6350af86ceba7152",
+      "size": 12946
+    },
+    {
+      "id": "french-10-industries-monthly",
+      "publisher": "Kenneth R. French Data Library",
+      "description": "10 industry portfolios, monthly returns, percent",
+      "url": "https://web.archive.org/web/20251112004911id_/https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/10_Industry_Portfolios_CSV.zip",
+      "original_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/10_Industry_Portfolios_CSV.zip",
+      "archived": "20251112004911",
+      "vintage": "CRSP 202509 (file header: 'created using the 202509 CRSP database')",
+      "license": "No explicit license is stated. Copyright Eugene F. Fama and Kenneth R. French; the files are posted publicly on the Kenneth R. French Data Library and are widely used for academic research. Fetched at preparation time from a pinned Internet Archive snapshot; not redistributed by this repository.",
+      "sha256": "5cbae5ee94ad0125fade974ad4e48e79c5ba5e69ffa9c43499d977eff6da1b8f",
+      "size": 117949
+    },
+    {
+      "id": "french-25-size-bm-monthly",
+      "publisher": "Kenneth R. French Data Library",
+      "description": "25 portfolios formed on size and book-to-market, monthly returns, percent",
+      "url": "https://web.archive.org/web/20251112010922id_/https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/25_Portfolios_5x5_CSV.zip",
+      "original_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/25_Portfolios_5x5_CSV.zip",
+      "archived": "20251112010922",
+      "vintage": "CRSP 202509 (file header: 'created using the 202509 CRSP database')",
+      "license": "No explicit license is stated. Copyright Eugene F. Fama and Kenneth R. French; the files are posted publicly on the Kenneth R. French Data Library and are widely used for academic research. Fetched at preparation time from a pinned Internet Archive snapshot; not redistributed by this repository.",
+      "sha256": "5648e7ce3c96515bfa5b4ede999aa0123d0397a8dd5a9700c0611c43895d3d1e",
+      "size": 543490
+    },
+    {
+      "id": "french-49-industries-monthly",
+      "publisher": "Kenneth R. French Data Library",
+      "description": "49 industry portfolios, monthly returns, percent",
+      "url": "https://web.archive.org/web/20251112032402id_/https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/49_Industry_Portfolios_CSV.zip",
+      "original_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/49_Industry_Portfolios_CSV.zip",
+      "archived": "20251112032402",
+      "vintage": "CRSP 202509 (file header: 'created using the 202509 CRSP database')",
+      "license": "No explicit license is stated. Copyright Eugene F. Fama and Kenneth R. French; the files are posted publicly on the Kenneth R. French Data Library and are widely used for academic research. Fetched at preparation time from a pinned Internet Archive snapshot; not redistributed by this repository.",
+      "sha256": "747649a1c54ee4c4e1daf4d5ab47b34f85c3ecec221aaf0da94a05e13610b8d7",
+      "size": 485920
+    },
+    {
+      "id": "goyal-welch-predictors-2025",
+      "publisher": "Amit Goyal (with Ivo Welch and Athanasse Zafirov)",
+      "description": "Updated Welch-Goyal equity-premium predictor data through 2025-12 (Monthly, Quarterly and Annual sheets), file WelchGoyal updated data to 2025",
+      "url": "https://drive.google.com/uc?export=download&id=1qwpl2R_DNujpU5YUkk8lacP1tTeMb9iJ",
+      "original_url": "https://sites.google.com/view/agoyal145",
+      "archived": null,
+      "vintage": "Updated data up to 2025 as linked from Amit Goyal's website on 2026-10-06",
+      "license": "No explicit license is stated. Posted publicly by Amit Goyal for research use alongside Welch and Goyal (2008) and Goyal, Welch and Zafirov (2024), whose citation is requested by convention; some series derive from CRSP and S&P data. Fetched at preparation time from the author's Google Drive link and verified by SHA-256 (a later replacement of the file by its author fails verification); not redistributed by this repository.",
+      "sha256": "8d210b779442a5a9206702060aac67c1de4283186c0f167ebdb4488d149be872",
+      "size": 485064
+    },
+    {
+      "id": "quantlib-heston-test",
+      "publisher": "QuantLib (test-suite/hestonmodel.cpp)",
+      "description": "QuantLib Heston model tests; getDAXCalibrationMarketData() tabulates DAX index option implied volatilities of 2002-07-05 (13 strikes x 8 maturities, spot 4468.17, zero rates) taken from A. Sepp's paper on Fourier pricing under stochastic volatility with jumps",
+      "url": "https://raw.githubusercontent.com/lballabio/QuantLib/ea1ca12e7311813abc42353ab88e127b60ee9848/test-suite/hestonmodel.cpp",
+      "original_url": "https://github.com/lballabio/QuantLib/blob/ea1ca12e7311813abc42353ab88e127b60ee9848/test-suite/hestonmodel.cpp",
+      "archived": null,
+      "vintage": "QuantLib commit ea1ca12e7311813abc42353ab88e127b60ee9848 (2026-09-24)",
+      "license": "QuantLib license (a BSD-style permissive license, https://www.quantlib.org/license.shtml) covering the test file; the numbers are DAX option market data tabulated by A. Sepp (2003). Fetched at preparation time from the pinned commit; not redistributed by this repository.",
+      "sha256": "847528d0ef81deb5101c04cb435672b1decc8ddbd900542924f543e8ade599a0",
+      "size": 139771
+    },
+    {
+      "id": "preflib-kidney-00036-00000151",
+      "publisher": "PrefLib (dataset 00036, kidney; donated by John Dickerson)",
+      "description": "Synthetic kidney exchange pool 00036-00000151 (256 incompatible patient-donor pairs, no altruists) generated with the Saidman et al. (2006) method; wmd edge list",
+      "url": "https://raw.githubusercontent.com/PrefLib/PrefLib-Data/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000151.wmd",
+      "original_url": "https://github.com/PrefLib/PrefLib-Data/blob/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000151.wmd",
+      "archived": null,
+      "vintage": "PrefLib-Data commit 0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0 (2026-09-30, after the removal of faulty kidney instances)",
+      "license": "GNU GPL-3.0 (license of the PrefLib-Data repository); PrefLib asks users to cite Dickerson, Procaccia and Sandholm (AAMAS 2012). Fetched at preparation time from the pinned commit; not redistributed by this repository.",
+      "sha256": "c2c95815f13f495aaa8efec15f430668bdc93e5dba3ccad7201ec0250d42d7c5",
+      "size": 190393
+    },
+    {
+      "id": "preflib-kidney-00036-00000152",
+      "publisher": "PrefLib (dataset 00036, kidney; donated by John Dickerson)",
+      "description": "Synthetic kidney exchange pool 00036-00000152 (256 incompatible patient-donor pairs, no altruists) generated with the Saidman et al. (2006) method; wmd edge list",
+      "url": "https://raw.githubusercontent.com/PrefLib/PrefLib-Data/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000152.wmd",
+      "original_url": "https://github.com/PrefLib/PrefLib-Data/blob/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000152.wmd",
+      "archived": null,
+      "vintage": "PrefLib-Data commit 0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0 (2026-09-30, after the removal of faulty kidney instances)",
+      "license": "GNU GPL-3.0 (license of the PrefLib-Data repository); PrefLib asks users to cite Dickerson, Procaccia and Sandholm (AAMAS 2012). Fetched at preparation time from the pinned commit; not redistributed by this repository.",
+      "sha256": "d1333a0fd59242afba04956c42d8a3d738ab40b2ce8f423dcf0d8b7096d17246",
+      "size": 195314
+    },
+    {
+      "id": "preflib-kidney-00036-00000153",
+      "publisher": "PrefLib (dataset 00036, kidney; donated by John Dickerson)",
+      "description": "Synthetic kidney exchange pool 00036-00000153 (256 incompatible patient-donor pairs, no altruists) generated with the Saidman et al. (2006) method; wmd edge list",
+      "url": "https://raw.githubusercontent.com/PrefLib/PrefLib-Data/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000153.wmd",
+      "original_url": "https://github.com/PrefLib/PrefLib-Data/blob/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000153.wmd",
+      "archived": null,
+      "vintage": "PrefLib-Data commit 0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0 (2026-09-30, after the removal of faulty kidney instances)",
+      "license": "GNU GPL-3.0 (license of the PrefLib-Data repository); PrefLib asks users to cite Dickerson, Procaccia and Sandholm (AAMAS 2012). Fetched at preparation time from the pinned commit; not redistributed by this repository.",
+      "sha256": "55ca3316e50af05f414dd0055482d6b58962fe5234dc4414692b6583404a0aac",
+      "size": 183796
+    },
+    {
+      "id": "preflib-kidney-00036-00000154",
+      "publisher": "PrefLib (dataset 00036, kidney; donated by John Dickerson)",
+      "description": "Synthetic kidney exchange pool 00036-00000154 (256 incompatible patient-donor pairs, no altruists) generated with the Saidman et al. (2006) method; wmd edge list",
+      "url": "https://raw.githubusercontent.com/PrefLib/PrefLib-Data/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000154.wmd",
+      "original_url": "https://github.com/PrefLib/PrefLib-Data/blob/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000154.wmd",
+      "archived": null,
+      "vintage": "PrefLib-Data commit 0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0 (2026-09-30, after the removal of faulty kidney instances)",
+      "license": "GNU GPL-3.0 (license of the PrefLib-Data repository); PrefLib asks users to cite Dickerson, Procaccia and Sandholm (AAMAS 2012). Fetched at preparation time from the pinned commit; not redistributed by this repository.",
+      "sha256": "75c8943546b1fde9aa0fbcd1d43796ac5469fbb131198b71f123aa707ac1c846",
+      "size": 181519
+    },
+    {
+      "id": "preflib-kidney-00036-00000191",
+      "publisher": "PrefLib (dataset 00036, kidney; donated by John Dickerson)",
+      "description": "Synthetic kidney exchange pool 00036-00000191 (512 incompatible patient-donor pairs, no altruists) generated with the Saidman et al. (2006) method; wmd edge list",
+      "url": "https://raw.githubusercontent.com/PrefLib/PrefLib-Data/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000191.wmd",
+      "original_url": "https://github.com/PrefLib/PrefLib-Data/blob/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000191.wmd",
+      "archived": null,
+      "vintage": "PrefLib-Data commit 0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0 (2026-09-30, after the removal of faulty kidney instances)",
+      "license": "GNU GPL-3.0 (license of the PrefLib-Data repository); PrefLib asks users to cite Dickerson, Procaccia and Sandholm (AAMAS 2012). Fetched at preparation time from the pinned commit; not redistributed by this repository.",
+      "sha256": "6bb78edc119e6b2347cdb180d4f0c06a16395c514f53d222c6b5963bd1f9a900",
+      "size": 836386
+    },
+    {
+      "id": "preflib-kidney-00036-00000192",
+      "publisher": "PrefLib (dataset 00036, kidney; donated by John Dickerson)",
+      "description": "Synthetic kidney exchange pool 00036-00000192 (512 incompatible patient-donor pairs, no altruists) generated with the Saidman et al. (2006) method; wmd edge list",
+      "url": "https://raw.githubusercontent.com/PrefLib/PrefLib-Data/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000192.wmd",
+      "original_url": "https://github.com/PrefLib/PrefLib-Data/blob/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000192.wmd",
+      "archived": null,
+      "vintage": "PrefLib-Data commit 0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0 (2026-09-30, after the removal of faulty kidney instances)",
+      "license": "GNU GPL-3.0 (license of the PrefLib-Data repository); PrefLib asks users to cite Dickerson, Procaccia and Sandholm (AAMAS 2012). Fetched at preparation time from the pinned commit; not redistributed by this repository.",
+      "sha256": "ff1952f3028c5804973141d2610646c208bd7f9fa7f7bf2975c34a57e6da10f7",
+      "size": 852958
+    },
+    {
+      "id": "preflib-kidney-00036-00000193",
+      "publisher": "PrefLib (dataset 00036, kidney; donated by John Dickerson)",
+      "description": "Synthetic kidney exchange pool 00036-00000193 (512 incompatible patient-donor pairs, no altruists) generated with the Saidman et al. (2006) method; wmd edge list",
+      "url": "https://raw.githubusercontent.com/PrefLib/PrefLib-Data/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000193.wmd",
+      "original_url": "https://github.com/PrefLib/PrefLib-Data/blob/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000193.wmd",
+      "archived": null,
+      "vintage": "PrefLib-Data commit 0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0 (2026-09-30, after the removal of faulty kidney instances)",
+      "license": "GNU GPL-3.0 (license of the PrefLib-Data repository); PrefLib asks users to cite Dickerson, Procaccia and Sandholm (AAMAS 2012). Fetched at preparation time from the pinned commit; not redistributed by this repository.",
+      "sha256": "b643d0895c6011801ab5d81214342442d19a533ead1e5ef57aed54b800045a4d",
+      "size": 755504
+    },
+    {
+      "id": "preflib-kidney-00036-00000194",
+      "publisher": "PrefLib (dataset 00036, kidney; donated by John Dickerson)",
+      "description": "Synthetic kidney exchange pool 00036-00000194 (512 incompatible patient-donor pairs, no altruists) generated with the Saidman et al. (2006) method; wmd edge list",
+      "url": "https://raw.githubusercontent.com/PrefLib/PrefLib-Data/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000194.wmd",
+      "original_url": "https://github.com/PrefLib/PrefLib-Data/blob/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney/00036-00000194.wmd",
+      "archived": null,
+      "vintage": "PrefLib-Data commit 0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0 (2026-09-30, after the removal of faulty kidney instances)",
+      "license": "GNU GPL-3.0 (license of the PrefLib-Data repository); PrefLib asks users to cite Dickerson, Procaccia and Sandholm (AAMAS 2012). Fetched at preparation time from the pinned commit; not redistributed by this repository.",
+      "sha256": "b5750ce59ff9f555f2365b362d5ed84b38b367f2dca887722b4a80212155a881",
+      "size": 805332
+    },
+    {
+      "id": "french-ff3-factors-daily",
+      "publisher": "Kenneth R. French Data Library",
+      "description": "Fama/French 3 factors and the daily T-bill rate, daily, percent",
+      "url": "https://web.archive.org/web/20251112085134id_/https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_daily_CSV.zip",
+      "original_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_daily_CSV.zip",
+      "archived": "20251112085134",
+      "vintage": "CRSP 202509 (file header: 'created using the 202509 CRSP database')",
+      "license": "No explicit license is stated. Copyright Eugene F. Fama and Kenneth R. French; the files are posted publicly on the Kenneth R. French Data Library and are widely used for academic research. Fetched at preparation time from a pinned Internet Archive snapshot; not redistributed by this repository.",
+      "sha256": "bd8c96aa01eb7d91af629c54886f6fa9b5ee93281ee417a095d0cb1cc4ac8f06",
+      "size": 176582
+    },
+    {
+      "id": "french-49-industries-daily",
+      "publisher": "Kenneth R. French Data Library",
+      "description": "49 industry portfolios, daily returns, percent",
+      "url": "https://web.archive.org/web/20251112061910id_/https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/49_Industry_Portfolios_daily_CSV.zip",
+      "original_url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/49_Industry_Portfolios_daily_CSV.zip",
+      "archived": "20251112061910",
+      "vintage": "CRSP 202509 (file header: 'created using the 202509 CRSP database')",
+      "license": "No explicit license is stated. Copyright Eugene F. Fama and Kenneth R. French; the files are posted publicly on the Kenneth R. French Data Library and are widely used for academic research. Fetched at preparation time from a pinned Internet Archive snapshot; not redistributed by this repository.",
+      "sha256": "da5c9dbbfbf0389d72511692b2d83b11993398617939e8cb6bc0f77139243b5a",
+      "size": 4157247
+    },
+    {
+      "id": "fed-gsw-yield-curve",
+      "publisher": "Board of Governors of the Federal Reserve System (Gurkaynak, Sack and Wright yield curve, FEDS 2006-28)",
+      "description": "Daily fitted U.S. Treasury zero-coupon yields (Svensson parameters and SVENY01-SVENY30), 1961-06-14 to 2025-08-01",
+      "url": "https://web.archive.org/web/20250809151553id_/https://www.federalreserve.gov/data/yield-curve-tables/feds200628.csv",
+      "original_url": "https://www.federalreserve.gov/data/yield-curve-tables/feds200628.csv",
+      "archived": "20250809151553",
+      "vintage": "file as archived on 2025-08-09 (last observation 2025-08-01); the live file is updated daily and revised without notice",
+      "license": "Public domain: the Federal Reserve Board states that, unless otherwise indicated, information on its website is in the public domain and may be copied and distributed without permission, with the Board cited as the source. The file is labelled a staff research product, not an official statistical release. Fetched from a pinned Internet Archive snapshot; not redistributed by this repository.",
+      "sha256": "c8e8f6489a7e76f21aa5eaec8a726272a01d75562ce6188223faaf81e6ec8802",
+      "size": 16428277
+    },
+    {
+      "id": "fred-md-2024-10",
+      "publisher": "Federal Reserve Bank of St. Louis (FRED-MD, McCracken and Ng)",
+      "description": "FRED-MD monthly database, 2024-10 vintage (current.csv as archived 2024-10-29): 126 macroeconomic series, 1959-01 to 2024-08, with transformation codes",
+      "url": "https://web.archive.org/web/20241029222651id_/https://files.stlouisfed.org/files/htdocs/fred-md/monthly/current.csv",
+      "original_url": "https://files.stlouisfed.org/files/htdocs/fred-md/monthly/current.csv",
+      "archived": "20241029222651",
+      "content_encoding": "gzip",
+      "vintage": "2024-10 (the archived current.csv on 2024-10-29); SHA-256 is of the decoded CSV",
+      "license": "Published by the Federal Reserve Bank of St. Louis for research and replication without an explicit license; some component series are third-party data (for example S&P 500 index levels) whose owners may retain rights, as FRED's terms note. Fetched at preparation time from a pinned Internet Archive snapshot; not redistributed by this repository.",
+      "sha256": "b7b33919fef3dad5ba02cc331006477d6d631ff448c04817866f16e23a6bf9a8",
+      "size": 649015
+    },
+    {
+      "id": "orlib-port1",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library port1: Hang Seng (31 assets) mean and standard deviation of weekly returns and pairwise correlations",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/port1.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/port1.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2000)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Chang, Meade, Beasley and Sharaiha 2000). The statistics derive from weekly prices March 1992-September 1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "15615853de5990a70d913c71b91fd90aa45856832c94a6f00e79907fddb5b1d2",
+      "size": 7715
+    },
+    {
+      "id": "orlib-portef1",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library portef1: 2000 points (mean return, variance) of the published unconstrained efficient frontier for Hang Seng (31 assets)",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/portef1.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/portef1.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2000)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Chang, Meade, Beasley and Sharaiha 2000). The statistics derive from weekly prices March 1992-September 1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "dc847d0dcbdf9e295226826df942e702b201db6450c0ec5ea9e28c84b18724a6",
+      "size": 54001
+    },
+    {
+      "id": "orlib-port2",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library port2: DAX 100 (85 assets) mean and standard deviation of weekly returns and pairwise correlations",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/port2.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/port2.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2000)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Chang, Meade, Beasley and Sharaiha 2000). The statistics derive from weekly prices March 1992-September 1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "6cad94fd24c8561772fd975621e40a6b06bd613dc3e4e145d595b143e9f9742d",
+      "size": 55670
+    },
+    {
+      "id": "orlib-portef2",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library portef2: 2000 points (mean return, variance) of the published unconstrained efficient frontier for DAX 100 (85 assets)",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/portef2.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/portef2.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2000)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Chang, Meade, Beasley and Sharaiha 2000). The statistics derive from weekly prices March 1992-September 1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "25a188898555661f95110dbe869599c12b7f3c8592f256e3545b0101dd3189f3",
+      "size": 54001
+    },
+    {
+      "id": "orlib-port3",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library port3: FTSE 100 (89 assets) mean and standard deviation of weekly returns and pairwise correlations",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/port3.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/port3.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2000)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Chang, Meade, Beasley and Sharaiha 2000). The statistics derive from weekly prices March 1992-September 1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "e91527a0befeb789491e627478a703e98f8ce9a79fa9557742d30078c0930838",
+      "size": 60880
+    },
+    {
+      "id": "orlib-portef3",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library portef3: 2000 points (mean return, variance) of the published unconstrained efficient frontier for FTSE 100 (89 assets)",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/portef3.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/portef3.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2000)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Chang, Meade, Beasley and Sharaiha 2000). The statistics derive from weekly prices March 1992-September 1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "ca9ff3a371987d9ba76546533523f369bfe9afd5ba53d92e1dbd18255744cd81",
+      "size": 54001
+    },
+    {
+      "id": "orlib-port4",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library port4: S&P 100 (98 assets) mean and standard deviation of weekly returns and pairwise correlations",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/port4.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/port4.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2000)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Chang, Meade, Beasley and Sharaiha 2000). The statistics derive from weekly prices March 1992-September 1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "063ae8837619a81f0a1c3ab79a8c86a1596c6da8715206d123871b39ff95cea4",
+      "size": 73817
+    },
+    {
+      "id": "orlib-portef4",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library portef4: 2000 points (mean return, variance) of the published unconstrained efficient frontier for S&P 100 (98 assets)",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/portef4.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/portef4.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2000)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Chang, Meade, Beasley and Sharaiha 2000). The statistics derive from weekly prices March 1992-September 1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "715a53e38ac5176b498d270bbdafa3debdff3655dd7bee9c36147ac6bad8ff9c",
+      "size": 54001
+    },
+    {
+      "id": "orlib-port5",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library port5: Nikkei 225 (225 assets) mean and standard deviation of weekly returns and pairwise correlations",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/port5.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/port5.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2000)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Chang, Meade, Beasley and Sharaiha 2000). The statistics derive from weekly prices March 1992-September 1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "96dababdb62bdf1428b487a21c0ab5a7eaa1bcf8065c0dfdaf3eff2476b8070a",
+      "size": 412049
+    },
+    {
+      "id": "orlib-portef5",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library portef5: 2000 points (mean return, variance) of the published unconstrained efficient frontier for Nikkei 225 (225 assets)",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/portef5.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/portef5.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2000)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Chang, Meade, Beasley and Sharaiha 2000). The statistics derive from weekly prices March 1992-September 1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "15422dde378a8a683b2743c963a290f3f1fa054a238b74d50b9dcde759d444cc",
+      "size": 54001
+    },
+    {
+      "id": "orlib-indtrack1",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library indtrack1: weekly prices of the Hang Seng index and its 31 constituents, weeks 0-290",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/indtrack1.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/indtrack1.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2003)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Beasley, Meade and Chang 2003). Weekly prices of 1992-1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "258b917e304e21c87ae481b9baba0aefe877b657fa63483255c23162a74aa629",
+      "size": 116665
+    },
+    {
+      "id": "orlib-indtrack2",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library indtrack2: weekly prices of the DAX 100 index and its 85 constituents, weeks 0-290",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/indtrack2.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/indtrack2.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2003)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Beasley, Meade and Chang 2003). Weekly prices of 1992-1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "628ec12707bcd7d82a3f919c793d204646568d0a66f3eb2d2e9dcc82e024aff5",
+      "size": 333141
+    },
+    {
+      "id": "orlib-indtrack3",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library indtrack3: weekly prices of the FTSE 100 index and its 89 constituents, weeks 0-290",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/indtrack3.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/indtrack3.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2003)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Beasley, Meade and Chang 2003). Weekly prices of 1992-1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "f6f2bc9f3bc80ddaddf8b93fe95286ca378dd50d3e9335909ca9c28999e56b94",
+      "size": 359211
+    },
+    {
+      "id": "orlib-indtrack4",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library indtrack4: weekly prices of the S&P 100 index and its 98 constituents, weeks 0-290",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/indtrack4.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/indtrack4.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2003)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Beasley, Meade and Chang 2003). Weekly prices of 1992-1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "c05ae9d5fdc581c57e24220460b48a9169c98b26355330ac389f1b07facbb262",
+      "size": 361138
+    },
+    {
+      "id": "orlib-indtrack5",
+      "publisher": "OR-Library (J.E. Beasley)",
+      "description": "OR-Library indtrack5: weekly prices of the Nikkei 225 index and its 225 constituents, weeks 0-290",
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/indtrack5.txt",
+      "original_url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/files/indtrack5.txt",
+      "archived": null,
+      "vintage": "OR-Library file unchanged since publication (2003)",
+      "license": "No explicit license is stated; OR-Library test problems are distributed publicly by J.E. Beasley for research and benchmarking (Beasley, Meade and Chang 2003). Weekly prices of 1992-1997. Fetched at preparation time and verified by SHA-256; not redistributed by this repository.",
+      "sha256": "048e9f6115b5ebd1eef309feeebd6c3e917eb539c1de3184b98284ce2fb12c35",
+      "size": 913153
+    }
+  ],
+  "derived": [
+    {
+      "path": "ff_factors_monthly.csv",
+      "sources": [
+        "french-ff3-factors-monthly"
+      ],
+      "description": "Mkt-RF, SMB, HML, RF (percent), 1926-07 to 2025-09",
+      "sha256": "2af86e4be533d6b244511b3587304987c08750043b41fd8aa19c21b17f94c390",
+      "size": 33899
+    },
+    {
+      "path": "ind10_vw_monthly.csv",
+      "sources": [
+        "french-10-industries-monthly"
+      ],
+      "description": "Value-weighted 10 industry returns (percent), 1926-07 to 2025-09",
+      "sha256": "858b46297d8e47513ec555fadf724dc43ea62550f1556adce86974b940f882ca",
+      "size": 73662
+    },
+    {
+      "path": "ff25_vw_monthly.csv",
+      "sources": [
+        "french-25-size-bm-monthly"
+      ],
+      "description": "Value-weighted 25 size/book-to-market returns (percent), 1926-07 to 2025-09",
+      "sha256": "c8414c3aacc1c06619dba2bc07f3d72c854d6bd04accaa78036788884a41e80d",
+      "size": 231874
+    },
+    {
+      "path": "ind49_vw_monthly.csv",
+      "sources": [
+        "french-49-industries-monthly"
+      ],
+      "description": "Value-weighted 49 industry returns (percent; -99.99 = missing), 1926-07 to 2025-09",
+      "sha256": "d4cce6fd50934f63e159a36520a387667ad7a7e05c934ed0e8d26215fe6ec18c",
+      "size": 336599
+    },
+    {
+      "path": "goyal_welch_monthly.csv",
+      "sources": [
+        "goyal-welch-predictors-2025"
+      ],
+      "description": "Monthly sheet: S&P 500 index, dividends and earnings, b/m, tbl, AAA, BAA, lty, ntis, Rfree, infl, ltr, corpr, svar, csp, CRSP_SPvw, CRSP_SPvwx; 1871-01 to 2025-12",
+      "sha256": "f15431437234fbfde36d592ceb34b9aaa2f1d4420377459cd1bcfe4008c7e4ff",
+      "size": 459809
+    },
+    {
+      "path": "dax_2002_surface.csv",
+      "sources": [
+        "quantlib-heston-test"
+      ],
+      "description": "104 DAX implied volatilities on 2002-07-05: strike, maturity in days, zero rate, implied volatility, spot",
+      "sha256": "c241abeef02a4f9429a26939d55612e94483b1e747e74ff17cfe77263271df68",
+      "size": 4344
+    },
+    {
+      "path": "kidney_preflib_pools.csv",
+      "sources": [
+        "preflib-kidney-00036-00000151",
+        "preflib-kidney-00036-00000152",
+        "preflib-kidney-00036-00000153",
+        "preflib-kidney-00036-00000154",
+        "preflib-kidney-00036-00000191",
+        "preflib-kidney-00036-00000192",
+        "preflib-kidney-00036-00000193",
+        "preflib-kidney-00036-00000194"
+      ],
+      "description": "Compatibility edges of eight PrefLib kidney pools (four with 256 and four with 512 pairs): instance, donor_pair, patient_pair (1-based)",
+      "sha256": "3f6f248c99a42a9bcf8352fb6e21765e4ec8e01fe298677f7ae5a89a71062ad2",
+      "size": 7629399
+    },
+    {
+      "path": "ff_factors_daily.csv",
+      "sources": [
+        "french-ff3-factors-daily"
+      ],
+      "description": "Daily Mkt-RF, SMB, HML, RF (percent), 1926-07-01 to 2025-09-30",
+      "sha256": "da1edec5aeb29085e637dfdaa7ccc0452d690a3baf3db814ad6dbca0fd83a38f",
+      "size": 793661
+    },
+    {
+      "path": "ind49_vw_daily.csv",
+      "sources": [
+        "french-49-industries-daily"
+      ],
+      "description": "Value-weighted 49 industry daily returns (percent), 1971-03-12 (first date without missing values) to 2025-09-30",
+      "sha256": "08caaef561ae5a4be311e8a7bf24c79e0a7c8754ecc3ffec89ed4e79ced3638d",
+      "size": 3814280
+    },
+    {
+      "path": "gsw_yields_monthly.csv",
+      "sources": [
+        "fed-gsw-yield-curve"
+      ],
+      "description": "End-of-month GSW zero-coupon yields (continuously compounded, percent) at 1-10 year maturities, 1972-01 to 2025-07, with the date of the last observation",
+      "sha256": "0d99c2597e2dcb5d2f3b836132421d41d669af0e49ceed356900b50d733743b8",
+      "size": 83356
+    },
+    {
+      "path": "fredmd_2024_10.csv",
+      "sources": [
+        "fred-md-2024-10"
+      ],
+      "description": "FRED-MD 2024-10 vintage: first row 'tcode' (transformation codes), then 788 months 1959-01..2024-08 of 126 raw series (empty = missing)",
+      "sha256": "eebcaa9024b3412849a86445e843d853543fd1b0b767cc2c85a10875fbac56a2",
+      "size": 646448
+    },
+    {
+      "path": "orlib_port1.csv",
+      "sources": [
+        "orlib-port1"
+      ],
+      "description": "Hang Seng (31 assets): asset, mean, sd and full correlation row",
+      "sha256": "1293606ba3b093704170717d7fa870df7ac6374edf511cbf99f1413a94fab31c",
+      "size": 8428
+    },
+    {
+      "path": "orlib_portef1.csv",
+      "sources": [
+        "orlib-portef1"
+      ],
+      "description": "Hang Seng (31 assets): published unconstrained efficient frontier points",
+      "sha256": "13c25fac419d5e58f17f2b5fe9fa12e7642c921721ab1cfb89aa42405d634750",
+      "size": 56920
+    },
+    {
+      "path": "orlib_port2.csv",
+      "sources": [
+        "orlib-port2"
+      ],
+      "description": "DAX 100 (85 assets): asset, mean, sd and full correlation row",
+      "sha256": "c9cc40c29e9ebdcbc3ff86a6457f730136c42f03a7424feb9820ca4cf29f78be",
+      "size": 59984
+    },
+    {
+      "path": "orlib_portef2.csv",
+      "sources": [
+        "orlib-portef2"
+      ],
+      "description": "DAX 100 (85 assets): published unconstrained efficient frontier points",
+      "sha256": "c70450ea4923c7fe02e53dedda709a8198040b95820166a385724e169435a98c",
+      "size": 56920
+    },
+    {
+      "path": "orlib_port3.csv",
+      "sources": [
+        "orlib-port3"
+      ],
+      "description": "FTSE 100 (89 assets): asset, mean, sd and full correlation row",
+      "sha256": "244436c50e3a85e892dfaf3cef1648e36fc5a1d3bfad242c3736aa4941f91a87",
+      "size": 65512
+    },
+    {
+      "path": "orlib_portef3.csv",
+      "sources": [
+        "orlib-portef3"
+      ],
+      "description": "FTSE 100 (89 assets): published unconstrained efficient frontier points",
+      "sha256": "16c4bbe9a54c2c4b8ff99b06bf49b52cef5be08bf44d9737d4b79292d46868b7",
+      "size": 56920
+    },
+    {
+      "path": "orlib_port4.csv",
+      "sources": [
+        "orlib-port4"
+      ],
+      "description": "S&P 100 (98 assets): asset, mean, sd and full correlation row",
+      "sha256": "f817d59d27a81e09f9dcf30d6f31eed7f1a34a8e17cb38b51d18858cc4f002a6",
+      "size": 79520
+    },
+    {
+      "path": "orlib_portef4.csv",
+      "sources": [
+        "orlib-portef4"
+      ],
+      "description": "S&P 100 (98 assets): published unconstrained efficient frontier points",
+      "sha256": "71bcbbfe30a65360e9e7152bb2664a53430afd0dd884f014f172c00493d77b9e",
+      "size": 56920
+    },
+    {
+      "path": "orlib_port5.csv",
+      "sources": [
+        "orlib-port5"
+      ],
+      "description": "Nikkei 225 (225 assets): asset, mean, sd and full correlation row",
+      "sha256": "550cb2bd438c077dea2d277973a445deb88a5970a8c29aacb881b6bbbe4b55f6",
+      "size": 410825
+    },
+    {
+      "path": "orlib_portef5.csv",
+      "sources": [
+        "orlib-portef5"
+      ],
+      "description": "Nikkei 225 (225 assets): published unconstrained efficient frontier points",
+      "sha256": "a789145d0b0ae788e7f1b62301ba12a8175c88f7c2a9d6100e47e3f29c244384",
+      "size": 56920
+    },
+    {
+      "path": "orlib_indtrack1.csv",
+      "sources": [
+        "orlib-indtrack1"
+      ],
+      "description": "Hang Seng: week, index price and the prices of its 31 constituents (291 weeks)",
+      "sha256": "47ee06ba664c6e9f87b0a098be779aefb1345f40acba91d3d5045373721db618",
+      "size": 113164
+    },
+    {
+      "path": "orlib_indtrack2.csv",
+      "sources": [
+        "orlib-indtrack2"
+      ],
+      "description": "DAX 100: week, index price and the prices of its 85 constituents (291 weeks)",
+      "sha256": "7d16bea33af3017ebc975b9531e295d351231fa57b497ad8ab979757048404db",
+      "size": 321972
+    },
+    {
+      "path": "orlib_indtrack3.csv",
+      "sources": [
+        "orlib-indtrack3"
+      ],
+      "description": "FTSE 100: week, index price and the prices of its 89 constituents (291 weeks)",
+      "sha256": "4d9e0b1c683231e1ebf080b4afd47288fbb1d2bdb79862c26f9d76f79b10836b",
+      "size": 347474
+    },
+    {
+      "path": "orlib_indtrack4.csv",
+      "sources": [
+        "orlib-indtrack4"
+      ],
+      "description": "S&P 100: week, index price and the prices of its 98 constituents (291 weeks)",
+      "sha256": "63b44a7e27aaf89d6487ddf554f7e56aabda81ffdc76b77462a959ceb603648b",
+      "size": 348123
+    },
+    {
+      "path": "orlib_indtrack5.csv",
+      "sources": [
+        "orlib-indtrack5"
+      ],
+      "description": "Nikkei 225: week, index price and the prices of its 225 constituents (291 weeks)",
+      "sha256": "d05dbfc489e3c9dc672d42a84c595b1a18c5cc9e34e1a95ef77787e9b7bea3b9",
+      "size": 882229
+    }
+  ]
+}

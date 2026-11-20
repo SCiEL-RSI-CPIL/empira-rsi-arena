@@ -1,0 +1,132 @@
+{
+  "schema": "artask.data-lock/1",
+  "package": "bio_physics",
+  "prepare": "python3 scripts/prepare_bio_physics.py",
+  "raw_cache": ".cache/bio_physics-raw",
+  "derived_directory": "suite/_lib/data/bio_physics",
+  "sources": [
+    {
+      "name": "ame2016-mass16.txt",
+      "url": "https://www-nds.iaea.org/amdc/ame2016/mass16.txt",
+      "sha256": "2167f57a2a98331e4649b2dd2b658a9006ed4fba1975729ebfe52a42b4b9218a",
+      "size_bytes": 418937,
+      "pinning": "versioned evaluation file (AME2016 is frozen; later evaluations get new file names)",
+      "license": "not stated (the AMDC file states no licence; not redistributed by this repository)",
+      "license_url": "https://www-nds.iaea.org/amdc/",
+      "citation": "Wang, M., Audi, G., Kondev, F. G., Huang, W. J., Naimi, S. and Xu, X. (2017). The AME2016 atomic mass evaluation (II). Chinese Physics C 41, 030003.",
+      "retrieved": "2026-10-10"
+    },
+    {
+      "name": "ame2020-mass_1.mas20.txt",
+      "url": "https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt",
+      "sha256": "e8599c6d7f724fac91934e59f1b9de8fb8f63e820f4b39456b790665ed2a3307",
+      "size_bytes": 472648,
+      "pinning": "versioned evaluation file (AME2020 is frozen; later evaluations get new file names)",
+      "license": "CC BY 3.0 for the published AME2020 tables (Chinese Physics C 45, 030003); the AMDC data file itself states no licence and is not redistributed by this repository",
+      "license_url": "http://creativecommons.org/licenses/by/3.0/",
+      "citation": "Wang, M., Huang, W. J., Kondev, F. G., Audi, G. and Naimi, S. (2021). The AME 2020 atomic mass evaluation (II). Chinese Physics C 45, 030003.",
+      "retrieved": "2026-10-10"
+    },
+    {
+      "name": "balibase-BAliBASE_R1-5.tar.gz",
+      "url": "https://bigest-icube.fr/balibase/BalibaseDownload/BAliBASE_R1-5.tar.gz",
+      "sha256": "5378cf4e2e0741f788a0175d4fcb78c54387102b243e8de16c5e2cafed928190",
+      "size_bytes": 10874227,
+      "pinning": "BAliBASE 3.0 release archive (frozen since December 2004); https://www.lbgi.fr/balibase/BalibaseDownload/BAliBASE_R1-5.tar.gz redirects here",
+      "license": "not stated (the BAliBASE 3.0 README states no licence; the archive is not redistributed by this repository)",
+      "license_url": "https://www.lbgi.fr/balibase/",
+      "citation": "Thompson, J. D., Koehl, P., Ripp, R. and Poch, O. (2005). BAliBASE 3.0: latest developments of the multiple sequence alignment benchmark. Proteins 61, 127-136.",
+      "retrieved": "2026-10-10"
+    },
+    {
+      "name": "biqmac-ising_all.tar.gz",
+      "url": "https://biqmac.aau.at/library/tar_files/ising_all.tar.gz",
+      "sha256": "bc2ac4ac62fc8d516fb05aabd80546a7dfc627df3a60e135115085175457fe0c",
+      "size_bytes": 2163713,
+      "pinning": "static archive of the Biq Mac library (unchanged since the 2007 release)",
+      "license": "not stated (Biq Mac library states no licence; the archive is not redistributed by this repository)",
+      "license_url": "https://biqmac.aau.at/biqmaclib.html",
+      "citation": "Liers, F., Juenger, M., Reinelt, G. and Rinaldi, G. (2004). Computing exact ground states of hard Ising spin glass problems by branch-and-cut. In New Optimization Algorithms in Physics, 47-68, Wiley. Instances distributed with Rendl, F., Rinaldi, G. and Wiegele, A., Biq Mac Library.",
+      "retrieved": "2026-10-10"
+    },
+    {
+      "name": "flusight-target-hospital-admissions.csv",
+      "url": "https://raw.githubusercontent.com/cdcepi/FluSight-forecast-hub/ae9b0627235e7f4e574940f4fa29ee9f79c8f210/target-data/target-hospital-admissions.csv",
+      "sha256": "2f7fe9ce365500ce377eba78fb1914f894d9382141c21ba79df4a2d54dfe31ea",
+      "size_bytes": 605939,
+      "pinning": "file at a fixed commit of the hub (ae9b0627, 2026-10-07); the hub's main branch rewrites this file every week and revises earlier weeks",
+      "license": "MIT (cdcepi/FluSight-forecast-hub); the underlying counts are CDC NHSN data, a work of the U.S. Government",
+      "license_url": "https://github.com/cdcepi/FluSight-forecast-hub/blob/main/LICENSE",
+      "citation": "CDC Influenza Division and the FluSight hub contributors. FluSight forecast hub target data (weekly laboratory-confirmed influenza hospital admissions, NHSN Weekly Hospital Respiratory Data).",
+      "retrieved": "2026-10-10"
+    },
+    {
+      "name": "rfam-Rfam.3d.seed.gz",
+      "url": "https://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/Rfam.3d.seed.gz",
+      "sha256": "4055ce87a369794a1e4455badcaf7c3bc3a7a524368b5b249e34b2a8d2e8146f",
+      "size_bytes": 377401,
+      "pinning": "live (CURRENT points at the latest Rfam release; retrieved from release 15.1) - the derived-file hash is the binding check",
+      "license": "CC0 1.0 (Rfam)",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "citation": "Ontiveros-Palacios, N. et al. Rfam: the RNA families database (release 15.1); seed alignments of families with three-dimensional structures.",
+      "retrieved": "2026-10-10"
+    }
+  ],
+  "derived": [
+    {
+      "path": "align/balibase_rv11_rv12.json.gz",
+      "module": "bio_align",
+      "sources": [
+        "balibase-BAliBASE_R1-5.tar.gz"
+      ],
+      "sha256": "de163cbb3425178dccff2ebe60b9f752038b02f883b4d1b6f027e5bdb55be962",
+      "size_bytes": 19616
+    },
+    {
+      "path": "flu/flusight_hospital_admissions.json.gz",
+      "module": "bio_flu",
+      "sources": [
+        "flusight-target-hospital-admissions.csv"
+      ],
+      "sha256": "b7e8877a4c30a4d35f8b8bf623674acbd258e9f01376fdca6bf2f44ce2af776b",
+      "size_bytes": 17868
+    },
+    {
+      "path": "nuclear/ame2016_to_ame2020.json.gz",
+      "module": "phys_nuclear",
+      "sources": [
+        "ame2016-mass16.txt",
+        "ame2020-mass_1.mas20.txt"
+      ],
+      "sha256": "4198fae5f4e742c2e56c8a8a951884866bf4710447d685ec2044a250fcf28bfa",
+      "size_bytes": 34926
+    },
+    {
+      "path": "rna/rfam_consensus_structures.json.gz",
+      "module": "bio_rna",
+      "sources": [
+        "rfam-Rfam.3d.seed.gz"
+      ],
+      "sha256": "90a79f3f0f71e07e5a2947ec8e5cf4a6f414f72b37810eda8419a90d8c595e7b",
+      "size_bytes": 9952
+    },
+    {
+      "path": "spinglass/torus_2d.json.gz",
+      "module": "phys_spinglass",
+      "sources": [
+        "biqmac-ising_all.tar.gz"
+      ],
+      "sha256": "96a620bb831065ace12b0af01626e611fb31ec4be5fdd832b3bf01dc07ef475a",
+      "size_bytes": 25969
+    },
+    {
+      "path": "spinglass/torus_3d.json.gz",
+      "module": "phys_spinglass",
+      "sources": [
+        "biqmac-ising_all.tar.gz"
+      ],
+      "sha256": "d2562deb6148d031c4fc45760d61e95201b54b08022573ade00cb02171e3cc51",
+      "size_bytes": 36868
+    }
+  ]
+}
