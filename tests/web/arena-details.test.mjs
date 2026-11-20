@@ -1,6 +1,7 @@
 // Read-only DOM behavior with synthetic fixtures; no research execution.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { PAGE_SIZE } from '../../web/arena-model.js';
 import {
   source,
   task,
@@ -176,11 +177,11 @@ test('scientific direction cards retain exact corpus counts and open real chemis
       doc.getElementById('arena-result-count').textContent,
       `${expected.length} of ${catalog.tasks.length.toLocaleString('en-US')} tasks`,
     );
+    // The direction now holds more tasks than one page of the list; the first page is shown in catalog order.
+    assert.ok(expected.length > PAGE_SIZE);
     assert.deepEqual(
-      [...doc.querySelectorAll('#arena-results .arena-task-id')]
-        .map((node) => node.textContent)
-        .sort(),
-      expected.map((item) => item.id).sort(),
+      [...doc.querySelectorAll('#arena-results .arena-task-id')].map((node) => node.textContent),
+      expected.slice(0, PAGE_SIZE).map((item) => item.id),
     );
     const example = doc.querySelector('[data-field-detail="chemistry-materials"] .field-example a');
     const id = new URL(example.href).searchParams.get('task'),
