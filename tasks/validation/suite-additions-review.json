@@ -1,0 +1,401 @@
+{
+  "schema": "arena.task-review/1",
+  "reviewed_on": "2026-11-20",
+  "scope": "Independent review of the 318 task packages added from autoresearch-tasks commit 374288ac83ee35dc6b08b5ce2484f2af208c7e07: statement against checker code, seed, stated facts and sources, labels. Eight reviewers read every package and its checker; claims that led to a change were checked again against the code, a run or the cited source before the change was made.",
+  "summary": {
+    "tasks_reviewed": 318,
+    "tasks_without_findings": 230,
+    "findings": {
+      "across_tasks_note": 32,
+      "across_tasks_warning": 8,
+      "error": 22,
+      "note": 58,
+      "warning": 26
+    },
+    "statements_corrected": 17,
+    "code_corrections": 5,
+    "open_items": 20
+  },
+  "origin_tests": {
+    "what": "The origin's unittest modules cited by the added packages (tests/test_*.py at the pinned commit), run against this library's copy of the shared modules; generator-only modules the tests import were taken from the origin. One module per interpreter, 110-second limit per module.",
+    "modules": 65,
+    "modules_passed": 62,
+    "tests_run": 540,
+    "tests_skipped": 31,
+    "modules_failed": [],
+    "modules_stopped_by_time_limit": [
+      "test_finance_fairdiv",
+      "test_finance_kidney",
+      "test_finance_marketmaking"
+    ]
+  },
+  "corrected_statements": [
+    {
+      "task": "science-biology-hp-lattice-folding-3d",
+      "corrections": [
+        "5a number of chains"
+      ]
+    },
+    {
+      "task": "science-diameter-two-edge-critical-graphs",
+      "corrections": [
+        "4d solved instance: optimum 64"
+      ]
+    },
+    {
+      "task": "science-distance-product-fixed-diameter-8",
+      "corrections": [
+        "5h authors of arXiv:2603.07088"
+      ]
+    },
+    {
+      "task": "science-finance-cardinality-constrained-frontier",
+      "corrections": [
+        "5c FTSE tabu-search value"
+      ]
+    },
+    {
+      "task": "science-finance-covariance-minimum-variance",
+      "corrections": [
+        "5d estimation window of the cited paper"
+      ]
+    },
+    {
+      "task": "science-finance-optimal-execution",
+      "corrections": [
+        "5b number of numerically solved instances"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-sphere-covering-130",
+      "corrections": [
+        "1 reference value out of date",
+        "1 reference value out of date (shared limitation sentence)"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-sphere-covering-50",
+      "corrections": [
+        "1 reference value out of date (shared limitation sentence)"
+      ]
+    },
+    {
+      "task": "science-maximum-sum-pairwise-coprime-integers",
+      "corrections": [
+        "4a solved instance: optimum 7372"
+      ]
+    },
+    {
+      "task": "science-no-four-collinear-general-position-20",
+      "corrections": [
+        "5f Füredi's lower bound"
+      ]
+    },
+    {
+      "task": "science-number-theory-totient-multiple",
+      "corrections": [
+        "4c solved instance: optimum 143"
+      ]
+    },
+    {
+      "task": "science-short-square-product-extension",
+      "corrections": [
+        "4b solved instance: optimum 28"
+      ]
+    },
+    {
+      "task": "science-software-cit-healthcare4-2way",
+      "corrections": [
+        "5e authors of the cited paper"
+      ]
+    },
+    {
+      "task": "science-software-fault-localization-seeded",
+      "corrections": [
+        "5g block order in the contract"
+      ]
+    },
+    {
+      "task": "science-sums-of-two-powerful-numbers",
+      "corrections": [
+        "2 enforced limit of 1000 pairs not stated"
+      ]
+    },
+    {
+      "task": "science-tcs-cerny-reset-threshold-12",
+      "corrections": [
+        "4e solved instance: optimum 121"
+      ]
+    },
+    {
+      "task": "science-tournament-four-dominated",
+      "corrections": [
+        "3 wrong lower bound for f(4)"
+      ]
+    }
+  ],
+  "corrected_code_and_data": [
+    {
+      "tasks": [
+        "science-economics-fredmd-industrial-production-forecasting",
+        "science-economics-fredmd-inflation-forecasting",
+        "science-economics-fredmd-unemployment-forecasting"
+      ],
+      "file": "suite/_lib/autoresearch_suite/finance_macro.py",
+      "finding": "The autoregressive benchmark that normalises the score was computed from the history object after the candidate had received it, so a candidate could change the benchmark.",
+      "correction": "The benchmark is computed before the candidate is called."
+    },
+    {
+      "tasks": [
+        "science-earth-* (17 tasks)",
+        "science-biology-balibase-protein-alignment",
+        "science-biology-rna-secondary-structure",
+        "science-biology-influenza-hospitalization-forecasting",
+        "science-physics-nuclear-mass-extrapolation",
+        "science-physics-spin-glass-torus-2d",
+        "science-physics-spin-glass-torus-3d"
+      ],
+      "file": "suite/_lib/autoresearch_suite/earth_common.py, bio_physics_common.py",
+      "finding": "Derived data files are pinned by the SHA-256 of their gzip bytes. zlib writes its build's operating-system code into byte 9 of the header (3 on Linux, 19 on macOS, where the digests were recorded), so no file derived on Linux matched its pin and these tasks could not load their data.",
+      "correction": "The header byte is written as 19 on every platform. Files derived on Linux then reproduce the recorded digests unchanged; every other byte was already identical."
+    },
+    {
+      "tasks": [
+        "science-biology-influenza-hospitalization-forecasting"
+      ],
+      "file": "catalog/bio_physics-data-lock.json, scripts/prepare_bio_physics.py",
+      "finding": "The admissions file was recorded from the hub's main branch, which is rewritten weekly and revises earlier weeks, and the test for a live source compared the pinning text with the single word 'live', which never matched this lock.",
+      "correction": "The source URL names the commit (ae9b0627) whose file has exactly the recorded SHA-256 and size; the live-source test accepts the lock's wording."
+    },
+    {
+      "tasks": [
+        "science_prize_h and science_prize_i tasks"
+      ],
+      "file": "suite/_lib/autoresearch_suite/science_prize_h_arithmetic.py",
+      "finding": "The primality test was documented as deterministic below 3.3e24; with its twelve bases it is deterministic below 3.18e23 (318665857834031151167461 is reported prime). No task passes it a number above 1e18.",
+      "correction": "The two docstrings state the correct bound."
+    },
+    {
+      "tasks": [
+        "mcts-ahd-asp-constructive",
+        "funsearch-re-implementation-narrow-admissible-tuple"
+      ],
+      "file": "catalog/duplicates.json and both packages",
+      "finding": "The MCTS-AHD admissible-set task (constant-weight ternary vectors) was recorded as a duplicate of the FunSearch narrow admissible tuple task (integers avoiding residue classes). They are different problems.",
+      "correction": "The merge is removed and the MCTS-AHD task is its own package, as in the source since 2026-09-21."
+    }
+  ],
+  "open": [
+    {
+      "group": "evaluator isolation",
+      "severity": "error",
+      "tasks": [
+        "science-software-quixbugs-repair"
+      ],
+      "finding": "The candidate's patch runs in the sandbox process that also holds the expected outputs of every test, including the held-out ones, so passing them does not certify a repair. A decorator is not counted as a statement edit.",
+      "why_open": "Needs the judging step moved out of the process that runs candidate code."
+    },
+    {
+      "group": "evaluator isolation",
+      "severity": "error",
+      "tasks": [
+        "science-biology-influenza-hospitalization-forecasting"
+      ],
+      "finding": "All forecast jobs are passed to one child process, so the histories of later reference dates, which contain the verifying weeks of earlier dates, are in the candidate's process. The contract says the candidate never sees later weeks.",
+      "why_open": "Needs one process per reference date, or release through the online protocol the earth tasks use, with the CPU budget redefined."
+    },
+    {
+      "group": "evaluator isolation",
+      "severity": "warning",
+      "tasks": [
+        "science-software-fault-localization-seeded"
+      ],
+      "finding": "The per-fault block order is seeded with the fault's list index and faults are evaluated in list order, so a candidate can reproduce the order.",
+      "why_open": "Needs fresh randomness per evaluation; the score is invariant to block order for position-independent formulas."
+    },
+    {
+      "group": "evaluator isolation",
+      "severity": "warning",
+      "tasks": [
+        "science-earth-two-stream-radiative-transfer"
+      ],
+      "finding": "The rule that coefficients may not depend on optical depth is enforced only by not passing it; the fixed, seeded design lets a candidate recover it.",
+      "why_open": "Needs a crossed design or a disclosure like the one the synthetic earth tasks carry."
+    },
+    {
+      "group": "evaluator isolation",
+      "severity": "warning",
+      "tasks": [
+        "science-finance-* and science-economics-* (18 tasks)"
+      ],
+      "finding": "Candidates run in the evaluator's process with the library importable, including the reference solvers and stored optima that define the best score; the three FRED-MD seeds import the evaluator module.",
+      "why_open": "Needs the sandboxed worker the software, chemistry and earth tasks use. The packages state that candidate code is trusted."
+    },
+    {
+      "group": "no headroom",
+      "severity": "error",
+      "tasks": [
+        "science-practical-divisor-sum-5040"
+      ],
+      "finding": "The seed already attains the optimum (5), found by exhaustive search over the 60 divisors; the package says no value is known.",
+      "why_open": "Needs a weaker seed or a different instance; a task-design decision."
+    },
+    {
+      "group": "no headroom",
+      "severity": "warning",
+      "tasks": [
+        "science-number-theory-egyptian-long",
+        "science-number-theory-sidon-obstruction",
+        "science-number-theory-powerful-consecutive-counterexample",
+        "science-number-theory-power-residue-run",
+        "science-distinct-totient-runs-1e12",
+        "science-frontier-physics-log-energy-100",
+        "science-frontier-physics-log-energy-150",
+        "science-sums-of-two-powerful-numbers"
+      ],
+      "finding": "The seed is already optimal, or the optimum is reached by a few seconds of exhaustive or local search, or (two-powerful-numbers) the stated cap of 1000 pairs is reachable. About a dozen further arithmetic instances of the same collections are solved exactly by a short exhaustive routine.",
+      "why_open": "Task-design decisions: larger parameters, weaker seeds or a different objective."
+    },
+    {
+      "group": "no headroom",
+      "severity": "warning",
+      "tasks": [
+        "science-distinct-divisor-counts-run-1e10",
+        "science-powerful-numbers-between-squares",
+        "science-prime-plus-power-of-two-1e8",
+        "science-runs-with-large-prime-factors",
+        "science-sums-of-three-prime-cubes-1e10",
+        "science-sums-of-two-cubes-many-ways",
+        "science-totient-value-with-1000-preimages",
+        "science-consecutive-primes-arithmetic-progression-1e9"
+      ],
+      "finding": "The description or contract, and therefore the prompt, contains the optimal witness, so the task can be solved by copying it.",
+      "why_open": "Needs the witness moved out of the prompt; a task-design decision."
+    },
+    {
+      "group": "no headroom",
+      "severity": "warning",
+      "tasks": [
+        "science-tree-packing-20"
+      ],
+      "finding": "The trees to pack are named only by a generator call in the verifier; the statement, prompt and seed do not give them.",
+      "why_open": "Needs the generator copied into the seed, as the sibling instance tasks do."
+    },
+    {
+      "group": "statement",
+      "severity": "error",
+      "tasks": [
+        "science-ordinary-lines-twelve-rational-points"
+      ],
+      "finding": "Labelled an open problem with no reference, but a reviewer's integer configuration scores 6 in the task's evaluator, which equals the real minimum the task cites.",
+      "why_open": "The witness should be added to the package before the labels are changed."
+    },
+    {
+      "group": "statement",
+      "severity": "warning",
+      "tasks": [
+        "science-erdos-gyarfas-five-colours-k16"
+      ],
+      "finding": "The stated range 13 <= f(16) <= 15 may be 13 to 16: the reviewer found a 16-colour colouring but no 15-colour one.",
+      "why_open": "Needs the inequality checked in Erdos and Gyarfas (1997)."
+    },
+    {
+      "group": "statement",
+      "severity": "warning",
+      "tasks": [
+        "science-odd-covering-divisors-of-51975"
+      ],
+      "finding": "Score 0 is presented as attainable, but the necessary condition of Berger, Felzenbaum and Fraenkel gives 86/45 < 2 for the primes 3, 5, 7, 11, which rules it out.",
+      "why_open": "Needs the condition confirmed in the paper before the statement is reworded."
+    },
+    {
+      "group": "statement",
+      "severity": "warning",
+      "tasks": [
+        "science-four-point-lines-sixteen-integer-points",
+        "science-materials-matbench-metal-classification",
+        "science-physics-spin-glass-torus-2d",
+        "science-physics-heisenberg-product-formula"
+      ],
+      "finding": "A sentence does not match its source: the o(n^2) question is called disproved while listed as open; 0.9598 is the best balanced accuracy, not the best ROC AUC; polynomial solvability is cited from a planar-lattice result for toroidal instances; the product formula's stage order and operator split are not stated unambiguously.",
+      "why_open": "Each needs its source read; none affects scoring."
+    },
+    {
+      "group": "statement",
+      "severity": "note",
+      "tasks": [
+        "science-lehmer-small-mahler-measure-degree-12"
+      ],
+      "finding": "The reported measure is too large by up to 5e-6 when cyclotomic factors repeat, and monomials c*x^k with |c| >= 2 are rejected although the contract allows them.",
+      "why_open": "The error is upward on a minimised score, so it cannot produce a false record; the fix needs its own test."
+    },
+    {
+      "group": "labels",
+      "severity": "warning",
+      "tasks": [
+        "science-double-cover-primes-to-1000",
+        "science-many-solutions-k-sigma-k",
+        "science-sidon-extension-of-1-2-5-11",
+        "science-smooth-runs-after-prime-squares",
+        "science-square-products-condition-200",
+        "science-coprime-reciprocal-distances-512"
+      ],
+      "finding": "important_to_science is supported only by a problem collection or survey, which the label definition calls insufficient.",
+      "why_open": "A labelling decision for the library's owner; the evidence field is unchanged."
+    },
+    {
+      "group": "labels",
+      "severity": "warning",
+      "tasks": [
+        "science-biology-hp-lattice-folding-2d",
+        "science-biology-hp-lattice-folding-3d",
+        "mcts-ahd-asp-constructive",
+        "science-biology-influenza-hospitalization-forecasting",
+        "science-physics-nuclear-mass-extrapolation",
+        "science-physics-photonic-crystal-tm-band-gap"
+      ],
+      "finding": "Labels differ from sibling tasks of the same kind: open_problem where comparable search tasks are method; discovery where comparable predictors are method; verification exact for a truncated numerical solve.",
+      "why_open": "A labelling decision for the library's owner."
+    },
+    {
+      "group": "labels",
+      "severity": "warning",
+      "tasks": [
+        "all 18 new collections"
+      ],
+      "finding": "Each collection record's paper_url is the first member task's source, so it is unrelated to the other members.",
+      "why_open": "The existing collections follow the same convention; it should be changed for all of them together."
+    },
+    {
+      "group": "data preparation",
+      "severity": "error",
+      "tasks": [
+        "science-earth-enso-nino34-forecast",
+        "science-earth-socal-earthquake-forecast",
+        "science-earth-river-nitrate-loads",
+        "science-earth-mauna-loa-co2-forecast"
+      ],
+      "finding": "The publisher changed the live source after the lock was recorded, so the derived file no longer matches its pinned digest and the data cannot be prepared today.",
+      "why_open": "Needs the sources pinned to archived copies or the lock recorded again."
+    },
+    {
+      "group": "data preparation",
+      "severity": "warning",
+      "tasks": [
+        "science-software-quixbugs-repair",
+        "science-software-mutation-statistics"
+      ],
+      "finding": "The QuixBugs derivation runs reference programs under a one-second test limit and fails on a slower machine; the mutation tasks count a mutant's timeout as a kill, so the score moves slightly with machine load (0.2607 measured against 0.2573 recorded).",
+      "why_open": "Needs limits that do not depend on the machine."
+    },
+    {
+      "group": "data preparation",
+      "severity": "note",
+      "tasks": [
+        "science-biology-rna-secondary-structure"
+      ],
+      "finding": "The Rfam source URL points at the CURRENT release directory; it still matches the lock today.",
+      "why_open": "Should name the release directory."
+    }
+  ]
+}

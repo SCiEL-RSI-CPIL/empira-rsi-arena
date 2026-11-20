@@ -1,0 +1,872 @@
+{
+ "schema": "artask.validation/1",
+ "package": "earth",
+ "tasks": {
+  "science-earth-hurricane-track-forecast": {
+   "seed_score": 636.8293180867986,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.384786,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "tc_bad_nan",
+     "valid": false,
+     "score": null,
+     "error": "track forecast: contains NaN or infinite values",
+     "rejected": true
+    },
+    {
+     "candidate": "tc_bad_shape",
+     "valid": false,
+     "score": null,
+     "error": "track forecast: expected shape (7, 2), got (5,)",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "The evaluator's internal climatology-and-persistence least-squares reference (fitted on 1950-2014, verified on 2015-2024) against the published CLIPER5 2019-2023 mean Atlantic errors (NHC 2024 verification report, Table 2; converted at 1.852 km per n mi).",
+    "result": "Reference regression 84.9, 191.9, 304.4, 409.5, 592.2, 746.8, 851.1 km vs CLIPER5 84.6, 179.8, 283.4, 380.4, 551.5, 690.2, 813.2 km at 12-120 h: within +0.3% to +8.2% at every lead. Different samples and predictors, so this is a plausibility check of the verification pipeline, not a reproduction.",
+    "status": "plausible"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "platform": "macOS-15.8.1-arm64-arm-64bit"
+   },
+   "date": "2026-10-08"
+  },
+  "science-earth-hurricane-intensity-forecast": {
+   "seed_score": 19.9109334324246,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.193325,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "tc_bad_nan",
+     "valid": false,
+     "score": null,
+     "error": "intensity forecast: expected shape (7,), got (7, 2)",
+     "rejected": true
+    },
+    {
+     "candidate": "tc_bad_shape",
+     "valid": false,
+     "score": null,
+     "error": "intensity forecast: expected shape (7,), got (5,)",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "The evaluator's internal climatology-and-persistence least-squares reference against the published Decay-SHIFOR5 2019-2023 mean Atlantic errors (NHC 2024 verification report, Table 4).",
+    "result": "Reference regression 6.9, 12.0, 15.7, 18.4, 21.1, 21.7, 21.7 kt vs Decay-SHIFOR5 6.6, 10.2, 13.1, 15.6, 18.6, 21.8, 22.6 kt at 12-120 h (the local reference has no inland decay term and uses a different sample). Plausibility check only.",
+    "status": "plausible"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "platform": "macOS-15.8.1-arm64-arm-64bit"
+   },
+   "date": "2026-10-08"
+  },
+  "science-earth-enso-nino34-forecast": {
+   "seed_score": 0.6500322986323195,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.538662,
+   "seed_wall_seconds": 0.61,
+   "seed_details": {
+    "unit": "deg C",
+    "origins": 300,
+    "held_out_origins": "2000-01 to 2024-12",
+    "leads_months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "rmse_by_lead": [
+     0.2269,
+     0.3716,
+     0.4692,
+     0.5496,
+     0.6257,
+     0.6957,
+     0.7506,
+     0.7874,
+     0.8129,
+     0.8284,
+     0.8379,
+     0.8447
+    ],
+    "anomaly_correlation_by_lead": [
+     0.9626,
+     0.895,
+     0.8254,
+     0.7493,
+     0.6557,
+     0.5435,
+     0.4272,
+     0.323,
+     0.2263,
+     0.1476,
+     0.0939,
+     0.0603
+    ],
+    "climatology_mean_rmse": 0.8465,
+    "persistence_mean_rmse": 0.8999,
+    "damped_persistence_mean_rmse": 0.65,
+    "damped_persistence_rmse_by_lead": [
+     0.2269,
+     0.3716,
+     0.4692,
+     0.5496,
+     0.6257,
+     0.6957,
+     0.7506,
+     0.7874,
+     0.8129,
+     0.8284,
+     0.8379,
+     0.8447
+    ]
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "enso_nan",
+     "valid": false,
+     "score": null,
+     "error": "forecast 0: Nino 3.4 forecast: contains NaN or infinite values",
+     "rejected": true
+    },
+    {
+     "candidate": "crash",
+     "valid": false,
+     "score": null,
+     "error": "candidate fit_enso_model() failed in the sandbox (exception): RuntimeError: deliberate crash",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Locally computed Nino 3.4 (cosine-weighted ERSSTv5 cells) turned into 3-month anomalies against the commonly cited NOAA CPC ONI peaks; the CPC site was unreachable, so the comparison values (2.2, 2.4, 2.6, 2.0) are the familiar published peak values, not re-downloaded.",
+    "result": "NDJ 1982/83 2.28, NDJ 1997/98 2.39, NDJ 2015/16 2.65, NDJ 2023/24 1.96 (base periods 1971-2000, 1981-2010, 1986-2015, 1991-2020): within about 0.1 deg C. The seed equals the evaluator's damped-persistence reference (0.6500 deg C); climatology 0.847, anomaly persistence 0.900.",
+    "status": "plausible"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-socal-earthquake-forecast": {
+   "seed_score": 0.11932940166587855,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 1.778866,
+   "seed_wall_seconds": 1.85,
+   "seed_details": {
+    "target_events": 1047,
+    "forecast_days": 3288,
+    "test_period": "2016-01-01 to 2024-12-31",
+    "log_likelihood": -10472.779,
+    "reference_log_likelihood": -10597.717,
+    "information_gain_per_earthquake_nats": 0.11933,
+    "expected_target_events": 973.05,
+    "number_test_ratio_observed_over_expected": 1.076,
+    "days_with_targets": 428,
+    "mean_expected_on_days_with_targets": 0.2959
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "quakes_zero",
+     "valid": false,
+     "score": null,
+     "error": "forecast 0: daily rate forecast: values below 1e-10",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Derived target count against the USGS ComCat count service for the same query (2016-2024, M >= 3.45, depth <= 30 km, 32-37 N, 121-114 W); Poisson log-likelihood unit-tested against the closed form.",
+    "result": "1047 target events in both. Seed (time-independent, 0.1-degree kernel) gains 0.119 nats per earthquake over the 0.15-degree reference; an untuned Omori-Utsu clustering model reached about 1.41 nats in development, showing the score separates clustering models.",
+    "status": "exact count match"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-species-distribution-models": {
+   "seed_score": 0.7088752220412753,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 1.506312,
+   "seed_wall_seconds": 1.58,
+   "seed_details": {
+    "species": 226,
+    "mean_auc_by_region": {
+     "AWT": 0.7167,
+     "CAN": 0.4836,
+     "NSW": 0.6866,
+     "NZ": 0.7397,
+     "SA": 0.7764,
+     "SWI": 0.7678
+    },
+    "median_auc": 0.7337,
+    "species_with_auc_below_0.5": 28
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "sdm_missing",
+     "valid": false,
+     "score": null,
+     "error": "missing predictions for region AWT",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "SHA-256 of the 40 downloaded OSF CSV files against the hashes OSF publishes; species count against Elith et al. (2020); a constant-score candidate.",
+    "result": "All 40 hashes match; 226 species evaluated; a constant predictor scores AUC 0.5000 exactly. Published benchmark AUCs (Valavi et al. 2022) could not be retrieved (publisher site refused the request).",
+    "status": "consistency checks passed"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-two-stream-radiative-transfer": {
+   "seed_score": 0.01896807467611048,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.087517,
+   "seed_wall_seconds": 0.16,
+   "seed_details": {
+    "cases": 12000,
+    "mean_abs_reflectance_error": 0.009764,
+    "mean_abs_transmittance_error": 0.009204,
+    "max_case_error": 0.438426,
+    "p95_case_error": 0.081441,
+    "conservative_cases_mean_error": 0.019312,
+    "eddington_mean_error": 0.019378,
+    "quadrature_mean_error": 0.023422,
+    "pifm_mean_error": 0.019348,
+    "delta_eddington_mean_error": 0.018968,
+    "delta_quadrature_mean_error": 0.020793,
+    "delta_pifm_mean_error": 0.018855
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "twostream_gamma3",
+     "valid": false,
+     "score": null,
+     "error": "gamma3 must lie in [0, 1]",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "The 96-stream delta-M discrete-ordinate reference against an independent Monte Carlo photon simulation (400000 photons) on six layers, against itself at 192 streams, and energy conservation for conservative scattering; the closed-form two-stream solver against a matrix-exponential shooting solution.",
+    "result": "Monte Carlo differences |dR|, |dT| <= 0.0006 (within sampling error), 48 vs 96 streams per hemisphere differ by about 1e-11, R + T = 1 - 2.4e-10 for omega = 1, closed-form vs shooting agree to 1e-8 on 20 random coefficient sets; the seed equals the evaluator's delta-Eddington (0.01897).",
+    "status": "verified against independent methods"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-global-temperature-emulation": {
+   "seed_score": 0.46370110692569927,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.068754,
+   "seed_wall_seconds": 0.13,
+   "seed_details": {
+    "unit": "deg C",
+    "held_out_years": "1980-2024",
+    "bias": -0.4361,
+    "predicted_trend_per_decade": 0.1138,
+    "observed_trend_per_decade": 0.2047,
+    "rmse_after_removing_bias": 0.1575,
+    "regression_on_total_forcing_rmse": 0.4637,
+    "two_layer_ebm_rmse": 0.1631,
+    "lean_rind_style_regression_rmse": 0.7498
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "gmst_range",
+     "valid": false,
+     "score": null,
+     "error": "GMST prediction: values above 5.0",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Relative Nino 3.4 index against known ENSO events; inputs against source files; the seed against the evaluator's own regression reference.",
+    "result": "Relative index +1.93 (Jan 1983), +1.69 (Jan 1998), -1.46 (Jan 2011), trend 0.045 deg C per century; the seed reproduces the regression reference 0.4637 deg C; an illustrative two-layer EBM reaches 0.1631.",
+    "status": "plausible"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-global-aftershock-forecast": {
+   "seed_score": -1.4006069914275439,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 2.142332,
+   "seed_wall_seconds": 2.23,
+   "seed_details": {
+    "forecasts": 1443,
+    "mainshocks": 723,
+    "training_cases": 4207,
+    "test_period": "forecast starts 2015-01-01 to 2024-11-22",
+    "zero_count_fraction": 0.7103,
+    "reference_mean_log_score": -1.04845,
+    "reference_parameters": {
+     "a": -1.9,
+     "p": 0.95,
+     "k": 0.2
+    },
+    "information_gain_over_reference": -0.35216,
+    "mean_log_score_7_day": -1.5228,
+    "mean_log_score_30_day": -1.27825
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "aftershock_sum",
+     "valid": false,
+     "score": null,
+     "error": "forecast 0: count probabilities sum to 1.70000000, not 1",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Negative-binomial log-probabilities against scipy.stats.nbinom; mainshock-selection and window-counting rules unit-tested on a constructed catalogue.",
+    "result": "Log-pmf agrees to 1e-10 relative; 1443 test forecasts from 723 mainshocks and 4207 training cases; Reasenberg-Jones NB reference (a -1.9, p 0.95, shape 0.2) scores -1.048, the Poisson seed -1.401.",
+    "status": "unit-checked"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-river-nitrate-loads": {
+   "seed_score": 37.89730628467022,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 3.109251,
+   "seed_wall_seconds": 3.22,
+   "seed_details": {
+    "site_months": 959,
+    "site_years": 70,
+    "samples": 1501,
+    "mean_abs_monthly_load_error_percent_by_site": {
+     "03374100": 38.41,
+     "05465500": 48.45,
+     "05482300": 41.25,
+     "05484500": 78.24,
+     "05515500": 10.1,
+     "05595000": 27.75,
+     "06934500": 27.98,
+     "07374000": 23.3
+    },
+    "mean_abs_annual_load_error_percent": 21.629,
+    "daily_concentration_nrmse": 0.4281,
+    "wrtds_mean_abs_monthly_load_error_percent": 24.771,
+    "wrtds_mean_abs_annual_load_error_percent": 10.434,
+    "wrtds_daily_concentration_nrmse": 0.337
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "nitrate_negative",
+     "valid": false,
+     "score": null,
+     "error": "site 03374100 nitrate: values below 0.0",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Local WRTDS implementation checked to recover an exactly log-linear model; NWIS approval codes inspected; EGRET (the reference implementation) was not installed because of its geospatial system dependencies.",
+    "result": "Exact recovery to 1e-6 relative; WRTDS reference 24.8 percent monthly-load error (10.4 percent annual), seed 37.9 percent (21.6 percent annual) over 959 site-months.",
+    "status": "unit-checked, not compared with EGRET"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-snow-depth-to-swe": {
+   "seed_score": 71.00937814422619,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 1.492637,
+   "seed_wall_seconds": 1.61,
+   "seed_details": {
+    "held_out_stations": 48,
+    "training_stations": 114,
+    "held_out_days": 103150,
+    "mae_mm": 44.268,
+    "bias_mm": 1.016,
+    "density_rmse": 0.07183,
+    "sturm_form_fitted_rmse_mm": 71.819,
+    "sturm_form_parameters": [
+     1.0,
+     0.22272,
+     0.00024,
+     0.00198
+    ],
+    "median_density_rmse_mm": 112.872
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "snow_missing",
+     "valid": false,
+     "score": null,
+     "error": "missing predictions for station 1000:OR:SNTL",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Quality-flag handling and density screening unit-tested; Sturm-form reference fitted on training stations (published coefficients not used: paper not retrievable here).",
+    "result": "48 held-out stations, 103150 days; Sturm-form reference 71.8 mm (maximum-density parameter at its bound, near-linear curve), constant median density 112.9 mm, seed 71.0 mm.",
+    "status": "internal references only"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-great-lakes-wave-hindcast": {
+   "seed_score": 0.2853363473302456,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.940985,
+   "seed_wall_seconds": 1.02,
+   "seed_details": {
+    "held_out_hours": 177719,
+    "held_out_years": "2019-2024",
+    "rmse_by_buoy_m": {
+     "45001": 0.3267,
+     "45002": 0.3141,
+     "45003": 0.2925,
+     "45005": 0.206,
+     "45006": 0.2645,
+     "45007": 0.3102,
+     "45008": 0.2672
+    },
+    "bias_m": -0.0584,
+    "correlation": 0.8701,
+    "rmse_above_2m_waves": 0.7506,
+    "sector_regression_reference_rmse_m": 0.2192
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "waves_negative",
+     "valid": false,
+     "score": null,
+     "error": "buoy 45001 wave heights: values below 0.0",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Handling of the 10-minute archive format (since 2019) unit-tested; buoy positions parsed from the NDBC station table.",
+    "result": "177719 held-out hours at all seven buoys after fixing per-hour merging (a first version lost most 2019-2024 waves); sector regression reference 0.219 m, seed 0.285 m.",
+    "status": "unit-checked"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-hurricane-wind-radii-forecast": {
+   "seed_score": 32.185905164519575,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.783851,
+   "seed_wall_seconds": 0.85,
+   "seed_details": {
+    "unit": "n mi",
+    "forecast_calls": 2913,
+    "leads_hours": [
+     12,
+     24,
+     36,
+     48,
+     72
+    ],
+    "verifying_cases": [
+     2883,
+     2517,
+     2214,
+     1947,
+     1482
+    ],
+    "mae_by_lead": [
+     14.945,
+     25.727,
+     33.233,
+     38.879,
+     48.146
+    ],
+    "persistence_mean_error": 32.186,
+    "regression_reference_mean_error": 27.882
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "radii_shape",
+     "valid": false,
+     "score": null,
+     "error": "forecast 0: 34-kt radii forecast: expected shape (5, 4), got (4, 4)",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "HURDAT2 radii parsing unit-tested; history truncation checked with a spy candidate; the seed against the evaluator's persistence reference.",
+    "result": "2913 forecast calls, verifying cases 2883/2517/2214/1947/1482 at 12-72 h; seed equals persistence 32.19 n mi; regression reference 27.88 n mi.",
+    "status": "consistency checks passed"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-temperature-homogenization": {
+   "seed_score": 0.2539646891895667,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.638736,
+   "seed_wall_seconds": 0.7,
+   "seed_details": {
+    "stations": 400,
+    "networks": 40,
+    "unit": "deg C",
+    "raw_annual_crmsd": 0.6143,
+    "monthly_crmsd": 0.4092,
+    "network_trend_abs_error_per_century": 0.4406,
+    "raw_network_trend_abs_error_per_century": 0.501
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "homog_length",
+     "valid": false,
+     "score": null,
+     "error": "homogenize must return a list of 40 arrays",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Generator checked for realistic inter-station correlation and the presence of inserted inhomogeneities; an identity candidate must score the raw error.",
+    "result": "Median inter-station correlation above 0.8; identity scores the raw annual CRMSD 0.614 deg C exactly; seed (SNHT segmentation) 0.254 deg C; network-trend error 0.50 raw vs 0.44 seed (deg C per century).",
+    "status": "consistency checks passed"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-mauna-loa-co2-forecast": {
+   "seed_score": 0.6994590892546805,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.098059,
+   "seed_wall_seconds": 0.16,
+   "seed_details": {
+    "unit": "ppm",
+    "origins": 300,
+    "held_out_origins": "2000-01 to 2024-12",
+    "verified_months_per_lead": [
+     300,
+     300,
+     300,
+     300,
+     300,
+     300,
+     300,
+     300,
+     300,
+     300,
+     300,
+     300
+    ],
+    "rmse_by_lead": [
+     0.5571,
+     0.5961,
+     0.6247,
+     0.6476,
+     0.6623,
+     0.6846,
+     0.7092,
+     0.7343,
+     0.757,
+     0.7787,
+     0.8058,
+     0.8361
+    ],
+    "seasonal_persistence_reference_mean_rmse": 0.7084
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "co2_range",
+     "valid": false,
+     "score": null,
+     "error": "forecast 0: CO2 forecast: values above 600.0",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "GML file header (data use, interpolation flags, Maunakea period) read; history truncation checked with a spy candidate.",
+    "result": "All 300 x 12 verifying months are measured (no interpolated months after 2000); seasonal-persistence reference 0.708 ppm, seed 0.699 ppm.",
+    "status": "consistency checks passed"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-arctic-sea-ice-drift": {
+   "seed_score": 10.975704207528914,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 3.178991,
+   "seed_wall_seconds": 3.26,
+   "seed_details": {
+    "unit": "cm/s",
+    "buoy_days": 356683,
+    "forecast_days": 3652,
+    "held_out_years": "2015-2024",
+    "explained_variance": 0.3922,
+    "zero_drift_rmse": 14.1006,
+    "thorndike_colony_reference_rmse": 10.9757
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "icedrift_shape",
+     "valid": false,
+     "score": null,
+     "error": "forecast 0: ice velocity forecast: expected shape (92, 2), got (92, 3)",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Geostrophic-wind computation unit-tested on a uniform pressure gradient; the fitted free-drift relation compared with the classic Thorndike-Colony result.",
+    "result": "Fitted factor 1.03 percent of the geostrophic wind turned 4.2 degrees to the right (classic about 0.8-1 percent and a few degrees right); 46 percent of training and 39 percent of test variance explained (Thorndike and Colony: more than 70 percent in the central Arctic, from their abstract).",
+    "status": "plausible"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-solar-irradiance-separation": {
+   "seed_score": 77.18358001646943,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.309601,
+   "seed_wall_seconds": 0.37,
+   "seed_details": {
+    "unit": "W m-2",
+    "test_minutes": 87316,
+    "rmse_by_station": {
+     "psu": 71.776,
+     "sxf": 81.083,
+     "tbl": 78.396
+    },
+    "nrmse_percent": 46.942,
+    "mbe": -13.087,
+    "binned_kd_reference_rmse": 75.819
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "solar_nan",
+     "valid": false,
+     "score": null,
+     "error": "station psu diffuse irradiance: contains NaN or infinite values",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "SURFRAD parsing and quality-control closure unit-tested; station coordinates read from the file headers.",
+    "result": "87316 scored test minutes; binned diffuse-fraction reference 75.8 W m-2, seed 77.2 W m-2 (normalised RMSE 47 percent).",
+    "status": "unit-checked"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  },
+  "science-earth-earthquake-b-value-completeness": {
+   "seed_score": 0.09679251685621008,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.170891,
+   "seed_wall_seconds": 0.23,
+   "seed_details": {
+    "catalogues": 600,
+    "b_bias": -0.07688,
+    "b_mae_small_catalogues": 0.11972,
+    "mc95_mae": 0.3119,
+    "maxc_plus_0.2_aki_utsu_b_mae": 0.09679,
+    "true_mc_aki_utsu_b_mae": 0.06858
+   },
+   "invalid_candidate_checks": [
+    {
+     "candidate": "bvalue_range",
+     "valid": false,
+     "score": null,
+     "error": "b-values must lie in [0.1, 3]",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Aki-Utsu estimator unit-tested on a large complete binned catalogue; seed behaviour compared with the known bias of maximum-curvature completeness estimates.",
+    "result": "Aki-Utsu recovers b = 1.1 within 0.02; seed b-value MAE 0.097 with bias -0.077 (b underestimated, as expected when Mc is underestimated); Aki-Utsu above the true 95 percent detection magnitude 0.069.",
+    "status": "unit-checked"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "netCDF4": "1.7.4 (preparation only)",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "candidate_isolation": "earth_sandbox child process under sandbox-exec (macOS kernel sandbox) plus audit hook; 1 BLAS thread"
+   },
+   "date": "2026-10-11"
+  }
+ },
+ "package_checks": {
+  "date": "2026-10-11",
+  "unit_tests": "python -m unittest discover -s tests -t . -p 'test_earth*.py': 87 tests OK (35.8 s), no skips with prepared data",
+  "data_preparation": "python scripts/prepare_earth.py re-derived all 16 files; every file matched both catalog/earth-data-lock.json and the module hashes (37.8 MB derived in total)",
+  "build": "import_science.write_packages(topics={'earth_research'}) and scripts/build_suite.py --only <17 ids>: 17 packages built with protocol recreated; the two integrated hurricane packages were regenerated byte-identically; generated outputs reverted afterwards",
+  "seed_runs": "each package's evaluator.py run on its initial_program.py and on at least one invalid candidate (16 invalid candidates, all rejected with valid=false and score=null)",
+  "llm_cost_usd": 0.0
+ },
+ "blocked_inputs": [
+  {
+   "input": "psl.noaa.gov, cpc.ncep.noaa.gov, www.ncei.noaa.gov, tidesandcurrents.noaa.gov, www.psmsl.org, uhslc.soest.hawaii.edu, hpiers.obspm.fr, datacenter.iers.org, spdf.gsfc.nasa.gov, omniweb.gsfc.nasa.gov, wdc.kugi.kyoto-u.ac.jp, crudata.uea.ac.uk, data.giss.nasa.gov, wgms.ch, service.iris.edu, nwis.waterdata.usgs.gov, www.waterqualitydata.us, aqs.epa.gov, journals.ametsoc.org and others",
+   "reason": "connection reset or no response (network allowlist); not retried by other routes"
+  },
+  {
+   "input": "zenodo.org",
+   "reason": "HTTP 403 to API requests"
+  },
+  {
+   "input": "www.sciencebase.gov",
+   "reason": "bot-check challenge page"
+  },
+  {
+   "input": "figshare.com downloads",
+   "reason": "HTTP 202 challenge"
+  },
+  {
+   "input": "esajournals.onlinelibrary.wiley.com",
+   "reason": "HTTP 403 (Valavi et al. 2022 tables not retrievable)"
+  },
+  {
+   "input": "wcc.sc.egov.usda.gov",
+   "reason": "reachable on 2026-10-10 (SNOTEL data downloaded and pinned); on 2026-10-11 the host no longer resolved (DNS), which blocked the planned seasonal water-supply task"
+  }
+ ],
+ "not_implemented": {
+  "coastal tide prediction (NOAA CO-OPS / PSMSL / UHSLC tide gauges)": "all tide-gauge hosts unreachable",
+  "MJO (RMM index) forecasting": "Bureau of Meteorology default terms (no stated licence for the file; personal or in-organisation use only, no automated extraction) and the index method changes in 2014; dropped",
+  "geomagnetic Dst forecasting, Earth-orientation prediction": "OMNI, Kyoto WDC and IERS hosts unreachable",
+  "lake temperature (process-guided deep learning data, ScienceBase)": "ScienceBase bot check",
+  "seasonal water-supply (April-July volume) forecasting": "NRCS AWDB host stopped resolving",
+  "regional flood frequency, ground-motion model from ShakeMap station lists, stream temperature": "not started or stopped when the coordinator closed the round (stream temperature: only five gauges with co-located daily air and water temperature)"
+ }
+}
