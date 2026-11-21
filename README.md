@@ -6,7 +6,7 @@
 
 **An arena for research on recursive self-improvement.**
 
-[![1277 tasks](.github/assets/tasks-badge.svg)](tasks/suite)
+[![2578 tasks](.github/assets/tasks-badge.svg)](tasks/suite)
 [![1023 evaluator definitions](.github/assets/evaluators-badge.svg)](registry/catalog.json)
 [![98 research papers](.github/assets/papers-badge.svg)](registry/participant-corpus.json)
 [![Python 3.11+](.github/assets/python-badge.svg)](#quick-start)
@@ -29,18 +29,18 @@ Researchers can inspect the problems a system works on, follow changes to its co
 
 ## Release snapshot — v0.1.0
 
-As of **20 November 2026**, the collection contains **1,277 task packages** across **434 task families** and **11 research domains**, drawing on a **98-paper research corpus** and supplementary scientific collections.
+As of **20 November 2026**, the collection contains **2,578 task packages** across **446 task families** and **11 research domains**, drawing on a **98-paper research corpus** and supplementary scientific collections.
 
-Our contribution is turning research problems into task packages with a shared evaluation interface. Of the **1,023 packages with executable evaluator definitions**, **89.25% use evaluators implemented or adapted in the task library**; **10.75% reuse upstream evaluators**.
+Our contribution is turning research problems into task packages with a shared evaluation interface. Of the **2,324 packages with executable evaluator definitions**, **95.27% use evaluators implemented or adapted in the task library**; **4.73% reuse upstream evaluators**.
 
 | How evaluation is provided | Task packages | Share of the full catalog |
 | --- | ---: | ---: |
-| Implemented or adapted in the task library | **913** | **71.50%** |
-| Reused from upstream implementations | 110 | 8.61% |
-| Research tasks awaiting evaluation integration | 254 | 19.89% |
-| **Total** | **1,277** | **100.00%** |
+| Implemented or adapted in the task library | **2,214** | **85.88%** |
+| Reused from upstream implementations | 110 | 4.27% |
+| Research tasks awaiting evaluation integration | 254 | 9.85% |
+| **Total** | **2,578** | **100.00%** |
 
-Evaluator definitions cover **80.11%** of the catalog. **350** adapted definitions are recorded as verified reconstructions. Recorded numeric seed baselines are available for **956 packages (74.86%)**; **100 (7.83%)** include published numeric references.
+Evaluator definitions cover **90.15%** of the catalog. **1,285** adapted definitions are recorded as verified reconstructions. Recorded numeric seed baselines are available for **956 packages (37.08%)**; **100 (3.88%)** include published numeric references.
 
 Counts refer to task packages, including distinct parameter settings and protocols. The split describes evaluator implementation; validation and runtime requirements are recorded separately for each task.
 
@@ -70,7 +70,7 @@ Tasks and system versions enter through GitHub PRs. Run access is granted separa
 
 ### Catalog campaigns
 
-On a provisioned Linux worker, campaigns move through four stages: **pin the release → check seeds → prepare private templates → admit bounded batches**. The inventory retains all **1,277 tasks**. Currently **588** match the declared CPU dependency profile; only successful seed receipts for the exact task library and evaluator image make a task eligible for preparation. Prepared templates still require their first native run to establish runtime conformance.
+On a provisioned Linux worker, campaigns move through four stages: **pin the release → check seeds → prepare private templates → admit bounded batches**. The inventory retains all **2,578 tasks**. Currently **1,311** match the declared CPU dependency profile; only successful seed receipts for the exact task library and evaluator image make a task eligible for preparation. Prepared templates still require their first native run to establish runtime conformance.
 
 1. **Pin the engine and environment.** Build the private SCiEL image with [`build_sciel_engine.py`](scripts/deployment/build_sciel_engine.py), selecting an immutable source commit and a new Arena version. The current catalog preparer targets `0.2.0+arena.a6c0d215.worker1`. Register and approve its private deployment, and pin the evaluator image by digest. [`build_catalog_cpu_image.py`](scripts/deployment/build_catalog_cpu_image.py) prepares the extended CPU dependencies with a hashed wheel lock.
 2. **Check the seeds.** Run the preflight below. It evaluates candidates without calling a model and retains tasks awaiting environment or evaluator integration in its manifest.
