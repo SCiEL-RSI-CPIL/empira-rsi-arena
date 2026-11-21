@@ -1,0 +1,136 @@
+{
+  "id": "cvrplib-xl-n1048-k237",
+  "name": "CVRP XL-n1048-k237",
+  "description": "Route identical vehicles of capacity 128 from one depot to serve the 1047 customers of the CVRPLIB XL-set instance XL-n1048-k237. Every customer is visited exactly once, the total demand on a route may not exceed the capacity, and every route starts and ends at the depot. The number of routes is free (the k in the instance name does not limit it). Minimise the total cost: the sum over all routes of the Euclidean distances between consecutive stops, the legs from and to the depot included, each distance rounded to the nearest integer.",
+  "protocol": "recreated_verified",
+  "family": "cvrp",
+  "direction": "minimize",
+  "contract": "solve(inst) -> list of routes; a route is a list of customer ids from 1 to n in visiting order (the depot is node 0 and is not listed; empty routes are ignored). inst is a dict with n (number of customers), capacity, coords (array of shape (n + 1, 2), row 0 is the depot), demand (integer array of length n + 1, demand[0] = 0) and name. Score: the total cost, minimized.",
+  "parameters": {
+    "instance": "XL-n1048-k237",
+    "best_known": 380090
+  },
+  "requires": [
+    "py:numpy",
+    "file:data/cvrp/XL-n1048-k237.vrp"
+  ],
+  "timeout": 900,
+  "notes": [
+    "Best known solution 380090 (CVRPLIB, checked 2026-11-11; these values still move: five improved between 2026-11-02 and 2026-11-11).",
+    "CVRPLIB XL instance file XL-n1048-k237.vrp (galgos.inf.puc-rio.br/cvrplib, download/instance/id)",
+    "XL-n1048-k237 is an instance of the CVRPLIB XL set with 1,047 customers and vehicle capacity 128; its depot lies in the corner (0, 0), with randomly placed customers and many small and a few large demands (attributes from Table 1 of arXiv:2601.11467).",
+    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record."
+  ],
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "areas": [
+      "optimization"
+    ],
+    "important_to_science": true
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "CVRP XL-n1048-k237",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "minimize",
+  "sources": [
+    {
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/",
+      "type": "benchmark",
+      "locator": "XL-n1048-k237"
+    },
+    {
+      "url": "https://arxiv.org/abs/2601.11467",
+      "type": "paper",
+      "locator": "initial BKS table"
+    },
+    {
+      "url": "https://doi.org/10.1287/mnsc.6.1.80",
+      "type": "paper",
+      "locator": "The Truck Dispatching Problem"
+    },
+    {
+      "url": "https://doi.org/10.1287/ijoc.2023.0106",
+      "type": "paper",
+      "locator": "AILS-II: An Adaptive Iterated Local Search Heuristic for the Large-Scale Capacitated Vehicle Routing Problem"
+    },
+    {
+      "url": "https://doi.org/10.1016/j.cor.2021.105643",
+      "type": "paper",
+      "locator": "Hybrid genetic search for the CVRP: Open-source implementation and SWAP* neighborhood"
+    },
+    {
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/instances",
+      "type": "benchmark",
+      "locator": "CVRPLIB instance table: XL-n1048-k237 (customers, vehicle capacity, best known solution, optimality column), the instance file and the set conventions (Euclidean distance rounded to the nearest integer, total distance as cost, number of routes free)."
+    },
+    {
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/updates/",
+      "type": "archive",
+      "locator": "CVRPLIB update log (7 pages, read in full): dated entries naming who reported each improved best known solution of XL-n1048-k237 and with which method."
+    },
+    {
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/bks_challenge/overview",
+      "type": "benchmark",
+      "locator": "CVRPLIB BKS Challenge overview: 30-day competition on the 100 XL instances (1,000 to 10,000 customers), the generator and the report."
+    }
+  ],
+  "limitations": [
+    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "Dantzig and Ramser pose the capacitated vehicle routing problem the evaluator scores; the AILS-II and HGS-CVRP papers have solving large CVRP instances as their main objective and are the methods behind the initial and the later records of the XL set (per the XL paper's Table 1 and the CVRPLIB update log).",
+    "scientific_problem": "Find a minimum-cost set of capacity-feasible vehicle routes from one depot that serves every customer of the CVRPLIB XL instance XL-n1048-k237, a large-scale instance with 1,000 to 10,000 customers.",
+    "importance_rationale": "Large-scale distribution routing with thousands of customers and routes of up to 200 stops is practical, and the XL instances were generated with the X-set scheme to cover its attributes, but they are beyond the reach of exact methods. In a 30-day community challenge from 12 January 2026 participating teams submitted 1,932 improved best known solutions, and the records kept moving afterwards, so a lower cost is a new best known solution of an open large-scale instance.",
+    "papers": [
+      {
+        "title": "The Truck Dispatching Problem",
+        "url": "https://doi.org/10.1287/mnsc.6.1.80",
+        "task_relation": "The task's objective is the capacitated vehicle routing cost (rounded Euclidean distances, free number of routes) on the fixed CVRPLIB instance XL-n1048-k237.",
+        "primary_goal": "Formulate and solve the routing of a fleet of capacitated trucks from a terminal to service stations, introducing the capacitated vehicle routing problem.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "AILS-II: An Adaptive Iterated Local Search Heuristic for the Large-Scale Capacitated Vehicle Routing Problem",
+        "url": "https://doi.org/10.1287/ijoc.2023.0106",
+        "task_relation": "Table 1 of the XL instance paper (arXiv:2601.11467) lists AILS-II as the method of the initial best known solution for 93 of the 100 XL instances, before the 2026 challenge improved them; the task asks for a cost below the current best known solution of XL-n1048-k237.",
+        "primary_goal": "Solve large-scale capacitated vehicle routing instances with an adaptive iterated local search heuristic.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Hybrid genetic search for the CVRP: Open-source implementation and SWAP* neighborhood",
+        "url": "https://doi.org/10.1016/j.cor.2021.105643",
+        "task_relation": "The CVRPLIB update log credits many later XL records (Breunig, Seman, Bian) to runs that start from the published best known solution and re-solve subsets of routes with HGS-CVRP or a modified HGS; this paper presents the HGS-CVRP code, and it does not describe the XL records themselves.",
+        "primary_goal": "Present an open-source hybrid genetic search for the capacitated vehicle routing problem with the SWAP* neighbourhood and show that it improves the state of the art on CVRP benchmark instances.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  }
+}
