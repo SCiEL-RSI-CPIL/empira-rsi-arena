@@ -6028,6 +6028,138 @@
       "rationale": "The candidate rewrites each of 25 Hacker's Delight bit-manipulation kernels as a shorter straight-line 32-bit program; the evaluator tests each program on 300 inputs, asks Z3 to prove equivalence with the reference and scores the total instruction count, counting unproven programs at the reference length. Reviewed source family science_software_superoptimization, area systems_and_hardware."
     },
     {
+      "id": "family-sphere",
+      "match": {
+        "families": [
+          "sphere"
+        ]
+      },
+      "domain_id": "mathematics",
+      "task_type_id": "mathematical-construction",
+      "rationale": "The candidate constructs a point configuration on a sphere whose minimum angle is compared with a published table. Reviewed source family sphere, collection open-problems-2026-11."
+    },
+    {
+      "id": "family-thomson",
+      "match": {
+        "families": [
+          "thomson"
+        ]
+      },
+      "domain_id": "physics",
+      "task_type_id": "mathematical-construction",
+      "rationale": "The candidate constructs a charge configuration on a sphere whose Coulomb energy is compared with a published minimum. Reviewed source family thomson, collection open-problems-2026-11."
+    },
+    {
+      "id": "family-dnacode",
+      "match": {
+        "families": [
+          "dnacode"
+        ]
+      },
+      "domain_id": "mathematics",
+      "task_type_id": "mathematical-construction",
+      "rationale": "The candidate constructs a code over the DNA alphabet under distance and content constraints; the size is compared with published tables. Reviewed source family dnacode, collection open-problems-2026-11."
+    },
+    {
+      "id": "family-sortnet",
+      "match": {
+        "families": [
+          "sortnet"
+        ]
+      },
+      "domain_id": "mathematics",
+      "task_type_id": "mathematical-construction",
+      "rationale": "The candidate constructs a sorting network whose size or depth is compared with published bounds. Reviewed source family sortnet, collection open-problems-2026-11."
+    },
+    {
+      "id": "family-snake",
+      "match": {
+        "families": [
+          "snake"
+        ]
+      },
+      "domain_id": "mathematics",
+      "task_type_id": "mathematical-construction",
+      "rationale": "The candidate constructs a snake-in-the-box path whose length is compared with published records. Reviewed source family snake, collection open-problems-2026-11."
+    },
+    {
+      "id": "family-qap",
+      "match": {
+        "families": [
+          "qap"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "combinatorial-optimization",
+      "rationale": "The candidate assigns facilities to locations on a QAPLIB instance; the cost is compared with the best known value. Reviewed source family qap, collection open-problems-2026-11."
+    },
+    {
+      "id": "family-jssp",
+      "match": {
+        "families": [
+          "jssp"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "combinatorial-optimization",
+      "rationale": "The candidate schedules jobs on machines for a benchmark job-shop instance; the makespan is compared with the best known value. Reviewed source family jssp, collection open-problems-2026-11."
+    },
+    {
+      "id": "family-cvrp",
+      "match": {
+        "families": [
+          "cvrp"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "combinatorial-optimization",
+      "rationale": "The candidate builds vehicle routes for a CVRPLIB instance; the total distance is compared with the best known solution. Reviewed source family cvrp, collection open-problems-2026-11."
+    },
+    {
+      "id": "family-miplib",
+      "match": {
+        "families": [
+          "miplib"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "combinatorial-optimization",
+      "rationale": "The candidate gives a feasible solution to a MIPLIB open instance; the objective is compared with the best known value. Reviewed source family miplib, collection open-problems-2026-11."
+    },
+    {
+      "id": "family-epfl",
+      "match": {
+        "families": [
+          "epfl"
+        ]
+      },
+      "domain_id": "computer-systems",
+      "task_type_id": "systems-optimization",
+      "rationale": "The candidate is a logic-synthesis script run on an EPFL benchmark circuit; the resulting circuit size is compared with the best known. Reviewed source family epfl, collection open-problems-2026-11."
+    },
+    {
+      "id": "family-admet",
+      "match": {
+        "families": [
+          "admet"
+        ]
+      },
+      "domain_id": "chemistry-materials",
+      "task_type_id": "prediction-modeling",
+      "rationale": "The candidate is a molecular property predictor scored on a held-out TDC ADMET split and compared with the leaderboard. Reviewed source family admet, collection open-problems-2026-11."
+    },
+    {
+      "id": "family-matbench",
+      "match": {
+        "families": [
+          "matbench"
+        ]
+      },
+      "domain_id": "chemistry-materials",
+      "task_type_id": "prediction-modeling",
+      "rationale": "The candidate is a materials property predictor scored on a held-out Matbench split and compared with the leaderboard. Reviewed source family matbench, collection open-problems-2026-11."
+    },
+    {
       "id": "unknown-metadata",
       "match": {
         "fallback": true
@@ -6054,6 +6186,7 @@
   },
   "non_paper_source_ids": [
     "kaggle-santa-2025",
+    "open-problems-2026-11",
     "sciel-supplement",
     "science-biology_expansion",
     "science-biology_research",

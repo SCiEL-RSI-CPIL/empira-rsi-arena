@@ -38,6 +38,7 @@ SUPPLEMENT_FAMILIES = {
         "science-frontier_combinatorics", "science-frontier_physics", "science-prize",
         "science-prize_a", "science-prize_b", "science-prize_c", "science-prize_d", "science-prize_e",
         "science-prize_f", "science-prize_g", "science-prize_h", "science-prize_i",
+        "open-problems-2026-11",
     )},
 }
 SUPPLEMENT_GROUPS = {FAMILY_IDS[label] for label in SUPPLEMENT_FAMILIES.values()}

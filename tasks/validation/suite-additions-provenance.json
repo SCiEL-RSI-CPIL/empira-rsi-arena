@@ -68,11 +68,11 @@
     },
     {
       "path": "catalog/papers.json",
-      "sha256": "f4cb508937639dd6bb00acbce8ef386b8f16c2a397e5b6b1793b27749ad45421",
+      "sha256": "e42bbafc4747011b606f44bff4409a17c4d01767377c473b3720a10f1c72e1a3",
       "source_path": "catalog/papers.json",
       "source_sha256": "dbcdb95a6447649fd8843c381e570778e7ee6444f37711870d110ab2b92c3dc3",
       "origin": "adapted",
-      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition)"
+      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); extended afterwards with the 1,301 open-problems records (source id open-problems-2026-11), which are not part of this addition"
     },
     {
       "path": "catalog/science/biology_research.json",
@@ -227,11 +227,11 @@
     },
     {
       "path": "catalog/tasks.json",
-      "sha256": "1b90228b3f2536f1ed53b0c36b71f8abd6223f7f07b8d082d47efbf3dcc4ee3c",
+      "sha256": "82a8fdf371be6617738e2bed33fcb216b7535fe722b2122746e47432f3d6b42c",
       "source_path": "catalog/tasks.json",
       "source_sha256": "448c918105cdf434369ef9eb08218d209c8f5325f6b85e7a184dce9852f75b68",
       "origin": "adapted",
-      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 1 reference value out of date; 1 reference value out of date (shared limitation sentence); 2 enforced limit of 1000 pairs not stated; 3 wrong lower bound for f(4); 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121; 5a number of chains; 5b number of numerically solved instances; 5c FTSE tabu-search value; 5e authors of the cited paper; 5f Füredi's lower bound; 5g block order in the contract; 5h authors of arXiv:2603.07088"
+      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 1 reference value out of date; 1 reference value out of date (shared limitation sentence); 2 enforced limit of 1000 pairs not stated; 3 wrong lower bound for f(4); 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121; 5a number of chains; 5b number of numerically solved instances; 5c FTSE tabu-search value; 5e authors of the cited paper; 5f Füredi's lower bound; 5g block order in the contract; 5h authors of arXiv:2603.07088; extended afterwards with the 1,301 open-problems records (source id open-problems-2026-11), which are not part of this addition"
     },
     {
       "path": "scripts/prepare_bio_physics.py",
@@ -957,11 +957,11 @@
     },
     {
       "path": "suite/index.json",
-      "sha256": "bd0a5a123f872c75a05d3bea0520eb1e3d6c2e40dd53bc84dd76cc323424550c",
+      "sha256": "e3948b177689b3d74d72fb3e1548ee348c0ee72851eedf420941bbe82de33eab",
       "source_path": "suite/index.json",
       "source_sha256": "8995a1f90274a948139d7bf18ce568925395512d7eecc05ec7fb03b9c50a9d48",
       "origin": "adapted",
-      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121"
+      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121; extended afterwards with the 1,301 open-problems records (source id open-problems-2026-11), which are not part of this addition"
     },
     {
       "path": "suite/mcts-ahd-asp-constructive/README.txt",
