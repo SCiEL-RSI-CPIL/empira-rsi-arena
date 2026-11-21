@@ -1,0 +1,5422 @@
+{
+ "schema": "artask.validation-receipt/1",
+ "package": "chemistry",
+ "date": "2026-10-11",
+ "scope": "Seed and invalid-candidate executions of the 18 generated chemistry_research packages (built in the work-package branch, then reverted to sources), plus the reference checks named per task. Every invalid candidate was rejected (score null). No model calls; no evolutionary search was run.",
+ "commands": [
+  "python3 scripts/prepare_chemistry.py",
+  ".cache/sciel-env/bin/python -m unittest discover -s tests -t . -p \"test_chem*.py\"",
+  "python3 -c \"import sys; sys.path.insert(0,'scripts'); import import_science; import_science.write_packages(topics={'chemistry_research'})\"",
+  "python3 scripts/build_suite.py --sciel ../SCiEL --only '^(<task ids>)$'",
+  ".cache/sciel-env/bin/python suite/<id>/evaluator.py suite/<id>/initial_program.py"
+ ],
+ "llm_cost_usd_total": 0.0,
+ "environment": {
+  "python": "3.12.14",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "scikit-learn": "1.9.1",
+  "rdkit": "2026.03.6",
+  "pandas": "2.2.3",
+  "torch": "2.14.0",
+  "platform": "macOS-15.8.1-arm64-arm-64bit",
+  "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+ },
+ "tasks": {
+  "science-chemistry-morse-cluster-minima": {
+   "family": "science_chemistry_morse_clusters",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 5.729034318776324,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 1.87118,
+   "wall_seconds": 1.94,
+   "seed_details": {
+    "combined_score": -5.729034318776324,
+    "score": 5.729034318776324,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "matched": 0,
+    "instance_count": 6,
+    "match_tolerance": 1e-05,
+    "total_gap": 85.14126973781671,
+    "elapsed_seconds": 1.87118,
+    "instances": [
+     {
+      "potential": "morse",
+      "rho": 3.0,
+      "n": 80,
+      "energy": -688.824830320423,
+      "published_minimum": -690.57789,
+      "gap": 1.7530596795770634,
+      "excess_percent": 0.2538540119749654,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "80A, C_3",
+      "closest_pair": 0.7098066662443321
+     },
+     {
+      "potential": "morse",
+      "rho": 6.0,
+      "n": 38,
+      "energy": -151.34690070836223,
+      "published_minimum": -157.477108,
+      "gap": 6.13020729163776,
+      "excess_percent": 3.8927609031515615,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "38E, C_5v",
+      "closest_pair": 0.9248653892725038
+     },
+     {
+      "potential": "morse",
+      "rho": 6.0,
+      "n": 75,
+      "energy": -337.5471328293112,
+      "published_minimum": -351.472365,
+      "gap": 13.925232170688844,
+      "excess_percent": 3.961970714451147,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "75C, D_5h Marks decahedron",
+      "closest_pair": 0.915706165676904
+     },
+     {
+      "potential": "morse",
+      "rho": 10.0,
+      "n": 38,
+      "energy": -134.3264404035803,
+      "published_minimum": -145.849817,
+      "gap": 11.523376596419695,
+      "excess_percent": 7.900850911879919,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "38D, O_h truncated octahedron",
+      "closest_pair": 0.9694966731039544
+     },
+     {
+      "potential": "morse",
+      "rho": 10.0,
+      "n": 50,
+      "energy": -184.64295923677162,
+      "published_minimum": -200.691615,
+      "gap": 16.048655763228396,
+      "excess_percent": 7.9966747804727145,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "50C, C_s",
+      "closest_pair": 0.9651241383328112
+     },
+     {
+      "potential": "morse",
+      "rho": 10.0,
+      "n": 80,
+      "energy": -309.15064276373505,
+      "published_minimum": -344.911381,
+      "gap": 35.760738236264956,
+      "excess_percent": 10.368094590727626,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "80D, C_1",
+      "closest_pair": 0.9556906109761999
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "cluster_bad_shape.py",
+     "valid": false,
+     "score": null,
+     "error": "expected 80 atoms as rows (x, y, z); got shape (79, 3)",
+     "rejected": true,
+     "wall_seconds": 0.05
+    },
+    {
+     "candidate": "cluster_overlap.py",
+     "valid": false,
+     "score": null,
+     "error": "two atoms are 0.0000 apart; the minimum allowed separation is 0.5",
+     "rejected": true,
+     "wall_seconds": 0.06
+    },
+    {
+     "candidate": "missing_entry.py",
+     "valid": false,
+     "score": null,
+     "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+     "rejected": true,
+     "wall_seconds": 0.05
+    }
+   ],
+   "reference_check": {
+    "compared": "Locally relaxed constructed geometries (icosahedra, truncated octahedra, pentagonal bipyramid) versus the published putative minima of the same sizes (tests/test_chem_clusters.py).",
+    "rows": [
+     {
+      "potential": "morse",
+      "parameter": 3.0,
+      "n": 13,
+      "published": -51.737046,
+      "recomputed": -51.737046234,
+      "difference": -2.34e-07,
+      "within_rounding": true
+     },
+     {
+      "potential": "morse",
+      "parameter": 6.0,
+      "n": 13,
+      "published": -42.439863,
+      "recomputed": -42.439862691,
+      "difference": 3.09e-07,
+      "within_rounding": true
+     },
+     {
+      "potential": "morse",
+      "parameter": 6.0,
+      "n": 55,
+      "published": -250.286609,
+      "recomputed": -250.286608787,
+      "difference": 2.13e-07,
+      "within_rounding": true
+     },
+     {
+      "potential": "morse",
+      "parameter": 10.0,
+      "n": 13,
+      "published": -39.662975,
+      "recomputed": -39.662974621,
+      "difference": 3.79e-07,
+      "within_rounding": true
+     },
+     {
+      "potential": "morse",
+      "parameter": 10.0,
+      "n": 38,
+      "published": -145.849817,
+      "recomputed": -145.849817272,
+      "difference": -2.72e-07,
+      "within_rounding": true
+     }
+    ],
+    "result": "all reproduced within half a unit of the last published decimal"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-materials-sutton-chen-cluster-minima": {
+   "family": "science_materials_sutton_chen_clusters",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 0.924713318001368,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 2.02659,
+   "wall_seconds": 2.1,
+   "seed_details": {
+    "combined_score": -0.924713318001368,
+    "score": 0.924713318001368,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "matched": 0,
+    "instance_count": 6,
+    "match_tolerance": 0.001,
+    "total_gap": 2122.4650780867814,
+    "elapsed_seconds": 2.02659,
+    "instances": [
+     {
+      "potential": "sutton_chen",
+      "kind": "12-6",
+      "n": 38,
+      "n_exp": 12,
+      "m_exp": 6,
+      "c": 144.41,
+      "energy": -35040.05301558215,
+      "published_minimum": -35419.9804,
+      "gap": 379.9273844178533,
+      "excess_percent": 1.0726357838917757,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "O_h, fcc",
+      "closest_pair": 0.6581191161910684
+     },
+     {
+      "potential": "sutton_chen",
+      "kind": "12-6",
+      "n": 75,
+      "n_exp": 12,
+      "m_exp": 6,
+      "c": 144.41,
+      "energy": -72199.5898641294,
+      "published_minimum": -73421.0521,
+      "gap": 1221.4622358705965,
+      "excess_percent": 1.6636403333024377,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "D_5h, decahedral",
+      "closest_pair": 0.66053352688935
+     },
+     {
+      "potential": "sutton_chen",
+      "kind": "9-6",
+      "n": 59,
+      "n_exp": 9,
+      "m_exp": 6,
+      "c": 39.432,
+      "energy": -14139.042016318515,
+      "published_minimum": -14202.4032,
+      "gap": 63.36118368148527,
+      "excess_percent": 0.4461300160911167,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "T_d, close-packed",
+      "closest_pair": 0.6464411296984081
+     },
+     {
+      "potential": "sutton_chen",
+      "kind": "9-6",
+      "n": 80,
+      "n_exp": 9,
+      "m_exp": 6,
+      "c": 39.432,
+      "energy": -19383.393130674765,
+      "published_minimum": -19560.8966,
+      "gap": 177.50346932523462,
+      "excess_percent": 0.9074403538600302,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "C_s, close-packed",
+      "closest_pair": 0.6446795158790094
+     },
+     {
+      "potential": "sutton_chen",
+      "kind": "10-8",
+      "n": 55,
+      "n_exp": 10,
+      "m_exp": 8,
+      "c": 34.408,
+      "energy": -14739.611175825157,
+      "published_minimum": -14814.5225,
+      "gap": 74.91132417484187,
+      "excess_percent": 0.5056614155119874,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "C_1, fcc",
+      "closest_pair": 0.6411974312167458
+     },
+     {
+      "potential": "sutton_chen",
+      "kind": "10-8",
+      "n": 79,
+      "n_exp": 10,
+      "m_exp": 8,
+      "c": 34.408,
+      "energy": -21342.29841938323,
+      "published_minimum": -21547.5979,
+      "gap": 205.29948061676987,
+      "excess_percent": 0.9527720053508603,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "O_h, fcc",
+      "closest_pair": 0.6462061147562882
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "cluster_bad_shape.py",
+     "valid": false,
+     "score": null,
+     "error": "expected 38 atoms as rows (x, y, z); got shape (37, 3)",
+     "rejected": true,
+     "wall_seconds": 0.05
+    },
+    {
+     "candidate": "cluster_overlap.py",
+     "valid": false,
+     "score": null,
+     "error": "two atoms are 0.0000 apart; the minimum allowed separation is 0.35",
+     "rejected": true,
+     "wall_seconds": 0.06
+    }
+   ],
+   "reference_check": {
+    "compared": "Locally relaxed constructed geometries (icosahedra, truncated octahedra, pentagonal bipyramid) versus the published putative minima of the same sizes (tests/test_chem_clusters.py).",
+    "rows": [
+     {
+      "potential": "sutton_chen",
+      "parameter": "12-6",
+      "n": 13,
+      "published": -10968.5082,
+      "recomputed": -10968.508211725,
+      "difference": -1.1725e-05,
+      "within_rounding": true
+     },
+     {
+      "potential": "sutton_chen",
+      "parameter": "12-6",
+      "n": 38,
+      "published": -35419.9804,
+      "recomputed": -35419.980448437,
+      "difference": -4.8437e-05,
+      "within_rounding": true
+     },
+     {
+      "potential": "sutton_chen",
+      "parameter": "12-6",
+      "n": 55,
+      "published": -52884.6806,
+      "recomputed": -52884.680577611,
+      "difference": 2.2389e-05,
+      "within_rounding": true
+     },
+     {
+      "potential": "sutton_chen",
+      "parameter": "9-6",
+      "n": 13,
+      "published": -2808.5765,
+      "recomputed": -2808.576506667,
+      "difference": -6.667e-06,
+      "within_rounding": true
+     },
+     {
+      "potential": "sutton_chen",
+      "parameter": "9-6",
+      "n": 38,
+      "published": -8917.7056,
+      "recomputed": -8917.705626572,
+      "difference": -2.6572e-05,
+      "within_rounding": true
+     },
+     {
+      "potential": "sutton_chen",
+      "parameter": "9-6",
+      "n": 55,
+      "published": -13217.8963,
+      "recomputed": -13217.896269899,
+      "difference": 3.0101e-05,
+      "within_rounding": true
+     },
+     {
+      "potential": "sutton_chen",
+      "parameter": "10-8",
+      "n": 13,
+      "published": -3280.3843,
+      "recomputed": -3280.384264005,
+      "difference": 3.5995e-05,
+      "within_rounding": true
+     },
+     {
+      "potential": "sutton_chen",
+      "parameter": "10-8",
+      "n": 38,
+      "published": -10117.2454,
+      "recomputed": -10117.245407281,
+      "difference": -7.281e-06,
+      "within_rounding": true
+     },
+     {
+      "potential": "sutton_chen",
+      "parameter": "10-8",
+      "n": 79,
+      "published": -21547.5979,
+      "recomputed": -21547.597878376,
+      "difference": 2.1624e-05,
+      "within_rounding": true
+     }
+    ],
+    "result": "all reproduced within half a unit of the last published decimal"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-materials-dzugutov-cluster-minima": {
+   "family": "science_materials_dzugutov_clusters",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 40.165090374377804,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 5.887827,
+   "wall_seconds": 5.97,
+   "seed_details": {
+    "combined_score": -40.165090374377804,
+    "score": 40.165090374377804,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "matched": 0,
+    "instance_count": 6,
+    "match_tolerance": 1e-05,
+    "total_gap": 256.255426089059,
+    "elapsed_seconds": 5.887827,
+    "instances": [
+     {
+      "potential": "dzugutov",
+      "n": 38,
+      "A": 5.82,
+      "B": 1.28,
+      "a": 1.87,
+      "b": 1.94,
+      "c": 1.1,
+      "d": 0.27,
+      "m": 16.0,
+      "energy": -47.7392806163448,
+      "published_minimum": -78.212691,
+      "gap": 30.473410383655207,
+      "excess_percent": 38.96223233599673,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "D_6h",
+      "closest_pair": 1.082342146229886
+     },
+     {
+      "potential": "dzugutov",
+      "n": 45,
+      "A": 5.82,
+      "B": 1.28,
+      "a": 1.87,
+      "b": 1.94,
+      "c": 1.1,
+      "d": 0.27,
+      "m": 16.0,
+      "energy": -52.433322565870256,
+      "published_minimum": -92.914141,
+      "gap": 40.480818434129745,
+      "excess_percent": 43.56798437616697,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "C_2",
+      "closest_pair": 1.093539993050812
+     },
+     {
+      "potential": "dzugutov",
+      "n": 50,
+      "A": 5.82,
+      "B": 1.28,
+      "a": 1.87,
+      "b": 1.94,
+      "c": 1.1,
+      "d": 0.27,
+      "m": 16.0,
+      "energy": -60.05428844337477,
+      "published_minimum": -104.36619,
+      "gap": 44.31190155662523,
+      "excess_percent": 42.458100230184925,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "C_1",
+      "closest_pair": 1.0914162178693854
+     },
+     {
+      "potential": "dzugutov",
+      "n": 55,
+      "A": 5.82,
+      "B": 1.28,
+      "a": 1.87,
+      "b": 1.94,
+      "c": 1.1,
+      "d": 0.27,
+      "m": 16.0,
+      "energy": -74.46839429098011,
+      "published_minimum": -115.796712,
+      "gap": 41.328317709019885,
+      "excess_percent": 35.69040691675242,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "C_s",
+      "closest_pair": 1.0838418140324397
+     },
+     {
+      "potential": "dzugutov",
+      "n": 57,
+      "A": 5.82,
+      "B": 1.28,
+      "a": 1.87,
+      "b": 1.94,
+      "c": 1.1,
+      "d": 0.27,
+      "m": 16.0,
+      "energy": -72.53919746533279,
+      "published_minimum": -120.619381,
+      "gap": 48.08018353466721,
+      "excess_percent": 39.861076334546276,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "T_d",
+      "closest_pair": 1.072334722615872
+     },
+     {
+      "potential": "dzugutov",
+      "n": 60,
+      "A": 5.82,
+      "B": 1.28,
+      "a": 1.87,
+      "b": 1.94,
+      "c": 1.1,
+      "d": 0.27,
+      "m": 16.0,
+      "energy": -75.93428152903829,
+      "published_minimum": -127.515076,
+      "gap": 51.580794470961706,
+      "excess_percent": 40.450742052619496,
+      "matched": false,
+      "below_published": false,
+      "published_structure": "C_s",
+      "closest_pair": 1.0812588411185722
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "cluster_bad_shape.py",
+     "valid": false,
+     "score": null,
+     "error": "expected 38 atoms as rows (x, y, z); got shape (37, 3)",
+     "rejected": true,
+     "wall_seconds": 0.05
+    },
+    {
+     "candidate": "cluster_overlap.py",
+     "valid": false,
+     "score": null,
+     "error": "two atoms are 0.0000 apart; the minimum allowed separation is 0.5",
+     "rejected": true,
+     "wall_seconds": 0.06
+    }
+   ],
+   "reference_check": {
+    "compared": "Locally relaxed constructed geometries (icosahedra, truncated octahedra, pentagonal bipyramid) versus the published putative minima of the same sizes (tests/test_chem_clusters.py).",
+    "rows": [
+     {
+      "potential": "dzugutov",
+      "parameter": null,
+      "n": 7,
+      "published": -9.110478,
+      "recomputed": -9.110477683,
+      "difference": 3.17e-07,
+      "within_rounding": true
+     },
+     {
+      "potential": "dzugutov",
+      "parameter": null,
+      "n": 13,
+      "published": -23.206834,
+      "recomputed": -23.20683431,
+      "difference": -3.1e-07,
+      "within_rounding": true
+     }
+    ],
+    "result": "all reproduced within half a unit of the last published decimal"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-chemistry-mmff94-drug-conformers": {
+   "family": "science_chemistry_mmff_conformers",
+   "problem_protocol": "recreated",
+   "seed_score": 4.0769558821275815,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 12.303821,
+   "wall_seconds": 12.38,
+   "seed_details": {
+    "combined_score": -4.0769558821275815,
+    "score": 4.0769558821275815,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "within_0_01_kcal": 0,
+    "below_reference": 0,
+    "elapsed_seconds": 12.303821,
+    "molecules": [
+     {
+      "name": "imatinib",
+      "chembl": "CHEMBL941",
+      "energy_kcal_mol": 70.01902549259918,
+      "reference_kcal_mol": 64.811559,
+      "excess_kcal_mol": 5.207466492599181,
+      "atoms": 68
+     },
+     {
+      "name": "sildenafil",
+      "chembl": "CHEMBL192",
+      "energy_kcal_mol": -13.133323429735263,
+      "reference_kcal_mol": -13.476892,
+      "excess_kcal_mol": 0.3435685702647362,
+      "atoms": 63
+     },
+     {
+      "name": "atorvastatin",
+      "chembl": "CHEMBL1487",
+      "energy_kcal_mol": 36.52310433772162,
+      "reference_kcal_mol": 29.242449,
+      "excess_kcal_mol": 7.280655337721619,
+      "atoms": 76
+     },
+     {
+      "name": "oseltamivir",
+      "chembl": "CHEMBL1229",
+      "energy_kcal_mol": 21.244086802730145,
+      "reference_kcal_mol": 15.378631,
+      "excess_kcal_mol": 5.865455802730144,
+      "atoms": 50
+     },
+     {
+      "name": "tamoxifen",
+      "chembl": "CHEMBL83",
+      "energy_kcal_mol": 102.94099222040452,
+      "reference_kcal_mol": 102.920209,
+      "excess_kcal_mol": 0.020783220404524627,
+      "atoms": 57
+     },
+     {
+      "name": "simvastatin",
+      "chembl": "CHEMBL1064",
+      "energy_kcal_mol": 29.160641980452045,
+      "reference_kcal_mol": 27.477374,
+      "excess_kcal_mol": 1.6832679804520438,
+      "atoms": 68
+     },
+     {
+      "name": "(S)-verapamil",
+      "chembl": "CHEMBL6966 (S enantiomer)",
+      "energy_kcal_mol": 137.19181801991687,
+      "reference_kcal_mol": 131.094382,
+      "excess_kcal_mol": 6.09743601991687,
+      "atoms": 71
+     },
+     {
+      "name": "(R)-ranolazine",
+      "chembl": "CHEMBL1404 (R enantiomer)",
+      "energy_kcal_mol": 196.15054363293154,
+      "reference_kcal_mol": 190.03353,
+      "excess_kcal_mol": 6.117013632931531,
+      "atoms": 64
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "conformer_mirror.py",
+     "valid": false,
+     "score": null,
+     "error": "stereochemistry or connectivity changed: geometry corresponds to CC(C)c1c(C(=O)Nc2ccccc2)c(-c2ccccc2)c(-c2ccc(F)cc2)n1CC[C@H](O)C[C@H](O)CC(=O)O, expected CC(C)c1c(C(=O)Nc2ccccc2)c(-c2ccccc2)c(-c2ccc(F)cc2)n1CC[C@@H](O)C[C@@H](O)CC(=O)O",
+     "rejected": true,
+     "wall_seconds": 0.45
+    },
+    {
+     "candidate": "conformer_shape.py",
+     "valid": false,
+     "score": null,
+     "error": "bond 0-1 has length 0.000 A (outside 0.70-1.35 x the covalent radii sum)",
+     "rejected": true,
+     "wall_seconds": 0.15
+    },
+    {
+     "candidate": "missing_entry.py",
+     "valid": false,
+     "score": null,
+     "error": "AttributeError: module 'candidate_program' has no attribute 'conformer'",
+     "rejected": true,
+     "wall_seconds": 0.06
+    }
+   ],
+   "reference_check": {
+    "compared": "Best MMFF94 energies of chem_conformers.reference_search with independent seeds; the reference is the lowest energy found, with its coordinates as a witness.",
+    "molecules": [
+     {
+      "name": "imatinib",
+      "chembl": "CHEMBL941",
+      "smiles": "Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1",
+      "reference_kcal_mol": 64.811559,
+      "witness_energy_kcal_mol": 64.81155858678319,
+      "witness_matches": true,
+      "runs": [
+       {
+        "seed": 1,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 64.811559,
+        "seconds": 94.0
+       },
+       {
+        "seed": 2,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 64.811559,
+        "seconds": 114.1
+       },
+       {
+        "seed": 3,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 64.811559,
+        "seconds": 127.5
+       }
+      ],
+      "runs_reaching_reference": 3,
+      "witness_coordinates_angstrom": [
+       [
+        1.685788,
+        -5.766135,
+        0.337057
+       ],
+       [
+        0.484131,
+        -4.881221,
+        0.139009
+       ],
+       [
+        -0.45892,
+        -4.788161,
+        1.178073
+       ],
+       [
+        -1.607052,
+        -4.003572,
+        1.045387
+       ],
+       [
+        -1.827137,
+        -3.289893,
+        -0.124658
+       ],
+       [
+        -2.962178,
+        -2.488614,
+        -0.369577
+       ],
+       [
+        -4.018882,
+        -2.234748,
+        0.4836
+       ],
+       [
+        -4.121691,
+        -2.594469,
+        1.650566
+       ],
+       [
+        -5.110071,
+        -1.401196,
+        -0.103153
+       ],
+       [
+        -5.455364,
+        -1.474963,
+        -1.45875
+       ],
+       [
+        -6.479434,
+        -0.668853,
+        -1.963092
+       ],
+       [
+        -7.17721,
+        0.213204,
+        -1.123894
+       ],
+       [
+        -8.29415,
+        1.075212,
+        -1.676562
+       ],
+       [
+        -7.85573,
+        1.963939,
+        -2.76447
+       ],
+       [
+        -6.961295,
+        3.031824,
+        -2.266558
+       ],
+       [
+        -6.559101,
+        4.025529,
+        -3.381068
+       ],
+       [
+        -7.73286,
+        4.640842,
+        -4.030332
+       ],
+       [
+        -7.319558,
+        5.52533,
+        -5.116384
+       ],
+       [
+        -8.62268,
+        3.576409,
+        -4.530905
+       ],
+       [
+        -9.02717,
+        2.58643,
+        -3.415168
+       ],
+       [
+        -6.841298,
+        0.264927,
+        0.236075
+       ],
+       [
+        -5.817315,
+        -0.539222,
+        0.743495
+       ],
+       [
+        -0.879329,
+        -3.372951,
+        -1.154542
+       ],
+       [
+        0.281779,
+        -4.15897,
+        -1.056342
+       ],
+       [
+        1.184908,
+        -4.290714,
+        -2.124402
+       ],
+       [
+        1.134909,
+        -3.9241,
+        -3.466946
+       ],
+       [
+        2.248214,
+        -4.151736,
+        -4.176635
+       ],
+       [
+        2.219277,
+        -3.823352,
+        -5.480774
+       ],
+       [
+        1.126179,
+        -3.273549,
+        -6.106045
+       ],
+       [
+        0.018138,
+        -3.068555,
+        -5.313374
+       ],
+       [
+        -1.243507,
+        -2.478487,
+        -5.793718
+       ],
+       [
+        -1.318536,
+        -1.578231,
+        -6.866134
+       ],
+       [
+        -2.545329,
+        -1.033945,
+        -7.251582
+       ],
+       [
+        -3.680451,
+        -1.399699,
+        -6.54959
+       ],
+       [
+        -3.667869,
+        -2.257862,
+        -5.51147
+       ],
+       [
+        -2.459343,
+        -2.772252,
+        -5.166403
+       ],
+       [
+        0.025413,
+        -3.401545,
+        -4.005756
+       ],
+       [
+        2.604511,
+        -5.172397,
+        0.293765
+       ],
+       [
+        1.663132,
+        -6.267191,
+        1.310719
+       ],
+       [
+        1.715281,
+        -6.54522,
+        -0.431549
+       ],
+       [
+        -0.31366,
+        -5.339871,
+        2.104835
+       ],
+       [
+        -2.309886,
+        -3.976972,
+        1.871861
+       ],
+       [
+        -2.975586,
+        -2.022037,
+        -1.267656
+       ],
+       [
+        -4.961152,
+        -2.16668,
+        -2.136174
+       ],
+       [
+        -6.735823,
+        -0.728099,
+        -3.019869
+       ],
+       [
+        -9.062,
+        0.383501,
+        -2.049025
+       ],
+       [
+        -8.767294,
+        1.651601,
+        -0.870343
+       ],
+       [
+        -6.039237,
+        2.595119,
+        -1.865887
+       ],
+       [
+        -7.442366,
+        3.587425,
+        -1.450028
+       ],
+       [
+        -5.93907,
+        3.500713,
+        -4.120753
+       ],
+       [
+        -5.93815,
+        4.810268,
+        -2.932188
+       ],
+       [
+        -6.767049,
+        4.993998,
+        -5.899765
+       ],
+       [
+        -6.684048,
+        6.33147,
+        -4.733483
+       ],
+       [
+        -8.192437,
+        6.003164,
+        -5.574758
+       ],
+       [
+        -8.140485,
+        3.019857,
+        -5.346159
+       ],
+       [
+        -9.536453,
+        4.026023,
+        -4.937948
+       ],
+       [
+        -9.644856,
+        3.11341,
+        -2.675062
+       ],
+       [
+        -9.651869,
+        1.805305,
+        -3.865296
+       ],
+       [
+        -7.373661,
+        0.931102,
+        0.911291
+       ],
+       [
+        -5.568598,
+        -0.490381,
+        1.801945
+       ],
+       [
+        -1.055043,
+        -2.793737,
+        -2.054157
+       ],
+       [
+        2.086438,
+        -4.695566,
+        -1.925657
+       ],
+       [
+        3.135569,
+        -4.025242,
+        -6.028417
+       ],
+       [
+        1.150967,
+        -3.037717,
+        -7.160464
+       ],
+       [
+        -0.425285,
+        -1.268498,
+        -7.401924
+       ],
+       [
+        -2.610485,
+        -0.332427,
+        -8.076135
+       ],
+       [
+        -4.655878,
+        -0.998674,
+        -6.809903
+       ],
+       [
+        -2.498939,
+        -3.466217,
+        -4.32821
+       ]
+      ]
+     },
+     {
+      "name": "sildenafil",
+      "chembl": "CHEMBL192",
+      "smiles": "CCCc1nn(C)c2c(=O)[nH]c(-c3cc(S(=O)(=O)N4CCN(C)CC4)ccc3OCC)nc12",
+      "reference_kcal_mol": -13.476892,
+      "witness_energy_kcal_mol": -13.47689193720409,
+      "witness_matches": true,
+      "runs": [
+       {
+        "seed": 1,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": -13.476892,
+        "seconds": 95.2
+       },
+       {
+        "seed": 2,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": -13.476892,
+        "seconds": 111.6
+       },
+       {
+        "seed": 3,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": -13.476892,
+        "seconds": 110.8
+       }
+      ],
+      "runs_reaching_reference": 3,
+      "witness_coordinates_angstrom": [
+       [
+        1.143341,
+        12.35237,
+        7.80142
+       ],
+       [
+        -0.290758,
+        11.857886,
+        7.936682
+       ],
+       [
+        -1.247048,
+        12.913781,
+        8.496065
+       ],
+       [
+        -1.521486,
+        14.034246,
+        7.5531
+       ],
+       [
+        -2.49921,
+        13.940786,
+        6.63113
+       ],
+       [
+        -2.455949,
+        15.131895,
+        5.982698
+       ],
+       [
+        -3.379107,
+        15.399918,
+        4.906585
+       ],
+       [
+        -1.490364,
+        15.962406,
+        6.457604
+       ],
+       [
+        -1.099606,
+        17.2677,
+        6.072248
+       ],
+       [
+        -1.596953,
+        17.929828,
+        5.169229
+       ],
+       [
+        -0.05571,
+        17.723892,
+        6.844586
+       ],
+       [
+        0.554768,
+        16.991803,
+        7.857188
+       ],
+       [
+        1.709275,
+        17.643439,
+        8.572291
+       ],
+       [
+        2.190448,
+        16.978801,
+        9.715087
+       ],
+       [
+        3.300536,
+        17.46725,
+        10.404702
+       ],
+       [
+        3.887872,
+        16.60215,
+        11.846638
+       ],
+       [
+        4.741058,
+        17.517577,
+        12.57578
+       ],
+       [
+        2.738596,
+        15.992353,
+        12.479676
+       ],
+       [
+        4.864075,
+        15.375602,
+        11.207913
+       ],
+       [
+        4.182523,
+        14.279046,
+        10.462718
+       ],
+       [
+        5.148223,
+        13.093564,
+        10.26321
+       ],
+       [
+        6.389274,
+        13.49848,
+        9.566674
+       ],
+       [
+        7.28787,
+        12.354517,
+        9.417619
+       ],
+       [
+        7.048035,
+        14.579931,
+        10.330109
+       ],
+       [
+        6.122034,
+        15.796829,
+        10.532205
+       ],
+       [
+        3.911875,
+        18.652511,
+        10.003482
+       ],
+       [
+        3.42984,
+        19.333316,
+        8.882045
+       ],
+       [
+        2.337409,
+        18.83825,
+        8.151734
+       ],
+       [
+        1.834837,
+        19.460971,
+        7.03701
+       ],
+       [
+        2.502976,
+        20.627113,
+        6.55065
+       ],
+       [
+        1.78652,
+        21.078343,
+        5.290464
+       ],
+       [
+        0.184859,
+        15.789129,
+        8.207403
+       ],
+       [
+        -0.880527,
+        15.280079,
+        7.465669
+       ],
+       [
+        1.517689,
+        12.742064,
+        8.753508
+       ],
+       [
+        1.226478,
+        13.140276,
+        7.047174
+       ],
+       [
+        1.796248,
+        11.529389,
+        7.493286
+       ],
+       [
+        -0.292916,
+        10.995598,
+        8.614356
+       ],
+       [
+        -0.643892,
+        11.498874,
+        6.962596
+       ],
+       [
+        -0.85211,
+        13.309857,
+        9.439841
+       ],
+       [
+        -2.197362,
+        12.424844,
+        8.746986
+       ],
+       [
+        -3.967345,
+        16.283136,
+        5.167114
+       ],
+       [
+        -4.041646,
+        14.540955,
+        4.771852
+       ],
+       [
+        -2.804515,
+        15.571309,
+        3.993116
+       ],
+       [
+        0.29565,
+        18.643397,
+        6.610941
+       ],
+       [
+        1.702248,
+        16.071086,
+        10.06811
+       ],
+       [
+        3.311828,
+        13.924337,
+        11.023357
+       ],
+       [
+        3.846319,
+        14.642021,
+        9.485337
+       ],
+       [
+        5.38538,
+        12.654935,
+        11.241878
+       ],
+       [
+        4.63141,
+        12.326399,
+        9.674102
+       ],
+       [
+        8.194085,
+        12.647544,
+        8.876119
+       ],
+       [
+        7.585358,
+        11.929631,
+        10.383116
+       ],
+       [
+        6.80909,
+        11.565889,
+        8.826717
+       ],
+       [
+        7.373757,
+        14.210286,
+        11.311843
+       ],
+       [
+        7.942114,
+        14.91594,
+        9.791365
+       ],
+       [
+        5.890155,
+        16.251845,
+        9.562404
+       ],
+       [
+        6.652266,
+        16.533531,
+        11.144161
+       ],
+       [
+        4.756981,
+        19.057888,
+        10.557173
+       ],
+       [
+        3.934515,
+        20.254882,
+        8.606709
+       ],
+       [
+        3.545786,
+        20.395066,
+        6.306178
+       ],
+       [
+        2.455168,
+        21.428908,
+        7.296
+       ],
+       [
+        1.799777,
+        20.285612,
+        4.535031
+       ],
+       [
+        0.73479,
+        21.297633,
+        5.502748
+       ],
+       [
+        2.257132,
+        21.972816,
+        4.873008
+       ]
+      ]
+     },
+     {
+      "name": "atorvastatin",
+      "chembl": "CHEMBL1487",
+      "smiles": "CC(C)c1c(C(=O)Nc2ccccc2)c(-c2ccccc2)c(-c2ccc(F)cc2)n1CC[C@@H](O)C[C@@H](O)CC(=O)O",
+      "reference_kcal_mol": 29.242449,
+      "witness_energy_kcal_mol": 29.242448728126,
+      "witness_matches": true,
+      "runs": [
+       {
+        "seed": 1,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 30.346327,
+        "seconds": 143.3
+       },
+       {
+        "seed": 2,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 29.242449,
+        "seconds": 139.3
+       },
+       {
+        "seed": 3,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 31.466581,
+        "seconds": 484.8
+       },
+       {
+        "seed": 4,
+        "settings": {
+         "conformers": 3000,
+         "starts": 50,
+         "steps": 150
+        },
+        "energy_kcal_mol": 29.242449,
+        "seconds": 487.9
+       },
+       {
+        "seed": 5,
+        "settings": {
+         "conformers": 3000,
+         "starts": 50,
+         "steps": 150
+        },
+        "energy_kcal_mol": 29.242449,
+        "seconds": 564.0
+       }
+      ],
+      "runs_reaching_reference": 3,
+      "witness_coordinates_angstrom": [
+       [
+        1.421986,
+        -2.775442,
+        -3.290121
+       ],
+       [
+        1.146079,
+        -2.00903,
+        -4.578617
+       ],
+       [
+        -0.286526,
+        -2.264076,
+        -5.061372
+       ],
+       [
+        2.170596,
+        -2.284067,
+        -5.666944
+       ],
+       [
+        2.277359,
+        -3.353254,
+        -6.559564
+       ],
+       [
+        1.528755,
+        -4.612842,
+        -6.481141
+       ],
+       [
+        1.532144,
+        -5.272344,
+        -5.444662
+       ],
+       [
+        0.879656,
+        -4.930277,
+        -7.655085
+       ],
+       [
+        0.094598,
+        -6.064092,
+        -7.935582
+       ],
+       [
+        -0.213024,
+        -7.054499,
+        -7.001662
+       ],
+       [
+        -1.003723,
+        -8.149574,
+        -7.365758
+       ],
+       [
+        -1.492389,
+        -8.262812,
+        -8.665119
+       ],
+       [
+        -1.190986,
+        -7.280522,
+        -9.603967
+       ],
+       [
+        -0.40172,
+        -6.186606,
+        -9.240242
+       ],
+       [
+        3.205564,
+        -2.953088,
+        -7.574866
+       ],
+       [
+        3.563643,
+        -3.658351,
+        -8.799957
+       ],
+       [
+        4.121143,
+        -4.939623,
+        -8.738131
+       ],
+       [
+        4.4259,
+        -5.632245,
+        -9.911362
+       ],
+       [
+        4.175911,
+        -5.049001,
+        -11.152435
+       ],
+       [
+        3.618992,
+        -3.773266,
+        -11.223146
+       ],
+       [
+        3.309642,
+        -3.080787,
+        -10.051039
+       ],
+       [
+        3.731885,
+        -1.716676,
+        -7.21559
+       ],
+       [
+        4.696644,
+        -0.873428,
+        -7.933509
+       ],
+       [
+        5.973608,
+        -1.363005,
+        -8.247059
+       ],
+       [
+        6.883609,
+        -0.5666,
+        -8.944285
+       ],
+       [
+        6.513825,
+        0.715272,
+        -9.33219
+       ],
+       [
+        7.386395,
+        1.479592,
+        -10.001643
+       ],
+       [
+        5.25016,
+        1.215049,
+        -9.040633
+       ],
+       [
+        4.33879,
+        0.418656,
+        -8.344698
+       ],
+       [
+        3.227231,
+        -1.424016,
+        -5.953163
+       ],
+       [
+        3.729773,
+        -0.366286,
+        -5.078015
+       ],
+       [
+        5.199069,
+        -0.488645,
+        -4.631557
+       ],
+       [
+        5.500125,
+        -1.548478,
+        -3.561787
+       ],
+       [
+        4.631266,
+        -1.326715,
+        -2.455382
+       ],
+       [
+        5.404233,
+        -2.991483,
+        -4.079409
+       ],
+       [
+        5.79177,
+        -4.039829,
+        -3.025104
+       ],
+       [
+        4.904752,
+        -3.941066,
+        -1.904636
+       ],
+       [
+        5.816583,
+        -5.474657,
+        -3.559593
+       ],
+       [
+        4.581623,
+        -5.841449,
+        -4.336745
+       ],
+       [
+        4.572916,
+        -6.32985,
+        -5.454077
+       ],
+       [
+        3.446031,
+        -5.57649,
+        -3.660318
+       ],
+       [
+        2.444021,
+        -2.616908,
+        -2.941577
+       ],
+       [
+        1.272636,
+        -3.851047,
+        -3.409593
+       ],
+       [
+        0.745926,
+        -2.441365,
+        -2.495262
+       ],
+       [
+        1.170738,
+        -0.93972,
+        -4.339574
+       ],
+       [
+        -0.492511,
+        -3.328235,
+        -5.209822
+       ],
+       [
+        -0.482777,
+        -1.746193,
+        -6.006788
+       ],
+       [
+        -1.007786,
+        -1.895541,
+        -4.323269
+       ],
+       [
+        1.015461,
+        -4.282797,
+        -8.421116
+       ],
+       [
+        0.143263,
+        -7.00709,
+        -5.978363
+       ],
+       [
+        -1.235531,
+        -8.914703,
+        -6.629041
+       ],
+       [
+        -2.105072,
+        -9.115925,
+        -8.944195
+       ],
+       [
+        -1.567133,
+        -7.36537,
+        -10.620024
+       ],
+       [
+        -0.175001,
+        -5.436248,
+        -9.993511
+       ],
+       [
+        4.321174,
+        -5.412738,
+        -7.779695
+       ],
+       [
+        4.85674,
+        -6.628764,
+        -9.852478
+       ],
+       [
+        4.416526,
+        -5.58972,
+        -12.064246
+       ],
+       [
+        3.427006,
+        -3.316487,
+        -12.190531
+       ],
+       [
+        2.872075,
+        -2.087607,
+        -10.12114
+       ],
+       [
+        6.263184,
+        -2.369131,
+        -7.951635
+       ],
+       [
+        7.872032,
+        -0.940499,
+        -9.190442
+       ],
+       [
+        4.980836,
+        2.216011,
+        -9.361736
+       ],
+       [
+        3.344548,
+        0.806142,
+        -8.134678
+       ],
+       [
+        3.586972,
+        0.57323,
+        -5.623479
+       ],
+       [
+        3.095506,
+        -0.297754,
+        -4.192925
+       ],
+       [
+        5.462282,
+        0.485573,
+        -4.196905
+       ],
+       [
+        5.871454,
+        -0.632445,
+        -5.480686
+       ],
+       [
+        6.522269,
+        -1.379147,
+        -3.201812
+       ],
+       [
+        4.710623,
+        -2.110847,
+        -1.868951
+       ],
+       [
+        6.03624,
+        -3.108412,
+        -4.967173
+       ],
+       [
+        4.370873,
+        -3.183739,
+        -4.364144
+       ],
+       [
+        6.791326,
+        -3.805021,
+        -2.641394
+       ],
+       [
+        4.069843,
+        -4.388311,
+        -2.16726
+       ],
+       [
+        6.673169,
+        -5.59275,
+        -4.233461
+       ],
+       [
+        5.923819,
+        -6.19719,
+        -2.743159
+       ],
+       [
+        2.70455,
+        -5.714182,
+        -4.31223
+       ]
+      ]
+     },
+     {
+      "name": "oseltamivir",
+      "chembl": "CHEMBL1229",
+      "smiles": "CCOC(=O)C1=C[C@@H](OC(CC)CC)[C@H](NC(C)=O)[C@@H](N)C1",
+      "reference_kcal_mol": 15.378631,
+      "witness_energy_kcal_mol": 15.378631477863426,
+      "witness_matches": true,
+      "runs": [
+       {
+        "seed": 1,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 15.378631,
+        "seconds": 51.6
+       },
+       {
+        "seed": 2,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 15.378631,
+        "seconds": 42.3
+       },
+       {
+        "seed": 3,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 15.378631,
+        "seconds": 57.9
+       }
+      ],
+      "runs_reaching_reference": 3,
+      "witness_coordinates_angstrom": [
+       [
+        7.86777,
+        -1.736294,
+        -3.299356
+       ],
+       [
+        7.809889,
+        -0.626809,
+        -4.331221
+       ],
+       [
+        7.65612,
+        -1.22708,
+        -5.622276
+       ],
+       [
+        7.579185,
+        -0.338808,
+        -6.644821
+       ],
+       [
+        7.638747,
+        0.87674,
+        -6.53218
+       ],
+       [
+        7.411774,
+        -1.028059,
+        -7.957494
+       ],
+       [
+        7.321844,
+        -2.367844,
+        -8.063204
+       ],
+       [
+        7.127861,
+        -3.100841,
+        -9.364836
+       ],
+       [
+        6.060807,
+        -4.048252,
+        -9.180439
+       ],
+       [
+        6.491522,
+        -5.34784,
+        -8.755756
+       ],
+       [
+        5.343029,
+        -5.989064,
+        -7.962406
+       ],
+       [
+        5.060795,
+        -5.244706,
+        -6.662462
+       ],
+       [
+        6.898614,
+        -6.202192,
+        -9.969131
+       ],
+       [
+        5.793882,
+        -6.404363,
+        -10.998624
+       ],
+       [
+        6.716198,
+        -2.151659,
+        -10.525339
+       ],
+       [
+        6.731096,
+        -2.821394,
+        -11.839977
+       ],
+       [
+        7.864526,
+        -3.34384,
+        -12.410582
+       ],
+       [
+        7.622429,
+        -4.095738,
+        -13.691496
+       ],
+       [
+        8.985955,
+        -3.225154,
+        -11.928948
+       ],
+       [
+        7.567621,
+        -0.856966,
+        -10.492342
+       ],
+       [
+        7.240544,
+        0.04072,
+        -11.619794
+       ],
+       [
+        7.35548,
+        -0.11778,
+        -9.158006
+       ],
+       [
+        6.955223,
+        -2.340769,
+        -3.331846
+       ],
+       [
+        7.984944,
+        -1.326875,
+        -2.292144
+       ],
+       [
+        8.704378,
+        -2.41185,
+        -3.506342
+       ],
+       [
+        6.95627,
+        0.027878,
+        -4.122684
+       ],
+       [
+        8.738087,
+        -0.045195,
+        -4.301874
+       ],
+       [
+        7.386824,
+        -2.994647,
+        -7.17793
+       ],
+       [
+        8.060685,
+        -3.620736,
+        -9.608365
+       ],
+       [
+        7.358609,
+        -5.257241,
+        -8.088507
+       ],
+       [
+        5.586997,
+        -7.031438,
+        -7.727703
+       ],
+       [
+        4.420484,
+        -5.98389,
+        -8.554216
+       ],
+       [
+        4.258559,
+        -5.743573,
+        -6.109526
+       ],
+       [
+        4.746408,
+        -4.21395,
+        -6.853521
+       ],
+       [
+        5.949187,
+        -5.221344,
+        -6.023343
+       ],
+       [
+        7.744593,
+        -5.727083,
+        -10.478058
+       ],
+       [
+        7.248877,
+        -7.182365,
+        -9.624504
+       ],
+       [
+        4.972656,
+        -7.000719,
+        -10.590463
+       ],
+       [
+        6.188266,
+        -6.939785,
+        -11.868454
+       ],
+       [
+        5.387883,
+        -5.450816,
+        -11.347338
+       ],
+       [
+        5.660195,
+        -1.875251,
+        -10.388246
+       ],
+       [
+        5.830216,
+        -3.123918,
+        -12.186878
+       ],
+       [
+        6.601859,
+        -3.954889,
+        -14.057926
+       ],
+       [
+        7.79176,
+        -5.161469,
+        -13.516875
+       ],
+       [
+        8.314509,
+        -3.731242,
+        -14.45554
+       ],
+       [
+        8.629828,
+        -1.117645,
+        -10.580278
+       ],
+       [
+        7.365646,
+        -0.491028,
+        -12.482742
+       ],
+       [
+        7.926938,
+        0.794457,
+        -11.65409
+       ],
+       [
+        6.379265,
+        0.385816,
+        -9.156934
+       ],
+       [
+        8.120529,
+        0.664937,
+        -9.073649
+       ]
+      ]
+     },
+     {
+      "name": "tamoxifen",
+      "chembl": "CHEMBL83",
+      "smiles": "CC/C(=C(\\c1ccccc1)c1ccc(OCCN(C)C)cc1)c1ccccc1",
+      "reference_kcal_mol": 102.920209,
+      "witness_energy_kcal_mol": 102.92020933017781,
+      "witness_matches": true,
+      "runs": [
+       {
+        "seed": 1,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 102.920209,
+        "seconds": 67.9
+       },
+       {
+        "seed": 2,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 102.920209,
+        "seconds": 57.8
+       },
+       {
+        "seed": 3,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 102.920209,
+        "seconds": 70.9
+       }
+      ],
+      "runs_reaching_reference": 3,
+      "witness_coordinates_angstrom": [
+       [
+        -3.100887,
+        2.143755,
+        2.415235
+       ],
+       [
+        -2.31014,
+        1.718251,
+        3.647274
+       ],
+       [
+        -2.726847,
+        2.474082,
+        4.903553
+       ],
+       [
+        -1.993285,
+        3.451504,
+        5.506691
+       ],
+       [
+        -0.718048,
+        3.894295,
+        4.886507
+       ],
+       [
+        0.504109,
+        3.473923,
+        5.426157
+       ],
+       [
+        1.70722,
+        3.89275,
+        4.854999
+       ],
+       [
+        1.696625,
+        4.737049,
+        3.745291
+       ],
+       [
+        0.484492,
+        5.166809,
+        3.206683
+       ],
+       [
+        -0.719652,
+        4.749799,
+        3.776576
+       ],
+       [
+        -2.442302,
+        4.081751,
+        6.779199
+       ],
+       [
+        -2.838848,
+        5.42316,
+        6.794746
+       ],
+       [
+        -3.249393,
+        6.022632,
+        7.988388
+       ],
+       [
+        -3.266018,
+        5.297397,
+        9.1819
+       ],
+       [
+        -3.693192,
+        6.003025,
+        10.272906
+       ],
+       [
+        -3.783291,
+        5.2909,
+        11.511675
+       ],
+       [
+        -4.29828,
+        6.266226,
+        12.583042
+       ],
+       [
+        -4.35585,
+        5.697062,
+        13.943983
+       ],
+       [
+        -5.395275,
+        4.67207,
+        14.061061
+       ],
+       [
+        -4.605,
+        6.76416,
+        14.917682
+       ],
+       [
+        -2.857703,
+        3.963958,
+        9.174622
+       ],
+       [
+        -2.443536,
+        3.361865,
+        7.980686
+       ],
+       [
+        -4.024931,
+        2.009477,
+        5.458022
+       ],
+       [
+        -5.157509,
+        2.832976,
+        5.403398
+       ],
+       [
+        -6.376849,
+        2.394846,
+        5.923458
+       ],
+       [
+        -6.475558,
+        1.129208,
+        6.49886
+       ],
+       [
+        -5.356099,
+        0.300696,
+        6.555844
+       ],
+       [
+        -4.135591,
+        0.738212,
+        6.037302
+       ],
+       [
+        -2.730605,
+        1.613949,
+        1.531508
+       ],
+       [
+        -3.004889,
+        3.217934,
+        2.228998
+       ],
+       [
+        -4.165065,
+        1.90914,
+        2.520215
+       ],
+       [
+        -2.435686,
+        0.638563,
+        3.796689
+       ],
+       [
+        -1.243194,
+        1.843678,
+        3.435164
+       ],
+       [
+        0.523098,
+        2.819222,
+        6.293906
+       ],
+       [
+        2.652024,
+        3.562473,
+        5.278427
+       ],
+       [
+        2.634086,
+        5.063751,
+        3.302732
+       ],
+       [
+        0.476491,
+        5.828919,
+        2.345
+       ],
+       [
+        -1.659429,
+        5.095317,
+        3.353512
+       ],
+       [
+        -2.834397,
+        6.009504,
+        5.879893
+       ],
+       [
+        -3.558873,
+        7.064569,
+        7.986834
+       ],
+       [
+        -4.479868,
+        4.452998,
+        11.398268
+       ],
+       [
+        -2.792208,
+        4.923237,
+        11.804185
+       ],
+       [
+        -3.617694,
+        7.12888,
+        12.580068
+       ],
+       [
+        -5.275952,
+        6.66384,
+        12.277999
+       ],
+       [
+        -5.440194,
+        4.286199,
+        15.086095
+       ],
+       [
+        -5.174312,
+        3.809733,
+        13.42454
+       ],
+       [
+        -6.387089,
+        5.05612,
+        13.796483
+       ],
+       [
+        -4.610519,
+        6.362148,
+        15.93711
+       ],
+       [
+        -5.560665,
+        7.270959,
+        14.740574
+       ],
+       [
+        -3.804958,
+        7.512144,
+        14.883478
+       ],
+       [
+        -2.846517,
+        3.36187,
+        10.076558
+       ],
+       [
+        -2.125957,
+        2.322176,
+        7.993477
+       ],
+       [
+        -5.093519,
+        3.822624,
+        4.957894
+       ],
+       [
+        -7.247501,
+        3.043617,
+        5.881114
+       ],
+       [
+        -7.424851,
+        0.78975,
+        6.904621
+       ],
+       [
+        -5.431893,
+        -0.685323,
+        7.006174
+       ],
+       [
+        -3.268652,
+        0.084984,
+        6.096037
+       ]
+      ]
+     },
+     {
+      "name": "simvastatin",
+      "chembl": "CHEMBL1064",
+      "smiles": "CCC(C)(C)C(=O)O[C@H]1C[C@@H](C)C=C2C=C[C@H](C)[C@H](CC[C@@H]3C[C@@H](O)CC(=O)O3)[C@H]21",
+      "reference_kcal_mol": 27.477374,
+      "witness_energy_kcal_mol": 27.477373978271345,
+      "witness_matches": true,
+      "runs": [
+       {
+        "seed": 1,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 27.526724,
+        "seconds": 110.0
+       },
+       {
+        "seed": 2,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 27.800477,
+        "seconds": 112.7
+       },
+       {
+        "seed": 3,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 27.526724,
+        "seconds": 115.1
+       },
+       {
+        "seed": 4,
+        "settings": {
+         "conformers": 3000,
+         "starts": 50,
+         "steps": 150
+        },
+        "energy_kcal_mol": 27.477374,
+        "seconds": 386.6
+       },
+       {
+        "seed": 5,
+        "settings": {
+         "conformers": 3000,
+         "starts": 50,
+         "steps": 150
+        },
+        "energy_kcal_mol": 27.477374,
+        "seconds": 347.8
+       },
+       {
+        "seed": 6,
+        "settings": {
+         "conformers": 3000,
+         "starts": 50,
+         "steps": 150
+        },
+        "energy_kcal_mol": 27.477374,
+        "seconds": 298.5
+       }
+      ],
+      "runs_reaching_reference": 3,
+      "witness_coordinates_angstrom": [
+       [
+        -5.045938,
+        4.677664,
+        2.477705
+       ],
+       [
+        -5.781553,
+        5.292256,
+        1.292373
+       ],
+       [
+        -7.209866,
+        5.797709,
+        1.602173
+       ],
+       [
+        -8.113563,
+        4.616081,
+        1.998741
+       ],
+       [
+        -7.79857,
+        6.45203,
+        0.339101
+       ],
+       [
+        -7.210872,
+        6.846443,
+        2.724601
+       ],
+       [
+        -7.926534,
+        6.786266,
+        3.719159
+       ],
+       [
+        -6.352291,
+        7.867356,
+        2.443464
+       ],
+       [
+        -6.258485,
+        8.968805,
+        3.377548
+       ],
+       [
+        -4.875957,
+        8.959989,
+        4.041724
+       ],
+       [
+        -3.715316,
+        9.2959,
+        3.091514
+       ],
+       [
+        -3.075425,
+        8.038161,
+        2.502279
+       ],
+       [
+        -4.101032,
+        10.238082,
+        1.982821
+       ],
+       [
+        -5.344064,
+        10.703013,
+        1.76473
+       ],
+       [
+        -5.588924,
+        11.599929,
+        0.654268
+       ],
+       [
+        -6.804953,
+        12.069157,
+        0.352112
+       ],
+       [
+        -8.054439,
+        11.707594,
+        1.10827
+       ],
+       [
+        -8.456421,
+        12.901728,
+        1.980933
+       ],
+       [
+        -7.88211,
+        10.365101,
+        1.879811
+       ],
+       [
+        -9.080708,
+        10.052495,
+        2.806242
+       ],
+       [
+        -10.412013,
+        9.86661,
+        2.073756
+       ],
+       [
+        -11.584221,
+        9.488778,
+        3.004945
+       ],
+       [
+        -11.320399,
+        8.3475,
+        3.974725
+       ],
+       [
+        -11.174662,
+        7.06535,
+        3.183521
+       ],
+       [
+        -10.847038,
+        5.998802,
+        4.065702
+       ],
+       [
+        -12.479329,
+        6.779987,
+        2.475382
+       ],
+       [
+        -12.9915,
+        7.957341,
+        1.689507
+       ],
+       [
+        -13.710581,
+        7.804756,
+        0.706006
+       ],
+       [
+        -12.728295,
+        9.199164,
+        2.166106
+       ],
+       [
+        -6.523095,
+        10.324013,
+        2.656291
+       ],
+       [
+        -4.032924,
+        4.390564,
+        2.176898
+       ],
+       [
+        -4.957351,
+        5.383912,
+        3.308344
+       ],
+       [
+        -5.548626,
+        3.77646,
+        2.839892
+       ],
+       [
+        -5.825907,
+        4.543154,
+        0.490841
+       ],
+       [
+        -5.175081,
+        6.113575,
+        0.895409
+       ],
+       [
+        -9.16045,
+        4.927555,
+        2.079944
+       ],
+       [
+        -8.067858,
+        3.813931,
+        1.253714
+       ],
+       [
+        -7.830714,
+        4.194095,
+        2.969084
+       ],
+       [
+        -7.892716,
+        5.726252,
+        -0.476329
+       ],
+       [
+        -7.167779,
+        7.273738,
+        -0.018859
+       ],
+       [
+        -8.792156,
+        6.870774,
+        0.534743
+       ],
+       [
+        -6.986782,
+        8.852277,
+        4.187279
+       ],
+       [
+        -4.884697,
+        9.708309,
+        4.846115
+       ],
+       [
+        -4.700545,
+        7.989908,
+        4.522675
+       ],
+       [
+        -2.939186,
+        9.790837,
+        3.690589
+       ],
+       [
+        -3.750169,
+        7.526758,
+        1.813295
+       ],
+       [
+        -2.166314,
+        8.289517,
+        1.943809
+       ],
+       [
+        -2.791043,
+        7.334051,
+        3.291309
+       ],
+       [
+        -3.286692,
+        10.544366,
+        1.327224
+       ],
+       [
+        -4.741922,
+        11.908895,
+        0.045049
+       ],
+       [
+        -6.912651,
+        12.75539,
+        -0.48522
+       ],
+       [
+        -8.844019,
+        11.56067,
+        0.359795
+       ],
+       [
+        -9.45022,
+        12.763652,
+        2.417022
+       ],
+       [
+        -7.746425,
+        13.066681,
+        2.798228
+       ],
+       [
+        -8.498197,
+        13.823429,
+        1.388403
+       ],
+       [
+        -7.845055,
+        9.569781,
+        1.120287
+       ],
+       [
+        -8.870306,
+        9.120908,
+        3.326978
+       ],
+       [
+        -9.179983,
+        10.817913,
+        3.584076
+       ],
+       [
+        -10.29706,
+        9.110126,
+        1.287503
+       ],
+       [
+        -10.69029,
+        10.784667,
+        1.542782
+       ],
+       [
+        -11.851001,
+        10.375665,
+        3.592059
+       ],
+       [
+        -12.170232,
+        8.246287,
+        4.663853
+       ],
+       [
+        -10.453118,
+        8.528016,
+        4.617156
+       ],
+       [
+        -10.367874,
+        7.140042,
+        2.448443
+       ],
+       [
+        -9.906448,
+        6.121019,
+        4.315272
+       ],
+       [
+        -12.337043,
+        5.934619,
+        1.791899
+       ],
+       [
+        -13.255904,
+        6.482315,
+        3.189961
+       ],
+       [
+        -6.571433,
+        11.094903,
+        3.440072
+       ]
+      ]
+     },
+     {
+      "name": "(S)-verapamil",
+      "chembl": "CHEMBL6966 (S enantiomer)",
+      "smiles": "COc1ccc(CCN(C)CCC[C@@](C#N)(c2ccc(OC)c(OC)c2)C(C)C)cc1OC",
+      "reference_kcal_mol": 131.094382,
+      "witness_energy_kcal_mol": 131.09438178477103,
+      "witness_matches": true,
+      "runs": [
+       {
+        "seed": 1,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 131.094382,
+        "seconds": 125.9
+       },
+       {
+        "seed": 2,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 131.094382,
+        "seconds": 132.7
+       },
+       {
+        "seed": 3,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 131.094382,
+        "seconds": 121.3
+       }
+      ],
+      "runs_reaching_reference": 3,
+      "witness_coordinates_angstrom": [
+       [
+        5.204927,
+        6.761136,
+        5.44421
+       ],
+       [
+        4.392536,
+        5.654512,
+        5.072865
+       ],
+       [
+        3.106197,
+        5.917426,
+        4.682452
+       ],
+       [
+        2.491955,
+        7.167806,
+        4.81966
+       ],
+       [
+        1.19595,
+        7.385623,
+        4.341747
+       ],
+       [
+        0.485467,
+        6.356926,
+        3.716733
+       ],
+       [
+        -0.891298,
+        6.613693,
+        3.152585
+       ],
+       [
+        -0.81319,
+        7.11058,
+        1.697177
+       ],
+       [
+        -2.069177,
+        7.570224,
+        1.075419
+       ],
+       [
+        -3.001001,
+        6.461566,
+        0.863915
+       ],
+       [
+        -2.735954,
+        8.673904,
+        1.782333
+       ],
+       [
+        -1.868083,
+        9.926555,
+        1.988556
+       ],
+       [
+        -1.421093,
+        10.569988,
+        0.659433
+       ],
+       [
+        -0.424106,
+        11.77087,
+        0.808943
+       ],
+       [
+        -1.112831,
+        12.833297,
+        1.600084
+       ],
+       [
+        -1.657626,
+        13.653106,
+        2.217313
+       ],
+       [
+        0.874034,
+        11.25303,
+        1.489996
+       ],
+       [
+        1.277797,
+        11.673998,
+        2.771199
+       ],
+       [
+        2.464237,
+        11.203685,
+        3.348105
+       ],
+       [
+        3.285631,
+        10.31457,
+        2.658196
+       ],
+       [
+        4.438591,
+        9.944694,
+        3.297229
+       ],
+       [
+        5.60126,
+        10.168453,
+        2.498632
+       ],
+       [
+        2.877011,
+        9.837882,
+        1.412939
+       ],
+       [
+        3.611081,
+        8.946166,
+        0.675993
+       ],
+       [
+        3.461979,
+        7.62307,
+        1.195583
+       ],
+       [
+        1.696458,
+        10.314276,
+        0.831089
+       ],
+       [
+        -0.070916,
+        12.374509,
+        -0.618362
+       ],
+       [
+        -1.293239,
+        12.820856,
+        -1.440462
+       ],
+       [
+        0.919504,
+        13.552866,
+        -0.545674
+       ],
+       [
+        1.09107,
+        5.10337,
+        3.587772
+       ],
+       [
+        2.379388,
+        4.871706,
+        4.087726
+       ],
+       [
+        2.840815,
+        3.597467,
+        3.867256
+       ],
+       [
+        3.544436,
+        3.018738,
+        4.962551
+       ],
+       [
+        5.267647,
+        7.498153,
+        4.637202
+       ],
+       [
+        4.847586,
+        7.216312,
+        6.373432
+       ],
+       [
+        6.215894,
+        6.38473,
+        5.62794
+       ],
+       [
+        3.002855,
+        8.009635,
+        5.276632
+       ],
+       [
+        0.755803,
+        8.375807,
+        4.444768
+       ],
+       [
+        -1.39228,
+        7.345604,
+        3.796234
+       ],
+       [
+        -1.48744,
+        5.69535,
+        3.214561
+       ],
+       [
+        -0.076341,
+        7.918666,
+        1.624565
+       ],
+       [
+        -0.386321,
+        6.313986,
+        1.071768
+       ],
+       [
+        -3.375298,
+        6.04386,
+        1.804746
+       ],
+       [
+        -3.862023,
+        6.793637,
+        0.272919
+       ],
+       [
+        -2.524829,
+        5.657206,
+        0.292319
+       ],
+       [
+        -3.111481,
+        8.341302,
+        2.757948
+       ],
+       [
+        -3.618863,
+        8.978485,
+        1.204816
+       ],
+       [
+        -1.010029,
+        9.683454,
+        2.62207
+       ],
+       [
+        -2.464836,
+        10.65128,
+        2.555939
+       ],
+       [
+        -2.335952,
+        10.903491,
+        0.154051
+       ],
+       [
+        -0.975389,
+        9.807217,
+        0.009725
+       ],
+       [
+        0.690234,
+        12.382774,
+        3.352518
+       ],
+       [
+        2.760149,
+        11.557372,
+        4.332844
+       ],
+       [
+        6.440673,
+        10.340852,
+        3.179419
+       ],
+       [
+        5.835674,
+        9.280274,
+        1.9055
+       ],
+       [
+        5.507428,
+        11.050843,
+        1.854888
+       ],
+       [
+        3.930118,
+        6.933284,
+        0.486972
+       ],
+       [
+        3.976425,
+        7.516452,
+        2.154272
+       ],
+       [
+        2.406967,
+        7.345599,
+        1.286876
+       ],
+       [
+        1.426966,
+        9.928145,
+        -0.149761
+       ],
+       [
+        0.415862,
+        11.594333,
+        -1.217711
+       ],
+       [
+        -1.947282,
+        11.977896,
+        -1.679831
+       ],
+       [
+        -1.882639,
+        13.582217,
+        -0.920581
+       ],
+       [
+        -0.974791,
+        13.249483,
+        -2.397719
+       ],
+       [
+        0.491879,
+        14.410855,
+        -0.017059
+       ],
+       [
+        1.187497,
+        13.88872,
+        -1.553871
+       ],
+       [
+        1.851255,
+        13.272477,
+        -0.046001
+       ],
+       [
+        0.563067,
+        4.287995,
+        3.097907
+       ],
+       [
+        4.617525,
+        3.208258,
+        4.867737
+       ],
+       [
+        3.39885,
+        1.935025,
+        4.912333
+       ],
+       [
+        3.167123,
+        3.356802,
+        5.934351
+       ]
+      ]
+     },
+     {
+      "name": "(R)-ranolazine",
+      "chembl": "CHEMBL1404 (R enantiomer)",
+      "smiles": "COc1ccccc1OC[C@H](O)CN1CCN(CC(=O)Nc2c(C)cccc2C)CC1",
+      "reference_kcal_mol": 190.03353,
+      "witness_energy_kcal_mol": 190.0335304452767,
+      "witness_matches": true,
+      "runs": [
+       {
+        "seed": 1,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 190.03353,
+        "seconds": 110.2
+       },
+       {
+        "seed": 2,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 190.03353,
+        "seconds": 116.6
+       },
+       {
+        "seed": 3,
+        "settings": {
+         "conformers": 1500,
+         "starts": 25,
+         "steps": 80
+        },
+        "energy_kcal_mol": 190.033531,
+        "seconds": 100.6
+       }
+      ],
+      "runs_reaching_reference": 3,
+      "witness_coordinates_angstrom": [
+       [
+        12.624036,
+        -0.875726,
+        2.838616
+       ],
+       [
+        11.432464,
+        -1.342233,
+        2.220644
+       ],
+       [
+        10.244316,
+        -0.880818,
+        2.724676
+       ],
+       [
+        10.112225,
+        -0.011676,
+        3.810886
+       ],
+       [
+        8.844187,
+        0.406424,
+        4.232284
+       ],
+       [
+        7.698921,
+        -0.03407,
+        3.570053
+       ],
+       [
+        7.816383,
+        -0.901424,
+        2.487325
+       ],
+       [
+        9.080192,
+        -1.333432,
+        2.083335
+       ],
+       [
+        9.149782,
+        -2.16154,
+        0.991446
+       ],
+       [
+        9.287937,
+        -3.526283,
+        1.407729
+       ],
+       [
+        9.883256,
+        -4.341099,
+        0.257375
+       ],
+       [
+        9.935291,
+        -5.727178,
+        0.622201
+       ],
+       [
+        11.307774,
+        -3.860829,
+        -0.101165
+       ],
+       [
+        11.973195,
+        -4.776384,
+        -1.064624
+       ],
+       [
+        13.415809,
+        -4.453408,
+        -1.136476
+       ],
+       [
+        14.162077,
+        -5.317121,
+        -2.178336
+       ],
+       [
+        13.578945,
+        -5.174043,
+        -3.534708
+       ],
+       [
+        14.264926,
+        -6.081345,
+        -4.493025
+       ],
+       [
+        15.652338,
+        -5.53216,
+        -4.858642
+       ],
+       [
+        16.61581,
+        -6.277865,
+        -4.992148
+       ],
+       [
+        15.62469,
+        -4.153015,
+        -4.998481
+       ],
+       [
+        16.707902,
+        -3.291036,
+        -5.281033
+       ],
+       [
+        17.725027,
+        -3.591151,
+        -6.21213
+       ],
+       [
+        17.738986,
+        -4.807118,
+        -7.098652
+       ],
+       [
+        18.791366,
+        -2.686015,
+        -6.379487
+       ],
+       [
+        18.826315,
+        -1.476901,
+        -5.694546
+       ],
+       [
+        17.789489,
+        -1.146527,
+        -4.832116
+       ],
+       [
+        16.722968,
+        -2.035906,
+        -4.619545
+       ],
+       [
+        15.645587,
+        -1.622013,
+        -3.649739
+       ],
+       [
+        12.142767,
+        -5.515914,
+        -3.462072
+       ],
+       [
+        11.389517,
+        -4.656094,
+        -2.419419
+       ],
+       [
+        13.471001,
+        -1.325219,
+        2.311196
+       ],
+       [
+        12.716406,
+        0.211736,
+        2.749945
+       ],
+       [
+        12.677007,
+        -1.19485,
+        3.884663
+       ],
+       [
+        10.974008,
+        0.364327,
+        4.351772
+       ],
+       [
+        8.75209,
+        1.084702,
+        5.077396
+       ],
+       [
+        6.717405,
+        0.301484,
+        3.894558
+       ],
+       [
+        6.930478,
+        -1.241262,
+        1.95907
+       ],
+       [
+        9.917163,
+        -3.637474,
+        2.301567
+       ],
+       [
+        8.296901,
+        -3.9231,
+        1.662454
+       ],
+       [
+        9.230129,
+        -4.249087,
+        -0.617358
+       ],
+       [
+        10.649905,
+        -6.098274,
+        0.064028
+       ],
+       [
+        11.896903,
+        -3.868352,
+        0.82543
+       ],
+       [
+        11.293758,
+        -2.829553,
+        -0.474525
+       ],
+       [
+        13.560735,
+        -3.392193,
+        -1.38075
+       ],
+       [
+        13.877365,
+        -4.630165,
+        -0.157373
+       ],
+       [
+        15.212097,
+        -5.002653,
+        -2.18739
+       ],
+       [
+        14.138234,
+        -6.366716,
+        -1.855038
+       ],
+       [
+        13.703787,
+        -6.138504,
+        -5.434039
+       ],
+       [
+        14.366121,
+        -7.096048,
+        -4.090865
+       ],
+       [
+        14.826925,
+        -3.760838,
+        -4.505196
+       ],
+       [
+        18.199414,
+        -4.570866,
+        -8.065515
+       ],
+       [
+        18.321667,
+        -5.61064,
+        -6.639877
+       ],
+       [
+        16.727679,
+        -5.152147,
+        -7.332016
+       ],
+       [
+        19.596897,
+        -2.917578,
+        -7.074186
+       ],
+       [
+        19.652792,
+        -0.788109,
+        -5.846491
+       ],
+       [
+        17.822406,
+        -0.189823,
+        -4.315484
+       ],
+       [
+        14.674801,
+        -1.578062,
+        -4.153801
+       ],
+       [
+        15.597379,
+        -2.325612,
+        -2.81264
+       ],
+       [
+        15.838247,
+        -0.628789,
+        -3.229922
+       ],
+       [
+        12.009473,
+        -6.57836,
+        -3.216411
+       ],
+       [
+        11.679313,
+        -5.345525,
+        -4.44137
+       ],
+       [
+        11.394765,
+        -3.608515,
+        -2.749498
+       ],
+       [
+        10.347202,
+        -4.992404,
+        -2.409472
+       ]
+      ]
+     }
+    ],
+    "result": "each reference was reached by at least three of three to six seeded runs; every witness geometry (rounded to 1e-6 Angstrom) passes the evaluator's geometry and stereochemistry checks and reproduces its reference energy"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-chemistry-adme-solubility-biogen": {
+   "family": "science_chemistry_biogen_adme",
+   "problem_protocol": "recreated",
+   "seed_score": 0.4426242593517242,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 5.953801,
+   "wall_seconds": 6.03,
+   "seed_details": {
+    "combined_score": -0.4426242593517242,
+    "score": 0.4426242593517242,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "mae": 0.4426242593517242,
+    "rmse": 0.6376111306188179,
+    "r2": 0.2704936649245049,
+    "pearson_r": 0.529909903660568,
+    "spearman_rho": 0.45916644352442193,
+    "n": 435,
+    "endpoint": "solubility",
+    "property": "log10 aqueous solubility at pH 6.8 (ug/mL)",
+    "n_train": 1738,
+    "train_mean_predictor_mae": 0.5497572704390038,
+    "elapsed_seconds": 5.953801
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.14
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (435,), got (436,)",
+     "rejected": true,
+     "wall_seconds": 0.14
+    },
+    {
+     "candidate": "predict_nan.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate predict() failed in the sandbox (exception): result is not JSON-serialisable: Out of range float values are not JSON compliant: nan",
+     "rejected": true,
+     "wall_seconds": 0.14
+    },
+    {
+     "candidate": "missing_entry.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate must define predict()",
+     "rejected": true,
+     "wall_seconds": 0.08
+    }
+   ],
+   "reference_check": {
+    "compared": "No published value on these splits could be read; the training-mean predictor's MAE is reported for scale and the sandbox's refusal to list or read the prepared data was exercised (invalid candidate predict_peek.py).",
+    "result": "no reference reproduction"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-chemistry-adme-microsomal-clearance-biogen": {
+   "family": "science_chemistry_biogen_adme",
+   "problem_protocol": "recreated",
+   "seed_score": 0.3931742215938512,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 7.279415,
+   "wall_seconds": 7.35,
+   "seed_details": {
+    "combined_score": -0.3931742215938512,
+    "score": 0.3931742215938512,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "mae": 0.3931742215938512,
+    "rmse": 0.4914746912326796,
+    "r2": 0.36968673503197313,
+    "pearson_r": 0.6095003554976117,
+    "spearman_rho": 0.6042655041960362,
+    "n": 618,
+    "endpoint": "hlm",
+    "property": "log10 human liver microsomal intrinsic clearance CLint (mL/min/kg)",
+    "n_train": 2469,
+    "train_mean_predictor_mae": 0.5241104052156121,
+    "elapsed_seconds": 7.279415
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.15
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (618,), got (619,)",
+     "rejected": true,
+     "wall_seconds": 0.14
+    },
+    {
+     "candidate": "predict_nan.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate predict() failed in the sandbox (exception): result is not JSON-serialisable: Out of range float values are not JSON compliant: nan",
+     "rejected": true,
+     "wall_seconds": 0.14
+    },
+    {
+     "candidate": "missing_entry.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate must define predict()",
+     "rejected": true,
+     "wall_seconds": 0.07
+    }
+   ],
+   "reference_check": {
+    "compared": "No published value on these splits could be read; the training-mean predictor's MAE is reported for scale and the sandbox's refusal to list or read the prepared data was exercised (invalid candidate predict_peek.py).",
+    "result": "no reference reproduction"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-chemistry-adme-mdr1-efflux-biogen": {
+   "family": "science_chemistry_biogen_adme",
+   "problem_protocol": "recreated",
+   "seed_score": 0.4025674406899811,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 5.867335,
+   "wall_seconds": 5.94,
+   "seed_details": {
+    "combined_score": -0.4025674406899811,
+    "score": 0.4025674406899811,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "mae": 0.4025674406899811,
+    "rmse": 0.51200795239946,
+    "r2": 0.482765584442452,
+    "pearson_r": 0.7078211894138957,
+    "spearman_rho": 0.7039173073244122,
+    "n": 529,
+    "endpoint": "mdr1_er",
+    "property": "log10 MDR1-MDCK efflux ratio (B-A/A-B)",
+    "n_train": 2113,
+    "train_mean_predictor_mae": 0.6061702429214415,
+    "elapsed_seconds": 5.867335
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.14
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (529,), got (530,)",
+     "rejected": true,
+     "wall_seconds": 0.14
+    },
+    {
+     "candidate": "predict_nan.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate predict() failed in the sandbox (exception): result is not JSON-serialisable: Out of range float values are not JSON compliant: nan",
+     "rejected": true,
+     "wall_seconds": 0.14
+    },
+    {
+     "candidate": "missing_entry.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate must define predict()",
+     "rejected": true,
+     "wall_seconds": 0.07
+    }
+   ],
+   "reference_check": {
+    "compared": "No published value on these splits could be read; the training-mean predictor's MAE is reported for scale and the sandbox's refusal to list or read the prepared data was exercised (invalid candidate predict_peek.py).",
+    "result": "no reference reproduction"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-chemistry-adme-rat-microsomal-clearance-biogen": {
+   "family": "science_chemistry_biogen_adme",
+   "problem_protocol": "recreated",
+   "seed_score": 0.47600678879214403,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 5.821385,
+   "wall_seconds": 5.89,
+   "seed_details": {
+    "combined_score": -0.47600678879214403,
+    "score": 0.47600678879214403,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "mae": 0.47600678879214403,
+    "rmse": 0.6042496854836057,
+    "r2": 0.37074557870058056,
+    "pearson_r": 0.6092235412850047,
+    "spearman_rho": 0.6236450773526262,
+    "n": 611,
+    "endpoint": "rlm",
+    "property": "log10 rat liver microsomal intrinsic clearance CLint (mL/min/kg)",
+    "n_train": 2443,
+    "train_mean_predictor_mae": 0.6432754225118295,
+    "elapsed_seconds": 5.821385
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.16
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (611,), got (612,)",
+     "rejected": true,
+     "wall_seconds": 0.15
+    },
+    {
+     "candidate": "predict_nan.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate predict() failed in the sandbox (exception): result is not JSON-serialisable: Out of range float values are not JSON compliant: nan",
+     "rejected": true,
+     "wall_seconds": 0.14
+    },
+    {
+     "candidate": "missing_entry.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate must define predict()",
+     "rejected": true,
+     "wall_seconds": 0.07
+    }
+   ],
+   "reference_check": {
+    "compared": "No published value on these splits could be read; the training-mean predictor's MAE is reported for scale and the sandbox's refusal to list or read the prepared data was exercised (invalid candidate predict_peek.py).",
+    "result": "no reference reproduction"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-materials-matbench-steel-yield-strength": {
+   "family": "science_materials_matbench_composition",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 115.37441707629287,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 7.008106,
+   "wall_seconds": 7.07,
+   "seed_details": {
+    "combined_score": -115.37441707629287,
+    "score": 115.37441707629287,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "task": "matbench_steels",
+    "target": "yield strength",
+    "unit": "MPa",
+    "input_type": "composition",
+    "samples": 312,
+    "mean_mae": 115.37441707629287,
+    "std_mae": 8.834678981972768,
+    "mean_rmse": 175.99757955961195,
+    "max_max_error": 1049.4420000000027,
+    "elapsed_seconds": 7.008106,
+    "folds": [
+     {
+      "mae": 126.38480952380962,
+      "rmse": 206.61752143469695,
+      "r2": 0.5006203514972581,
+      "pearson_r": 0.7144992033853563,
+      "spearman_rho": 0.775488161928131,
+      "n": 63,
+      "max_error": 988.2225000000008,
+      "train_mean_predictor_mae": 241.45907439280927
+     },
+     {
+      "mae": 106.84789682539653,
+      "rmse": 160.49133002957706,
+      "r2": 0.691716879919947,
+      "pearson_r": 0.833871783388515,
+      "spearman_rho": 0.8165376542945988,
+      "n": 63,
+      "max_error": 702.5954999999988,
+      "train_mean_predictor_mae": 219.37703193727293
+     },
+     {
+      "mae": 119.1629193548384,
+      "rmse": 197.77594248920153,
+      "r2": 0.5370977196955553,
+      "pearson_r": 0.7358813516495495,
+      "spearman_rho": 0.7954167718462685,
+      "n": 62,
+      "max_error": 1049.4420000000027,
+      "train_mean_predictor_mae": 225.79322580645163
+     },
+     {
+      "mae": 121.24665322580643,
+      "rmse": 160.31016736004005,
+      "r2": 0.779760920512781,
+      "pearson_r": 0.9109303099333568,
+      "spearman_rho": 0.787162247236282,
+      "n": 62,
+      "max_error": 444.4909999999993,
+      "train_mean_predictor_mae": 241.20352258064514
+     },
+     {
+      "mae": 103.22980645161333,
+      "rmse": 154.79293648454413,
+      "r2": 0.7058646603966563,
+      "pearson_r": 0.8505480626149126,
+      "spearman_rho": 0.7540418033113663,
+      "n": 62,
+      "max_error": 594.5894999999989,
+      "train_mean_predictor_mae": 220.889793548387
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate fit_predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.13
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (63,), got (62,)",
+     "rejected": true,
+     "wall_seconds": 0.12
+    }
+   ],
+   "reference_check": {
+    "compared": "Stored per-fold predictions of two published Matbench v0.1 submissions (benchmarks/*/results.json.gz at matbench commit 936176db) rescored with this evaluator's folds, targets and metric, versus the scores stored in the submissions and shown on the leaderboard page.",
+    "submissions": {
+     "AMMExpress v2020": {
+      "metric": "mean mae",
+      "recomputed": 97.492873,
+      "stored_in_submission": 97.492873,
+      "leaderboard_page": 97.4929,
+      "max_fold_difference": 0.0
+     },
+     "RF-SCM/Magpie": {
+      "metric": "mean mae",
+      "recomputed": 103.512486,
+      "stored_in_submission": 103.512486,
+      "leaderboard_page": 103.5125,
+      "max_fold_difference": 0.0
+     }
+    },
+    "result": "identical to the stored scores (largest fold difference 0.0e+00) and to the leaderboard values at their four printed decimals"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-materials-matbench-experimental-band-gap": {
+   "family": "science_materials_matbench_composition",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 0.4677546856917497,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 12.536973,
+   "wall_seconds": 12.6,
+   "seed_details": {
+    "combined_score": -0.4677546856917497,
+    "score": 0.4677546856917497,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "task": "matbench_expt_gap",
+    "target": "gap expt",
+    "unit": "eV",
+    "input_type": "composition",
+    "samples": 4604,
+    "mean_mae": 0.4677546856917497,
+    "std_mae": 0.02321538789079735,
+    "mean_rmse": 0.847946622941597,
+    "max_max_error": 9.06785,
+    "elapsed_seconds": 12.536973,
+    "folds": [
+     {
+      "mae": 0.45911923090843293,
+      "rmse": 0.8236493963462899,
+      "r2": 0.621215127444124,
+      "pearson_r": 0.7889463914486361,
+      "spearman_rho": 0.7718985595463962,
+      "n": 921,
+      "max_error": 5.89295,
+      "train_mean_predictor_mae": 1.096468004680365
+     },
+     {
+      "mae": 0.4885306822294608,
+      "rmse": 0.8655682814736846,
+      "r2": 0.6722017790493671,
+      "pearson_r": 0.8229960005864827,
+      "spearman_rho": 0.7919495998425982,
+      "n": 921,
+      "max_error": 5.51805,
+      "train_mean_predictor_mae": 1.1922119265587139
+     },
+     {
+      "mae": 0.5014525750995296,
+      "rmse": 0.9452785282963324,
+      "r2": 0.6161546384503405,
+      "pearson_r": 0.7860792573546644,
+      "spearman_rho": 0.7598987849720112,
+      "n": 921,
+      "max_error": 9.06785,
+      "train_mean_predictor_mae": 1.1526881705214234
+     },
+     {
+      "mae": 0.4437333297140789,
+      "rmse": 0.8250297608686543,
+      "r2": 0.6711253666255887,
+      "pearson_r": 0.8197178777602919,
+      "spearman_rho": 0.7750741313672036,
+      "n": 921,
+      "max_error": 5.448599999999996,
+      "train_mean_predictor_mae": 1.1445202551972367
+     },
+     {
+      "mae": 0.44593761050724645,
+      "rmse": 0.7802071477230228,
+      "r2": 0.6875114700969962,
+      "pearson_r": 0.8319232096573054,
+      "spearman_rho": 0.7673663396382053,
+      "n": 920,
+      "max_error": 4.90795,
+      "train_mean_predictor_mae": 1.131746447623094
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate fit_predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.15
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (921,), got (920,)",
+     "rejected": true,
+     "wall_seconds": 0.14
+    }
+   ],
+   "reference_check": {
+    "compared": "Stored per-fold predictions of two published Matbench v0.1 submissions (benchmarks/*/results.json.gz at matbench commit 936176db) rescored with this evaluator's folds, targets and metric, versus the scores stored in the submissions and shown on the leaderboard page.",
+    "submissions": {
+     "AMMExpress v2020": {
+      "metric": "mean mae",
+      "recomputed": 0.41614,
+      "stored_in_submission": 0.41614,
+      "leaderboard_page": 0.4161,
+      "max_fold_difference": 0.0
+     },
+     "RF-SCM/Magpie": {
+      "metric": "mean mae",
+      "recomputed": 0.446055,
+      "stored_in_submission": 0.446055,
+      "leaderboard_page": 0.4461,
+      "max_fold_difference": 0.0
+     }
+    },
+    "result": "identical to the stored scores (largest fold difference 0.0e+00) and to the leaderboard values at their four printed decimals"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-materials-matbench-exfoliation-energy": {
+   "family": "science_materials_matbench_structure",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 42.06902474510171,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 7.968231,
+   "wall_seconds": 8.04,
+   "seed_details": {
+    "combined_score": -42.06902474510171,
+    "score": 42.06902474510171,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "task": "matbench_jdft2d",
+    "target": "exfoliation_en",
+    "unit": "meV/atom",
+    "input_type": "structure",
+    "samples": 636,
+    "mean_mae": 42.06902474510171,
+    "std_mae": 11.41289338548019,
+    "mean_rmse": 101.81647323210711,
+    "max_max_error": 1556.4273080377518,
+    "elapsed_seconds": 7.968231,
+    "folds": [
+     {
+      "mae": 35.610891284951784,
+      "rmse": 58.58734062166092,
+      "r2": 0.31710812686892376,
+      "pearson_r": 0.6825203423960134,
+      "spearman_rho": 0.5732409357260574,
+      "n": 128,
+      "max_error": 282.51745011458337,
+      "train_mean_predictor_mae": 53.14474674327123
+     },
+     {
+      "mae": 35.58165704500371,
+      "rmse": 68.63894975558013,
+      "r2": 0.6619131945025021,
+      "pearson_r": 0.8182041008981612,
+      "spearman_rho": 0.7422783089613798,
+      "n": 127,
+      "max_error": 309.49264644770057,
+      "train_mean_predictor_mae": 72.81179141887425
+     },
+     {
+      "mae": 64.37659235393828,
+      "rmse": 162.73212781067141,
+      "r2": 0.2639968371232684,
+      "pearson_r": 0.5301130102114514,
+      "spearman_rho": 0.6849925009373827,
+      "n": 127,
+      "max_error": 854.8963369683215,
+      "train_mean_predictor_mae": 83.12200287791626
+     },
+     {
+      "mae": 33.780670287565506,
+      "rmse": 63.11037819349408,
+      "r2": 0.44852663034911333,
+      "pearson_r": 0.6758485566270761,
+      "spearman_rho": 0.7621742594675665,
+      "n": 127,
+      "max_error": 307.9085294835416,
+      "train_mean_predictor_mae": 61.317426388547496
+     },
+     {
+      "mae": 40.99531275404927,
+      "rmse": 156.01356977912909,
+      "r2": 0.09669774253079566,
+      "pearson_r": 0.34665960437952203,
+      "spearman_rho": 0.7720402137232846,
+      "n": 127,
+      "max_error": 1556.4273080377518,
+      "train_mean_predictor_mae": 66.0294695504642
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate fit_predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.15
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (128,), got (127,)",
+     "rejected": true,
+     "wall_seconds": 0.14
+    }
+   ],
+   "reference_check": {
+    "compared": "Stored per-fold predictions of two published Matbench v0.1 submissions (benchmarks/*/results.json.gz at matbench commit 936176db) rescored with this evaluator's folds, targets and metric, versus the scores stored in the submissions and shown on the leaderboard page.",
+    "submissions": {
+     "AMMExpress v2020": {
+      "metric": "mean mae",
+      "recomputed": 39.849712,
+      "stored_in_submission": 39.849712,
+      "leaderboard_page": 39.8497,
+      "max_fold_difference": 0.0
+     },
+     "RF-SCM/Magpie": {
+      "metric": "mean mae",
+      "recomputed": 50.044,
+      "stored_in_submission": 50.044,
+      "leaderboard_page": 50.044,
+      "max_fold_difference": 0.0
+     }
+    },
+    "result": "identical to the stored scores (largest fold difference 0.0e+00) and to the leaderboard values at their four printed decimals"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-materials-matbench-phonon-peak": {
+   "family": "science_materials_matbench_structure",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 40.689274905240346,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 8.986193,
+   "wall_seconds": 9.06,
+   "seed_details": {
+    "combined_score": -40.689274905240346,
+    "score": 40.689274905240346,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "task": "matbench_phonons",
+    "target": "last phdos peak",
+    "unit": "cm^-1",
+    "input_type": "structure",
+    "samples": 1265,
+    "mean_mae": 40.689274905240346,
+    "std_mae": 3.4811541823435537,
+    "mean_rmse": 72.34522970460372,
+    "max_max_error": 812.1022410515934,
+    "elapsed_seconds": 8.986193,
+    "folds": [
+     {
+      "mae": 46.40637100591495,
+      "rmse": 85.21564595750468,
+      "r2": 0.9751586985974203,
+      "pearson_r": 0.989009466596501,
+      "spearman_rho": 0.9871703907241286,
+      "n": 253,
+      "max_error": 745.3902443086847,
+      "train_mean_predictor_mae": 337.1003191459398
+     },
+     {
+      "mae": 42.7029100752394,
+      "rmse": 69.0849512072713,
+      "r2": 0.9766601290868133,
+      "pearson_r": 0.9886095085098562,
+      "spearman_rho": 0.9855002872633843,
+      "n": 253,
+      "max_error": 472.28059975632664,
+      "train_mean_predictor_mae": 299.1208996532002
+     },
+     {
+      "mae": 38.80404143037509,
+      "rmse": 69.87563475482428,
+      "r2": 0.9835903833138955,
+      "pearson_r": 0.9917836342629732,
+      "spearman_rho": 0.9861383050067413,
+      "n": 253,
+      "max_error": 650.3100411585137,
+      "train_mean_predictor_mae": 348.2576371781606
+     },
+     {
+      "mae": 39.03404923964421,
+      "rmse": 78.65261995355175,
+      "r2": 0.9730926507270808,
+      "pearson_r": 0.9865328936384367,
+      "spearman_rho": 0.9907037430262651,
+      "n": 253,
+      "max_error": 812.1022410515934,
+      "train_mean_predictor_mae": 325.2401539684387
+     },
+     {
+      "mae": 36.499002775028096,
+      "rmse": 58.897296649866654,
+      "r2": 0.9820263297678279,
+      "pearson_r": 0.9913685292564769,
+      "spearman_rho": 0.9904616100727285,
+      "n": 253,
+      "max_error": 402.69831233820105,
+      "train_mean_predictor_mae": 310.19212125530026
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate fit_predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.14
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (253,), got (252,)",
+     "rejected": true,
+     "wall_seconds": 0.14
+    }
+   ],
+   "reference_check": {
+    "compared": "Stored per-fold predictions of two published Matbench v0.1 submissions (benchmarks/*/results.json.gz at matbench commit 936176db) rescored with this evaluator's folds, targets and metric, versus the scores stored in the submissions and shown on the leaderboard page.",
+    "submissions": {
+     "AMMExpress v2020": {
+      "metric": "mean mae",
+      "recomputed": 56.170604,
+      "stored_in_submission": 56.170604,
+      "leaderboard_page": 56.1706,
+      "max_fold_difference": 0.0
+     },
+     "RF-SCM/Magpie": {
+      "metric": "mean mae",
+      "recomputed": 67.612614,
+      "stored_in_submission": 67.612614,
+      "leaderboard_page": 67.6126,
+      "max_fold_difference": 0.0
+     }
+    },
+    "result": "identical to the stored scores (largest fold difference 0.0e+00) and to the leaderboard values at their four printed decimals"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-materials-matbench-refractive-index": {
+   "family": "science_materials_matbench_structure",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 0.4242970536726012,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 26.851749,
+   "wall_seconds": 26.92,
+   "seed_details": {
+    "combined_score": -0.4242970536726012,
+    "score": 0.4242970536726012,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "task": "matbench_dielectric",
+    "target": "n",
+    "unit": "dimensionless",
+    "input_type": "structure",
+    "samples": 4764,
+    "mean_mae": 0.4242970536726012,
+    "std_mae": 0.04478859746990667,
+    "mean_rmse": 1.950255073496212,
+    "max_max_error": 59.20862806071886,
+    "elapsed_seconds": 26.851749,
+    "folds": [
+     {
+      "mae": 0.3654023460623078,
+      "rmse": 1.0411732141311014,
+      "r2": 0.03169692585514916,
+      "pearson_r": 0.5960445749270483,
+      "spearman_rho": 0.8914495425762154,
+      "n": 953,
+      "max_error": 14.68290829415214,
+      "train_mean_predictor_mae": 0.7025642979783651
+     },
+     {
+      "mae": 0.4486452005104336,
+      "rmse": 1.7487744967803303,
+      "r2": -0.480346874215007,
+      "pearson_r": 0.39963032050330155,
+      "spearman_rho": 0.8827570201092169,
+      "n": 953,
+      "max_error": 27.709723606223008,
+      "train_mean_predictor_mae": 0.7810933896896862
+     },
+     {
+      "mae": 0.4954111956638523,
+      "rmse": 2.9858881059847087,
+      "r2": 0.07329747939287434,
+      "pearson_r": 0.28276101104214635,
+      "spearman_rho": 0.89811407886324,
+      "n": 953,
+      "max_error": 59.20862806071886,
+      "train_mean_predictor_mae": 0.9218171348811479
+     },
+     {
+      "mae": 0.3949937737733202,
+      "rmse": 2.299886522922142,
+      "r2": 0.11430983820255469,
+      "pearson_r": 0.3432776966419812,
+      "spearman_rho": 0.9184998844761029,
+      "n": 953,
+      "max_error": 53.18545830187661,
+      "train_mean_predictor_mae": 0.8382437918041112
+     },
+     {
+      "mae": 0.41703275235309184,
+      "rmse": 1.675553027662777,
+      "r2": 0.14240304692581163,
+      "pearson_r": 0.4191841897701166,
+      "spearman_rho": 0.8737262097735687,
+      "n": 952,
+      "max_error": 28.20080985192264,
+      "train_mean_predictor_mae": 0.800381265848591
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate fit_predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.24
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (953,), got (952,)",
+     "rejected": true,
+     "wall_seconds": 0.24
+    }
+   ],
+   "reference_check": {
+    "compared": "Stored per-fold predictions of two published Matbench v0.1 submissions (benchmarks/*/results.json.gz at matbench commit 936176db) rescored with this evaluator's folds, targets and metric, versus the scores stored in the submissions and shown on the leaderboard page.",
+    "submissions": {
+     "AMMExpress v2020": {
+      "metric": "mean mae",
+      "recomputed": 0.315029,
+      "stored_in_submission": 0.315029,
+      "leaderboard_page": 0.315,
+      "max_fold_difference": 0.0
+     },
+     "RF-SCM/Magpie": {
+      "metric": "mean mae",
+      "recomputed": 0.419578,
+      "stored_in_submission": 0.419578,
+      "leaderboard_page": 0.4196,
+      "max_fold_difference": 0.0
+     }
+    },
+    "result": "identical to the stored scores (largest fold difference 0.0e+00) and to the leaderboard values at their four printed decimals"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-materials-matbench-shear-modulus": {
+   "family": "science_materials_matbench_structure",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 0.09189329783842895,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 35.55691,
+   "wall_seconds": 35.62,
+   "seed_details": {
+    "combined_score": -0.09189329783842895,
+    "score": 0.09189329783842895,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "task": "matbench_log_gvrh",
+    "target": "log10(G_VRH)",
+    "unit": "log10(GPa)",
+    "input_type": "structure",
+    "samples": 10987,
+    "mean_mae": 0.09189329783842895,
+    "std_mae": 0.0008778398432656921,
+    "mean_rmse": 0.13223840720799593,
+    "max_max_error": 1.5378249409284686,
+    "elapsed_seconds": 35.55691,
+    "folds": [
+     {
+      "mae": 0.0906948088679229,
+      "rmse": 0.13129253508149344,
+      "r2": 0.8773379082294284,
+      "pearson_r": 0.9372731135430746,
+      "spearman_rho": 0.9352460206923294,
+      "n": 2198,
+      "max_error": 1.5378249409284686,
+      "train_mean_predictor_mae": 0.29431130704050257
+     },
+     {
+      "mae": 0.09157270119058813,
+      "rmse": 0.13239985426102446,
+      "r2": 0.8748707154454678,
+      "pearson_r": 0.9363998771008749,
+      "spearman_rho": 0.9398348818936989,
+      "n": 2198,
+      "max_error": 1.1596424887443009,
+      "train_mean_predictor_mae": 0.2933176249125999
+     },
+     {
+      "mae": 0.09141698180641324,
+      "rmse": 0.1324686209602765,
+      "r2": 0.8742608287986645,
+      "pearson_r": 0.9359854009975582,
+      "spearman_rho": 0.9437426446704035,
+      "n": 2197,
+      "max_error": 0.980579198536896,
+      "train_mean_predictor_mae": 0.2968932454008282
+     },
+     {
+      "mae": 0.09311027599212628,
+      "rmse": 0.13309083227391427,
+      "r2": 0.8667088702068005,
+      "pearson_r": 0.9314486614746829,
+      "spearman_rho": 0.9273981817014653,
+      "n": 2197,
+      "max_error": 0.9237364695073282,
+      "train_mean_predictor_mae": 0.28748909642837744
+     },
+     {
+      "mae": 0.09267172133509417,
+      "rmse": 0.13194019346327088,
+      "r2": 0.8731795454441004,
+      "pearson_r": 0.93509767807399,
+      "spearman_rho": 0.9366264696741927,
+      "n": 2197,
+      "max_error": 0.7255195619229409,
+      "train_mean_predictor_mae": 0.29372736885966294
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate fit_predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.27
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (2198,), got (2197,)",
+     "rejected": true,
+     "wall_seconds": 0.26
+    }
+   ],
+   "reference_check": {
+    "compared": "Stored per-fold predictions of two published Matbench v0.1 submissions (benchmarks/*/results.json.gz at matbench commit 936176db) rescored with this evaluator's folds, targets and metric, versus the scores stored in the submissions and shown on the leaderboard page.",
+    "submissions": {
+     "AMMExpress v2020": {
+      "metric": "mean mae",
+      "recomputed": 0.08741,
+      "stored_in_submission": 0.08741,
+      "leaderboard_page": 0.0874,
+      "max_fold_difference": 0.0
+     },
+     "RF-SCM/Magpie": {
+      "metric": "mean mae",
+      "recomputed": 0.103999,
+      "stored_in_submission": 0.103999,
+      "leaderboard_page": 0.104,
+      "max_fold_difference": 0.0
+     }
+    },
+    "result": "identical to the stored scores (largest fold difference 0.0e+00) and to the leaderboard values at their four printed decimals"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-materials-matbench-perovskite-formation-energy": {
+   "family": "science_materials_matbench_structure",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 0.2301344940694389,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 47.624552,
+   "wall_seconds": 47.68,
+   "seed_details": {
+    "combined_score": -0.2301344940694389,
+    "score": 0.2301344940694389,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "task": "matbench_perovskites",
+    "target": "e_form",
+    "unit": "eV/unit cell",
+    "input_type": "structure",
+    "samples": 18928,
+    "mean_mae": 0.2301344940694389,
+    "std_mae": 0.004869226770042993,
+    "mean_rmse": 0.33291355029709574,
+    "max_max_error": 2.755300000000001,
+    "elapsed_seconds": 47.624552,
+    "folds": [
+     {
+      "mae": 0.2242562599049128,
+      "rmse": 0.3249906632491998,
+      "r2": 0.8050531976996264,
+      "pearson_r": 0.8986726973529705,
+      "spearman_rho": 0.8886210512566253,
+      "n": 3786,
+      "max_error": 2.755300000000001,
+      "train_mean_predictor_mae": 0.5671871934941229
+     },
+     {
+      "mae": 0.2368199418911781,
+      "rmse": 0.342063865791912,
+      "r2": 0.7982901262277547,
+      "pearson_r": 0.8955860250082289,
+      "spearman_rho": 0.8802567369995218,
+      "n": 3786,
+      "max_error": 2.3275,
+      "train_mean_predictor_mae": 0.574237337498028
+     },
+     {
+      "mae": 0.2335235340729002,
+      "rmse": 0.3382020546432612,
+      "r2": 0.7932446972293518,
+      "pearson_r": 0.8912550167483186,
+      "spearman_rho": 0.8758426736875365,
+      "n": 3786,
+      "max_error": 2.551800000000001,
+      "train_mean_predictor_mae": 0.5660010104729287
+     },
+     {
+      "mae": 0.23111923381770147,
+      "rmse": 0.3364766191841504,
+      "r2": 0.7899576364022711,
+      "pearson_r": 0.8902363982159404,
+      "spearman_rho": 0.8805340962558841,
+      "n": 3785,
+      "max_error": 2.6637000000000004,
+      "train_mean_predictor_mae": 0.5613679944720743
+     },
+     {
+      "mae": 0.22495350066050196,
+      "rmse": 0.3228345486169554,
+      "r2": 0.8076932562292206,
+      "pearson_r": 0.8998929546110437,
+      "spearman_rho": 0.88370413995609,
+      "n": 3785,
+      "max_error": 2.406399999999998,
+      "train_mean_predictor_mae": 0.5611996450221669
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate fit_predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.43
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (3786,), got (3785,)",
+     "rejected": true,
+     "wall_seconds": 0.41
+    }
+   ],
+   "reference_check": {
+    "compared": "Stored per-fold predictions of two published Matbench v0.1 submissions (benchmarks/*/results.json.gz at matbench commit 936176db) rescored with this evaluator's folds, targets and metric, versus the scores stored in the submissions and shown on the leaderboard page.",
+    "submissions": {
+     "AMMExpress v2020": {
+      "metric": "mean mae",
+      "recomputed": 0.200471,
+      "stored_in_submission": 0.200471,
+      "leaderboard_page": 0.2005,
+      "max_fold_difference": 0.0
+     },
+     "RF-SCM/Magpie": {
+      "metric": "mean mae",
+      "recomputed": 0.2355,
+      "stored_in_submission": 0.2355,
+      "leaderboard_page": 0.2355,
+      "max_fold_difference": 0.0
+     }
+    },
+    "result": "identical to the stored scores (largest fold difference 0.0e+00) and to the leaderboard values at their four printed decimals"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-materials-matbench-metal-classification": {
+   "family": "science_materials_matbench_classification",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 0.9095510614678188,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 8.231608,
+   "wall_seconds": 8.3,
+   "seed_details": {
+    "combined_score": 0.9095510614678188,
+    "score": 0.9095510614678188,
+    "direction": "maximize",
+    "valid": true,
+    "error": null,
+    "task": "matbench_expt_is_metal",
+    "target": "is_metal",
+    "input_type": "composition",
+    "samples": 4921,
+    "mean_rocauc": 0.9095510614678188,
+    "std_rocauc": 0.0042464836090269934,
+    "mean_balanced_accuracy": 0.9095510614678186,
+    "elapsed_seconds": 8.231608,
+    "folds": [
+     {
+      "rocauc": 0.9167010232772909,
+      "accuracy": 0.916751269035533,
+      "balanced_accuracy": 0.9167010232772907,
+      "f1": 0.9151138716356108,
+      "n": 985
+     },
+     {
+      "rocauc": 0.904387341981327,
+      "accuracy": 0.9044715447154471,
+      "balanced_accuracy": 0.904387341981327,
+      "f1": 0.9020833333333332,
+      "n": 984
+     },
+     {
+      "rocauc": 0.9075146657853425,
+      "accuracy": 0.907520325203252,
+      "balanced_accuracy": 0.9075146657853425,
+      "f1": 0.9070480081716037,
+      "n": 984
+     },
+     {
+      "rocauc": 0.9116045608526812,
+      "accuracy": 0.9115853658536586,
+      "balanced_accuracy": 0.9116045608526812,
+      "f1": 0.9116751269035532,
+      "n": 984
+     },
+     {
+      "rocauc": 0.9075477154424523,
+      "accuracy": 0.907520325203252,
+      "balanced_accuracy": 0.9075477154424523,
+      "f1": 0.9078014184397163,
+      "n": 984
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate fit_predict() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.13
+    },
+    {
+     "candidate": "predict_nan.py",
+     "valid": false,
+     "score": null,
+     "error": "classification predictions must be 0/1 labels",
+     "rejected": true,
+     "wall_seconds": 0.13
+    }
+   ],
+   "reference_check": {
+    "compared": "Stored per-fold predictions of two published Matbench v0.1 submissions (benchmarks/*/results.json.gz at matbench commit 936176db) rescored with this evaluator's folds, targets and metric, versus the scores stored in the submissions and shown on the leaderboard page.",
+    "submissions": {
+     "AMMExpress v2020": {
+      "metric": "mean rocauc",
+      "recomputed": 0.920922,
+      "stored_in_submission": 0.920922,
+      "leaderboard_page": 0.9209,
+      "max_fold_difference": 1.1102230246251565e-16
+     },
+     "RF-SCM/Magpie": {
+      "metric": "mean rocauc",
+      "recomputed": 0.916659,
+      "stored_in_submission": 0.916659,
+      "leaderboard_page": 0.9167,
+      "max_fold_difference": 1.1102230246251565e-16
+     }
+    },
+    "result": "identical to the stored scores (largest fold difference 1.1e-16) and to the leaderboard values at their four printed decimals"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-chemistry-buchwald-hartwig-yield-additive-split": {
+   "family": "science_chemistry_buchwald_hartwig_yield",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 0.7525803613649982,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 11.912149,
+   "wall_seconds": 11.98,
+   "seed_details": {
+    "combined_score": 0.7525803613649982,
+    "score": 0.7525803613649982,
+    "direction": "maximize",
+    "valid": true,
+    "error": null,
+    "mean_r2": 0.7525803613649982,
+    "elapsed_seconds": 11.912149,
+    "splits": [
+     {
+      "split": "Test1",
+      "mae": 6.2858450826669525,
+      "rmse": 9.185213927461282,
+      "r2": 0.886490916619199,
+      "pearson_r": 0.943263356916913,
+      "spearman_rho": 0.9411089530591298,
+      "n": 898,
+      "published_yield_bert_r2": 0.84
+     },
+     {
+      "split": "Test2",
+      "mae": 6.328897072413989,
+      "rmse": 9.099570649203471,
+      "r2": 0.8871779995113669,
+      "pearson_r": 0.9432345322789352,
+      "spearman_rho": 0.9414601990866144,
+      "n": 900,
+      "published_yield_bert_r2": 0.84
+     },
+     {
+      "split": "Test3",
+      "mae": 9.220208046146226,
+      "rmse": 14.666101562836815,
+      "r2": 0.7275098488626393,
+      "pearson_r": 0.8582714447862618,
+      "spearman_rho": 0.8378619657526762,
+      "n": 897,
+      "published_yield_bert_r2": 0.75
+     },
+     {
+      "split": "Test4",
+      "mae": 12.137150139274397,
+      "rmse": 18.530191605978356,
+      "r2": 0.5091426804667875,
+      "pearson_r": 0.7720785387491906,
+      "spearman_rho": 0.7830307466914017,
+      "n": 900,
+      "published_yield_bert_r2": 0.49
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate predict_yields() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.23
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (898,), got (897,)",
+     "rejected": true,
+     "wall_seconds": 0.23
+    },
+    {
+     "candidate": "predict_nan.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must be a list of 898 numbers",
+     "rejected": true,
+     "wall_seconds": 0.23
+    }
+   ],
+   "reference_check": {
+    "compared": "Reaction SMILES built by chem_yields.buchwald_hartwig_reactions versus rxn_yields' generate_buchwald_hartwig_rxns (commit d9e6b87c) on all rows of the four test sheets; yields versus the spreadsheet.",
+    "tests": {
+     "Test1": {
+      "reactions": 3955,
+      "identical_reaction_smiles": 3955,
+      "all_identical": true,
+      "yields_identical": true
+     },
+     "Test2": {
+      "reactions": 3955,
+      "identical_reaction_smiles": 3955,
+      "all_identical": true,
+      "yields_identical": true
+     },
+     "Test3": {
+      "reactions": 3955,
+      "identical_reaction_smiles": 3955,
+      "all_identical": true,
+      "yields_identical": true
+     },
+     "Test4": {
+      "reactions": 3955,
+      "identical_reaction_smiles": 3955,
+      "all_identical": true,
+      "yields_identical": true
+     }
+    },
+    "result": "identical for 4 x 3955 reactions; published R^2 values are compared, not reproduced"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  },
+  "science-chemistry-suzuki-miyaura-yield-random-split": {
+   "family": "science_chemistry_suzuki_miyaura_yield",
+   "problem_protocol": "recreated",
+   "seed_score": 0.8230105406924334,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 42.951017,
+   "wall_seconds": 43.01,
+   "seed_details": {
+    "combined_score": 0.8230105406924334,
+    "score": 0.8230105406924334,
+    "direction": "maximize",
+    "valid": true,
+    "error": null,
+    "mean_r2": 0.8230105406924334,
+    "std_r2": 0.009916088598611364,
+    "min_r2": 0.8093406691459731,
+    "elapsed_seconds": 42.951017,
+    "splits": [
+     {
+      "split": "random_split_0",
+      "mae": 8.084952775896802,
+      "rmse": 11.703177925634064,
+      "r2": 0.8229640765440713,
+      "pearson_r": 0.9074638095781478,
+      "spearman_rho": 0.8937876346315622,
+      "n": 1728
+     },
+     {
+      "split": "random_split_1",
+      "mae": 8.184362457547664,
+      "rmse": 11.6793388358792,
+      "r2": 0.8275980663183572,
+      "pearson_r": 0.9110290657506912,
+      "spearman_rho": 0.9014022403190939,
+      "n": 1728
+     },
+     {
+      "split": "random_split_2",
+      "mae": 7.856065785538042,
+      "rmse": 11.308897121769911,
+      "r2": 0.8382080189220541,
+      "pearson_r": 0.915944855512794,
+      "spearman_rho": 0.9057929843903061,
+      "n": 1728
+     },
+     {
+      "split": "random_split_3",
+      "mae": 8.30835835517838,
+      "rmse": 12.134598548963382,
+      "r2": 0.8121017297872993,
+      "pearson_r": 0.9012244333596604,
+      "spearman_rho": 0.8888659511681266,
+      "n": 1728
+     },
+     {
+      "split": "random_split_4",
+      "mae": 7.815979979086314,
+      "rmse": 11.235914805335401,
+      "r2": 0.8380908346121551,
+      "pearson_r": 0.9160057857459489,
+      "spearman_rho": 0.9019058135052127,
+      "n": 1728
+     },
+     {
+      "split": "random_split_5",
+      "mae": 7.974165959909435,
+      "rmse": 11.469040310064901,
+      "r2": 0.831503121798097,
+      "pearson_r": 0.9129600873288254,
+      "spearman_rho": 0.9027690675829921,
+      "n": 1728
+     },
+     {
+      "split": "random_split_6",
+      "mae": 8.463682731062363,
+      "rmse": 12.248705319099509,
+      "r2": 0.8167944982927656,
+      "pearson_r": 0.9044033762793245,
+      "spearman_rho": 0.8912023997692436,
+      "n": 1728
+     },
+     {
+      "split": "random_split_7",
+      "mae": 8.317940869158578,
+      "rmse": 11.83021577994205,
+      "r2": 0.8188614074790267,
+      "pearson_r": 0.9053391508670092,
+      "spearman_rho": 0.8974335982476603,
+      "n": 1728
+     },
+     {
+      "split": "random_split_8",
+      "mae": 8.422594418547297,
+      "rmse": 12.206123712271845,
+      "r2": 0.814642984024535,
+      "pearson_r": 0.903729764179879,
+      "spearman_rho": 0.8982465363012584,
+      "n": 1728
+     },
+     {
+      "split": "random_split_9",
+      "mae": 8.316590001310246,
+      "rmse": 12.256618241356124,
+      "r2": 0.8093406691459731,
+      "pearson_r": 0.8996441460032463,
+      "spearman_rho": 0.8821826091520253,
+      "n": 1728
+     }
+    ]
+   },
+   "invalid_candidates": [
+    {
+     "candidate": "predict_peek.py",
+     "valid": false,
+     "score": null,
+     "error": "candidate predict_yields() failed in the sandbox (exception): PermissionError: sandbox: directory listing denied ('suite/_lib/data/chemistry/adme/*test.csv')",
+     "rejected": true,
+     "wall_seconds": 0.15
+    },
+    {
+     "candidate": "predict_wrong_length.py",
+     "valid": false,
+     "score": null,
+     "error": "predictions must have shape (1728,), got (1727,)",
+     "rejected": true,
+     "wall_seconds": 0.16
+    }
+   ],
+   "reference_check": {
+    "compared": "Split protocol of rxn_yields notebook 04 (first 4032 reactions of each random split train) and consistency of the ten split files.",
+    "result": "the ten split files are permutations of the same 5760 reactions with identical yields (checked during preparation); published R^2 values are compared, not reproduced"
+   },
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "rdkit": "2026.03.6",
+    "pandas": "2.2.3",
+    "torch": "2.14.0",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "threads": "OMP/MKL/OpenBLAS limited to 4 in the candidate process; sandbox child per prediction call"
+   },
+   "date": "2026-10-11",
+   "llm_cost_usd": 0.0
+  }
+ },
+ "blocked_inputs": [
+  {
+   "input": "Cambridge Cluster Database (https://www-wales.ch.cam.ac.uk/CCD.html)",
+   "date": "2026-10-10",
+   "symptom": "TCP connection reset from this machine",
+   "handling": "not retried by another route; cluster references were read from the primary papers' arXiv LaTeX sources instead, and later database updates could not be checked (stated in the task limitations)"
+  },
+  {
+   "input": "Doye, Leary, Locatelli and Schoen (2004) preprint on optimization-online.org (Morse rho = 14 improvements)",
+   "date": "2026-10-10",
+   "symptom": "TCP connection reset",
+   "handling": "not retried; rho = 14 instances excluded"
+  },
+  {
+   "input": "TDC ADMET benchmark group (Harvard Dataverse file 4426004, redirected to dvn-cloud-iqss.s3.amazonaws.com)",
+   "date": "2026-10-10",
+   "symptom": "TCP connection reset on the storage redirect",
+   "handling": "not retried by another route; TDC ADMET tasks not implemented; the Biogen public ADME set (GitHub, MIT) used instead"
+  },
+  {
+   "input": "Yield-BERT article full text (iopscience.iop.org)",
+   "date": "2026-10-10",
+   "symptom": "TCP connection reset",
+   "handling": "published R^2 values read from the comparison table of Baraka and El Kerdawy (2022, arXiv 2204.14062) and labelled as such"
+  },
+  {
+   "input": "GrowPAL supplementary PDF and Table 3 (pmc.ncbi.nlm.nih.gov)",
+   "date": "2026-10-10",
+   "symptom": "proof-of-work download page and reCAPTCHA browser check",
+   "handling": "not circumvented; only the article HTML text was used (which sizes were improved); those sizes are excluded"
+  },
+  {
+   "input": "figshare.com pages",
+   "date": "2026-10-10",
+   "symptom": "AWS WAF challenge",
+   "handling": "not used"
+  },
+  {
+   "input": "pubs.acs.org, science.org, pubs.rsc.org, chemrxiv.org",
+   "date": "2026-10-10",
+   "symptom": "HTTP 403",
+   "handling": "not used; DOIs verified through the Crossref API instead"
+  },
+  {
+   "input": "GitHub REST API",
+   "date": "2026-10-10",
+   "symptom": "unauthenticated rate limit exceeded",
+   "handling": "not retried with credentials; pinned commit hashes taken with git ls-remote and files read from raw.githubusercontent.com"
+  }
+ ],
+ "dropped": {
+  "PMO goal-directed molecular design (osimertinib MPO, zaleplon MPO, median molecules 1, sitagliptin MPO)": "Not implemented. The oracle is a public closed-form RDKit function (GuacaMol/TDC definitions) and the task name identifies the target, so a candidate program can recompute it locally and search without limit; the 10,000-call oracle budget that defines PMO's AUC top-10 metric cannot be enforced in a program-search setting. Published values (Gao et al. 2022; Kim et al. 2024) were read but no task was built.",
+  "TDC ADMET benchmark group (Caco-2, lipophilicity, AqSolDB solubility, hERG, Ames)": "Blocked: the Harvard Dataverse storage redirect refused connections; replaced by the Biogen ADME endpoints.",
+  "(NaCl)_N Cl- clusters with the Tosi-Fumi potential (Doye and Wales 1999)": "Dropped: with the Tosi-Fumi parameters as published, relaxed structures reproduce the tabulated energies only to about 0.001-0.004 eV (three published decimals), and the exact parameter set used by the authors could not be checked, so exact references cannot be guaranteed.",
+  "Binary Lennard-Jones and (C60)_N Pacheco-Ramalho clusters": "Dropped: binary LJ energies are published only in the unreachable Cambridge Cluster Database, and the PPR potential's functional form is in a paper that could not be read, so energies could not be verified.",
+  "Morse clusters at rho = 14": "Excluded from the Morse task: Doye, Leary, Locatelli and Schoen (2004) report new minima at rho = 14 that could not be read.",
+  "Sutton-Chen 12-6 N = 68, 10-8 N = 58 and 10-8 N = 60": "Excluded: Lopez-Castro et al. (2024) report lower minima than the database for the first two and could not reproduce the third.",
+  "Matbench glass, mp_gap, mp_e_form, mp_is_metal, log_kvrh": "Not used: glass labels come from a Landolt-Bornstein volume with unclear licensing; the Materials Project tasks have more than 100,000 structures, beyond the CPU budget; log_kvrh nearly duplicates log_gvrh.",
+  "Biogen hPPB and rPPB endpoints": "Not used: the official split files contain about ten times more compounds than the public set lists for these endpoints, so their provenance could not be checked.",
+  "Kinetic parameter estimation benchmarks (alpha-pinene isomerisation and similar)": "Not implemented: the published optima are five or fewer numbers that a candidate can return from memory, so the score would not measure estimation methods."
+ },
+ "withdraw": {},
+ "missing": []
+}

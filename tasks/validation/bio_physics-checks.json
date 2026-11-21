@@ -1,0 +1,480 @@
+{
+ "schema": "artask.validation/1",
+ "package": "bio_physics",
+ "scope": "Seed evaluations through the generated suite evaluators, invalid-candidate rejections and the independent reference checks described per task. No published search result is reproduced and no evolutionary run was performed.",
+ "command": "python3 -c \"import sys; sys.path.insert(0,'scripts'); import import_science; import_science.write_packages(topics={'biology_research','physics_research'})\" && python3 scripts/build_suite.py --only '^(science-biology-...|science-physics-...)$' --sciel ../SCiEL && .cache/sciel-env/bin/python suite/<id>/evaluator.py suite/<id>/initial_program.py",
+ "data_preparation": "python3 scripts/prepare_bio_physics.py (hashes recorded in catalog/bio_physics-data-lock.json)",
+ "tests": {
+  "command": ".cache/sciel-env/bin/python -m unittest discover -s tests -t . -p 'test_bio*.py' and 'test_phys*.py'",
+  "result": "80 tests (46 test_bio*.py including the direction checks, 34 test_phys*.py), all passing (2026-10-11)"
+ },
+ "tasks": {
+  "science-biology-balibase-protein-alignment": {
+   "seed_score": 0.6396890556754055,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 15.141557,
+   "direction": "maximize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "rows that drop residues instead of inserting gaps",
+     "valid": false,
+     "score": null,
+     "error": "alignment row 0: ungapped residues differ from the input sequence",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "The SP and TC scorer was applied to the BAliBASE reference alignments themselves and to deliberately shifted alignments, and the pair/column counts were checked by hand on a small case.",
+    "result": "Every one of the 26 reference alignments scores SP = 1.0 and TC = 1.0, a disjoint alignment scores 0.0, and the hand-computed case gives SP = 4/6 and TC = 0.5 as expected.",
+    "status": "scorer_verified"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-10"
+  },
+  "science-biology-hp-lattice-folding-2d": {
+   "seed_score": 0.6635193432035106,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.545527,
+   "direction": "maximize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "self-intersecting conformation (all residues on one site)",
+     "valid": false,
+     "score": null,
+     "error": "consecutive residues must occupy neighbouring lattice sites",
+     "rejected": true
+    },
+    {
+     "candidate": "too few lattice points",
+     "valid": false,
+     "error": "conformation: expected shape (20, 2), got (18, 2)",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "An independently written exhaustive branch-and-bound search in C (separate implementation and data structures, with a hydrophobic-contact bound) computed the exact minimum energy of the three shortest 2D benchmark sequences; the evaluator's energy function was also checked against brute-force enumeration of all self-avoiding walks for short sequences (unit tests).",
+    "result": "Exhaustive search gives -9 for the 20-mer, -8 for the 25-mer and -14 for the 36-mer, matching the published best-known energies used as references (searches of the 48-mer and longer chains did not finish). Energy agreement with brute-force enumeration holds exactly for every sequence tested.",
+    "status": "reproduced_for_the_three_shortest_instances"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-11"
+  },
+  "science-biology-hp-lattice-folding-3d": {
+   "seed_score": 0.6125738747169847,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 2.168876,
+   "direction": "maximize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "self-intersecting conformation (all residues on one site)",
+     "valid": false,
+     "score": null,
+     "error": "consecutive residues must occupy neighbouring lattice sites",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Same independent C branch-and-bound and brute-force enumeration checks as the 2D task (the energy function is shared); 3D exhaustive searches of the 48-mers were not attempted because they are far beyond a short CPU budget.",
+    "result": "The energy function agrees exactly with independent brute-force enumeration on short 3D sequences. The ten 48-mer reference energies are the ground states proven by Yue et al. (1995) via hydrophobic-core construction and were not re-derived here.",
+    "status": "energy_function_verified_references_not_re_derived"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-11"
+  },
+  "science-biology-influenza-hospitalization-forecasting": {
+   "seed_score": 172.63115554318276,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.288296,
+   "direction": "minimize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "decreasing quantiles",
+     "valid": false,
+     "score": null,
+     "error": "forecast[01]: quantiles must be non-decreasing",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "The weighted interval score implementation was checked against the identity WIS = 2 x mean pinball loss on 50 random normal quantile vectors, against |y - m| for a point forecast, and for the expected ordering of sharp versus wide forecasts (unit tests).",
+    "result": "Agreement to 1e-6 with the pinball-loss identity and exactly 3.0 for the hand-computed point-forecast case.",
+    "status": "metric_verified"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-10"
+  },
+  "science-biology-phylogeny-topology-recovery": {
+   "seed_score": 0.17744821777276137,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.238916,
+   "direction": "minimize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "Newick tree missing a taxon",
+     "valid": false,
+     "score": null,
+     "error": "tree: expected all 8 taxa exactly once, got 7",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Simulator and scorer self-consistency: determinism across runs, split counts (n-3 internal splits for an unrooted binary tree), divergence increasing with branch length, Newick parsing of hand-written trees and the complementary-clade convention, and RF = 0 for the true tree.",
+    "result": "All checks pass; the neighbour-joining seed recovers 5 of 20 topologies exactly, which is the expected behaviour for Jukes-Cantor data of these lengths.",
+    "status": "simulator_and_metric_verified"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-10"
+  },
+  "science-biology-rna-secondary-structure": {
+   "seed_score": 0.40097154813626285,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 1.184534,
+   "direction": "maximize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "unbalanced dot-bracket string",
+     "valid": false,
+     "score": null,
+     "error": "structure: unbalanced opening bracket",
+     "rejected": true
+    },
+    {
+     "candidate": "structure of the wrong length",
+     "valid": false,
+     "error": "structure for 2dG-I/AE017263.1/29965-30028: expected a string of length 64",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "The task's own F1 scorer was run on ViennaRNA 2.6.4 minimum-free-energy predictions for the same 90 sequences, as an independent strong baseline, and the reference pairings were checked to be canonical, nested and within range.",
+    "result": "ViennaRNA MFE reaches mean F1 0.609 (seed: 0.401), which is in the range reported in the literature for single-sequence thermodynamic folding; all reference pairs are canonical and nested.",
+    "status": "baseline_cross_checked"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-10"
+  },
+  "science-physics-broadband-antireflection-coating": {
+   "seed_score": 1.576160438921626,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.076672,
+   "direction": "minimize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "stack thicker than the total budget",
+     "valid": false,
+     "score": null,
+     "error": "thicknesses: total physical thickness above 1000.0 nm",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "The characteristic-matrix reflectance was checked against closed-form Fresnel results (bare substrate, quarter-wave single layer, half-wave absentee layer) and against an independent Rouard recursion on 20 random stacks at three wavelengths.",
+    "result": "Agreement to 1e-12 in every case.",
+    "status": "simulator_verified"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-10"
+  },
+  "science-physics-cnot-budgeted-unitary-synthesis": {
+   "seed_score": 0.10968338427764286,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 10.79546,
+   "direction": "minimize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "circuit exceeding the CNOT budget",
+     "valid": false,
+     "score": null,
+     "error": "circuit: more than 1 CNOT gates",
+     "rejected": true
+    },
+    {
+     "candidate": "unknown gate name",
+     "valid": false,
+     "error": "gate 0: unknown gate 'hadamard' (allowed: u3, cx)",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "The circuit builder was checked against hand-written exact decompositions (CNOT from one CNOT; SWAP from three CNOTs), the distance was checked to be phase-insensitive, and all targets were verified unitary.",
+    "result": "Hand-written decompositions give distance < 1e-12, confirming the gate conventions and the qubit ordering; the seed reaches exact circuits for 2 of the 7 targets.",
+    "status": "builder_verified_against_known_decompositions"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-10"
+  },
+  "science-physics-heisenberg-product-formula": {
+   "seed_score": 0.04615676274286304,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.086742,
+   "direction": "minimize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "coefficients that do not sum to one",
+     "valid": false,
+     "score": null,
+     "error": "coefficients: both a and b must sum to 1 (consistency of the product formula)",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "Order-of-accuracy checks of the evaluator: the first-order (Lie-Trotter) and second-order (Strang) formulas were timed at three step sizes, and commuting generators were split exactly.",
+    "result": "Errors scale as t^2 (ratio ~4 per doubling) for Lie-Trotter and t^3 (ratio ~8) for Strang, and commuting generators give error < 1e-12, as the theory requires. Suzuki's fourth-order formula with five Strang substeps scores 0.31 here, worse than repeated Strang (0.046), because the measured step sizes are large.",
+    "status": "order_of_accuracy_verified"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-10"
+  },
+  "science-physics-nuclear-mass-extrapolation": {
+   "seed_score": 3121.3558935583565,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.077803,
+   "direction": "minimize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "NaN predictions",
+     "valid": false,
+     "score": null,
+     "error": "candidate failed in the sandbox (exception): result is not JSON-serialisable: Out of range float values are not JSON compliant: nan",
+     "rejected": true
+    },
+    {
+     "candidate": "wrong number of predictions",
+     "valid": false,
+     "error": "predicted mass excess: expected shape (71,), got (70,)",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "The parsed AME2016 mass excess of 56Fe was converted back to binding energy per nucleon and compared with the tabulated value, and the AME2016 evaluators' own extrapolations of the held-out nuclides were scored with the task's metric.",
+    "result": "Recomputed B/A for 56Fe is 8790.35 keV against the tabulated 8790.354 keV; the AME2016 '#' estimates of 69 of the 71 targets give 213.4 keV RMS, a plausible value for published mass-surface extrapolations, against 3121 keV for the liquid-drop seed.",
+    "status": "parsing_verified_published_estimates_scored"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-10"
+  },
+  "science-physics-photonic-crystal-tm-band-gap": {
+   "seed_score": 0.04310240832659317,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.320331,
+   "direction": "maximize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "unit cell without the required symmetry",
+     "valid": false,
+     "score": null,
+     "error": "cell: must have the square (C4v) symmetry about the cell centre",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "The plane-wave solver was checked against the analytic folded free-photon bands of a uniform dielectric, against the exact Fourier coefficients of uniform and half-filled cells, against the published MPB tutorial gap of the rod crystal, and for convergence between 289 and 625 plane waves.",
+    "result": "Free-photon bands agree to 1e-10; the rod crystal's TM 1-2 gap comes out at 39.1 % against MPB's 38.95 % (band edges 0.2838/0.4217 against 0.2826/0.4193), the difference coming from the pixelated circle; the 4-5 gap changes by less than 0.2 percentage points between 289 and 625 plane waves.",
+    "status": "solver_cross_checked_against_published_values"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-10"
+  },
+  "science-physics-spin-glass-torus-2d": {
+   "seed_score": 0.8794763866450949,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.105091,
+   "direction": "maximize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "spins equal to zero",
+     "valid": false,
+     "score": null,
+     "error": "spins: every entry must be -1 or +1",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "An independent simulated-annealing search (separate code, 20 restarts x 400k single-spin moves) was run on the three 10x10 instances and 10 restarts x 2M moves on the three 15x15 instances, and the parsed instances were checked to be 2d-regular tori.",
+    "result": "The annealer reaches exactly the published optimal cut values 6049461, 5757868 and 6509837 on the three 10x10 instances, confirming the objective convention and the instance parsing; on 15x15 it stays 0.24-0.62 % below the published optima.",
+    "status": "published_optima_reproduced_on_the_smallest_instances"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-10"
+  },
+  "science-physics-spin-glass-torus-3d": {
+   "seed_score": 0.8851897404956621,
+   "seed_valid": true,
+   "seed_error": null,
+   "elapsed_seconds": 0.115243,
+   "direction": "maximize",
+   "invalid_candidate_checks": [
+    {
+     "candidate": "spins equal to zero",
+     "valid": false,
+     "score": null,
+     "error": "spins: every entry must be -1 or +1",
+     "rejected": true
+    }
+   ],
+   "reference_check": {
+    "compared": "The same independent simulated-annealing search was run on the 5x5x5 instances; instance parsing was checked for node/edge counts and degree 6.",
+    "result": "The annealer reaches exactly the published optima 10933215 and 11582216 for t3g5_5555 and t3g5_6666 (the third instance was not run to completion), confirming the objective convention and parsing.",
+    "status": "published_optima_reproduced_on_two_instances"
+   },
+   "llm_cost_usd": 0.0,
+   "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "ViennaRNA": "2.6.4",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "interpreter": ".cache/sciel-env/bin/python"
+   },
+   "date": "2026-10-10"
+  }
+ },
+ "withdraw": {
+  "biology-mrna-coding-sequence-design": {
+   "reason": "Considered a codon-design task whose objective was the folding stability of a messenger-RNA coding sequence for a viral surface antigen (LinearDesign, Zhang et al. 2023). Not implemented: the evaluator and its data files would have to carry a pathogen antigen sequence and the task would reward optimizing it, which is not appropriate content for this dataset. No code or data for it is in the repository.",
+   "evidence": "Dropped before any evaluator was committed; the ViennaRNA 2.6.4 folding machinery it would have used is unchanged and unused."
+  },
+  "biology-crispr-guide-efficiency": {
+   "reason": "Considered predicting CRISPR-Cas9 guide cutting efficiency from public screen data (Doench et al. 2016, data in the BSD-3 licensed Azimuth repository). Not implemented: the task is genome-editing guide design support, which this dataset should not host. No code or data for it is in the repository.",
+   "evidence": "Dropped before any evaluator was committed; the candidate data file was not added to the lock."
+  },
+  "biology-spikefinder-spike-inference": {
+   "reason": "Considered spike inference from calcium-imaging recordings (spikefinder challenge, MIT-licensed loading code). The data themselves are served from an S3 bucket that the challenge repository fetches with AWS credentials; the public host was unreachable from this machine (TLS connection reset on every attempt to s3.amazonaws.com) and no alternative public mirror was identified.",
+   "evidence": "s3.amazonaws.com returned curl exit 35 (connection reset) on repeated attempts; github.com/codeneuro/spikefinder documents the S3 fetch with AWS keys."
+  },
+  "biology-archiveii-rna-structures": {
+   "reason": "Considered the ArchiveII comparative RNA structure set as the reference for RNA secondary-structure prediction. The canonical download (rna.urmc.rochester.edu/pub/archiveII.tar.gz) returns HTTP 404. The task was implemented instead on Rfam's CC0 consensus structures of families with 3D structures, which is recorded with its own limitations.",
+   "evidence": "HTTP 404 for https://rna.urmc.rochester.edu/pub/archiveII.tar.gz (2026-10-10)."
+  },
+  "biology-protein-secondary-structure": {
+   "reason": "Considered per-residue protein secondary-structure prediction (CB513/CullPDB). The commonly used distribution (www.princeton.edu/~jzthree/datasets/ICML2014/) answers HTTP 403, and the RCSB Kabsch-Sander derived files (cdn.rcsb.org/etl/kabschSander/ss.txt.gz) return 404; computing DSSP assignments locally from PDB entries was out of scope for this package.",
+   "evidence": "HTTP 403 for the Princeton ICML2014 directory and HTTP 404 for the RCSB ss.txt.gz path (2026-10-10). Per the round's rules the blocked downloads were not retried by another route."
+  },
+  "biology-prefab-alignment-benchmark": {
+   "reason": "Considered PREFAB as a second alignment benchmark next to BAliBASE; drive5.com was unreachable from this machine (TLS connection reset). BAliBASE alone is used.",
+   "evidence": "curl exit 35 (connection reset) for https://drive5.com/bench/prefab_4.tar.gz (2026-10-10)."
+  },
+  "biology-genome-assembly-and-gene-finding": {
+   "reason": "Planned two further tasks on a public bacterial reference genome (assembly of simulated reads scored against the reference, and prokaryotic gene finding scored against the RefSeq annotation). Not implemented in this package for lack of time; the NCBI FTP host responded intermittently (several TLS resets), which would also need handling in the prepare script.",
+   "evidence": "No code was written; ftp.ncbi.nlm.nih.gov answered some ranged requests and reset others (2026-10-10)."
+  },
+  "physics-nbody-symplectic-integrator": {
+   "reason": "Planned a symplectic-integrator design task for a planetary system. Not implemented: the splitting-coefficient design problem it would have posed is mathematically the same optimization as the Heisenberg product-formula task already in this package, and a program-level variant would overlap with the existing ODE-solver tasks of the dataset (dga2d-ode-solver-*).",
+   "evidence": "Judgement call recorded rather than a weak duplicate task; no code was committed."
+  }
+ },
+ "held_out_data_isolation": {
+  "mechanism": "Every candidate entry point runs in a child process through suite/_lib/autoresearch_suite/software_sandbox.py, with an audit hook that blocks file writes, reads outside the Python installation, directory listings, process creation and sockets. Candidates receive only the inputs they may see (training history, public instance data, sequences); references, optima and held-out observations stay in the evaluator process.",
+  "check": "A probe candidate for the influenza task tried to glob and open the prepared data file that contains the held-out weeks.",
+  "result": "Both were refused: \"sandbox: directory listing denied\" for the globs and PermissionError \"sandbox: file access denied\" for the open; the evaluator reported the candidate as invalid.",
+  "limitation": "Defence in depth for honest program search, not a security boundary against deliberately hostile native code."
+ }
+}

@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "id": "science-materials-sutton-chen-cluster-minima",
+  "name": "Sutton-Chen transition-metal cluster global minima",
+  "description": "Find the lowest-energy structures of 38- to 80-atom clusters of the Sutton-Chen many-body metal potential with the silver, nickel and gold parameter sets (six instances). Energies are recomputed exactly and compared with the putative global minima of Doye and Wales.",
+  "paper_ids": [
+    "science-chemistry_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1039/a709249k",
+      "type": "paper",
+      "locator": "Doye and Wales (1998): Sutton-Chen 12-6, 9-6 and 10-8 clusters, table of putative global minima for N <= 80 (arXiv cond-mat/9711038)."
+    },
+    {
+      "url": "https://doi.org/10.1080/09500839008206493",
+      "type": "paper",
+      "locator": "Sutton and Chen (1990): the long-range Finnis-Sinclair potential and its (n, m, c) parameters."
+    },
+    {
+      "url": "https://doi.org/10.1021/acs.jctc.4c00365",
+      "type": "paper",
+      "locator": "Lopez-Castro, Ortiz-Chi and Merino (2024): GrowPAL search over Sutton-Chen clusters with 5-80 atoms; reports new lower minima for 12-6 N = 68 and 10-8 N = 58 (not used here)."
+    },
+    {
+      "url": "https://arxiv.org/abs/cond-mat/9711038",
+      "type": "archive",
+      "locator": "LaTeX source of the global-minimum table (four decimals)."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "scipy"
+    ],
+    "environment_variables": [],
+    "datasets": "None; reference energies are published values embedded in the evaluator."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Sutton-Chen transition-metal cluster global minima",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_materials_sutton_chen_clusters",
+    "science_family": "science_materials_sutton_chen_clusters",
+    "parameters": {},
+    "interface": "construct(instance) -> array of shape (n, 3): Cartesian coordinates of n atoms in reduced units (lattice constant 1). instance = {'potential': 'sutton_chen', 'kind': '12-6' | '9-6' | '10-8', 'n': atoms, 'n_exp', 'm_exp', 'c'}; called once for each of six instances (kind, n) = (12-6, 38), (12-6, 75), (9-6, 59), (9-6, 80), (10-8, 55), (10-8, 79); all calls together within 300 s, at most 4 threads. The evaluator recomputes E = sum_i [1/2 sum_{j!=i} r_ij^-n_exp - c sqrt(sum_{j!=i} r_ij^-m_exp)] over all pairs (no cutoff) with (n_exp, m_exp, c) = (12, 6, 144.41), (9, 6, 39.432), (10, 8, 34.408); atoms must be at least 0.35 apart. Score: mean over instances of 100*(E - E_pub)/|E_pub| against the putative global minima tabulated by Doye and Wales (1998) (minimize; 0 matches all six, negative is lower). chem_clusters.relax(positions, 'sutton_chen', kind) and chem_clusters.sutton_chen_energy_gradient(positions, kind) may be called",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "additional_requires": [],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_materials_sutton_chen_clusters",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:scipy"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "References are the 1998 putative minima (four decimals); the database, which may hold later updates, could not be checked. Lopez-Castro et al. (2024) report database-level minima for all sizes from 5 to 80 except three (lower energies for 12-6 N = 68 and 10-8 N = 58, not reproduced for 10-8 N = 60); those three are excluded.",
+    "Putative minima are public, so remembered structures score well without search; the energy is computed without a cutoff, as in the source, and differs from implementations that truncate the sums.",
+    "The score averages relative energy excesses over six instances within a shared 300 s budget."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/chemistry-checks.json",
+    "tests": "tests/test_chem_clusters.py"
+  },
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": 0.0,
+    "statement": "Matching the six putative global minima of Doye and Wales (1998) gives 0. The 2024 GrowPAL search reports lower energies than the Cambridge Cluster Database only for sizes not used here; the database itself could not be compared with the 1998 table.",
+    "sources": [
+      {
+        "title": "Global minima for transition metal clusters described by Sutton-Chen potentials",
+        "url": "https://doi.org/10.1039/a709249k"
+      },
+      {
+        "title": "An Efficient Growth Pattern Algorithm (GrowPAL) for Cluster Structure Prediction",
+        "url": "https://doi.org/10.1021/acs.jctc.4c00365"
+      }
+    ],
+    "as_of": "2026-10-10"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "construction",
+    "domain": "natural_science",
+    "area": "materials_science",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Find the lowest-energy structure of an atomic cluster for a given interatomic potential (global optimisation on a rugged energy landscape). Here: transition-metal clusters described by the many-body Sutton-Chen potential.",
+    "importance_rationale": "The structures of small metal clusters control catalytic, optical and magnetic properties of nanoparticles; many-body metal potentials give energy landscapes in which global optimisation still finds improvements decades later.",
+    "papers": [
+      {
+        "title": "Global minima for transition metal clusters described by Sutton-Chen potentials",
+        "url": "https://doi.org/10.1039/a709249k",
+        "primary_goal": "Find the global minima of Sutton-Chen 12-6, 9-6 and 10-8 clusters with up to 80 atoms and analyse their structures.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task scores six of the tabulated sizes against those putative minima."
+      },
+      {
+        "title": "An Efficient Growth Pattern Algorithm (GrowPAL) for Cluster Structure Prediction",
+        "url": "https://doi.org/10.1021/acs.jctc.4c00365",
+        "primary_goal": "Develop an efficient algorithm for predicting cluster structures and apply it to Lennard-Jones, Sutton-Chen and boron clusters.",
+        "evidence_role": "primary_problem",
+        "task_relation": "Its Sutton-Chen search reproduces the six scored minima and identifies the sizes with later improvements that the task excludes."
+      }
+    ],
+    "reason": "The cited papers' main objective is the underlying problem the task scores; the local data, splits and limits are stated in the task's limitations.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

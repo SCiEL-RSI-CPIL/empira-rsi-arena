@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0",
+  "id": "science-software-fuzz-plistlib",
+  "name": "Software engineering: coverage-guided fuzzing of CPython's plistlib (XML and binary property lists)",
+  "description": "Generate at most 1,000 inputs (each a string whose characters are bytes) that drive plistlib.loads (CPython 3.12.14), which detects and parses XML and binary property lists, through as many code blocks as possible. The score is the number of distinct instrumented blocks the inputs reach.",
+  "paper_ids": [
+    "science-software_engineering"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1145/2976749.2978428",
+      "type": "paper",
+      "locator": "Bohme, Pham and Roychoudhury (CCS 2016): coverage-based greybox fuzzing, where reaching new coverage guides input generation."
+    },
+    {
+      "url": "https://doi.org/10.1145/1375581.1375607",
+      "type": "paper",
+      "locator": "Godefroid, Kiezun and Levin (PLDI 2008): grammar-based fuzzing of parsers to reach code beyond the lexer."
+    },
+    {
+      "url": "https://doi.org/10.1145/3243734.3243804",
+      "type": "paper",
+      "locator": "Klees, Ruef, Cooper, Wei and Hicks (CCS 2018): how fuzzers are evaluated, including coverage as a measure."
+    },
+    {
+      "url": "https://www.python.org/downloads/release/python-31214/",
+      "type": "archive",
+      "locator": "CPython 3.12.14 source release (PSF licence): the pure-Python target modules and the test inputs used as references."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [],
+    "environment_variables": [],
+    "datasets": "CPython 3.12.14 source release (PSF licence), prepared by scripts/prepare_software.py."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Software engineering: coverage-guided fuzzing of CPython's plistlib (XML and binary property lists)",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_software_fuzz_coverage",
+    "science_family": "science_software_fuzz_coverage",
+    "parameters": {
+      "subject": "plistlib",
+      "cpu_seconds": 60
+    },
+    "interface": "fuzz(target) -> list of str. target = {'subject': str, 'entry': str (how one input is executed), 'files': {path: source} (the subject's CPython 3.12.14 files as the evaluator loads them), 'instrumented': [paths whose coverage counts], 'max_inputs': 1000, 'max_chars': 2000}. Return at most max_inputs strings of at most max_chars characters. The evaluator imports the files under a private package name, inserts a numbered probe at the start of every block inside the functions of the instrumented files (function entry; if and else branches, including an empty else; loop bodies and normal loop exits; try bodies, else and finally blocks; exception handlers; with bodies; match cases; both branches of conditional expressions), runs the entry on every input (exceptions are expected and ignored; 0.5 s of CPU time per input) and counts the distinct probes reached. Entries: tomllib -> tomllib.loads(text); re -> re._compiler.compile(text, 0), i.e. regular-expression parsing and compilation; html.parser -> for convert_charrefs in (True, False): HTMLParser(convert_charrefs).feed(text) then close(); plistlib -> plistlib.loads(text.encode('latin-1')), so each character U+0000-U+00FF is one byte and the XML or binary format is detected from the bytes (characters above U+00FF only raise the encoding error). Score: number of distinct probes reached, maximised; replaying all inputs may take at most 120 s of CPU time, otherwise the evaluation is invalid. fuzz() runs in a sandboxed subprocess (no files, network or subprocesses; 60 s CPU, 2 GB) and may load and run the given files itself, for example to trace coverage; it should be deterministic (seed any randomness, do not read clocks).",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "software_engineering",
+      "area": "software_engineering",
+      "data": "public_benchmark",
+      "verification": "simulation",
+      "reference": "none"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": []
+    },
+    "additional_requires": [
+      "file:data/software/pymod/fuzz-plistlib.json"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "science_software_fuzz_coverage",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/software/pymod/fuzz-plistlib.json"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "Coverage is a proxy: no faults are seeded and crashes are not scored, while fuzzing research also measures bugs found (Klees et al. 2018).",
+    "Block probes are this evaluator's own instrumentation of the pinned sources (no coverage.py or compiler edges), so counts are not comparable with other coverage tools; some probes are unreachable.",
+    "The corpus is bounded by size (1,000 strings of at most 2,000 characters) and generation by 60 s of CPU time instead of the hours-long wall-clock budgets of fuzzing benchmarks.",
+    "Reference computed here: the 58 byte strings embedded in CPython's test_plistlib.py (XML and binary samples, some longer than the 2,000-character limit) reach 111 of the 317 probes; random printable strings (the seed) reach 15.",
+    "The probes cover the whole module, including the plist writers that loads never calls, so the reachable maximum is well below 317; the XML path also runs the C expat parser, whose coverage is not counted."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/science-report.json",
+    "tests": "tests/test_software_pymod.py"
+  },
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "statement": "No published value exists for this instrumentation. As a reference, the 58 byte strings embedded in CPython's test_plistlib.py reach 111 of the 317 probes (computed with this evaluator).",
+    "sources": [
+      {
+        "title": "Coverage-based Greybox Fuzzing as Markov Chain",
+        "url": "https://doi.org/10.1145/2976749.2978428"
+      }
+    ],
+    "as_of": "2026-10-11"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "domain": "software_engineering",
+    "area": "software_engineering",
+    "data": "public_benchmark",
+    "verification": "simulation",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Automated test input generation (fuzzing) for parsers: produce inputs that exercise as much of a parser's logic as possible, since unexercised code cannot reveal its faults.",
+    "importance_rationale": "Parsers process untrusted input and are a main source of security and robustness defects; coverage-guided and grammar-aware fuzzing are among the most widely used and studied testing techniques.",
+    "papers": [
+      {
+        "title": "Coverage-based Greybox Fuzzing as Markov Chain",
+        "url": "https://doi.org/10.1145/2976749.2978428",
+        "primary_goal": "Make coverage-guided greybox fuzzing reach more program paths with the same number of executions.",
+        "task_relation": "The task rewards inputs by the program coverage they reach.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Grammar-based whitebox fuzzing",
+        "url": "https://doi.org/10.1145/1375581.1375607",
+        "primary_goal": "Generate well-formed inputs that reach deep into programs with structured input such as parsers.",
+        "task_relation": "The targets are parsers, where input structure decides which code is reached.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

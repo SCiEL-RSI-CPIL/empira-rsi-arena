@@ -30,8 +30,8 @@ def catalog():
 
 def test_pinned_catalog_is_available_without_runtime_or_frameworks(catalog):
     assert catalog["summary"] == {
-        "task_count": 959, "executable_count": 705, "unsupported_count": 254,
-        "protocol_counts": {"original": 109, "recreated_verified": 81, "recreated": 515, "unsupported": 254},
+        "task_count": 2578, "executable_count": 2324, "unsupported_count": 254,
+        "protocol_counts": {"original": 110, "recreated_verified": 1285, "recreated": 929, "unsupported": 254},
         "runtime_readiness": "not_verified"}
     assert catalog["sources"][0]["kind"] == "bundled"
     assert catalog["sources"][0]["id"] == "arena-tasks"
@@ -71,7 +71,7 @@ def test_current_source_dependency_declarations_agree(catalog):
 
 def test_evaluator_definition_can_require_setup_without_claiming_runtime_readiness(catalog):
     pending = [task for task in catalog["tasks"] if task["executable"] and task["declared_status"] == "requires_setup"]
-    assert len(pending) == 31
+    assert len(pending) == 609
     assert all(task["runtime_readiness"] == "not_verified" for task in pending)
     assert validate_catalog(catalog) is catalog
     pending[0]["declared_status"] = "blocked"
@@ -91,7 +91,7 @@ def test_missing_evaluator_cannot_claim_ready(catalog):
 def test_get_catalog_returns_detached_values():
     first = get_catalog()
     first["tasks"].clear()
-    assert len(get_catalog()["tasks"]) == 959
+    assert len(get_catalog()["tasks"]) == 2578
 
 
 def test_input_output_contracts_are_bound_to_pinned_problem_files(catalog):

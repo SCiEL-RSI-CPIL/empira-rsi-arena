@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0",
+  "id": "science-materials-matbench-mp-is-metal",
+  "name": "Matbench v0.1 mp_is_metal",
+  "description": "Predict whether a crystal is a metal (1) or not (0) according to its band gap calculated by density functional theory from its crystal structure (Matbench v0.1 task mp_is_metal, 106113 samples). The evaluation uses the five official folds: for every fold the candidate is called once, in a separate process, with the other four folds and their target values as training data, and must predict the held-out fold within 600 seconds.",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "requires_setup",
+  "sources": [
+    {
+      "url": "https://matbench.materialsproject.org/",
+      "type": "benchmark",
+      "locator": "matbench_mp_is_metal"
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevLett.120.145301",
+      "type": "paper",
+      "locator": "Crystal Graph Convolutional Neural Networks for an Accurate and Interpretable Prediction of Material Properties"
+    },
+    {
+      "url": "https://doi.org/10.1038/s41524-020-00406-3",
+      "type": "benchmark",
+      "locator": "Dunn et al. (2020), Benchmarking materials property prediction methods: the Matbench test set and Automatminer reference algorithm (npj Comput Mater): benchmark paper defining the tasks, the nested cross-validation and the metrics; Crossref title verified."
+    },
+    {
+      "url": "https://matbench.materialsproject.org/Benchmark%20Info/matbench_v0.1/",
+      "type": "benchmark",
+      "locator": "Task table of matbench_v0.1: matbench_mp_is_metal: classification/structure, is_metal, 106,113 samples.."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "sklearn"
+    ],
+    "environment_variables": [],
+    "datasets": "matbench_mp_is_metal.json.gz from ml.materialsproject.org, folds from the official validation file"
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "specified_only",
+    "benchmark": "Matbench v0.1 mp_is_metal",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "matbench",
+    "science_family": "matbench",
+    "parameters": {
+      "task": "mp_is_metal",
+      "classification": true,
+      "best_known": 0.952,
+      "wall": 600
+    },
+    "interface": "fit_predict(train_inputs, train_targets, test_inputs, info) -> list of len(test_inputs) numbers, each exactly 0 or 1 (class labels; any other value is invalid). Every input is a dict with the keys lattice (the three lattice vectors in angstrom, a 3 x 3 list), species (the element symbol of every site) and frac_coords (the fractional coordinates of every site). info has task, input_type, target, unit, fold, n_train and n_test. Score: mean over the five folds of the held-out ROC AUC of the 0/1 labels (which equals the balanced accuracy), maximized.",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard",
+      "area": "materials_science",
+      "secondary_area": "physics",
+      "areas": [
+        "materials_science",
+        "physics",
+        "machine_learning"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "matbench_mp_is_metal.json.gz from ml.materialsproject.org, folds from the official validation file"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "matbench",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:sklearn",
+        "file:data/matbench/mp_is_metal.json"
+      ],
+      "timeout": 3600,
+      "validity_key": "valid"
+    },
+    "declared_status": "requires_setup"
+  },
+  "limitations": [
+    "Leaders are graph neural networks and tuned ensembles; the leaderboard snapshot has no date.",
+    "The classification score is the ROC AUC of the 0/1 labels, which equals the balanced accuracy: the record is the leaderboard's best balanced accuracy (the page has a second column, probability ROC AUC, that this task does not use).",
+    "This task has 106k-133k structures: featurising them is slow, so a candidate must be efficient; the seed uses a cheap feature set.",
+    "The record was found in a hashed snapshot of its source; it is not replayed. See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "real_instance_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "scripts/test_new_families.py",
+    "tests": "scripts/test_new_families.py",
+    "upstream_reproduction": false,
+    "record_level": "record_matches_pinned_source",
+    "unsure": false,
+    "record_validation": {
+      "record": 0.952,
+      "checks": [
+        "0.952 appears as the best balanced accuracy of matbench_mp_is_metal on the pinned leaderboard page"
+      ],
+      "sources": [
+        "sources/matbench_leaderboard.html",
+        "data/matbench/mp_is_metal.json"
+      ],
+      "notes": [
+        "the snapshot has no date on the page; the task scores the ROC AUC of 0/1 labels, which equals the balanced accuracy; the page's other classification column, probability ROC AUC, is not the record (re-checked on the live page 2026-11-18)"
+      ],
+      "validated": "2026-11-18"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "model",
+    "domain": "natural_science",
+    "data": "public_benchmark",
+    "verification": "sampled",
+    "reference": "leaderboard",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "materials_science",
+    "secondary_area": "physics",
+    "areas": [
+      "materials_science",
+      "physics",
+      "machine_learning"
+    ],
+    "important_to_science": true
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "Each cited paper has the prediction of the task's materials property from composition or structure as its main objective; the Matbench paper is a benchmark paper and is listed under extra_sources only.",
+    "scientific_problem": "Classify an inorganic crystal as a metal or a non-metal (DFT) from its structure.",
+    "importance_rationale": "Whether a material conducts is the first screen for electronic, photovoltaic and thermoelectric uses, and structure-based classifiers screen computed candidates cheaply.",
+    "papers": [
+      {
+        "title": "Crystal Graph Convolutional Neural Networks for an Accurate and Interpretable Prediction of Material Properties",
+        "url": "https://doi.org/10.1103/PhysRevLett.120.145301",
+        "task_relation": "The paper includes a metal-versus-semiconductor classification of Materials Project crystals; the task is the same classification on the Matbench subset with free choice of model.",
+        "primary_goal": "Learn crystal properties directly from the atomic connections of a structure, with a graph neural network trained on Materials Project DFT data (eight properties).",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  },
+  "source_specification": {
+    "name": "Matbench v0.1 mp_is_metal",
+    "slug": "science-materials-matbench-mp-is-metal",
+    "description": "Predict whether a crystal is a metal (1) or not (0) according to its band gap calculated by density functional theory from its crystal structure (Matbench v0.1 task mp_is_metal, 106113 samples). The evaluation uses the five official folds: for every fold the candidate is called once, in a separate process, with the other four folds and their target values as training data, and must predict the held-out fold within 600 seconds.",
+    "benchmark": "Matbench v0.1 mp_is_metal",
+    "dataset": "matbench_mp_is_metal.json.gz from ml.materialsproject.org, folds from the official validation file",
+    "metric": "score",
+    "direction": "maximize",
+    "source_url": "https://matbench.materialsproject.org/",
+    "source_locator": "matbench_mp_is_metal",
+    "upstream_path": null,
+    "requirements": [
+      "py:numpy",
+      "py:sklearn",
+      "file:data/matbench/mp_is_metal.json"
+    ],
+    "execution_notes": "matbench_mp_is_metal.json.gz from ml.materialsproject.org, folds from the official validation file"
+  }
+}

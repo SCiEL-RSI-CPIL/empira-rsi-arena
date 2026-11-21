@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0",
+  "id": "science-frontier-combinatorics-football-pool-8",
+  "name": "Football pool problem for 8 matches: ternary covering code K_3(8,1)",
+  "description": "Choose as few words of length 8 over the alphabet {0,1,2} as possible so that every one of the 6561 words differs from some chosen word in at most one position. The best known code has 486 words (van Laarhoven, Aarts, van Lint and Wille, 1989) and the best lower bound is 403.",
+  "paper_ids": [
+    "science-frontier_combinatorics"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+      "type": "paper",
+      "locator": "van Laarhoven, Aarts, van Lint and Wille (1989): simulated-annealing codes giving K_3(6,1) <= 73, K_3(7,1) <= 186 and K_3(8,1) <= 486, printed in the paper."
+    },
+    {
+      "url": "https://arxiv.org/abs/2504.01932",
+      "type": "paper",
+      "locator": "D. Gijswijt, S. Polak (2025), Semidefinite lower bounds for covering codes: lower bound K_3(8,1) >= 403."
+    },
+    {
+      "url": "https://github.com/florath/covering-codes-lean/blob/460df105545c2d6b04ba71f29de6b56dbda92825/CoveringCodes/Database/Sources/VanLaarhoven1989.lean",
+      "type": "repository",
+      "locator": "Kernel-checked Lean transcription (BSD-3-Clause) of the three published codes; the post-Keri bound table of the same repository lists the current bounds."
+    },
+    {
+      "url": "https://old.sztaki.hu/~keri/codes/index.htm",
+      "type": "benchmark",
+      "locator": "G. Keri's tables of bounds on covering codes: K_3(8,1) between the lower bound of its time and 486."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Football pool problem for 8 matches: ternary covering code K_3(8,1)",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_frontier_combinatorics_covering_code",
+    "science_family": "science_frontier_combinatorics_covering_code",
+    "parameters": {
+      "q": 3,
+      "n": 8,
+      "radius": 1,
+      "published": 486
+    },
+    "interface": "construct(q, n, radius) -> list of codewords; the evaluator passes this task's alphabet size q, length n and covering radius. Each codeword is a list of n integers in 0..q-1 and codewords must be distinct. Valid when every word of {0..q-1}^n is within Hamming distance radius of some codeword (checked over the whole space). Score: the number of codewords, minimized; it is an upper bound on K_q(n, radius).",
+    "label_spec": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "additional_requires": [],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_frontier_combinatorics_covering_code",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy"
+      ],
+      "timeout": 120,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "Covering radius 1 over the ternary alphabet only; other alphabets and radii are separate problems.",
+    "The tetracode-based seed has 729 words.",
+    "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+    "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-10-12",
+    "evidence": "validation/frontier_combinatorics-checks.json",
+    "tests": "tests/test_science_frontier_combinatorics.py",
+    "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": 486,
+    "statement": "K_3(8,1) <= 486 by the simulated-annealing code of van Laarhoven, Aarts, van Lint and Wille (1989), still the best known in G. Keri's tables and in the 2026 post-Keri table of the covering-codes-lean project; the best lower bound is 403 (D. Gijswijt, S. Polak, 2025).",
+    "sources": [
+      {
+        "title": "New upper bounds for the football pool problem for 6, 7, and 8 matches",
+        "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+        "authors": "P. J. M. van Laarhoven, E. H. L. Aarts, J. H. van Lint, L. T. Wille",
+        "year": 1989
+      },
+      {
+        "title": "Semidefinite lower bounds for covering codes",
+        "url": "https://arxiv.org/abs/2504.01932",
+        "authors": "D. Gijswijt, S. Polak",
+        "year": 2025
+      },
+      {
+        "title": "Tables for bounds on covering codes",
+        "url": "https://old.sztaki.hu/~keri/codes/index.htm",
+        "authors": "G. Keri",
+        "year": 2011
+      }
+    ],
+    "comparability": "Same object and objective: ternary words of length 8, covering radius 1, fewest codewords. The published code, decoded from the Lean transcription, scores 486 (valid) with this evaluator.",
+    "as_of": "2026-10-12",
+    "attribution": "human"
+  },
+  "labels": {
+    "scientific_contribution": "open_problem",
+    "artifact": "construction",
+    "domain": "mathematics",
+    "area": "mathematics",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 1,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Determine K_3(8,1), the least number of ternary words of length 8 such that every ternary word differs from one of them in at most one position (the football pool problem for 8 matches).",
+    "importance_rationale": "Covering codes are a basic object of coding theory (covering radius, data compression, write-once memories, lossy coding). The football pool problem is the classic open case: exact values are known only up to five matches, and for six to eight matches the gaps between the 1989 constructions and the lower bounds are still open.",
+    "papers": [
+      {
+        "title": "New upper bounds for the football pool problem for 6, 7, and 8 matches",
+        "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+        "primary_goal": "Improve the upper bounds on the football pool problem K_3(n,1) for n = 6, 7 and 8 by finding covering codes with simulated annealing.",
+        "task_relation": "The task asks for a ternary covering code of length 8 and radius 1 with fewer than 486 words, the size of this paper's code.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Semidefinite lower bounds for covering codes",
+        "url": "https://arxiv.org/abs/2504.01932",
+        "primary_goal": "Derive semidefinite-programming lower bounds on the sizes of covering codes, including ternary codes of covering radius one.",
+        "task_relation": "Supplies the lower bound K_3(8,1) >= 403, so the optimum lies between 403 and 486.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both papers have the football pool problem as their main objective, and the evaluator checks exactly the radius-one covering property over all ternary words of length n.",
+    "verification_basis": "Crossref or arXiv metadata inspected; bounds cross-checked with G. Keri's tables and the post-Keri table of the covering-codes-lean project; the published code, read from its kernel-checked Lean transcription, re-scored with the evaluator.",
+    "reviewed_at": "2026-10-12",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

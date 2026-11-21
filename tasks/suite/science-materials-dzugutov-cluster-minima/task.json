@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0",
+  "id": "science-materials-dzugutov-cluster-minima",
+  "name": "Dzugutov cluster global minima (polytetrahedral model metal)",
+  "description": "Find the lowest-energy structures of 38- to 60-atom clusters bound by the Dzugutov potential, a model of glass- and quasicrystal-forming metals whose energy maximum favours polytetrahedral order (six instances). Energies are recomputed exactly and compared with the putative global minima of Doye, Wales and Simdyankin.",
+  "paper_ids": [
+    "science-chemistry_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1039/b008881l",
+      "type": "paper",
+      "locator": "Doye, Wales and Simdyankin (2001): Dzugutov potential parameters and table of putative global minima for N = 3-100 (arXiv cond-mat/0011018)."
+    },
+    {
+      "url": "https://doi.org/10.1103/physreva.46.r2984",
+      "type": "paper",
+      "locator": "Dzugutov (1992): the pair potential designed to suppress crystallisation in a monatomic liquid."
+    },
+    {
+      "url": "https://arxiv.org/abs/cond-mat/0011018",
+      "type": "archive",
+      "locator": "LaTeX source of the global-minimum table (six decimals)."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "scipy"
+    ],
+    "environment_variables": [],
+    "datasets": "None; reference energies are published values embedded in the evaluator."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Dzugutov cluster global minima (polytetrahedral model metal)",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_materials_dzugutov_clusters",
+    "science_family": "science_materials_dzugutov_clusters",
+    "parameters": {},
+    "interface": "construct(instance) -> array of shape (n, 3): Cartesian coordinates of n atoms in reduced units. instance = {'potential': 'dzugutov', 'n': atoms, 'A', 'B', 'a', 'b', 'c', 'd', 'm'}; called once for each n in (38, 45, 50, 55, 57, 60); all calls together within 300 s, at most 4 threads. The evaluator recomputes E = sum_{i<j} V(r_ij) with V(r) = A(r^-m - B)exp(c/(r - a)) [r < a] + B exp(d/(r - b)) [r < b], A = 5.82, B = 1.28, a = 1.87, b = 1.94, c = 1.10, d = 0.27, m = 16; atoms must be at least 0.5 apart. Score: mean over instances of 100*(E - E_pub)/|E_pub| against the putative global minima of Doye, Wales and Simdyankin (2001) (minimize; 0 matches all six, negative is lower). chem_clusters.relax(positions, 'dzugutov') and chem_clusters.dzugutov_energy_gradient(positions) may be called",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "additional_requires": [],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_materials_dzugutov_clusters",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:scipy"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "The references are 2001 putative minima; the authors note that sizes above about 60 may have lower minima, so only sizes up to 60 are used, and later database updates could not be checked.",
+    "Putative minima are public, so remembered structures score well without search.",
+    "The score averages relative energy excesses over six instances within a shared 300 s budget."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/chemistry-checks.json",
+    "tests": "tests/test_chem_clusters.py"
+  },
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": 0.0,
+    "statement": "Matching the six putative global minima of Doye, Wales and Simdyankin (2001) gives 0.",
+    "sources": [
+      {
+        "title": "Global optimization and the energy landscapes of Dzugutov clusters",
+        "url": "https://doi.org/10.1039/b008881l"
+      }
+    ],
+    "as_of": "2026-10-10"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "construction",
+    "domain": "natural_science",
+    "area": "materials_science",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Find the lowest-energy structure of an atomic cluster for a given interatomic potential (global optimisation on a rugged energy landscape). Here: clusters of the Dzugutov potential, a model of glass- and quasicrystal-forming metals.",
+    "importance_rationale": "Polytetrahedral order underlies metallic glasses, Frank-Kasper phases and quasicrystals; the global minima of Dzugutov clusters show which polytetrahedral structures such systems favour.",
+    "papers": [
+      {
+        "title": "Global optimization and the energy landscapes of Dzugutov clusters",
+        "url": "https://doi.org/10.1039/b008881l",
+        "primary_goal": "Determine the global minima and energy landscapes of Dzugutov clusters up to 100 atoms and their polytetrahedral structures.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task scores six sizes up to 60 atoms against the published putative minima."
+      }
+    ],
+    "reason": "The cited papers' main objective is the underlying problem the task scores; the local data, splits and limits are stated in the task's limitations.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

@@ -1,0 +1,624 @@
+{
+  "schema": "artask.human-results/1",
+  "package": "frontier_physics",
+  "date": "2026-10-12",
+  "environment": {
+    "python": "3.12.14",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1"
+    },
+    "platform": "macOS-15.8.1-arm64-arm-64bit"
+  },
+  "record_tables": {
+    "packomania": {
+      "cci-radius": {
+        "url": "https://www.packomania.com/cci/txt/radius.txt",
+        "sha256": "6c60da0a2feb2ad01f2bed8dd99646021bcfd4cbfecb5ea2a7b332ecfa0beead",
+        "bytes": 96415,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-cci-radius.txt",
+        "committed_path": null
+      },
+      "cci-author": {
+        "url": "https://www.packomania.com/cci/txt/author.txt",
+        "sha256": "d07352630098b154d32508e3c15e1d8cd08aa9b82cefc120dbdd133064d8d0f0",
+        "bytes": 72512,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-cci-author.txt",
+        "committed_path": null
+      },
+      "csq-radius": {
+        "url": "https://www.packomania.com/csq/txt/radius.txt",
+        "sha256": "621e5749187f6e7a43d4a1659f2ad15bb4faa11030420ca909501a09bd7fd192",
+        "bytes": 61901,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-csq-radius.txt",
+        "committed_path": null
+      },
+      "csq-author": {
+        "url": "https://www.packomania.com/csq/txt/author.txt",
+        "sha256": "6fdfe8107cafd034e12237feea90cd1e63265985a638c2887eaaf94bffe99392",
+        "bytes": 70937,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-csq-author.txt",
+        "committed_path": null
+      },
+      "scu-radius": {
+        "url": "https://www.packomania.com/scu/txt/radius.txt",
+        "sha256": "7c7e549a82bf9f6f8d877fcf4da9529d5ec1e8e9a10365c2a53e6ef7364cd9fa",
+        "bytes": 36216,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-scu-radius.txt",
+        "committed_path": null
+      },
+      "scu-author": {
+        "url": "https://www.packomania.com/scu/txt/author.txt",
+        "sha256": "1a3cea19c33b96d6e8e6e7e7c7421c9422341c1113ff6f196c059558accea927",
+        "bytes": 25255,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-scu-author.txt",
+        "committed_path": null
+      }
+    },
+    "cohn": {
+      "url": "https://cohn.mit.edu/sloane/",
+      "sha256": "af7caf6db6d0f9e3a21d0678680d4154779ae928d941cddf63cfef793106d6b1",
+      "bytes": 119650,
+      "retrieved": "2026-10-11",
+      "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+      "cache_path": ".cache/human-results/frontier_physics/cohn-sloane-tables.html",
+      "committed_path": null
+    },
+    "nerattini_brauchart_kiessling": {
+      "url": "https://arxiv.org/pdf/1307.2834v3",
+      "sha256": "b8236e970b852f19287be58fac6a3951e5f5ab472e3096df8e3e4b4a39018c13",
+      "bytes": 1155757,
+      "retrieved": "2026-10-12",
+      "licence": "arXiv non-exclusive distribution licence 1.0; kept in .cache only, not redistributed",
+      "cache_path": ".cache/human-results/frontier_physics/nerattini-brauchart-kiessling-1307.2834v3.pdf",
+      "committed_path": null
+    },
+    "zenodo_central_directory": {
+      "url": "https://zenodo.org/records/17923310/files/LocalMinima.zip?download=1",
+      "sha256": "b9414236790aead6ed282f7bcf867c44569906086922f55f5f896730a2a0dd1e",
+      "bytes": 65536,
+      "retrieved": "2026-10-12",
+      "licence": "CC BY 4.0 (Zenodo record 17923310); committed with attribution",
+      "cache_path": ".cache/human-results/frontier_physics/amore2025-LocalMinima-zip-tail.bin",
+      "committed_path": null,
+      "byte_range": [
+        492082827,
+        492148362
+      ]
+    }
+  },
+  "tasks": {
+    "science-frontier-physics-circles-in-circle-50": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 0.12582548953040418,
+        "source": "catalog/science/frontier_physics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://www.packomania.com/cci/txt/author.txt",
+          "locator": "row 50: Ronald L. Graham, Boris D. Lubachevsky, Kari J. Nurmela, Patric R. J. Östergård (sha256 d07352630098b154)"
+        },
+        {
+          "url": "https://www.packomania.com/cci/cci.html",
+          "locator": "record table row N = 50, radius 0.125825489530404188680567705027"
+        }
+      ],
+      "human_best": {
+        "value": 0.12582548953040418,
+        "year": 1998,
+        "by": "R. L. Graham, B. D. Lubachevsky, K. J. Nurmela, P. R. J. Östergård",
+        "sources": [
+          {
+            "url": "https://doi.org/10.1016/S0012-365X(97)00050-2",
+            "locator": "method or record publication"
+          },
+          {
+            "url": "https://www.packomania.com/cci/txt/radius.txt",
+            "locator": "row 50: 0.125825489530404188680567705027"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://www.packomania.com/cci/txt/cci50.txt",
+        "sha256": "35762e3083cabe32ce6d65363e68befff7de941b7093b8b7683cff87adcb786f",
+        "bytes": 3750,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-cci50.txt",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 0.12582548953040407,
+        "published_value": 0.12582548953040418,
+        "tolerance": "absolute 1e-15: radius and coordinates are published with 30 decimals",
+        "seconds": 0.068,
+        "details": "Candidate .cache/human-results/frontier_physics/candidates/science-frontier-physics-circles-in-circle-50.py returns the published construction; scored by suite_evaluator (suite/science-frontier-physics-circles-in-circle-50/evaluator.py), valid=True; published text 0.125825489530404188680567705027; difference -1.110e-16."
+      },
+      "notes": "Record kept in E. Specht's Packomania table and credited to R. L. Graham, B. D. Lubachevsky, K. J. Nurmela, P. R. J. Östergård (1998); it was found with the researchers' own search methods, years before LLM-driven program search existed, so it is a human result."
+    },
+    "science-frontier-physics-circles-in-circle-300": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 0.053154299146851186,
+        "source": "catalog/science/frontier_physics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://www.packomania.com/cci/txt/author.txt",
+          "locator": "row 300: Xiangjing Lai, Jin-Kao Hao, Dong Yue, Zhipeng Lu, Zhang-Hua Fu (sha256 d07352630098b154)"
+        },
+        {
+          "url": "https://www.packomania.com/cci/cci.html",
+          "locator": "record table row N = 300, radius 0.053154299146851187500993025786"
+        }
+      ],
+      "human_best": {
+        "value": 0.053154299146851186,
+        "year": 2021,
+        "by": "X. Lai, J.-K. Hao, D. Yue, Z. Lü, Z.-H. Fu",
+        "sources": [
+          {
+            "url": "https://doi.org/10.1016/j.ejor.2021.08.044",
+            "locator": "method or record publication"
+          },
+          {
+            "url": "https://www.packomania.com/cci/txt/radius.txt",
+            "locator": "row 300: 0.053154299146851187500993025786"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://www.packomania.com/cci/txt/cci300.txt",
+        "sha256": "1a3f5eb627a2567482457a7f8bc36503c0e7831f0dbd1e455484d5ed1bd066d8",
+        "bytes": 22500,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-cci300.txt",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 0.0531542991468511,
+        "published_value": 0.053154299146851186,
+        "tolerance": "absolute 1e-15: radius and coordinates are published with 30 decimals",
+        "seconds": 0.068,
+        "details": "Candidate .cache/human-results/frontier_physics/candidates/science-frontier-physics-circles-in-circle-300.py returns the published construction; scored by suite_evaluator (suite/science-frontier-physics-circles-in-circle-300/evaluator.py), valid=True; published text 0.053154299146851187500993025786; difference -8.327e-17."
+      },
+      "notes": "Record kept in E. Specht's Packomania table and credited to X. Lai, J.-K. Hao, D. Yue, Z. Lü, Z.-H. Fu (2021); it was found with the researchers' own search methods, years before LLM-driven program search existed, so it is a human result."
+    },
+    "science-frontier-physics-circles-in-square-50": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 0.071377103865,
+        "source": "catalog/science/frontier_physics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://www.packomania.com/csq/txt/author.txt",
+          "locator": "row 50: David W. Boll, Jerry Donovan, Ronald L. Graham, Boris D. Lubachevsky (sha256 6fdfe8107cafd034)"
+        },
+        {
+          "url": "https://www.packomania.com/csq/csq.html",
+          "locator": "record table row N = 50, radius 0.071377103865"
+        }
+      ],
+      "human_best": {
+        "value": 0.071377103865,
+        "year": 2000,
+        "by": "D. W. Boll, J. Donovan, R. L. Graham, B. D. Lubachevsky",
+        "sources": [
+          {
+            "url": "https://doi.org/10.37236/1524",
+            "locator": "method or record publication"
+          },
+          {
+            "url": "https://www.packomania.com/csq/txt/radius.txt",
+            "locator": "row 50: 0.071377103865"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://www.packomania.com/csq/txt/csq50.txt",
+        "sha256": "5c91f663bb1afad6ce195ec46415bb18abe2ff02eb796ada2b64a551c80b8e26",
+        "bytes": 2933,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-csq50.txt",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 0.07137710386398553,
+        "published_value": 0.071377103865,
+        "tolerance": "absolute 2e-12: radius and coordinates are published with 12 decimals; coordinate rounding alone moves the radius by up to about 1e-12",
+        "seconds": 0.067,
+        "details": "Candidate .cache/human-results/frontier_physics/candidates/science-frontier-physics-circles-in-square-50.py returns the published construction; scored by suite_evaluator (suite/science-frontier-physics-circles-in-square-50/evaluator.py), valid=True; published text 0.071377103865; difference -1.014e-12."
+      },
+      "notes": "Record kept in E. Specht's Packomania table and credited to D. W. Boll, J. Donovan, R. L. Graham, B. D. Lubachevsky (2000); it was found with the researchers' own search methods, years before LLM-driven program search existed, so it is a human result."
+    },
+    "science-frontier-physics-circles-in-square-200": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 0.036612798904,
+        "source": "catalog/science/frontier_physics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://www.packomania.com/csq/txt/author.txt",
+          "locator": "row 200: Wenqi Huang, Tao Ye, David W. Cantrell (sha256 6fdfe8107cafd034)"
+        },
+        {
+          "url": "https://www.packomania.com/csq/csq.html",
+          "locator": "record table row N = 200, radius 0.036612798904"
+        }
+      ],
+      "human_best": {
+        "value": 0.036612798904,
+        "year": 2010,
+        "by": "W. Huang, T. Ye, D. W. Cantrell",
+        "sources": [
+          {
+            "url": "https://doi.org/10.1016/j.orl.2010.07.004",
+            "locator": "method or record publication"
+          },
+          {
+            "url": "https://www.packomania.com/csq/txt/radius.txt",
+            "locator": "row 200: 0.036612798904"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://www.packomania.com/csq/txt/csq200.txt",
+        "sha256": "9ff080385c5bd177335dd072483380ef19c3029e5731f29b1ea2f9f78e6bdf78",
+        "bytes": 11334,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-csq200.txt",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 0.03661279890330394,
+        "published_value": 0.036612798904,
+        "tolerance": "absolute 2e-12: radius and coordinates are published with 12 decimals; coordinate rounding alone moves the radius by up to about 1e-12",
+        "seconds": 0.07,
+        "details": "Candidate .cache/human-results/frontier_physics/candidates/science-frontier-physics-circles-in-square-200.py returns the published construction; scored by suite_evaluator (suite/science-frontier-physics-circles-in-square-200/evaluator.py), valid=True; published text 0.036612798904; difference -6.961e-13."
+      },
+      "notes": "Record kept in E. Specht's Packomania table and credited to W. Huang, T. Ye, D. W. Cantrell (2010); it was found with the researchers' own search methods, years before LLM-driven program search existed, so it is a human result."
+    },
+    "science-frontier-physics-spheres-in-cube-50": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 0.13595451264166358,
+        "source": "catalog/science/frontier_physics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://www.packomania.com/scu/txt/author.txt",
+          "locator": "row 50: Hugo Pfoertner (sha256 1a3cea19c33b96d6)"
+        },
+        {
+          "url": "https://www.packomania.com/scu/scu.html",
+          "locator": "record table row N = 50, radius 0.135954512641663590961947158274"
+        }
+      ],
+      "human_best": {
+        "value": 0.13595451264166358,
+        "year": 2005,
+        "by": "H. Pfoertner",
+        "sources": [
+          {
+            "url": "https://www.packomania.com/scu/scu.html",
+            "locator": "method or record publication"
+          },
+          {
+            "url": "https://www.packomania.com/scu/txt/radius.txt",
+            "locator": "row 50: 0.135954512641663590961947158274"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://www.packomania.com/scu/txt/scu50.txt",
+        "sha256": "b7a478bdbd94139ebaa768817be2c82afb690350244e0962626d618c2edece39",
+        "bytes": 5500,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-scu50.txt",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 0.13595451264166356,
+        "published_value": 0.13595451264166358,
+        "tolerance": "absolute 1e-15: radius and coordinates are published with 30 decimals",
+        "seconds": 0.064,
+        "details": "Candidate .cache/human-results/frontier_physics/candidates/science-frontier-physics-spheres-in-cube-50.py returns the published construction; scored by suite_evaluator (suite/science-frontier-physics-spheres-in-cube-50/evaluator.py), valid=True; published text 0.135954512641663590961947158274; difference -2.776e-17."
+      },
+      "notes": "Record kept in E. Specht's Packomania table and credited to H. Pfoertner (2005); it was found with the researchers' own search methods, years before LLM-driven program search existed, so it is a human result."
+    },
+    "science-frontier-physics-spheres-in-cube-100": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 0.11138234751247975,
+        "source": "catalog/science/frontier_physics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://www.packomania.com/scu/txt/author.txt",
+          "locator": "row 100: Eckard Specht (sha256 1a3cea19c33b96d6)"
+        },
+        {
+          "url": "https://www.packomania.com/scu/scu.html",
+          "locator": "record table row N = 100, radius 0.111382347512479750227357863499"
+        }
+      ],
+      "human_best": {
+        "value": 0.11138234751247975,
+        "year": 2012,
+        "by": "E. Specht (program scu)",
+        "sources": [
+          {
+            "url": "https://www.packomania.com/scu/scu.html",
+            "locator": "method or record publication"
+          },
+          {
+            "url": "https://www.packomania.com/scu/txt/radius.txt",
+            "locator": "row 100: 0.111382347512479750227357863499"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://www.packomania.com/scu/txt/scu100.txt",
+        "sha256": "1093534896f4d60a1d2bb2778759fa565eb01d36a3d964f9b1067b4378a28705",
+        "bytes": 11000,
+        "retrieved": "2026-10-11",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/packomania-scu100.txt",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 0.11138234751247973,
+        "published_value": 0.11138234751247975,
+        "tolerance": "absolute 1e-15: radius and coordinates are published with 30 decimals",
+        "seconds": 0.067,
+        "details": "Candidate .cache/human-results/frontier_physics/candidates/science-frontier-physics-spheres-in-cube-100.py returns the published construction; scored by suite_evaluator (suite/science-frontier-physics-spheres-in-cube-100/evaluator.py), valid=True; published text 0.111382347512479750227357863499; difference -1.388e-17."
+      },
+      "notes": "Record kept in E. Specht's Packomania table and credited to E. Specht (program scu) (2012); it was found with the researchers' own search methods, years before LLM-driven program search existed, so it is a human result."
+    },
+    "science-frontier-physics-sphere-covering-50": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 18.3000226,
+        "source": "catalog/science/frontier_physics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://cohn.mit.edu/sloane/",
+          "locator": "Coverings by N spherical caps in 3 dimensions: 'calculations were done by R. H. Hardin, N. J. A. Sloane, and W. D. Smith in 1994', row N = 50: 18.3000226 degrees (snapshot sha256 af7caf6db6d0f9e3)"
+        }
+      ],
+      "human_best": {
+        "value": 18.3000226,
+        "year": 1994,
+        "by": "R. H. Hardin, N. J. A. Sloane, W. D. Smith",
+        "sources": [
+          {
+            "url": "https://cohn.mit.edu/sloane/",
+            "locator": "row N = 50"
+          },
+          {
+            "url": "http://neilsloane.com/coverings/",
+            "locator": "original table, N = 50"
+          }
+        ]
+      },
+      "construction": {
+        "url": "http://neilsloane.com/coverings/dim3/cover.3.50.txt",
+        "sha256": "5b4d4db20f92bee880cdc986c4407879e2df13d49013330b829d99a0f15a0737",
+        "bytes": 2324,
+        "retrieved": "2026-10-12",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/sloane-cover.3.50.txt",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 18.30002258488077,
+        "published_value": 18.3000226,
+        "tolerance": "table value is rounded up to 7 decimals of a degree: 0 <= published - score < 1e-7",
+        "seconds": 0.28,
+        "details": "Candidate .cache/human-results/frontier_physics/candidates/science-frontier-physics-sphere-covering-50.py returns the published construction; scored by suite_evaluator (suite/science-frontier-physics-sphere-covering-50/evaluator.py), valid=True; published text 18.3000226 degrees; difference -1.512e-08."
+      },
+      "notes": "Numbers in the table are rounded in the worse direction (covering radii up)."
+    },
+    "science-frontier-physics-sphere-covering-130": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 11.3165625,
+        "source": "catalog/science/frontier_physics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://cohn.mit.edu/sloane/",
+          "locator": "Coverings by N spherical caps in 3 dimensions: 'calculations were done by R. H. Hardin, N. J. A. Sloane, and W. D. Smith in 1994', row N = 130: 11.3165625 degrees (snapshot sha256 af7caf6db6d0f9e3)"
+        }
+      ],
+      "human_best": {
+        "value": 11.3165625,
+        "year": 1994,
+        "by": "R. H. Hardin, N. J. A. Sloane, W. D. Smith",
+        "sources": [
+          {
+            "url": "https://cohn.mit.edu/sloane/",
+            "locator": "row N = 130"
+          },
+          {
+            "url": "http://neilsloane.com/coverings/",
+            "locator": "original table, N = 130"
+          }
+        ]
+      },
+      "construction": {
+        "url": "http://neilsloane.com/coverings/dim3/cover.3.130.txt",
+        "sha256": "520da1a079ca4c535e71135263aa256d6315817fdbba688f8a399ff381d4b94c",
+        "bytes": 6044,
+        "retrieved": "2026-10-12",
+        "licence": "not stated (no licence on the source page); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_physics/sloane-cover.3.130.txt",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 11.316562480308567,
+        "published_value": 11.3165625,
+        "tolerance": "table value is rounded up to 7 decimals of a degree: 0 <= published - score < 1e-7",
+        "seconds": 0.247,
+        "details": "Candidate .cache/human-results/frontier_physics/candidates/science-frontier-physics-sphere-covering-130.py returns the published construction; scored by suite_evaluator (suite/science-frontier-physics-sphere-covering-130/evaluator.py), valid=True; published text 11.3165625 degrees; difference -1.969e-08."
+      },
+      "notes": "Numbers in the table are rounded in the worse direction (covering radii up)."
+    },
+    "science-frontier-physics-log-energy-100": {
+      "recorded": {
+        "kind": "best_known",
+        "value": -1083.377140539012,
+        "source": "catalog/science/frontier_physics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://arxiv.org/pdf/1307.2834v3",
+          "locator": "supplement 6.2 (s = 0), row 100: v_0 = -0.21886406879576; data from Rakhmanov, Saff and Zhou (1995) and Calef (2009) (PDF sha256 b8236e970b852f19)"
+        },
+        {
+          "url": "https://doi.org/10.5281/zenodo.17923310",
+          "locator": "100.zip: 39 local minima; lowest is 100/final_min_angles_100_s_0_id_0.dat"
+        }
+      ],
+      "human_best": {
+        "value": -1083.377140539012,
+        "year": 1995,
+        "by": "E. A. Rakhmanov, E. B. Saff, Y. M. Zhou (1995) or M. Calef (2009), as tabulated by R. Nerattini, J. S. Brauchart, M. K.-H. Kiessling (2014)",
+        "sources": [
+          {
+            "url": "https://doi.org/10.1007/s10955-014-1107-7",
+            "locator": "table 6.2, N = 100"
+          },
+          {
+            "url": "https://doi.org/10.4310/MRL.1994.v1.n6.a3",
+            "locator": "minimal logarithmic energy problem and numerical minima"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://zenodo.org/records/17923310/files/LocalMinima.zip?download=1",
+        "sha256": "cadd2ed769eb45dc4abaae09c2ca2629cf3000791d82ee776953490318a705cc",
+        "bytes": 91828,
+        "retrieved": "2026-10-12",
+        "licence": "CC BY 4.0 (Zenodo record 17923310); committed with attribution",
+        "cache_path": ".cache/human-results/frontier_physics/amore2025-LocalMinima-100.zip.part",
+        "committed_path": "validation/human-results/frontier_physics-constructions.json",
+        "byte_range": [
+          0,
+          91827
+        ],
+        "member": "100.zip",
+        "member_crc32": "ae3630f0",
+        "member_bytes": 91285,
+        "member_sha256": "0c614f8622430e0a6efe705e0b0102f7cade1e3a0127fca0028eca741242539d",
+        "configuration": "100/final_min_angles_100_s_0_id_0.dat"
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": -1083.3771405387206,
+        "published_value": -1083.377140539012,
+        "tolerance": "relative 1e-12 (13 significant digits; the table prints v_0 to 14 digits from 1995/2009 computations)",
+        "seconds": 0.071,
+        "details": "Candidate .cache/human-results/frontier_physics/candidates/science-frontier-physics-log-energy-100.py returns the published construction; scored by suite_evaluator (suite/science-frontier-physics-log-energy-100/evaluator.py), valid=True; published text v_0(100) = -0.21886406879576, E = v_0 * 4950; difference +2.915e-10."
+      },
+      "notes": "The tabulated value has no published coordinates; the construction is the lowest of the CC BY 4.0 local minima of Amore, Figueroa and Ramos (2025), which attains it within the stated tolerance."
+    },
+    "science-frontier-physics-log-energy-150": {
+      "recorded": {
+        "kind": "best_known",
+        "value": -2364.6322425919598,
+        "source": "catalog/science/frontier_physics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://arxiv.org/pdf/1307.2834v3",
+          "locator": "supplement 6.2 (s = 0), row 150: v_0 = -0.21160020067937; data from Rakhmanov, Saff and Zhou (1995) and Calef (2009) (PDF sha256 b8236e970b852f19)"
+        },
+        {
+          "url": "https://doi.org/10.5281/zenodo.17923310",
+          "locator": "150.zip: 6094 local minima; lowest is 150/final_min_angles_150_s_0_id_0.dat"
+        }
+      ],
+      "human_best": {
+        "value": -2364.6322425919598,
+        "year": 1995,
+        "by": "E. A. Rakhmanov, E. B. Saff, Y. M. Zhou (1995) or M. Calef (2009), as tabulated by R. Nerattini, J. S. Brauchart, M. K.-H. Kiessling (2014)",
+        "sources": [
+          {
+            "url": "https://doi.org/10.1007/s10955-014-1107-7",
+            "locator": "table 6.2, N = 150"
+          },
+          {
+            "url": "https://doi.org/10.4310/MRL.1994.v1.n6.a3",
+            "locator": "minimal logarithmic energy problem and numerical minima"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://zenodo.org/records/17923310/files/LocalMinima.zip?download=1",
+        "sha256": "5343246f94e57e14f9d56b75d3adf5b44ac3ffdcc413acec703908e0842ab0ac",
+        "bytes": 20822668,
+        "retrieved": "2026-10-12",
+        "licence": "CC BY 4.0 (Zenodo record 17923310); committed with attribution",
+        "cache_path": ".cache/human-results/frontier_physics/amore2025-LocalMinima-150.zip.part",
+        "committed_path": "validation/human-results/frontier_physics-constructions.json",
+        "byte_range": [
+          144317242,
+          165139909
+        ],
+        "member": "150.zip",
+        "member_crc32": "29b71422",
+        "member_bytes": 20822125,
+        "member_sha256": "2b90dd8b8fbd057836bfca8efb9f7d469c198f91dc8a4fb4b5fb482e368e1c93",
+        "configuration": "150/final_min_angles_150_s_0_id_0.dat"
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": -2364.6322425918706,
+        "published_value": -2364.6322425919598,
+        "tolerance": "relative 1e-12 (13 significant digits; the table prints v_0 to 14 digits from 1995/2009 computations)",
+        "seconds": 0.074,
+        "details": "Candidate .cache/human-results/frontier_physics/candidates/science-frontier-physics-log-energy-150.py returns the published construction; scored by suite_evaluator (suite/science-frontier-physics-log-energy-150/evaluator.py), valid=True; published text v_0(150) = -0.21160020067937, E = v_0 * 11175; difference +8.913e-11."
+      },
+      "notes": "The tabulated value has no published coordinates; the construction is the lowest of the CC BY 4.0 local minima of Amore, Figueroa and Ramos (2025), which attains it within the stated tolerance."
+    }
+  }
+}

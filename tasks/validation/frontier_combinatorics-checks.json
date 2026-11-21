@@ -1,0 +1,1268 @@
+{
+ "schema": "artask.validation-receipt/1",
+ "package": "frontier_combinatorics",
+ "date": "2026-10-12",
+ "scope": "Seed and invalid-candidate executions of the 15 generated frontier_combinatorics packages (built in the work-package branch with import_science.write_packages and scripts/build_suite.py, then reverted to sources), the run.py facade and an empty-candidate control, and the reproduction of every published human record with the generated evaluators (validation/human-results/frontier_combinatorics.json). Every invalid candidate was rejected (valid=false, score null, exit code 1). No model calls and no evolutionary search were run.",
+ "commands": [
+  ".cache/sciel-env/bin/python scripts/prepare_frontier_combinatorics.py",
+  ".cache/sciel-env/bin/python -m unittest discover -s tests -t . -p \"test_*frontier_combinatorics*.py\"",
+  "python3 -c \"import sys; sys.path.insert(0,'scripts'); import import_science; import_science.write_packages(topics={'frontier_combinatorics'})\"",
+  "python3 scripts/build_suite.py --sciel ../SCiEL --only '^science-frontier-combinatorics-'",
+  ".cache/sciel-env/bin/python suite/<id>/evaluator.py suite/<id>/initial_program.py",
+  ".cache/sciel-env/bin/python suite/<id>/evaluator.py <invalid candidate>",
+  ".cache/sciel-env/bin/python run.py evaluate <id> --timeout 120",
+  ".cache/sciel-env/bin/python scripts/human_results_frontier_combinatorics.py --fetch",
+  ".cache/sciel-env/bin/python scripts/human_results_frontier_combinatorics.py --check",
+  "python3 scripts/task_labels.py --check"
+ ],
+ "unit_tests": {
+  "files": [
+   "tests/test_science_frontier_combinatorics.py",
+   "tests/test_human_results_frontier_combinatorics.py"
+  ],
+  "ran": 27,
+  "result": "OK"
+ },
+ "label_check": {
+  "command": "python3 scripts/task_labels.py --check (packages built)",
+  "tasks": 1092,
+  "unlabeled": 0
+ },
+ "integration_note": "On this source-only branch two tests of tests/test_science_catalog.py fail until integration: test_source_collections_are_supplemental (catalog/papers.json has no science-frontier_combinatorics entry yet) and test_original_tasks_and_all_sixty_proposals_survive_generation (the generated suite/<id>/task.json files were reverted). scripts/integrate_science.py frontier_combinatorics creates both. The QAP tasks also need python3 scripts/prepare_frontier_combinatorics.py before any audit.",
+ "full_unit_suite": {
+  "command": ".cache/sciel-env/bin/python -m unittest discover -s tests -t . (source-only branch)",
+  "ran": 1724,
+  "failures": 5,
+  "errors": 7,
+  "skipped": 193,
+  "assessment": "10 of the 12 (tests/test_paper_appendix.py and tests/test_doc_counts.py) fail identically on the base commit a5565677; the other 2 are the integration-dependent test_science_catalog tests above."
+ },
+ "llm_cost_usd_total": 0.0,
+ "environment": {
+  "python": "3.12.14",
+  "numpy": "2.5.3",
+  "platform": "macOS-15.8.1-arm64-arm-64bit",
+  "threads": "OMP_NUM_THREADS=4; scorers are single-threaded Python/NumPy code"
+ },
+ "data": [
+  {
+   "source": "QAPLIB deposit, Edinburgh DataShare (doi:10.7488/ds/3428)",
+   "files": "qapdata.tar.gz (instances tai256c, tho150, wil100), qapsoln.tar.gz, README PDF",
+   "licence": "CC BY 4.0",
+   "handling": "instances fetched by scripts/prepare_frontier_combinatorics.py into suite/_lib/data/frontier_combinatorics (git-ignored, SHA-256 locked in catalog/frontier_combinatorics-data-lock.json); solutions and README in .cache only"
+  },
+  {
+   "source": "La Jolla Covering Repository v1.2, Zenodo record 19735294 (doi:10.5281/zenodo.10779736)",
+   "files": "coverdata.json; three byte ranges of covers.json",
+   "licence": "CC BY 4.0",
+   "handling": ".cache only"
+  },
+  {
+   "source": "florath/covering-codes-lean @ 460df105",
+   "files": "VanLaarhoven1989.lean, post-Keri bound table",
+   "licence": "BSD-3-Clause",
+   "handling": ".cache only"
+  },
+  {
+   "source": "superpermutators mailing list attachment; G. Egan's site",
+   "files": "5905_7_sol1.txt; 7_5906 word",
+   "licence": "not stated (Egan: all rights reserved)",
+   "handling": ".cache only, not redistributed"
+  },
+  {
+   "source": "AGT-Kulak/smallRegGirthGraphs @ c2a1a4e3",
+   "files": "n320_k4_g10.g6, n936_k3_g16.g6, n1116_k5_g9.g6",
+   "licence": "GPL-3.0",
+   "handling": ".cache only, not redistributed"
+  },
+  {
+   "source": "applecoffeecake/dts-search-hdl @ 2ccff8e7",
+   "files": "7-5-112-755.txt, 4-7-134-523.txt",
+   "licence": "MIT (sets also printed in the CC BY 4.0 paper doi:10.1002/jcd.22009)",
+   "handling": ".cache only"
+  }
+ ],
+ "blocked_inputs": [
+  {
+   "input": "Traveling tournament problem records (RobinX repository, robinxval.ugent.be)",
+   "date": "2026-10-11",
+   "symptom": "TCP connection reset for every HTTPS request (curl); page text was readable only through a web reader",
+   "handling": "not retried by another route; the traveling tournament problem was not implemented"
+  },
+  {
+   "input": "Degree-diameter record tables and graphs (web.mat.upc.edu/francesc.comellas/delta-d)",
+   "date": "2026-10-11",
+   "symptom": "TCP connection reset",
+   "handling": "not retried; the degree-diameter problem was not implemented"
+  },
+  {
+   "input": "EXTRACOL best colourings of DIMACS graphs (leria-info.univ-angers.fr, redirect target of www.info.univ-angers.fr)",
+   "date": "2026-10-11",
+   "symptom": "TCP connection reset",
+   "handling": "not retried; graph colouring was not implemented"
+  },
+  {
+   "input": "House of Graphs cage directory (houseofgraphs.org)",
+   "date": "2026-10-11",
+   "symptom": "TCP connection reset",
+   "handling": "not needed: the record graphs were read from the authors' GitHub repository"
+  },
+  {
+   "input": "Rectilinear crossing number tables (www.ist.tugraz.at/aichholzer/.../crossing)",
+   "date": "2026-10-11",
+   "symptom": "expired TLS certificate",
+   "handling": "certificate checks were not bypassed; the problem was not implemented"
+  },
+  {
+   "input": "Graph Partitioning Archive partitions (chriswalshaw.co.uk/partition)",
+   "date": "2026-10-11",
+   "symptom": "files are no longer downloadable; links are sent only on e-mail request",
+   "handling": "no request sent; graph partitioning was not implemented"
+  },
+  {
+   "input": "coveringrepository.com filtered table views (systems.aspx?k=..&t=..&m=..)",
+   "date": "2026-10-12",
+   "symptom": "HTTP 403",
+   "handling": "only the public latest-improvement listings were read; the limitation is stated in the covering-design records"
+  },
+  {
+   "input": "qaplib.mgi.polymtl.ca and ljcr.dmgordon.org",
+   "date": "2026-10-11",
+   "symptom": "host name does not resolve",
+   "handling": "the maintainers' archived deposits were used instead (Edinburgh DataShare for QAPLIB, Zenodo for the La Jolla repository)"
+  }
+ ],
+ "dropped_candidates": {
+  "golomb_rulers": "Optimal Golomb rulers are Sidon sets in an interval (shortest ruler for m marks = least L with an m-element Sidon set in [0, L]); the catalog already has Sidon-set tasks (math-sidon-set-interval-0-60, science-sidon-extension-of-1-2-5-11), so this would be a parametric variant.",
+  "max_cut_gset": "Max-Cut is already in the catalog (dga2d-maximum-cut, science-quantum-qaoa-maxcut); no primary source publishing the best G-set cut vectors was found.",
+  "constant_weight_codes": "A(n, 2d, w) is a packing number of w-sets; the catalog already has the Steiner-system packing task (science-steiner-system-s5612-packing) and binary-code tasks, so this would be a parametric variant.",
+  "low_autocorrelation_binary_sequences": "Merit-factor optimisation is already in the catalog (math-littlewood-merit-factor-length41).",
+  "covering_arrays": "Covering arrays are already in the catalog (pdr-covering-arrays-csplib-45).",
+  "dimacs_graph_colouring": "The published best colourings (EXTRACOL page) could not be downloaded (TCP reset), and several of them are no longer the best known values (for example DSJC1000.5 83 versus 82, C2000.5 146 versus 145), so a reproduction of current records was not possible.",
+  "steinlib_steiner_trees": "SteinLib publishes no solution trees and states no licence; a human record could not be reproduced.",
+  "graph_partitioning": "Walshaw archive partitions are only sent on e-mail request; not requested.",
+  "traveling_tournament_problem": "RobinX repository blocked (TCP reset).",
+  "degree_diameter": "Comellas tables blocked (TCP reset).",
+  "rectilinear_crossing_number": "Aichholzer's tables behind an expired TLS certificate.",
+  "linear_ordering_problem": "Optsicom LOLIB page returned HTTP 404.",
+  "superpermutation_n6": "Not used: a July 2026 mailing-list post claims an unreviewed computer-assisted proof that 872 is optimal, so the case may be closed."
+ },
+ "tasks": {
+  "science-frontier-combinatorics-covering-design-24-7-3": {
+   "family": "science_frontier_combinatorics_covering_design",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 108.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.013959,
+   "wall_seconds": 0.077,
+   "exit_code": 0,
+   "published": 76,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 108.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 76,
+    "beats_best_known": false,
+    "blocks": 108,
+    "t_subsets": 2024,
+    "covered_t_subsets": 2024,
+    "excess_incidences": 1756,
+    "schoenheim_bound": 69,
+    "verification": "exhaustive_t_subset_cover",
+    "elapsed_seconds": 0.013959
+   },
+   "invalid_candidates": [
+    {
+     "case": "uncovered_t_subsets",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "1989 of 2024 t-subsets are not covered; first uncovered: [0, 1, 7]"
+    },
+    {
+     "case": "duplicate_block",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "block 1 duplicates an earlier block"
+    },
+    {
+     "case": "point_out_of_range",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "points must be integers in 0..23"
+    },
+    {
+     "case": "float_point",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "point must be an integer (floats and booleans are not accepted)"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-covering-design-24-7-3 --timeout 120",
+    "status": "completed",
+    "score": 108.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://zenodo.org/api/records/19735294/files/covers.json/content) as a candidate program, scored by suite/science-frontier-combinatorics-covering-design-24-7-3/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 76,
+    "published_value": 76,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-covering-design-19-7-4": {
+   "family": "science_frontier_combinatorics_covering_design",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 217.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.024483,
+   "wall_seconds": 0.085,
+   "exit_code": 0,
+   "published": 151,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 217.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 151,
+    "beats_best_known": false,
+    "blocks": 217,
+    "t_subsets": 3876,
+    "covered_t_subsets": 3876,
+    "excess_incidences": 3719,
+    "schoenheim_bound": 114,
+    "verification": "exhaustive_t_subset_cover",
+    "elapsed_seconds": 0.024483
+   },
+   "invalid_candidates": [
+    {
+     "case": "uncovered_t_subsets",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "3841 of 3876 t-subsets are not covered; first uncovered: [0, 1, 2, 7]"
+    },
+    {
+     "case": "duplicate_block",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "block 1 duplicates an earlier block"
+    },
+    {
+     "case": "point_out_of_range",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "points must be integers in 0..18"
+    },
+    {
+     "case": "float_point",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "point must be an integer (floats and booleans are not accepted)"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-covering-design-19-7-4 --timeout 120",
+    "status": "completed",
+    "score": 217.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://zenodo.org/api/records/19735294/files/covers.json/content) as a candidate program, scored by suite/science-frontier-combinatorics-covering-design-19-7-4/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 151,
+    "published_value": 151,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-covering-design-19-8-5": {
+   "family": "science_frontier_combinatorics_covering_design",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 480.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.098203,
+   "wall_seconds": 0.161,
+   "exit_code": 0,
+   "published": 335,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 480.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 335,
+    "beats_best_known": false,
+    "blocks": 480,
+    "t_subsets": 11628,
+    "covered_t_subsets": 11628,
+    "excess_incidences": 15252,
+    "schoenheim_bound": 228,
+    "verification": "exhaustive_t_subset_cover",
+    "elapsed_seconds": 0.098203
+   },
+   "invalid_candidates": [
+    {
+     "case": "uncovered_t_subsets",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "11572 of 11628 t-subsets are not covered; first uncovered: [0, 1, 2, 3, 8]"
+    },
+    {
+     "case": "duplicate_block",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "block 1 duplicates an earlier block"
+    },
+    {
+     "case": "point_out_of_range",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "points must be integers in 0..18"
+    },
+    {
+     "case": "float_point",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "point must be an integer (floats and booleans are not accepted)"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-covering-design-19-8-5 --timeout 120",
+    "status": "completed",
+    "score": 480.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://zenodo.org/api/records/19735294/files/covers.json/content) as a candidate program, scored by suite/science-frontier-combinatorics-covering-design-19-8-5/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 335,
+    "published_value": 335,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-qap-tai256c": {
+   "family": "science_frontier_combinatorics_qap",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 98685678.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.010999,
+   "wall_seconds": 0.076,
+   "exit_code": 0,
+   "published": 44759294,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 98685678.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "instance": "tai256c",
+    "best_known": 44759294,
+    "beats_best_known": false,
+    "cost": 98685678,
+    "n": 256,
+    "verification": "exact_integer_objective",
+    "elapsed_seconds": 0.010999
+   },
+   "invalid_candidates": [
+    {
+     "case": "repeated_location",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "the assignment must be a permutation of 0..255"
+    },
+    {
+     "case": "wrong_length",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "return a permutation of length n = 256"
+    },
+    {
+     "case": "float_entries",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "location must be an integer (floats and booleans are not accepted)"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'solve'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-qap-tai256c --timeout 120",
+    "status": "completed",
+    "score": 98685678.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://datashare.ed.ac.uk/bitstreams/4bbab9aa-b7a3-4943-a47e-32d2527467bc/download) as a candidate program, scored by suite/science-frontier-combinatorics-qap-tai256c/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 44759294,
+    "published_value": 44759294,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-qap-tho150": {
+   "family": "science_frontier_combinatorics_qap",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 9527466.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.004438,
+   "wall_seconds": 0.067,
+   "exit_code": 0,
+   "published": 8133398,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 9527466.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "instance": "tho150",
+    "best_known": 8133398,
+    "beats_best_known": false,
+    "cost": 9527466,
+    "n": 150,
+    "verification": "exact_integer_objective",
+    "elapsed_seconds": 0.004438
+   },
+   "invalid_candidates": [
+    {
+     "case": "repeated_location",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "the assignment must be a permutation of 0..149"
+    },
+    {
+     "case": "wrong_length",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "return a permutation of length n = 150"
+    },
+    {
+     "case": "float_entries",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "location must be an integer (floats and booleans are not accepted)"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'solve'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-qap-tho150 --timeout 120",
+    "status": "completed",
+    "score": 9527466.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://datashare.ed.ac.uk/bitstreams/4bbab9aa-b7a3-4943-a47e-32d2527467bc/download) as a candidate program, scored by suite/science-frontier-combinatorics-qap-tho150/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 8133398,
+    "published_value": 8133398,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-qap-wil100": {
+   "family": "science_frontier_combinatorics_qap",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 293152.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.002151,
+   "wall_seconds": 0.064,
+   "exit_code": 0,
+   "published": 273038,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 293152.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "instance": "wil100",
+    "best_known": 273038,
+    "beats_best_known": false,
+    "cost": 293152,
+    "n": 100,
+    "verification": "exact_integer_objective",
+    "elapsed_seconds": 0.002151
+   },
+   "invalid_candidates": [
+    {
+     "case": "repeated_location",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "the assignment must be a permutation of 0..99"
+    },
+    {
+     "case": "wrong_length",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "return a permutation of length n = 100"
+    },
+    {
+     "case": "float_entries",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "location must be an integer (floats and booleans are not accepted)"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'solve'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-qap-wil100 --timeout 120",
+    "status": "completed",
+    "score": 293152.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://datashare.ed.ac.uk/bitstreams/4bbab9aa-b7a3-4943-a47e-32d2527467bc/download) as a candidate program, scored by suite/science-frontier-combinatorics-qap-wil100/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 273038,
+    "published_value": 273038,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-football-pool-6": {
+   "family": "science_frontier_combinatorics_covering_code",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 81.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.001156,
+   "wall_seconds": 0.065,
+   "exit_code": 0,
+   "published": 73,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 81.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 73,
+    "beats_best_known": false,
+    "codewords": 81,
+    "space_size": 729,
+    "ball_volume": 13,
+    "sphere_covering_bound": 57,
+    "verification": "exhaustive_ball_union",
+    "elapsed_seconds": 0.001156
+   },
+   "invalid_candidates": [
+    {
+     "case": "uncovered_words",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "716 of 729 words are farther than 1 from the code; first: [1, 1, 0, 0, 0, 0]"
+    },
+    {
+     "case": "symbol_out_of_range",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "symbols must be integers in 0..2"
+    },
+    {
+     "case": "wrong_length",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "codeword 0 must have length n = 6"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-football-pool-6 --timeout 120",
+    "status": "completed",
+    "score": 81.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://raw.githubusercontent.com/florath/covering-codes-lean/460df105545c2d6b04ba71f29de6b56dbda92825/CoveringCodes/Database/Sources/VanLaarhoven1989.lean) as a candidate program, scored by suite/science-frontier-combinatorics-football-pool-6/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 73,
+    "published_value": 73,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-football-pool-7": {
+   "family": "science_frontier_combinatorics_covering_code",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 243.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.002458,
+   "wall_seconds": 0.065,
+   "exit_code": 0,
+   "published": 186,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 243.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 186,
+    "beats_best_known": false,
+    "codewords": 243,
+    "space_size": 2187,
+    "ball_volume": 15,
+    "sphere_covering_bound": 146,
+    "verification": "exhaustive_ball_union",
+    "elapsed_seconds": 0.002458
+   },
+   "invalid_candidates": [
+    {
+     "case": "uncovered_words",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "2172 of 2187 words are farther than 1 from the code; first: [1, 1, 0, 0, 0, 0, 0]"
+    },
+    {
+     "case": "symbol_out_of_range",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "symbols must be integers in 0..2"
+    },
+    {
+     "case": "wrong_length",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "codeword 0 must have length n = 7"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-football-pool-7 --timeout 120",
+    "status": "completed",
+    "score": 243.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://raw.githubusercontent.com/florath/covering-codes-lean/460df105545c2d6b04ba71f29de6b56dbda92825/CoveringCodes/Database/Sources/VanLaarhoven1989.lean) as a candidate program, scored by suite/science-frontier-combinatorics-football-pool-7/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 186,
+    "published_value": 186,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-football-pool-8": {
+   "family": "science_frontier_combinatorics_covering_code",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 729.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.004142,
+   "wall_seconds": 0.066,
+   "exit_code": 0,
+   "published": 486,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 729.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 486,
+    "beats_best_known": false,
+    "codewords": 729,
+    "space_size": 6561,
+    "ball_volume": 17,
+    "sphere_covering_bound": 386,
+    "verification": "exhaustive_ball_union",
+    "elapsed_seconds": 0.004142
+   },
+   "invalid_candidates": [
+    {
+     "case": "uncovered_words",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "6544 of 6561 words are farther than 1 from the code; first: [1, 1, 0, 0, 0, 0, 0, 0]"
+    },
+    {
+     "case": "symbol_out_of_range",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "symbols must be integers in 0..2"
+    },
+    {
+     "case": "wrong_length",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "codeword 0 must have length n = 8"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-football-pool-8 --timeout 120",
+    "status": "completed",
+    "score": 729.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://raw.githubusercontent.com/florath/covering-codes-lean/460df105545c2d6b04ba71f29de6b56dbda92825/CoveringCodes/Database/Sources/VanLaarhoven1989.lean) as a candidate program, scored by suite/science-frontier-combinatorics-football-pool-8/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 486,
+    "published_value": 486,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-superpermutation-7": {
+   "family": "science_frontier_combinatorics_superpermutation",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 5913.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.004934,
+   "wall_seconds": 0.066,
+   "exit_code": 0,
+   "published": 5905,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 5913.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 5905,
+    "beats_best_known": false,
+    "length": 5913,
+    "permutations": 5040,
+    "waste": 867,
+    "lower_bound_formula": 5884,
+    "verification": "exhaustive_windows",
+    "elapsed_seconds": 0.004934
+   },
+   "invalid_candidates": [
+    {
+     "case": "missing_permutations",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "5039 of 5040 permutations do not occur as contiguous blocks"
+    },
+    {
+     "case": "symbol_out_of_range",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "symbols must be 1..7"
+    },
+    {
+     "case": "non_digit_character",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "a string word may contain only the ASCII digits 1..n"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-superpermutation-7 --timeout 120",
+    "status": "completed",
+    "score": 5913.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://groups.google.com/group/superpermutators/attach/12cc503508531/5905_7_sol1.txt?part=0.4) as a candidate program, scored by suite/science-frontier-combinatorics-superpermutation-7/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 5905,
+    "published_value": 5905,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-cage-4-10": {
+   "family": "science_frontier_combinatorics_cage",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 512.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.012721,
+   "wall_seconds": 0.074,
+   "exit_code": 0,
+   "published": 320,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 512.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 320,
+    "beats_best_known": false,
+    "vertices": 512,
+    "degree": 4,
+    "girth_at_least": 10,
+    "moore_bound": 242,
+    "verification": "nonbacktracking_walk_certificate",
+    "elapsed_seconds": 0.012721
+   },
+   "invalid_candidates": [
+    {
+     "case": "short_cycles",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "the graph has a cycle of length 3, shorter than g = 10"
+    },
+    {
+     "case": "two_regular_cycle",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "a 4-regular graph on 2000 vertices has exactly 4000 edges"
+    },
+    {
+     "case": "loop_edge",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "loops are not permitted"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-cage-4-10 --timeout 120",
+    "status": "completed",
+    "score": 512.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://raw.githubusercontent.com/AGT-Kulak/smallRegGirthGraphs/c2a1a4e334cd9f4dd31247f1ebfb6e18c004e4bc/genLifts/data/graphs/cage/n320_k4_g10.g6) as a candidate program, scored by suite/science-frontier-combinatorics-cage-4-10/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 320,
+    "published_value": 320,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-cage-3-16": {
+   "family": "science_frontier_combinatorics_cage",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 39366.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 1.877269,
+   "wall_seconds": 1.982,
+   "exit_code": 0,
+   "published": 936,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 39366.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 936,
+    "beats_best_known": false,
+    "vertices": 39366,
+    "degree": 3,
+    "girth_at_least": 16,
+    "moore_bound": 510,
+    "verification": "nonbacktracking_walk_certificate",
+    "elapsed_seconds": 1.877269
+   },
+   "invalid_candidates": [
+    {
+     "case": "short_cycles",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "the graph has a cycle of length 4, shorter than g = 16"
+    },
+    {
+     "case": "two_regular_cycle",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "a 3-regular graph on 2000 vertices has exactly 3000 edges"
+    },
+    {
+     "case": "loop_edge",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "loops are not permitted"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-cage-3-16 --timeout 120",
+    "status": "completed",
+    "score": 39366.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://raw.githubusercontent.com/AGT-Kulak/smallRegGirthGraphs/c2a1a4e334cd9f4dd31247f1ebfb6e18c004e4bc/genLifts/data/graphs/cage/n936_k3_g16.g6) as a candidate program, scored by suite/science-frontier-combinatorics-cage-3-16/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 936,
+    "published_value": 936,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-cage-5-9": {
+   "family": "science_frontier_combinatorics_cage",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 6250.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.199303,
+   "wall_seconds": 0.261,
+   "exit_code": 0,
+   "published": 1116,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 6250.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 1116,
+    "beats_best_known": false,
+    "vertices": 6250,
+    "degree": 5,
+    "girth_at_least": 9,
+    "moore_bound": 426,
+    "verification": "nonbacktracking_walk_certificate",
+    "elapsed_seconds": 0.199303
+   },
+   "invalid_candidates": [
+    {
+     "case": "short_cycles",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "the graph has a cycle of length 3, shorter than g = 9"
+    },
+    {
+     "case": "two_regular_cycle",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "a 5-regular graph on 2000 vertices has exactly 5000 edges"
+    },
+    {
+     "case": "loop_edge",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "loops are not permitted"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-cage-5-9 --timeout 120",
+    "status": "completed",
+    "score": 6250.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://raw.githubusercontent.com/AGT-Kulak/smallRegGirthGraphs/c2a1a4e334cd9f4dd31247f1ebfb6e18c004e4bc/genLifts/data/graphs/cage/n1116_k5_g9.g6) as a candidate program, scored by suite/science-frontier-combinatorics-cage-5-9/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 1116,
+    "published_value": 1116,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-difference-triangle-set-7-5": {
+   "family": "science_frontier_combinatorics_dts",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 278.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.000951,
+   "wall_seconds": 0.062,
+   "exit_code": 0,
+   "published": 112,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 278.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 112,
+    "beats_best_known": false,
+    "scope": 278,
+    "sum_of_row_scopes": 1049,
+    "distinct_differences": 105,
+    "trivial_lower_bound": 105,
+    "verification": "exact_all_differences",
+    "elapsed_seconds": 0.000951
+   },
+   "invalid_candidates": [
+    {
+     "case": "repeated_difference",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "difference 1 occurs twice (rows 0 and 0)"
+    },
+    {
+     "case": "row_not_starting_at_zero",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "row 0 must start at 0 (normalized form)"
+    },
+    {
+     "case": "wrong_row_count",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "return exactly 7 rows"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-difference-triangle-set-7-5 --timeout 120",
+    "status": "completed",
+    "score": 278.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://raw.githubusercontent.com/applecoffeecake/dts-search-hdl/2ccff8e767c3fe6390fd3af056dfda11847011fc/new-dts-db-fpga/7-5-112-755.txt) as a candidate program, scored by suite/science-frontier-combinatorics-difference-triangle-set-7-5/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 112,
+    "published_value": 112,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  },
+  "science-frontier-combinatorics-difference-triangle-set-4-7": {
+   "family": "science_frontier_combinatorics_dts",
+   "problem_protocol": "recreated_verified",
+   "seed_score": 358.0,
+   "valid": true,
+   "error": null,
+   "elapsed_seconds": 0.000932,
+   "wall_seconds": 0.06,
+   "exit_code": 0,
+   "published": 134,
+   "direction": "minimize",
+   "seed_details": {
+    "score": 358.0,
+    "direction": "minimize",
+    "valid": true,
+    "error": null,
+    "best_known": 134,
+    "beats_best_known": false,
+    "scope": 358,
+    "sum_of_row_scopes": 814,
+    "distinct_differences": 112,
+    "trivial_lower_bound": 112,
+    "verification": "exact_all_differences",
+    "elapsed_seconds": 0.000932
+   },
+   "invalid_candidates": [
+    {
+     "case": "repeated_difference",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "difference 1 occurs twice (rows 0 and 0)"
+    },
+    {
+     "case": "row_not_starting_at_zero",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "row 0 must start at 0 (normalized form)"
+    },
+    {
+     "case": "wrong_row_count",
+     "valid": false,
+     "score": null,
+     "exit_code": 1,
+     "error": "return exactly 4 rows"
+    }
+   ],
+   "invalid_all_rejected": true,
+   "empty_candidate_control": {
+    "valid": false,
+    "score": null,
+    "error": "AttributeError: module 'candidate_program' has no attribute 'construct'",
+    "exit_code": 1,
+    "result": "rejected"
+   },
+   "facade": {
+    "command": "run.py evaluate science-frontier-combinatorics-difference-triangle-set-4-7 --timeout 120",
+    "status": "completed",
+    "score": 358.0,
+    "valid": true,
+    "agrees_with_evaluator": true
+   },
+   "reference_check": {
+    "compared": "the published record construction (https://raw.githubusercontent.com/applecoffeecake/dts-search-hdl/2ccff8e767c3fe6390fd3af056dfda11847011fc/new-dts-db-fpga/4-7-134-523.txt) as a candidate program, scored by suite/science-frontier-combinatorics-difference-triangle-set-4-7/evaluator.py",
+    "result": "reproduced",
+    "evaluator_score": 134,
+    "published_value": 134,
+    "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+    "receipt": "validation/human-results/frontier_combinatorics.json"
+   },
+   "improvable": true
+  }
+ }
+}

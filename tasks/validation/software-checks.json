@@ -1,0 +1,2020 @@
+{
+  "schema": "artask.validation-receipt/1",
+  "package": "software",
+  "date": "2026-10-11",
+  "scope": "Seed and invalid-candidate executions of the generated software-engineering packages (built in the work-package branches, then reverted to sources), plus the reference checks named per task. First round (2026-10-08): covering arrays. Second round (2026-10-11): the 18 tasks below the covering arrays. No model calls; no evolutionary search was run.",
+  "commands": [
+    ".cache/sciel-env/bin/python -m unittest discover -s tests -t . -p \"test_software*.py\"",
+    ".cache/sciel-env/bin/python -m unittest discover -s tests -t . -p \"test_software*.py\"   # 71 tests",
+    ".cache/sciel-env/bin/python scripts/prepare_software.py   # fresh download of all pinned sources verified (51 sources and 24 derived files on 2026-10-11, plus the SyGuS archive re-downloaded for the 25th file)",
+    ".cache/sciel-env/bin/python suite/<id>/evaluator.py suite/<id>/initial_program.py",
+    "python3 -c \"import sys; sys.path.insert(0,'scripts'); import import_science; import_science.write_packages(topics={'software_engineering'})\"",
+    "python3 scripts/build_suite.py --only '^(<task ids>)$'",
+    "python3 scripts/prepare_software.py"
+  ],
+  "llm_cost_usd_total": 0.0,
+  "tasks": {
+    "science-software-cit-apache-2way": {
+      "seed_score": 71.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.838818,
+      "wall_seconds": 0.89,
+      "seed_details": {
+        "combined_score": -71.0,
+        "score": 71.0,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "rows": 71,
+        "required_combinations": 66927,
+        "parameters": 172,
+        "strength": 2,
+        "instance": "apache-2way",
+        "lower_bound": 30,
+        "published_reference": 30,
+        "gap_to_reference": 41,
+        "elapsed_seconds": 0.838818
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define generate()",
+          "rejected": true
+        },
+        {
+          "candidate": "one_row.py",
+          "valid": false,
+          "score": null,
+          "error": "row 0 contains the forbidden combination [[35, 0], [44, 0], [45, 0], [46, 0], [165, 0]]",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('array.txt', mode 'w'); PermissionError: sandbox: file access denied ('array.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "floats.py",
+          "valid": false,
+          "score": null,
+          "error": "row 0 contains a non-integer level",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Exact feasibility of every t-way level combination that involves a constrained parameter, recomputed with Z3 (z3-solver 5.1.0) and compared with the evaluator's prepared required set; parameter tuples without constrained parameters are all required.",
+        "result": "11866/11866 combinations agree",
+        "details": {
+          "combinations_checked_with_z3": 11866,
+          "agreements": 11866,
+          "parameter_tuples_without_constrained_parameters_all_required": 11935,
+          "required_combinations": 66927,
+          "counting_lower_bound": 30,
+          "minimal_infeasible_combinations": 3,
+          "seconds": 0.94
+        },
+        "constraint_encoding_vs_casa_distribution": "equivalent",
+        "published_sizes_not_rerun": "HHSA 30, CASA 32 (FastCA repository supplementary table)",
+        "archive_files_identical_to_fastca_hhsa_inputs": true
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "platform": "macOS-15.8.1-arm64-arm-64bit",
+        "z3-solver": "5.1.0"
+      },
+      "date": "2026-10-08"
+    },
+    "science-software-cit-gcc-2way": {
+      "seed_score": 84.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 1.483297,
+      "wall_seconds": 1.53,
+      "seed_details": {
+        "combined_score": -84.0,
+        "score": 84.0,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "rows": 84,
+        "required_combinations": 82770,
+        "parameters": 199,
+        "strength": 2,
+        "instance": "gcc-2way",
+        "lower_bound": 9,
+        "published_reference": 18,
+        "gap_to_reference": 66,
+        "elapsed_seconds": 1.483297
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define generate()",
+          "rejected": true
+        },
+        {
+          "candidate": "one_row.py",
+          "valid": false,
+          "score": null,
+          "error": "63069 of 82770 feasible 2-way combinations are not covered, e.g. [[0, 0], [1, 1]]",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('array.txt', mode 'w'); PermissionError: sandbox: file access denied ('array.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "floats.py",
+          "valid": false,
+          "score": null,
+          "error": "row 0 contains a non-integer level",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Exact feasibility of every t-way level combination that involves a constrained parameter, recomputed with Z3 (z3-solver 5.1.0) and compared with the evaluator's prepared required set; parameter tuples without constrained parameters are all required.",
+        "result": "29997/29997 combinations agree",
+        "details": {
+          "combinations_checked_with_z3": 29997,
+          "agreements": 29997,
+          "parameter_tuples_without_constrained_parameters_all_required": 13203,
+          "required_combinations": 82770,
+          "counting_lower_bound": 9,
+          "minimal_infeasible_combinations": 39,
+          "seconds": 2.58
+        },
+        "constraint_encoding_vs_casa_distribution": "equivalent",
+        "published_sizes_not_rerun": "HHSA 18, CASA 19 (FastCA repository supplementary table)",
+        "archive_files_identical_to_fastca_hhsa_inputs": true
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "platform": "macOS-15.8.1-arm64-arm-64bit",
+        "z3-solver": "5.1.0"
+      },
+      "date": "2026-10-08"
+    },
+    "science-software-cit-spinv-2way": {
+      "seed_score": 54.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 4.227426,
+      "wall_seconds": 4.28,
+      "seed_details": {
+        "combined_score": -54.0,
+        "score": 54.0,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "rows": 54,
+        "required_combinations": 7365,
+        "parameters": 55,
+        "strength": 2,
+        "instance": "spinv-2way",
+        "lower_bound": 16,
+        "published_reference": 31,
+        "gap_to_reference": 23,
+        "elapsed_seconds": 4.227426
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define generate()",
+          "rejected": true
+        },
+        {
+          "candidate": "one_row.py",
+          "valid": false,
+          "score": null,
+          "error": "5880 of 7365 feasible 2-way combinations are not covered, e.g. [[0, 0], [1, 1]]",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('array.txt', mode 'w'); PermissionError: sandbox: file access denied ('array.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "floats.py",
+          "valid": false,
+          "score": null,
+          "error": "row 0 contains a non-integer level",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Exact feasibility of every t-way level combination that involves a constrained parameter, recomputed with Z3 (z3-solver 5.1.0) and compared with the evaluator's prepared required set; parameter tuples without constrained parameters are all required.",
+        "result": "8797/8797 combinations agree",
+        "details": {
+          "combinations_checked_with_z3": 8797,
+          "agreements": 8797,
+          "parameter_tuples_without_constrained_parameters_all_required": 0,
+          "required_combinations": 7365,
+          "counting_lower_bound": 16,
+          "minimal_infeasible_combinations": 46,
+          "seconds": 0.49
+        },
+        "constraint_encoding_vs_casa_distribution": "archive encoding strictly stronger than the CASA 49-constraint model (Z3 found a CASA-valid configuration that the archive forbids)",
+        "published_sizes_not_rerun": "HHSA 31 on the same archive encoding (FastCA repository supplementary table)",
+        "archive_files_identical_to_fastca_hhsa_inputs": true
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "platform": "macOS-15.8.1-arm64-arm-64bit",
+        "z3-solver": "5.1.0"
+      },
+      "date": "2026-10-08"
+    },
+    "science-software-cit-spins-3way": {
+      "seed_score": 149.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.188114,
+      "wall_seconds": 0.24,
+      "seed_details": {
+        "combined_score": -149.0,
+        "score": 149.0,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "rows": 149,
+        "required_combinations": 12835,
+        "parameters": 18,
+        "strength": 3,
+        "instance": "spins-3way",
+        "lower_bound": 64,
+        "published_reference": 80,
+        "gap_to_reference": 69,
+        "elapsed_seconds": 0.188114
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define generate()",
+          "rejected": true
+        },
+        {
+          "candidate": "one_row.py",
+          "valid": false,
+          "score": null,
+          "error": "12019 of 12835 feasible 3-way combinations are not covered, e.g. [[0, 0], [1, 0], [2, 1]]",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('array.txt', mode 'w'); PermissionError: sandbox: file access denied ('array.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "floats.py",
+          "valid": false,
+          "score": null,
+          "error": "row 0 contains a non-integer level",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Exact feasibility of every t-way level combination that involves a constrained parameter, recomputed with Z3 (z3-solver 5.1.0) and compared with the evaluator's prepared required set; parameter tuples without constrained parameters are all required.",
+        "result": "12152/12152 combinations agree",
+        "details": {
+          "combinations_checked_with_z3": 12152,
+          "agreements": 12152,
+          "parameter_tuples_without_constrained_parameters_all_required": 84,
+          "required_combinations": 12835,
+          "counting_lower_bound": 64,
+          "minimal_infeasible_combinations": 13,
+          "seconds": 0.28
+        },
+        "constraint_encoding_vs_casa_distribution": "equivalent",
+        "published_sizes_not_rerun": "FastCA/TCA/HHSA 80, CASA 94 (FastCA ESEC/FSE 2019 Table 5)",
+        "archive_files_identical_to_fastca_hhsa_inputs": "model and 2-way constraint file identical (whitespace-normalised)"
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "platform": "macOS-15.8.1-arm64-arm-64bit",
+        "z3-solver": "5.1.0"
+      },
+      "date": "2026-10-08"
+    },
+    "science-software-cit-healthcare4-2way": {
+      "seed_score": 77.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.080242,
+      "wall_seconds": 0.14,
+      "seed_details": {
+        "combined_score": -77.0,
+        "score": 77.0,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "rows": 77,
+        "required_combinations": 5707,
+        "parameters": 35,
+        "strength": 2,
+        "instance": "healthcare4-2way",
+        "lower_bound": 42,
+        "published_reference": 46,
+        "gap_to_reference": 31,
+        "elapsed_seconds": 0.080242
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define generate()",
+          "rejected": true
+        },
+        {
+          "candidate": "one_row.py",
+          "valid": false,
+          "score": null,
+          "error": "row 0 contains the forbidden combination [[7, 0], [9, 0]]",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('array.txt', mode 'w'); PermissionError: sandbox: file access denied ('array.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "floats.py",
+          "valid": false,
+          "score": null,
+          "error": "row 0 contains a non-integer level",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Exact feasibility of every t-way level combination that involves a constrained parameter, recomputed with Z3 (z3-solver 5.1.0) and compared with the evaluator's prepared required set; parameter tuples without constrained parameters are all required.",
+        "result": "2521/2521 combinations agree",
+        "details": {
+          "combinations_checked_with_z3": 2521,
+          "agreements": 2521,
+          "parameter_tuples_without_constrained_parameters_all_required": 378,
+          "required_combinations": 5707,
+          "counting_lower_bound": 42,
+          "minimal_infeasible_combinations": 38,
+          "seconds": 0.08
+        },
+        "constraint_encoding_vs_casa_distribution": "not compared (no CASA copy)",
+        "published_sizes_not_rerun": "HHSA 46, CASA 46 (FastCA repository supplementary table)",
+        "archive_files_identical_to_fastca_hhsa_inputs": true
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "platform": "macOS-15.8.1-arm64-arm-64bit",
+        "z3-solver": "5.1.0"
+      },
+      "date": "2026-10-08"
+    },
+    "science-software-quixbugs-repair": {
+      "seed_score": 0.1935483870967742,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 9.520843,
+      "wall_seconds": 9.56,
+      "seed_details": {
+        "combined_score": 0.1935483870967742,
+        "score": 0.1935483870967742,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "programs": 31,
+        "repaired": 6,
+        "plausible": 1,
+        "unrepaired": 24,
+        "rejected": 0,
+        "repaired_programs": [
+          "bitcount",
+          "find_first_in_sorted",
+          "get_factors",
+          "knapsack",
+          "next_permutation",
+          "quicksort"
+        ],
+        "overfitting_programs": [
+          "find_in_sorted"
+        ],
+        "elapsed_seconds": 9.520843
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define repair()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "repair() must return the patched program as a str (bitcount)",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate repair() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate repair() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Preparation runs every kept QuixBugs test and 1,221 generated held-out tests (10 to 40 per program, expected values from the reference fix) against the reference fixes, and the buggy programs against their visible tests; the tests also re-check the fixes of 8 programs from the cached archive.",
+        "result": "All kept and generated tests pass on all 31 reference fixes; every buggy program fails at least one of its 129 visible tests (111 QuixBugs tests are held out). The seed repairs 6 programs (bitcount, find_first_in_sorted, get_factors, knapsack, next_permutation, quicksort) and its find_in_sorted patch passes the visible tests but fails held-out QuixBugs tests (counted as overfitting).",
+        "notes": "Per-test limits are CPU time (ITIMER_PROF), so machine load cannot turn a correct run into a time-out; the prepared file was re-derived with these limits and matched the lock."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-coalescing-small": {
+      "seed_score": 0.11274081105871568,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.706271,
+      "wall_seconds": 0.78,
+      "seed_details": {
+        "combined_score": -0.11274081105871568,
+        "score": 0.11274081105871568,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "group": "small",
+        "instances": 452,
+        "total_cost": 4677502,
+        "instances_at_best_known": 2,
+        "best_known_score": 0.011594356318094336,
+        "best_known_proven_optimal": true,
+        "published_heuristic_scores": {
+          "iterated_register_coalescing": 0.02300312008522609,
+          "optimistic_coalescing": 0.014823553405803942
+        },
+        "elapsed_seconds": 0.706271
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define coalesce()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "instance 000: expected a list of 20 colours",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate coalesce() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate coalesce() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "The evaluator's cost function against the challenge checker's recorded costs (.chk files) for the published Grund-Hack ILP solutions, and legality of the published iterated-register-coalescing and optimistic solution sets.",
+        "result": "474/474 recomputed costs equal the checker's recorded costs; both heuristic solution sets are legal colourings of all 474 graphs. Group means (452 graphs below 3,000 nodes): ILP 0.011594 (CPLEX-optimal for all), optimistic 0.014824, iterated coalescing 0.023003; seed 0.112741."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-coalescing-large": {
+      "seed_score": 0.11769058062351377,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.581558,
+      "wall_seconds": 0.65,
+      "seed_details": {
+        "combined_score": -0.11769058062351377,
+        "score": 0.11769058062351377,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "group": "large",
+        "instances": 22,
+        "total_cost": 342735140,
+        "instances_at_best_known": 0,
+        "best_known_score": 0.01047752171243062,
+        "best_known_proven_optimal": false,
+        "published_heuristic_scores": {
+          "iterated_register_coalescing": 0.026803979603381715,
+          "optimistic_coalescing": 0.01550802487407641
+        },
+        "elapsed_seconds": 0.581558
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define coalesce()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "instance 064: expected a list of 4017 colours",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate coalesce() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate coalesce() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Same check as the small group (shared preparation).",
+        "result": "474/474 recomputed costs equal the checker's recorded costs. Group means (22 graphs with at least 3,000 nodes): ILP 0.010478 (19 of 22 proven optimal; 139, 304 and 387 stopped after five minutes), optimistic 0.015508, iterated coalescing 0.026804; seed 0.117691."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-ci-prioritization-paintcontrol": {
+      "seed_score": 0.7415243086658443,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.233616,
+      "wall_seconds": 0.27,
+      "seed_details": {
+        "combined_score": 0.7415243086658443,
+        "score": 0.7415243086658443,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "dataset": "paintcontrol",
+        "cycles": 352,
+        "scored_cycles": 247,
+        "optimal_score": 0.9034233230829306,
+        "random_order_expectation": 0.5,
+        "mean_apfd_all_failing_cycles": 0.7321264756438269,
+        "elapsed_seconds": 0.233616
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define prioritize()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate prioritize() failed in the sandbox (exception): RuntimeError: prioritize() must return a permutation of the 4 test ids of cycle 1",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate prioritize() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate prioritize() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "The online protocol's score for the last-verdict seed against an independent offline recomputation from the prepared cycles (unit test), plus the failing-first bound and the random-order expectation.",
+        "result": "Identical to 12 decimals (0.741524); failing-first ordering 0.903423; random order 0.5 in expectation; 247 of 352 cycles have both outcomes."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-ci-prioritization-iofrol": {
+      "seed_score": 0.5852101237488313,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.15607,
+      "wall_seconds": 0.19,
+      "seed_details": {
+        "combined_score": 0.5852101237488313,
+        "score": 0.5852101237488313,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "dataset": "iofrol",
+        "cycles": 320,
+        "scored_cycles": 190,
+        "optimal_score": 0.8152001111015904,
+        "random_order_expectation": 0.5,
+        "mean_apfd_all_failing_cycles": 0.5597414151744574,
+        "elapsed_seconds": 0.15607
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define prioritize()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate prioritize() failed in the sandbox (exception): RuntimeError: prioritize() must return a permutation of the 155 test ids of cycle 1",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate prioritize() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate prioritize() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "As for Paint Control.",
+        "result": "Identical to 12 decimals (0.585210); failing-first ordering 0.815200; 190 of 320 cycles have both outcomes."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-fuzz-tomllib": {
+      "seed_score": 130.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.082738,
+      "wall_seconds": 0.12,
+      "seed_details": {
+        "combined_score": 130.0,
+        "score": 130.0,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "subject": "tomllib",
+        "inputs": 300,
+        "probes": 305,
+        "timed_out_inputs": 0,
+        "elapsed_seconds": 0.082738
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define fuzz()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "fuzz() must return a list of at most 1000 strings of at most 2000 characters",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate fuzz() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate fuzz() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Coverage of CPython's own tomllib test data (62 TOML files) under the same probes.",
+        "result": "278 of 305 probes; the random-string seed reaches 130."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-fuzz-re": {
+      "seed_score": 347.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.108805,
+      "wall_seconds": 0.14,
+      "seed_details": {
+        "combined_score": 347.0,
+        "score": 347.0,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "subject": "re",
+        "inputs": 300,
+        "probes": 920,
+        "timed_out_inputs": 0,
+        "elapsed_seconds": 0.108805
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define fuzz()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "fuzz() must return a list of at most 1000 strings of at most 2000 characters",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate fuzz() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate fuzz() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Coverage of the 551 distinct patterns passed to re functions in CPython's test_re.py.",
+        "result": "636 of 920 probes; the seed reaches 347."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-fuzz-htmlparser": {
+      "seed_score": 105.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.09981,
+      "wall_seconds": 0.14,
+      "seed_details": {
+        "combined_score": 105.0,
+        "score": 105.0,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "subject": "html.parser",
+        "inputs": 300,
+        "probes": 372,
+        "timed_out_inputs": 0,
+        "elapsed_seconds": 0.09981
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define fuzz()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "fuzz() must return a list of at most 1000 strings of at most 2000 characters",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate fuzz() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate fuzz() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Coverage of the 525 distinct string constants in CPython's test_htmlparser.py.",
+        "result": "172 of 372 probes; the seed reaches 105."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-mutation-textwrap": {
+      "seed_score": 0.3409090909090909,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 1.142639,
+      "wall_seconds": 1.18,
+      "seed_details": {
+        "combined_score": 0.3409090909090909,
+        "score": 0.3409090909090909,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "subject": "textwrap",
+        "mutants": 132,
+        "killed": 45,
+        "tests": 30,
+        "usable_tests": 30,
+        "killed_by_operator": {
+          "AOR": "5/18",
+          "ASR": "1/5",
+          "BCR": "1/5",
+          "CRP": "16/51",
+          "LCR": "6/12",
+          "ROR": "7/24",
+          "UOD": "9/17"
+        },
+        "elapsed_seconds": 1.142639
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define generate_tests()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "generate_tests() must return a list of 1 to 30 tests",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate_tests() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate_tests() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Mutation analysis of 2,000 random calls from the seed's generator (no budget).",
+        "result": "92 of 132 mutants killed (0.697); the 30-call seed kills 45 (0.341)."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-mutation-urllib-parse": {
+      "seed_score": 0.23737373737373738,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 2.680772,
+      "wall_seconds": 2.72,
+      "seed_details": {
+        "combined_score": 0.23737373737373738,
+        "score": 0.23737373737373738,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "subject": "urllib.parse",
+        "mutants": 396,
+        "killed": 94,
+        "tests": 30,
+        "usable_tests": 30,
+        "killed_by_operator": {
+          "AOR": "17/46",
+          "BCR": "0/2",
+          "CRP": "29/224",
+          "LCR": "13/28",
+          "ROR": "20/60",
+          "UOD": "15/36"
+        },
+        "elapsed_seconds": 2.680772
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define generate_tests()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "generate_tests() must return a list of 1 to 30 tests",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate_tests() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate_tests() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "As for textwrap.",
+        "result": "159 of 396 mutants killed (0.402); the seed kills 94 (0.237)."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-mutation-fractions": {
+      "seed_score": 0.25386313465783666,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 1.905589,
+      "wall_seconds": 1.95,
+      "seed_details": {
+        "combined_score": 0.25386313465783666,
+        "score": 0.25386313465783666,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "subject": "fractions",
+        "mutants": 453,
+        "killed": 115,
+        "tests": 30,
+        "usable_tests": 30,
+        "killed_by_operator": {
+          "AOR": "33/151",
+          "ASR": "8/19",
+          "BCR": "0/1",
+          "CRP": "42/156",
+          "LCR": "6/17",
+          "ROR": "16/75",
+          "UOD": "10/34"
+        },
+        "elapsed_seconds": 1.905589
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define generate_tests()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "generate_tests() must return a list of 1 to 30 tests",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate_tests() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate_tests() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "As for textwrap.",
+        "result": "247 of 453 mutants killed (0.545); the seed kills 115 (0.254)."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-loop-invariants-code2inv": {
+      "seed_score": 0.5080645161290323,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 3.678082,
+      "wall_seconds": 3.72,
+      "seed_details": {
+        "combined_score": 0.5080645161290323,
+        "score": 0.5080645161290323,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "problems": 124,
+        "verified": 63,
+        "queries_used": 875,
+        "query_resources_used": 1849692,
+        "failed_conditions": {
+          "3": "safety",
+          "4": "safety",
+          "5": "safety",
+          "6": "safety",
+          "7": "safety",
+          "8": "safety",
+          "9": "safety",
+          "10": "safety",
+          "11": "safety",
+          "12": "safety",
+          "13": "safety",
+          "14": "safety",
+          "15": "safety",
+          "17": "safety",
+          "19": "safety",
+          "21": "safety",
+          "23": "safety",
+          "24": "safety",
+          "28": "safety",
+          "29": "safety",
+          "33": "safety",
+          "34": "safety",
+          "63": "safety",
+          "64": "safety",
+          "65": "safety",
+          "66": "safety",
+          "67": "safety",
+          "68": "safety",
+          "69": "safety",
+          "70": "safety",
+          "83": "safety",
+          "84": "safety",
+          "85": "safety",
+          "86": "safety",
+          "88": "safety",
+          "90": "safety",
+          "93": "safety",
+          "99": "safety",
+          "100": "safety",
+          "101": "safety",
+          "102": "safety",
+          "104": "safety",
+          "105": "safety",
+          "107": "safety",
+          "109": "safety",
+          "110": "safety",
+          "111": "safety",
+          "112": "safety",
+          "113": "safety",
+          "118": "safety",
+          "119": "safety",
+          "120": "safety",
+          "121": "safety",
+          "122": "safety",
+          "123": "safety",
+          "124": "safety",
+          "125": "safety",
+          "126": "safety",
+          "127": "safety",
+          "130": "safety",
+          "131": "safety"
+        },
+        "elapsed_seconds": 3.678082
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define synthesize()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "synthesize() must return one invariant (a str) per problem",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate synthesize() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate synthesize() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Bounded model checking (up to 8 loop steps, Z3) of all 133 programs against the 9 invalid programs reported by Ryan et al. (ICLR 2020); a hand-written invariant and the counterexamples of a weaker one (unit tests); robustness of the oracle's resource accounting.",
+        "result": "Exactly 9 programs violate their post-condition (26, 27, 31, 32, 61, 62, 72, 75, 106, after 0 or 1 loop steps); none of the other 124 has a counterexample within 8 steps. (and (>= x 1) (>= y 0) (>= x y)) verifies program 1; (>= x y) fails consecution with a genuine successor state. The Houdini seed proves 63 of 124 using 875 queries; 'true' proves 5. All checks of the seed took at most 17 ms."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-superoptimization-hackers-delight": {
+      "seed_score": 135.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.092811,
+      "wall_seconds": 0.13,
+      "seed_details": {
+        "combined_score": -135.0,
+        "score": 135.0,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "kernels": 25,
+        "reference_instructions": 135,
+        "improved_kernels": [],
+        "not_proven": [],
+        "per_kernel": {
+          "p01": {
+            "status": "proven",
+            "instructions": 2,
+            "reference": 2
+          },
+          "p02": {
+            "status": "proven",
+            "instructions": 2,
+            "reference": 2
+          },
+          "p03": {
+            "status": "proven",
+            "instructions": 2,
+            "reference": 2
+          },
+          "p04": {
+            "status": "proven",
+            "instructions": 2,
+            "reference": 2
+          },
+          "p05": {
+            "status": "proven",
+            "instructions": 2,
+            "reference": 2
+          },
+          "p06": {
+            "status": "proven",
+            "instructions": 2,
+            "reference": 2
+          },
+          "p07": {
+            "status": "proven",
+            "instructions": 3,
+            "reference": 3
+          },
+          "p08": {
+            "status": "proven",
+            "instructions": 3,
+            "reference": 3
+          },
+          "p09": {
+            "status": "proven",
+            "instructions": 3,
+            "reference": 3
+          },
+          "p10": {
+            "status": "proven",
+            "instructions": 3,
+            "reference": 3
+          },
+          "p11": {
+            "status": "proven",
+            "instructions": 3,
+            "reference": 3
+          },
+          "p12": {
+            "status": "proven",
+            "instructions": 3,
+            "reference": 3
+          },
+          "p13": {
+            "status": "proven",
+            "instructions": 4,
+            "reference": 4
+          },
+          "p14": {
+            "status": "proven",
+            "instructions": 4,
+            "reference": 4
+          },
+          "p15": {
+            "status": "proven",
+            "instructions": 4,
+            "reference": 4
+          },
+          "p16": {
+            "status": "proven",
+            "instructions": 5,
+            "reference": 5
+          },
+          "p17": {
+            "status": "proven",
+            "instructions": 4,
+            "reference": 4
+          },
+          "p18": {
+            "status": "proven",
+            "instructions": 10,
+            "reference": 10
+          },
+          "p19": {
+            "status": "proven",
+            "instructions": 6,
+            "reference": 6
+          },
+          "p20": {
+            "status": "proven",
+            "instructions": 7,
+            "reference": 7
+          },
+          "p21": {
+            "status": "proven",
+            "instructions": 10,
+            "reference": 10
+          },
+          "p22": {
+            "status": "proven",
+            "instructions": 8,
+            "reference": 8
+          },
+          "p23": {
+            "status": "proven",
+            "instructions": 15,
+            "reference": 15
+          },
+          "p24": {
+            "status": "proven",
+            "instructions": 12,
+            "reference": 12
+          },
+          "p25": {
+            "status": "proven",
+            "instructions": 16,
+            "reference": 16
+          }
+        },
+        "elapsed_seconds": 0.092811
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define optimize()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "a program must be a list of 1 to 64 instructions",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate optimize() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate optimize() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "The parsed IR references against clang-compiled (Apple clang 17, -O0 -fwrapv) corrected STOKE C files on 100,000 inputs (excluding C-undefined inputs), against independent Python specifications of all 25 functions, and the interpreter against Z3 for every operation.",
+        "result": "No mismatch on 100,000 compiled-C comparisons; no mismatch against the specifications (11,324 to 20,000 inputs per kernel); interpreter equals Z3 for all 26 operations. Z3 proves shorter programs equivalent in milliseconds: p18 10 -> 3, p16 5 -> 2, p23 15 -> 12, p13 4 -> 3 instructions. STOKE's p12, p13, p20 and p24 compute other functions than the named kernels and were corrected."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-fault-localization-seeded": {
+      "seed_score": 0.050619983461809986,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.149048,
+      "wall_seconds": 0.19,
+      "seed_details": {
+        "combined_score": -0.050619983461809986,
+        "score": 0.050619983461809986,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "faults": 532,
+        "blocks": {
+          "fractions": 239,
+          "textwrap": 96,
+          "urllib.parse": 361
+        },
+        "mean_exam_by_subject": {
+          "fractions": 0.04071182227201905,
+          "textwrap": 0.11221590909090909,
+          "urllib.parse": 0.026535276932624915
+        },
+        "top_1": 70,
+        "top_5": 303,
+        "top_10": 385,
+        "baseline_mean_exam": {
+          "tarantula": 0.050619983461809986,
+          "ochiai": 0.026769767856703503,
+          "dstar2": 0.024752728522124748
+        },
+        "spectrum_tie_bound": 0.008705215895081995,
+        "elapsed_seconds": 0.149048
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define localize()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "localize() must return 96 finite numbers for a textwrap fault",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate localize() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate localize() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "The seed against the evaluator's internal Tarantula baseline, and standard formulas on the same faults.",
+        "result": "Seed equals Tarantula exactly (mean EXAM 0.050620); Ochiai 0.026770; DStar(2) 0.024753 (also reproduced through the candidate interface in a unit test); ranking the faulty block first among blocks with identical spectra would give 0.008705. 532 faults: textwrap 110, urllib.parse 183, fractions 239."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-log-parsing-loghub2k": {
+      "seed_score": 0.79365625,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.12964,
+      "wall_seconds": 0.16,
+      "seed_details": {
+        "combined_score": 0.79365625,
+        "score": 0.79365625,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "datasets": 16,
+        "grouping_accuracy": {
+          "Android": 0.605,
+          "Apache": 1.0,
+          "BGL": 0.947,
+          "HDFS": 0.9975,
+          "HPC": 0.9325,
+          "Hadoop": 0.987,
+          "HealthApp": 0.878,
+          "Linux": 0.189,
+          "Mac": 0.846,
+          "OpenSSH": 0.39,
+          "OpenStack": 0.5345,
+          "Proxifier": 0.5265,
+          "Spark": 0.9255,
+          "Thunderbird": 0.9495,
+          "Windows": 0.996,
+          "Zookeeper": 0.9945
+        },
+        "pairwise_f1": {
+          "Android": 0.9291649181703735,
+          "Apache": 1.0,
+          "BGL": 0.999306517597725,
+          "HDFS": 0.9999843025834023,
+          "HPC": 0.9938596716594302,
+          "Hadoop": 0.9999192327107521,
+          "HealthApp": 0.9982498348673393,
+          "Linux": 0.38635519881199276,
+          "Mac": 0.7515940086886982,
+          "OpenSSH": 0.9394515246081695,
+          "OpenStack": 0.9347475034557597,
+          "Proxifier": 0.7486513789481483,
+          "Spark": 0.9946142453211256,
+          "Thunderbird": 0.9996474442688839,
+          "Windows": 0.9999673798062361,
+          "Zookeeper": 0.9998872736558534
+        },
+        "mean_pairwise_f1": 0.9172125271971181,
+        "groups_predicted_and_true": {
+          "Android": [
+            192,
+            158
+          ],
+          "Apache": [
+            6,
+            6
+          ],
+          "BGL": [
+            133,
+            120
+          ],
+          "HDFS": [
+            16,
+            14
+          ],
+          "HPC": [
+            53,
+            46
+          ],
+          "Hadoop": [
+            116,
+            114
+          ],
+          "HealthApp": [
+            72,
+            75
+          ],
+          "Linux": [
+            143,
+            118
+          ],
+          "Mac": [
+            354,
+            341
+          ],
+          "OpenSSH": [
+            180,
+            26
+          ],
+          "OpenStack": [
+            56,
+            43
+          ],
+          "Proxifier": [
+            16,
+            8
+          ],
+          "Spark": [
+            38,
+            36
+          ],
+          "Thunderbird": [
+            196,
+            149
+          ],
+          "Windows": [
+            57,
+            50
+          ],
+          "Zookeeper": [
+            55,
+            50
+          ]
+        },
+        "elapsed_seconds": 0.12964
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define parse()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "parse() must return 2000 int or str labels for Android",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate parse() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate parse() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "logparser's Drain (commit d9d41807, its benchmark settings) run on the original Loghub-2k logs: our grouping accuracy and pairwise F1 against logparser's evaluator, and against the published Drain table.",
+        "result": "Identical accuracy and F1 for all 16 data sets; all 16 published accuracies reproduced (mean 0.8654375). On the corrected labels used by the task Drain scores 0.8605; the digit-masking seed scores 0.79365625.",
+        "notes": "The reference run used pandas 2.2.3 and regex 2026.9.10; the evaluator itself needs neither."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-fuzz-plistlib": {
+      "seed_score": 15.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.081464,
+      "wall_seconds": 0.12,
+      "seed_details": {
+        "combined_score": 15.0,
+        "score": 15.0,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "subject": "plistlib",
+        "inputs": 300,
+        "probes": 317,
+        "timed_out_inputs": 0,
+        "elapsed_seconds": 0.081464
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define fuzz()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "fuzz() must return a list of at most 1000 strings of at most 2000 characters",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate fuzz() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate fuzz() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "Coverage of the 58 byte strings embedded in CPython's test_plistlib.py (XML and binary samples).",
+        "result": "111 of 317 probes; the seed reaches 15."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-mutation-statistics": {
+      "seed_score": 0.25728987993138935,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 3.509532,
+      "wall_seconds": 3.55,
+      "seed_details": {
+        "combined_score": 0.25728987993138935,
+        "score": 0.25728987993138935,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "subject": "statistics",
+        "mutants": 583,
+        "killed": 150,
+        "tests": 30,
+        "usable_tests": 30,
+        "killed_by_operator": {
+          "AOR": "81/273",
+          "ASR": "4/5",
+          "CRP": "29/207",
+          "LCR": "2/8",
+          "ROR": "20/64",
+          "UOD": "14/26"
+        },
+        "elapsed_seconds": 3.509532
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define generate_tests()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "generate_tests() must return a list of 1 to 30 tests",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate_tests() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate generate_tests() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "As for textwrap.",
+        "result": "350 of 583 mutants killed (0.600); the seed kills 150 (0.257)."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    },
+    "science-software-pbe-strings-sygus": {
+      "seed_score": 0.2962962962962963,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 1.572683,
+      "wall_seconds": 1.61,
+      "seed_details": {
+        "combined_score": 0.2962962962962963,
+        "score": 0.2962962962962963,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "tasks": 27,
+        "solved": 8,
+        "overfitting": 0,
+        "wrong": 19,
+        "rejected": 0,
+        "per_task": {
+          "bikes": {
+            "status": "solved",
+            "visible": "6/6",
+            "held_out": "8/8"
+          },
+          "dr-name": {
+            "status": "wrong",
+            "visible": "0/4",
+            "held_out": "0/50"
+          },
+          "firstname": {
+            "status": "solved",
+            "visible": "4/4",
+            "held_out": "50/50"
+          },
+          "initials": {
+            "status": "wrong",
+            "visible": "0/4",
+            "held_out": "0/50"
+          },
+          "lastname": {
+            "status": "wrong",
+            "visible": "0/4",
+            "held_out": "0/50"
+          },
+          "name-combine": {
+            "status": "solved",
+            "visible": "6/6",
+            "held_out": "44/44"
+          },
+          "name-combine-2": {
+            "status": "wrong",
+            "visible": "0/4",
+            "held_out": "0/50"
+          },
+          "name-combine-3": {
+            "status": "wrong",
+            "visible": "0/6",
+            "held_out": "0/44"
+          },
+          "name-combine-4": {
+            "status": "wrong",
+            "visible": "0/5",
+            "held_out": "0/45"
+          },
+          "phone": {
+            "status": "solved",
+            "visible": "6/6",
+            "held_out": "94/94"
+          },
+          "phone-1": {
+            "status": "solved",
+            "visible": "6/6",
+            "held_out": "94/94"
+          },
+          "phone-10": {
+            "status": "wrong",
+            "visible": "0/7",
+            "held_out": "0/93"
+          },
+          "phone-2": {
+            "status": "solved",
+            "visible": "6/6",
+            "held_out": "94/94"
+          },
+          "phone-3": {
+            "status": "wrong",
+            "visible": "0/7",
+            "held_out": "0/93"
+          },
+          "phone-4": {
+            "status": "wrong",
+            "visible": "0/6",
+            "held_out": "0/94"
+          },
+          "phone-5": {
+            "status": "wrong",
+            "visible": "0/7",
+            "held_out": "0/93"
+          },
+          "phone-6": {
+            "status": "wrong",
+            "visible": "0/7",
+            "held_out": "0/93"
+          },
+          "phone-7": {
+            "status": "wrong",
+            "visible": "0/7",
+            "held_out": "0/93"
+          },
+          "phone-8": {
+            "status": "wrong",
+            "visible": "0/7",
+            "held_out": "0/93"
+          },
+          "phone-9": {
+            "status": "wrong",
+            "visible": "0/7",
+            "held_out": "0/93"
+          },
+          "reverse-name": {
+            "status": "solved",
+            "visible": "6/6",
+            "held_out": "44/44"
+          },
+          "univ_1": {
+            "status": "solved",
+            "visible": "6/6",
+            "held_out": "14/14"
+          },
+          "univ_2": {
+            "status": "wrong",
+            "visible": "0/6",
+            "held_out": "0/14"
+          },
+          "univ_3": {
+            "status": "wrong",
+            "visible": "0/6",
+            "held_out": "0/14"
+          },
+          "univ_4": {
+            "status": "wrong",
+            "visible": "0/8",
+            "held_out": "0/12"
+          },
+          "univ_5": {
+            "status": "wrong",
+            "visible": "0/8",
+            "held_out": "0/12"
+          },
+          "univ_6": {
+            "status": "wrong",
+            "visible": "0/8",
+            "held_out": "0/12"
+          }
+        },
+        "elapsed_seconds": 1.572683
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define synthesize()",
+          "rejected": true
+        },
+        {
+          "candidate": "wrong_type.py",
+          "valid": false,
+          "score": null,
+          "error": "synthesize() must return one program (a str of at most 50000 characters) per task",
+          "rejected": true
+        },
+        {
+          "candidate": "writes_file.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate synthesize() failed in the sandbox (exception): PermissionError: sandbox: file access denied ('leak.txt', mode 'w')",
+          "rejected": true
+        },
+        {
+          "candidate": "raises.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate synthesize() failed in the sandbox (exception): RuntimeError: broken candidate",
+          "rejected": true
+        }
+      ],
+      "reference_check": {
+        "compared": "The string interpreter against Z3's string theory on 400 random terms (tests) and on the SMT-LIB edge cases; the 27 base files against their '-long' variants for conflicting examples.",
+        "result": "All 400 random terms and all edge cases agree with Z3; no example conflicts between base and long files; 8 to 94 held-out examples per task. The bottom-up enumeration seed solves 8 of 27 (bikes, firstname, name-combine, phone, phone-1, phone-2, reverse-name, univ_1) and every program it finds also fits the held-out examples."
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "z3-solver": "5.1.0",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-11"
+    }
+  },
+  "not_implemented": {
+    "quixbugs-fault-localisation": "The prepared QuixBugs spectra cover 31 programs of 6 to 11 executable lines with one fault each; rankings over so few lines and faults would not measure fault localisation meaningfully, so the fault-localisation task uses 532 seeded faults in three larger modules instead.",
+    "next-release-problem": "No verified, licensed download of the realistic NRP instances (Xuan et al., TSE 2012) was found.",
+    "stamina-model-inference": "The STAMINA competition site and the framework paper's host could not be reached (connection failure), so the original generation protocol and data could not be checked; not implemented.",
+    "refactory-assignment-repair": "Considered (LGPL-3.0 data, 1,783 student programs) but not implemented in this round; it would repeat the program-repair problem already covered by the QuixBugs task.",
+    "abbadingo-dfa-learning": "Considered; the original test labels are only available through the retired online oracle, so instances would have to be regenerated, and the problem is grammatical inference rather than software engineering proper."
+  }
+}

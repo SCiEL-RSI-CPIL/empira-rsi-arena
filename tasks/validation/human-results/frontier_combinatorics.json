@@ -1,0 +1,734 @@
+{
+  "schema": "artask.human-results/1",
+  "package": "frontier_combinatorics",
+  "date": "2026-10-12",
+  "environment": {
+    "python": "3.12.14",
+    "packages": {
+      "numpy": "2.5.3"
+    },
+    "platform": "macOS-15.8.1-arm64-arm-64bit"
+  },
+  "record_tables": {
+    "ljcr_coverdata": {
+      "url": "https://zenodo.org/api/records/19735294/files/coverdata.json/content",
+      "sha256": "9e7da3710921066b10234fdc95379a18df3a7d3ae0f8a08ae188ea6bbca92f87",
+      "bytes": 8319503,
+      "retrieved": "2026-10-12",
+      "licence": "CC BY 4.0 (La Jolla Covering Repository v1.2, D. M. Gordon, Zenodo record 19735294); kept in .cache only",
+      "cache_path": ".cache/human-results/frontier_combinatorics/ljcr-coverdata.json",
+      "committed_path": null
+    },
+    "qaplib_readme": {
+      "url": "https://datashare.ed.ac.uk/bitstreams/726eca77-cb58-4cd6-ab68-2c4fb73789aa/download",
+      "sha256": "496939275c87fb76f32d0622b116b382609ae5210b85dca7ce780ac6c12afce1",
+      "bytes": 755733,
+      "retrieved": "2026-10-12",
+      "licence": "CC BY 4.0 (QAPLIB deposit, Edinburgh DataShare, doi:10.7488/ds/3428); kept in .cache only",
+      "cache_path": ".cache/human-results/frontier_combinatorics/qaplib-readme.pdf",
+      "committed_path": null
+    },
+    "post_keri_bounds": {
+      "url": "https://raw.githubusercontent.com/florath/covering-codes-lean/460df105545c2d6b04ba71f29de6b56dbda92825/reference-data/post-keri/non_mixed_covering_codes.csv",
+      "sha256": "5efaf8d94a3ef15e9efc052233259697fc5f0b5e51389bcc5c8c108b6c3ad1d6",
+      "bytes": 70828,
+      "retrieved": "2026-10-12",
+      "licence": "BSD-3-Clause (covering-codes-lean, A. Florath); transcription of the codes printed by van Laarhoven et al. (1989); kept in .cache only",
+      "cache_path": ".cache/human-results/frontier_combinatorics/covering-codes-lean-post-keri.csv",
+      "committed_path": null
+    },
+    "superpermutation_previous_record": {
+      "url": "https://gregegan.net/SCIENCE/Superpermutations/7_5906_nsk666646664466646666_2SYMM_FS.txt",
+      "sha256": "dd1381325ebc5b1bd694e956bc724b3a2c110c89c80f48b3ec8763acf05d4b58",
+      "bytes": 5907,
+      "retrieved": "2026-10-12",
+      "licence": "not stated (G. Egan's site: all rights reserved); kept in .cache only",
+      "cache_path": ".cache/human-results/frontier_combinatorics/superperm-7-5906-egan.txt",
+      "committed_path": null
+    }
+  },
+  "tasks": {
+    "science-frontier-combinatorics-covering-design-24-7-3": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 76,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.5281/zenodo.10779736",
+          "locator": "coverdata.json C(24,7,3): size 76, lower bound 69, latest improvement 76 by Jan de Heer and Steve Muir on 2010-02-06 (Private Tools)"
+        }
+      ],
+      "human_best": {
+        "value": 76,
+        "year": 2010,
+        "by": "Jan de Heer and Steve Muir",
+        "sources": [
+          {
+            "url": "https://doi.org/10.5281/zenodo.10779736",
+            "locator": "C(24,7,3) improvement history (9 entries)"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://zenodo.org/api/records/19735294/files/covers.json/content",
+        "sha256": "5e7fa7d7c06351546d54ce6385ea0e5b0d96006bb4bf421cd1fa958c158df696",
+        "bytes": 1717,
+        "retrieved": "2026-10-12",
+        "licence": "CC BY 4.0 (La Jolla Covering Repository v1.2, D. M. Gordon, Zenodo record 19735294); kept in .cache only",
+        "cache_path": ".cache/human-results/frontier_combinatorics/ljcr-covers-24-7-3.part",
+        "committed_path": null,
+        "byte_range": [
+          31365217,
+          31366933
+        ],
+        "note": "bytes of covers.json (4,191,522,340 bytes, md5 bb59d977afd6724b32dcc187f68a229c per Zenodo) holding exactly this covering"
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 76,
+        "published_value": 76,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.064,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-covering-design-24-7-3.py returns the published construction from La Jolla covers.json (points relabelled 1..v -> 0..v-1); scored by suite_evaluator (suite/science-frontier-combinatorics-covering-design-24-7-3/evaluator.py), valid=True."
+      },
+      "notes": "Record submitted to the La Jolla Covering Repository by Jan de Heer and Steve Muir (2010-02-06); the repository records contributors' own search programs, all before LLM-driven program search, so it is a human result. Repository lower bound 69."
+    },
+    "science-frontier-combinatorics-covering-design-19-7-4": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 151,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.5281/zenodo.10779736",
+          "locator": "coverdata.json C(19,7,4): size 151, lower bound 131, latest improvement 151 by Marco Meoli on 2016-05-02"
+        }
+      ],
+      "human_best": {
+        "value": 151,
+        "year": 2016,
+        "by": "Marco Meoli",
+        "sources": [
+          {
+            "url": "https://doi.org/10.5281/zenodo.10779736",
+            "locator": "C(19,7,4) improvement history (7 entries)"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://zenodo.org/api/records/19735294/files/covers.json/content",
+        "sha256": "afb62df86116214d2f4355383424d1ce6f500b4f4a5b1665ad7cc210d98bba43",
+        "bytes": 3291,
+        "retrieved": "2026-10-12",
+        "licence": "CC BY 4.0 (La Jolla Covering Repository v1.2, D. M. Gordon, Zenodo record 19735294); kept in .cache only",
+        "cache_path": ".cache/human-results/frontier_combinatorics/ljcr-covers-19-7-4.part",
+        "committed_path": null,
+        "byte_range": [
+          144085792,
+          144089082
+        ],
+        "note": "bytes of covers.json (4,191,522,340 bytes, md5 bb59d977afd6724b32dcc187f68a229c per Zenodo) holding exactly this covering"
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 151,
+        "published_value": 151,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.062,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-covering-design-19-7-4.py returns the published construction from La Jolla covers.json (points relabelled 1..v -> 0..v-1); scored by suite_evaluator (suite/science-frontier-combinatorics-covering-design-19-7-4/evaluator.py), valid=True."
+      },
+      "notes": "Record submitted to the La Jolla Covering Repository by Marco Meoli (2016-05-02); the repository records contributors' own search programs, all before LLM-driven program search, so it is a human result. Repository lower bound 131."
+    },
+    "science-frontier-combinatorics-covering-design-19-8-5": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 335,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.5281/zenodo.10779736",
+          "locator": "coverdata.json C(19,8,5): size 335, lower bound 264, latest improvement 335 by Marco Meoli on 2015-10-31 (Method of constrution private tools )"
+        }
+      ],
+      "human_best": {
+        "value": 335,
+        "year": 2015,
+        "by": "Marco Meoli",
+        "sources": [
+          {
+            "url": "https://doi.org/10.5281/zenodo.10779736",
+            "locator": "C(19,8,5) improvement history (18 entries)"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://zenodo.org/api/records/19735294/files/covers.json/content",
+        "sha256": "308276d54f08340c07973162e38863790f660bdf64a0fae102081468d3518763",
+        "bytes": 8112,
+        "retrieved": "2026-10-12",
+        "licence": "CC BY 4.0 (La Jolla Covering Repository v1.2, D. M. Gordon, Zenodo record 19735294); kept in .cache only",
+        "cache_path": ".cache/human-results/frontier_combinatorics/ljcr-covers-19-8-5.part",
+        "committed_path": null,
+        "byte_range": [
+          443788891,
+          443797002
+        ],
+        "note": "bytes of covers.json (4,191,522,340 bytes, md5 bb59d977afd6724b32dcc187f68a229c per Zenodo) holding exactly this covering"
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 335,
+        "published_value": 335,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.065,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-covering-design-19-8-5.py returns the published construction from La Jolla covers.json (points relabelled 1..v -> 0..v-1); scored by suite_evaluator (suite/science-frontier-combinatorics-covering-design-19-8-5/evaluator.py), valid=True."
+      },
+      "notes": "Record submitted to the La Jolla Covering Repository by Marco Meoli (2015-10-31); the repository records contributors' own search programs, all before LLM-driven program search, so it is a human result. Repository lower bound 264."
+    },
+    "science-frontier-combinatorics-qap-tai256c": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 44759294,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.7488/ds/3428",
+          "locator": "README table row tai256c: 44759294 (ANT); tai256c.sln header 44759294"
+        }
+      ],
+      "human_best": {
+        "value": 44759294,
+        "year": 1997,
+        "by": "T. Stuetzle (ant system, QAPLIB code ANT)",
+        "sources": [
+          {
+            "url": "https://doi.org/10.7488/ds/3428",
+            "locator": "QAPLIB tai256c"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://datashare.ed.ac.uk/bitstreams/4bbab9aa-b7a3-4943-a47e-32d2527467bc/download",
+        "sha256": "002243dea9452000ec7ee5e43bd0aa651a639eb61039c4f35679531e67d71744",
+        "bytes": 14113,
+        "retrieved": "2026-10-12",
+        "licence": "CC BY 4.0 (QAPLIB deposit, Edinburgh DataShare, doi:10.7488/ds/3428); kept in .cache only",
+        "cache_path": ".cache/human-results/frontier_combinatorics/qapsoln.tar.gz",
+        "committed_path": null,
+        "member": "tai256c.sln"
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 44759294,
+        "published_value": 44759294,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.074,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-qap-tai256c.py returns the published construction from QAPLIB tai256c.sln (read directly; the direct reading costs 44759294); scored by suite_evaluator (suite/science-frontier-combinatorics-qap-tai256c/evaluator.py), valid=True."
+      },
+      "notes": "QAPLIB credits the best known solution to T. Stuetzle (ant system, QAPLIB code ANT); a human-designed metaheuristic, decades before LLM-driven search. Permutation orientation: read directly; the direct reading costs 44759294."
+    },
+    "science-frontier-combinatorics-qap-tho150": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 8133398,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.7488/ds/3428",
+          "locator": "README table row tho150: 8133398 (SIM-3); tho150.sln header 8133398"
+        }
+      ],
+      "human_best": {
+        "value": 8133398,
+        "year": 2003,
+        "by": "A. Misevicius (modified simulated annealing, QAPLIB code SIM-3)",
+        "sources": [
+          {
+            "url": "https://doi.org/10.7488/ds/3428",
+            "locator": "QAPLIB tho150"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://datashare.ed.ac.uk/bitstreams/4bbab9aa-b7a3-4943-a47e-32d2527467bc/download",
+        "sha256": "002243dea9452000ec7ee5e43bd0aa651a639eb61039c4f35679531e67d71744",
+        "bytes": 14113,
+        "retrieved": "2026-10-12",
+        "licence": "CC BY 4.0 (QAPLIB deposit, Edinburgh DataShare, doi:10.7488/ds/3428); kept in .cache only",
+        "cache_path": ".cache/human-results/frontier_combinatorics/qapsoln.tar.gz",
+        "committed_path": null,
+        "member": "tho150.sln"
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 8133398,
+        "published_value": 8133398,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.068,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-qap-tho150.py returns the published construction from QAPLIB tho150.sln (the file lists the permutation in the opposite orientation: read directly it costs 9722822, its inverse costs 8133398); scored by suite_evaluator (suite/science-frontier-combinatorics-qap-tho150/evaluator.py), valid=True."
+      },
+      "notes": "QAPLIB credits the best known solution to A. Misevicius (modified simulated annealing, QAPLIB code SIM-3); a human-designed metaheuristic, decades before LLM-driven search. Permutation orientation: the file lists the permutation in the opposite orientation: read directly it costs 9722822, its inverse costs 8133398."
+    },
+    "science-frontier-combinatorics-qap-wil100": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 273038,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.7488/ds/3428",
+          "locator": "README table row wil100: 273038 (GEN); wil100.sln header 273038"
+        }
+      ],
+      "human_best": {
+        "value": 273038,
+        "year": 1994,
+        "by": "C. Fleurent and J. A. Ferland (genetic hybrid, QAPLIB code GEN)",
+        "sources": [
+          {
+            "url": "https://doi.org/10.7488/ds/3428",
+            "locator": "QAPLIB wil100"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://datashare.ed.ac.uk/bitstreams/4bbab9aa-b7a3-4943-a47e-32d2527467bc/download",
+        "sha256": "002243dea9452000ec7ee5e43bd0aa651a639eb61039c4f35679531e67d71744",
+        "bytes": 14113,
+        "retrieved": "2026-10-12",
+        "licence": "CC BY 4.0 (QAPLIB deposit, Edinburgh DataShare, doi:10.7488/ds/3428); kept in .cache only",
+        "cache_path": ".cache/human-results/frontier_combinatorics/qapsoln.tar.gz",
+        "committed_path": null,
+        "member": "wil100.sln"
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 273038,
+        "published_value": 273038,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.065,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-qap-wil100.py returns the published construction from QAPLIB wil100.sln (read directly; the direct reading costs 273038); scored by suite_evaluator (suite/science-frontier-combinatorics-qap-wil100/evaluator.py), valid=True."
+      },
+      "notes": "QAPLIB credits the best known solution to C. Fleurent and J. A. Ferland (genetic hybrid, QAPLIB code GEN); a human-designed metaheuristic, decades before LLM-driven search. Permutation orientation: read directly; the direct reading costs 273038."
+    },
+    "science-frontier-combinatorics-football-pool-6": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 73,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+          "locator": "abstract and figures: K_3(6,1) <= 73 by simulated annealing"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/florath/covering-codes-lean/460df105545c2d6b04ba71f29de6b56dbda92825/reference-data/post-keri/non_mixed_covering_codes.csv",
+          "locator": "row 3,6,1: 71..73 (lit_linderoth_margot_thain_2007; lit_laarhoven_aarts_van_lint_wille_1989)"
+        }
+      ],
+      "human_best": {
+        "value": 73,
+        "year": 1989,
+        "by": "P. J. M. van Laarhoven, E. H. L. Aarts, J. H. van Lint, L. T. Wille",
+        "sources": [
+          {
+            "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+            "locator": "J. Combin. Theory Ser. A 52 (1989) 304-312"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://raw.githubusercontent.com/florath/covering-codes-lean/460df105545c2d6b04ba71f29de6b56dbda92825/CoveringCodes/Database/Sources/VanLaarhoven1989.lean",
+        "sha256": "764633369ed153c1b891b155338c21bcbc631c5abf41e693707a8fa3fa455509",
+        "bytes": 51692,
+        "retrieved": "2026-10-12",
+        "licence": "BSD-3-Clause (covering-codes-lean, A. Florath); transcription of the codes printed by van Laarhoven et al. (1989); kept in .cache only",
+        "cache_path": ".cache/human-results/frontier_combinatorics/covering-codes-lean-VanLaarhoven1989.lean",
+        "committed_path": null,
+        "member": "vanLaarhoven6Packed"
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 73,
+        "published_value": 73,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.062,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-football-pool-6.py returns the published construction from the Lean transcription vanLaarhoven6Packed (base-3 packed words); scored by suite_evaluator (suite/science-frontier-combinatorics-football-pool-6/evaluator.py), valid=True."
+      },
+      "notes": "Simulated-annealing code of 1989, unimproved since; lower bound 71. The transcription is a third-party reading of the printed figures, checked by the Lean kernel and here by the evaluator."
+    },
+    "science-frontier-combinatorics-football-pool-7": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 186,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+          "locator": "abstract and figures: K_3(7,1) <= 186 by simulated annealing"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/florath/covering-codes-lean/460df105545c2d6b04ba71f29de6b56dbda92825/reference-data/post-keri/non_mixed_covering_codes.csv",
+          "locator": "row 3,7,1: 156..186 (lit_haas_2006; lit_laarhoven_aarts_van_lint_wille_1989)"
+        }
+      ],
+      "human_best": {
+        "value": 186,
+        "year": 1989,
+        "by": "P. J. M. van Laarhoven, E. H. L. Aarts, J. H. van Lint, L. T. Wille",
+        "sources": [
+          {
+            "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+            "locator": "J. Combin. Theory Ser. A 52 (1989) 304-312"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://raw.githubusercontent.com/florath/covering-codes-lean/460df105545c2d6b04ba71f29de6b56dbda92825/CoveringCodes/Database/Sources/VanLaarhoven1989.lean",
+        "sha256": "764633369ed153c1b891b155338c21bcbc631c5abf41e693707a8fa3fa455509",
+        "bytes": 51692,
+        "retrieved": "2026-10-12",
+        "licence": "BSD-3-Clause (covering-codes-lean, A. Florath); transcription of the codes printed by van Laarhoven et al. (1989); kept in .cache only",
+        "cache_path": ".cache/human-results/frontier_combinatorics/covering-codes-lean-VanLaarhoven1989.lean",
+        "committed_path": null,
+        "member": "vanLaarhoven7Packed"
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 186,
+        "published_value": 186,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.063,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-football-pool-7.py returns the published construction from the Lean transcription vanLaarhoven7Packed (base-3 packed words); scored by suite_evaluator (suite/science-frontier-combinatorics-football-pool-7/evaluator.py), valid=True."
+      },
+      "notes": "Simulated-annealing code of 1989, unimproved since; lower bound 156. The transcription is a third-party reading of the printed figures, checked by the Lean kernel and here by the evaluator."
+    },
+    "science-frontier-combinatorics-football-pool-8": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 486,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+          "locator": "abstract and figures: K_3(8,1) <= 486 by simulated annealing"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/florath/covering-codes-lean/460df105545c2d6b04ba71f29de6b56dbda92825/reference-data/post-keri/non_mixed_covering_codes.csv",
+          "locator": "row 3,8,1: 403..486 (lit_gijswijt_polak_2025; lit_laarhoven_aarts_van_lint_wille_1989)"
+        }
+      ],
+      "human_best": {
+        "value": 486,
+        "year": 1989,
+        "by": "P. J. M. van Laarhoven, E. H. L. Aarts, J. H. van Lint, L. T. Wille",
+        "sources": [
+          {
+            "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+            "locator": "J. Combin. Theory Ser. A 52 (1989) 304-312"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://raw.githubusercontent.com/florath/covering-codes-lean/460df105545c2d6b04ba71f29de6b56dbda92825/CoveringCodes/Database/Sources/VanLaarhoven1989.lean",
+        "sha256": "764633369ed153c1b891b155338c21bcbc631c5abf41e693707a8fa3fa455509",
+        "bytes": 51692,
+        "retrieved": "2026-10-12",
+        "licence": "BSD-3-Clause (covering-codes-lean, A. Florath); transcription of the codes printed by van Laarhoven et al. (1989); kept in .cache only",
+        "cache_path": ".cache/human-results/frontier_combinatorics/covering-codes-lean-VanLaarhoven1989.lean",
+        "committed_path": null,
+        "member": "vanLaarhoven8Packed"
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 486,
+        "published_value": 486,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.065,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-football-pool-8.py returns the published construction from the Lean transcription vanLaarhoven8Packed (base-3 packed words); scored by suite_evaluator (suite/science-frontier-combinatorics-football-pool-8/evaluator.py), valid=True."
+      },
+      "notes": "Simulated-annealing code of 1989, unimproved since; lower bound 403. The transcription is a third-party reading of the printed figures, checked by the Lean kernel and here by the evaluator."
+    },
+    "science-frontier-combinatorics-superpermutation-7": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 5905,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://groups.google.com/g/superpermutators/c/D5sKkV2jBuc",
+          "locator": "18 August 2026 post with four length-5905 words found with PermutationChains.c and KernelFinder.c; replies confirm all 5040 permutations"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Superpermutation",
+          "locator": "credits the 5905 word to Andrei Teodorescu (17 August 2026)"
+        }
+      ],
+      "human_best": {
+        "value": 5905,
+        "year": 2026,
+        "by": "A. Teodorescu (search with G. Egan's PermutationChains.c)",
+        "sources": [
+          {
+            "url": "https://groups.google.com/g/superpermutators/c/D5sKkV2jBuc",
+            "locator": "attachments 5905_7_sol1.txt to sol4.txt"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://groups.google.com/group/superpermutators/attach/12cc503508531/5905_7_sol1.txt?part=0.4",
+        "sha256": "f0208fb0e8ea98b015799b8f0dfaadc58d5909bad4a089603f2c9c4768536f67",
+        "bytes": 5907,
+        "retrieved": "2026-10-12",
+        "licence": "not stated (no licence on the source); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_combinatorics/superperm-7-5905-teodorescu-sol1.txt",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 5905,
+        "published_value": 5905,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.062,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-superpermutation-7.py returns the published construction from the first word posted by A. Teodorescu (5905_7_sol1.txt); scored by suite_evaluator (suite/science-frontier-combinatorics-superpermutation-7/evaluator.py), valid=True."
+      },
+      "notes": "Found by a human-run kernel search with human-written C programs; no AI assistance is mentioned in the thread. The previous record, G. Egan's 2019 word of length 5906, also scores 5906 (valid) with this evaluator (reproduced)."
+    },
+    "science-frontier-combinatorics-cage-4-10": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 320,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.37236/14834",
+          "locator": "Table 2: n(4,10) <= 320 (new), a lift listed in Figure 4; arXiv:2511.07247"
+        }
+      ],
+      "human_best": {
+        "value": 320,
+        "year": 2026,
+        "by": "G. Exoo, J. Goedgebeur, J. Jooken, L. Stubbe, T. Van den Eede",
+        "sources": [
+          {
+            "url": "https://doi.org/10.37236/14834",
+            "locator": "Electron. J. Combin. 33(3) (2026) P3.48"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://raw.githubusercontent.com/AGT-Kulak/smallRegGirthGraphs/c2a1a4e334cd9f4dd31247f1ebfb6e18c004e4bc/genLifts/data/graphs/cage/n320_k4_g10.g6",
+        "sha256": "2e0186417514270a2d9488c83baaeb0f6fe797d3829da05f98f4dada6fe8147d",
+        "bytes": 8512,
+        "retrieved": "2026-10-12",
+        "licence": "GPL-3.0 (AGT-Kulak/smallRegGirthGraphs); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_combinatorics/cage-n320_k4_g10.g6",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 320,
+        "published_value": 320,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.069,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-cage-4-10.py returns the published construction from the graph6 file n320_k4_g10.g6; scored by suite_evaluator (suite/science-frontier-combinatorics-cage-4-10/evaluator.py), valid=True."
+      },
+      "notes": "Found by the authors' computer search over graph lifts (their own code); the paper describes no AI or LLM use."
+    },
+    "science-frontier-combinatorics-cage-3-16": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 936,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.37236/14834",
+          "locator": "Table 2: n(3,16) <= 936 (new), a lift listed in Figure 4; arXiv:2511.07247"
+        }
+      ],
+      "human_best": {
+        "value": 936,
+        "year": 2026,
+        "by": "G. Exoo, J. Goedgebeur, J. Jooken, L. Stubbe, T. Van den Eede",
+        "sources": [
+          {
+            "url": "https://doi.org/10.37236/14834",
+            "locator": "Electron. J. Combin. 33(3) (2026) P3.48"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://raw.githubusercontent.com/AGT-Kulak/smallRegGirthGraphs/c2a1a4e334cd9f4dd31247f1ebfb6e18c004e4bc/genLifts/data/graphs/cage/n936_k3_g16.g6",
+        "sha256": "24c0cdba1392017730ae410327d5bddd871aab7b8805db91b28eb2f3f1f97d63",
+        "bytes": 72935,
+        "retrieved": "2026-10-12",
+        "licence": "GPL-3.0 (AGT-Kulak/smallRegGirthGraphs); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_combinatorics/cage-n936_k3_g16.g6",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 936,
+        "published_value": 936,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.104,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-cage-3-16.py returns the published construction from the graph6 file n936_k3_g16.g6; scored by suite_evaluator (suite/science-frontier-combinatorics-cage-3-16/evaluator.py), valid=True."
+      },
+      "notes": "Found by the authors' computer search over graph lifts (their own code); the paper describes no AI or LLM use."
+    },
+    "science-frontier-combinatorics-cage-5-9": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 1116,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.37236/14834",
+          "locator": "Table 2: n(5,9) <= 1116 (new), a lift listed in Figure 4; arXiv:2511.07247"
+        }
+      ],
+      "human_best": {
+        "value": 1116,
+        "year": 2026,
+        "by": "G. Exoo, J. Goedgebeur, J. Jooken, L. Stubbe, T. Van den Eede",
+        "sources": [
+          {
+            "url": "https://doi.org/10.37236/14834",
+            "locator": "Electron. J. Combin. 33(3) (2026) P3.48"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://raw.githubusercontent.com/AGT-Kulak/smallRegGirthGraphs/c2a1a4e334cd9f4dd31247f1ebfb6e18c004e4bc/genLifts/data/graphs/cage/n1116_k5_g9.g6",
+        "sha256": "6bb5f9c67949be8f9cf5f5d0762ef94daab3a29af2c14c39e1b7d797f0d27250",
+        "bytes": 103700,
+        "retrieved": "2026-10-12",
+        "licence": "GPL-3.0 (AGT-Kulak/smallRegGirthGraphs); kept in .cache only, not redistributed",
+        "cache_path": ".cache/human-results/frontier_combinatorics/cage-n1116_k5_g9.g6",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 1116,
+        "published_value": 1116,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.101,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-cage-5-9.py returns the published construction from the graph6 file n1116_k5_g9.g6; scored by suite_evaluator (suite/science-frontier-combinatorics-cage-5-9/evaluator.py), valid=True."
+      },
+      "notes": "Found by the authors' computer search over graph lifts (their own code); the paper describes no AI or LLM use."
+    },
+    "science-frontier-combinatorics-difference-triangle-set-7-5": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 112,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.1002/jcd.22009",
+          "locator": "Table I: m(7,5) <= 112; arXiv:2502.19517"
+        }
+      ],
+      "human_best": {
+        "value": 112,
+        "year": 2025,
+        "by": "M. Shehadeh, W. Kingsford, F. R. Kschischang",
+        "sources": [
+          {
+            "url": "https://doi.org/10.1002/jcd.22009",
+            "locator": "J. Combin. Des. 34(1) (2026) 37-50"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://raw.githubusercontent.com/applecoffeecake/dts-search-hdl/2ccff8e767c3fe6390fd3af056dfda11847011fc/new-dts-db-fpga/7-5-112-755.txt",
+        "sha256": "9ad412af0b33d51190956b866398bfdd42e6a6e0a894e59f531d28be949e4d1f",
+        "bytes": 130,
+        "retrieved": "2026-10-12",
+        "licence": "MIT (applecoffeecake/dts-search-hdl, M. Shehadeh); the sets also appear in the CC BY 4.0 paper doi:10.1002/jcd.22009; kept in .cache only",
+        "cache_path": ".cache/human-results/frontier_combinatorics/dts-7-5-112-755.txt",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 112,
+        "published_value": 112,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.059,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-difference-triangle-set-7-5.py returns the published construction from the FPGA search output 7-5-112-755.txt; scored by suite_evaluator (suite/science-frontier-combinatorics-difference-triangle-set-7-5/evaluator.py), valid=True."
+      },
+      "notes": "Found by the authors' search circuits on FPGAs; the paper describes no AI or LLM use."
+    },
+    "science-frontier-combinatorics-difference-triangle-set-4-7": {
+      "recorded": {
+        "kind": "best_known",
+        "value": 134,
+        "source": "catalog/science/frontier_combinatorics.json state_of_the_art"
+      },
+      "attribution": "human",
+      "attribution_evidence": [
+        {
+          "url": "https://doi.org/10.1002/jcd.22009",
+          "locator": "Table I: m(4,7) <= 134; arXiv:2502.19517"
+        }
+      ],
+      "human_best": {
+        "value": 134,
+        "year": 2025,
+        "by": "M. Shehadeh, W. Kingsford, F. R. Kschischang",
+        "sources": [
+          {
+            "url": "https://doi.org/10.1002/jcd.22009",
+            "locator": "J. Combin. Des. 34(1) (2026) 37-50"
+          }
+        ]
+      },
+      "construction": {
+        "url": "https://raw.githubusercontent.com/applecoffeecake/dts-search-hdl/2ccff8e767c3fe6390fd3af056dfda11847011fc/new-dts-db-fpga/4-7-134-523.txt",
+        "sha256": "21acf59e78af23f68742d27e21cf994f6d2d138833de5c2c3fbe2e02f14fe093",
+        "bytes": 101,
+        "retrieved": "2026-10-12",
+        "licence": "MIT (applecoffeecake/dts-search-hdl, M. Shehadeh); the sets also appear in the CC BY 4.0 paper doi:10.1002/jcd.22009; kept in .cache only",
+        "cache_path": ".cache/human-results/frontier_combinatorics/dts-4-7-134-523.txt",
+        "committed_path": null
+      },
+      "reproduction": {
+        "status": "reproduced",
+        "evaluator_score": 134,
+        "published_value": 134,
+        "tolerance": "exact integer equality with the published value, and valid=True from the evaluator",
+        "seconds": 0.059,
+        "details": "Candidate .cache/human-results/frontier_combinatorics/candidates/science-frontier-combinatorics-difference-triangle-set-4-7.py returns the published construction from the FPGA search output 4-7-134-523.txt; scored by suite_evaluator (suite/science-frontier-combinatorics-difference-triangle-set-4-7/evaluator.py), valid=True."
+      },
+      "notes": "Found by the authors' search circuits on FPGAs; the paper describes no AI or LLM use."
+    }
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "id": "science-biology-hp-lattice-folding-3d",
+  "name": "Biology: HP lattice protein folding on the cubic lattice",
+  "description": "Fold the sixteen standard three-dimensional HP benchmark chains (the ten 48-residue sequences with proven ground states plus six longer chains of 64 to 136 residues) on the simple cubic lattice. The evaluator checks self-avoidance, recomputes every hydrophobic contact energy and scores the mean ratio to the published reference energies.",
+  "paper_ids": [
+    "science-biology_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1021/ma00200a030",
+      "type": "paper",
+      "locator": "Lau and Dill (1989) define the HP lattice model whose cubic-lattice ground states this task searches for."
+    },
+    {
+      "url": "https://doi.org/10.1073/pnas.92.1.325",
+      "type": "paper",
+      "locator": "Yue, Fiebig, Thomas, Chan, Shakhnovich and Dill (1995) introduce the ten 48-residue cubic-lattice sequences and determine their ground states by constraint-based hydrophobic-core construction."
+    },
+    {
+      "url": "https://arxiv.org/abs/cond-mat/0310707",
+      "type": "paper",
+      "locator": "Bachmann and Janke (2004), Table II: the ten 48-mer sequences in run-length notation with their ground-state energies (-32, -34, -34, -33, -32, -32, -32, -31, -34, -33) and degeneracies."
+    },
+    {
+      "url": "https://doi.org/10.1063/1.2736681",
+      "type": "paper",
+      "locator": "Zhang, Kou and Liu (2007), Tables II and IV: the longer 3D benchmark sequences and the lowest energies found for them (-56, -56, -72, -57, -75, -83)."
+    },
+    {
+      "url": "https://arxiv.org/abs/1207.3974",
+      "type": "paper",
+      "locator": "Wuest and Landau (2012), Table II: Wang-Landau sampling reaches -44, -56, -56, -72, -58, -75 and -83 on the long 3D chains, improving the 103-residue reference to -58."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "None downloaded; the benchmark sequences are transcribed from the cited papers into the evaluator."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Biology: HP lattice protein folding on the cubic lattice",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "biology_research_hp_cubic_lattice",
+    "science_family": "biology_research_hp_cubic_lattice",
+    "parameters": {
+      "dimension": 3,
+      "cpu_seconds": 240
+    },
+    "interface": "fold(sequence, dimension) -> list of len(sequence) integer lattice points (lists of length dimension). sequence is a string of H and P residues; dimension is 3 (simple cubic lattice). The returned walk must be self-avoiding with unit steps between consecutive residues. Energy = minus the number of H-H pairs on neighbouring lattice sites that are not adjacent along the chain; the evaluator recomputes it. fold is called once per benchmark sequence in a sandboxed subprocess with a 240 s CPU budget for all sequences together. Score (maximize): mean over the 16 benchmark sequences of energy / best_known_energy (both energies are negative), so 0 is an unfolded chain, 1.0 reproduces every best-known energy and a value above 1.0 beats one",
+    "label_spec": {
+      "area": "biology",
+      "domain": "natural_science",
+      "scientific_contribution": "open_problem",
+      "artifact": "program",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "additional_requires": [],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "biology_research_hp_cubic_lattice",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "The HP model is a two-letter lattice abstraction: its ground states are not real protein structures, so a better energy is a better solution of a lattice optimisation problem, not a structural-biology finding.",
+    "Only the ten 48-mers have ground states established by exhaustive hydrophobic-core construction; the references for the six longer chains are the lowest energies reported in the cited literature and can in principle be beaten.",
+    "All sixteen chains share one CPU budget in the sandboxed subprocess, so scores are budget-dependent and not comparable with the multi-hour or multi-day searches of the cited papers.",
+    "The reference energies are used only for scoring; the candidate never receives them."
+  ],
+  "validation": {
+    "level": "source_seed_executed",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-10-10",
+    "evidence": "validation/bio_physics-checks.json",
+    "tests": "tests/test_bio_hp.py"
+  },
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": 1.0,
+    "as_of": "2026-10-10",
+    "statement": "A score of 1.0 means matching the reference energy of every chain: -32, -34, -34, -33, -32, -32, -32, -31, -34 and -33 for the ten 48-mers (proven ground states), and -56, -56, -72, -58, -75 and -83 for the 64-, 67-, 88-, 103-, 124- and 136-residue chains. Fragment-regrowth Monte Carlo and Wang-Landau sampling reach all of these, the longest ones after hours to days of computation.",
+    "sources": [
+      {
+        "title": "Thermodynamics of lattice heteropolymers",
+        "url": "https://arxiv.org/abs/cond-mat/0310707"
+      },
+      {
+        "title": "Biopolymer structure simulation and optimization via fragment regrowth Monte Carlo",
+        "url": "https://doi.org/10.1063/1.2736681"
+      },
+      {
+        "title": "Optimized Wang-Landau sampling of lattice polymers",
+        "url": "https://arxiv.org/abs/1207.3974"
+      }
+    ]
+  },
+  "labels": {
+    "area": "biology",
+    "domain": "natural_science",
+    "scientific_contribution": "open_problem",
+    "artifact": "program",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 1,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Find the ground states of hydrophobic-polar lattice chains on the three-dimensional cubic lattice, including the ten 48-residue sequences whose native states were established by exhaustive hydrophobic-core construction.",
+    "importance_rationale": "The HP model is the canonical statistical-mechanics abstraction of protein folding: its ground states and their degeneracies are used to study designability, folding thermodynamics and the sequence-to-structure map, and finding them is NP-hard, which is why algorithmic progress on the benchmark chains is itself a research result.",
+    "papers": [
+      {
+        "title": "A lattice statistical mechanics model of the conformational and sequence spaces of proteins",
+        "url": "https://doi.org/10.1021/ma00200a030",
+        "primary_goal": "Introduce and analyse the HP lattice model of protein conformational and sequence space.",
+        "task_relation": "The task searches for minimum-energy conformations of this model on the cubic lattice.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "A test of lattice protein folding algorithms",
+        "url": "https://doi.org/10.1073/pnas.92.1.325",
+        "primary_goal": "Determine the native structures of ten designed 48-residue cubic-lattice HP sequences and use them to test folding algorithms.",
+        "task_relation": "Provides the ten 48-mers and their proven ground-state energies, which are the task's reference values.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "The cited papers' main goal is the HP model and the search for its ground states, which is exactly what the evaluator scores.",
+    "verification_basis": "Crossref metadata inspected; the 48-mer sequences and energies were transcribed from Bachmann and Janke (2004) Table II and the longer chains from Zhang, Kou and Liu (2007) and Wuest and Landau (2012); the evaluator's energy function was checked against independent brute-force enumeration.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

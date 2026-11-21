@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "id": "science-finance-yield-curve-forecasting",
+  "name": "Finance: Forecasting the US Treasury yield curve",
+  "description": "Forecast end-of-month US Treasury zero-coupon yields at maturities of 1 to 10 years, 1, 6 and 12 months ahead, from the curves observed up to each origin between 1990 and 2024. The evaluator recomputes the forecast errors and scores the root-mean-square error relative to the random walk.",
+  "paper_ids": [
+    "science-finance_expansion"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1016/j.jeconom.2005.03.005",
+      "type": "paper",
+      "locator": "Diebold and Li (2006): dynamic Nelson-Siegel forecasting of the yield curve, recursive out-of-sample forecasts 1, 6 and 12 months ahead, RMSE compared with the random walk."
+    },
+    {
+      "url": "https://doi.org/10.1016/j.jmoneco.2007.06.029",
+      "type": "paper",
+      "locator": "Gurkaynak, Sack and Wright (2007): the daily fitted Svensson zero-coupon curve used as data."
+    },
+    {
+      "url": "https://www.federalreserve.gov/data/yield-curve-tables/feds200628.htm",
+      "type": "archive",
+      "locator": "Federal Reserve Board page of the GSW yield-curve tables (feds200628.csv, file pinned via an Internet Archive snapshot of 2025-08-09 in catalog/finance-data-lock.json)."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "Federal Reserve Board GSW zero-coupon yield file (public domain) fetched by scripts/prepare_finance.py from a pinned Internet Archive snapshot and verified by SHA-256; month-end yields derived locally."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Finance: Forecasting the US Treasury yield curve",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_finance_yield_curve_forecast",
+    "science_family": "science_finance_yield_curve_forecast",
+    "parameters": {},
+    "interface": "forecast_yields(history, horizons) -> (3, 10) float array: forecasts (percent) of the zero-coupon yields at maturities 1..10 years, 1, 6 and 12 months after the origin (rows follow horizons = (1, 6, 12)). history = {'yyyymm': (T,) ints, 'maturities': array 1.0..10.0 (years), 'yields': (T, 10) end-of-month Gurkaynak-Sack-Wright continuously compounded zero-coupon yields (percent) from 1972-01 through the origin month}. Called at the 415 month-end origins 1990-01..2024-07; |forecast| <= 30. Score: RMSE of the candidate divided by the RMSE of the random walk (no-change forecast), averaged over the three horizons and the maturities 1, 2, 3, 5, 7 and 10 years (minimize; the random-walk seed scores exactly 1)",
+    "label_spec": {
+      "scientific_contribution": "discovery",
+      "artifact": "model",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup_instructions": [
+      "python3 scripts/prepare_finance.py",
+      "catalog/finance-data-lock.json"
+    ],
+    "additional_requires": [
+      "file:data/finance/gsw_yields_monthly.csv"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "science_finance_yield_curve_forecast",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/finance/gsw_yields_monthly.csv"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "GSW yields are smoothed fitted values from a Svensson curve, not observed bond yields; fitting error and smoothing make them easier to forecast than raw yields, and maturities below one year are excluded because GSW caution against them.",
+    "The evaluation origins (1990-2024) and the data file are public; tuning on them or reading the prepared file can produce look-ahead. Forecasts at different origins overlap for the 6- and 12-month horizons, so the effective sample is smaller than 415.",
+    "One data vintage (archived 2025-08-09) is used as if it were real-time; the live file is revised without notice.",
+    "RMSE ratios against the random walk have wide sampling uncertainty; Diebold-Mariano statistics per horizon are reported but a ratio slightly below 1 is weak evidence."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/finance-checks.json",
+    "tests": "tests/test_finance_yields.py"
+  },
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "statement": "No published value exists for this local protocol. Diebold and Li (2006) found their dynamic Nelson-Siegel forecasts beat the random walk at 6- and 12-month horizons on 1994-2000 Fama-Bliss data; on this 1990-2024 sample a local implementation with AR(1) factors scores 1.171 (worse than the random walk), while a random walk plus a small momentum term scores 0.993.",
+    "sources": [
+      {
+        "title": "Forecasting the term structure of government bond yields",
+        "url": "https://doi.org/10.1016/j.jeconom.2005.03.005"
+      }
+    ],
+    "as_of": "2026-10-07"
+  },
+  "labels": {
+    "scientific_contribution": "discovery",
+    "artifact": "model",
+    "domain": "finance",
+    "area": "finance",
+    "data": "real_measurements",
+    "verification": "sampled",
+    "reference": "none",
+    "science_tier": 1,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Forecast the term structure of government bond yields out of sample.",
+    "importance_rationale": "Yield-curve forecasts matter for monetary policy analysis, bond portfolio management and debt issuance; beating the random walk out of sample is a long-standing open empirical question.",
+    "papers": [
+      {
+        "title": "Forecasting the term structure of government bond yields",
+        "url": "https://doi.org/10.1016/j.jeconom.2005.03.005",
+        "primary_goal": "Forecast the government bond yield curve with a dynamic Nelson-Siegel factor model and evaluate it against standard benchmarks out of sample.",
+        "task_relation": "The task scores recursive 1-, 6- and 12-month-ahead yield forecasts relative to the random walk, the paper's main comparison.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "The cited paper's main objective is out-of-sample forecasting of the yield curve.",
+    "reviewed_at": "2026-10-07",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

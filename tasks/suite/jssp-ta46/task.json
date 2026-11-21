@@ -1,0 +1,225 @@
+{
+  "schema_version": "1.0",
+  "id": "jssp-ta46",
+  "name": "Job-shop scheduling ta46",
+  "description": "Schedule 30 jobs on 20 machines (job-shop benchmark instance ta46). Every job is a sequence of 20 operations, one on each machine, that must run in the given order; an operation occupies its machine for its whole duration without interruption, and a machine processes one operation at a time. Minimise the makespan, the time at which the last operation ends.",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "requires_setup",
+  "sources": [
+    {
+      "url": "https://optimizizer.com/jobshop.php",
+      "type": "benchmark",
+      "locator": "ta46: bounds, and the schedule of the upper bound"
+    },
+    {
+      "url": "https://github.com/ScheduleOpt/benchmarks/tree/main/jobshop",
+      "type": "benchmark",
+      "locator": "ta46: best-known bounds"
+    },
+    {
+      "url": "https://github.com/thomasWeise/jsspInstancesAndResults",
+      "type": "benchmark",
+      "locator": "ta46: instance data"
+    },
+    {
+      "url": "https://doi.org/10.1287/moor.1.2.117",
+      "type": "paper",
+      "locator": "The Complexity of Flowshop and Jobshop Scheduling"
+    },
+    {
+      "url": "https://doi.org/10.1016/S0377-2217(98)00113-1",
+      "type": "paper",
+      "locator": "Deterministic job-shop scheduling: Past, present and future"
+    },
+    {
+      "url": "https://doi.org/10.1016/S0377-2217(97)00019-2",
+      "type": "paper",
+      "locator": "Demirkol, Mehta and Uzsoy (1998), Benchmarks for shop scheduling problems: defines the 80 DMU job-shop instances (rcmax and cscmax subfamilies); benchmark paper, not primary evidence."
+    },
+    {
+      "url": "https://doi.org/10.1016/0377-2217(93)90182-M",
+      "type": "paper",
+      "locator": "Taillard (1993), Benchmarks for basic scheduling problems: defines the Taillard (ta) job-shop instances; benchmark paper, not primary evidence."
+    },
+    {
+      "url": "https://doi.org/10.1287/mnsc.38.10.1495",
+      "type": "paper",
+      "locator": "Storer, Wu and Vaccari (1992), New Search Spaces for Sequencing Problems with Application to Job Shop Scheduling: origin of the SWV instances."
+    },
+    {
+      "url": "https://doi.org/10.1007/s10951-017-0547-8",
+      "type": "paper",
+      "locator": "van Hoorn (2018), The Current state of bounds on benchmark instances of the job-shop scheduling problem: compiled bounds as of 2017."
+    },
+    {
+      "url": "https://doi.org/10.2139/ssrn.4938242",
+      "type": "paper",
+      "locator": "Heinz, Hanzalek and Vilim (2024), Reinforcement Learning for Search Tree Size Minimization in Constraint Programming: New Results on Scheduling Benchmarks; Shylo's page credits most older lower bounds to it (code RL2024), but the task's lower bound is the larger OptalCP value of the ScheduleOpt table for almost every instance."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "ta46 split from instance_data.txt of thomasWeise/jsspInstancesAndResults (819 KB, all instances in one file)"
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "specified_only",
+    "benchmark": "Job-shop scheduling ta46",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "jssp",
+    "science_family": "jssp",
+    "parameters": {
+      "instance": "ta46",
+      "lower_bound": 1976,
+      "best_known": 2002
+    },
+    "interface": "solve(inst) -> starts, a list of n_jobs lists of non-negative integers: starts[j][k] is the start time of operation k of job j. inst has name, n_jobs, n_machines and jobs[j] = list of (machine, duration) pairs in processing order, machines numbered from 0. Operation k + 1 of a job may not start before operation k has ended, and two operations on one machine may not overlap (one may start at the moment the other ends). Score: the makespan, minimized.",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "combinatorial_optimisation",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "published_value",
+      "area": "optimization",
+      "secondary_area": "theoretical_computer_science",
+      "areas": [
+        "optimization",
+        "theoretical_computer_science"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "ta46 split from instance_data.txt of thomasWeise/jsspInstancesAndResults (819 KB, all instances in one file)"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "jssp",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/jssp/ta46.txt"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    },
+    "declared_status": "requires_setup"
+  },
+  "limitations": [
+    "The bounds are those of 2026-11-11 (larger lower bound and smaller upper bound of the two tables); both tables change several times a year, so read them again before claiming a record.",
+    "The record lies 1.32% above the lower bound.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "real_instance_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "scripts/test_new_families.py",
+    "tests": "scripts/test_new_families.py",
+    "upstream_reproduction": true,
+    "record_level": "record_reproduced",
+    "unsure": false,
+    "record_validation": {
+      "record": 2002,
+      "checks": [
+        "Shylo's bounds page: lower bound 1966, upper bound 2002",
+        "ScheduleOpt jobshop table: lower bound 1976, upper bound 2002",
+        "the schedule published on Shylo's page, replayed by our verifier: makespan 2002"
+      ],
+      "sources": [
+        "sources/jssp_shylo/TA.html",
+        "sources/jssp_shylo/DMU.html",
+        "sources/jssp_shylo/Extra.html",
+        "sources/jssp_scheduleopt_README.md",
+        "sources/jssp_shylo/solutions/ta46.html",
+        "data/jssp/ta46.txt"
+      ],
+      "notes": [],
+      "validated": "2026-11-11"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "secondary_area": "theoretical_computer_science",
+    "areas": [
+      "optimization",
+      "theoretical_computer_science"
+    ],
+    "important_to_science": true
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "The problem papers qualify (job-shop scheduling is their main objective); the record for these instances is credited to a solver submission or unpublished work, which is not cited as a paper.",
+    "scientific_problem": "Find machine sequences, as start times, of minimum makespan for the open job-shop benchmark instance ta46.",
+    "importance_rationale": "Job-shop scheduling is the canonical model of machine scheduling in manufacturing and is NP-hard in the strong sense; the instances of this family are still open, meaning the best known makespan is above the best proven lower bound, so a shorter schedule is a new best known upper bound.",
+    "papers": [
+      {
+        "title": "The Complexity of Flowshop and Jobshop Scheduling",
+        "url": "https://doi.org/10.1287/moor.1.2.117",
+        "task_relation": "The task is the makespan job-shop problem on the fixed benchmark instance ta46.",
+        "primary_goal": "Establish the computational complexity of flow-shop and job-shop makespan scheduling, showing the job-shop problem NP-complete in the strong sense.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Deterministic job-shop scheduling: Past, present and future",
+        "url": "https://doi.org/10.1016/S0377-2217(98)00113-1",
+        "task_relation": "The task is the makespan job-shop problem on the fixed benchmark instance ta46.",
+        "primary_goal": "Survey the formulations, solution methods and benchmark results for the deterministic job-shop scheduling problem.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  },
+  "source_specification": {
+    "name": "Job-shop scheduling ta46",
+    "slug": "jssp-ta46",
+    "description": "Schedule 30 jobs on 20 machines (job-shop benchmark instance ta46). Every job is a sequence of 20 operations, one on each machine, that must run in the given order; an operation occupies its machine for its whole duration without interruption, and a machine processes one operation at a time. Minimise the makespan, the time at which the last operation ends.",
+    "benchmark": "Job-shop scheduling ta46",
+    "dataset": "ta46 split from instance_data.txt of thomasWeise/jsspInstancesAndResults (819 KB, all instances in one file)",
+    "metric": "score",
+    "direction": "minimize",
+    "source_url": "https://optimizizer.com/jobshop.php",
+    "source_locator": "ta46: bounds, and the schedule of the upper bound",
+    "upstream_path": null,
+    "requirements": [
+      "py:numpy",
+      "file:data/jssp/ta46.txt"
+    ],
+    "execution_notes": "ta46 split from instance_data.txt of thomasWeise/jsspInstancesAndResults (819 KB, all instances in one file)"
+  }
+}

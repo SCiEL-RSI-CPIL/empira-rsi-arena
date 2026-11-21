@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "id": "science-finance-volatility-forecasting",
+  "name": "Finance: Daily volatility forecasting for US equity portfolios",
+  "description": "Forecast the next day's return variance of the US stock market and 49 industry portfolios, updating the forecasts day by day from 2000 to 2025 after a training period ending in 1999. The evaluator reveals each day's returns only after the forecasts are made and scores the QLIKE loss against squared returns.",
+  "paper_ids": [
+    "science-finance_expansion"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1002/jae.800",
+      "type": "paper",
+      "locator": "Hansen and Lunde (2005): out-of-sample comparison of many volatility models against GARCH(1,1) with several loss functions."
+    },
+    {
+      "url": "https://doi.org/10.1016/j.jeconom.2010.03.034",
+      "type": "paper",
+      "locator": "Patton (2011): loss functions, including QLIKE, that rank volatility forecasts consistently when the true variance is replaced by a noisy proxy such as the squared return."
+    },
+    {
+      "url": "https://doi.org/10.1016/0304-4076(86)90063-1",
+      "type": "paper",
+      "locator": "Bollerslev (1986): the GARCH model, the classic benchmark for conditional variance forecasts."
+    },
+    {
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+      "type": "archive",
+      "locator": "Daily Fama/French factors (market = Mkt-RF + RF) and value-weighted 49 industry portfolio returns, CRSP 202509 files pinned in catalog/finance-data-lock.json."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "Kenneth R. French Data Library daily factors and 49-industry returns (CRSP 202509 vintage) fetched by scripts/prepare_finance.py from pinned Internet Archive snapshots and verified by SHA-256; not redistributed."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Finance: Daily volatility forecasting for US equity portfolios",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_finance_volatility_forecast",
+    "science_family": "science_finance_volatility_forecast",
+    "parameters": {},
+    "interface": "make_forecaster(training_returns, names) -> object with forecast() and update(returns). training_returns is a (7280, 50) float array of daily returns (decimal) from 1971-03-12 to 1999-12-31: column 0 is the CRSP value-weighted market (Mkt-RF + RF), columns 1-49 the value-weighted Fama-French industries; names lists the 50 series. The evaluator then walks through the 6,475 trading days 2000-01-03..2025-09-30: forecast() must return a (50,) array of next-day return variances in [1e-10, 1]; afterwards update(r) receives that day's (50,) returns. Score: mean QLIKE loss log(h) + r^2/h over all days and series (minimize); the RiskMetrics EWMA benchmark (lambda 0.94), the difference and a Diebold-Mariano statistic are reported",
+    "label_spec": {
+      "scientific_contribution": "discovery",
+      "artifact": "model",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup_instructions": [
+      "python3 scripts/prepare_finance.py",
+      "catalog/finance-data-lock.json"
+    ],
+    "additional_requires": [
+      "file:data/finance/ind49_vw_daily.csv",
+      "file:data/finance/ff_factors_daily.csv"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "science_finance_volatility_forecast",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/finance/ind49_vw_daily.csv",
+        "file:data/finance/ff_factors_daily.csv"
+      ],
+      "timeout": 600,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "Squared daily returns are a noisy proxy for the daily variance; QLIKE ranks forecasts consistently with this proxy but the loss level is not a variance-accuracy measure, and intraday realized variances are not available here.",
+    "Forecasts are for close-to-close total returns (no mean adjustment); weekends, holidays and overnight effects are treated like any other trading day.",
+    "The evaluation period 2000-2025 is public. A candidate that reads the prepared files or memorizes returns can look ahead; the interface only passes returns up to the previous day. Treat scores as development scores.",
+    "One data vintage of CRSP value-weighted portfolio returns is used; the 50 series are strongly correlated, so they do not provide 50 independent comparisons."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/finance-checks.json",
+    "tests": "tests/test_finance_volatility.py"
+  },
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "statement": "No published value exists for this local protocol. Local references (mean QLIKE): rolling 63-day variance -7.563 (the seed), RiskMetrics EWMA -7.6125, GARCH(1,1) -7.598 and GJR-GARCH(1,1) -7.610 with parameters estimated on 1990-1999 and kept fixed; a candidate has to beat RiskMetrics to show a useful improvement.",
+    "sources": [
+      {
+        "title": "A forecast comparison of volatility models: does anything beat a GARCH(1,1)?",
+        "url": "https://doi.org/10.1002/jae.800"
+      }
+    ],
+    "as_of": "2026-10-07"
+  },
+  "labels": {
+    "scientific_contribution": "discovery",
+    "artifact": "model",
+    "domain": "finance",
+    "area": "finance",
+    "data": "real_measurements",
+    "verification": "sampled",
+    "reference": "none",
+    "science_tier": 1,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Forecast the time-varying volatility of asset returns out of sample.",
+    "importance_rationale": "Volatility forecasts drive risk management (value at risk), option pricing and portfolio allocation; whether elaborate models beat simple benchmarks out of sample is a central empirical question in financial econometrics.",
+    "papers": [
+      {
+        "title": "A forecast comparison of volatility models: does anything beat a GARCH(1,1)?",
+        "url": "https://doi.org/10.1002/jae.800",
+        "primary_goal": "Compare the out-of-sample accuracy of a large set of volatility models.",
+        "task_relation": "The task compares candidate volatility forecasts out of sample on US equity portfolios with a robust loss and simple benchmarks.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Generalized autoregressive conditional heteroskedasticity",
+        "url": "https://doi.org/10.1016/0304-4076(86)90063-1",
+        "primary_goal": "Model and forecast conditional variances of economic time series.",
+        "task_relation": "GARCH-type forecasters are the natural starting point for candidates and serve as local references.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both papers have volatility modelling and forecasting as their main research goal.",
+    "reviewed_at": "2026-10-07",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

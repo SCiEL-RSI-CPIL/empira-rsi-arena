@@ -16,6 +16,14 @@ from .registry import (RegistryError, _json, _relative, _require, _text, _url,
                        _hash, _SHA256, get_catalog, resolve_registry_root)
 
 
+# Execution reports whose rows bind a seed score to the hashes of the code that produced it.
+# The first was imported with the task library; the second records the packages added later.
+EXPANSION_REPORTS = {
+    "validation/science-expansion-report.json": "science_expansion_validation",
+    "validation/suite-additions-report.json": "suite_additions_validation",
+}
+
+
 def summarize(tasks):
     published = [task for task in tasks if any(a["kind"] == "published_reference" for a in task["anchors"])]
     baselines = [a for task in tasks for a in task["anchors"] if a["kind"] == "recorded_seed_baseline"]
@@ -130,7 +138,7 @@ def validate_references(data, catalog):
                 _require(anchor["comparison"] == "historical_smoke_only", "seed smoke cannot authorize benchmark comparisons")
                 _require(anchor.get("recorded_status") == "ok", "seed baseline: successful recorded execution required")
                 report_path = anchor["source"]["path"]
-                _require(report_path in {"validation/suite-report.json", "validation/science-expansion-report.json"}, "baseline requires a reviewed pinned execution report")
+                _require(report_path == "validation/suite-report.json" or report_path in EXPANSION_REPORTS, "baseline requires a reviewed pinned execution report")
                 historical = anchor.get("code_verification") == "historical_code_changed"
                 if historical:
                     _require(binding.get("kind") == "bundled" and report_path == "validation/science-expansion-report.json",
@@ -150,7 +158,7 @@ def validate_references(data, catalog):
                              and old["import_source"]["locator"] == "#/upstream_hashes",
                              "changed historical code requires the preserved import identities")
                     _require(anchor["validity"] is True, "science baseline requires explicit historical validity")
-                elif report_path == "validation/science-expansion-report.json":
+                elif report_path in EXPANSION_REPORTS:
                     identity = anchor.get("execution_identity", {})
                     _require(type(identity) is dict, "science baseline requires an execution identity object")
                     _require(identity.get("source_execution") is True and identity.get("fixture_only") is False,

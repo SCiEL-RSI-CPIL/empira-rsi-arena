@@ -1,0 +1,445 @@
+{
+  "schema": "artask.data-lock/1",
+  "package": "chemistry",
+  "reviewed_on": "2026-10-10",
+  "raw_cache": ".cache/chemistry-raw",
+  "data_directory": "suite/_lib/data/chemistry",
+  "note": "Raw files are fetched from the pinned URLs and verified by SHA-256; derived files are byte-stable functions of them (suite/_lib/autoresearch_suite/chem_sources.py). Hosts that refused connections from the preparation machine on 2026-10-10 (Cambridge Cluster Database, Harvard Dataverse file storage for TDC) are not used.",
+  "sources": [
+    {
+      "id": "biogen-sol-train",
+      "publisher": "Biogen (Fang et al. 2023), molecularinformatics/Computational-ADME",
+      "description": "Official train split of the Sol endpoint (columns smiles, activity = log10 of the measured property)",
+      "url": "https://raw.githubusercontent.com/molecularinformatics/Computational-ADME/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN/ADME_Sol_train.csv",
+      "repository_commit": "b00df003de117ce9e5b381afd886095c5f2af2d5",
+      "license": "MIT License (Copyright (c) 2020 molecularinformatics), the LICENSE of the repository that publishes the files; Biogen disclosed the measurements for public benchmarking (Fang et al. 2023). Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "61386580c8d74867c9d7bdcccc0fc59943f872e1afb8f541ba3a92d1af270e08",
+      "size": 84391
+    },
+    {
+      "id": "biogen-sol-test",
+      "publisher": "Biogen (Fang et al. 2023), molecularinformatics/Computational-ADME",
+      "description": "Official test split of the Sol endpoint (columns smiles, activity = log10 of the measured property)",
+      "url": "https://raw.githubusercontent.com/molecularinformatics/Computational-ADME/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN/ADME_Sol_test.csv",
+      "repository_commit": "b00df003de117ce9e5b381afd886095c5f2af2d5",
+      "license": "MIT License (Copyright (c) 2020 molecularinformatics), the LICENSE of the repository that publishes the files; Biogen disclosed the measurements for public benchmarking (Fang et al. 2023). Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "8f9efd2deef045ddcfbcd871d458d3b619fa80463094fd0ae9dec3a2fa69718f",
+      "size": 21482
+    },
+    {
+      "id": "biogen-hlm-train",
+      "publisher": "Biogen (Fang et al. 2023), molecularinformatics/Computational-ADME",
+      "description": "Official train split of the HLM endpoint (columns smiles, activity = log10 of the measured property)",
+      "url": "https://raw.githubusercontent.com/molecularinformatics/Computational-ADME/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN/ADME_HLM_train.csv",
+      "repository_commit": "b00df003de117ce9e5b381afd886095c5f2af2d5",
+      "license": "MIT License (Copyright (c) 2020 molecularinformatics), the LICENSE of the repository that publishes the files; Biogen disclosed the measurements for public benchmarking (Fang et al. 2023). Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "00bad049ea72cda9fef62dd9f68411673b4de3cbf977efb948befd1ae3338819",
+      "size": 120678
+    },
+    {
+      "id": "biogen-hlm-test",
+      "publisher": "Biogen (Fang et al. 2023), molecularinformatics/Computational-ADME",
+      "description": "Official test split of the HLM endpoint (columns smiles, activity = log10 of the measured property)",
+      "url": "https://raw.githubusercontent.com/molecularinformatics/Computational-ADME/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN/ADME_HLM_test.csv",
+      "repository_commit": "b00df003de117ce9e5b381afd886095c5f2af2d5",
+      "license": "MIT License (Copyright (c) 2020 molecularinformatics), the LICENSE of the repository that publishes the files; Biogen disclosed the measurements for public benchmarking (Fang et al. 2023). Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "b26b2a2199602b954d66b5daba4ca69c35916d5028b23091b229fc93efcd1dc1",
+      "size": 30098
+    },
+    {
+      "id": "biogen-mdr1-er-train",
+      "publisher": "Biogen (Fang et al. 2023), molecularinformatics/Computational-ADME",
+      "description": "Official train split of the MDR1_ER endpoint (columns smiles, activity = log10 of the measured property)",
+      "url": "https://raw.githubusercontent.com/molecularinformatics/Computational-ADME/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN/ADME_MDR1_ER_train.csv",
+      "repository_commit": "b00df003de117ce9e5b381afd886095c5f2af2d5",
+      "license": "MIT License (Copyright (c) 2020 molecularinformatics), the LICENSE of the repository that publishes the files; Biogen disclosed the measurements for public benchmarking (Fang et al. 2023). Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "5facb20d38628111469644db338a5351fa9e766adba4715292760f5a05ea07cc",
+      "size": 105265
+    },
+    {
+      "id": "biogen-mdr1-er-test",
+      "publisher": "Biogen (Fang et al. 2023), molecularinformatics/Computational-ADME",
+      "description": "Official test split of the MDR1_ER endpoint (columns smiles, activity = log10 of the measured property)",
+      "url": "https://raw.githubusercontent.com/molecularinformatics/Computational-ADME/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN/ADME_MDR1_ER_test.csv",
+      "repository_commit": "b00df003de117ce9e5b381afd886095c5f2af2d5",
+      "license": "MIT License (Copyright (c) 2020 molecularinformatics), the LICENSE of the repository that publishes the files; Biogen disclosed the measurements for public benchmarking (Fang et al. 2023). Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "c17a168d9e9d8ed0de67a1ab0191a795ae75181163b5d902db3a7f33ab42f303",
+      "size": 26146
+    },
+    {
+      "id": "biogen-rlm-train",
+      "publisher": "Biogen (Fang et al. 2023), molecularinformatics/Computational-ADME",
+      "description": "Official train split of the RLM endpoint (columns smiles, activity = log10 of the measured property)",
+      "url": "https://raw.githubusercontent.com/molecularinformatics/Computational-ADME/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN/ADME_RLM_train.csv",
+      "repository_commit": "b00df003de117ce9e5b381afd886095c5f2af2d5",
+      "license": "MIT License (Copyright (c) 2020 molecularinformatics), the LICENSE of the repository that publishes the files; Biogen disclosed the measurements for public benchmarking (Fang et al. 2023). Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "38144705d2809b08ba548bf6660a37b9ee30bd09eeef208e67af13a9fac27c26",
+      "size": 118843
+    },
+    {
+      "id": "biogen-rlm-test",
+      "publisher": "Biogen (Fang et al. 2023), molecularinformatics/Computational-ADME",
+      "description": "Official test split of the RLM endpoint (columns smiles, activity = log10 of the measured property)",
+      "url": "https://raw.githubusercontent.com/molecularinformatics/Computational-ADME/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN/ADME_RLM_test.csv",
+      "repository_commit": "b00df003de117ce9e5b381afd886095c5f2af2d5",
+      "license": "MIT License (Copyright (c) 2020 molecularinformatics), the LICENSE of the repository that publishes the files; Biogen disclosed the measurements for public benchmarking (Fang et al. 2023). Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "7467799c8727be5599b0a76b08f60fbeec92bf9533cc8213a511b9f0b977b1c1",
+      "size": 29735
+    },
+    {
+      "id": "matbench-steels",
+      "publisher": "Matbench v0.1 (Dunn et al. 2020), hosted by the Materials Project",
+      "description": "matbench_steels dataset (Matbench v0.1 order; SHA-256 equals the hash recorded in matminer's dataset_metadata.json)",
+      "url": "https://ml.materialsproject.org/projects/matbench_steels.json.gz",
+      "license": "not stated for the data file (the Matbench code repository is MIT-licensed). Citrine Informatics dataset 'Mechanical properties of some steels' (deduplicated by Matbench); no licence stated by the source. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "473bc4957b2ea5e6465aef84bc29bb48ac34db27d69ea4ec5f508745c6fae252",
+      "size": 8836
+    },
+    {
+      "id": "matbench-expt-gap",
+      "publisher": "Matbench v0.1 (Dunn et al. 2020), hosted by the Materials Project",
+      "description": "matbench_expt_gap dataset (Matbench v0.1 order; SHA-256 equals the hash recorded in matminer's dataset_metadata.json)",
+      "url": "https://ml.materialsproject.org/projects/matbench_expt_gap.json.gz",
+      "license": "not stated for the data file (the Matbench code repository is MIT-licensed). Experimental band gaps from the supporting information of Zhuo, Mansouri Tehrani and Brgoch (2018); no licence stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "783e7d1461eb83b00b2f2942da4b95fda5e58a0d1ae26b581c24cf8a82ca75b2",
+      "size": 37200
+    },
+    {
+      "id": "matbench-jdft2d",
+      "publisher": "Matbench v0.1 (Dunn et al. 2020), hosted by the Materials Project",
+      "description": "matbench_jdft2d dataset (Matbench v0.1 order; SHA-256 equals the hash recorded in matminer's dataset_metadata.json)",
+      "url": "https://ml.materialsproject.org/projects/matbench_jdft2d.json.gz",
+      "license": "not stated for the data file (the Matbench code repository is MIT-licensed). JARVIS-DFT exfoliation energies (Choudhary et al. 2017; NIST); no licence stated in the Matbench metadata. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "26057dc4524e193e32abffb296ce819b58b6e11d1278cae329a2f97817a4eddf",
+      "size": 267131
+    },
+    {
+      "id": "matbench-phonons",
+      "publisher": "Matbench v0.1 (Dunn et al. 2020), hosted by the Materials Project",
+      "description": "matbench_phonons dataset (Matbench v0.1 order; SHA-256 equals the hash recorded in matminer's dataset_metadata.json)",
+      "url": "https://ml.materialsproject.org/projects/matbench_phonons.json.gz",
+      "license": "not stated for the data file (the Matbench code repository is MIT-licensed). Last phonon DOS peaks from Petretto et al. (2018, Scientific Data); no licence stated in the Matbench metadata. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "4db551f21ec5f577e6202725f10e34dfc509aa7df3a6bdaac497da7f6dbbb9b3",
+      "size": 459672
+    },
+    {
+      "id": "matbench-dielectric",
+      "publisher": "Matbench v0.1 (Dunn et al. 2020), hosted by the Materials Project",
+      "description": "matbench_dielectric dataset (Matbench v0.1 order; SHA-256 equals the hash recorded in matminer's dataset_metadata.json)",
+      "url": "https://ml.materialsproject.org/projects/matbench_dielectric.json.gz",
+      "license": "not stated for the data file (the Matbench code repository is MIT-licensed). Refractive indices from the Materials Project (Petousis et al. 2017); no licence stated in the Matbench metadata. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "83befa09bc2ec2f4b6143afc413157827a90e5e2e42c1eb507ccfa01bf26a1d6",
+      "size": 3608015
+    },
+    {
+      "id": "matbench-log-gvrh",
+      "publisher": "Matbench v0.1 (Dunn et al. 2020), hosted by the Materials Project",
+      "description": "matbench_log_gvrh dataset (Matbench v0.1 order; SHA-256 equals the hash recorded in matminer's dataset_metadata.json)",
+      "url": "https://ml.materialsproject.org/projects/matbench_log_gvrh.json.gz",
+      "license": "not stated for the data file (the Matbench code repository is MIT-licensed). VRH shear moduli from the Materials Project (de Jong et al. 2015); no licence stated in the Matbench metadata. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "098af941f4c663270f1fe21abf20ffad6fb85ecbfcba5786ceac03983ac29da7",
+      "size": 4166214
+    },
+    {
+      "id": "matbench-perovskites",
+      "publisher": "Matbench v0.1 (Dunn et al. 2020), hosted by the Materials Project",
+      "description": "matbench_perovskites dataset (Matbench v0.1 order; SHA-256 equals the hash recorded in matminer's dataset_metadata.json)",
+      "url": "https://ml.materialsproject.org/projects/matbench_perovskites.json.gz",
+      "license": "not stated for the data file (the Matbench code repository is MIT-licensed). Formation energies of cubic perovskites from the Computational Materials Repository (Castelli et al. 2012); no licence stated in the Matbench metadata. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "4641e2417f8ec8b50096d2230864468dfa08278dc9d257c327f65d0305278483",
+      "size": 4193112
+    },
+    {
+      "id": "matbench-expt-is-metal",
+      "publisher": "Matbench v0.1 (Dunn et al. 2020), hosted by the Materials Project",
+      "description": "matbench_expt_is_metal dataset (Matbench v0.1 order; SHA-256 equals the hash recorded in matminer's dataset_metadata.json)",
+      "url": "https://ml.materialsproject.org/projects/matbench_expt_is_metal.json.gz",
+      "license": "not stated for the data file (the Matbench code repository is MIT-licensed). Metal/non-metal labels from the supporting information of Zhuo, Mansouri Tehrani and Brgoch (2018); no licence stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "8f2a4f9bacdcbc5c2c73615629ee7986f09d39bed40ba7db52b61b2889730887",
+      "size": 34623
+    },
+    {
+      "id": "matbench-validation",
+      "publisher": "materialsproject/matbench",
+      "description": "Official Matbench v0.1 nested cross-validation folds (KFold, 5 splits, shuffle, random_state 18012019)",
+      "url": "https://raw.githubusercontent.com/materialsproject/matbench/936176db18ca4cd7b38cbd957c017a5bac770c6b/matbench/matbench_v0.1_validation.json",
+      "repository_commit": "936176db18ca4cd7b38cbd957c017a5bac770c6b",
+      "license": "MIT License (materialsproject/matbench repository).",
+      "sha256": "94c17bc3dac32c67d33d69289927a5fec174497e74bbc47293e23d3d147e9a6d",
+      "size": 46006187
+    },
+    {
+      "id": "rxn-yields-buchwald-hartwig",
+      "publisher": "rxn4chemistry/rxn_yields (data of Ahneman et al. 2018)",
+      "description": "Dreher_and_Doyle_input_data.xlsx: 3955 Buchwald-Hartwig couplings with yields; sheets Test1-Test4 hold the out-of-sample additive splits",
+      "url": "https://raw.githubusercontent.com/rxn4chemistry/rxn_yields/d9e6b87ce1b881978490d68bfc00021e3b48127a/data/Buchwald-Hartwig/Dreher_and_Doyle_input_data.xlsx",
+      "repository_commit": "d9e6b87ce1b881978490d68bfc00021e3b48127a",
+      "license": "MIT License (rxn4chemistry/rxn_yields repository). The yields are high-throughput experiments published by Ahneman et al. (2018) in the supplementary materials of their Science article; no separate data licence is stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "d7f318abfbb42eaadca482b1e9aa54540eeed60e0089b6a0eb4e75366c31ee2e",
+      "size": 2134762
+    },
+    {
+      "id": "rxn-yields-suzuki-split-0",
+      "publisher": "rxn4chemistry/rxn_yields (data of Perera et al. 2018)",
+      "description": "random_split_0.tsv: the 5760 Suzuki-Miyaura reactions in split order (first 4032 train, rest test)",
+      "url": "https://raw.githubusercontent.com/rxn4chemistry/rxn_yields/d9e6b87ce1b881978490d68bfc00021e3b48127a/data/Suzuki-Miyaura/random_splits/random_split_0.tsv",
+      "repository_commit": "d9e6b87ce1b881978490d68bfc00021e3b48127a",
+      "license": "MIT License (rxn4chemistry/rxn_yields repository). The yields are high-throughput experiments published by Perera et al. (2018) in the supplementary materials of their Science article; no separate data licence is stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "d2acd54d3958a5369346177834e6c2b16388813bb28b105181a252a15c4a79a8",
+      "size": 1269870
+    },
+    {
+      "id": "rxn-yields-suzuki-split-1",
+      "publisher": "rxn4chemistry/rxn_yields (data of Perera et al. 2018)",
+      "description": "random_split_1.tsv: the 5760 Suzuki-Miyaura reactions in split order (first 4032 train, rest test)",
+      "url": "https://raw.githubusercontent.com/rxn4chemistry/rxn_yields/d9e6b87ce1b881978490d68bfc00021e3b48127a/data/Suzuki-Miyaura/random_splits/random_split_1.tsv",
+      "repository_commit": "d9e6b87ce1b881978490d68bfc00021e3b48127a",
+      "license": "MIT License (rxn4chemistry/rxn_yields repository). The yields are high-throughput experiments published by Perera et al. (2018) in the supplementary materials of their Science article; no separate data licence is stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "f4d8ff77db48c5862134309cabc618735bf3dc16e13004c1cb4a02c1015c9b7a",
+      "size": 1269870
+    },
+    {
+      "id": "rxn-yields-suzuki-split-2",
+      "publisher": "rxn4chemistry/rxn_yields (data of Perera et al. 2018)",
+      "description": "random_split_2.tsv: the 5760 Suzuki-Miyaura reactions in split order (first 4032 train, rest test)",
+      "url": "https://raw.githubusercontent.com/rxn4chemistry/rxn_yields/d9e6b87ce1b881978490d68bfc00021e3b48127a/data/Suzuki-Miyaura/random_splits/random_split_2.tsv",
+      "repository_commit": "d9e6b87ce1b881978490d68bfc00021e3b48127a",
+      "license": "MIT License (rxn4chemistry/rxn_yields repository). The yields are high-throughput experiments published by Perera et al. (2018) in the supplementary materials of their Science article; no separate data licence is stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "384733377961659f3ec7b0c33a64d92e31f1283c3d9aab552a7f20e01845a0d1",
+      "size": 1269870
+    },
+    {
+      "id": "rxn-yields-suzuki-split-3",
+      "publisher": "rxn4chemistry/rxn_yields (data of Perera et al. 2018)",
+      "description": "random_split_3.tsv: the 5760 Suzuki-Miyaura reactions in split order (first 4032 train, rest test)",
+      "url": "https://raw.githubusercontent.com/rxn4chemistry/rxn_yields/d9e6b87ce1b881978490d68bfc00021e3b48127a/data/Suzuki-Miyaura/random_splits/random_split_3.tsv",
+      "repository_commit": "d9e6b87ce1b881978490d68bfc00021e3b48127a",
+      "license": "MIT License (rxn4chemistry/rxn_yields repository). The yields are high-throughput experiments published by Perera et al. (2018) in the supplementary materials of their Science article; no separate data licence is stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "0b939b662ad26ff96339b2d43c1db59e8fdf4775431168a590a5a251619539e7",
+      "size": 1269870
+    },
+    {
+      "id": "rxn-yields-suzuki-split-4",
+      "publisher": "rxn4chemistry/rxn_yields (data of Perera et al. 2018)",
+      "description": "random_split_4.tsv: the 5760 Suzuki-Miyaura reactions in split order (first 4032 train, rest test)",
+      "url": "https://raw.githubusercontent.com/rxn4chemistry/rxn_yields/d9e6b87ce1b881978490d68bfc00021e3b48127a/data/Suzuki-Miyaura/random_splits/random_split_4.tsv",
+      "repository_commit": "d9e6b87ce1b881978490d68bfc00021e3b48127a",
+      "license": "MIT License (rxn4chemistry/rxn_yields repository). The yields are high-throughput experiments published by Perera et al. (2018) in the supplementary materials of their Science article; no separate data licence is stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "8cd6bb56a8a0db7d7e52f614dc83860ae1ecb3447b673bbbe7408a4a1c277861",
+      "size": 1269870
+    },
+    {
+      "id": "rxn-yields-suzuki-split-5",
+      "publisher": "rxn4chemistry/rxn_yields (data of Perera et al. 2018)",
+      "description": "random_split_5.tsv: the 5760 Suzuki-Miyaura reactions in split order (first 4032 train, rest test)",
+      "url": "https://raw.githubusercontent.com/rxn4chemistry/rxn_yields/d9e6b87ce1b881978490d68bfc00021e3b48127a/data/Suzuki-Miyaura/random_splits/random_split_5.tsv",
+      "repository_commit": "d9e6b87ce1b881978490d68bfc00021e3b48127a",
+      "license": "MIT License (rxn4chemistry/rxn_yields repository). The yields are high-throughput experiments published by Perera et al. (2018) in the supplementary materials of their Science article; no separate data licence is stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "3c45c00c7e0b9a826c7885443d09601517f6f509c52bb62751eee5f7f71bbd5f",
+      "size": 1269870
+    },
+    {
+      "id": "rxn-yields-suzuki-split-6",
+      "publisher": "rxn4chemistry/rxn_yields (data of Perera et al. 2018)",
+      "description": "random_split_6.tsv: the 5760 Suzuki-Miyaura reactions in split order (first 4032 train, rest test)",
+      "url": "https://raw.githubusercontent.com/rxn4chemistry/rxn_yields/d9e6b87ce1b881978490d68bfc00021e3b48127a/data/Suzuki-Miyaura/random_splits/random_split_6.tsv",
+      "repository_commit": "d9e6b87ce1b881978490d68bfc00021e3b48127a",
+      "license": "MIT License (rxn4chemistry/rxn_yields repository). The yields are high-throughput experiments published by Perera et al. (2018) in the supplementary materials of their Science article; no separate data licence is stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "4fc96fdd6995813822968145c0614b17af5e6eb7f844d1f0b569f9020e827acd",
+      "size": 1269870
+    },
+    {
+      "id": "rxn-yields-suzuki-split-7",
+      "publisher": "rxn4chemistry/rxn_yields (data of Perera et al. 2018)",
+      "description": "random_split_7.tsv: the 5760 Suzuki-Miyaura reactions in split order (first 4032 train, rest test)",
+      "url": "https://raw.githubusercontent.com/rxn4chemistry/rxn_yields/d9e6b87ce1b881978490d68bfc00021e3b48127a/data/Suzuki-Miyaura/random_splits/random_split_7.tsv",
+      "repository_commit": "d9e6b87ce1b881978490d68bfc00021e3b48127a",
+      "license": "MIT License (rxn4chemistry/rxn_yields repository). The yields are high-throughput experiments published by Perera et al. (2018) in the supplementary materials of their Science article; no separate data licence is stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "1ebb816b2c66e1c2a4a96ac82e626ea60f5233ea4f7ccf71828876ab792e69b8",
+      "size": 1269870
+    },
+    {
+      "id": "rxn-yields-suzuki-split-8",
+      "publisher": "rxn4chemistry/rxn_yields (data of Perera et al. 2018)",
+      "description": "random_split_8.tsv: the 5760 Suzuki-Miyaura reactions in split order (first 4032 train, rest test)",
+      "url": "https://raw.githubusercontent.com/rxn4chemistry/rxn_yields/d9e6b87ce1b881978490d68bfc00021e3b48127a/data/Suzuki-Miyaura/random_splits/random_split_8.tsv",
+      "repository_commit": "d9e6b87ce1b881978490d68bfc00021e3b48127a",
+      "license": "MIT License (rxn4chemistry/rxn_yields repository). The yields are high-throughput experiments published by Perera et al. (2018) in the supplementary materials of their Science article; no separate data licence is stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "795ed45e3dbb081dda21b5b1c08e21b0e8498bea3548f09ca37a6d82b0ca9ae8",
+      "size": 1269870
+    },
+    {
+      "id": "rxn-yields-suzuki-split-9",
+      "publisher": "rxn4chemistry/rxn_yields (data of Perera et al. 2018)",
+      "description": "random_split_9.tsv: the 5760 Suzuki-Miyaura reactions in split order (first 4032 train, rest test)",
+      "url": "https://raw.githubusercontent.com/rxn4chemistry/rxn_yields/d9e6b87ce1b881978490d68bfc00021e3b48127a/data/Suzuki-Miyaura/random_splits/random_split_9.tsv",
+      "repository_commit": "d9e6b87ce1b881978490d68bfc00021e3b48127a",
+      "license": "MIT License (rxn4chemistry/rxn_yields repository). The yields are high-throughput experiments published by Perera et al. (2018) in the supplementary materials of their Science article; no separate data licence is stated. Fetched at preparation time; not redistributed by this repository.",
+      "sha256": "b29febdd4f23f04248c6651906093ca06090b08b76e859f5b2bd3910cd77a31b",
+      "size": 1269870
+    }
+  ],
+  "derived": [
+    {
+      "path": "adme/solubility_train.csv",
+      "sources": [
+        "biogen-sol-train"
+      ],
+      "sha256": "61386580c8d74867c9d7bdcccc0fc59943f872e1afb8f541ba3a92d1af270e08",
+      "size": 84391
+    },
+    {
+      "path": "adme/solubility_test.csv",
+      "sources": [
+        "biogen-sol-test"
+      ],
+      "sha256": "8f9efd2deef045ddcfbcd871d458d3b619fa80463094fd0ae9dec3a2fa69718f",
+      "size": 21482
+    },
+    {
+      "path": "adme/hlm_train.csv",
+      "sources": [
+        "biogen-hlm-train"
+      ],
+      "sha256": "00bad049ea72cda9fef62dd9f68411673b4de3cbf977efb948befd1ae3338819",
+      "size": 120678
+    },
+    {
+      "path": "adme/hlm_test.csv",
+      "sources": [
+        "biogen-hlm-test"
+      ],
+      "sha256": "b26b2a2199602b954d66b5daba4ca69c35916d5028b23091b229fc93efcd1dc1",
+      "size": 30098
+    },
+    {
+      "path": "adme/mdr1_er_train.csv",
+      "sources": [
+        "biogen-mdr1-er-train"
+      ],
+      "sha256": "5facb20d38628111469644db338a5351fa9e766adba4715292760f5a05ea07cc",
+      "size": 105265
+    },
+    {
+      "path": "adme/mdr1_er_test.csv",
+      "sources": [
+        "biogen-mdr1-er-test"
+      ],
+      "sha256": "c17a168d9e9d8ed0de67a1ab0191a795ae75181163b5d902db3a7f33ab42f303",
+      "size": 26146
+    },
+    {
+      "path": "adme/rlm_train.csv",
+      "sources": [
+        "biogen-rlm-train"
+      ],
+      "sha256": "38144705d2809b08ba548bf6660a37b9ee30bd09eeef208e67af13a9fac27c26",
+      "size": 118843
+    },
+    {
+      "path": "adme/rlm_test.csv",
+      "sources": [
+        "biogen-rlm-test"
+      ],
+      "sha256": "7467799c8727be5599b0a76b08f60fbeec92bf9533cc8213a511b9f0b977b1c1",
+      "size": 29735
+    },
+    {
+      "path": "yields/buchwald_hartwig.json",
+      "sources": [
+        "rxn-yields-buchwald-hartwig"
+      ],
+      "sha256": "79fc4108a3970fd16b8c29d0dcd9f9ec6d8c3c7f2e4d3d091186155bc79f5bc8",
+      "size": 3462925
+    },
+    {
+      "path": "yields/suzuki_miyaura.json",
+      "sources": [
+        "rxn-yields-suzuki-split-0",
+        "rxn-yields-suzuki-split-1",
+        "rxn-yields-suzuki-split-2",
+        "rxn-yields-suzuki-split-3",
+        "rxn-yields-suzuki-split-4",
+        "rxn-yields-suzuki-split-5",
+        "rxn-yields-suzuki-split-6",
+        "rxn-yields-suzuki-split-7",
+        "rxn-yields-suzuki-split-8",
+        "rxn-yields-suzuki-split-9"
+      ],
+      "sha256": "d426562ee6e73b5fdc65937255ca1ccfb4f693d77619583cbb05a2d88664bc8c",
+      "size": 1530744
+    },
+    {
+      "path": "matbench/steels.json",
+      "sources": [
+        "matbench-steels",
+        "matbench-validation"
+      ],
+      "sha256": "8bd604b4e1355aeaf4306023bcb0d28424cb3e9eddebb0d57c082f44fdfe92e3",
+      "size": 96140
+    },
+    {
+      "path": "matbench/expt_gap.json",
+      "sources": [
+        "matbench-expt-gap",
+        "matbench-validation"
+      ],
+      "sha256": "e4ec8dfb4e7d2615654053f714165f07d61ea8e5ba1d80f0388387b1301c7ce1",
+      "size": 434822
+    },
+    {
+      "path": "matbench/jdft2d.json",
+      "sources": [
+        "matbench-jdft2d",
+        "matbench-validation"
+      ],
+      "sha256": "0b39e1ac6b7fee5938810d61a64df9cc2fbba34d0f91f93187593cf6c544f9a2",
+      "size": 368676
+    },
+    {
+      "path": "matbench/phonons.json",
+      "sources": [
+        "matbench-phonons",
+        "matbench-validation"
+      ],
+      "sha256": "f204fd74b6a68ecbda7a870355283318adb9106e3e31928706c14ab9b6c89ab7",
+      "size": 522666
+    },
+    {
+      "path": "matbench/dielectric.json",
+      "sources": [
+        "matbench-dielectric",
+        "matbench-validation"
+      ],
+      "sha256": "835a1e5744b7aa1267e55afab3e44478c0bbcf54c3781eb9aae61bd3ba1b6683",
+      "size": 3730290
+    },
+    {
+      "path": "matbench/log_gvrh.json",
+      "sources": [
+        "matbench-log-gvrh",
+        "matbench-validation"
+      ],
+      "sha256": "ed5fd553827258aa1d176acce8ae85d13a390c41314fbdae39ad26141f72c3c8",
+      "size": 4907467
+    },
+    {
+      "path": "matbench/perovskites.json",
+      "sources": [
+        "matbench-perovskites",
+        "matbench-validation"
+      ],
+      "sha256": "5f527789d13e4ea4f62cce85b516d2ad4926330c1051f9c0d653bc5a1d2f4339",
+      "size": 7580375
+    },
+    {
+      "path": "matbench/expt_is_metal.json",
+      "sources": [
+        "matbench-expt-is-metal",
+        "matbench-validation"
+      ],
+      "sha256": "4f9faa408fbe07cbd72891ea14398b8aa0a003cc8d2e1023403de2dd2e67b3ba",
+      "size": 486035
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0",
+  "id": "science-frontier-physics-circles-in-square-200",
+  "name": "Two hundred equal circles in a square",
+  "description": "Place the centres of 200 equal, non-overlapping circles inside a unit square so that their common radius is as large as possible. The best known packing, with radius 0.036612798904, is credited to Huang, Ye and Cantrell (2010) and is not proven optimal.",
+  "paper_ids": [
+    "science-frontier_physics"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1016/j.orl.2010.07.004",
+      "type": "paper",
+      "locator": "Huang and Ye (2010), Greedy vacancy search algorithm for packing equal circles in a square: the search method credited, with D. W. Cantrell's refinements, for the N = 200 record."
+    },
+    {
+      "url": "https://www.packomania.com/csq/csq.html",
+      "type": "benchmark",
+      "locator": "E. Specht, Packomania table of equal circles in a square (last update 2026-09-10), row N = 200: radius 0.036612798904, references [25,24] (Huang and Ye 2010; D. W. Cantrell 2010); coordinates in csq/txt/csq200.txt."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "None; the record value is embedded as a parameter and no file is read at evaluation time."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Two hundred equal circles in a square",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_frontier_physics_circles_in_square",
+    "science_family": "science_frontier_physics_circles_in_square",
+    "parameters": {
+      "n": 200,
+      "published": 0.036612798904
+    },
+    "interface": "construct() -> array of shape (N, 2): centres of N equal circles inside the square [-1/2, 1/2]^2 (side 1). Score: the largest common radius r = min(min_{i<j} |c_i - c_j| / 2, min_i min_k (1/2 - |c_ik|)) for which the circles are disjoint and inside the square, computed in double precision; maximize. A centre on or outside the square, coincident centres, a wrong shape or non-finite values make the candidate invalid.",
+    "label_spec": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "additional_requires": [],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_frontier_physics_circles_in_square",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy"
+      ],
+      "timeout": 120,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "Optimality is proven only for N <= 30 and N = 36 (bold entries of the Packomania table). Packomania publishes these records with 12 decimals, so ties are judged with the 1e-11 margin.",
+    "The record coordinates are public (Packomania), so a candidate can reproduce the record from memory or by downloading it beforehand; scores measure the returned construction, not the search that produced it.",
+    "Scores are double-precision radii of the returned centres. A score above the record by at most 1e-11 is reported as a tie; a larger gain is a candidate new record that should be confirmed in higher precision and submitted to the record table before it is claimed.",
+    "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the radius from the returned array but does not sandbox the program."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-10-11",
+    "evidence": "validation/frontier_physics-checks.json",
+    "tests": "tests/test_frontier_physics.py",
+    "human_results": "validation/human-results/frontier_physics.json"
+  },
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": 0.036612798904,
+    "statement": "The best known packing of 200 equal circles in a unit square has circle radius 0.036612798904 (Packomania, last update 2026-09-10), credited to W. Huang, T. Ye and D. W. Cantrell (2010). Many neighbouring sizes were improved in 2022; no optimality proof is known.",
+    "sources": [
+      {
+        "title": "The best known packings of equal circles in a square (Packomania)",
+        "url": "https://www.packomania.com/csq/csq.html",
+        "authors": "Eckard Specht",
+        "year": 2026
+      },
+      {
+        "title": "Greedy vacancy search algorithm for packing equal circles in a square",
+        "url": "https://doi.org/10.1016/j.orl.2010.07.004",
+        "authors": "W. Huang, T. Ye",
+        "year": 2010
+      }
+    ],
+    "comparability": "Same instance and objective: N = 200, unit square, maximize the common circle radius; the published centre file (12 decimals) scores 0.03661279890330394 with this evaluator (difference -7.0e-13, within the published precision).",
+    "as_of": "2026-10-11",
+    "attribution": "human"
+  },
+  "labels": {
+    "scientific_contribution": "open_problem",
+    "artifact": "construction",
+    "domain": "mathematics",
+    "area": "mathematics",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 1,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Find the largest common radius of 200 non-overlapping equal circles inside a square (equivalently, spread 200 points in a square).",
+    "importance_rationale": "Dense packings of equal discs and spheres in containers are classical problems of discrete geometry and models of confined hard-particle systems; optima are proven only for small N, and record tables kept for decades are still being improved by new global-optimisation methods.",
+    "papers": [
+      {
+        "title": "Greedy vacancy search algorithm for packing equal circles in a square",
+        "url": "https://doi.org/10.1016/j.orl.2010.07.004",
+        "primary_goal": "Develop a heuristic for packing equal circles in a square and improve the best known packings up to N = 200.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task's N = 200 record is credited to this method (with D. W. Cantrell's refinements)."
+      },
+      {
+        "title": "Improving dense packings of equal disks in a square",
+        "url": "https://doi.org/10.37236/1524",
+        "primary_goal": "Find denser packings of N equal disks in a square and report new record packings.",
+        "evidence_role": "primary_problem",
+        "task_relation": "It reports the N = 50 record packing that the task's score is compared with."
+      }
+    ],
+    "reason": "The cited papers' main objective is the underlying problem the task scores; the record table, instance size and precision limits are stated in the task's limitations.",
+    "reviewed_at": "2026-10-11",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

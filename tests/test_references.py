@@ -32,15 +32,29 @@ def anchor(snapshot, task_id, kind="published_reference"):
     return next(row for row in task(snapshot, task_id)["anchors"] if row["kind"] == kind)
 
 
+def test_added_packages_carry_seed_baselines_bound_to_their_code(snapshot):
+    task_id = "science-number-theory-bounded-lcm"
+    baseline = anchor(snapshot, task_id, "recorded_seed_baseline")
+    assert baseline["source"]["path"] == "validation/suite-additions-report.json"
+    assert baseline["value"] == 22.0 and baseline["validity"] is True
+    identity = baseline["execution_identity"]
+    assert identity["source_execution"] is True and identity["fixture_only"] is False
+    assert identity["evaluator_source"]["path"] == f"suite/{task_id}/evaluator.py"
+    # A package whose data could not be prepared has a row without a score, and no baseline.
+    unprepared = task(snapshot, "science-earth-enso-nino34-forecast")
+    assert unprepared["anchors"] == []
+    assert any("no successful source execution" in note for note in unprepared["evaluation"]["notes"])
+
+
 def test_full_coverage_and_honest_evidence_counts(snapshot, catalog):
     assert {row["task_id"] for row in snapshot["tasks"]} == {row["id"] for row in catalog["tasks"]}
     summary = snapshot["summary"]
-    assert summary["task_count"] == 959
-    assert summary["tasks_with_published_reference"] == 75
-    assert summary["tasks_with_recorded_baseline"] == 646
-    assert summary["valid_recorded_baselines"] == 577
+    assert summary["task_count"] == 2578
+    assert summary["tasks_with_published_reference"] == 100
+    assert summary["tasks_with_recorded_baseline"] == 956
+    assert summary["valid_recorded_baselines"] == 887
     assert summary["validity_unknown_baselines"] == 69
-    assert summary["tasks_without_numeric_reference"] == 313
+    assert summary["tasks_without_numeric_reference"] == 1622
     assert summary["tasks_with_recorded_reproduction"] == 34
     assert summary["arena_reproduced_references"] == 0
     assert summary["current_sota_status"] == "not_assessed"
@@ -67,7 +81,8 @@ def test_missing_is_empty_not_zero_and_zero_is_a_real_score(snapshot):
     assert missing and all(row["anchors"] == [] for row in missing)
     zeros = [a for row in snapshot["tasks"] for a in row["anchors"] if a["value"] == 0]
     assert zeros and all(a["kind"] == "recorded_seed_baseline" for a in zeros)
-    assert all(a["source"]["path"] in {"validation/suite-report.json", "validation/science-expansion-report.json"} for a in zeros)
+    assert all(a["source"]["path"] in {"validation/suite-report.json", "validation/science-expansion-report.json",
+                                       "validation/suite-additions-report.json"} for a in zeros)
 
 
 def test_complex_tensor_rank_and_raw_minimization(snapshot):
@@ -167,7 +182,7 @@ def test_unsupported_claims_and_metric_mismatch_rejected(snapshot, catalog, fiel
 def test_isolated_snapshot_return_and_offline_cli(snapshot):
     data = get_references()
     data["tasks"].clear()
-    assert len(get_references()["tasks"]) == 959
+    assert len(get_references()["tasks"]) == 2578
     result = subprocess.run([sys.executable, "-m", "arena.references", "validate"],
                             text=True, capture_output=True, check=True)
     assert json.loads(result.stdout) == snapshot["summary"]

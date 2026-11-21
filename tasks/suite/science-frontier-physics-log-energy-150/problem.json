@@ -1,0 +1,139 @@
+{
+  "protocol": "recreated_verified",
+  "family": "science_frontier_physics_log_energy",
+  "direction": "minimize",
+  "contract": "construct() -> array of shape (N, 3) of nonzero vectors; each is normalised to the unit sphere. Score: the logarithmic energy sum_{i<j} log(1 / |x_i - x_j|) (natural logarithm, chordal distances, pair terms summed with math.fsum); minimize. Points closer than 1e-9, a wrong shape or non-finite values make the candidate invalid.",
+  "parameters": {
+    "n": 150,
+    "published": -2364.6322425919598
+  },
+  "requires": [
+    "py:numpy"
+  ],
+  "timeout": 120,
+  "notes": [
+    "Independent implementation; the published record constructions (Packomania, the Hardin-Sloane-Smith covering table, the Amore-Figueroa-Ramos log-energy minima) were scored with this evaluator and reproduce the published values (validation/human-results/frontier_physics.json). No optimality is claimed for any value; a score beyond the record by more than the stated margin is a candidate new record that needs independent high-precision confirmation."
+  ],
+  "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
+  "id": "science-frontier-physics-log-energy-150",
+  "name": "Minimal logarithmic energy of 150 points on the sphere",
+  "paper_ids": [
+    "science-frontier_physics"
+  ],
+  "description": "Place 150 points on the unit sphere to minimize the logarithmic energy, the sum over all pairs of log(1/distance), the energy in Smale's 7th problem. The lowest published energy, -2364.632242592, is not proven minimal.",
+  "benchmark": "Minimal logarithmic energy of 150 points on the sphere",
+  "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+  "paper_direction": null,
+  "sources": [
+    {
+      "url": "https://doi.org/10.4310/MRL.1994.v1.n6.a3",
+      "type": "paper",
+      "locator": "Rakhmanov, Saff and Zhou (1994), Minimal discrete energy on the sphere: the minimal logarithmic and Riesz energy problems and numerical minima."
+    },
+    {
+      "url": "https://doi.org/10.1007/s10955-014-1107-7",
+      "type": "paper",
+      "locator": "Nerattini, Brauchart and Kiessling (2014), supplement table 6.2 (s = 0): putatively minimal standardized pair energy v_0(150) = -0.21160020067937, i.e. E = -2364.632242592."
+    },
+    {
+      "url": "https://doi.org/10.5281/zenodo.17923310",
+      "type": "archive",
+      "locator": "Amore, Figueroa and Ramos (2025), CC BY 4.0 dataset of local minima of the logarithmic energy; LocalMinima.zip, member 150.zip (6094 minima for N = 150), whose lowest minimum reproduces the tabulated value to 9.0e-11."
+    }
+  ],
+  "limitations": [
+    "The record is the lowest published value we could check: the tables of Nerattini, Brauchart and Kiessling (2014), compiled from Rakhmanov, Saff and Zhou (1995) and Calef (2009), and the 2025 landscape survey of Amore, Figueroa and Ramos. R. Womersley's published point sets could not be accessed when the task was prepared, so a lower value in sources we could not read cannot be excluded.",
+    "Points are normalised to the unit sphere before scoring, so only directions matter; the record coordinates are public, so scores measure the returned construction, not the search that produced it.",
+    "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the score from the returned array but does not sandbox the program."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "science-frontier_physics",
+      "title": "Open packing, covering and energy problems with published records: source-based research tasks",
+      "url": "https://doi.org/10.1016/S0012-365X(97)00050-2"
+    }
+  ],
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": -2364.6322425919598,
+    "statement": "The lowest published logarithmic energy we found for 150 points on the unit sphere is E = -2364.632242592 (standardized pair energy v_0 = -0.21160020067937 in the data tables of Nerattini, Brauchart and Kiessling 2014, compiled from Rakhmanov, Saff and Zhou 1995 and Calef 2009). The lowest of the 6094 local minima published by Amore, Figueroa and Ramos (2025) attains it to 9.0e-11. No minimizer is proven for this N; rigorous results exist only for a few small N such as N = 6 and N = 12.",
+    "sources": [
+      {
+        "title": "Optimal N-point configurations on the sphere: \"magic\" numbers and Smale's 7th problem",
+        "url": "https://doi.org/10.1007/s10955-014-1107-7",
+        "authors": "R. Nerattini, J. S. Brauchart, M. K.-H. Kiessling",
+        "year": 2014
+      },
+      {
+        "title": "Minimal discrete energy on the sphere",
+        "url": "https://doi.org/10.4310/MRL.1994.v1.n6.a3",
+        "authors": "E. A. Rakhmanov, E. B. Saff, Y. M. Zhou",
+        "year": 1994
+      },
+      {
+        "title": "Exploring the energy landscape of the logarithmic potential: local minima and stationary states",
+        "url": "https://arxiv.org/abs/2512.12416",
+        "authors": "P. Amore, V. Figueroa, R. Ramos",
+        "year": 2025
+      },
+      {
+        "title": "Mathematical problems for the next century",
+        "url": "https://doi.org/10.1007/BF03025291",
+        "authors": "S. Smale",
+        "year": 1998
+      }
+    ],
+    "comparability": "Same instance and objective: N = 150 points on the unit sphere, natural logarithm, chordal distances, minimize sum_(i<j) log(1/|x_i - x_j|); E = v_0 * N(N-1)/2 with the tabulated v_0.",
+    "as_of": "2026-10-11",
+    "attribution": "human"
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Find 150 points on the unit sphere with minimal logarithmic energy (Smale's 7th problem; elliptic Fekete points).",
+    "importance_rationale": "Smale's 7th problem asks for an efficient construction of near-minimal logarithmic-energy points, which are linked to well-conditioned polynomial systems and to charged-particle models; even putative minima for moderate N are known only from extensive numerical searches.",
+    "papers": [
+      {
+        "title": "Minimal discrete energy on the sphere",
+        "url": "https://doi.org/10.4310/MRL.1994.v1.n6.a3",
+        "primary_goal": "Study and compute N-point configurations on the sphere with minimal logarithmic and Riesz energy.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task's objective is the logarithmic energy of that paper; its numerical minima underlie the record."
+      },
+      {
+        "title": "Optimal N-point configurations on the sphere: \"magic\" numbers and Smale's 7th problem",
+        "url": "https://doi.org/10.1007/s10955-014-1107-7",
+        "primary_goal": "Analyse putatively minimal Riesz and logarithmic energies of N points on the sphere in relation to Smale's 7th problem.",
+        "evidence_role": "primary_problem",
+        "task_relation": "Its s = 0 data table gives the record energies used for N = 100 and 150."
+      },
+      {
+        "title": "Mathematical problems for the next century",
+        "url": "https://doi.org/10.1007/BF03025291",
+        "primary_goal": "State major open problems for the 21st century, including the 7th: computing near-minimal logarithmic-energy points on the sphere.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task's objective is the energy of Smale's 7th problem."
+      }
+    ],
+    "reason": "The cited papers' main objective is the underlying problem the task scores; the record table, instance size and precision limits are stated in the task's limitations.",
+    "reviewed_at": "2026-10-11",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  },
+  "labels": {
+    "scientific_contribution": "open_problem",
+    "artifact": "construction",
+    "domain": "mathematics",
+    "area": "mathematics",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 1,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  }
+}

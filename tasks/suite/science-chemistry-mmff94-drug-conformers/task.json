@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0",
+  "id": "science-chemistry-mmff94-drug-conformers",
+  "name": "Lowest-energy MMFF94 conformers of eight drug molecules",
+  "description": "Find, for each of eight flexible drug molecules, the conformer with the lowest MMFF94 force-field energy while keeping the molecule's connectivity and stereochemistry. The evaluator recomputes the energy of the returned coordinates and compares it with minima from an extensive reference search.",
+  "paper_ids": [
+    "science-chemistry_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1039/C9CP06869D",
+      "type": "paper",
+      "locator": "Pracht, Bohle and Grimme (2020): automated search for low-energy conformers and rotamers (CREST)."
+    },
+    {
+      "url": "https://doi.org/10.1021/ja952478m",
+      "type": "paper",
+      "locator": "Kolossvary and Guida (1996): low-mode search for efficient global conformational analysis."
+    },
+    {
+      "url": "https://doi.org/10.1021/acs.jcim.5b00654",
+      "type": "paper",
+      "locator": "Riniker and Landrum (2015): ETKDG conformer generation, used by the seed and the reference search."
+    },
+    {
+      "url": "https://doi.org/10.1002/(SICI)1096-987X(199604)17:5/6%3C490::AID-JCC1%3E3.0.CO;2-P",
+      "type": "paper",
+      "locator": "Halgren (1996): the MMFF94 force field (RDKit implementation used here)."
+    },
+    {
+      "url": "https://www.ebi.ac.uk/chembl/",
+      "type": "benchmark",
+      "locator": "ChEMBL records CHEMBL941, CHEMBL192, CHEMBL1487, CHEMBL1229, CHEMBL83, CHEMBL1064, CHEMBL6966 and CHEMBL1404 for the structures."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "rdkit"
+    ],
+    "environment_variables": [],
+    "datasets": "None; eight structures from ChEMBL are embedded in the evaluator."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Lowest-energy MMFF94 conformers of eight drug molecules",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_chemistry_mmff_conformers",
+    "science_family": "science_chemistry_mmff_conformers",
+    "parameters": {},
+    "interface": "conformer(molecule) -> array of shape (n_atoms, 3): Cartesian coordinates in Angstrom of every atom, in the atom order of Chem.AddHs(Chem.MolFromSmiles(molecule['smiles'])) (RDKit 2026.03). molecule = {'name', 'smiles', 'atoms' (element symbols in that order), 'formal_charges', 'bonds' ([i, j, bond order])}. Called for eight drugs (imatinib, sildenafil, atorvastatin, oseltamivir, tamoxifen, simvastatin, (S)-verapamil, (R)-ranolazine); all calls together within 300 s, at most 4 threads. The evaluator computes the MMFF94 energy (RDKit, no cutoff, dielectric 1) of exactly the returned coordinates; every bond must lie within 0.70-1.35 times the sum of covalent radii, non-bonded atoms at least 0.6 A apart, and the stereochemistry assigned from the 3D geometry must reproduce the given isomeric SMILES. Score: mean MMFF94 energy above reference minima found by an extensive local search (kcal/mol; minimize; negative = lower)",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "natural_science",
+      "area": "chemistry",
+      "data": "none",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "rdkit",
+        "numpy"
+      ]
+    },
+    "additional_requires": [],
+    "suite": {
+      "protocol": "recreated",
+      "family": "science_chemistry_mmff_conformers",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:rdkit"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "The references are the lowest energies found by this collection's own reference search (ETKDGv3 sampling, MMFF94 minimisation and torsional basin hopping with three or more independent seeds; per-seed results in validation/chemistry-checks.json), not published values and not proven global minima; a negative score means the candidate found lower minima.",
+    "MMFF94 in vacuum with a constant dielectric favours intramolecular hydrogen bonds and folded conformers; the force-field minimum is not the bioactive or solution conformer, so the task measures search, not conformational realism.",
+    "Atom order and energies depend on the RDKit version (2026.03 here). Verapamil and ranolazine are racemic drugs of which one enantiomer is fixed. The time budget (300 s for all eight molecules) is checked only as a whole."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/chemistry-checks.json",
+    "tests": "tests/test_chem_conformers.py"
+  },
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "statement": "No published global minima exist for these molecules under this protocol; the scored references come from the collection's own reference search (validation/chemistry-checks.json).",
+    "sources": [],
+    "as_of": "2026-10-10"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "construction",
+    "domain": "natural_science",
+    "area": "chemistry",
+    "data": "none",
+    "verification": "exact",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Find the lowest-energy conformations of flexible molecules on a molecular-mechanics potential energy surface.",
+    "importance_rationale": "Low-energy conformers are the starting point of property prediction, docking and spectroscopy; conformational search becomes difficult as the number of rotatable bonds grows, and missed minima bias downstream calculations.",
+    "papers": [
+      {
+        "title": "Automated exploration of the low-energy chemical space with fast quantum chemical methods",
+        "url": "https://doi.org/10.1039/C9CP06869D",
+        "primary_goal": "Develop an automated workflow that finds low-energy conformers and rotamers of molecules.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task scores how low an MMFF94 energy a conformer search reaches on eight drug molecules."
+      },
+      {
+        "title": "Low Mode Search. An Efficient, Automated Computational Method for Conformational Analysis",
+        "url": "https://doi.org/10.1021/ja952478m",
+        "primary_goal": "Introduce an efficient, automated global conformational search method for flexible molecules.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task poses the same global conformational search problem under the fixed MMFF94 force field."
+      }
+    ],
+    "reason": "The cited papers' main objective is the underlying problem the task scores; the local data, splits and limits are stated in the task's limitations.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

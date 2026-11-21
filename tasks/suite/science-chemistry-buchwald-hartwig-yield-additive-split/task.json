@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.0",
+  "id": "science-chemistry-buchwald-hartwig-yield-additive-split",
+  "name": "Buchwald-Hartwig yield prediction for unseen additives",
+  "description": "Predict the yields of palladium-catalysed C-N couplings that use isoxazole additives never seen in training, on the four out-of-sample tests of Ahneman et al. The evaluator scores the mean coefficient of determination (R^2) over the four tests.",
+  "paper_ids": [
+    "science-chemistry_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1126/science.aar5169",
+      "type": "paper",
+      "locator": "Ahneman et al. (2018): machine-learning prediction of C-N cross-coupling yields from 4608 nanomole-scale experiments; out-of-sample additive tests 1-4."
+    },
+    {
+      "url": "https://doi.org/10.1088/2632-2153/abc81d",
+      "type": "paper",
+      "locator": "Schwaller et al. (2021): Yield-BERT; split boundaries of the out-of-sample tests and published R^2 values."
+    },
+    {
+      "url": "https://github.com/rxn4chemistry/rxn_yields/tree/d9e6b87ce1b881978490d68bfc00021e3b48127a/data",
+      "type": "repository",
+      "locator": "Buchwald-Hartwig spreadsheet (Test1-Test4 sheets) and Suzuki-Miyaura random splits used by Yield-BERT (pinned commit, MIT)."
+    },
+    {
+      "url": "https://arxiv.org/abs/2204.14062",
+      "type": "paper",
+      "locator": "Baraka and El Kerdawy (2022): comparison tables of published R^2 values on both datasets (Yield-BERT, DFT random forest, MFF and others), from which the comparison values were read."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "rdkit",
+      "scikit-learn"
+    ],
+    "environment_variables": [],
+    "datasets": "Dreher_and_Doyle_input_data.xlsx (Ahneman et al. 2018) via rxn_yields. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Buchwald-Hartwig yield prediction for unseen additives",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_chemistry_buchwald_hartwig_yield",
+    "science_family": "science_chemistry_buchwald_hartwig_yield",
+    "parameters": {},
+    "interface": "predict_yields(train_reactions, train_yields, test_reactions, info) -> list of len(test_reactions) predicted yields (percent). Buchwald-Hartwig couplings of Ahneman et al. (2018); reaction = {'aryl_halide', 'ligand', 'base', 'additive' (canonical SMILES), 'amine', 'catalyst', 'product', 'reaction_smiles' (rxn_yields format)}. The four out-of-sample tests Test1-Test4 (3057/3055/3058/3055 training and 898/900/897/900 test reactions) are called separately; test additives never occur in training. Each split is predicted in a fresh process that receives the training reactions with yields and the test reactions without yields; info = {'dataset', 'split', 'n_train', 'n_test', 'yield_unit': 'percent'}. Runs in a separate process that receives only these arguments (no test values), with at most 4 threads (OMP/MKL/OpenBLAS set to 4), no network, no subprocesses and no read access to the repository or prepared data; numpy, scipy, scikit-learn, pandas, RDKit and torch are importable; wall-clock limit 200 s per test. Score: mean coefficient of determination R^2 over the four tests (maximize)",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "chemistry",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "published_value"
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "rdkit",
+        "numpy"
+      ]
+    },
+    "setup_instructions": [
+      "python3 scripts/prepare_chemistry.py",
+      "catalog/chemistry-data-lock.json"
+    ],
+    "additional_requires": [
+      "file:data/chemistry/yields/buchwald_hartwig.json"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_chemistry_buchwald_hartwig_yield",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:rdkit",
+        "py:sklearn",
+        "file:data/chemistry/yields/buchwald_hartwig.json"
+      ],
+      "timeout": 900,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "One reaction class with 15 aryl halides, 4 ligands, 3 bases and 23 isoxazole additives that act as deliberate poisons; generalisation to unseen additives says little about other substrates or reaction types.",
+    "The test yields are public in the source repository; candidates or settings tuned on these splits overfit, so treat scores as development scores.",
+    "Published values were read from the comparison table of Baraka and El Kerdawy (2022) because the primary articles' sites were not reachable; they are compared, not reproduced, and no published predictions are available.",
+    "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container.",
+    "The fingerprint random-forest seed (0.753) already exceeds the published Yield-BERT mean (0.73), so the published values are not an upper bound."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/chemistry-checks.json",
+    "tests": "tests/test_chem_predictions.py"
+  },
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "statement": "No best-known value was verified. Published comparison values: Yield-BERT (Schwaller et al. 2021) R^2 0.84, 0.84, 0.75 and 0.49 on Tests 1-4 (mean 0.73) and the DFT-descriptor random forest of Ahneman et al. 0.80, 0.77, 0.64 and 0.54 (mean 0.69), as tabulated by Baraka and El Kerdawy (2022). Later work may report higher values, and this task's fingerprint random-forest seed already scores 0.753.",
+    "sources": [
+      {
+        "title": "Prediction of chemical reaction yields using deep learning",
+        "url": "https://doi.org/10.1088/2632-2153/abc81d"
+      },
+      {
+        "title": "Predicting reaction performance in C-N cross-coupling using machine learning",
+        "url": "https://doi.org/10.1126/science.aar5169"
+      },
+      {
+        "title": "Multimodal Transformer-based Model for Buchwald-Hartwig and Suzuki-Miyaura Reaction Yield Prediction",
+        "url": "https://arxiv.org/abs/2204.14062"
+      }
+    ],
+    "as_of": "2026-10-10"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "model",
+    "domain": "natural_science",
+    "area": "chemistry",
+    "data": "real_measurements",
+    "verification": "sampled",
+    "reference": "published_value",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Predict the yield of a catalytic reaction from its components, including for reaction conditions never tested.",
+    "importance_rationale": "Accurate yield prediction reduces wet-lab experimentation and helps chemists choose catalysts and conditions; Buchwald-Hartwig C-N couplings are among the most used reactions in pharmaceutical synthesis.",
+    "papers": [
+      {
+        "title": "Predicting reaction performance in C-N cross-coupling using machine learning",
+        "url": "https://doi.org/10.1126/science.aar5169",
+        "primary_goal": "Predict yields of Pd-catalysed C-N cross-couplings from high-throughput data with machine learning, including for unseen additives.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task uses its data and its four out-of-sample additive tests."
+      },
+      {
+        "title": "Prediction of chemical reaction yields using deep learning",
+        "url": "https://doi.org/10.1088/2632-2153/abc81d",
+        "primary_goal": "Predict reaction yields from reaction SMILES with transformer models.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task uses the same splits and compares with the published R^2."
+      }
+    ],
+    "reason": "The cited papers' main objective is the underlying problem the task scores; the local data, splits and limits are stated in the task's limitations.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}
