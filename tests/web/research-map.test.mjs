@@ -97,7 +97,7 @@ test('actual catalog digest and real registry render every task and retain separ
   // The whole catalog is hashed and drawn here, so this test gets a wider loading budget than the fixtures.
   const t=mount({data,timeoutMs:5000});
   try {await settle(t);
-    assert.equal(t.root.dataset.state,'ready');assert.equal(t.doc.querySelectorAll('.map-node.task').length,1277);
+    assert.equal(t.root.dataset.state,'ready');assert.equal(t.doc.querySelectorAll('.map-node.task').length,2578);
     const inspector=t.doc.getElementById('map-inspector');
     assert.equal(stat(inspector,'Integration runs'),String(data['results-overview'].summary.runs));
     assert.equal(stat(inspector,'Research observations'),String(data['results-overview'].research.total));

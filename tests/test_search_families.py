@@ -24,20 +24,20 @@ def inputs():
 def test_source_declared_families_cover_catalog_once(inputs):
     catalog, _ = inputs
     data = get_search_families()
-    assert data["summary"] == {"task_count": 1277, "source_group_count": 131, "corpus_paper_count": 98,
+    assert data["summary"] == {"task_count": 2578, "source_group_count": 132, "corpus_paper_count": 98,
                                 "group_count": 10, "unknown_family_source_count": 0, "unknown_family_task_count": 0,
-                                "cross_family_task_count": 26, "executable_count": 1023, "unsupported_count": 254}
+                                "cross_family_task_count": 26, "executable_count": 2324, "unsupported_count": 254}
     members = [ident for group in data["groups"] for ident in group["task_ids"]]
-    assert len(members) == len(set(members)) == 1277
+    assert len(members) == len(set(members)) == 2578
     assert set(members) == {task["id"] for task in catalog["tasks"]}
     assert sum(group["paper_count"] for group in data["groups"]) == 98
-    assert sum(group["source_group_count"] for group in data["groups"]) == 131
-    assert sum(group["executable"] for group in data["groups"]) == 1023
+    assert sum(group["source_group_count"] for group in data["groups"]) == 132
+    assert sum(group["executable"] for group in data["groups"]) == 2324
     assert sum(group["unsupported"] for group in data["groups"]) == 254
     assert {group["label"]: group["source_group_count"] for group in data["groups"]} == {
         "AlphaEvolve / OpenEvolve": 16, "FunSearch / EoH": 18, "DGM / ADAS": 16,
         "Eureka": 7, "LLM-SR": 4, "Promptbreeder / EvoPrompt": 13, "Other": 24, "SCiEL supplement": 1,
-        "Science supplement": 31, "Community supplement": 1}
+        "Science supplement": 32, "Community supplement": 1}
 
 
 def test_secondary_family_is_preserved_without_double_counting():
@@ -56,7 +56,7 @@ def test_secondary_family_is_preserved_without_double_counting():
 
 
 @pytest.mark.parametrize("ident,source_count,task_count", [
-    ("sciel-supplement", 1, 93), ("science-supplement", 31, 391), ("community-supplement", 1, 1),
+    ("sciel-supplement", 1, 93), ("science-supplement", 32, 1692), ("community-supplement", 1, 1),
 ])
 def test_supplement_is_not_counted_as_a_method_paper(ident, source_count, task_count):
     data = get_search_families()
@@ -78,7 +78,7 @@ def test_unknown_source_label_is_preserved_not_guessed(inputs):
     assert data["summary"]["unknown_family_task_count"] > 0
     assert data["paper_annotations"]["alphaevolve"]["declared_family"] == "New unreviewed lineage"
     assert data["task_annotations"]["alphaevolve-circle-packing-in-unit-square"]["search_family_id"] == "unknown"
-    assert sum(group["task_count"] for group in data["groups"]) == 1277
+    assert sum(group["task_count"] for group in data["groups"]) == 2578
 
 
 @pytest.mark.parametrize("mutate", [
