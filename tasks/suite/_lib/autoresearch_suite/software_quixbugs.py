@@ -53,6 +53,8 @@ def statements(source):
             elif isinstance(node, (ast.For, ast.AsyncFor)):
                 out.append((node.lineno, "for " + ast.unparse(node.target) + " in " + ast.unparse(node.iter) + ":"))
             elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef, ast.With, ast.AsyncWith, ast.Try)):
+                # A decorator replaces the function it wraps, so each one is a statement of its own.
+                out.extend((decorator.lineno, "@" + ast.unparse(decorator)) for decorator in getattr(node, "decorator_list", []))
                 head = ast.unparse(node).splitlines()
                 out.append((node.lineno, next((line for line in head if not line.startswith("@")), head[0])))
             else:
@@ -92,15 +94,29 @@ def fault_lines(buggy, fixed):
     return sorted(set(lines))
 
 
-def run_tests(source, entry, tests, *, cpu_seconds=10, stop_on_failure=False):
-    """Run a program's tests in the sandbox; a crash or time-out of the child fails all of them."""
+def passes(result, test):
+    """Whether one [ok, JSON-normalised output] pair from the sandbox meets a test (QuixBugs pytest semantics)."""
+    if not (isinstance(result, list) and len(result) == 2 and result[0] is True):
+        return False
+    output, expected = result[1], test["expected"]
+    if test.get("tolerance") is not None:
+        return isinstance(output, (int, float)) and not isinstance(output, bool) and abs(output - expected) <= test["tolerance"]
+    return output == expected
+
+
+def run_tests(source, entry, tests, *, cpu_seconds=10):
+    """Run a program on the tests' inputs in the sandbox and judge the outputs here.
+
+    The child receives only the inputs: the expected values never enter the process that runs the program, so a
+    patch cannot read them (for example from the judge's stack frame). A crash or time-out of the child fails all
+    tests."""
     if not tests:
         return []
-    ok, value = software_sandbox.run_harness(software_sandbox.harness_source(HARNESS), "run_tests",
-                                             [source, entry, tests, 1.0, stop_on_failure], cpu_seconds=cpu_seconds, memory_mb=1024)
+    ok, value = software_sandbox.run_harness(software_sandbox.harness_source(HARNESS), "outputs",
+                                             [source, entry, [t["input"] for t in tests], 1.0], cpu_seconds=cpu_seconds, memory_mb=1024)
     if not ok or not isinstance(value, list) or len(value) != len(tests):
         return [False] * len(tests)
-    return [bool(v) for v in value]
+    return [passes(result, test) for result, test in zip(value, tests)]
 
 
 def _programs(archive):
@@ -194,7 +210,7 @@ def judge_patch(program, patch):
         return {"status": "rejected", "reason": f"does not parse: {type(error).__name__}"}
     if edits > MAX_EDITS:
         return {"status": "rejected", "reason": f"{edits} statement edits exceed {MAX_EDITS}", "edits": edits}
-    run = lambda tests: all(run_tests(patch, program["entry"], tests, cpu_seconds=20, stop_on_failure=True))
+    run = lambda tests: all(run_tests(patch, program["entry"], tests, cpu_seconds=20))
     if not run(program["visible"]):
         return {"status": "unrepaired", "edits": edits, "failed": "visible tests"}
     quixbugs = run(program["held_out"])

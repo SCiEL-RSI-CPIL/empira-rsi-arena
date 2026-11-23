@@ -1,6 +1,6 @@
 {
   "schema": "arena.insights/1",
-  "catalog_digest": "34018a0a3bdce620c76b975849fdb69994c0fd76ce5ed8cb99ecaf4ef678c05c",
+  "catalog_digest": "1faa8f185e28a6a5740711a141348b1217561ded9b2ec83a7df8964787201065",
   "taxonomy_digest": "ad6f9723a8f788dfe66da0cacb9fde132709b3940cef1ad6a9a389af2fcbb730",
   "sources": [
     {
@@ -10,7 +10,7 @@
       "repository_url": "https://github.com/Doldrums/arena",
       "revision": "main",
       "manifest_path": "registry/task-library-manifest.json",
-      "manifest_sha256": "bbd9b79ca7d3e50ad92493cca1af14384505789234b29a4e9e0ef7ded55aadee",
+      "manifest_sha256": "8523cf81de0d82e6c886f1057280cccb7795f5f3bbd0f4587d105d451029b141",
       "catalog_path": "catalog/tasks.json",
       "index_path": "suite/index.json",
       "catalog_sha256": "82a8fdf371be6617738e2bed33fcb216b7535fe722b2122746e47432f3d6b42c",

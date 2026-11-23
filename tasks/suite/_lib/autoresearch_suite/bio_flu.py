@@ -96,27 +96,55 @@ def check_forecast(answer, codes):
 
 DRIVER = '''
 
-def _bp_flu_driver(jobs, quantiles, horizons):
+def _bp_flu_driver(quantiles, horizons, oracle):
     _bp_seed()
-    return [_bp_plain(forecast(job["history"], job["reference_date"], quantiles, horizons)) for job in jobs]
+    job = oracle({"next": None})
+    while job is not None:
+        job = oracle({"next": _bp_plain(forecast(job["history"], job["reference_date"], quantiles, horizons))})
+    return None
 '''
+
+
+class Season:
+    """Trusted oracle of the online protocol: releases one reference date's history at a time.
+
+    The history of the next reference date is sent only after a valid forecast for the current one has been received,
+    so the child process never holds a week later than the date it is forecasting. Whatever the candidate sends first
+    for a released date is that date's forecast; it cannot be revised once the next date has been released."""
+
+    def __init__(self, payload, indices, codes):
+        self.dates, self.series, self.indices, self.codes = payload["dates"], payload["series"], indices, codes
+        self.answers, self.started = [], False
+
+    def _release(self):
+        if len(self.answers) == len(self.indices):
+            return None
+        i = self.indices[len(self.answers)]
+        return {"reference_date": self.dates[i],
+                "history": {code: self.series[code][:i + 1] for code in sorted(self.series)}}
+
+    def __call__(self, request):
+        require(isinstance(request, dict) and "next" in request, "flu protocol: expected {'next': forecast or None}")
+        if not self.started:
+            require(request["next"] is None, "flu protocol: the first request starts the season and carries no forecast")
+            self.started = True
+        else:
+            require(len(self.answers) < len(self.indices), "flu protocol: every reference date already has a forecast")
+            self.answers.append(check_forecast(request["next"], self.codes))
+        return self._release()
 
 
 def score(module, P):
     payload = load()
     dates, series = payload["dates"], payload["series"]
     indices, codes = protocol(payload, P["season"])
-    jobs = []
-    for i in indices:
-        history = {code: [series[code][k] for k in range(i + 1)] for code in sorted(series)}
-        jobs.append({"reference_date": dates[i], "history": history})
-    answers = run_sandboxed(module, DRIVER, "_bp_flu_driver", [jobs, list(QUANTILES), list(HORIZONS)],
-                            required=("forecast",), cpu_seconds=int(P.get("cpu_seconds", 180)), memory_mb=2048)
-    require(isinstance(answers, list) and len(answers) == len(jobs), f"expected {len(jobs)} weekly forecasts")
+    season = Season(payload, indices, codes)
+    run_sandboxed(module, DRIVER, "_bp_flu_driver", [list(QUANTILES), list(HORIZONS)], oracle=season,
+                  required=("forecast",), cpu_seconds=int(P.get("cpu_seconds", 180)), memory_mb=2048)
+    require(len(season.answers) == len(indices), f"expected {len(indices)} weekly forecasts, got {len(season.answers)}")
     scores, per_horizon = [], {h: [] for h in HORIZONS}
     scored, skipped = 0, 0
-    for i, answer in zip(indices, answers):
-        matrices = check_forecast(answer, codes)
+    for i, matrices in zip(indices, season.answers):
         for code in codes:
             for position, horizon in enumerate(HORIZONS):
                 observation = series[code][i + horizon]

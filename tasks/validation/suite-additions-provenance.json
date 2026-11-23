@@ -8,8 +8,8 @@
   "added_task_count": 318,
   "renaming": "suite/<id>/README.md is stored as suite/<id>/README.txt, as in the first import.",
   "summary": {
-    "adapted": 95,
-    "identical": 1956,
+    "adapted": 98,
+    "identical": 1953,
     "target_file_changed": 1,
     "written_here": 5
   },
@@ -290,10 +290,11 @@
     },
     {
       "path": "suite/_lib/autoresearch_suite/bio_flu.py",
-      "sha256": "18d13f762bd92dd787e9ec568de7c4e6c05231d62318103518b6f038bcc23832",
+      "sha256": "cfd2b20d6a617d9a094d158cacf3c25bb27c23f43eb8ec80e0368e88a5fbb250",
       "source_path": "suite/_lib/autoresearch_suite/bio_flu.py",
       "source_sha256": "18d13f762bd92dd787e9ec568de7c4e6c05231d62318103518b6f038bcc23832",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate forecasts run under an online protocol: the history of the next reference date is released only after the forecast for the current one (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/bio_hp.py",
@@ -836,10 +837,11 @@
     },
     {
       "path": "suite/_lib/autoresearch_suite/software_harness_quixbugs.py",
-      "sha256": "251a359041f39ed2d8228d91fa47256191a6bb8584af73d83db1178204eb1e8d",
+      "sha256": "770c1d23836aa750c2ded017ae82b9e5b4d9b6d1d7ef80be56513f54ead85be4",
       "source_path": "suite/_lib/autoresearch_suite/software_harness_quixbugs.py",
       "source_sha256": "251a359041f39ed2d8228d91fa47256191a6bb8584af73d83db1178204eb1e8d",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "the test runner that received expected values is removed; only outputs and preparation-time tracing remain (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/software_invariants.py",
@@ -878,10 +880,11 @@
     },
     {
       "path": "suite/_lib/autoresearch_suite/software_quixbugs.py",
-      "sha256": "1573fc2f0fc73dd941c47f1c9c732a33c84432b7ec04d866cb3a97919de3b37b",
+      "sha256": "b2e5a3bde199ceaed1bb2fa699c2d62a9aca836683400f4f34b66a592306724c",
       "source_path": "suite/_lib/autoresearch_suite/software_quixbugs.py",
       "source_sha256": "1573fc2f0fc73dd941c47f1c9c732a33c84432b7ec04d866cb3a97919de3b37b",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "patched programs return outputs only and are judged in the evaluator process; decorators count as statement edits (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/software_quixbugs_inputs.py",
@@ -14492,13 +14495,13 @@
     },
     {
       "path": "validation/suite-additions-report.json",
-      "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+      "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
       "origin": "written for this addition",
       "note": "seed executions of the added packages in this layout"
     },
     {
       "path": "validation/suite-additions-review.json",
-      "sha256": "a975beb4fbd50c81f16ecbf7663c98b55538779c897a441f09296987e3253471",
+      "sha256": "c69c0cfc7058db3869f89abbeca3a0758711be30ba845b9ad96aa4a65c7bdaee",
       "origin": "written for this addition",
       "note": "review findings and their disposition"
     }

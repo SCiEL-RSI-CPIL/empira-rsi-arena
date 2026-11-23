@@ -409,11 +409,11 @@
       "status": "ok",
       "score": 172.63115554318276,
       "valid": true,
-      "seconds": 1.3,
+      "seconds": 0.7,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
-        "suite/_lib/autoresearch_suite/bio_flu.py": "18d13f762bd92dd787e9ec568de7c4e6c05231d62318103518b6f038bcc23832",
+        "suite/_lib/autoresearch_suite/bio_flu.py": "cfd2b20d6a617d9a094d158cacf3c25bb27c23f43eb8ec80e0368e88a5fbb250",
         "suite/_lib/autoresearch_suite/bio_physics_common.py": "4a6253d7601622ed4289c60ecf390b46b0f98a486874721b9d95e5e135693472",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
         "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
@@ -439,16 +439,23 @@
         "locations": 52,
         "scored_forecasts": 5408,
         "skipped_missing_truth": 0,
+        "mean_wis_by_horizon": {
+          "1": 81.64868989444656,
+          "2": 148.1089913803218,
+          "3": 205.11175803264956,
+          "4": 255.65518286531312
+        },
         "median_wis": 55.06441438319864,
         "worst_wis": 3093.9742288015846,
-        "elapsed_seconds": 0.559053
+        "elapsed_seconds": 0.344171
       },
       "recorded_in_source": {
         "score": 172.63115554318276,
         "receipt": "validation/bio_physics-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:17:38.510799+00:00"
+      "finished_at": "2026-11-23T02:24:11.285195+00:00",
+      "note": "re-run on 2026-11-23 (macOS arm64) after the online-protocol fix of bio_flu.py; the seed score is unchanged"
     },
     {
       "id": "science-biology-phylogeny-topology-recovery",

@@ -8,7 +8,7 @@
     "repository_url": "https://github.com/Doldrums/arena",
     "revision": "main",
     "manifest_path": "registry/task-library-manifest.json",
-    "manifest_sha256": "bbd9b79ca7d3e50ad92493cca1af14384505789234b29a4e9e0ef7ded55aadee",
+    "manifest_sha256": "8523cf81de0d82e6c886f1057280cccb7795f5f3bbd0f4587d105d451029b141",
     "catalog_path": "catalog/tasks.json",
     "index_path": "suite/index.json",
     "catalog_sha256": "82a8fdf371be6617738e2bed33fcb216b7535fe722b2122746e47432f3d6b42c",
@@ -72000,7 +72000,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/1"
           },
           "primary_sources": [],
@@ -72085,7 +72085,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/2"
           },
           "primary_sources": [],
@@ -72168,7 +72168,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/3"
           },
           "primary_sources": [],
@@ -72253,7 +72253,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/4"
           },
           "primary_sources": [],
@@ -72338,7 +72338,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/5"
           },
           "primary_sources": [],
@@ -72423,7 +72423,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/6"
           },
           "primary_sources": [],
@@ -72506,7 +72506,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/7"
           },
           "primary_sources": [],
@@ -72973,7 +72973,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/8"
           },
           "primary_sources": [],
@@ -73056,7 +73056,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/9"
           },
           "primary_sources": [],
@@ -73134,12 +73134,12 @@
           "current_sota": "not_assessed",
           "validity": true,
           "recorded_status": "ok",
-          "recorded_at": "2026-11-20T14:17:38.510799+00:00",
+          "recorded_at": "2026-11-23T02:24:11.285195+00:00",
           "reported_combined_score": -172.63115554318276,
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/10"
           },
           "primary_sources": [],
@@ -73414,7 +73414,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/11"
           },
           "primary_sources": [],
@@ -73578,7 +73578,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/12"
           },
           "primary_sources": [],
@@ -73693,7 +73693,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/13"
           },
           "primary_sources": [],
@@ -73778,7 +73778,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/14"
           },
           "primary_sources": [],
@@ -73861,7 +73861,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/15"
           },
           "primary_sources": [],
@@ -73944,7 +73944,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/16"
           },
           "primary_sources": [],
@@ -74027,7 +74027,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/17"
           },
           "primary_sources": [],
@@ -74110,7 +74110,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/18"
           },
           "primary_sources": [],
@@ -74193,7 +74193,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/19"
           },
           "primary_sources": [],
@@ -74500,7 +74500,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/20"
           },
           "primary_sources": [],
@@ -74583,7 +74583,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/21"
           },
           "primary_sources": [],
@@ -74666,7 +74666,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/22"
           },
           "primary_sources": [],
@@ -74749,7 +74749,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/23"
           },
           "primary_sources": [],
@@ -74832,7 +74832,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/24"
           },
           "primary_sources": [],
@@ -75045,7 +75045,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/25"
           },
           "primary_sources": [],
@@ -75128,7 +75128,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/26"
           },
           "primary_sources": [],
@@ -75211,7 +75211,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/27"
           },
           "primary_sources": [],
@@ -75296,7 +75296,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/28"
           },
           "primary_sources": [],
@@ -75381,7 +75381,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/29"
           },
           "primary_sources": [],
@@ -75467,7 +75467,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/30"
           },
           "primary_sources": [],
@@ -75550,7 +75550,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/31"
           },
           "primary_sources": [],
@@ -75633,7 +75633,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/32"
           },
           "primary_sources": [],
@@ -75716,7 +75716,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/33"
           },
           "primary_sources": [],
@@ -75799,7 +75799,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/34"
           },
           "primary_sources": [],
@@ -75882,7 +75882,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/35"
           },
           "primary_sources": [],
@@ -75967,7 +75967,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/36"
           },
           "primary_sources": [],
@@ -76246,7 +76246,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/37"
           },
           "primary_sources": [],
@@ -76329,7 +76329,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/38"
           },
           "primary_sources": [],
@@ -76414,7 +76414,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/39"
           },
           "primary_sources": [],
@@ -76497,7 +76497,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/40"
           },
           "primary_sources": [],
@@ -76580,7 +76580,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/41"
           },
           "primary_sources": [],
@@ -76665,7 +76665,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/42"
           },
           "primary_sources": [],
@@ -76750,7 +76750,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/43"
           },
           "primary_sources": [],
@@ -76833,7 +76833,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/44"
           },
           "primary_sources": [],
@@ -76916,7 +76916,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/45"
           },
           "primary_sources": [],
@@ -77001,7 +77001,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/46"
           },
           "primary_sources": [],
@@ -77084,7 +77084,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/47"
           },
           "primary_sources": [],
@@ -77167,7 +77167,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/48"
           },
           "primary_sources": [],
@@ -77250,7 +77250,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/49"
           },
           "primary_sources": [],
@@ -77335,7 +77335,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/50"
           },
           "primary_sources": [],
@@ -77420,7 +77420,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/51"
           },
           "primary_sources": [],
@@ -77505,7 +77505,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/52"
           },
           "primary_sources": [],
@@ -77590,7 +77590,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/53"
           },
           "primary_sources": [],
@@ -77673,7 +77673,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/54"
           },
           "primary_sources": [],
@@ -77756,7 +77756,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/55"
           },
           "primary_sources": [],
@@ -77839,7 +77839,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/56"
           },
           "primary_sources": [],
@@ -78114,7 +78114,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/58"
           },
           "primary_sources": [],
@@ -78257,7 +78257,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/60"
           },
           "primary_sources": [],
@@ -78340,7 +78340,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/61"
           },
           "primary_sources": [],
@@ -78423,7 +78423,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/62"
           },
           "primary_sources": [],
@@ -78587,7 +78587,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/63"
           },
           "primary_sources": [],
@@ -78670,7 +78670,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/64"
           },
           "primary_sources": [],
@@ -78753,7 +78753,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/65"
           },
           "primary_sources": [],
@@ -79280,7 +79280,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/68"
           },
           "primary_sources": [],
@@ -79393,7 +79393,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/70"
           },
           "primary_sources": [],
@@ -79476,7 +79476,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/71"
           },
           "primary_sources": [],
@@ -79559,7 +79559,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/72"
           },
           "primary_sources": [],
@@ -79642,7 +79642,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/73"
           },
           "primary_sources": [],
@@ -80047,7 +80047,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/74"
           },
           "primary_sources": [],
@@ -80130,7 +80130,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/75"
           },
           "primary_sources": [],
@@ -80213,7 +80213,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/76"
           },
           "primary_sources": [],
@@ -80296,7 +80296,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/77"
           },
           "primary_sources": [],
@@ -80459,7 +80459,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/78"
           },
           "primary_sources": [],
@@ -80622,7 +80622,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/79"
           },
           "primary_sources": [],
@@ -80787,7 +80787,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/80"
           },
           "primary_sources": [],
@@ -80872,7 +80872,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/81"
           },
           "primary_sources": [],
@@ -80957,7 +80957,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/82"
           },
           "primary_sources": [],
@@ -81040,7 +81040,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/83"
           },
           "primary_sources": [],
@@ -81125,7 +81125,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/84"
           },
           "primary_sources": [],
@@ -81210,7 +81210,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/85"
           },
           "primary_sources": [],
@@ -81295,7 +81295,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/86"
           },
           "primary_sources": [],
@@ -81378,7 +81378,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/87"
           },
           "primary_sources": [],
@@ -81461,7 +81461,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/88"
           },
           "primary_sources": [],
@@ -81544,7 +81544,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/89"
           },
           "primary_sources": [],
@@ -81627,7 +81627,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/90"
           },
           "primary_sources": [],
@@ -81710,7 +81710,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/91"
           },
           "primary_sources": [],
@@ -81793,7 +81793,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/92"
           },
           "primary_sources": [],
@@ -81876,7 +81876,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/93"
           },
           "primary_sources": [],
@@ -81961,7 +81961,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/94"
           },
           "primary_sources": [],
@@ -82046,7 +82046,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/95"
           },
           "primary_sources": [],
@@ -82131,7 +82131,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/96"
           },
           "primary_sources": [],
@@ -82214,7 +82214,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/97"
           },
           "primary_sources": [],
@@ -82297,7 +82297,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/98"
           },
           "primary_sources": [],
@@ -82380,7 +82380,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/99"
           },
           "primary_sources": [],
@@ -82465,7 +82465,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/100"
           },
           "primary_sources": [],
@@ -82550,7 +82550,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/101"
           },
           "primary_sources": [],
@@ -82635,7 +82635,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/102"
           },
           "primary_sources": [],
@@ -82720,7 +82720,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/103"
           },
           "primary_sources": [],
@@ -82805,7 +82805,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/104"
           },
           "primary_sources": [],
@@ -82938,7 +82938,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/105"
           },
           "primary_sources": [],
@@ -83071,7 +83071,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/106"
           },
           "primary_sources": [],
@@ -83204,7 +83204,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/107"
           },
           "primary_sources": [],
@@ -83337,7 +83337,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/108"
           },
           "primary_sources": [],
@@ -83470,7 +83470,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/109"
           },
           "primary_sources": [],
@@ -83603,7 +83603,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/110"
           },
           "primary_sources": [],
@@ -83736,7 +83736,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/111"
           },
           "primary_sources": [],
@@ -83869,7 +83869,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/112"
           },
           "primary_sources": [],
@@ -84009,7 +84009,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/113"
           },
           "primary_sources": [],
@@ -84149,7 +84149,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/114"
           },
           "primary_sources": [],
@@ -84289,7 +84289,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/115"
           },
           "primary_sources": [],
@@ -84429,7 +84429,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/116"
           },
           "primary_sources": [],
@@ -84569,7 +84569,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/117"
           },
           "primary_sources": [],
@@ -84709,7 +84709,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/118"
           },
           "primary_sources": [],
@@ -84854,7 +84854,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/119"
           },
           "primary_sources": [],
@@ -84984,7 +84984,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/120"
           },
           "primary_sources": [],
@@ -85114,7 +85114,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/121"
           },
           "primary_sources": [],
@@ -85244,7 +85244,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/122"
           },
           "primary_sources": [],
@@ -85374,7 +85374,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/123"
           },
           "primary_sources": [],
@@ -85509,7 +85509,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/124"
           },
           "primary_sources": [],
@@ -85644,7 +85644,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/125"
           },
           "primary_sources": [],
@@ -85774,7 +85774,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/126"
           },
           "primary_sources": [],
@@ -85904,7 +85904,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/127"
           },
           "primary_sources": [],
@@ -86034,7 +86034,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/128"
           },
           "primary_sources": [],
@@ -86164,7 +86164,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/129"
           },
           "primary_sources": [],
@@ -86247,7 +86247,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/130"
           },
           "primary_sources": [],
@@ -86330,7 +86330,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/131"
           },
           "primary_sources": [],
@@ -86413,7 +86413,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/132"
           },
           "primary_sources": [],
@@ -86498,7 +86498,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/133"
           },
           "primary_sources": [],
@@ -86583,7 +86583,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/134"
           },
           "primary_sources": [],
@@ -86666,7 +86666,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/135"
           },
           "primary_sources": [],
@@ -86752,7 +86752,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/136"
           },
           "primary_sources": [],
@@ -86835,7 +86835,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/137"
           },
           "primary_sources": [],
@@ -86918,7 +86918,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/138"
           },
           "primary_sources": [],
@@ -87003,7 +87003,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/139"
           },
           "primary_sources": [],
@@ -87088,7 +87088,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/140"
           },
           "primary_sources": [],
@@ -87171,7 +87171,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/141"
           },
           "primary_sources": [],
@@ -87254,7 +87254,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/142"
           },
           "primary_sources": [],
@@ -87339,7 +87339,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/143"
           },
           "primary_sources": [],
@@ -87422,7 +87422,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/144"
           },
           "primary_sources": [],
@@ -87505,7 +87505,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/145"
           },
           "primary_sources": [],
@@ -87588,7 +87588,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/146"
           },
           "primary_sources": [],
@@ -87673,7 +87673,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/147"
           },
           "primary_sources": [],
@@ -87758,7 +87758,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/148"
           },
           "primary_sources": [],
@@ -87841,7 +87841,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/149"
           },
           "primary_sources": [],
@@ -87926,7 +87926,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/150"
           },
           "primary_sources": [],
@@ -88009,7 +88009,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/151"
           },
           "primary_sources": [],
@@ -88092,7 +88092,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/152"
           },
           "primary_sources": [],
@@ -88177,7 +88177,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/153"
           },
           "primary_sources": [],
@@ -88424,7 +88424,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/154"
           },
           "primary_sources": [],
@@ -88835,7 +88835,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/155"
           },
           "primary_sources": [],
@@ -88918,7 +88918,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/156"
           },
           "primary_sources": [],
@@ -89061,7 +89061,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/157"
           },
           "primary_sources": [],
@@ -89234,7 +89234,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/158"
           },
           "primary_sources": [],
@@ -89317,7 +89317,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/159"
           },
           "primary_sources": [],
@@ -89400,7 +89400,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/160"
           },
           "primary_sources": [],
@@ -89483,7 +89483,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/161"
           },
           "primary_sources": [],
@@ -89648,7 +89648,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/162"
           },
           "primary_sources": [],
@@ -90089,7 +90089,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/163"
           },
           "primary_sources": [],
@@ -90174,7 +90174,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/164"
           },
           "primary_sources": [],
@@ -90259,7 +90259,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/165"
           },
           "primary_sources": [],
@@ -90342,7 +90342,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/166"
           },
           "primary_sources": [],
@@ -90427,7 +90427,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/167"
           },
           "primary_sources": [],
@@ -90512,7 +90512,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/168"
           },
           "primary_sources": [],
@@ -90597,7 +90597,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/169"
           },
           "primary_sources": [],
@@ -90682,7 +90682,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/170"
           },
           "primary_sources": [],
@@ -90767,7 +90767,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/171"
           },
           "primary_sources": [],
@@ -90852,7 +90852,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/172"
           },
           "primary_sources": [],
@@ -90937,7 +90937,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/173"
           },
           "primary_sources": [],
@@ -91022,7 +91022,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/174"
           },
           "primary_sources": [],
@@ -91107,7 +91107,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/175"
           },
           "primary_sources": [],
@@ -91192,7 +91192,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/176"
           },
           "primary_sources": [],
@@ -91277,7 +91277,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/177"
           },
           "primary_sources": [],
@@ -91362,7 +91362,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/178"
           },
           "primary_sources": [],
@@ -91447,7 +91447,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/179"
           },
           "primary_sources": [],
@@ -91530,7 +91530,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/180"
           },
           "primary_sources": [],
@@ -91613,7 +91613,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/181"
           },
           "primary_sources": [],
@@ -91698,7 +91698,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/182"
           },
           "primary_sources": [],
@@ -91783,7 +91783,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/183"
           },
           "primary_sources": [],
@@ -91868,7 +91868,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/184"
           },
           "primary_sources": [],
@@ -91953,7 +91953,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/185"
           },
           "primary_sources": [],
@@ -92036,7 +92036,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/186"
           },
           "primary_sources": [],
@@ -92121,7 +92121,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/187"
           },
           "primary_sources": [],
@@ -92206,7 +92206,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/188"
           },
           "primary_sources": [],
@@ -92291,7 +92291,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/189"
           },
           "primary_sources": [],
@@ -92374,7 +92374,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/190"
           },
           "primary_sources": [],
@@ -92457,7 +92457,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/191"
           },
           "primary_sources": [],
@@ -92540,7 +92540,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/192"
           },
           "primary_sources": [],
@@ -92625,7 +92625,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/193"
           },
           "primary_sources": [],
@@ -92710,7 +92710,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/194"
           },
           "primary_sources": [],
@@ -92793,7 +92793,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/195"
           },
           "primary_sources": [],
@@ -92878,7 +92878,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/196"
           },
           "primary_sources": [],
@@ -92961,7 +92961,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/197"
           },
           "primary_sources": [],
@@ -93044,7 +93044,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/198"
           },
           "primary_sources": [],
@@ -93127,7 +93127,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/199"
           },
           "primary_sources": [],
@@ -93212,7 +93212,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/200"
           },
           "primary_sources": [],
@@ -93297,7 +93297,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/201"
           },
           "primary_sources": [],
@@ -93380,7 +93380,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/202"
           },
           "primary_sources": [],
@@ -93465,7 +93465,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/203"
           },
           "primary_sources": [],
@@ -93550,7 +93550,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/204"
           },
           "primary_sources": [],
@@ -93633,7 +93633,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/205"
           },
           "primary_sources": [],
@@ -93716,7 +93716,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/206"
           },
           "primary_sources": [],
@@ -93801,7 +93801,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/207"
           },
           "primary_sources": [],
@@ -93884,7 +93884,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/208"
           },
           "primary_sources": [],
@@ -93969,7 +93969,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/209"
           },
           "primary_sources": [],
@@ -94054,7 +94054,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/210"
           },
           "primary_sources": [],
@@ -94139,7 +94139,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/211"
           },
           "primary_sources": [],
@@ -94224,7 +94224,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/212"
           },
           "primary_sources": [],
@@ -94309,7 +94309,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/213"
           },
           "primary_sources": [],
@@ -94394,7 +94394,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/214"
           },
           "primary_sources": [],
@@ -94590,7 +94590,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/215"
           },
           "primary_sources": [],
@@ -94675,7 +94675,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/216"
           },
           "primary_sources": [],
@@ -94760,7 +94760,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/217"
           },
           "primary_sources": [],
@@ -94873,7 +94873,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/218"
           },
           "primary_sources": [],
@@ -95037,7 +95037,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/219"
           },
           "primary_sources": [],
@@ -95312,7 +95312,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/220"
           },
           "primary_sources": [],
@@ -95485,7 +95485,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/221"
           },
           "primary_sources": [],
@@ -95568,7 +95568,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/222"
           },
           "primary_sources": [],
@@ -95813,7 +95813,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/223"
           },
           "primary_sources": [],
@@ -95896,7 +95896,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/224"
           },
           "primary_sources": [],
@@ -96090,7 +96090,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/225"
           },
           "primary_sources": [],
@@ -96173,7 +96173,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/226"
           },
           "primary_sources": [],
@@ -96256,7 +96256,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/227"
           },
           "primary_sources": [],
@@ -96341,7 +96341,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/228"
           },
           "primary_sources": [],
@@ -96426,7 +96426,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/229"
           },
           "primary_sources": [],
@@ -96509,7 +96509,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/230"
           },
           "primary_sources": [],
@@ -96592,7 +96592,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/231"
           },
           "primary_sources": [],
@@ -96677,7 +96677,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/232"
           },
           "primary_sources": [],
@@ -96760,7 +96760,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/233"
           },
           "primary_sources": [],
@@ -96845,7 +96845,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/234"
           },
           "primary_sources": [],
@@ -97060,7 +97060,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/235"
           },
           "primary_sources": [],
@@ -97143,7 +97143,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/236"
           },
           "primary_sources": [],
@@ -97226,7 +97226,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/237"
           },
           "primary_sources": [],
@@ -97309,7 +97309,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/238"
           },
           "primary_sources": [],
@@ -97392,7 +97392,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/239"
           },
           "primary_sources": [],
@@ -97475,7 +97475,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/240"
           },
           "primary_sources": [],
@@ -97558,7 +97558,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/241"
           },
           "primary_sources": [],
@@ -97641,7 +97641,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/242"
           },
           "primary_sources": [],
@@ -97724,7 +97724,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/243"
           },
           "primary_sources": [],
@@ -97809,7 +97809,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/244"
           },
           "primary_sources": [],
@@ -97892,7 +97892,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/245"
           },
           "primary_sources": [],
@@ -97975,7 +97975,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/246"
           },
           "primary_sources": [],
@@ -98058,7 +98058,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/247"
           },
           "primary_sources": [],
@@ -98141,7 +98141,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/248"
           },
           "primary_sources": [],
@@ -98226,7 +98226,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/249"
           },
           "primary_sources": [],
@@ -98311,7 +98311,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/250"
           },
           "primary_sources": [],
@@ -98396,7 +98396,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/251"
           },
           "primary_sources": [],
@@ -98479,7 +98479,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/252"
           },
           "primary_sources": [],
@@ -98562,7 +98562,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/253"
           },
           "primary_sources": [],
@@ -98647,7 +98647,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/254"
           },
           "primary_sources": [],
@@ -98743,7 +98743,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/255"
           },
           "primary_sources": [],
@@ -98826,7 +98826,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/256"
           },
           "primary_sources": [],
@@ -98911,7 +98911,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/257"
           },
           "primary_sources": [],
@@ -98996,7 +98996,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/258"
           },
           "primary_sources": [],
@@ -99079,7 +99079,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/259"
           },
           "primary_sources": [],
@@ -99162,7 +99162,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/260"
           },
           "primary_sources": [],
@@ -99245,7 +99245,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/261"
           },
           "primary_sources": [],
@@ -99328,7 +99328,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/262"
           },
           "primary_sources": [],
@@ -99413,7 +99413,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/263"
           },
           "primary_sources": [],
@@ -99498,7 +99498,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/264"
           },
           "primary_sources": [],
@@ -99581,7 +99581,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/265"
           },
           "primary_sources": [],
@@ -99664,7 +99664,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/266"
           },
           "primary_sources": [],
@@ -99747,7 +99747,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/267"
           },
           "primary_sources": [],
@@ -99830,7 +99830,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/268"
           },
           "primary_sources": [],
@@ -99913,7 +99913,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/269"
           },
           "primary_sources": [],
@@ -99996,7 +99996,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/270"
           },
           "primary_sources": [],
@@ -100079,7 +100079,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/271"
           },
           "primary_sources": [],
@@ -100192,7 +100192,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/273"
           },
           "primary_sources": [],
@@ -100275,7 +100275,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/274"
           },
           "primary_sources": [],
@@ -100358,7 +100358,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/275"
           },
           "primary_sources": [],
@@ -100441,7 +100441,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/276"
           },
           "primary_sources": [],
@@ -100524,7 +100524,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/277"
           },
           "primary_sources": [],
@@ -100607,7 +100607,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/278"
           },
           "primary_sources": [],
@@ -100690,7 +100690,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/279"
           },
           "primary_sources": [],
@@ -100773,7 +100773,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/280"
           },
           "primary_sources": [],
@@ -100856,7 +100856,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/281"
           },
           "primary_sources": [],
@@ -100939,7 +100939,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/282"
           },
           "primary_sources": [],
@@ -101022,7 +101022,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/283"
           },
           "primary_sources": [],
@@ -101135,7 +101135,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/285"
           },
           "primary_sources": [],
@@ -101220,7 +101220,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/286"
           },
           "primary_sources": [],
@@ -101305,7 +101305,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/287"
           },
           "primary_sources": [],
@@ -101390,7 +101390,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/288"
           },
           "primary_sources": [],
@@ -101475,7 +101475,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/289"
           },
           "primary_sources": [],
@@ -101558,7 +101558,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/290"
           },
           "primary_sources": [],
@@ -101641,7 +101641,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/291"
           },
           "primary_sources": [],
@@ -101724,7 +101724,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/292"
           },
           "primary_sources": [],
@@ -101807,7 +101807,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/293"
           },
           "primary_sources": [],
@@ -101890,7 +101890,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/294"
           },
           "primary_sources": [],
@@ -101973,7 +101973,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/295"
           },
           "primary_sources": [],
@@ -102190,7 +102190,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/296"
           },
           "primary_sources": [],
@@ -102939,7 +102939,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/297"
           },
           "primary_sources": [],
@@ -103024,7 +103024,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/298"
           },
           "primary_sources": [],
@@ -103107,7 +103107,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/299"
           },
           "primary_sources": [],
@@ -103192,7 +103192,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/300"
           },
           "primary_sources": [],
@@ -103275,7 +103275,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/301"
           },
           "primary_sources": [],
@@ -103358,7 +103358,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/302"
           },
           "primary_sources": [],
@@ -103443,7 +103443,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/303"
           },
           "primary_sources": [],
@@ -103529,7 +103529,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/304"
           },
           "primary_sources": [],
@@ -103614,7 +103614,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/305"
           },
           "primary_sources": [],
@@ -103699,7 +103699,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/306"
           },
           "primary_sources": [],
@@ -103784,7 +103784,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/307"
           },
           "primary_sources": [],
@@ -103869,7 +103869,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/308"
           },
           "primary_sources": [],
@@ -103954,7 +103954,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/309"
           },
           "primary_sources": [],
@@ -104039,7 +104039,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/310"
           },
           "primary_sources": [],
@@ -104124,7 +104124,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/311"
           },
           "primary_sources": [],
@@ -104209,7 +104209,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/312"
           },
           "primary_sources": [],
@@ -104292,7 +104292,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/313"
           },
           "primary_sources": [],
@@ -104377,7 +104377,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/314"
           },
           "primary_sources": [],
@@ -104462,7 +104462,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/315"
           },
           "primary_sources": [],
@@ -104547,7 +104547,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/316"
           },
           "primary_sources": [],
@@ -104630,7 +104630,7 @@
           "source": {
             "path": "validation/suite-additions-report.json",
             "url": "https://github.com/Doldrums/arena/blob/main/tasks/validation/suite-additions-report.json",
-            "sha256": "7cc13d00f3f85be7160de9bf54cb0a3ab1accbdba5aa124cb2d3af2b4da565d8",
+            "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
             "locator": "#/tasks/317"
           },
           "primary_sources": [],

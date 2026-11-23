@@ -1,16 +1,16 @@
 """Test runner executed inside the sandbox (self-contained; standard library only).
 
-``run_tests(source, entry, tests, per_test_seconds)`` executes a QuixBugs-style
-program and returns one boolean per test. A test is {"input": [args...],
-"expected": value, "tolerance": optional float}. Outputs follow the QuixBugs
-pytest semantics: generators are consumed into lists, results are normalised
-through JSON (tuples become lists) and compared with ``==`` or, when a
-tolerance is given, by absolute difference. Exceptions and timeouts fail.
+``outputs(source, entry, inputs, per_test_seconds)`` runs a QuixBugs-style
+program on a list of inputs and returns its outputs, normalised with the
+QuixBugs pytest semantics: generators are consumed into lists and results go
+through JSON (tuples become lists). Expected values are never passed in; the
+caller compares the outputs outside this process (software_quixbugs.passes),
+so a program under test cannot read them.
 
-``outputs`` returns the normalised outputs of a program on a list of inputs
-(used at preparation time to compute expected values with the reference fix).
-``trace_tests`` additionally records the executed line numbers of the program
-for each test (statement coverage spectra for fault localisation).
+``trace_tests`` records the executed line numbers of the program for each test
+(statement coverage spectra for fault localisation). It receives expected
+values and is used only at preparation time on the original QuixBugs programs,
+never on candidate code.
 """
 import copy
 import json
@@ -57,20 +57,6 @@ def _run(function, test, seconds):
         return False
     finally:
         signal.setitimer(signal.ITIMER_PROF, 0)
-
-
-def run_tests(source, entry, tests, per_test_seconds=1.0, stop_on_failure=False):
-    """One boolean per test; with stop_on_failure, tests after the first failure are not run (reported False)."""
-    try:
-        function = _load(source, entry)
-    except BaseException:  # noqa: BLE001 - a program that does not load fails every test
-        return [False] * len(tests)
-    results = []
-    for test in tests:
-        results.append(_run(function, test, per_test_seconds))
-        if stop_on_failure and not results[-1]:
-            return results + [False] * (len(tests) - len(results))
-    return results
 
 
 def outputs(source, entry, inputs, per_test_seconds=1.0):

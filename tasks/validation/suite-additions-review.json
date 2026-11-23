@@ -13,8 +13,8 @@
       "warning": 26
     },
     "statements_corrected": 17,
-    "code_corrections": 5,
-    "open_items": 20
+    "code_corrections": 7,
+    "open_items": 18
   },
   "origin_tests": {
     "what": "The origin's unittest modules cited by the added packages (tests/test_*.py at the pinned commit), run against this library's copy of the shared modules; generator-only modules the tests import were taken from the origin. One module per interpreter, 110-second limit per module.",
@@ -183,27 +183,25 @@
       "file": "catalog/duplicates.json and both packages",
       "finding": "The MCTS-AHD admissible-set task (constant-weight ternary vectors) was recorded as a duplicate of the FunSearch narrow admissible tuple task (integers avoiding residue classes). They are different problems.",
       "correction": "The merge is removed and the MCTS-AHD task is its own package, as in the source since 2026-09-21."
-    }
-  ],
-  "open": [
+    },
     {
-      "group": "evaluator isolation",
-      "severity": "error",
       "tasks": [
         "science-software-quixbugs-repair"
       ],
+      "file": "suite/_lib/autoresearch_suite/software_quixbugs.py",
       "finding": "The candidate's patch runs in the sandbox process that also holds the expected outputs of every test, including the held-out ones, so passing them does not certify a repair. A decorator is not counted as a statement edit.",
-      "why_open": "Needs the judging step moved out of the process that runs candidate code."
+      "correction": "The child process that runs the patched program receives only the test inputs and returns its outputs; they are compared with the expected values in the evaluator process, so the patch never holds them. Decorators are counted as statements. A patch that read the expected value from the judge's frame scored 1.0 before and 0.0 after; the seed scores 0.1935 both times."
     },
     {
-      "group": "evaluator isolation",
-      "severity": "error",
       "tasks": [
         "science-biology-influenza-hospitalization-forecasting"
       ],
+      "file": "suite/_lib/autoresearch_suite/bio_flu.py",
       "finding": "All forecast jobs are passed to one child process, so the histories of later reference dates, which contain the verifying weeks of earlier dates, are in the candidate's process. The contract says the candidate never sees later weeks.",
-      "why_open": "Needs one process per reference date, or release through the online protocol the earth tasks use, with the CPU budget redefined."
-    },
+      "correction": "The reference dates are released one at a time through the sandbox oracle: the next history is sent only after a valid forecast for the current date, inside one child process with the same 180 s CPU budget for the season. A forecaster that read later histories from the driver frame scored a mean WIS of 4.1 before and fails after; the seed scores 172.63 both times."
+    }
+  ],
+  "open": [
     {
       "group": "evaluator isolation",
       "severity": "warning",
