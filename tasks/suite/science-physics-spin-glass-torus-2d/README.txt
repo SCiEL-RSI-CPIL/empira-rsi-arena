@@ -69,12 +69,12 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 ## Sources
 
 - paper: https://doi.org/10.1002/3527603794.ch4 (Liers, Juenger, Reinelt and Rinaldi (2004) compute exact ground states of Ising spin glasses by branch-and-cut and introduce these toroidal grid instances with Gaussian couplings.)
-- paper: https://doi.org/10.1088/0305-4470/15/10/028 (Barahona (1982) shows that the spin-glass ground-state problem is polynomially solvable on planar lattices but NP-hard in three dimensions, placing these two tasks on either side of that boundary.)
+- paper: https://doi.org/10.1088/0305-4470/15/10/028 (Barahona (1982) shows that the spin-glass ground-state problem is polynomially solvable on two-dimensional lattices without a field and NP-hard in three dimensions and in two dimensions with a field. The instances of this task are periodic in both directions (toroidal, not planar); for the torus, polynomial algorithms are known for integer couplings bounded by a polynomial in the lattice size (Galluccio, Loebl and Vondrak, Math. Program. 90 (2001) 273-290, doi:10.1007/PL00011425).)
 - benchmark: https://biqmac.aau.at/biqmaclib.html (Biq Mac library: the t2g torus instances (ising_all.tar.gz) and their optimal cut values in Table 10 of biqmaclib.pdf; no licence stated, so the archive is downloaded by the user and not redistributed here.)
 
 ## Limitations
 
 - The reference values are the optimal cut weights published with the library, obtained by branch-and-cut with no time limit; the task gives a candidate a few minutes of CPU for nine instances, so matching them is hard and the score is budget-dependent.
-- Two-dimensional toroidal instances are polynomially solvable in principle (Barahona 1982); a candidate that implements such an algorithm should reach the optimum, which is the intended research content of this task.
+- Planar two-dimensional lattices without a field are polynomially solvable by matching (Barahona 1982), but these instances are toroidal: for graphs on the torus, polynomial algorithms are known when the integer couplings are bounded by a polynomial in the lattice size (Pfaffian enumeration; Galluccio, Loebl and Vondrak 2001, who credit Barahona 1982 for toroidal square lattices). The couplings here are integers up to about 3.8e5, so that method is pseudo-polynomial for these instances. A transfer-matrix dynamic programme over rows solves the three 10x10 instances exactly in seconds and confirms their published optima; it does not scale to 15x15 and 20x20 within the budget, where the task is a test of heuristics.
 - Only these nine fixed instances are scored: a better score is a better heuristic on them, not a statement about the Edwards-Anderson model in general.
 - Couplings are the integer-scaled Gaussian weights of the published instances; the evaluator reports the corresponding spin-glass energy but scores the cut weight.

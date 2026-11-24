@@ -2,8 +2,8 @@
   "schema": "artask.data-lock/1",
   "package": "chemistry",
   "reviewed_on": "2026-10-10",
-  "raw_cache": ".cache/chemistry-raw",
-  "data_directory": "suite/_lib/data/chemistry",
+  "raw_cache": "chemistry-raw of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "data_directory": "data/chemistry of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
   "note": "Raw files are fetched from the pinned URLs and verified by SHA-256; derived files are byte-stable functions of them (suite/_lib/autoresearch_suite/chem_sources.py). Hosts that refused connections from the preparation machine on 2026-10-10 (Cambridge Cluster Database, Harvard Dataverse file storage for TDC) are not used.",
   "sources": [
     {

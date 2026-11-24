@@ -9,7 +9,7 @@
   "requires": [],
   "timeout": 120,
   "notes": [
-    "Scores above 1 beat the regular octagon; the paper's constructions show this is possible, but no value for n = 8 is recorded here. Exact local certificates are not Lean proofs; floating-point scores are stated as such. Consult the independent oracle and malformed-input tests."
+    "Scores above 1 beat the regular octagon; the best published value for n = 8 is 1.250472 (Table 1 of the paper, conjectured optimal). Exact local certificates are not Lean proofs; floating-point scores are stated as such. Consult the independent oracle and malformed-input tests."
   ],
   "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
   "id": "science-distance-product-fixed-diameter-8",
@@ -17,7 +17,7 @@
   "paper_ids": [
     "science-prize_g"
   ],
-  "description": "construct() -> 8 distinct points [x, y] (floats, |coordinate| < 10^6). The score is Delta/n^n, where Delta is the product over ordered pairs of distances after scaling the set to diameter 2; the regular octagon scores exactly 1. Maximize. Scores above 1 beat the regular octagon; the paper's constructions show this is possible, but no value for n = 8 is recorded here.",
+  "description": "construct() -> 8 distinct points [x, y] (floats, |coordinate| < 10^6). The score is Delta/n^n, where Delta is the product over ordered pairs of distances after scaling the set to diameter 2; the regular octagon scores exactly 1. Maximize. Scores above 1 beat the regular octagon; the best published value for n = 8 is 1.250472 (Table 1 of the paper, conjectured optimal).",
   "benchmark": "Eight planar points maximizing the product of distances at fixed diameter",
   "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
   "paper_direction": null,
@@ -25,7 +25,7 @@
     {
       "url": "https://arxiv.org/abs/2603.07088",
       "type": "paper",
-      "locator": "Stijn Cambie, Arne Decadt, Yanni Dong, Tao Hu and Quanyu Tang, On the maximum product of distances of diameter 2 point sets (2026). arXiv abstract inspected (extremal sets are convex polygons; constructions drastically improve on regular n-gons for even n); Erdős Problem #1045 page inspected: the regular polygon gives Delta = n^n for even n and is not optimal for even n >= 4 (Hu and Tang; Cambie), and liminf max Delta/n^n >= 1.268 for even n. Scores above 1 beat the regular octagon; the paper's constructions show this is possible, but no value for n = 8 is recorded here."
+      "locator": "Stijn Cambie, Arne Decadt, Yanni Dong, Tao Hu and Quanyu Tang, On the maximum product of distances of diameter 2 point sets (2026). arXiv abstract inspected (extremal sets are convex polygons; constructions drastically improve on regular n-gons for even n); Erdős Problem #1045 page inspected: the regular polygon gives Delta = n^n for even n and is not optimal for even n >= 4 (Hu and Tang; Cambie), and liminf max Delta/n^n >= 1.268 for even n. Scores above 1 beat the regular octagon; the best published value for n = 8 is 1.250472 (Table 1 of the paper, conjectured optimal)."
     },
     {
       "url": "https://www.erdosproblems.com/1045",
@@ -39,7 +39,7 @@
     }
   ],
   "limitations": [
-    "Floating-point score (relative accuracy about 1e-12). No documented value for n = 8 (reference label none).",
+    "Floating-point score (relative accuracy about 1e-12). The reference 1.250472 is a published lower bound that is conjectured, not proven, to be optimal.",
     "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
   ],
   "evaluator": "evaluator.py",
@@ -52,9 +52,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No documented optimum for n = 8; regular octagon = 1 and improvements exist for all even n >= 4 (Hu-Tang; Cambie; Cambie, Decadt, Dong, Hu and Tang 2026).",
+    "kind": "best_known",
+    "value": 1.250472,
+    "statement": "The best published value for n = 8 is Delta/n^n = 1.250472 (log Delta = 16.859060; Cambie, Decadt, Dong, Hu and Tang 2026, Table 1; their Section 3.3 calls the octagon conjecturally optimal). The regular octagon scores 1, and the maximum is proven only for n = 4, where it is 16(7 - 4 sqrt(3)) = 1.148748.",
     "sources": [
       {
         "title": "On the maximum product of distances of diameter 2 point sets",
@@ -67,7 +67,7 @@
         "url": "https://www.erdosproblems.com/1045"
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 1045,
       "url": "https://www.erdosproblems.com/1045",
@@ -83,7 +83,7 @@
       {
         "title": "On the maximum product of distances of diameter 2 point sets",
         "url": "https://arxiv.org/abs/2603.07088",
-        "task_relation": "Scores above 1 beat the regular octagon; the paper's constructions show this is possible, but no value for n = 8 is recorded here.",
+        "task_relation": "Scores above 1 beat the regular octagon; the best published value for n = 8 is 1.250472 (Table 1 of the paper, conjectured optimal).",
         "primary_goal": "Determine the maximum product of pairwise distances of n planar points of diameter 2.",
         "evidence_role": "primary_problem"
       }
@@ -101,7 +101,7 @@
     "area": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "science_tier": 1,
     "resources": [
       "cpu"

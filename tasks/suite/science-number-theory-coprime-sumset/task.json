@@ -46,12 +46,12 @@
     },
     "interface": "construct() -> candidate. Return two lists A,B, each containing exactly 3 distinct integers in [1,128]. All DISTINCT values in A+B must be pairwise coprime. Maximize the cardinality of A+B; repeated representations are allowed.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -94,9 +94,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+    "kind": "optimum",
+    "value": 9,
+    "statement": "Two 3-element sets have at most 9 distinct sums, and sets A, B in [1,128] whose 9 sums are pairwise coprime exist, so the optimum is 9.",
     "sources": [
       {
         "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -105,15 +105,15 @@
         "year": 1980
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

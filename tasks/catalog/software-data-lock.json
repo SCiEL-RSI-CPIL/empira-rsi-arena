@@ -2,8 +2,8 @@
   "schema": "artask.data-lock/1",
   "package": "software",
   "reviewed_on": "2026-10-08",
-  "raw_cache": ".cache/software-raw",
-  "data_directory": "suite/_lib/data/software",
+  "raw_cache": "software-raw of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "data_directory": "data/software of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
   "note": "Raw files are fetched from the pinned URLs and verified by SHA-256; derived files are byte-stable functions of them (suite/_lib/autoresearch_suite/software_*.py, function derive). Nothing listed here is redistributed by this repository.",
   "sources": [
     {

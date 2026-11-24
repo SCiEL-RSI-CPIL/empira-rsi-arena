@@ -7,7 +7,7 @@
   "requires": [],
   "timeout": 120,
   "notes": [
-    "The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests."
+    "The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof. On these five instances a standard min-conflicts local search already reaches the maximum 5 in under a second. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests."
   ],
   "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
   "id": "science-cycle-plus-triangles-colouring",
@@ -15,7 +15,7 @@
   "paper_ids": [
     "science-prize_i"
   ],
-  "description": "construct() -> five colourings (one colour in {0, 1, 2} per vertex), one per instance from cycle_plus_triangles(n, seed) for n = 30, 60, 90, 150, 300 with seeds 401..405 in the verifier: the Hamiltonian cycle 0-1-...-(n-1)-0 plus a random partition into triangles avoiding cycle edges. The score is the number of properly coloured instances (0..5). Maximize; every instance is 3-colourable by the Fleischner-Stiebitz theorem. The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof.",
+  "description": "construct() -> five colourings (one colour in {0, 1, 2} per vertex), one per instance from cycle_plus_triangles(n, seed) for n = 30, 60, 90, 150, 300 with seeds 401..405 in the verifier: the Hamiltonian cycle 0-1-...-(n-1)-0 plus a random partition into triangles avoiding cycle edges. The score is the number of properly coloured instances (0..5). Maximize; every instance is 3-colourable by the Fleischner-Stiebitz theorem. The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof. On these five instances a standard min-conflicts local search already reaches the maximum 5 in under a second.",
   "benchmark": "3-colouring five fixed cycle-plus-triangles graphs",
   "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
   "paper_direction": null,
@@ -23,7 +23,7 @@
     {
       "url": "https://doi.org/10.1016/0012-365X(92)90588-7",
       "type": "paper",
-      "locator": "Herbert Fleischner and Michael Stiebitz, A solution to a colouring problem of P. Erdős (1992). Crossref record inspected; Erdős Problem #842 page inspected (the cycle-plus-triangles problem, proved by Fleischner and Stiebitz via the Alon-Tarsi method). The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof."
+      "locator": "Herbert Fleischner and Michael Stiebitz, A solution to a colouring problem of P. Erdős (1992). Crossref record inspected; Erdős Problem #842 page inspected (the cycle-plus-triangles problem, proved by Fleischner and Stiebitz via the Alon-Tarsi method). The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof. On these five instances a standard min-conflicts local search already reaches the maximum 5 in under a second."
     },
     {
       "url": "https://www.erdosproblems.com/842",
@@ -37,7 +37,7 @@
     }
   ],
   "limitations": [
-    "Instance-solving task on five fixed pseudo-random instances.",
+    "Instance-solving task on five fixed pseudo-random instances; the maximum score 5 is reached by standard local search in under a second.",
     "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
   ],
   "evaluator": "evaluator.py",
@@ -50,9 +50,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "Instance-solving task; every instance is 3-colourable, so 5 is attainable.",
+    "kind": "optimum",
+    "value": 5,
+    "statement": "The maximum 5 is attained: every instance is 3-colourable (Fleischner and Stiebitz), and a textbook min-conflicts local search colours all five in under a second.",
     "sources": [
       {
         "title": "A solution to a colouring problem of P. Erdős",
@@ -65,7 +65,7 @@
         "url": "https://www.erdosproblems.com/842"
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 842,
       "url": "https://www.erdosproblems.com/842",
@@ -81,7 +81,7 @@
       {
         "title": "A solution to a colouring problem of P. Erdős",
         "url": "https://doi.org/10.1016/0012-365X(92)90588-7",
-        "task_relation": "The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof.",
+        "task_relation": "The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof. On these five instances a standard min-conflicts local search already reaches the maximum 5 in under a second.",
         "primary_goal": "Show that every cycle-plus-triangles graph is 3-colourable (Erdős Problem #842; proved non-constructively).",
         "evidence_role": "primary_problem"
       }
@@ -93,13 +93,13 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "area": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "science_tier": 2,
     "resources": [
       "cpu"

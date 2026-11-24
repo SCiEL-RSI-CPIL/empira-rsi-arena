@@ -17,9 +17,9 @@ construct() -> a nonempty ordered list of distinct vertices in 0..99 forming a s
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Miklós Ajtai, János Komlós and Endre Szemerédi (1981, The longest path in a random graph) study the underlying problem.
+The longest path of the pinned graph has 34 vertices (exhaustive depth-first search, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Miklós Ajtai, János Komlós and Endre Szemerédi (1981, The longest path in a random graph) study the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `34` (reviewed 2026-11-24).
 
 - [The longest path in a random graph](https://scholarship.libraries.rutgers.edu/esploro/outputs/journalArticle/The-longest-path-in-a-random/991031550002004646), Miklós Ajtai, János Komlós and Endre Szemerédi (1981)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 100, "edges": [[0, 10], [0, 27], [0, 80], [1, 59], [2, 50], [
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `synthetic`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `synthetic`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

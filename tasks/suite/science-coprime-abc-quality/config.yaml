@@ -29,7 +29,7 @@ prompt:
   system_message: |
     High-quality coprime abc triples
 
-    construct() -> [a,b,c], positive Python integers <=1000000000000, a<=b, a+b=c, gcd(a,b)=1. Maximize log(c)/log(rad(a*b*c)). The radical is the product of DISTINCT prime factors and is independently factored exactly; only the logarithmic score uses floating arithmetic. Search coprime positive triples a+b=c with c<=10^12, maximizing log(c)/log(rad(abc)). Finite high quality cannot disprove the conjecture, which allows finitely many exceptions at each exponent. The optimum is Reyssat's quality 1.62991 for 2 + 3^10*109 = 23^5; complete tables of high-quality triples show nothing better below 10^20, so this is a rediscovery task.
+    construct() -> [a,b,c], positive Python integers <=1000000000000, a<=b, a+b=c, gcd(a,b)=1. Maximize log(c)/log(rad(a*b*c)). The radical is the product of DISTINCT prime factors and is independently factored exactly; only the logarithmic score uses floating arithmetic. Search coprime positive triples a+b=c with c<=10^12, maximizing log(c)/log(rad(abc)). Finite high quality cannot disprove the conjecture, which allows finitely many exceptions at each exponent. The optimum is quality 1.62991, attained by Reyssat's triple; complete tables of high-quality triples show nothing better below 10^20, so this is a rediscovery task.
 
     Candidate interface: construct() -> [a,b,c], positive Python integers <=1000000000000, a<=b, a+b=c, gcd(a,b)=1. Maximize log(c)/log(rad(a*b*c)). The radical is the product of DISTINCT prime factors and is independently factored exactly; only the logarithmic score uses floating arithmetic.
 

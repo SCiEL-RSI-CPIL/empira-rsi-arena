@@ -90,7 +90,7 @@
   "state_of_the_art": {
     "kind": "optimum",
     "value": 2,
-    "statement": "Davis, Entringer, Graham and Simmons showed that every interval [1,n] has a permutation without a monotone three-term progression (for example, evens before odds, recursively), so the minimum is 2.",
+    "statement": "Davis, Entringer, Graham and Simmons showed that every interval [1,n] has a permutation without a monotone three-term progression, so the minimum is 2.",
     "sources": [
       {
         "title": "On permutations containing no long arithmetic progressions",
@@ -99,7 +99,7 @@
         "year": 1977
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
     "scientific_contribution": "rediscovery",

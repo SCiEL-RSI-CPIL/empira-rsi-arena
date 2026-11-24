@@ -202,7 +202,7 @@
     "state_of_the_art": {
       "kind": "optimum",
       "value": 86,
-      "statement": "The maximum is 86 = floor(256/3) + 1, attained by {171, ..., 256}. An exact integer programme (151,333 divisibility constraints, solved to optimality with HiGHS; scripts/check_state_of_the_art.py --slow) shows that no larger subset of [1,256] has the property. Bedert proved the bound floor(n/3) + 1 for all sufficiently large n, as conjectured by Erdős and Sárközy.",
+      "statement": "The maximum is 86 = floor(256/3) + 1. Exact integer programmes, one for each possible smallest element (HiGHS; tests/test_audit_prize_a.py with PRIZE_A_SLOW=1), show that no subset of [1,256] with 87 elements has the property. Bedert proved the bound floor(n/3) + 1 for all sufficiently large n, as conjectured by Erdős and Sárközy.",
       "sources": [
         {
           "title": "On a problem of Erdős and Sárközy about sequences with no term dividing the sum of two larger terms",
@@ -217,7 +217,7 @@
           "year": 2016
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -242,7 +242,7 @@
   {
     "id": "science-cluster-prime-difference-coverage",
     "name": "Cluster primes with complete even-difference coverage",
-    "description": "construct() -> a prime p with 3<=p<=maximum=100000. Every positive even d<=p-3 must be a difference of two primes <=p. The evaluator independently checks all differences. Maximize p. Maximize a cluster prime at most 100000; every even difference through p-3 is checked using primes at most p. No density theorem or infinity claim follows. The optimum is 99991, the largest prime below 10^5, which is itself a cluster prime (OEIS A038134); this is a rediscovery task.",
+    "description": "construct() -> a prime p with 3<=p<=maximum=100000. Every positive even d<=p-3 must be a difference of two primes <=p. The evaluator independently checks all differences. Maximize p. Maximize a cluster prime at most 100000; every even difference through p-3 is checked using primes at most p. No density theorem or infinity claim follows. The optimum is known, because OEIS A038134 lists every cluster prime below 10^5; this is a rediscovery task.",
     "family": "science_prize_a_cluster_prime",
     "parameters": {
       "maximum": 100000
@@ -326,20 +326,20 @@
   {
     "id": "science-practical-divisor-sum-5040",
     "name": "Short sums of distinct divisors of 5040",
-    "description": "construct() -> at most 256 distinct positive divisors of n=5040 whose sum is target=4979. Minimize the number of selected divisors. Exact membership and sum checks; this is one finite practical-number instance. Represent 4979 as a sum of distinct divisors of 5040, minimizing the number of terms. This is one finite optimization instance, not Vose’s asymptotic theorem.",
+    "description": "construct() -> at most 256 distinct positive divisors of n=5040 whose sum is target=4979. Minimize the number of selected divisors. Exact membership and sum checks; this is one finite practical-number instance. Represent 4979 as a sum of distinct divisors of 5040, minimizing the number of terms. This is one finite optimization instance, not Vose’s asymptotic theorem. The optimum is 5, established by an exhaustive search over the 60 divisors; this is a rediscovery task.",
     "family": "science_prize_a_practical_divisor_sum",
     "parameters": {
       "n": 5040,
       "target": 4979
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "area": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none"
+      "reference": "published_value"
     },
     "sources": [
       {
@@ -360,12 +360,13 @@
     ],
     "limitations": [
       "Represent 4979 as a sum of distinct divisors of 5040, minimizing the number of terms. This is one finite optimization instance, not Vose’s asymptotic theorem.",
-      "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code."
+      "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code.",
+      "Solved finite case: The minimum is 5; no four distinct divisors of 5040 sum to 4979."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Michael D. Vose (1985, Egyptian Fractions) studies the underlying problem.",
+      "kind": "optimum",
+      "value": 5,
+      "statement": "The minimum is 5. No four distinct divisors of 5040 sum to 4979, and five do; an exhaustive search over the 60 divisors (tests/test_audit_prize_a.py) shows both. The instance was fixed for this dataset and has no published value. Michael D. Vose (1985, Egyptian Fractions) studies the underlying problem.",
       "sources": [
         {
           "title": "Egyptian Fractions",
@@ -374,7 +375,7 @@
           "year": 1985
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -574,14 +575,14 @@
       }
     ],
     "limitations": [
-      "Solved finite case: The minimum is 10: {11, 16, 80, 117, 199, 204, 223, 225, 228, 242} covers [256,512].",
+      "Solved finite case: The minimum is 10.",
       "Choose B in [0,256] so every integer in [256,512] is prime plus B, and minimize |B|. This only certifies finite coverage, not an asymptotic complement.",
       "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code."
     ],
     "state_of_the_art": {
       "kind": "optimum",
       "value": 10,
-      "statement": "The minimum is 10: {11, 16, 80, 117, 199, 204, 223, 225, 228, 242} covers [256,512]. Exact set-cover integer programmes show that 9 elements cannot. The programmes are split by parity, with every case of the prime 2 enumerated, and solved with HiGHS (scripts/check_state_of_the_art.py --slow). The asymptotic question is Erdős Problem #32.",
+      "statement": "The minimum is 10. Exact set-cover integer programmes give a cover with ten elements and show that nine are not enough: without the targets 256, 257 and 258 the prime 2 is never used, so the even and the odd targets are covered independently, and each half needs five elements (HiGHS; tests/test_audit_prize_a.py with PRIZE_A_SLOW=1). The asymptotic question is Erdős Problem #32.",
       "sources": [
         {
           "title": "The additive complements of primes and Goldbach's problem",
@@ -590,7 +591,7 @@
           "year": 2014
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 32,
         "url": "https://www.erdosproblems.com/32",
@@ -727,12 +728,13 @@
     ],
     "limitations": [
       "Two Sidon subsets of [1,256]; maximize combined size and require disjoint nonzero differences. Ordinary Sidon diagonals are included, and the two sets themselves may overlap.",
-      "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code."
+      "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code.",
+      "Erdős Problem #43 asks whether binom(|A|,2) + binom(|B|,2) <= binom(f(N),2) + O(1), where f(N) is the largest size of a Sidon set in [1,N]. The local score |A| + |B| is a different objective, fixed for this dataset."
     ],
     "state_of_the_art": {
       "kind": "none",
       "value": null,
-      "statement": "No documented maximum of |A| + |B| for N = 256. Erdős's question (Problem #43) was answered negatively: one Sidon set can have the maximum size while the other grows without bound.",
+      "statement": "No documented maximum of |A| + |B| for N = 256. Erdős's question (Problem #43) was answered negatively: one Sidon set can have the maximum size while the other grows without bound. The two difference sets are disjoint subsets of {1, ..., 255}, so binom(|A|,2) + binom(|B|,2) <= 255 and therefore |A| + |B| <= 32.",
       "sources": [
         {
           "title": "Some problems on additive number theory",
@@ -741,7 +743,7 @@
           "year": 1982
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 43,
         "url": "https://www.erdosproblems.com/43",
@@ -806,7 +808,7 @@
     "state_of_the_art": {
       "kind": "none",
       "value": null,
-      "statement": "No documented minimum of max(|A+A|, |AA|) for 20-element integer sets. The Erdős-Szemerédi sum-product conjecture is Erdős Problem #52. Solymosi proved max(|A+A|, |AA|) >= |A|^(4/3)/(2 ceil(log |A|))^(1/3) for sets of real numbers.",
+      "statement": "No documented minimum of max(|A+A|, |AA|) for 20-element integer sets. The Erdős-Szemerédi sum-product conjecture is Erdős Problem #52. Solymosi proved max(|A+A|, |AA|) >= |A|^(4/3)/(2 ceil(log |A|)^(1/3)) for finite sets of positive real numbers.",
       "sources": [
         {
           "title": "Bounding multiplicative energy by the sumset",
@@ -815,7 +817,7 @@
           "year": 2009
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 52,
         "url": "https://www.erdosproblems.com/52",
@@ -1616,7 +1618,7 @@
     "state_of_the_art": {
       "kind": "optimum",
       "value": 2,
-      "statement": "Davis, Entringer, Graham and Simmons showed that every interval [1,n] has a permutation without a monotone three-term progression (for example, evens before odds, recursively), so the minimum is 2.",
+      "statement": "Davis, Entringer, Graham and Simmons showed that every interval [1,n] has a permutation without a monotone three-term progression, so the minimum is 2.",
       "sources": [
         {
           "title": "On permutations containing no long arithmetic progressions",
@@ -1625,7 +1627,7 @@
           "year": 1977
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -1727,7 +1729,7 @@
   {
     "id": "science-consecutive-squarefree-gap",
     "name": "Large gaps between consecutive squarefree integers",
-    "description": "construct() -> [a,b], positive squarefree endpoints a<b<=maximum=10000000, with b-a<=10000. EVERY interior integer must be nonsquarefree. Maximize b-a. Endpoints and every interior integer are tested exactly. Maximize the gap between consecutive positive squarefree endpoints at most 10000000, with gap at most 10000. Endpoints and every interior integer are checked. The optimum is 10 (8870023 to 8870033; OEIS A020754); this is a rediscovery task.",
+    "description": "construct() -> [a,b], positive squarefree endpoints a<b<=maximum=10000000, with b-a<=10000. EVERY interior integer must be nonsquarefree. Maximize b-a. Endpoints and every interior integer are tested exactly. Maximize the gap between consecutive positive squarefree endpoints at most 10000000, with gap at most 10000. Endpoints and every interior integer are checked. The optimum is 10 (OEIS A020754); this is a rediscovery task.",
     "family": "science_prize_a_squarefree_gap",
     "parameters": {
       "maximum": 10000000,
@@ -1755,14 +1757,14 @@
       }
     ],
     "limitations": [
-      "Solved finite case: The largest gap between consecutive squarefree numbers up to 10^7 is 10, from 8870023 to 8870033.",
+      "Solved finite case: The largest gap between consecutive squarefree numbers up to 10^7 is 10.",
       "Maximize the gap between consecutive positive squarefree endpoints at most 10000000, with gap at most 10000. Endpoints and every interior integer are checked.",
       "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code."
     ],
     "state_of_the_art": {
       "kind": "optimum",
       "value": 10,
-      "statement": "The largest gap between consecutive squarefree numbers up to 10^7 is 10, from 8870023 to 8870033. The next record gap starts at 221167421 (OEIS A020754), and a sieve up to 10^7 recomputes the value.",
+      "statement": "The largest gap between consecutive squarefree numbers up to 10^7 is 10. The next record gap starts at 221167421 (OEIS A020754), and a sieve up to 10^7 recomputes the value.",
       "sources": [
         {
           "title": "OEIS A020754: Increasing gaps between squarefree numbers (lower end)",
@@ -1775,7 +1777,7 @@
           "year": 2023
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 208,
         "url": "https://www.erdosproblems.com/208",
@@ -1806,7 +1808,7 @@
   {
     "id": "science-consecutive-two-square-gap",
     "name": "Large gaps between sums of two squares",
-    "description": "construct() -> [a,b], positive endpoints a<b<=maximum=10000000, b-a<=10000, both sums of two integer squares (zero is permitted). No interior integer may be a sum of two squares. Maximize b-a. Positive consecutive representable endpoints at most 10000000 and distance at most 10000, with zero allowed as one of the two squared integers. Every interior integer is checked. The optimum is 50 (9565544 to 9565594; OEIS A297350); this is a rediscovery task.",
+    "description": "construct() -> [a,b], positive endpoints a<b<=maximum=10000000, b-a<=10000, both sums of two integer squares (zero is permitted). No interior integer may be a sum of two squares. Maximize b-a. Positive consecutive representable endpoints at most 10000000 and distance at most 10000, with zero allowed as one of the two squared integers. Every interior integer is checked. The optimum is 50 (OEIS A297350); this is a rediscovery task.",
     "family": "science_prize_a_two_square_gap",
     "parameters": {
       "maximum": 10000000,
@@ -1834,14 +1836,14 @@
       }
     ],
     "limitations": [
-      "Solved finite case: The largest gap between consecutive sums of two squares up to 10^7 is 50, from 9565544 to 9565594.",
+      "Solved finite case: The largest gap between consecutive sums of two squares up to 10^7 is 50.",
       "Positive consecutive representable endpoints at most 10000000 and distance at most 10000, with zero allowed as one of the two squared integers. Every interior integer is checked.",
       "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code."
     ],
     "state_of_the_art": {
       "kind": "optimum",
       "value": 50,
-      "statement": "The largest gap between consecutive sums of two squares up to 10^7 is 50, from 9565544 to 9565594. The next record gap starts at 13305524 (OEIS A297350), and a sieve up to 10^7 recomputes the value.",
+      "statement": "The largest gap between consecutive sums of two squares up to 10^7 is 50. The next record gap starts at 13305524 (OEIS A297350), and a sieve up to 10^7 recomputes the value.",
       "sources": [
         {
           "title": "OEIS A297350: Start of record gaps between sums of two squares",
@@ -1854,7 +1856,7 @@
           "year": 2019
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 222,
         "url": "https://www.erdosproblems.com/222",
@@ -1953,7 +1955,7 @@
   {
     "id": "science-coprime-abc-quality",
     "name": "High-quality coprime abc triples",
-    "description": "construct() -> [a,b,c], positive Python integers <=1000000000000, a<=b, a+b=c, gcd(a,b)=1. Maximize log(c)/log(rad(a*b*c)). The radical is the product of DISTINCT prime factors and is independently factored exactly; only the logarithmic score uses floating arithmetic. Search coprime positive triples a+b=c with c<=10^12, maximizing log(c)/log(rad(abc)). Finite high quality cannot disprove the conjecture, which allows finitely many exceptions at each exponent. The optimum is Reyssat's quality 1.62991 for 2 + 3^10*109 = 23^5; complete tables of high-quality triples show nothing better below 10^20, so this is a rediscovery task.",
+    "description": "construct() -> [a,b,c], positive Python integers <=1000000000000, a<=b, a+b=c, gcd(a,b)=1. Maximize log(c)/log(rad(a*b*c)). The radical is the product of DISTINCT prime factors and is independently factored exactly; only the logarithmic score uses floating arithmetic. Search coprime positive triples a+b=c with c<=10^12, maximizing log(c)/log(rad(abc)). Finite high quality cannot disprove the conjecture, which allows finitely many exceptions at each exponent. The optimum is quality 1.62991, attained by Reyssat's triple; complete tables of high-quality triples show nothing better below 10^20, so this is a rediscovery task.",
     "family": "science_prize_a_abc_quality",
     "parameters": {
       "maximum": 1000000000000
@@ -1980,14 +1982,14 @@
       }
     ],
     "limitations": [
-      "Solved finite case: Reyssat's triple 2 + 3^10·109 = 23^5 (c = 6,436,343) has quality 1.62991.",
+      "Solved finite case: Reyssat's triple, whose c is below 10^12, has quality 1.62991, the highest known.",
       "Search coprime positive triples a+b=c with c<=10^12, maximizing log(c)/log(rad(abc)). Finite high quality cannot disprove the conjecture, which allows finitely many exceptions at each exponent.",
       "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code."
     ],
     "state_of_the_art": {
       "kind": "optimum",
       "value": 1.6299116841,
-      "statement": "Reyssat's triple 2 + 3^10·109 = 23^5 (c = 6,436,343) has quality 1.62991. De Smit's complete tables of triples with quality at least 1.4 and at most twenty digits, surveyed by Martin and Miao, contain nothing of higher quality, so it is the maximum for c <= 10^12.",
+      "statement": "Reyssat's triple (1987), whose c is below 10^12, has quality 1.62991. De Smit's complete tables of triples with quality at least 1.4 and at most twenty digits, surveyed by Martin and Miao, contain nothing of higher quality, so it is the maximum for c <= 10^12.",
       "sources": [
         {
           "title": "abc triples",
@@ -2001,7 +2003,7 @@
           "authors": "Bart de Smit (maintained)"
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -2105,7 +2107,7 @@
   {
     "id": "science-lonely-runner-rational-time",
     "name": "Rational-time lonely-runner certificates",
-    "description": "construct() -> [p,q] of Python integers with 0<p<q<=1000000, representing time p/q. For relative speeds [1,3,4,7,11,18,29] from a stationary runner, maximize the minimum circular distance of (p/q)*v to an integer. Exact rational distances are retained in details; score is their floating serialization. One stationary runner and seven fixed relative integer speeds [1,3,4,7,11,18,29]; maximize the minimum distance at a rational time with denominator<=10^6. This lower-bound certificate does not optimize over all speed sets or prove a universal conjecture. The optimum is exactly 1/5, at t = 1/5; every breakpoint of the piecewise-linear objective has been checked, so this is a rediscovery task.",
+    "description": "construct() -> [p,q] of Python integers with 0<p<q<=1000000, representing time p/q. For relative speeds [1,3,4,7,11,18,29] from a stationary runner, maximize the minimum circular distance of (p/q)*v to an integer. Exact rational distances are retained in details; score is their floating serialization. One stationary runner and seven fixed relative integer speeds [1,3,4,7,11,18,29]; maximize the minimum distance at a rational time with denominator<=10^6. This lower-bound certificate does not optimize over all speed sets or prove a universal conjecture. The optimum is exactly 1/5; every breakpoint of the piecewise-linear objective has been checked, so this is a rediscovery task.",
     "family": "science_prize_a_lonely_runner",
     "parameters": {
       "maximum_denominator": 1000000
@@ -2132,14 +2134,14 @@
       }
     ],
     "limitations": [
-      "Solved finite case: For the speeds {1,3,4,7,11,18,29} the maximum over all times of the minimum distance is exactly 1/5, attained at t = 1/5 (no speed is a multiple of 5).",
+      "Solved finite case: For the speeds {1,3,4,7,11,18,29} the maximum over all times of the minimum distance is exactly 1/5.",
       "One stationary runner and seven fixed relative integer speeds [1,3,4,7,11,18,29]; maximize the minimum distance at a rational time with denominator<=10^6. This lower-bound certificate does not optimize over all speed sets or prove a universal conjecture.",
       "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code."
     ],
     "state_of_the_art": {
       "kind": "optimum",
       "value": 0.2,
-      "statement": "For the speeds {1,3,4,7,11,18,29} the maximum over all times of the minimum distance is exactly 1/5, attained at t = 1/5 (no speed is a multiple of 5). The objective is piecewise linear with breakpoints at denominators dividing v_i + v_j or 2v_i. Checking every denominator up to 116 (scripts/check_state_of_the_art.py) therefore proves optimality. The lonely runner conjecture predicts only 1/8 for seven speeds.",
+      "statement": "For the speeds {1,3,4,7,11,18,29} the maximum over all times of the minimum distance is exactly 1/5. The objective is piecewise linear, and a local maximum lies at a time whose denominator divides v_i + v_j or 2v_i; checking all of these times (tests/test_audit_prize_a.py) proves optimality. The lonely runner conjecture predicts only 1/8 for seven speeds.",
       "sources": [
         {
           "title": "Barely lonely runners and very lonely runners",
@@ -2148,7 +2150,7 @@
           "year": 2021
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",

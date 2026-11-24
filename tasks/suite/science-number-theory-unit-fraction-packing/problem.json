@@ -99,9 +99,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+    "kind": "optimum",
+    "value": 1.3439388840443045e-10,
+    "statement": "The smallest positive value of 1 - Σ 1/d over subsets of {2, ..., 48} is 84529/628964612926650, about 1.344e-10. A meet-in-the-middle search evaluated exactly every subset whose sum lies within 2e-10 of 1; 10646 subsets sum to exactly 1 and are excluded by the contract.",
     "sources": [
       {
         "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -110,7 +110,7 @@
         "year": 1980
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "unreviewed",
@@ -122,12 +122,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

@@ -17,9 +17,9 @@ construct() -> candidate. Return nonempty subset of [1,128] containing no three 
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős (1973, Problems and results on combinatorial number theory) studies the underlying problem.
+There are 395 triples in [1,128] whose three pairwise least common multiples are equal. The smallest set meeting every triple has 33 elements (exact branch and bound, confirmed by an integer program), so the optimum is 128 - 33 = 95.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `95` (reviewed 2026-11-24).
 
 - [Problems and results on combinatorial number theory](https://users.renyi.hu/~p_erdos/1973-21.pdf), Paul Erdős (1973)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 128}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

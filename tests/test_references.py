@@ -40,8 +40,8 @@ def test_added_packages_carry_seed_baselines_bound_to_their_code(snapshot):
     identity = baseline["execution_identity"]
     assert identity["source_execution"] is True and identity["fixture_only"] is False
     assert identity["evaluator_source"]["path"] == f"suite/{task_id}/evaluator.py"
-    # A package whose data could not be prepared has a row without a score, and no baseline.
-    unprepared = task(snapshot, "science-earth-enso-nino34-forecast")
+    # A package that has not been run (it needs a pinned upstream checkout) has a row without a score, and no baseline.
+    unprepared = task(snapshot, "mcts-ahd-asp-constructive")
     assert unprepared["anchors"] == []
     assert any("no successful source execution" in note for note in unprepared["evaluation"]["notes"])
 
@@ -51,10 +51,10 @@ def test_full_coverage_and_honest_evidence_counts(snapshot, catalog):
     summary = snapshot["summary"]
     assert summary["task_count"] == 2578
     assert summary["tasks_with_published_reference"] == 100
-    assert summary["tasks_with_recorded_baseline"] == 956
-    assert summary["valid_recorded_baselines"] == 887
+    assert summary["tasks_with_recorded_baseline"] == 963
+    assert summary["valid_recorded_baselines"] == 894
     assert summary["validity_unknown_baselines"] == 69
-    assert summary["tasks_without_numeric_reference"] == 1622
+    assert summary["tasks_without_numeric_reference"] == 1615
     assert summary["tasks_with_recorded_reproduction"] == 34
     assert summary["arena_reproduced_references"] == 0
     assert summary["current_sota_status"] == "not_assessed"

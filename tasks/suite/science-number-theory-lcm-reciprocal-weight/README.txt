@@ -17,9 +17,9 @@ construct() -> candidate. Return nonempty subset of [2,256] with lcm(a,b)>256 fo
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős (1973, Problems and results on combinatorial number theory) studies the underlying problem.
+The maximum of Σ 1/a over subsets of [2,256] with all pairwise least common multiples above 256 is 0.969774168765093 to double precision, attained by a set of 85 integers (exact maximum-weight independent set search with the integer weights lcm(2, ..., 256)/a, in agreement with an integer program). Schinzel and Szekeres proved Σ 1/a ≤ 31/30 for every n (Erdős 1973, p. 135).
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `0.969774168765093` (reviewed 2026-11-24).
 
 - [Problems and results on combinatorial number theory](https://users.renyi.hu/~p_erdos/1973-21.pdf), Paul Erdős (1973)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 256}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

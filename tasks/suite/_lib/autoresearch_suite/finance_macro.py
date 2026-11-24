@@ -1,7 +1,7 @@
 """Macroeconomic forecasting with many predictors (Stock and Watson 2002; FRED-MD, McCracken and Ng 2016).
 
 At each month-end origin from 1990-01 to 2023-08 the candidate receives the
-FRED-MD panel (126 series in levels, 2024-10 vintage) up to the origin and
+FRED-MD panel (126 series in levels, 2024-09 vintage) up to the origin and
 forecasts a target 1, 6 and 12 months ahead: annualized industrial-production
 growth, annualized CPI inflation or the change in the unemployment rate. The
 score is the RMSE relative to a direct autoregression with BIC lag selection,
@@ -16,6 +16,8 @@ import numpy as np
 from . import finance_data, finance_sandbox
 from .finance_stats import diebold_mariano, finite_vector
 
+# The file name keeps the date of the archived snapshot (2024-10-29); its bytes are the official 2024-09 vintage,
+# whose last month is 2024-08.
 TABLE = "fredmd_2024_10.csv"
 ENTRY = "forecast_target"
 KINDS = {"INDPRO": "growth", "CPIAUCSL": "growth", "UNRATE": "difference"}

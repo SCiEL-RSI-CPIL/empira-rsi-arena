@@ -17,9 +17,9 @@ construct() -> [A,B], two nonempty Sidon subsets of [1,n=256], at most 64 elemen
 
 ## State of the art
 
-No documented maximum of |A| + |B| for N = 256. Erdős's question (Problem #43) was answered negatively: one Sidon set can have the maximum size while the other grows without bound.
+No documented maximum of |A| + |B| for N = 256. Erdős's question (Problem #43) was answered negatively: one Sidon set can have the maximum size while the other grows without bound. The two difference sets are disjoint subsets of {1, ..., 255}, so binom(|A|,2) + binom(|B|,2) <= 255 and therefore |A| + |B| <= 32.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: no documented value for this finite instance (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #43](https://www.erdosproblems.com/43), status: disproved (Lean).
 
@@ -69,3 +69,4 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 - Two Sidon subsets of [1,256]; maximize combined size and require disjoint nonzero differences. Ordinary Sidon diagonals are included, and the two sets themselves may overlap.
 - All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code.
+- Erdős Problem #43 asks whether binom(|A|,2) + binom(|B|,2) <= binom(f(N),2) + O(1), where f(N) is the largest size of a Sidon set in [1,N]. The local score |A| + |B| is a different objective, fixed for this dataset.

@@ -95,7 +95,7 @@
   },
   "limitations": [
     "Only 27 tasks, from a few families (11 phone-number tasks, 4 name-combination tasks, 6 university-address tasks and 6 others), so scores move in steps of 1/27 and families are correlated.",
-    "Correctness is judged on examples: the given ones plus 8 to 94 held-out examples of the '-long' variant per task; a program that agrees on all of them but differs elsewhere counts as solved.",
+    "Correctness is judged on examples: the given ones plus 8 to 94 held-out examples of the '-long' variant per task (3 to 94 distinct ones, because the long files repeat examples; bikes has 3); a program that agrees on all of them but differs elsewhere counts as solved.",
     "SyGuS-Comp scored consistency with the given examples and solving time, not generalisation, so published solved counts are not comparable; the benchmark repository notes that errors and duplicates may exist.",
     "The bottom-up enumeration seed solves 8 of 27 within its budget; the tasks are public and solutions could be remembered, which the contract excludes but cannot check.",
     "The interpreter implements the SMT-LIB 2.6 string semantics used by SyGuS-Comp 2018 and was cross-checked against Z3 on random terms; a solver with different edge-case semantics could disagree on unusual programs."
@@ -131,7 +131,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

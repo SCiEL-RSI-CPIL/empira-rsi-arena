@@ -47,7 +47,8 @@
     "Forecasts of the two windows of one mainshock and of overlapping sequences are not independent; the 1443 test forecasts come from 723 mainshocks.",
     "ComCat is a live catalogue; if past events are revised, the derived-file hash check fails and the data must be re-recorded, which changes scores slightly.",
     "A better score is a better statistical aftershock forecasting model on these years, not a scientific discovery; the held-out catalogue is public, so search feedback on this fixed split can overfit it.",
-    "The candidate runs in a sandboxed child process that never receives events after a forecast start; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    "The candidate runs in a sandboxed child process that never receives events after a forecast start, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy.",
+    "Three training cases start in the last days of 2014 and their target windows end after 2015-01-01 (all three counts are zero), so the fit-time counts reflect up to 18 days of the test period; one of them overlaps by one day the 30-day test window of the same mainshock."
   ],
   "evaluator": "evaluator.py",
   "initial_program": "initial_program.py",
@@ -108,7 +109,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   }
 }

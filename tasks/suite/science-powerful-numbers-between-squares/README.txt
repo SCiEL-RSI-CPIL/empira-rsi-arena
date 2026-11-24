@@ -7,13 +7,13 @@
 
 ## Task
 
-construct() -> an integer k with 1 <= k <= 10^9. The score is the number of powerful integers (p | n implies p^2 | n) strictly between k^2 and (k+1)^2, counted exactly through the unique form a^2 b^3 with b squarefree. Maximize; the optimum is 11 (first at k = 472532614). For k <= 10^9 the maximum is 11. Erdős's h(n) counts [n^2, (n+1)^2) and so also includes the square n^2; the task counts the open interval as in OEIS A119241.
+construct() -> an integer k with 1 <= k <= 10^9. The score is the number of powerful integers (p | n implies p^2 | n) strictly between k^2 and (k+1)^2, counted exactly through the unique form a^2 b^3 with b squarefree. Maximize; the optimum is 11. For k <= 10^9 the maximum is 11. Erdős's h(n) counts [n^2, (n+1)^2) and so also includes the square n^2; the task counts the open interval as in OEIS A119241.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
 ## Candidate interface
 
-construct() -> an integer k with 1 <= k <= 10^9. The score is the number of powerful integers (p | n implies p^2 | n) strictly between k^2 and (k+1)^2, counted exactly through the unique form a^2 b^3 with b squarefree. Maximize; the optimum is 11 (first at k = 472532614).
+construct() -> an integer k with 1 <= k <= 10^9. The score is the number of powerful integers (p | n implies p^2 | n) strictly between k^2 and (k+1)^2, counted exactly through the unique form a^2 b^3 with b squarefree. Maximize; the optimum is 11.
 
 ## State of the art
 

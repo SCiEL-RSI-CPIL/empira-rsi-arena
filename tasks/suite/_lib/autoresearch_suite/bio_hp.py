@@ -65,10 +65,16 @@ def benchmark(dimension):
     return BENCHMARK_2D if dimension == 2 else BENCHMARK_3D
 
 
+# Lattice coordinates may lie anywhere: a walk is the same conformation after any translation. The bound only
+# keeps every coordinate and difference an exact integer in float64 and int64.
+COORDINATE_LIMIT = 2 ** 40
+
+
 def energy(sequence, conformation, dimension):
     """Check a conformation (n lattice points) and return its HP energy (a non-positive integer)."""
     n = len(sequence)
-    coords = as_int_array(conformation, shape=(n, dimension), name="conformation", low=-10 * n, high=10 * n)
+    coords = as_int_array(conformation, shape=(n, dimension), name="conformation", low=-COORDINATE_LIMIT,
+                          high=COORDINATE_LIMIT)
     steps = np.abs(np.diff(coords, axis=0)).sum(axis=1)
     require(bool(np.all(steps == 1)), "consecutive residues must occupy neighbouring lattice sites")
     keys = [tuple(p) for p in coords.tolist()]

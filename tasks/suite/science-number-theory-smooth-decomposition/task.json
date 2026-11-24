@@ -45,12 +45,12 @@
     },
     "interface": "construct() -> candidate. Return two positive integers a,b with a+b=123457. Minimize max(P(a),P(b)), where P is the largest prime factor and P(1)=1. The evaluator factors both integers independently.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -93,9 +93,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+    "kind": "optimum",
+    "value": 11,
+    "statement": "Checking all 61728 decompositions 123457 = a + b gives the minimum 11 of max(P(a), P(b)), attained by exactly one unordered pair. Erdős and Graham (1980, p. 70) ask whether every large n is a sum a + b with P(a), P(b) < n^ε.",
     "sources": [
       {
         "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -104,15 +104,15 @@
         "year": 1980
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

@@ -17,9 +17,9 @@ construct() -> array of shape (N, 2): centres of N equal circles inside the squa
 
 ## State of the art
 
-The best known packing of 50 equal circles in a unit square has circle radius 0.071377103865 (Packomania, last update 2026-09-10), credited to Boll, Donovan, Graham and Lubachevsky (2000). No optimality proof is known (proofs exist for N <= 30 and N = 36).
+The best known packing of 50 equal circles in a unit square has circle radius 0.071377103865 (Packomania, last update 2026-09-10), credited to Boll, Donovan, Graham and Lubachevsky (2000). No optimality proof is known (proofs exist for N <= 33 and N = 36).
 
-Reference value: best known value `0.071377103865` (reviewed 2026-10-11).
+Reference value: best known value `0.071377103865` (reviewed 2026-11-24).
 
 - [The best known packings of equal circles in a square (Packomania)](https://www.packomania.com/csq/csq.html), Eckard Specht (2026)
 - [Improving dense packings of equal disks in a square](https://doi.org/10.37236/1524), D. W. Boll, J. Donovan, R. L. Graham, B. D. Lubachevsky (2000)
@@ -71,7 +71,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- Optimality is proven only for N <= 30 and N = 36 (bold entries of the Packomania table). Packomania publishes these records with 12 decimals, so ties are judged with the 1e-11 margin.
+- Optimality is proven for N <= 33 and N = 36: the Packomania table marks N <= 30 and N = 36 in bold, and computer-assisted proofs for N = 31, 32 and 33 were published by Markot (J. Global Optim. 81 (2021) 773-803). Packomania publishes these records with 12 decimals, so ties are judged with the 1e-11 margin.
 - The record coordinates are public (Packomania), so a candidate can reproduce the record from memory or by downloading it beforehand; scores measure the returned construction, not the search that produced it.
 - Scores are double-precision radii of the returned centres. A score above the record by at most 1e-11 is reported as a tie; a larger gain is a candidate new record that should be confirmed in higher precision and submitted to the record table before it is claimed.
 - Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the radius from the returned array but does not sandbox the program.

@@ -123,7 +123,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   }
 }

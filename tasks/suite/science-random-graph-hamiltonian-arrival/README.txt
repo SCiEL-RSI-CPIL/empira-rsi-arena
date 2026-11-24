@@ -17,9 +17,9 @@ construct() -> a permutation of vertices 0..23, describing a Hamilton cycle with
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Lajos Pósa (1976, Hamiltonian circuits in random graphs) studies the underlying problem.
+The earliest prefix of the pinned order that contains a Hamilton cycle is 45 (minimum degree 2 is first reached at prefix 44, where an exhaustive search finds no Hamilton cycle). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Lajos Pósa (1976, Hamiltonian circuits in random graphs) studies the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `45` (reviewed 2026-11-24).
 
 - [Hamiltonian circuits in random graphs](https://doi.org/10.1016/0012-365X(76)90068-6), Lajos Pósa (1976)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 24, "edge_order": [[3, 11], [9, 18], [6, 7], [8, 18], [5, 15]
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `synthetic`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `synthetic`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

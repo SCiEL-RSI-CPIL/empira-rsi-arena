@@ -2,7 +2,7 @@
   "protocol": "recreated_verified",
   "family": "science_prize_h_prime_power_two",
   "direction": "maximize",
-  "contract": "construct() -> an integer n with 3 <= n <= 10^8. The score is the number of k >= 0 with n - 2^k prime (deterministic Miller-Rabin). Maximize; the optimum is 19 (first at 53999715).",
+  "contract": "construct() -> an integer n with 3 <= n <= 10^8. The score is the number of k >= 0 with n - 2^k prime (deterministic Miller-Rabin). Maximize; the optimum is 19.",
   "parameters": {
     "bound": 100000000
   },
@@ -17,7 +17,7 @@
   "paper_ids": [
     "science-prize_h"
   ],
-  "description": "construct() -> an integer n with 3 <= n <= 10^8. The score is the number of k >= 0 with n - 2^k prime (deterministic Miller-Rabin). Maximize; the optimum is 19 (first at 53999715). For n <= 10^8 the maximum is 19, so the task recovers such an integer.",
+  "description": "construct() -> an integer n with 3 <= n <= 10^8. The score is the number of k >= 0 with n - 2^k prime (deterministic Miller-Rabin). Maximize; the optimum is 19. For n <= 10^8 the maximum is 19, so the task recovers such an integer.",
   "benchmark": "Integers up to 10^8 with many representations n = p + 2^k",
   "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
   "paper_direction": null,

@@ -50,12 +50,12 @@
     },
     "interface": "construct() -> candidate. Return nonempty subset of [1,256] such that a+b is never a perfect square for a<=b in the set, INCLUDING a=b. Maximize cardinality.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -98,9 +98,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. A. Khalfalah, S. Lodha and E. Szemerédi (2002, Tight bound for the density of sequence of integers the sum of no two of which is a perfect square) study the underlying problem.",
+    "kind": "optimum",
+    "value": 89,
+    "statement": "The largest subset of [1,256] in which no two elements, equal elements included, sum to a square has 89 elements according to an integer program solved to proven optimality (HiGHS, 43 s); the value was not confirmed by a second exact method. The residue class 1 mod 3 gives 86.",
     "sources": [
       {
         "title": "Tight bound for the density of sequence of integers the sum of no two of which is a perfect square",
@@ -109,15 +109,15 @@
         "year": 2002
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

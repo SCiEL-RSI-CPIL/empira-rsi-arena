@@ -49,7 +49,7 @@
     "Buoys are deployed only in the ice-free season and the hindcast uses each buoy's own record, so the score covers open-water months at these seven locations only.",
     "Since 2019 the archive holds 10-minute records; the evaluator keeps, for every field, the valid value closest to each full hour, so some hourly values come from up to 30 minutes away.",
     "A better score is a better statistical or physical wave hindcast at these buoys, not a scientific discovery; the held-out observations are public, so search feedback on this split can overfit it.",
-    "The candidate runs in a sandboxed child process that never receives 2019-2024 wave observations; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    "The candidate runs in a sandboxed child process that never receives 2019-2024 wave observations, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "evaluator": "evaluator.py",
   "initial_program": "initial_program.py",
@@ -110,7 +110,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   }
 }

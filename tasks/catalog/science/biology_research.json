@@ -33,14 +33,14 @@
     ],
     "limitations": [
       "The HP model is a coarse two-letter abstraction of a protein: its ground states are not real protein structures, and a better HP energy is a better solution of the stated lattice optimisation problem rather than a structural-biology result.",
-      "Best-known energies for these 2D sequences are the lowest values reported in the cited literature, not proven optima; the evaluator cannot certify optimality, only recompute energies.",
+      "Best-known energies for these 2D sequences are the lowest values reported in the cited literature, not proven optima, except for the 25-residue chain, whose -8 equals the parity upper bound on contacts (H-H contacts join residues of opposite parity, and its four H residues at positions 6, 12, 18 and 24 have two free neighbour sites each); the evaluator cannot certify optimality, only recompute energies.",
       "All ten sequences share one CPU budget inside the sandboxed subprocess, so the score depends on that budget and is not comparable with the multi-hour searches of the cited papers.",
       "The published energies are embedded in the evaluator as reference values only; the candidate never receives them."
     ],
     "labels": {
       "area": "biology",
       "domain": "natural_science",
-      "scientific_contribution": "open_problem",
+      "scientific_contribution": "method",
       "artifact": "program",
       "data": "none",
       "verification": "exact",
@@ -126,14 +126,14 @@
     ],
     "limitations": [
       "The HP model is a two-letter lattice abstraction: its ground states are not real protein structures, so a better energy is a better solution of a lattice optimisation problem, not a structural-biology finding.",
-      "Only the ten 48-mers have ground states established by exhaustive hydrophobic-core construction; the references for the six longer chains are the lowest energies reported in the cited literature and can in principle be beaten.",
+      "The ten 48-mers have ground states established by exhaustive hydrophobic-core construction, and the energies of the 64- and 67-residue chains are reported as exact results of the same method (Hsu et al. 2003, citing Yue and Dill 1995); the references for the 88-, 103-, 124- and 136-residue chains are the lowest energies reported in the cited literature and can in principle be beaten.",
       "All sixteen chains share one CPU budget in the sandboxed subprocess, so scores are budget-dependent and not comparable with the multi-hour or multi-day searches of the cited papers.",
       "The reference energies are used only for scoring; the candidate never receives them."
     ],
     "labels": {
       "area": "biology",
       "domain": "natural_science",
-      "scientific_contribution": "open_problem",
+      "scientific_contribution": "method",
       "artifact": "program",
       "data": "none",
       "verification": "exact",
@@ -226,7 +226,7 @@
     "labels": {
       "area": "biology",
       "domain": "natural_science",
-      "scientific_contribution": "discovery",
+      "scientific_contribution": "method",
       "artifact": "model",
       "data": "real_measurements",
       "verification": "simulation",
@@ -303,7 +303,7 @@
       }
     ],
     "limitations": [
-      "Only 26 of the 82 reference-1 cases are used (at most 10 sequences and 300 reference columns each) so that a CPU-only aligner finishes within the budget; averages are therefore not comparable with published whole-benchmark numbers.",
+      "Only 26 of the 82 reference-1 cases are used (at most 10 sequences and 300 reference columns each, and at least 43 core-block columns; ten further cases within the size limits, each with fewer than 40 core-block columns, are not used) so that a CPU-only aligner finishes within the budget; averages are therefore not comparable with published whole-benchmark numbers.",
       "SP and TC are an independent implementation of the published definitions restricted to core blocks; it scores the reference alignments at exactly 1.0 but is not byte-compatible with the bundled bali_score program.",
       "Reference alignments are themselves structure-based estimates of homology, and core blocks cover only part of each alignment.",
       "The references are public, so search feedback can overfit this fixed subset; a candidate aligner should be checked on held-out families before any claim of improved accuracy."
@@ -379,15 +379,15 @@
       {
         "url": "https://doi.org/10.1093/nar/gkaa1047",
         "type": "archive",
-        "locator": "Rfam (CC0): seed alignments and consensus secondary structures; this task uses Rfam.3d.seed.gz, the families with three-dimensional structures."
+        "locator": "Rfam (CC0): seed alignments and consensus secondary structures; this task uses Rfam.3d.seed.gz of release 15.1, the families with three-dimensional structures."
       }
     ],
     "limitations": [
       "Reference structures are consensus structures from comparative sequence analysis projected onto individual sequences, not per-sequence experimental structures; pseudoknots, non-canonical pairs and pairs involving gapped columns are dropped.",
       "Only canonical nested pairs with a span of at least four nucleotides are scored, and at most two sequences per family are used, so the set is small (90 sequences, 47 families).",
-      "ViennaRNA is available in the environment, so a candidate can call a thermodynamic folding engine; an improvement over that engine on this set is a method result on 47 families, not a general advance in RNA folding.",
+      "Where ViennaRNA is installed (it is optional, not a requirement of the task) a candidate can call a thermodynamic folding engine; an improvement over that engine on this set is a method result on 47 families, not a general advance in RNA folding.",
       "Families describing viral elements or CRISPR loci are excluded by name, so the set is biased towards riboswitches, ribozymes, small RNAs and spliceosomal RNAs.",
-      "Rfam's CURRENT directory tracks the latest release; the derived file's hash pins the exact sequences and structures used."
+      "The source is the file of the Rfam 15.1 release directory (https://ftp.ebi.ac.uk/pub/databases/Rfam/15.1/Rfam.3d.seed.gz), pinned by SHA-256; the derived file's hash pins the exact sequences and structures used."
     ],
     "labels": {
       "area": "biology",
@@ -472,7 +472,8 @@
       "Sequences are simulated under Jukes-Cantor with no rate heterogeneity, no indels and no model misspecification, so the task measures reconstruction under an idealized model rather than on real data.",
       "Instances, topologies and branch-length regimes are a local choice (20 instances, 8 to 32 taxa); results do not transfer automatically to empirical alignments.",
       "Exact recovery is not guaranteed to be attainable from finite data, so the minimum achievable score is unknown and the seed's value is only a baseline.",
-      "Branch lengths of the returned tree are ignored: only the unrooted topology is scored."
+      "Branch lengths of the returned tree are ignored: only the unrooted topology is scored.",
+      "The simulator, the instance parameters and the seeds are public constants of the evaluator and the sandbox allows numpy, so a candidate that re-implements the generator obtains the generating trees without any inference (such a program scores 0.0). Results are meaningful only for candidates that use the sequences alone, and a claimed method should be confirmed on instances drawn with new seeds."
     ],
     "labels": {
       "area": "biology",

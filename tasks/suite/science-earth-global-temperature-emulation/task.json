@@ -114,7 +114,7 @@
     "Only 45 annual values are scored and internal variability not explained by the ENSO index (roughly 0.1 deg C per year) limits the attainable error; HadCRUT5 itself has a 95% range of about 0.03-0.05 deg C in this period.",
     "A better score is a better statistical or physical emulator of observed warming given these forcings, not by itself a new estimate of climate sensitivity.",
     "HadCRUT5 is a live product; if past annual means are revised, the derived-file hash check fails and the data must be re-recorded.",
-    "The candidate runs in a sandboxed child process that never receives temperatures after 1979; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    "The candidate runs in a sandboxed child process that never receives temperatures after 1979, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "validation": {
     "level": "source_seed_executed",
@@ -147,7 +147,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

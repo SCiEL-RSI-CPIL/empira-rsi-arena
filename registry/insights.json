@@ -1,6 +1,6 @@
 {
   "schema": "arena.insights/1",
-  "catalog_digest": "0bf1974439de7af1b29fe88c3e4efd4ab85af4b1364fdbe200d1597127972d6b",
+  "catalog_digest": "df9b7a3aabfc26c37190c5d9b52cd546f5ea04275ab2b2491a319e8902faa101",
   "taxonomy_digest": "ad6f9723a8f788dfe66da0cacb9fde132709b3940cef1ad6a9a389af2fcbb730",
   "sources": [
     {
@@ -10,11 +10,11 @@
       "repository_url": "https://github.com/Doldrums/arena",
       "revision": "main",
       "manifest_path": "registry/task-library-manifest.json",
-      "manifest_sha256": "74f361c8c9812113a64bf00b42c745150cfe975c0ec833f9b85148852b072a4c",
+      "manifest_sha256": "82432f913cf27ae0d6b3ce8cecc5e6f3a64350a82aa8e970f21135dc5003231f",
       "catalog_path": "catalog/tasks.json",
       "index_path": "suite/index.json",
-      "catalog_sha256": "7a48a2a4e4f14edff24848037c240d0ad7d419d18e081432a075ced19c07307b",
-      "index_sha256": "e3948b177689b3d74d72fb3e1548ee348c0ee72851eedf420941bbe82de33eab"
+      "catalog_sha256": "264fa223d52a79de2ecb6aae1918f68163789f01519d259b88749d63ebe11f00",
+      "index_sha256": "49cd83f106695b0254814939f06ca82e7be04c11e3c3ac0f104ee64e4af5cd9b"
     }
   ],
   "denominator": {
@@ -24304,7 +24304,7 @@
       "rationale": "The candidate returns 16 distinct integer frequencies up to 200; the evaluator numerically minimizes the cosine sum over the circle (dense sampling with local refinement) and scores the minimum divided by 4, which is maximized. Reviewed source family science_prize_g_chowla, area mathematics.",
       "evidence": {
         "task_name": "Sixteen frequencies whose cosine sum stays shallow (Chowla's cosine problem)",
-        "description": "construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling of the full circle and golden-section refinement of the deepest local minima (accuracy about 1e-9). Maximize (make the minimum as shallow as possible). Shallow minima for 16 frequencies probe the finite side of Chowla's problem; no finite optimum is documented.",
+        "description": "construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling and bisection of every interval that a second-derivative bound cannot exclude (certified to about 1e-9). Maximize (make the minimum as shallow as possible). Shallow minima for 16 frequencies probe the finite side of Chowla's problem; no finite optimum is documented.",
         "family": "science_prize_g_chowla",
         "paper_ids": [
           "science-prize_g"
@@ -24364,7 +24364,7 @@
       "rationale": "The candidate returns a vertex set for each of three fixed seeded random graphs; the evaluator regenerates the graphs, enumerates all maximal cliques with at least two vertices, requires each to be hit and scores the total size of the sets. Reviewed source family science_prize_i_clique_transversal, area mathematics.",
       "evidence": {
         "task_name": "Small vertex sets meeting every maximal clique of three fixed random graphs",
-        "description": "construct() -> three vertex lists, one per instance from random_graph(n, p, seed) for (30,0.3,201), (35,0.25,202), (40,0.2,203) in the verifier. Each list must meet every maximal clique with at least two vertices (all maximal cliques enumerated by Bron-Kerbosch). Minimize the total size. The score totals transversal sizes on three fixed random graphs; it measures a covering method.",
+        "description": "construct() -> three vertex lists, one per instance from random_graph(n, p, seed) for (30,0.3,201), (35,0.25,202), (40,0.2,203) in the verifier. Each list must meet every maximal clique with at least two vertices (all maximal cliques enumerated by Bron-Kerbosch). Minimize the total size. The score totals transversal sizes on three fixed random graphs; it measures a covering method. The exact optimum is 44 (12 + 13 + 19), which a minimum hitting-set search over the maximal cliques finds at once.",
         "family": "science_prize_i_clique_transversal",
         "paper_ids": [
           "science-prize_i"
@@ -24379,7 +24379,7 @@
       "rationale": "The candidate returns one prime at most 100000; the evaluator re-derives the primes and checks exactly that every even number up to p-3 is a difference of two primes at most p, and the prime is maximized. Reviewed source family science_prize_a_cluster_prime, area mathematics.",
       "evidence": {
         "task_name": "Cluster primes with complete even-difference coverage",
-        "description": "construct() -> a prime p with 3<=p<=maximum=100000. Every positive even d<=p-3 must be a difference of two primes <=p. The evaluator independently checks all differences. Maximize p. Maximize a cluster prime at most 100000; every even difference through p-3 is checked using primes at most p. No density theorem or infinity claim follows. The optimum is 99991, the largest prime below 10^5, which is itself a cluster prime (OEIS A038134); this is a rediscovery task.",
+        "description": "construct() -> a prime p with 3<=p<=maximum=100000. Every positive even d<=p-3 must be a difference of two primes <=p. The evaluator independently checks all differences. Maximize p. Maximize a cluster prime at most 100000; every even difference through p-3 is checked using primes at most p. No density theorem or infinity claim follows. The optimum is known, because OEIS A038134 lists every cluster prime below 10^5; this is a rediscovery task.",
         "family": "science_prize_a_cluster_prime",
         "paper_ids": [
           "science-prize_a"
@@ -24439,7 +24439,7 @@
       "rationale": "The candidate returns a starting prime, a difference and a length; the evaluator verifies with deterministic primality tests that the terms are consecutive primes in arithmetic progression below 10^9 and scores the length. Reviewed source family science_prize_h_cpap, area mathematics.",
       "evidence": {
         "task_name": "Consecutive primes in arithmetic progression below 10^9",
-        "description": "construct() -> [p, d, k] describing p, p + d, ..., p + (k-1)d with 2 <= k <= 64, 1 <= d <= 5000 and last term at most 10^9. Every term must be prime (deterministic Miller-Rabin) and no prime may lie strictly between consecutive terms. Maximize k; the optimum below 10^9 is 6. Below 10^9 the longest such progressions have six terms (the first starts at 121174811), so the task recovers a six-term progression.",
+        "description": "construct() -> [p, d, k] describing p, p + d, ..., p + (k-1)d with 2 <= k <= 64, 1 <= d <= 5000 and last term at most 10^9. Every term must be prime (deterministic Miller-Rabin) and no prime may lie strictly between consecutive terms. Maximize k; the optimum below 10^9 is 6. Below 10^9 the longest such progressions have six terms, so the task recovers a six-term progression.",
         "family": "science_prize_h_cpap",
         "paper_ids": [
           "science-prize_h"
@@ -24454,7 +24454,7 @@
       "rationale": "The candidate returns two squarefree integers at most 10^7 with no squarefree integer between them; the evaluator tests the endpoints and every interior integer exactly, and the gap is maximized. Reviewed source family science_prize_a_squarefree_gap, area mathematics.",
       "evidence": {
         "task_name": "Large gaps between consecutive squarefree integers",
-        "description": "construct() -> [a,b], positive squarefree endpoints a<b<=maximum=10000000, with b-a<=10000. EVERY interior integer must be nonsquarefree. Maximize b-a. Endpoints and every interior integer are tested exactly. Maximize the gap between consecutive positive squarefree endpoints at most 10000000, with gap at most 10000. Endpoints and every interior integer are checked. The optimum is 10 (8870023 to 8870033; OEIS A020754); this is a rediscovery task.",
+        "description": "construct() -> [a,b], positive squarefree endpoints a<b<=maximum=10000000, with b-a<=10000. EVERY interior integer must be nonsquarefree. Maximize b-a. Endpoints and every interior integer are tested exactly. Maximize the gap between consecutive positive squarefree endpoints at most 10000000, with gap at most 10000. Endpoints and every interior integer are checked. The optimum is 10 (OEIS A020754); this is a rediscovery task.",
         "family": "science_prize_a_squarefree_gap",
         "paper_ids": [
           "science-prize_a"
@@ -24469,7 +24469,7 @@
       "rationale": "The candidate returns two integers at most 10^7 that are sums of two squares with no such integer between them; the evaluator tests the endpoints and every interior integer exactly, and the gap is maximized. Reviewed source family science_prize_a_two_square_gap, area mathematics.",
       "evidence": {
         "task_name": "Large gaps between sums of two squares",
-        "description": "construct() -> [a,b], positive endpoints a<b<=maximum=10000000, b-a<=10000, both sums of two integer squares (zero is permitted). No interior integer may be a sum of two squares. Maximize b-a. Positive consecutive representable endpoints at most 10000000 and distance at most 10000, with zero allowed as one of the two squared integers. Every interior integer is checked. The optimum is 50 (9565544 to 9565594; OEIS A297350); this is a rediscovery task.",
+        "description": "construct() -> [a,b], positive endpoints a<b<=maximum=10000000, b-a<=10000, both sums of two integer squares (zero is permitted). No interior integer may be a sum of two squares. Maximize b-a. Positive consecutive representable endpoints at most 10000000 and distance at most 10000, with zero allowed as one of the two squared integers. Every interior integer is checked. The optimum is 50 (OEIS A297350); this is a rediscovery task.",
         "family": "science_prize_a_two_square_gap",
         "paper_ids": [
           "science-prize_a"
@@ -24484,7 +24484,7 @@
       "rationale": "The candidate returns a coprime triple a+b=c with c at most 10^12; the evaluator checks the equation and coprimality, factors the triple exactly, and scores log(c)/log(rad(abc)), which is maximized. Reviewed source family science_prize_a_abc_quality, area mathematics.",
       "evidence": {
         "task_name": "High-quality coprime abc triples",
-        "description": "construct() -> [a,b,c], positive Python integers <=1000000000000, a<=b, a+b=c, gcd(a,b)=1. Maximize log(c)/log(rad(a*b*c)). The radical is the product of DISTINCT prime factors and is independently factored exactly; only the logarithmic score uses floating arithmetic. Search coprime positive triples a+b=c with c<=10^12, maximizing log(c)/log(rad(abc)). Finite high quality cannot disprove the conjecture, which allows finitely many exceptions at each exponent. The optimum is Reyssat's quality 1.62991 for 2 + 3^10*109 = 23^5; complete tables of high-quality triples show nothing better below 10^20, so this is a rediscovery task.",
+        "description": "construct() -> [a,b,c], positive Python integers <=1000000000000, a<=b, a+b=c, gcd(a,b)=1. Maximize log(c)/log(rad(a*b*c)). The radical is the product of DISTINCT prime factors and is independently factored exactly; only the logarithmic score uses floating arithmetic. Search coprime positive triples a+b=c with c<=10^12, maximizing log(c)/log(rad(abc)). Finite high quality cannot disprove the conjecture, which allows finitely many exceptions at each exponent. The optimum is quality 1.62991, attained by Reyssat's triple; complete tables of high-quality triples show nothing better below 10^20, so this is a rediscovery task.",
         "family": "science_prize_a_abc_quality",
         "paper_ids": [
           "science-prize_a"
@@ -24514,7 +24514,7 @@
       "rationale": "The candidate constructs a set of pairwise coprime integers below 512; the evaluator checks every pair for coprimality and scores the sum of 1/(512 - a) computed as an exact rational. Reviewed source family science_prize_i_coprime_reciprocals, area mathematics.",
       "evidence": {
         "task_name": "Pairwise coprime integers below 512 with large sum of 1/(512 - a)",
-        "description": "construct() -> distinct pairwise coprime integers a in 1..511. The score is sum 1/(512 - a) (exact rational, reported as a float); the report also gives sum over primes p < 512 of 1/p. Maximize. Large sums for n = 512 compared with the prime reciprocal sum are finite evidence on the conjectured bound.",
+        "description": "construct() -> distinct pairwise coprime integers a in 1..511. The score is sum 1/(512 - a) (exact rational, reported as a float); the report also gives sum over primes p < 512 of 1/p. Maximize; the optimum is 2.762987911413. For n = 512 the maximum is 2.762987911413 (the prime reciprocal sum is 2.100662260951): every integer below 512 has at most one prime factor of 23 or more, so an exact dynamic programme over the subsets of the primes up to 19 solves the instance in milliseconds. The task recovers this value; it is one data point for the conjectured bound.",
         "family": "science_prize_i_coprime_reciprocals",
         "paper_ids": [
           "science-prize_i"
@@ -24619,7 +24619,7 @@
       "rationale": "The candidate returns a 3-colouring for each of five fixed seeded cycle-plus-triangles graphs; the evaluator regenerates the graphs and scores the number of instances whose colouring is proper. Reviewed source family science_prize_i_cycle_plus_triangles, area mathematics.",
       "evidence": {
         "task_name": "3-colouring five fixed cycle-plus-triangles graphs",
-        "description": "construct() -> five colourings (one colour in {0, 1, 2} per vertex), one per instance from cycle_plus_triangles(n, seed) for n = 30, 60, 90, 150, 300 with seeds 401..405 in the verifier: the Hamiltonian cycle 0-1-...-(n-1)-0 plus a random partition into triangles avoiding cycle edges. The score is the number of properly coloured instances (0..5). Maximize; every instance is 3-colourable by the Fleischner-Stiebitz theorem. The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof.",
+        "description": "construct() -> five colourings (one colour in {0, 1, 2} per vertex), one per instance from cycle_plus_triangles(n, seed) for n = 30, 60, 90, 150, 300 with seeds 401..405 in the verifier: the Hamiltonian cycle 0-1-...-(n-1)-0 plus a random partition into triangles avoiding cycle edges. The score is the number of properly coloured instances (0..5). Maximize; every instance is 3-colourable by the Fleischner-Stiebitz theorem. The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof. On these five instances a standard min-conflicts local search already reaches the maximum 5 in under a second.",
         "family": "science_prize_i_cycle_plus_triangles",
         "paper_ids": [
           "science-prize_i"
@@ -24709,7 +24709,7 @@
       "rationale": "The candidate returns 8 planar points; the evaluator rescales them to diameter 2 and scores the product of all pairwise distances relative to the regular octagon in floating point, which is maximized. Reviewed source family science_prize_g_distance_product, area mathematics.",
       "evidence": {
         "task_name": "Eight planar points maximizing the product of distances at fixed diameter",
-        "description": "construct() -> 8 distinct points [x, y] (floats, |coordinate| < 10^6). The score is Delta/n^n, where Delta is the product over ordered pairs of distances after scaling the set to diameter 2; the regular octagon scores exactly 1. Maximize. Scores above 1 beat the regular octagon; the paper's constructions show this is possible, but no value for n = 8 is recorded here.",
+        "description": "construct() -> 8 distinct points [x, y] (floats, |coordinate| < 10^6). The score is Delta/n^n, where Delta is the product over ordered pairs of distances after scaling the set to diameter 2; the regular octagon scores exactly 1. Maximize. Scores above 1 beat the regular octagon; the best published value for n = 8 is 1.250472 (Table 1 of the paper, conjectured optimal).",
         "family": "science_prize_g_distance_product",
         "paper_ids": [
           "science-prize_g"
@@ -24739,7 +24739,7 @@
       "rationale": "The candidate names a run of consecutive integers below 10^10; the evaluator factors each term exactly, checks that the divisor counts are pairwise distinct and scores the run length. Reviewed source family science_prize_h_divisor_run, area mathematics.",
       "evidence": {
         "task_name": "Longest run of consecutive integers with distinct divisor counts below 10^10",
-        "description": "construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 40 and s + k - 1 <= 10^10. The divisor counts tau(s), ..., tau(s + k - 1) must be pairwise distinct (exact factorization). Maximize k; the optimum is 14 (first run at 1745175039). Runs ending below 10^10 have at most 14 terms (first at 1745175039), so the task recovers such a run.",
+        "description": "construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 40 and s + k - 1 <= 10^10. The divisor counts tau(s), ..., tau(s + k - 1) must be pairwise distinct (exact factorization). Maximize k; the optimum is 14. Runs ending below 10^10 have at most 14 terms, so the task recovers such a run.",
         "family": "science_prize_h_divisor_run",
         "paper_ids": [
           "science-prize_h"
@@ -24799,7 +24799,7 @@
       "rationale": "The candidate returns a set of integers in 2..40. The evaluator enumerates all subset products, requires them to be distinct and scores the set size. Reviewed source family science_prize_c_653, area mathematics.",
       "evidence": {
         "task_name": "Large sets with distinct subset products",
-        "description": "construct() -> 1..18 distinct integers in 2..40. All 2^k subset products, including the empty product one, must be distinct. Exact arbitrary-precision products are enumerated. Maximize number of selected integers. The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem. Integer one is excluded because it collides with the empty product.",
+        "description": "construct() -> 1..18 distinct integers in 2..40. All 2^k subset products, including the empty product one, must be distinct. Exact arbitrary-precision products are enumerated. Maximize number of selected integers. The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem; the optimum of this instance is 17 (OEIS A401472). Integer one is excluded because it collides with the empty product.",
         "family": "science_prize_c_653",
         "paper_ids": [
           "science-prize_c"
@@ -24844,7 +24844,7 @@
       "rationale": "The candidate returns the start and length of a run of consecutive integers below 10^12; the evaluator computes Euler's totient of every term by exact factorization, requires the values to be pairwise distinct and scores the length. Reviewed source family science_prize_i_totient_run, area mathematics.",
       "evidence": {
         "task_name": "Long runs of consecutive integers with distinct totients (up to 10^12)",
-        "description": "construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 200 and s + k - 1 <= 10^12. The values phi(s), ..., phi(s + k - 1) must be pairwise distinct (exact factorization). Maximize k. Long runs below 10^12 are finite evidence; (log 10^12)^c is about 27.6^c.",
+        "description": "construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 200 and s + k - 1 <= 10^12. The values phi(s), ..., phi(s + k - 1) must be pairwise distinct (exact factorization). Maximize k. The length cap 200 is attained: runs of 200 consecutive integers with distinct totients occur below 1.2*10^6 and a sieve finds one in seconds. So 200 is the maximum score, the bound 10^12 plays no role, and the task is a capped search exercise rather than evidence on the conjecture.",
         "family": "science_prize_i_totient_run",
         "paper_ids": [
           "science-prize_i"
@@ -25534,7 +25534,7 @@
       "rationale": "The candidate returns an edge colouring of K16; the evaluator checks that every four vertices span at least five colours and counts the colours used, fewer being better. Reviewed source family science_prize_e_four_clique_colours, area mathematics.",
       "evidence": {
         "task_name": "Edge-colourings of K16 in which every K4 sees five colours",
-        "description": "construct() -> 120 integer colours in 0..119 for the pairs (i,j), 0<=i<j<16, in lexicographic order. Every set of four vertices must span edges of at least five distinct colours. Minimize the number of colours used. A valid colouring certifies f(16) <= colours used. The general bounds give 13 <= f(16) <= 15; no exact value for n = 16 is documented.",
+        "description": "construct() -> 120 integer colours in 0..119 for the pairs (i,j), 0<=i<j<16, in lexicographic order. Every set of four vertices must span edges of at least five distinct colours. Minimize the number of colours used. A valid colouring certifies f(16) <= colours used. The known bounds give 14 <= f(16) <= 15; no exact value for n = 16 is documented.",
         "family": "science_prize_e_four_clique_colours",
         "paper_ids": [
           "science-prize_e"
@@ -25819,7 +25819,7 @@
       "rationale": "The candidate returns 16 integer points with no five on a line; the evaluator finds all lines through the points with exact integer arithmetic and scores the number containing exactly four points. Reviewed source family science_prize_g_four_point_lines, area mathematics.",
       "evidence": {
         "task_name": "Sixteen integer points with many four-point lines and no five collinear",
-        "description": "construct() -> exactly 16 distinct integer points [x, y] with |x|, |y| <= 1000 and no five collinear. Maximize the number of lines containing exactly four of the points (exact). Integer configurations are a restriction of the real problem; the real value 15 for n = 16 is an upper reference, not a documented integer optimum.",
+        "description": "construct() -> exactly 16 distinct integer points [x, y] with |x|, |y| <= 1000 and no five collinear. Maximize the number of lines containing exactly four of the points (exact). Integer configurations are a restriction of the real problem: the best known integer configuration of 16 points has 14 such lines (OEIS A172992), and OEIS A006065 lists 15 for real configurations.",
         "family": "science_prize_g_four_point_lines",
         "paper_ids": [
           "science-prize_g"
@@ -26134,7 +26134,7 @@
       "rationale": "The candidate returns points on the unit sphere; the evaluator normalises them, requires them to be distinct and scores the sum of log(1/distance) over all pairs. Reviewed source family science_frontier_physics_log_energy, area mathematics.",
       "evidence": {
         "task_name": "Minimal logarithmic energy of 100 points on the sphere",
-        "description": "Place 100 points on the unit sphere to minimize the logarithmic energy, the sum over all pairs of log(1/distance), the energy in Smale's 7th problem. The lowest published energy, -1083.377140539, is not proven minimal.",
+        "description": "Place 100 points on the unit sphere to minimize the logarithmic energy, the sum over all pairs of log(1/distance), the energy in Smale's 7th problem. The lowest published energy, -1083.377140539, is the putative global minimum: it is not proven minimal, but random-restart local optimisation reproduces it within seconds, so the task measures whether an optimiser reaches it.",
         "family": "science_frontier_physics_log_energy",
         "paper_ids": [
           "science-frontier_physics"
@@ -26149,7 +26149,7 @@
       "rationale": "The candidate returns points on the unit sphere; the evaluator normalises them, requires them to be distinct and scores the sum of log(1/distance) over all pairs. Reviewed source family science_frontier_physics_log_energy, area mathematics.",
       "evidence": {
         "task_name": "Minimal logarithmic energy of 150 points on the sphere",
-        "description": "Place 150 points on the unit sphere to minimize the logarithmic energy, the sum over all pairs of log(1/distance), the energy in Smale's 7th problem. The lowest published energy, -2364.632242592, is not proven minimal.",
+        "description": "Place 150 points on the unit sphere to minimize the logarithmic energy, the sum over all pairs of log(1/distance), the energy in Smale's 7th problem. The lowest published energy, -2364.632242592, is the putative global minimum: it is not proven minimal, but random-restart local optimisation reproduces it within seconds, so the task measures whether an optimiser reaches it.",
         "family": "science_frontier_physics_log_energy",
         "paper_ids": [
           "science-frontier_physics"
@@ -26328,7 +26328,7 @@
       "rule_id": "family-science-prize-e-regular-induced",
       "rationale": "The candidate returns a graph on at most 22 vertices; the evaluator checks every vertex subset of size six or more for an induced regular subgraph and scores the number of vertices. Reviewed source family science_prize_e_regular_induced, area mathematics.",
       "evidence": {
-        "task_name": "Large graphs with no regular induced subgraph on six vertices",
+        "task_name": "Large graphs with no regular induced subgraph on six or more vertices",
         "description": "construct() -> {'n': n, 'edges': [[u, v], ...]}: a simple graph on vertices 0..n-1 with 1 <= n <= 22. No set of 6 or more vertices may induce a regular subgraph (every vertex subset is checked). Maximize n. A valid graph on n vertices certifies G(6) > n. Graphs with 20 vertices are known; a 21-vertex graph would show G(6) >= 22.",
         "family": "science_prize_e_regular_induced",
         "paper_ids": [
@@ -26539,7 +26539,7 @@
       "rationale": "The candidate returns a rational time p/q with q at most 10^6 for seven fixed integer speeds; the evaluator computes in exact rational arithmetic the smallest circular distance of any runner from the origin, which is maximized. Reviewed source family science_prize_a_lonely_runner, area mathematics.",
       "evidence": {
         "task_name": "Rational-time lonely-runner certificates",
-        "description": "construct() -> [p,q] of Python integers with 0<p<q<=1000000, representing time p/q. For relative speeds [1,3,4,7,11,18,29] from a stationary runner, maximize the minimum circular distance of (p/q)*v to an integer. Exact rational distances are retained in details; score is their floating serialization. One stationary runner and seven fixed relative integer speeds [1,3,4,7,11,18,29]; maximize the minimum distance at a rational time with denominator<=10^6. This lower-bound certificate does not optimize over all speed sets or prove a universal conjecture. The optimum is exactly 1/5, at t = 1/5; every breakpoint of the piecewise-linear objective has been checked, so this is a rediscovery task.",
+        "description": "construct() -> [p,q] of Python integers with 0<p<q<=1000000, representing time p/q. For relative speeds [1,3,4,7,11,18,29] from a stationary runner, maximize the minimum circular distance of (p/q)*v to an integer. Exact rational distances are retained in details; score is their floating serialization. One stationary runner and seven fixed relative integer speeds [1,3,4,7,11,18,29]; maximize the minimum distance at a rational time with denominator<=10^6. This lower-bound certificate does not optimize over all speed sets or prove a universal conjecture. The optimum is exactly 1/5; every breakpoint of the piecewise-linear objective has been checked, so this is a rediscovery task.",
         "family": "science_prize_a_lonely_runner",
         "paper_ids": [
           "science-prize_a"
@@ -26554,7 +26554,7 @@
       "rationale": "The candidate returns an integer M up to 10^18 with a list of k satisfying k*sigma(k) = M; the evaluator verifies each by exact factorization and scores the number of listed solutions. Reviewed source family science_prize_h_k_sigma, area mathematics.",
       "evidence": {
         "task_name": "Integers M <= 10^18 with many solutions of k*sigma(k) = M",
-        "description": "construct() -> {'M': M, 'k': [k_1, ...]} with M <= 10^18 and distinct k_i <= sqrt(M) satisfying k_i * sigma(k_i) = M (checked with exact factorization). The score is the number of listed solutions, a certified lower bound for f(M). Maximize. Values with many certified solutions are finite lower-bound constructions for f; no record values are documented.",
+        "description": "construct() -> {'M': M, 'k': [k_1, ...]} with M <= 10^18 and distinct k_i <= sqrt(M) satisfying k_i * sigma(k_i) = M (checked with exact factorization). At most 1000 solutions may be listed. The score is the number of listed solutions, a certified lower bound for f(M). Maximize. Values with many certified solutions are finite lower-bound constructions for f; no record values are documented.",
         "family": "science_prize_h_k_sigma",
         "paper_ids": [
           "science-prize_h"
@@ -27394,7 +27394,7 @@
       "rationale": "The candidate returns an integer n below 10^12 with complete prime factorizations of n and n+1 showing that both are powerful and neither is a square; the evaluator checks primality, the products and the non-square condition exactly and gives a valid certificate the score 1. Reviewed source family science_prize_powerful, area mathematics.",
       "evidence": {
         "task_name": "Consecutive powerful non-squares: exact counterexample certificate",
-        "description": "Provide a positive integer n and complete prime factorizations certifying that n and n+1 are powerful and neither is a square. Every prime exponent must be at least two. The verifier uses exact integers and primality tests. This recreates the resolved yes/no question in JSP-000301, with a local certificate-size bound n+1 <= 10^12 and binary validity score. The published 12167/12168 witness is explicitly credited to Solomon W. Golomb.",
+        "description": "Provide a positive integer n and complete prime factorizations certifying that n and n+1 are powerful and neither is a square. Every prime exponent must be at least two. The verifier uses exact integers and primality tests. This recreates the resolved yes/no question in JSP-000301, with a local certificate-size bound n+1 <= 10^12 and binary validity score. The published witness is explicitly credited to Solomon W. Golomb.",
         "family": "science_prize_powerful",
         "paper_ids": [
           "science-prize"
@@ -27619,7 +27619,7 @@
       "rationale": "The candidate assigns residue classes to distinct odd divisors of 51975; the evaluator counts exactly the residues modulo 51975 that no class covers. Reviewed source family science_prize_h_odd_covering, area mathematics.",
       "evidence": {
         "task_name": "Odd covering systems with moduli dividing 51975 (fewest uncovered residues)",
-        "description": "construct() -> classes [[m, r], ...] with distinct moduli m > 1 dividing 51975 = 3^3 * 5^2 * 7 * 11 (hence odd) and 0 <= r < m. The score is the number of residues modulo 51975 covered by no class (exact). Minimize; 0 would be a covering system with distinct odd moduli. With every divisor of 51975 available once, a score of 0 would exhibit an odd covering; positive scores measure how close systems with this modulus come. No minimum is documented.",
+        "description": "construct() -> classes [[m, r], ...] with distinct moduli m > 1 dividing 51975 = 3^3 * 5^2 * 7 * 11 (hence odd) and 0 <= r < m. The score is the number of residues modulo 51975 covered by no class (exact). Minimize. The score 0 (a covering system with distinct odd moduli) is impossible for this modulus by the necessary condition of Berger, Felzenbaum and Fraenkel (1986). Every divisor of 51975 above 1 is available once. The minimum is positive: an odd covering with distinct moduli needs prod (p-1)/(p-2) - sum 1/(p-2) > 2 over the primes p dividing the least common multiple (Berger, Felzenbaum and Fraenkel), and for 3, 5, 7, 11 the left side is 86/45. The score measures how close systems with this modulus come to a covering; it cannot decide the odd covering problem. No minimum is documented.",
         "family": "science_prize_h_odd_covering",
         "paper_ids": [
           "science-prize_h"
@@ -27679,7 +27679,7 @@
       "rationale": "The candidate returns 12 integer points, not all on one line; the evaluator finds all lines through the points with exact integer arithmetic and scores the number containing exactly two points, which is minimized. Reviewed source family science_prize_g_ordinary_lines, area mathematics.",
       "evidence": {
         "task_name": "Twelve rational points with few ordinary lines",
-        "description": "construct() -> exactly 12 distinct integer points [x, y] with |x|, |y| <= 10^9, not all collinear. Minimize the number of lines containing exactly two of the points (exact). Over the reals the minimum for 12 points is 6; whether integer (rational) coordinates reach 6 is not documented, so scores are compared with that lower bound.",
+        "description": "construct() -> exactly 12 distinct integer points [x, y] with |x|, |y| <= 10^9, not all collinear. Minimize the number of lines containing exactly two of the points (exact). Over the reals the minimum for 12 points is 6 and integer coordinates reach it, so the optimum is 6.",
         "family": "science_prize_g_ordinary_lines",
         "paper_ids": [
           "science-prize_g"
@@ -28116,7 +28116,7 @@
       "rationale": "The candidate returns a colouring for each of four fixed seeded planar bipartite graphs whose vertices carry lists of three colours; the evaluator regenerates the graphs and lists and scores the number of instances coloured properly from the lists. Reviewed source family science_prize_i_planar_list_colouring, area mathematics.",
       "evidence": {
         "task_name": "Colouring four fixed planar bipartite graphs from lists of three colours",
-        "description": "construct() -> four colourings, one per instance from planar_bipartite_lists(splits, seed) for (20,701), (40,702), (60,703), (100,704) in the verifier: a bipartite quadrangulation grown from the cube by inserting squares into random faces (minimum degree 3), with a random list of 3 colours from 0..4 per vertex. Each vertex must take a colour from its list and adjacent vertices must differ. The score is the number of properly coloured instances (0..4). Maximize; all are colourable by the Alon-Tarsi theorem. The score counts fixed instances coloured properly from their lists; it measures a constructive list-colouring method for a theorem proved non-constructively.",
+        "description": "construct() -> four colourings, one per instance from planar_bipartite_lists(splits, seed) for (20,701), (40,702), (60,703), (100,704) in the verifier: a bipartite quadrangulation grown from the cube by inserting squares into random faces (minimum degree 3), with a random list of 3 colours from 0..4 per vertex. Each vertex must take a colour from its list and adjacent vertices must differ. The score is the number of properly coloured instances (0..4). Maximize; all are colourable by the Alon-Tarsi theorem. The score counts fixed instances coloured properly from their lists; it measures a constructive list-colouring method for a theorem proved non-constructively. On these four instances a greedy that always colours a vertex with the fewest remaining list colours already reaches the maximum 4 without backtracking.",
         "family": "science_prize_i_planar_list_colouring",
         "paper_ids": [
           "science-prize_i"
@@ -28146,7 +28146,7 @@
       "rationale": "The candidate returns an integer k up to 10^9; the evaluator counts exactly the powerful numbers strictly between k^2 and (k+1)^2. Reviewed source family science_prize_h_powerful, area mathematics.",
       "evidence": {
         "task_name": "Many powerful numbers strictly between consecutive squares (k <= 10^9)",
-        "description": "construct() -> an integer k with 1 <= k <= 10^9. The score is the number of powerful integers (p | n implies p^2 | n) strictly between k^2 and (k+1)^2, counted exactly through the unique form a^2 b^3 with b squarefree. Maximize; the optimum is 11 (first at k = 472532614). For k <= 10^9 the maximum is 11. Erdős's h(n) counts [n^2, (n+1)^2) and so also includes the square n^2; the task counts the open interval as in OEIS A119241.",
+        "description": "construct() -> an integer k with 1 <= k <= 10^9. The score is the number of powerful integers (p | n implies p^2 | n) strictly between k^2 and (k+1)^2, counted exactly through the unique form a^2 b^3 with b squarefree. Maximize; the optimum is 11. For k <= 10^9 the maximum is 11. Erdős's h(n) counts [n^2, (n+1)^2) and so also includes the square n^2; the task counts the open interval as in OEIS A119241.",
         "family": "science_prize_h_powerful",
         "paper_ids": [
           "science-prize_h"
@@ -28161,7 +28161,7 @@
       "rationale": "The candidate selects distinct divisors of 5040 that sum to 4979; the evaluator checks divisibility and the sum exactly, and the number of divisors used is minimized. Reviewed source family science_prize_a_practical_divisor_sum, area mathematics.",
       "evidence": {
         "task_name": "Short sums of distinct divisors of 5040",
-        "description": "construct() -> at most 256 distinct positive divisors of n=5040 whose sum is target=4979. Minimize the number of selected divisors. Exact membership and sum checks; this is one finite practical-number instance. Represent 4979 as a sum of distinct divisors of 5040, minimizing the number of terms. This is one finite optimization instance, not Vose’s asymptotic theorem.",
+        "description": "construct() -> at most 256 distinct positive divisors of n=5040 whose sum is target=4979. Minimize the number of selected divisors. Exact membership and sum checks; this is one finite practical-number instance. Represent 4979 as a sum of distinct divisors of 5040, minimizing the number of terms. This is one finite optimization instance, not Vose’s asymptotic theorem. The optimum is 5, established by an exhaustive search over the 60 divisors; this is a rediscovery task.",
         "family": "science_prize_a_practical_divisor_sum",
         "paper_ids": [
           "science-prize_a"
@@ -28206,7 +28206,7 @@
       "rationale": "The candidate returns an integer n up to 10^8; the evaluator counts, with deterministic primality tests, the powers of two 2^k for which n - 2^k is prime. Reviewed source family science_prize_h_prime_power_two, area mathematics.",
       "evidence": {
         "task_name": "Integers up to 10^8 with many representations n = p + 2^k",
-        "description": "construct() -> an integer n with 3 <= n <= 10^8. The score is the number of k >= 0 with n - 2^k prime (deterministic Miller-Rabin). Maximize; the optimum is 19 (first at 53999715). For n <= 10^8 the maximum is 19, so the task recovers such an integer.",
+        "description": "construct() -> an integer n with 3 <= n <= 10^8. The score is the number of k >= 0 with n - 2^k prime (deterministic Miller-Rabin). Maximize; the optimum is 19. For n <= 10^8 the maximum is 19, so the task recovers such an integer.",
         "family": "science_prize_h_prime_power_two",
         "paper_ids": [
           "science-prize_h"
@@ -28566,7 +28566,7 @@
       "rationale": "The candidate names a run of consecutive integers starting at most at 10^4; the evaluator factors each term, checks that it has a prime factor larger than the run length and scores the length. Reviewed source family science_prize_h_large_factor_run, area mathematics.",
       "evidence": {
         "task_name": "Runs of consecutive integers each with a prime factor larger than the run length (start at most 10^4)",
-        "description": "construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30 (6961, ..., 6990). For runs starting at most 10^4 the maximum is 30, so the task recovers the run 6961..6990 or an equivalent.",
+        "description": "construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30. For runs starting at most 10^4 the maximum is 30, so the task recovers such a run.",
         "family": "science_prize_h_large_factor_run",
         "paper_ids": [
           "science-prize_h"
@@ -29136,7 +29136,7 @@
       "rationale": "The candidate returns an edge colouring for each of three fixed seeded bounded-degree graphs; the evaluator regenerates the graphs, checks that every colour class is an induced matching and scores the total number of colours used. Reviewed source family science_prize_i_strong_edge_colouring, area mathematics.",
       "evidence": {
         "task_name": "Strong edge colourings of three fixed bounded-degree graphs",
-        "description": "construct() -> three lists of edge colours, one per instance from bounded_degree_graph(n, d, seed) for (40,4,101), (60,5,102), (80,6,103) in the verifier; colours follow the sorted edge order. Each colour class must be an induced matching (no two edges share a vertex or are joined by an edge). Minimize the total number of colours used; the Erdős-Nešetřil conjecture predicts at most 5d^2/4 per instance (20 + 31 + 45). The score totals colours on three fixed graphs of maximum degree 4, 5 and 6; it measures a colouring method, not the conjecture.",
+        "description": "construct() -> three lists of edge colours, one per instance from bounded_degree_graph(n, d, seed) for (40,4,101), (60,5,102), (80,6,103) in the verifier; colours are integers in 0..m-1, where m is the number of edges of the instance, and follow the sorted edge order. Each colour class must be an induced matching (no two edges share a vertex or are joined by an edge). Minimize the total number of colours used; the Erdős-Nešetřil conjecture predicts at most 5d^2/4 colours for even d and (5d^2 - 2d + 1)/4 for odd d per instance (20 + 29 + 45). The score totals colours on three fixed graphs of maximum degree 4, 5 and 6; it measures a colouring method, not the conjecture.",
         "family": "science_prize_i_strong_edge_colouring",
         "paper_ids": [
           "science-prize_i"
@@ -29151,7 +29151,7 @@
       "rationale": "The candidate returns a subset of each of three fixed seeded sets of nonzero integers; the evaluator regenerates the sets, checks that no a + b = c holds inside each subset and scores the total size. Reviewed source family science_prize_i_sum_free_subsets, area mathematics.",
       "evidence": {
         "task_name": "Large sum-free subsets of three fixed sets of integers",
-        "description": "construct() -> three subsets, one per instance from sum_free_instance(size, seed) for (60,801), (120,802), (240,803) in the verifier (distinct nonzero integers in [-10000, 10000]). Each subset must be sum-free: no a + b = c with a, b, c in it (a = b allowed). Maximize the total size; every n-element set has a sum-free subset of size at least (n+2)/3 (Bourgain). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n).",
+        "description": "construct() -> three subsets, one per instance from sum_free_instance(size, seed) for (60,801), (120,802), (240,803) in the verifier (distinct nonzero integers in [-10000, 10000]). Each subset must be sum-free: no a + b = c with a, b, c in it (a = b allowed). Maximize the total size; every n-element set has a sum-free subset of size at least (n+2)/3 (Bourgain). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n). The exact optimum is 328 (55 + 103 + 170), which integer programming on the triples a + b = c finds in seconds.",
         "family": "science_prize_i_sum_free_subsets",
         "paper_ids": [
           "science-prize_i"
@@ -29166,7 +29166,7 @@
       "rationale": "The candidate returns an integer N up to 10^10 with a list of prime triples; the evaluator checks that the cubes of each triple sum to N and scores the number of distinct triples. Reviewed source family science_prize_h_prime_cubes, area mathematics.",
       "evidence": {
         "task_name": "Integers up to 10^10 with many representations as sums of three prime cubes",
-        "description": "construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4 (first at 999979163). For k = 3 and N <= 10^10 the maximum is 4, so the task recovers such an N.",
+        "description": "construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4. For k = 3 and N <= 10^10 the maximum is 4, so the task recovers such an N.",
         "family": "science_prize_h_prime_cubes",
         "paper_ids": [
           "science-prize_h"
@@ -29181,7 +29181,7 @@
       "rationale": "The candidate returns an integer m with a list of pairs of positive integers; the evaluator checks a^3 + b^3 = m for each pair and scores the number of distinct pairs. Reviewed source family science_prize_h_taxicab, area mathematics.",
       "evidence": {
         "task_name": "Integers up to 5*10^16 with many representations as sums of two positive cubes",
-        "description": "construct() -> {'m': m, 'pairs': [[a, b], ...]} with 2 <= m <= 5*10^16 and distinct pairs of positive integers a <= b with a^3 + b^3 = m (checked exactly). Maximize the number of pairs; the optimum is 5, attained only by the fifth taxicab number 48988659276962496. Below 5*10^16 the maximum is 5, attained only by the fifth taxicab number, so the task is a calibrated rediscovery of Ta(5).",
+        "description": "construct() -> {'m': m, 'pairs': [[a, b], ...]} with 2 <= m <= 5*10^16 and distinct pairs of positive integers a <= b with a^3 + b^3 = m (checked exactly). Maximize the number of pairs; the optimum is 5, attained by a single integer in this range. Below 5*10^16 the maximum is 5 and a single integer attains it, so the task is a calibrated rediscovery.",
         "family": "science_prize_h_taxicab",
         "paper_ids": [
           "science-prize_h"
@@ -29196,7 +29196,7 @@
       "rationale": "The candidate returns an integer N up to 10^18 with a list of pairs of powerful numbers that sum to N; the evaluator verifies every pair by exact factorization and scores the number of distinct pairs. Reviewed source family science_prize_i_powerful_pairs, area mathematics.",
       "evidence": {
         "task_name": "Integers up to 10^18 with many representations as sums of two powerful numbers",
-        "description": "construct() -> {'N': N, 'pairs': [[a, b], ...]} with 2 <= N <= 10^18 and between 1 and 1000 distinct pairs a <= b, a + b = N (a list of more than 1000 pairs is rejected, so the score is at most 1000), where a and b are powerful (every prime factor appears squared; 1 counts as powerful), checked by exact factorization. The score is the number of pairs, a certified lower bound on the representation count. Maximize. Integers with many certified representations are finite evidence on the conjectured subpolynomial bound.",
+        "description": "construct() -> {'N': N, 'pairs': [[a, b], ...]} with 2 <= N <= 10^18 and between 1 and 1000 distinct pairs a <= b, a + b = N (a list of more than 1000 pairs is rejected, so the score is at most 1000), where a and b are powerful (every prime factor appears squared; 1 counts as powerful), checked by exact factorization. The score is the number of pairs, a certified lower bound on the representation count. Maximize. The cap of 1000 listed pairs is attainable: integers below 10^18 with more than 1000 representations as a sum of two squares exist, and squares are powerful. So 1000 is the maximum score and the task is a capped search exercise, not evidence on the conjectured subpolynomial bound.",
         "family": "science_prize_i_powerful_pairs",
         "paper_ids": [
           "science-prize_i"
@@ -29451,7 +29451,7 @@
       "rationale": "The candidate returns an integer m up to 10^8; the evaluator counts the solutions of phi(x) = m exactly, requires exactly 1000 of them and scores m. Reviewed source family science_prize_h_totient, area mathematics.",
       "evidence": {
         "task_name": "Smallest totient value with exactly 1000 preimages",
-        "description": "construct() -> an integer m with 1 <= m <= 10^8 such that phi(x) = m has exactly 1000 solutions x (counted exactly by recursion over the primes p with p - 1 dividing m). Minimize m; the optimum is 1360800. The least value with exactly 1000 preimages is 1360800, so the task recovers it.",
+        "description": "construct() -> an integer m with 1 <= m <= 10^8 such that phi(x) = m has exactly 1000 solutions x (counted exactly by recursion over the primes p with p - 1 dividing m). Minimize m. The least value with exactly 1000 preimages is tabulated (it is the reference in state_of_the_art); it is not printed here because the value is itself the answer.",
         "family": "science_prize_h_totient",
         "paper_ids": [
           "science-prize_h"
@@ -29511,7 +29511,7 @@
       "rationale": "The candidate constructs a simple graph on 16 vertices with exactly 65 edges; the evaluator enumerates all triangles and scores the largest sum of the three vertex degrees. Reviewed source family science_prize_i_triangle_degrees, area mathematics.",
       "evidence": {
         "task_name": "Graphs on 16 vertices with 65 edges whose triangles have small degree sums",
-        "description": "construct() -> {'n': 16, 'edges': [[u, v], ...]}: a simple graph on 16 vertices with exactly 65 = floor(16^2/4) + 1 edges (so it has triangles). The score is the largest degree sum deg(u) + deg(v) + deg(w) over its triangles. Minimize. Scores below 24 would beat the published construction at n = 16; the conjectured asymptotic value is about 1.464n = 23.4.",
+        "description": "construct() -> {'n': 16, 'edges': [[u, v], ...]}: a simple graph on 16 vertices with exactly 65 = floor(16^2/4) + 1 edges (so it has triangles). The score is the largest degree sum deg(u) + deg(v) + deg(w) over its triangles. Minimize. Scores below 24 would beat the published construction at n = 16; the best asymptotic construction gives about 1.4639n = 23.4 (a note of July 2026, not yet published in a journal, reports a disproof of the Bollobás-Erdős conjecture h(n) >= (2(sqrt 3 - 1) - o(1))n by a blow-up of the butterfly graph).",
         "family": "science_prize_i_triangle_degrees",
         "paper_ids": [
           "science-prize_i"
@@ -29541,7 +29541,7 @@
       "rationale": "The candidate returns the edge list of a triangle-free graph on 20 vertices; the evaluator computes the minimum number of edges induced by any ten vertices over all subsets, and larger is better. Reviewed source family science_prize_f_sparse_halves, area mathematics.",
       "evidence": {
         "task_name": "Triangle-free graphs on 20 vertices whose every half is dense",
-        "description": "construct() -> list of edges [u, v] of a simple triangle-free graph on vertices 0..19. The score is the minimum number of edges induced by any 10 of the vertices, computed over all 184756 subsets. Maximize; a score above 8 would disprove the Erdős-Rousseau conjecture for n = 20. For n = 20 the conjectured maximum of the score is 8, attained by the balanced C5 blow-up; a triangle-free graph with score 9 would be a counterexample.",
+        "description": "construct() -> list of edges [u, v] of a simple triangle-free graph on vertices 0..19. The score is the minimum number of edges induced by any 10 of the vertices, computed over all 184756 subsets. Maximize; a score above 8 would disprove the Erdős-Rousseau conjecture for n = 20. For n = 20 the conjectured maximum of the score is 8, and triangle-free graphs with score 8 are known; a triangle-free graph with score 9 would be a counterexample.",
         "family": "science_prize_f_sparse_halves",
         "paper_ids": [
           "science-prize_f"
@@ -29586,7 +29586,7 @@
       "rationale": "The candidate returns exactly 68 edges on 16 vertices; the evaluator counts the triangles of the graph exactly, and fewer is better. Reviewed source family science_prize_f_triangles_above_turan, area mathematics.",
       "evidence": {
         "task_name": "Fewest triangles in graphs with 16 vertices and 68 edges",
-        "description": "construct() -> exactly 68 distinct edges [u, v] on vertices 0..15. The score is the exact number of triangles. Minimize; the proven optimum is 32 = t * floor(n/2) with t = 68 - 64. With n = 16 and t = 4 the theorem gives at least 32 triangles, and K8,8 plus a 4-edge matching attains 32.",
+        "description": "construct() -> exactly 68 distinct edges [u, v] on vertices 0..15. The score is the exact number of triangles. Minimize; the proven optimum is 32 = t * floor(n/2) with t = 68 - 64. With n = 16 and t = 4 the theorem gives at least 32 triangles, and 32 is attained.",
         "family": "science_prize_f_triangles_above_turan",
         "paper_ids": [
           "science-prize_f"
@@ -29601,7 +29601,7 @@
       "rationale": "The candidate returns distinct triples on 12 points; the evaluator checks that no three of them are pairwise disjoint and scores the number of triples. Reviewed source family science_prize_f_matching_two, area mathematics.",
       "evidence": {
         "task_name": "Triple systems on 12 points without three disjoint triples",
-        "description": "construct() -> list of distinct triples [a, b, c] of distinct points in 0..11 containing no three pairwise disjoint triples. Maximize the number of triples; the proven optimum is 100. For n = 12 and s = 2 the maximum is max{56, 100} = 100, attained by all triples meeting two fixed points.",
+        "description": "construct() -> list of distinct triples [a, b, c] of distinct points in 0..11 containing no three pairwise disjoint triples. Maximize the number of triples; the proven optimum is 100. For n = 12 and s = 2 the maximum is max{56, 100} = 100.",
         "family": "science_prize_f_matching_two",
         "paper_ids": [
           "science-prize_f"

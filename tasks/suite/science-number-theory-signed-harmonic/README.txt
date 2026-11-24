@@ -17,9 +17,9 @@ construct() -> candidate. Return exactly 30 integer coefficients from {-1,0,1}. 
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.
+The smallest nonzero value of |Σ δ_k/k| with δ_k in {-1, 0, 1} and k ≤ 30 is 1/174594420 = 13340/lcm(1, ..., 30), by an exact meet-in-the-middle search over all 3^30 sign patterns. The trivial lower bound of Erdős and Graham (1980, p. 42) is 1/lcm(2, ..., 30).
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `5.727559907126471e-09` (reviewed 2026-11-24).
 
 - [Old and New Problems and Results in Combinatorial Number Theory](https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf), Paul Erdős and Ronald L. Graham (1980)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 30}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

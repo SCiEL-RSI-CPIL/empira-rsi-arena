@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> at most 256 distinct positive divisors of n=5040 whose sum is target=4979. Minimize the number of selected divisors. Exact membership and sum checks; this is one finite practical-number instance. Represent 4979 as a sum of distinct divisors of 5040, minimizing the number of terms. This is one finite optimization instance, not Vose’s asymptotic theorem.
+construct() -> at most 256 distinct positive divisors of n=5040 whose sum is target=4979. Minimize the number of selected divisors. Exact membership and sum checks; this is one finite practical-number instance. Represent 4979 as a sum of distinct divisors of 5040, minimizing the number of terms. This is one finite optimization instance, not Vose’s asymptotic theorem. The optimum is 5, established by an exhaustive search over the 60 divisors; this is a rediscovery task.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,9 +17,9 @@ construct() -> at most 256 distinct positive divisors of n=5040 whose sum is tar
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Michael D. Vose (1985, Egyptian Fractions) studies the underlying problem.
+The minimum is 5. No four distinct divisors of 5040 sum to 4979, and five do; an exhaustive search over the 60 divisors (tests/test_audit_prize_a.py) shows both. The instance was fixed for this dataset and has no published value. Michael D. Vose (1985, Egyptian Fractions) studies the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `5` (reviewed 2026-11-24).
 
 - [Egyptian Fractions](https://doi.org/10.1112/blms/17.1.21), Michael D. Vose (1985)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 5040, "target": 4979}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 
@@ -68,3 +68,4 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 - Represent 4979 as a sum of distinct divisors of 5040, minimizing the number of terms. This is one finite optimization instance, not Vose’s asymptotic theorem.
 - All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code.
+- Solved finite case: The minimum is 5; no four distinct divisors of 5040 sum to 4979.

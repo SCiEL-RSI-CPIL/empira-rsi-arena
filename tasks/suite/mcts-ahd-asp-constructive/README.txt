@@ -19,7 +19,7 @@ Parameters: `{"checkout": "{checkout}", "problem": "asp_constructive", "max_inst
 
 ## Labels
 
-Scientific contribution: `open_problem` (tier 1); artifact `program`, domain `mathematics`, data `none`, verification `simulation`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `method` (tier 2); artifact `program`, domain `mathematics`, data `none`, verification `simulation`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -37,6 +37,7 @@ Evaluation uses pinned implementation components through this repository's local
 - MCTS-AHD Appendix B.1 Eq. (10) defines constant-weight ternary admissible sets. The original training solver uses n=15, w=10 and a symmetry-restricted greedy construction; the local adapter evaluates that single training instance, not the four-size validation profile or a complete MCTS search.
 - The upstream construction code and recovered priority baseline retain their pinned source credits. The local adapter checks finite score and actual candidate calls but does not independently certify the expanded set; validity remains unknown.
 - MCTS-AHD admissible sets consist of constant-weight ternary vectors under the triple-coordinate witness rule. The restored task uses the pinned original symmetry-block greedy evaluator at n 15, w 10; it is distinct from prime-residue narrow tuples. The extracted source seed returns 1842 on the original route. Finite output and actual candidate calls are checked, but no independent solution certificate is available, so validity remains unknown rather than true.
+- The size of an admissible set at n=15, w=10 is at most C(15,10) = 3003, and FunSearch published a priority function for this greedy constructor that reaches it (admissible_set notebook of the FunSearch repository); the trivial priority of the seed gives 1842, and MCTS-AHD reports 2784.0 and 2780.0 for its designed heuristics (Appendix F.1, Table 7). The maximum of this instance is therefore known, and the task measures how close a designed priority rule comes to it. The adapter parameters max_instances, iterations and ants belong to its other problems and have no effect here: this problem makes one call, evaluate(15, 10).
 
 ## Implementation credit
 

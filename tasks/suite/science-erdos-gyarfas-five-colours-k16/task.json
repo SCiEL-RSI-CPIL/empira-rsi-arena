@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "id": "science-erdos-gyarfas-five-colours-k16",
   "name": "Edge-colourings of K16 in which every K4 sees five colours",
-  "description": "construct() -> 120 integer colours in 0..119 for the pairs (i,j), 0<=i<j<16, in lexicographic order. Every set of four vertices must span edges of at least five distinct colours. Minimize the number of colours used. A valid colouring certifies f(16) <= colours used. The general bounds give 13 <= f(16) <= 15; no exact value for n = 16 is documented.",
+  "description": "construct() -> 120 integer colours in 0..119 for the pairs (i,j), 0<=i<j<16, in lexicographic order. Every set of four vertices must span edges of at least five distinct colours. Minimize the number of colours used. A valid colouring certifies f(16) <= colours used. The known bounds give 14 <= f(16) <= 15; no exact value for n = 16 is documented.",
   "paper_ids": [
     "science-prize_e"
   ],
@@ -12,7 +12,7 @@
     {
       "url": "https://doi.org/10.1007/bf01195000",
       "type": "paper",
-      "locator": "Paul Erdős and András Gyárfás, A variant of the classical Ramsey problem (1997). Crossref record inspected; Erdős Problem #136 page inspected: Erdős and Gyárfás proved 5(n-1)/6 < f(n) < n and f(9) = 8; Bennett, Cushman, Dudek and Prałat proved f(n) ~ 5n/6. A valid colouring certifies f(16) <= colours used. The general bounds give 13 <= f(16) <= 15; no exact value for n = 16 is documented."
+      "locator": "Paul Erdős and András Gyárfás, A variant of the classical Ramsey problem (1997). Crossref record inspected; Erdős Problem #136 page inspected: Erdős and Gyárfás proved 5(n-1)/6 < f(n) < n and f(9) = 8; Bennett, Cushman, Dudek and Prałat proved f(n) ~ 5n/6. A valid colouring certifies f(16) <= colours used. The known bounds give 14 <= f(16) <= 15; no exact value for n = 16 is documented."
     },
     {
       "url": "https://www.erdosproblems.com/136",
@@ -81,7 +81,7 @@
     }
   },
   "limitations": [
-    "No published value for n = 16 was found (reference label none); improvements are comparable across runs and with the bounds 13 <= f(16) <= 15, not with a recorded optimum.",
+    "No published value for n = 16 was found (reference label none); improvements are comparable across runs and with the bounds 14 <= f(16) <= 15, not with a recorded optimum.",
     "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
   ],
   "validation": {
@@ -95,7 +95,7 @@
   "state_of_the_art": {
     "kind": "none",
     "value": null,
-    "statement": "No documented value for n = 16. General bounds: 5(n-1)/6 < f(n) < n (Erdős and Gyárfás 1997), so 13 <= f(16) <= 15; asymptotically f(n) ~ 5n/6 (Bennett, Cushman, Dudek and Prałat).",
+    "statement": "No documented value for n = 16. Lower bound f(n) >= 5(n-1)/6 + 1 (Krop and Krop 2013, improving 5(n-1)/6 of Erdős and Gyárfás 1997), so f(16) >= 14. The published colourings with n-1 colours need n-1 prime (Erdős and Gyárfás) or n not congruent to 1 modulo 3 (Krop and Krop) and do not cover n = 16, but 15 colours suffice: fifteen perfect matchings of K16, no two of which contain a four-cycle, form a valid colouring (one is checked in the package tests). Hence 14 <= f(16) <= 15; asymptotically f(n) ~ 5n/6 (Bennett, Cushman, Dudek and Prałat).",
     "sources": [
       {
         "title": "A variant of the classical Ramsey problem",
@@ -106,9 +106,15 @@
       {
         "title": "Erdős Problem #136",
         "url": "https://www.erdosproblems.com/136"
+      },
+      {
+        "title": "Almost-rainbow edge-colorings of some small subgraphs",
+        "url": "https://arxiv.org/abs/0803.0572",
+        "authors": "Elliot Krop, Irina Krop",
+        "year": 2013
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 136,
       "url": "https://www.erdosproblems.com/136",
@@ -139,7 +145,7 @@
       {
         "title": "A variant of the classical Ramsey problem",
         "url": "https://doi.org/10.1007/bf01195000",
-        "task_relation": "A valid colouring certifies f(16) <= colours used. The general bounds give 13 <= f(16) <= 15; no exact value for n = 16 is documented.",
+        "task_relation": "A valid colouring certifies f(16) <= colours used. The known bounds give 14 <= f(16) <= 15; no exact value for n = 16 is documented.",
         "primary_goal": "Determine the least number of colours f(n) such that every K4 receives at least five colours.",
         "evidence_role": "primary_problem"
       }

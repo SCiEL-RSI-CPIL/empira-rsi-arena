@@ -111,7 +111,7 @@
     "state_of_the_art": {
       "kind": "optimum",
       "value": 13,
-      "statement": "Hajdu and Saradha proved H(5) = 14. The longest run of residues not coprime to a squarefree n with five prime factors is therefore at most 13, and 2310 = 2·3·5·7·11 attains it.",
+      "statement": "Hajdu and Saradha proved H(5) = 14. The longest run of residues not coprime to a squarefree n with five prime factors is therefore at most 13, and moduli below 1000000 attain it.",
       "sources": [
         {
           "title": "Disproof of a conjecture of Jacobsthal",
@@ -120,7 +120,7 @@
           "year": 2012
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 970,
         "url": "https://www.erdosproblems.com/970",
@@ -405,7 +405,7 @@
     "state_of_the_art": {
       "kind": "optimum",
       "value": 5,
-      "statement": "Every tournament on n vertices contains a transitive subtournament on floor(log2 n) + 1 vertices (Stearns), which is 5 for n = 20. The Paley tournament on 23 vertices restricted to 20 vertices has no transitive subtournament on 6 (scripts/check_state_of_the_art.py). The largest tournament without one has 27 vertices (Sanchez-Flores; confirmed by Neiman, Mackey and Heule). Erdős Problem #1216 was answered negatively by Reid and Parker.",
+      "statement": "Every tournament on n vertices contains a transitive subtournament on floor(log2 n) + 1 vertices (Stearns), which is 5 for n = 20, and tournaments on 20 vertices without a transitive subtournament on 6 exist. The largest tournament without one has 27 vertices (Sanchez-Flores; confirmed by Neiman, Mackey and Heule). Erdős Problem #1216 was answered negatively by Reid and Parker.",
       "sources": [
         {
           "title": "The Voting Problem",
@@ -426,7 +426,7 @@
           "year": 1970
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 1216,
         "url": "https://www.erdosproblems.com/1216",
@@ -504,7 +504,7 @@
     "state_of_the_art": {
       "kind": "optimum",
       "value": 47,
-      "statement": "The least prime primitive roots of the twelve moduli are 2, 5, 2, 11, 3, 3, 2, 3, 2, 2, 7 and 5 (OEIS A002233), summing to 47.",
+      "statement": "The least prime primitive roots of the twelve moduli, terms 26 to 37 of OEIS A002233, sum to 47.",
       "sources": [
         {
           "title": "OEIS A002233: Least prime primitive root of the n-th prime",
@@ -517,7 +517,7 @@
           "year": 1997
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 985,
         "url": "https://www.erdosproblems.com/985",
@@ -575,7 +575,7 @@
       }
     ],
     "limitations": [
-      "Solved finite case: The smallest rank difference between two oppositely ordered fractions in the Farey sequence of order 1000 is 252, i.e.",
+      "Solved finite case: the smallest rank difference between two oppositely ordered fractions in the Farey sequence of order 1000 is 252.",
       "The bank's unrelated 2026 pairwise-sums citation is not used. No optimality or general all-order bound follows from an accepted pair.",
       "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
     ],
@@ -738,7 +738,7 @@
     "state_of_the_art": {
       "kind": "optimum",
       "value": 2428557331200,
-      "statement": "In S_16 the most common order is 12, shared by 2,428,557,331,200 permutations (OEIS A061125). Enumerating all 231 cycle types (scripts/check_state_of_the_art.py) confirms that no other order is more frequent. Beker described the maximizing orders asymptotically.",
+      "statement": "In S_16 the most common element order is shared by 2,428,557,331,200 permutations. Enumerating all 231 cycle types confirms that no other order is more frequent, and the count agrees with the OEIS table for that order. Beker described the maximizing orders asymptotically.",
       "sources": [
         {
           "title": "OEIS A061125: Number of degree-n permutations of order exactly 12",
@@ -751,7 +751,7 @@
           "year": 2025
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",

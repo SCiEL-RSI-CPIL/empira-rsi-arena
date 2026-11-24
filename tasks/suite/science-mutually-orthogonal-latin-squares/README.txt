@@ -17,9 +17,9 @@ construct() -> a nonempty list of 10-by-10 arrays with Python integer symbols 0.
 
 ## State of the art
 
-Two orthogonal Latin squares of order 10 exist (Parker 1959), and no set of three has been found. Since there is no projective plane of order 10 (Lam, Thiel and Swiercz 1989), at most 8 are possible. The growth of N(n) is Erdős Problem #724.
+Two orthogonal Latin squares of order 10 exist (Parker 1959), and no set of three has been found. Since there is no projective plane of order 10 (Lam, Thiel and Swiercz 1989) and, by Bruck's completion theorem for nets of small deficiency (1963), seven such squares would extend to nine, at most 6 are possible. The growth of N(n) is Erdős Problem #724.
 
-Reference value: best known value `2` (reviewed 2026-09-24).
+Reference value: best known value `2` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #724](https://www.erdosproblems.com/724), status: open.
 

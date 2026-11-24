@@ -45,12 +45,12 @@
     },
     "interface": "construct() -> candidate. Return 1..12 DISTINCT integers all greater than 12, with product exactly 12!. Minimize the LARGEST factor; the number of factors is variable.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -93,9 +93,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+    "kind": "optimum",
+    "value": 33,
+    "statement": "12! is a product of distinct integers from 13 to 33 and not of distinct integers from 13 to 32 (exhaustive search over the divisors of 12!), so the optimum is 33. In equation (6) of Erdős and Graham (1980, p. 75) this is the least n + i_k for n = 12.",
     "sources": [
       {
         "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -104,15 +104,15 @@
         "year": 1980
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

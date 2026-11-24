@@ -129,23 +129,15 @@
       "cpu"
     ],
     "cost": "fast",
-    "important_to_science": true
+    "important_to_science": false
   },
   "science_relevance": {
-    "status": "supported",
+    "status": "unreviewed",
     "scientific_problem": "Decide whether for every k infinitely many primes p have p^2 + 1, ..., p^2 + k all free of prime factors larger than p (Erdős Problem #383).",
     "importance_rationale": "The question probes smooth numbers in short intervals near squares, a regime central to sieve theory and factoring algorithms.",
-    "papers": [
-      {
-        "title": "Old and new problems and results in combinatorial number theory",
-        "url": "https://fanchung.ucsd.edu/ron/papers/80_11_number_theory.pdf",
-        "task_relation": "Long runs for p <= 10^9 are finite evidence for the conjectured positive answer.",
-        "primary_goal": "Decide whether for every k infinitely many primes p have p^2 + 1, ..., p^2 + k all free of prime factors larger than p (Erdős Problem #383).",
-        "evidence_role": "primary_problem"
-      }
-    ],
-    "reviewed_at": "2026-09-24",
-    "reason": "Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.",
+    "papers": [],
+    "reviewed_at": "2026-11-24",
+    "reason": "The only work cited for this problem is a problem collection (Old and new problems and results in combinatorial number theory), which states the problem but does not have it as its main objective. The audit of 2026-11-24 found no research paper whose main objective is this problem, so no qualifying primary-goal evidence is established here; this is not a finding that the problem is unimportant.",
     "verification_basis": "Erdős-Graham monograph (L'Enseignement Mathématique, 1980; source of the problem) located. Erdős Problem #383 page inspected: heuristically n has no prime factor >= n^(1/2) with probability 1 - log 2, so a positive answer is expected; it would settle part of #382. No finite values are documented.",
     "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
     "criterion": "primary_research_goal"

@@ -17,9 +17,9 @@ design(problem) -> 32 x 32 nested list of 0/1 pixels of one square unit cell (1 
 
 ## State of the art
 
-No published value under this exact discretization and gap measure. For context, the textbook rod crystal (the seed) gives 0.043 here, close to the 3.84 % reported by the MPB tutorial for the same nominal structure, and a 150-second greedy pixel-flip search run during task construction reached 0.311.
+No published value under this exact discretization and gap measure. For context, the textbook rod crystal (the seed) gives 0.0431 here, against 3.84 % in the MPB tutorial for the same nominal structure (the difference comes from the pixelated circle and from the tutorial's grid resolution), and a 150-second greedy pixel-flip search run during task construction reached 0.311.
 
-Reference value: no documented value for this finite instance (reviewed 2026-10-10).
+Reference value: no documented value for this finite instance (reviewed 2026-11-24).
 
 - [MPB Python tutorial](https://mpb.readthedocs.io/en/latest/Python_Tutorial/)
 
@@ -27,7 +27,7 @@ Parameters: `{"lower_band": 4, "cpu_seconds": 120}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `natural_science`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `method` (tier 2); artifact `construction`, domain `natural_science`, data `none`, verification `simulation`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `physics`.
 
@@ -50,7 +50,7 @@ The cited papers' main goal is maximizing photonic band gaps by designing the un
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- The plane-wave model is converged to about 0.1 percentage points of gap-midgap ratio on test structures (289 versus 625 plane waves), and it reproduces the MPB tutorial's TM gap of the rod crystal (epsilon 12, radius 0.2) within 0.2 percentage points, the difference coming from the pixelated circle. Band extrema are searched on 30 wave vectors only, which is standard for symmetric cells but can miss extrema between samples. The symmetry requirement and the 32-pixel grid follow the setting of Men et al. (2010); the score is not comparable with their eigenvalue-based gap measure.
+- The plane-wave model is converged to about 0.1 percentage points of gap-midgap ratio on test structures (289 versus 625 plane waves), and for the rod crystal of the MPB tutorial (epsilon 12, radius 0.2) it gives 39.10 % for the gap between bands 1 and 2 (tutorial: 38.95 %) and 4.31 % for the scored gap between bands 4 and 5 (tutorial: 3.84 %). About half of the 0.47-point difference in the scored gap comes from the pixelated circle (fill fraction 0.1211 instead of 0.1257): with the exact Fourier coefficients of the ideal circle the same method converges to 4.08 %, and the rest is the tutorial's resolution-32 grid. A finite-difference Bloch solver on the same pixel map agrees with the plane-wave frequencies to 3e-4. Band extrema are searched on 30 wave vectors only, which is standard for symmetric cells but can miss extrema between samples. The symmetry requirement and the 32-pixel grid follow the setting of Men et al. (2010); the score is not comparable with their eigenvalue-based gap measure.
 
 ## Run
 

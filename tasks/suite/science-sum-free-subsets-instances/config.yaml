@@ -29,7 +29,7 @@ prompt:
   system_message: |
     Large sum-free subsets of three fixed sets of integers
 
-    construct() -> three subsets, one per instance from sum_free_instance(size, seed) for (60,801), (120,802), (240,803) in the verifier (distinct nonzero integers in [-10000, 10000]). Each subset must be sum-free: no a + b = c with a, b, c in it (a = b allowed). Maximize the total size; every n-element set has a sum-free subset of size at least (n+2)/3 (Bourgain). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n).
+    construct() -> three subsets, one per instance from sum_free_instance(size, seed) for (60,801), (120,802), (240,803) in the verifier (distinct nonzero integers in [-10000, 10000]). Each subset must be sum-free: no a + b = c with a, b, c in it (a = b allowed). Maximize the total size; every n-element set has a sum-free subset of size at least (n+2)/3 (Bourgain). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n). The exact optimum is 328 (55 + 103 + 170), which integer programming on the triples a + b = c finds in seconds.
 
     Candidate interface: construct() -> three subsets, one per instance from sum_free_instance(size, seed) for (60,801), (120,802), (240,803) in the verifier (distinct nonzero integers in [-10000, 10000]). Each subset must be sum-free: no a + b = c with a, b, c in it (a = b allowed). Maximize the total size; every n-element set has a sum-free subset of size at least (n+2)/3 (Bourgain).
 

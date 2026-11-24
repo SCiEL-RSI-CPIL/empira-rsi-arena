@@ -72,41 +72,66 @@ def geostrophic(field, grid_lat, grid_lon, lat0, lon0):
     return coef[0] / 100.0, -coef[2] / (RHO_AIR * f), coef[1] / (RHO_AIR * f)
 
 
-def derive(paths):
+PARTS = tuple(YEARS)  # scripts/prepare_earth.py derives one year at a time and keeps finished years
+
+
+_PARSED = {}  # the buoy files of the last call, parsed once per process
+
+
+def all_positions(paths):
+    """({(buoy, day): (lat, lon)}, {day: [(buoy, (lat, lon)), ...]}) from all yearly buoy files."""
+    key = tuple(str(paths[f"iabp_C{y}"]) for y in YEARS)
+    if key not in _PARSED:
+        pos = {}
+        for y in YEARS:
+            pos.update(positions(paths[f"iabp_C{y}"].read_text(errors="replace")))
+        by_day = {}
+        for (buoy, day), value in pos.items():
+            by_day.setdefault(day, []).append((buoy, value))
+        _PARSED.clear()
+        _PARSED[key] = pos, by_day
+    return _PARSED[key]
+
+
+def derive_part(paths, y):
+    """Rows of one year: the slow step, one plane fit per buoy-day (about half a minute for the largest year)."""
     import netCDF4  # preparation-only dependency
-    pos = {}
-    for y in YEARS:
-        pos.update(positions(paths[f"iabp_C{y}"].read_text(errors="replace")))
-    by_day = {}
-    for (buoy, day), value in pos.items():
-        by_day.setdefault(day, []).append((buoy, value))
+    pos, by_day = all_positions(paths)
     rows = []
-    for y in YEARS:
-        with netCDF4.Dataset(paths[f"ncep_slp_daily_{y}.nc"]) as nc:
-            lat = np.asarray(nc.variables["lat"][:], float)
-            lon = np.asarray(nc.variables["lon"][:], float)
-            times = netCDF4.num2date(nc.variables["time"][:], nc.variables["time"].units)
-            cap = lat >= 55.0
-            slp = np.ma.filled(nc.variables["slp"][:, cap, :].astype(float), np.nan)
-        glat, glon = np.meshgrid(lat[cap], lon, indexing="ij")
-        glat, glon = glat.ravel(), (glon.ravel() + 180.0) % 360.0 - 180.0
-        for k, when in enumerate(times):
-            day = (dt.date(when.year, when.month, when.day) - EPOCH).days
-            field = slp[k].ravel()
-            for buoy, (la, lo) in sorted(by_day.get(day, [])):
-                nxt = pos.get((buoy, day + 1))
-                if nxt is None or not (70.0 <= la <= 90.0):
-                    continue
-                dx, dy = local_xy(la, lo, nxt[0], nxt[1])
-                u, v = dx / 864.0, dy / 864.0  # m per day -> cm/s
-                if np.hypot(u, v) > 100.0:
-                    continue
-                p, ug, vg = geostrophic(field, glat, glon, la, lo)
-                rows.append((day, buoy, round(la, 4), round(lo, 4), round(p, 2), round(ug, 3), round(vg, 3), round(u, 3), round(v, 3)))
-    rows.sort()
+    with netCDF4.Dataset(paths[f"ncep_slp_daily_{y}.nc"]) as nc:
+        lat = np.asarray(nc.variables["lat"][:], float)
+        lon = np.asarray(nc.variables["lon"][:], float)
+        times = netCDF4.num2date(nc.variables["time"][:], nc.variables["time"].units)
+        cap = lat >= 55.0
+        slp = np.ma.filled(nc.variables["slp"][:, cap, :].astype(float), np.nan)
+    glat, glon = np.meshgrid(lat[cap], lon, indexing="ij")
+    glat, glon = glat.ravel(), (glon.ravel() + 180.0) % 360.0 - 180.0
+    for k, when in enumerate(times):
+        day = (dt.date(when.year, when.month, when.day) - EPOCH).days
+        field = slp[k].ravel()
+        for buoy, (la, lo) in sorted(by_day.get(day, [])):
+            nxt = pos.get((buoy, day + 1))
+            if nxt is None or not (70.0 <= la <= 90.0):
+                continue
+            dx, dy = local_xy(la, lo, nxt[0], nxt[1])
+            u, v = dx / 864.0, dy / 864.0  # m per day -> cm/s
+            if np.hypot(u, v) > 100.0:
+                continue
+            p, ug, vg = geostrophic(field, glat, glon, la, lo)
+            rows.append((day, buoy, round(la, 4), round(lo, 4), round(p, 2), round(ug, 3), round(vg, 3), round(u, 3), round(v, 3)))
+    return rows
+
+
+def assemble(parts):
+    """The derived file from the rows of all years (as computed or as read back from JSON)."""
+    rows = sorted(tuple(r) for part in parts for r in part)
     return {DATA: {"source": "IABP product C (00 UTC positions) and NCEP/NCAR Reanalysis 1 daily mean SLP", "day_unit": "days since 2000-01-01",
                    "velocity_unit": "cm/s (displacement from 00 UTC of the day to 00 UTC of the next day)", "wind_unit": "m/s",
                    **{f: [r[i] for r in rows] for i, f in enumerate(FIELDS)}}}
+
+
+def derive(paths):
+    return assemble([derive_part(paths, y) for y in PARTS])
 
 
 def load():

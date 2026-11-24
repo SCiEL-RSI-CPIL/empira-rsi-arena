@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> [a,b], positive endpoints a<b<=maximum=10000000, b-a<=10000, both sums of two integer squares (zero is permitted). No interior integer may be a sum of two squares. Maximize b-a. Positive consecutive representable endpoints at most 10000000 and distance at most 10000, with zero allowed as one of the two squared integers. Every interior integer is checked. The optimum is 50 (9565544 to 9565594; OEIS A297350); this is a rediscovery task.
+construct() -> [a,b], positive endpoints a<b<=maximum=10000000, b-a<=10000, both sums of two integer squares (zero is permitted). No interior integer may be a sum of two squares. Maximize b-a. Positive consecutive representable endpoints at most 10000000 and distance at most 10000, with zero allowed as one of the two squared integers. Every interior integer is checked. The optimum is 50 (OEIS A297350); this is a rediscovery task.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,9 +17,9 @@ construct() -> [a,b], positive endpoints a<b<=maximum=10000000, b-a<=10000, both
 
 ## State of the art
 
-The largest gap between consecutive sums of two squares up to 10^7 is 50, from 9565544 to 9565594. The next record gap starts at 13305524 (OEIS A297350), and a sieve up to 10^7 recomputes the value.
+The largest gap between consecutive sums of two squares up to 10^7 is 50. The next record gap starts at 13305524 (OEIS A297350), and a sieve up to 10^7 recomputes the value.
 
-Reference value: proven optimum `50` (reviewed 2026-09-24).
+Reference value: proven optimum `50` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #222](https://www.erdosproblems.com/222), status: open.
 
@@ -69,6 +69,6 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- Solved finite case: The largest gap between consecutive sums of two squares up to 10^7 is 50, from 9565544 to 9565594.
+- Solved finite case: The largest gap between consecutive sums of two squares up to 10^7 is 50.
 - Positive consecutive representable endpoints at most 10000000 and distance at most 10000, with zero allowed as one of the two squared integers. Every interior integer is checked.
 - All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code.

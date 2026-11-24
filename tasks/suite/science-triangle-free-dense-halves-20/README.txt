@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> list of edges [u, v] of a simple triangle-free graph on vertices 0..19. The score is the minimum number of edges induced by any 10 of the vertices, computed over all 184756 subsets. Maximize; a score above 8 would disprove the Erdős-Rousseau conjecture for n = 20. For n = 20 the conjectured maximum of the score is 8, attained by the balanced C5 blow-up; a triangle-free graph with score 9 would be a counterexample.
+construct() -> list of edges [u, v] of a simple triangle-free graph on vertices 0..19. The score is the minimum number of edges induced by any 10 of the vertices, computed over all 184756 subsets. Maximize; a score above 8 would disprove the Erdős-Rousseau conjecture for n = 20. For n = 20 the conjectured maximum of the score is 8, and triangle-free graphs with score 8 are known; a triangle-free graph with score 9 would be a counterexample.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,9 +17,9 @@ construct() -> list of edges [u, v] of a simple triangle-free graph on vertices 
 
 ## State of the art
 
-Conjectured maximum n^2/50 = 8 for n = 20, attained by the balanced blow-up of C5; no triangle-free graph with a larger score is known.
+Conjectured maximum n^2/50 = 8 for n = 20, attained by known constructions; no triangle-free graph with a larger score is known.
 
-Reference value: conjectured optimum `8` (reviewed 2026-09-24).
+Reference value: conjectured optimum `8` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #128](https://www.erdosproblems.com/128), status: open (falsifiable, $250).
 
@@ -44,7 +44,7 @@ Underlying problem: Show that every triangle-free graph has a set of n/2 vertice
 
 Why it matters: The sparse-halves conjecture of Erdős and Rousseau is a $250 Erdős problem that is falsifiable by a single finite graph.
 
-- [More about sparse halves in triangle-free graphs](https://doi.org/10.1070/sm9615): Main research objective: Show that every triangle-free graph has a set of n/2 vertices spanning at most n^2/50 edges. Task connection: For n = 20 the conjectured maximum of the score is 8, attained by the balanced C5 blow-up; a triangle-free graph with score 9 would be a counterexample.
+- [More about sparse halves in triangle-free graphs](https://doi.org/10.1070/sm9615): Main research objective: Show that every triangle-free graph has a set of n/2 vertices spanning at most n^2/50 edges. Task connection: For n = 20 the conjectured maximum of the score is 8, and triangle-free graphs with score 8 are known; a triangle-free graph with score 9 would be a counterexample.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -52,7 +52,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- For n = 20 the conjectured maximum of the score is 8, attained by the balanced C5 blow-up; a triangle-free graph with score 9 would be a counterexample. Exact local certificates are not Lean proofs. Consult the independent oracle and malformed-input tests.
+- For n = 20 the conjectured maximum of the score is 8, and triangle-free graphs with score 8 are known; a triangle-free graph with score 9 would be a counterexample. Exact local certificates are not Lean proofs. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -64,7 +64,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.1070/sm9615 (Alexander A. Razborov, More about sparse halves in triangle-free graphs (2022). Crossref record inspected; Erdős Problem #128 ($250) page inspected: every n/2-set of a triangle-free graph is conjectured to span at most n^2/50 edges, tight for the C5 blow-up and the Petersen graph; proved with 1/50 replaced by 27/1024 by Razborov. For n = 20 the conjectured maximum of the score is 8, attained by the balanced C5 blow-up; a triangle-free graph with score 9 would be a counterexample.)
+- paper: https://doi.org/10.1070/sm9615 (Alexander A. Razborov, More about sparse halves in triangle-free graphs (2022). Crossref record inspected; Erdős Problem #128 ($250) page inspected: every n/2-set of a triangle-free graph is conjectured to span at most n^2/50 edges, tight for the C5 blow-up and the Petersen graph; proved with 1/50 replaced by 27/1024 by Razborov. For n = 20 the conjectured maximum of the score is 8, and triangle-free graphs with score 8 are known; a triangle-free graph with score 9 would be a counterexample.)
 - archive: https://www.erdosproblems.com/128 (Erdős Problem #128 (open (falsifiable, $250)); statement, history and current bounds reviewed 2026-09-24.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0101-0200.md#JSP-000134 (JSP-000134; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 

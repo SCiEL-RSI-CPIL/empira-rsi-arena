@@ -7,13 +7,13 @@
 
 ## Task
 
-construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4 (first at 999979163). For k = 3 and N <= 10^10 the maximum is 4, so the task recovers such an N.
+construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4. For k = 3 and N <= 10^10 the maximum is 4, so the task recovers such an N.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
 ## Candidate interface
 
-construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4 (first at 999979163).
+construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4.
 
 ## State of the art
 

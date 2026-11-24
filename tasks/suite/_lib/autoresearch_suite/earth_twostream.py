@@ -7,7 +7,9 @@ diffuse fluxes with coefficients gamma1, gamma2, gamma3 (and gamma4 = 1 - gamma3
 after delta-scaling with a forward-peak fraction f. The candidate supplies these coefficients as
 a function of (omega, g, mu0) only; the evaluator solves the two-stream equations exactly and
 compares the layer reflectance and total transmittance with a 96-stream discrete-ordinate
-solution (delta-M scaled, double-Gauss quadrature) computed by ``derive``.
+solution (delta-M scaled, double-Gauss quadrature) computed by ``derive``. Every (omega, g, mu0)
+triple is scored at four optical depths, one from each decade of 0.01-100, with the one set of
+coefficients returned for it, so the coefficients cannot be fitted to an optical depth.
 """
 from __future__ import annotations
 
@@ -19,8 +21,10 @@ from .runtime import require
 
 RAW_SOURCES = ()
 DATA = "twostream/reference_flux_cases.json.gz"
-DERIVED = {DATA: "03bf0bcd7b8c5751ebe0ce41680ae9f65fcecfbd89dc2fa64086c7f049f5b430"}
+DERIVED = {DATA: "298f07239eb5816fc7df7c0d1804da5f116b2f299f4ec3bf65d4fe74fa26f6c2"}
 CASES, SEED = 12000, 20261010
+DEPTHS = 4  # optical depths per (omega, g, mu0) triple, one from each decade of 0.01-100
+PARTS = tuple(range(12))  # scripts/prepare_earth.py solves the cases in twelve resumable blocks
 STREAMS = 48  # per hemisphere
 OMEGA_CAP = 1.0 - 1e-10  # conservative scattering is evaluated at this albedo by both solvers
 K_FLOOR = 1e-6  # smallest two-stream eigenvalue used by the closed-form solution
@@ -120,23 +124,39 @@ def classic(name, omega, g, mu0, tau):
 
 
 def sample_cases(count=CASES, seed=SEED):
-    """Random layers, rounded so that the stored cases are exact decimal values."""
+    """Random (omega, g, mu0) triples, each at one random optical depth per decade (stored as exact decimal values).
+
+    A design with one optical depth per triple can be rebuilt from its seed by a candidate, which then knows the
+    depth of every layer and can fit its coefficients to it. Here a triple's coefficients serve all four depths.
+    """
     rng = np.random.default_rng(seed)
-    tau = np.round(10 ** rng.uniform(-2, 2, count), 5)
-    conservative = rng.random(count) < 0.25
-    omega = np.where(conservative, 1.0, np.round(1.0 - 10 ** rng.uniform(-5, np.log10(0.5), count), 9))
-    g = np.round(rng.uniform(0.0, 0.95, count), 6)
-    mu0 = np.round(rng.uniform(0.05, 1.0, count), 6)
-    return np.maximum(tau, 0.01), omega, g, mu0
+    triples = count // DEPTHS
+    conservative = rng.random(triples) < 0.25
+    omega = np.where(conservative, 1.0, np.round(1.0 - 10 ** rng.uniform(-5, np.log10(0.5), triples), 9))
+    g = np.round(rng.uniform(0.0, 0.95, triples), 6)
+    mu0 = np.round(rng.uniform(0.05, 1.0, triples), 6)
+    tau = np.maximum(np.round(10 ** (np.arange(-2, 2) + rng.uniform(0, 1, (triples, DEPTHS))), 5), 0.01)
+    return tau.ravel(), np.repeat(omega, DEPTHS), np.repeat(g, DEPTHS), np.repeat(mu0, DEPTHS)
+
+
+def derive_part(paths, part):
+    """Discrete-ordinate fluxes of one block of cases (the slow step)."""
+    block = slice(part * CASES // len(PARTS), (part + 1) * CASES // len(PARTS))
+    return [list(discrete_ordinates(*case)) for case in zip(*(v[block] for v in sample_cases()))]
+
+
+def assemble(parts):
+    tau, omega, g, mu0 = sample_cases()
+    reflect, diffuse, direct = (np.array(c) for c in zip(*(row for part in parts for row in part)))
+    # Six decimals: the solver's rounding noise reaches 4e-11 on conservative layers, and with seven decimals two of
+    # the 24000 values lie within ten times their noise of a rounding boundary, so the file could differ by platform.
+    return {DATA: {"method": f"discrete ordinates, {STREAMS} streams per hemisphere, delta-M, double-Gauss", "seed": SEED,
+                   "tau": tau.tolist(), "omega": omega.tolist(), "g": g.tolist(), "mu0": mu0.tolist(),
+                   "reflectance": np.round(reflect, 6).tolist(), "transmittance": np.round(diffuse + direct, 6).tolist()}}
 
 
 def derive(paths):
-    tau, omega, g, mu0 = sample_cases()
-    rows = [discrete_ordinates(*case) for case in zip(tau, omega, g, mu0)]
-    reflect, diffuse, direct = (np.array(c) for c in zip(*rows))
-    return {DATA: {"method": f"discrete ordinates, {STREAMS} streams per hemisphere, delta-M, double-Gauss", "seed": SEED,
-                   "tau": tau.tolist(), "omega": omega.tolist(), "g": g.tolist(), "mu0": mu0.tolist(),
-                   "reflectance": np.round(reflect, 7).tolist(), "transmittance": np.round(diffuse + direct, 7).tolist()}}
+    return assemble([derive_part(paths, part) for part in PARTS])
 
 
 def load():
@@ -150,7 +170,8 @@ def errors(data, reflect, transmit):
 
 def score(module, cpu_seconds=60):
     data = load()
-    unique = np.unique(np.column_stack([data["omega"], data["g"], data["mu0"]]), axis=0)
+    unique, depths = np.unique(np.column_stack([data["omega"], data["g"], data["mu0"]]), axis=0, return_counts=True)
+    require(np.all(depths == DEPTHS), "prepared data do not hold every triple at all optical depths")
     out = earth_sandbox.call(module, "two_stream_coefficients", [unique[:, 0], unique[:, 1], unique[:, 2]], cpu_seconds=cpu_seconds)
     require(isinstance(out, (list, tuple)) and len(out) == 4, "two_stream_coefficients must return (gamma1, gamma2, gamma3, f)")
     gamma1, gamma2, gamma3, f = (ec.as_array(v, (len(unique),), name) for v, name in zip(out, ("gamma1", "gamma2", "gamma3", "f")))

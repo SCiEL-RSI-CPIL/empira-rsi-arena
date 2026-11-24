@@ -15,9 +15,9 @@ released.
 For a plain callable the calls are made in this process. That route is for trusted code
 only: the benchmarks of the scoring modules and their tests.
 
-The residual risks are those of earth_sandbox: the shared evaluator template imports the
-candidate module once in the evaluator process, so module-level code runs there, and
-outside macOS deliberately hostile native code can bypass the file policy of the child.
+The evaluators load the candidate with ``sandboxed.run``, so no statement of the
+candidate is executed in this process. The residual risk is that of earth_sandbox: outside
+macOS deliberately hostile native code can bypass the file policy of the child.
 """
 from __future__ import annotations
 

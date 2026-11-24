@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> [a,b], positive squarefree endpoints a<b<=maximum=10000000, with b-a<=10000. EVERY interior integer must be nonsquarefree. Maximize b-a. Endpoints and every interior integer are tested exactly. Maximize the gap between consecutive positive squarefree endpoints at most 10000000, with gap at most 10000. Endpoints and every interior integer are checked. The optimum is 10 (8870023 to 8870033; OEIS A020754); this is a rediscovery task.
+construct() -> [a,b], positive squarefree endpoints a<b<=maximum=10000000, with b-a<=10000. EVERY interior integer must be nonsquarefree. Maximize b-a. Endpoints and every interior integer are tested exactly. Maximize the gap between consecutive positive squarefree endpoints at most 10000000, with gap at most 10000. Endpoints and every interior integer are checked. The optimum is 10 (OEIS A020754); this is a rediscovery task.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,9 +17,9 @@ construct() -> [a,b], positive squarefree endpoints a<b<=maximum=10000000, with 
 
 ## State of the art
 
-The largest gap between consecutive squarefree numbers up to 10^7 is 10, from 8870023 to 8870033. The next record gap starts at 221167421 (OEIS A020754), and a sieve up to 10^7 recomputes the value.
+The largest gap between consecutive squarefree numbers up to 10^7 is 10. The next record gap starts at 221167421 (OEIS A020754), and a sieve up to 10^7 recomputes the value.
 
-Reference value: proven optimum `10` (reviewed 2026-09-24).
+Reference value: proven optimum `10` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #208](https://www.erdosproblems.com/208), status: open.
 
@@ -69,6 +69,6 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- Solved finite case: The largest gap between consecutive squarefree numbers up to 10^7 is 10, from 8870023 to 8870033.
+- Solved finite case: The largest gap between consecutive squarefree numbers up to 10^7 is 10.
 - Maximize the gap between consecutive positive squarefree endpoints at most 10000000, with gap at most 10000. Endpoints and every interior integer are checked.
 - All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code.

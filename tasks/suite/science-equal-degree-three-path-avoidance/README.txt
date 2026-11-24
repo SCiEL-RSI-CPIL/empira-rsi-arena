@@ -17,9 +17,9 @@ construct() -> simple undirected edges on vertices 0..14. Reject if any simple t
 
 ## State of the art
 
-No documented maximum for 15 vertices. K_{7,8} has 56 edges and no such path, and Chen and Ma proved that this bound is sharp for 2n+1 vertices when n >= 600 (Erdős Problem #816).
+The maximum for 15 vertices is not proven; the question of Erdős and Hajnal conjectures n^2 + n = 56 for 2n + 1 = 15 vertices. K_{7,8} has 56 edges and no such path, and Chen and Ma proved that this bound is sharp for 2n+1 vertices when n >= 600 (Erdős Problem #816).
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: conjectured optimum `56` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #816](https://www.erdosproblems.com/816), status: proved.
 
@@ -29,7 +29,7 @@ Parameters: `{"n": 15}`
 
 ## Labels
 
-Scientific contribution: `open_problem` (tier 1); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `open_problem` (tier 1); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

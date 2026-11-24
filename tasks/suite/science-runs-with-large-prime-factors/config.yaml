@@ -29,9 +29,9 @@ prompt:
   system_message: |
     Runs of consecutive integers each with a prime factor larger than the run length (start at most 10^4)
 
-    construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30 (6961, ..., 6990). For runs starting at most 10^4 the maximum is 30, so the task recovers the run 6961..6990 or an equivalent.
+    construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30. For runs starting at most 10^4 the maximum is 30, so the task recovers such a run.
 
-    Candidate interface: construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30 (6961, ..., 6990).
+    Candidate interface: construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30.
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

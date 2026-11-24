@@ -51,12 +51,12 @@
     },
     "interface": "construct() -> 1..30 distinct integers in 1..256. Form every NONEMPTY subset sum; no two distinct resulting values may divide one another. Equal sum values are deduplicated (but any repeated subset representation also leads to a forbidden double after cancellation). Maximize set size.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "open_problem",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -95,9 +95,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Konstantinos Gaitanas (2019, Two divisibility problems on subset sums) studies the underlying problem.",
+    "kind": "best_known",
+    "value": 8,
+    "statement": "For N = 256 = 2^8 the construction of Erdős, Lev, Rauzy, Sándor and Sárközy (1999), as described by Gaitanas (2019, Section 4), has 8 elements, and Gaitanas notes that this bound has not been improved. His Theorem 3 (the elements sum to at least 2^(k+1) - 3) limits a set in [1, 256] to at most 10 elements. Konstantinos Gaitanas (2019, Two divisibility problems on subset sums) studies the underlying problem.",
     "sources": [
       {
         "title": "Two divisibility problems on subset sums",
@@ -106,17 +106,17 @@
         "year": 2019
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "open_problem",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
-    "science_tier": 2,
+    "science_tier": 1,
     "resources": [
       "cpu"
     ],

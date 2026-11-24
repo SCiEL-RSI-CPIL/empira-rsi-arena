@@ -17,9 +17,9 @@ construct() -> candidate. Return exactly 12 distinct integers in [0,128]. Evalua
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Alexandre Bailleul and Robin Riblet (2026, On the largest Sidon subset in a finite subset of R^N) study the underlying problem.
+Every set of 12 integers in [0,128] contains a Sidon subset with 5 elements and some contain none with 6, so the optimum is 5. This comes from an exhaustive search over all 12-element subsets of [0,128], extended in increasing order and cut as soon as a Sidon 5-subset appears. Bailleul and Riblet (2026) prove that every n-element set of integers contains a Sidon subset of size at least (1/(3√3) + o(1))√n.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `5` (reviewed 2026-11-24).
 
 - [On the largest Sidon subset in a finite subset of R^N](https://arxiv.org/abs/2605.03181), Alexandre Bailleul and Robin Riblet (2026)
 
@@ -27,7 +27,7 @@ Parameters: `{"size": 12, "bound": 128}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

@@ -7,6 +7,9 @@ forecasts from every 6-hourly best-track time at which a held-out system is a
 tropical or subtropical cyclone. Each call sees only that storm's best track up to
 the forecast time. Verification follows the NHC convention: a lead counts only when
 the system is still a tropical or subtropical cyclone at the verifying time.
+
+The candidate runs in the earth_sandbox child process, which is sent the training storms
+and then one truncated best track per forecast; the verifying records stay in this process.
 """
 from __future__ import annotations
 
@@ -15,6 +18,7 @@ import datetime as dt
 import numpy as np
 
 from . import earth_common as ec
+from . import earth_sandbox
 from .runtime import require
 
 RAW_SOURCES = ("hurdat2-1851-2024-040425.txt",)
@@ -158,19 +162,19 @@ def validate(kind, output):
     return ec.as_array(output, (len(LEADS),), "intensity forecast", low=0.0, high=300.0)
 
 
-def score(module, kind):
+def score(module, kind, cpu_seconds=120):
     """Mean over leads of the mean forecast error (km for tracks, kt for intensity) on 2015-2024 storms."""
     require(kind in ("track", "intensity"), "unknown forecast kind")
     train, test = split()
-    fit = getattr(module, "fit_track_model" if kind == "track" else "fit_intensity_model", None)
-    require(callable(fit), f"candidate must define fit_{kind}_model(training_storms)")
-    model = fit([view(s) for s in train])
-    require(callable(getattr(model, "forecast", None)), "the fitted model needs a forecast(history) method")
+    test_cases = cases(test)
+    # one call per forecast, each with that storm's records up to the forecast time; nothing later leaves this process
+    steps = [{"append": None, "args": [view(test[k], i)]} for _, k, i, _ in test_cases]
+    forecasts = earth_sandbox.run_online(module, f"fit_{kind}_model", {"args": [[view(s) for s in train]], "history": None}, steps,
+                                         lambda index, value: validate(kind, value), with_history=False, cpu_seconds=cpu_seconds)
     reference = fit_reference(train, kind)
     rows = {"candidate": [], "reference": [], "persistence": []}
-    for _, k, i, verify in cases(test):
+    for (_, k, i, verify), forecast in zip(test_cases, forecasts):
         storm = test[k]
-        forecast = validate(kind, model.forecast(view(storm, i)))
         rows["candidate"].append(errors(kind, storm, verify, forecast))
         rows["reference"].append(errors(kind, storm, verify, reference_forecast(reference, storm, i, kind)))
         rows["persistence"].append(errors(kind, storm, verify, persistence(storm, i, kind)))

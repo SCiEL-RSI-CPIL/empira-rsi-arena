@@ -17,9 +17,9 @@ construct() -> Python integer m in 0..1000000. The evaluator computes f(12,m), t
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn (2026, On the length of an interval that contains distinct multiples of the first n positive integers) studies the underlying problem.
+The maximum of f(12, m) over all m is 22: f(12, m) has period lcm(1..12) = 27720 in m, and one period was evaluated exhaustively for this package. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn (2026, On the length of an interval that contains distinct multiples of the first n positive integers) studies the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `22` (reviewed 2026-11-24).
 
 - [On the length of an interval that contains distinct multiples of the first n positive integers](https://math.colgate.edu/~integers/aa7/aa7.pdf), Wouter van Doorn (2026)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 12, "maximum_start": 1000000}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

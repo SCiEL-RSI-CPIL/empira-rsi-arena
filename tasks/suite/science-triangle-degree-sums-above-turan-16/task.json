@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "id": "science-triangle-degree-sums-above-turan-16",
   "name": "Graphs on 16 vertices with 65 edges whose triangles have small degree sums",
-  "description": "construct() -> {'n': 16, 'edges': [[u, v], ...]}: a simple graph on 16 vertices with exactly 65 = floor(16^2/4) + 1 edges (so it has triangles). The score is the largest degree sum deg(u) + deg(v) + deg(w) over its triangles. Minimize. Scores below 24 would beat the published construction at n = 16; the conjectured asymptotic value is about 1.464n = 23.4.",
+  "description": "construct() -> {'n': 16, 'edges': [[u, v], ...]}: a simple graph on 16 vertices with exactly 65 = floor(16^2/4) + 1 edges (so it has triangles). The score is the largest degree sum deg(u) + deg(v) + deg(w) over its triangles. Minimize. Scores below 24 would beat the published construction at n = 16; the best asymptotic construction gives about 1.4639n = 23.4 (a note of July 2026, not yet published in a journal, reports a disproof of the Bollobás-Erdős conjecture h(n) >= (2(sqrt 3 - 1) - o(1))n by a blow-up of the butterfly graph).",
   "paper_ids": [
     "science-prize_i"
   ],
@@ -12,7 +12,7 @@
     {
       "url": "https://doi.org/10.1002/jgt.3190120216",
       "type": "paper",
-      "locator": "Genghua Fan, Degree sum for a triangle in a graph (1988). Crossref record inspected; Erdős Problem #1033 page inspected (Bollobás-Erdős conjecture h(n) >= (2(sqrt 3 - 1) - o(1))n; known 21n/16 <= h(n) <= 2(sqrt 3 - 1)n + O(1) with the construction of Erdős and Laskar made explicit by Fan). Evaluated locally, that construction gives 24 for n = 16 (K_{10,6} plus a perfect matching on the 10-side); no finite optimum is documented. Scores below 24 would beat the published construction at n = 16; the conjectured asymptotic value is about 1.464n = 23.4."
+      "locator": "Genghua Fan, Degree sum for a triangle in a graph (1988). Crossref record inspected; Erdős Problem #1033 page inspected (Bollobás-Erdős conjecture h(n) >= (2(sqrt 3 - 1) - o(1))n; known 21n/16 <= h(n) <= 2(sqrt 3 - 1)n + O(1) with the construction of Erdős and Laskar made explicit by Fan). Evaluated locally, that construction gives 24 for n = 16 (K_{10,6} plus a perfect matching on the 10-side); no finite optimum is documented. Scores below 24 would beat the published construction at n = 16; the best asymptotic construction gives about 1.4639n = 23.4 (a note of July 2026, not yet published in a journal, reports a disproof of the Bollobás-Erdős conjecture h(n) >= (2(sqrt 3 - 1) - o(1))n by a blow-up of the butterfly graph)."
     },
     {
       "url": "https://www.erdosproblems.com/1033",
@@ -140,7 +140,7 @@
       {
         "title": "Degree sum for a triangle in a graph",
         "url": "https://doi.org/10.1002/jgt.3190120216",
-        "task_relation": "Scores below 24 would beat the published construction at n = 16; the conjectured asymptotic value is about 1.464n = 23.4.",
+        "task_relation": "Scores below 24 would beat the published construction at n = 16; the best asymptotic construction gives about 1.4639n = 23.4 (a note of July 2026, not yet published in a journal, reports a disproof of the Bollobás-Erdős conjecture h(n) >= (2(sqrt 3 - 1) - o(1))n by a blow-up of the butterfly graph).",
         "primary_goal": "Estimate h(n), the largest triangle degree sum forced in graphs with more than n^2/4 edges (Erdős Problem #1033).",
         "evidence_role": "primary_problem"
       }

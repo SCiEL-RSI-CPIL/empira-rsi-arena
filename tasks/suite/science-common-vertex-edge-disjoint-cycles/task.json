@@ -299,12 +299,12 @@
     },
     "interface": "construct() -> nonempty list of simple cycles, each represented by a list of distinct vertices with the closing edge implicit. All cycles must use exactly the same vertex set of size at least three in the pinned 21-vertex host. No host edge may occur in two cycles. Maximize number of cycles.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -344,9 +344,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Barnabás Janzer, Raphael Steiner and Benny Sudakov (2024, Chromatic number and regular subgraphs) study the underlying problem.",
+    "kind": "optimum",
+    "value": 3,
+    "statement": "The optimum is 3: the host is 6-regular, so at most 3 edge-disjoint cycles pass through a vertex, and 3 edge-disjoint Hamilton cycles exist. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Barnabás Janzer, Raphael Steiner and Benny Sudakov (2024, Chromatic number and regular subgraphs) study the underlying problem.",
     "sources": [
       {
         "title": "Chromatic number and regular subgraphs",
@@ -355,15 +355,15 @@
         "year": 2024
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

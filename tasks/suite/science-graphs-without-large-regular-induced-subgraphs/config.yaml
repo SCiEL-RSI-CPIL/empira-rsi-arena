@@ -27,7 +27,7 @@ evaluator:
 
 prompt:
   system_message: |
-    Large graphs with no regular induced subgraph on six vertices
+    Large graphs with no regular induced subgraph on six or more vertices
 
     construct() -> {'n': n, 'edges': [[u, v], ...]}: a simple graph on vertices 0..n-1 with 1 <= n <= 22. No set of 6 or more vertices may induce a regular subgraph (every vertex subset is checked). Maximize n. A valid graph on n vertices certifies G(6) > n. Graphs with 20 vertices are known; a 21-vertex graph would show G(6) >= 22.
 

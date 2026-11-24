@@ -35,7 +35,8 @@
   ],
   "limitations": [
     "Two Sidon subsets of [1,256]; maximize combined size and require disjoint nonzero differences. Ordinary Sidon diagonals are included, and the two sets themselves may overlap.",
-    "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code."
+    "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code.",
+    "Erdős Problem #43 asks whether binom(|A|,2) + binom(|B|,2) <= binom(f(N),2) + O(1), where f(N) is the largest size of a Sidon set in [1,N]. The local score |A| + |B| is a different objective, fixed for this dataset."
   ],
   "evaluator": "evaluator.py",
   "initial_program": "initial_program.py",
@@ -49,7 +50,7 @@
   "state_of_the_art": {
     "kind": "none",
     "value": null,
-    "statement": "No documented maximum of |A| + |B| for N = 256. Erdős's question (Problem #43) was answered negatively: one Sidon set can have the maximum size while the other grows without bound.",
+    "statement": "No documented maximum of |A| + |B| for N = 256. Erdős's question (Problem #43) was answered negatively: one Sidon set can have the maximum size while the other grows without bound. The two difference sets are disjoint subsets of {1, ..., 255}, so binom(|A|,2) + binom(|B|,2) <= 255 and therefore |A| + |B| <= 32.",
     "sources": [
       {
         "title": "Some problems on additive number theory",
@@ -58,7 +59,7 @@
         "year": 1982
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 43,
       "url": "https://www.erdosproblems.com/43",

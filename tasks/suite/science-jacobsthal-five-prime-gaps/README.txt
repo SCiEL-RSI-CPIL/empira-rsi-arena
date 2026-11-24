@@ -17,9 +17,9 @@ construct() -> a squarefree integer n in [2,1000000] with exactly five distinct 
 
 ## State of the art
 
-Hajdu and Saradha proved H(5) = 14. The longest run of residues not coprime to a squarefree n with five prime factors is therefore at most 13, and 2310 = 2·3·5·7·11 attains it.
+Hajdu and Saradha proved H(5) = 14. The longest run of residues not coprime to a squarefree n with five prime factors is therefore at most 13, and moduli below 1000000 attain it.
 
-Reference value: proven optimum `13` (reviewed 2026-09-24).
+Reference value: proven optimum `13` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #970](https://www.erdosproblems.com/970), status: open.
 

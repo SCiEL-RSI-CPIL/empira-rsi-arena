@@ -17,9 +17,9 @@ construct() -> candidate. Return 1..256 distinct denominators in [1,10000000] su
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Yang P. Liu and Mehtaab Sawhney (2024, On further questions regarding unit fractions) study the underlying problem.
+D(5,31) = 186 in the notation of Erdős and Graham (1980, p. 38). If all denominators were below 186, the multiples 31j of 31 among them would have j ≤ 5 and would have to satisfy Σ 1/j ≡ 5 (mod 31), which has no solution; so the largest denominator is at least 186, and representations with largest denominator 186 exist.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `186` (reviewed 2026-11-24).
 
 - [On further questions regarding unit fractions](https://arxiv.org/abs/2404.07113), Yang P. Liu and Mehtaab Sawhney (2024)
 
@@ -27,7 +27,7 @@ Parameters: `{"numerator": 5, "denominator": 31, "maximum": 10000000}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

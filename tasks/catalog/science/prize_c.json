@@ -329,12 +329,12 @@
       ]
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "synthetic",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -355,9 +355,9 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Annika Heckel (2024, The difference between the chromatic and the cochromatic number of a random graph) studies the underlying problem.",
+      "kind": "optimum",
+      "value": 4,
+      "statement": "The cochromatic number of the pinned graph is 4 (exhaustive dynamic programming over all vertex subsets, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Annika Heckel (2024, The difference between the chromatic and the cochromatic number of a random graph) studies the underlying problem.",
       "sources": [
         {
           "title": "The difference between the chromatic and the cochromatic number of a random graph",
@@ -366,7 +366,7 @@
           "year": 2024
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -673,12 +673,12 @@
       "minimum_vertices": 8
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -699,9 +699,9 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Boris Bukh and Benny Sudakov (2007, Induced subgraphs of Ramsey graphs with many distinct degrees) study the underlying problem.",
+      "kind": "optimum",
+      "value": 5,
+      "statement": "The maximum over all vertex subsets with at least eight vertices is 5 distinct degrees (exhaustive enumeration of the 2^17 subsets, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Boris Bukh and Benny Sudakov (2007, Induced subgraphs of Ramsey graphs with many distinct degrees) study the underlying problem.",
       "sources": [
         {
           "title": "Induced subgraphs of Ramsey graphs with many distinct degrees",
@@ -710,7 +710,7 @@
           "year": 2007
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -995,12 +995,12 @@
       ]
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1022,9 +1022,9 @@
       "The cited paper DISPROVES existence of the proposed chromatic forcing function for r>=2. Its result is not described as a positive cycle-packing theorem. The local host is not claimed to reproduce its counterexamples."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Barnabás Janzer, Raphael Steiner and Benny Sudakov (2024, Chromatic number and regular subgraphs) study the underlying problem.",
+      "kind": "optimum",
+      "value": 3,
+      "statement": "The optimum is 3: the host is 6-regular, so at most 3 edge-disjoint cycles pass through a vertex, and 3 edge-disjoint Hamilton cycles exist. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Barnabás Janzer, Raphael Steiner and Benny Sudakov (2024, Chromatic number and regular subgraphs) study the underlying problem.",
       "sources": [
         {
           "title": "Chromatic number and regular subgraphs",
@@ -1033,7 +1033,7 @@
           "year": 2024
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -1193,12 +1193,12 @@
       ]
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1220,9 +1220,9 @@
       "The bank’s abbreviated question and Solved label omit the primary paper’s almost-all qualifier. The local task preserves that limitation; e.g. the gap (7,11) has no such witness."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Ayla Gafni and Terence Tao (2025, Rough numbers between consecutive primes) study the underlying problem.",
+      "kind": "optimum",
+      "value": 22,
+      "statement": "Exactly 22 of the 32 pinned gaps contain a witness (exhaustive check of every interior integer; the gap indices agree with OEIS A386978), so the optimum is 22. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Ayla Gafni and Terence Tao (2025, Rough numbers between consecutive primes) study the underlying problem.",
       "sources": [
         {
           "title": "Rough numbers between consecutive primes",
@@ -1231,7 +1231,7 @@
           "year": 2025
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -1356,12 +1356,12 @@
       "maximum": 1000000
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1383,9 +1383,9 @@
       "Primary-source credit is explicitly related mathematical background, not a claim that this exact full-matching movable-window objective is the cited paper’s main problem. The preprint acknowledges a ChatGPT GPT-5.4 Pro proof draft and Aristotle Lean formalization; no such code is reused locally."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn, Yanyang Li and Quanyu Tang (2026, Optimal bounds for an Erdős problem on matching integers to distinct multiples) study the underlying problem.",
+      "kind": "optimum",
+      "value": 16,
+      "statement": "The minimum span is 16 (exact matching over every window start in one period, lcm = 30030, of the pinned inputs, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn, Yanyang Li and Quanyu Tang (2026, Optimal bounds for an Erdős problem on matching integers to distinct multiples) study the underlying problem.",
       "sources": [
         {
           "title": "Optimal bounds for an Erdős problem on matching integers to distinct multiples",
@@ -1394,7 +1394,7 @@
           "year": 2026
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -1426,12 +1426,12 @@
       "maximum_start": 1000000
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1452,9 +1452,9 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn (2026, On the length of an interval that contains distinct multiples of the first n positive integers) studies the underlying problem.",
+      "kind": "optimum",
+      "value": 22,
+      "statement": "The maximum of f(12, m) over all m is 22: f(12, m) has period lcm(1..12) = 27720 in m, and one period was evaluated exhaustively for this package. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn (2026, On the length of an interval that contains distinct multiples of the first n positive integers) studies the underlying problem.",
       "sources": [
         {
           "title": "On the length of an interval that contains distinct multiples of the first n positive integers",
@@ -1463,7 +1463,7 @@
           "year": 2026
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -2016,7 +2016,7 @@
     "state_of_the_art": {
       "kind": "best_known",
       "value": 2,
-      "statement": "Two orthogonal Latin squares of order 10 exist (Parker 1959), and no set of three has been found. Since there is no projective plane of order 10 (Lam, Thiel and Swiercz 1989), at most 8 are possible. The growth of N(n) is Erdős Problem #724.",
+      "statement": "Two orthogonal Latin squares of order 10 exist (Parker 1959), and no set of three has been found. Since there is no projective plane of order 10 (Lam, Thiel and Swiercz 1989) and, by Bruck's completion theorem for nets of small deficiency (1963), seven such squares would extend to nine, at most 6 are possible. The growth of N(n) is Erdős Problem #724.",
       "sources": [
         {
           "title": "Orthogonal Latin squares",
@@ -2037,7 +2037,7 @@
           "year": 1974
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 724,
         "url": "https://www.erdosproblems.com/724",
@@ -3255,12 +3255,12 @@
       ]
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "synthetic",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -3281,9 +3281,9 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Lajos Pósa (1976, Hamiltonian circuits in random graphs) studies the underlying problem.",
+      "kind": "optimum",
+      "value": 45,
+      "statement": "The earliest prefix of the pinned order that contains a Hamilton cycle is 45 (minimum degree 2 is first reached at prefix 44, where an exhaustive search finds no Hamilton cycle). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Lajos Pósa (1976, Hamiltonian circuits in random graphs) studies the underlying problem.",
       "sources": [
         {
           "title": "Hamiltonian circuits in random graphs",
@@ -3292,7 +3292,7 @@
           "year": 1976
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -7405,12 +7405,12 @@
       ]
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "synthetic",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -7431,9 +7431,9 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Jeff Kahn (2023, Asymptotics for Shamir’s problem) studies the underlying problem.",
+      "kind": "optimum",
+      "value": 31,
+      "statement": "The earliest prefix of the pinned order that contains a perfect matching is 31 (exact-cover search on the prefixes, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Jeff Kahn (2023, Asymptotics for Shamir’s problem) studies the underlying problem.",
       "sources": [
         {
           "title": "Asymptotics for Shamir’s problem",
@@ -7442,7 +7442,7 @@
           "year": 2023
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -7475,12 +7475,12 @@
       "girth": 4
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -7501,9 +7501,9 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Benny Sudakov and Jacques Verstraëte (2007, Cycle lengths in sparse graphs) study the underlying problem.",
+      "kind": "optimum",
+      "value": 2,
+      "statement": "The optimum is 2: in a graph of minimum degree 3 an end vertex of a longest path has three neighbours on the path, which closes cycles of two different lengths, and graphs with exactly two cycle lengths satisfy the contract. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Benny Sudakov and Jacques Verstraëte (2007, Cycle lengths in sparse graphs) study the underlying problem.",
       "sources": [
         {
           "title": "Cycle lengths in sparse graphs",
@@ -7512,7 +7512,7 @@
           "year": 2007
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -7686,19 +7686,19 @@
   {
     "id": "science-distinct-subset-product-sets",
     "name": "Large sets with distinct subset products",
-    "description": "construct() -> 1..18 distinct integers in 2..40. All 2^k subset products, including the empty product one, must be distinct. Exact arbitrary-precision products are enumerated. Maximize number of selected integers. The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem. Integer one is excluded because it collides with the empty product.",
+    "description": "construct() -> 1..18 distinct integers in 2..40. All 2^k subset products, including the empty product one, must be distinct. Exact arbitrary-precision products are enumerated. Maximize number of selected integers. The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem; the optimum of this instance is 17 (OEIS A401472). Integer one is excluded because it collides with the empty product.",
     "family": "science_prize_c_653",
     "parameters": {
       "n": 40,
       "maximum_size": 18
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -7715,22 +7715,26 @@
     ],
     "limitations": [
       "Independent finite computational adaptation. Not a Lean proof, prize submission, general conjecture solution, or guarantee of novelty.",
-      "The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem. Integer one is excluded because it collides with the empty product.",
+      "The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem; the optimum of this instance is 17 (OEIS A401472). Integer one is excluded because it collides with the empty product.",
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Rushil Raghavan (2025, Sharp Bounds for Sets with Distinct Subset Products) studies the underlying problem.",
+      "kind": "optimum",
+      "value": 17,
+      "statement": "The maximum size of a subset of {1,...,40} with distinct subset products is 17 (OEIS A401472, a(40) = 17, the function g(n) of Erdős Problem #795); an independent exhaustive search confirms that 17 is attained and 18 is impossible. Rushil Raghavan (2025, Sharp Bounds for Sets with Distinct Subset Products) studies the underlying problem.",
       "sources": [
         {
           "title": "Sharp Bounds for Sets with Distinct Subset Products",
           "url": "https://arxiv.org/abs/2501.02695",
           "authors": "Rushil Raghavan",
           "year": 2025
+        },
+        {
+          "title": "OEIS A401472: Maximum size of a subset of {1, ..., n} whose subset products are all distinct",
+          "url": "https://oeis.org/A401472"
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -8163,12 +8167,12 @@
       ]
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -8189,9 +8193,9 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Noga Alon, Colin McDiarmid and Bruce Reed (1991, Acyclic coloring of graphs) study the underlying problem.",
+      "kind": "optimum",
+      "value": 4,
+      "statement": "The optimum is 4: with three colours the three two-coloured forests would have at most 2n - 3 = 97 of the 100 edges, and an acyclic 4-colouring exists (found by local search and verified in the package's tests). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Noga Alon, Colin McDiarmid and Bruce Reed (1991, Acyclic coloring of graphs) study the underlying problem.",
       "sources": [
         {
           "title": "Acyclic coloring of graphs",
@@ -8200,7 +8204,7 @@
           "year": 1991
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -9222,7 +9226,7 @@
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -9243,9 +9247,9 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No documented maximum for 15 vertices. K_{7,8} has 56 edges and no such path, and Chen and Ma proved that this bound is sharp for 2n+1 vertices when n >= 600 (Erdős Problem #816).",
+      "kind": "conjectured_optimum",
+      "value": 56,
+      "statement": "The maximum for 15 vertices is not proven; the question of Erdős and Hajnal conjectures n^2 + n = 56 for 2n + 1 = 15 vertices. K_{7,8} has 56 edges and no such path, and Chen and Ma proved that this bound is sharp for 2n+1 vertices when n >= 600 (Erdős Problem #816).",
       "sources": [
         {
           "title": "A problem of Erdős and Hajnal on paths with equal-degree endpoints",
@@ -9254,7 +9258,7 @@
           "year": 2025
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 816,
         "url": "https://www.erdosproblems.com/816",
@@ -9295,12 +9299,12 @@
       ]
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -9321,9 +9325,9 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Pollack (2015, Remarks on fibers of the sum-of-divisors function) studies the underlying problem.",
+      "kind": "optimum",
+      "value": 8.17496384622239e-08,
+      "statement": "The smallest error is 1/12232470 = 8.175e-8 (exhaustive search over all pairs with equal divisor sums up to 10^7, computed for this package; the ratio 3/2 itself is impossible). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Pollack (2015, Remarks on fibers of the sum-of-divisors function) studies the underlying problem.",
       "sources": [
         {
           "title": "Remarks on fibers of the sum-of-divisors function",
@@ -9332,7 +9336,7 @@
           "year": 2015
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -9513,12 +9517,12 @@
       "n": 128
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "open_problem",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -9540,9 +9544,9 @@
       "The cited preprint credits proof development jointly to Ricky Cipollini and GPT-5.5 Pro, and a separate formalization to Aristotle; this upstream acknowledgement is not a claim about local implementation authorship."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Ricky Cipollini (2026, A sharp 5/8 bound for an Erdős–Sós pairwise-sums problem) studies the underlying problem.",
+      "kind": "conjectured_optimum",
+      "value": 82,
+      "statement": "For N = 128 the two-interval construction of Cipollini (2026, Section 5) has 5N/8 + 2 = 82 elements. The same preprint proves that a set without such a triple in [1, 2H] has at most 5H/4 + 6 elements (86 for N = 128) and reports a conjecture of Stijn Cambie that the maximum is floor(5N/8 + 2), which is 82 here. Ricky Cipollini (2026, A sharp 5/8 bound for an Erdős–Sós pairwise-sums problem) studies the underlying problem.",
       "sources": [
         {
           "title": "A sharp 5/8 bound for an Erdős–Sós pairwise-sums problem",
@@ -9551,7 +9555,7 @@
           "year": 2026
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -9583,12 +9587,12 @@
       "maximum_size": 60
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "open_problem",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -9609,18 +9613,24 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős, Jean-Louis Nicolas and András Sárközy (1991, Sommes de sous-ensembles) study the underlying problem.",
+      "kind": "conjectured_optimum",
+      "value": 31,
+      "statement": "The largest admissible set known in [1, 256] has 31 elements: an interval construction of Straus has k elements exactly when k <= 2 sqrt(N + 1/4) - 1. Erdős conjectured that this is the maximum, and Deshouillers and Freiman (1999) proved the conjecture for sufficiently large N; it is not proven for N = 256. Paul Erdős, Jean-Louis Nicolas and András Sárközy (1991, Sommes de sous-ensembles) study the underlying problem.",
       "sources": [
         {
           "title": "Sommes de sous-ensembles",
           "url": "https://www.numdam.org/item/JTNB_1991__3_1_55_0/",
           "authors": "Paul Erdős, Jean-Louis Nicolas and András Sárközy",
           "year": 1991
+        },
+        {
+          "title": "On an additive problem of Erdős and Straus, 2",
+          "url": "https://www.numdam.org/item/AST_1999__258__141_0/",
+          "authors": "Jean-Marc Deshouillers, Gregory A. Freiman",
+          "year": 1999
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -9725,12 +9735,12 @@
       "maximum_size": 30
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "open_problem",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -9756,9 +9766,9 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Konstantinos Gaitanas (2019, Two divisibility problems on subset sums) studies the underlying problem.",
+      "kind": "best_known",
+      "value": 8,
+      "statement": "For N = 256 = 2^8 the construction of Erdős, Lev, Rauzy, Sándor and Sárközy (1999), as described by Gaitanas (2019, Section 4), has 8 elements, and Gaitanas notes that this bound has not been improved. His Theorem 3 (the elements sum to at least 2^(k+1) - 3) limits a set in [1, 256] to at most 10 elements. Konstantinos Gaitanas (2019, Two divisibility problems on subset sums) studies the underlying problem.",
       "sources": [
         {
           "title": "Two divisibility problems on subset sums",
@@ -9767,7 +9777,7 @@
           "year": 2019
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],
@@ -10168,12 +10178,12 @@
       ]
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "synthetic",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -10194,9 +10204,9 @@
       "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Miklós Ajtai, János Komlós and Endre Szemerédi (1981, The longest path in a random graph) study the underlying problem.",
+      "kind": "optimum",
+      "value": 34,
+      "statement": "The longest path of the pinned graph has 34 vertices (exhaustive depth-first search, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Miklós Ajtai, János Komlós and Endre Szemerédi (1981, The longest path in a random graph) study the underlying problem.",
       "sources": [
         {
           "title": "The longest path in a random graph",
@@ -10205,7 +10215,7 @@
           "year": 1981
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "requirements": {
       "dependencies": [],

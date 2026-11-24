@@ -55,7 +55,7 @@
     "parameters": {
       "cpu_seconds": 240
     },
-    "interface": "align(sequences) -> list of aligned rows, one per input sequence, all of the same length, each row equal to its input sequence with '-' gap characters inserted (upper-case amino acids). sequences is a list of 4 to 10 unaligned protein sequences of a BAliBASE reference-1 test case. align is called once per test case in a sandboxed subprocess with a 240 s CPU budget for all 26 cases. Score (maximize): mean sum-of-pairs score over the cases, i.e. the fraction of residue pairs that the structure-based reference alignment places in the same core-block column and the candidate also aligns; the total-column score is reported alongside",
+    "interface": "align(sequences) -> list of aligned rows, one per input sequence, all of the same length (at most 6 times the longest input sequence plus 10 columns), each row equal to its input sequence with '-' gap characters inserted (upper-case amino acids). sequences is a list of 4 to 10 unaligned protein sequences of a BAliBASE reference-1 test case. align is called once per test case in a sandboxed subprocess with a 240 s CPU budget for all 26 cases. Score (maximize): mean sum-of-pairs score over the cases, i.e. the fraction of residue pairs that the structure-based reference alignment places in the same core-block column and the candidate also aligns; the total-column score is reported alongside",
     "label_spec": {
       "area": "biology",
       "domain": "natural_science",
@@ -93,7 +93,7 @@
     }
   },
   "limitations": [
-    "Only 26 of the 82 reference-1 cases are used (at most 10 sequences and 300 reference columns each) so that a CPU-only aligner finishes within the budget; averages are therefore not comparable with published whole-benchmark numbers.",
+    "Only 26 of the 82 reference-1 cases are used (at most 10 sequences and 300 reference columns each, and at least 43 core-block columns; ten further cases within the size limits, each with fewer than 40 core-block columns, are not used) so that a CPU-only aligner finishes within the budget; averages are therefore not comparable with published whole-benchmark numbers.",
     "SP and TC are an independent implementation of the published definitions restricted to core blocks; it scores the reference alignments at exactly 1.0 but is not byte-compatible with the bundled bali_score program.",
     "Reference alignments are themselves structure-based estimates of homology, and core blocks cover only part of each alignment.",
     "The references are public, so search feedback can overfit this fixed subset; a candidate aligner should be checked on held-out families before any claim of improved accuracy."
@@ -129,7 +129,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "medium",
     "important_to_science": true
   },
   "science_relevance": {

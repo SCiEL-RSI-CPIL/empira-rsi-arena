@@ -21,12 +21,14 @@ from .runtime import require
 
 RAW_SOURCES = ("co2_mm_mlo.txt", earth_enso.RAW_SOURCES[0])
 SOURCE_SPECS = ({"name": RAW_SOURCES[0], "url": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt", "pinning": "live",
+                 # the locked file (created 2026-10-09) as captured by the Internet Archive; the live file is rewritten monthly
+                 "archive_url": "https://web.archive.org/web/20261021085831id_/https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
                  "license": "Freely available to the public (NOAA GML data-use statement in the file; U.S. Government work); March 1958 - April 1974 values from the Scripps Institution of Oceanography with citation requested",
                  "license_url": "https://gml.noaa.gov/ccgg/trends/data.html",
                  "citation": "Lan, X., Tans, P. and Thoning, K. W.: Trends in globally-averaged CO2 determined from NOAA Global Monitoring Laboratory measurements; Keeling, C. D. et al. (1976) Atmospheric carbon dioxide variations at Mauna Loa Observatory, Hawaii. Tellus 28, 538-551.",
                  "retrieved": "2026-10-10"},)
 DATA = "co2/mlo_monthly_1958_2025_relative_nino34.json.gz"
-DERIVED = {DATA: "77cb94bb1b25d3006142320d5ed42ba246e438ebb98f285f70db7a34f48a0ac3"}
+DERIVED = {DATA: "b682c064db322bf1ddefa351b38d6ebfdfb799b934f3460fe06067cbf301b7f8"}
 LEADS = 12
 FIRST, LAST = (1958, 3), (2025, 12)
 TEST_ORIGINS = ((2000, 1), (2024, 12))
@@ -43,9 +45,12 @@ def derive(paths):
             rows.append((year, month, float(p[3]), int(p[5])))
     year, month, relative = earth_gmst.relative_nino34(paths[RAW_SOURCES[1]])
     enso = {(int(y), int(m)): float(r) for y, m, r in zip(year, month, relative)}
+    # The index is an input only up to the last origin. Later months are left empty: ERSSTv5 revises its most recent
+    # years with every monthly update, and storing them would change this file without changing any forecast or score.
+    index = [round(enso[(r[0], r[1])], 4) if (r[0], r[1]) <= TEST_ORIGINS[1] else None for r in rows]
     return {DATA: {"source": "NOAA GML Mauna Loa monthly mean CO2 (co2_mm_mlo.txt) and ERSSTv5 relative Nino 3.4",
                    "year": [r[0] for r in rows], "month": [r[1] for r in rows], "co2_ppm": [r[2] for r in rows],
-                   "measured_days": [r[3] for r in rows], "relative_nino34": [round(enso[(r[0], r[1])], 4) for r in rows]}}
+                   "measured_days": [r[3] for r in rows], "relative_nino34": index}}
 
 
 def load():

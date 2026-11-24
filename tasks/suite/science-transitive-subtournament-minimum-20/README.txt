@@ -17,9 +17,9 @@ construct() -> 190 integer bits, one for each pair (i,j), i<j, in lexicographic 
 
 ## State of the art
 
-Every tournament on n vertices contains a transitive subtournament on floor(log2 n) + 1 vertices (Stearns), which is 5 for n = 20. The Paley tournament on 23 vertices restricted to 20 vertices has no transitive subtournament on 6 (scripts/check_state_of_the_art.py). The largest tournament without one has 27 vertices (Sanchez-Flores; confirmed by Neiman, Mackey and Heule). Erdős Problem #1216 was answered negatively by Reid and Parker.
+Every tournament on n vertices contains a transitive subtournament on floor(log2 n) + 1 vertices (Stearns), which is 5 for n = 20, and tournaments on 20 vertices without a transitive subtournament on 6 exist. The largest tournament without one has 27 vertices (Sanchez-Flores; confirmed by Neiman, Mackey and Heule). Erdős Problem #1216 was answered negatively by Reid and Parker.
 
-Reference value: proven optimum `5` (reviewed 2026-09-24).
+Reference value: proven optimum `5` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #1216](https://www.erdosproblems.com/1216), status: disproved.
 

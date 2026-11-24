@@ -18,7 +18,7 @@
   "paper_ids": [
     "science-prize_c"
   ],
-  "description": "construct() -> 1..18 distinct integers in 2..40. All 2^k subset products, including the empty product one, must be distinct. Exact arbitrary-precision products are enumerated. Maximize number of selected integers. The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem. Integer one is excluded because it collides with the empty product.",
+  "description": "construct() -> 1..18 distinct integers in 2..40. All 2^k subset products, including the empty product one, must be distinct. Exact arbitrary-precision products are enumerated. Maximize number of selected integers. The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem; the optimum of this instance is 17 (OEIS A401472). Integer one is excluded because it collides with the empty product.",
   "benchmark": "Large sets with distinct subset products",
   "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
   "paper_direction": null,
@@ -36,7 +36,7 @@
   ],
   "limitations": [
     "Independent finite computational adaptation. Not a Lean proof, prize submission, general conjecture solution, or guarantee of novelty.",
-    "The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem. Integer one is excluded because it collides with the empty product.",
+    "The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem; the optimum of this instance is 17 (OEIS A401472). Integer one is excluded because it collides with the empty product.",
     "Candidate Python code is trusted code; the evaluator process is not a security sandbox."
   ],
   "evaluator": "evaluator.py",
@@ -49,18 +49,22 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Rushil Raghavan (2025, Sharp Bounds for Sets with Distinct Subset Products) studies the underlying problem.",
+    "kind": "optimum",
+    "value": 17,
+    "statement": "The maximum size of a subset of {1,...,40} with distinct subset products is 17 (OEIS A401472, a(40) = 17, the function g(n) of Erdős Problem #795); an independent exhaustive search confirms that 17 is attained and 18 is impossible. Rushil Raghavan (2025, Sharp Bounds for Sets with Distinct Subset Products) studies the underlying problem.",
     "sources": [
       {
         "title": "Sharp Bounds for Sets with Distinct Subset Products",
         "url": "https://arxiv.org/abs/2501.02695",
         "authors": "Rushil Raghavan",
         "year": 2025
+      },
+      {
+        "title": "OEIS A401472: Maximum size of a subset of {1, ..., n} whose subset products are all distinct",
+        "url": "https://oeis.org/A401472"
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "supported",
@@ -71,7 +75,7 @@
         "title": "Rushil Raghavan, Sharp Bounds for Sets with Distinct Subset Products (2025; revised 2026)",
         "url": "https://arxiv.org/abs/2501.02695",
         "primary_goal": "Determine the extremal size of multiplicatively dissociated integer sets.",
-        "task_relation": "The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem. Integer one is excluded because it collides with the empty product.",
+        "task_relation": "The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem; the optimum of this instance is 17 (OEIS A401472). Integer one is excluded because it collides with the empty product.",
         "evidence_role": "primary_problem"
       }
     ],
@@ -82,12 +86,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

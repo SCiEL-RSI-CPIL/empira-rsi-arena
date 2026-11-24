@@ -7,19 +7,19 @@
 
 ## Task
 
-construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling of the full circle and golden-section refinement of the deepest local minima (accuracy about 1e-9). Maximize (make the minimum as shallow as possible). Shallow minima for 16 frequencies probe the finite side of Chowla's problem; no finite optimum is documented.
+construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling and bisection of every interval that a second-derivative bound cannot exclude (certified to about 1e-9). Maximize (make the minimum as shallow as possible). Shallow minima for 16 frequencies probe the finite side of Chowla's problem; no finite optimum is documented.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
 ## Candidate interface
 
-construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling of the full circle and golden-section refinement of the deepest local minima (accuracy about 1e-9). Maximize (make the minimum as shallow as possible).
+construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling and bisection of every interval that a second-derivative bound cannot exclude (certified to about 1e-9). Maximize (make the minimum as shallow as possible).
 
 ## State of the art
 
-No documented optimum for 16 frequencies; every set has minimum below -c N^(1/7) (Bedert 2025) and N^(1/2) is the conjectured order.
+No documented optimum for 16 frequencies; every set has minimum below -N^(1/5-o(1)) (Bedert, arXiv:2509.05260, version 3 of July 2026; earlier versions had the exponents 1/12 and 1/7) and N^(1/2) is the conjectured order.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: no documented value for this finite instance (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #510](https://www.erdosproblems.com/510), status: open.
 
@@ -70,5 +70,5 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- Floating-point score with sampling refinement; no documented finite value (reference label none).
+- Floating-point score; the minimum is certified to about 1e-9 by a second-derivative bound. No documented finite value (reference label none).
 - Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code.

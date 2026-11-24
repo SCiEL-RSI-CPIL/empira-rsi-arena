@@ -17,9 +17,9 @@ construct() -> a nonempty subset B of [0,n=256] such that every integer in [256,
 
 ## State of the art
 
-The minimum is 10: {11, 16, 80, 117, 199, 204, 223, 225, 228, 242} covers [256,512]. Exact set-cover integer programmes show that 9 elements cannot. The programmes are split by parity, with every case of the prime 2 enumerated, and solved with HiGHS (scripts/check_state_of_the_art.py --slow). The asymptotic question is Erdős Problem #32.
+The minimum is 10. Exact set-cover integer programmes give a cover with ten elements and show that nine are not enough: without the targets 256, 257 and 258 the prime 2 is never used, so the even and the odd targets are covered independently, and each half needs five elements (HiGHS; tests/test_audit_prize_a.py with PRIZE_A_SLOW=1). The asymptotic question is Erdős Problem #32.
 
-Reference value: proven optimum `10` (reviewed 2026-09-24).
+Reference value: proven optimum `10` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #32](https://www.erdosproblems.com/32), status: open ($50).
 
@@ -68,6 +68,6 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- Solved finite case: The minimum is 10: {11, 16, 80, 117, 199, 204, 223, 225, 228, 242} covers [256,512].
+- Solved finite case: The minimum is 10.
 - Choose B in [0,256] so every integer in [256,512] is prime plus B, and minimize |B|. This only certifies finite coverage, not an asymptotic complement.
 - All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code.

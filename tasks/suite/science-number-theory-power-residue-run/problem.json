@@ -52,9 +52,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+    "kind": "optimum",
+    "value": 1,
+    "statement": "The integers 1, 2, 3, 4 and 5 are all quadratic residues modulo 1009, so r(2,5,1009) = 1, the smallest start the contract allows, and the optimum is 1. The modulus has 32 runs of five consecutive quadratic residues; the last one starts at 1004.",
     "sources": [
       {
         "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -63,7 +63,7 @@
         "year": 1980
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "unreviewed",
@@ -75,12 +75,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

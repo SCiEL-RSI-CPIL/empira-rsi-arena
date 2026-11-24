@@ -49,9 +49,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Ricky Cipollini (2026, A sharp 5/8 bound for an Erdős–Sós pairwise-sums problem) studies the underlying problem.",
+    "kind": "conjectured_optimum",
+    "value": 82,
+    "statement": "For N = 128 the two-interval construction of Cipollini (2026, Section 5) has 5N/8 + 2 = 82 elements. The same preprint proves that a set without such a triple in [1, 2H] has at most 5H/4 + 6 elements (86 for N = 128) and reports a conjecture of Stijn Cambie that the maximum is floor(5N/8 + 2), which is 82 here. Ricky Cipollini (2026, A sharp 5/8 bound for an Erdős–Sós pairwise-sums problem) studies the underlying problem.",
     "sources": [
       {
         "title": "A sharp 5/8 bound for an Erdős–Sós pairwise-sums problem",
@@ -60,7 +60,7 @@
         "year": 2026
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "supported",
@@ -82,14 +82,14 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "open_problem",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
-    "science_tier": 2,
+    "science_tier": 1,
     "resources": [
       "cpu"
     ],

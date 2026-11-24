@@ -29,7 +29,7 @@ prompt:
   system_message: |
     Minimal logarithmic energy of 150 points on the sphere
 
-    Place 150 points on the unit sphere to minimize the logarithmic energy, the sum over all pairs of log(1/distance), the energy in Smale's 7th problem. The lowest published energy, -2364.632242592, is not proven minimal.
+    Place 150 points on the unit sphere to minimize the logarithmic energy, the sum over all pairs of log(1/distance), the energy in Smale's 7th problem. The lowest published energy, -2364.632242592, is the putative global minimum: it is not proven minimal, but random-restart local optimisation reproduces it within seconds, so the task measures whether an optimiser reaches it.
 
     Candidate interface: construct() -> array of shape (N, 3) of nonzero vectors; each is normalised to the unit sphere. Score: the logarithmic energy sum_{i<j} log(1 / |x_i - x_j|) (natural logarithm, chordal distances, pair terms summed with math.fsum); minimize. Points closer than 1e-9, a wrong shape or non-finite values make the candidate invalid.
 

@@ -17,9 +17,9 @@ construct() -> a permutation of 1..n=128. Minimize the longest subsequence whose
 
 ## State of the art
 
-Davis, Entringer, Graham and Simmons showed that every interval [1,n] has a permutation without a monotone three-term progression (for example, evens before odds, recursively), so the minimum is 2.
+Davis, Entringer, Graham and Simmons showed that every interval [1,n] has a permutation without a monotone three-term progression, so the minimum is 2.
 
-Reference value: proven optimum `2` (reviewed 2026-09-24).
+Reference value: proven optimum `2` (reviewed 2026-11-24).
 
 - [On permutations containing no long arithmetic progressions](https://fanchung.ucsd.edu/ron/papers/77_06_no_long_aps.pdf), James A. Davis, Roger C. Entringer, Ronald L. Graham, Gustavus J. Simmons (1977)
 

@@ -17,17 +17,18 @@ construct() -> 1..60 distinct integers in 1..256. Whenever two subsets have diff
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős, Jean-Louis Nicolas and András Sárközy (1991, Sommes de sous-ensembles) study the underlying problem.
+The largest admissible set known in [1, 256] has 31 elements: an interval construction of Straus has k elements exactly when k <= 2 sqrt(N + 1/4) - 1. Erdős conjectured that this is the maximum, and Deshouillers and Freiman (1999) proved the conjecture for sufficiently large N; it is not proven for N = 256. Paul Erdős, Jean-Louis Nicolas and András Sárközy (1991, Sommes de sous-ensembles) study the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: conjectured optimum `31` (reviewed 2026-11-24).
 
 - [Sommes de sous-ensembles](https://www.numdam.org/item/JTNB_1991__3_1_55_0/), Paul Erdős, Jean-Louis Nicolas and András Sárközy (1991)
+- [On an additive problem of Erdős and Straus, 2](https://www.numdam.org/item/AST_1999__258__141_0/), Jean-Marc Deshouillers, Gregory A. Freiman (1999)
 
 Parameters: `{"n": 256, "maximum_size": 60}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `open_problem` (tier 1); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

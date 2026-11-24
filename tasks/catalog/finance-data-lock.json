@@ -2,8 +2,8 @@
   "schema": "artask.data-lock/1",
   "package": "finance",
   "reviewed_on": "2026-10-06",
-  "raw_cache": ".cache/finance-raw",
-  "data_directory": "suite/_lib/data/finance",
+  "raw_cache": "finance-raw of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "data_directory": "data/finance of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
   "note": "Raw files are fetched from the pinned URLs and verified by SHA-256 of the decoded payload; derived tables are byte-stable functions of them (suite/_lib/autoresearch_suite/finance_sources.py).",
   "sources": [
     {
@@ -213,12 +213,12 @@
     {
       "id": "fred-md-2024-10",
       "publisher": "Federal Reserve Bank of St. Louis (FRED-MD, McCracken and Ng)",
-      "description": "FRED-MD monthly database, 2024-10 vintage (current.csv as archived 2024-10-29): 126 macroeconomic series, 1959-01 to 2024-08, with transformation codes",
+      "description": "FRED-MD monthly database, 2024-09 vintage (current.csv as archived on 2024-10-29, byte-identical to the official 2024-09.csv): 126 macroeconomic series, 1959-01 to 2024-08, with transformation codes",
       "url": "https://web.archive.org/web/20241029222651id_/https://files.stlouisfed.org/files/htdocs/fred-md/monthly/current.csv",
       "original_url": "https://files.stlouisfed.org/files/htdocs/fred-md/monthly/current.csv",
       "archived": "20241029222651",
       "content_encoding": "gzip",
-      "vintage": "2024-10 (the archived current.csv on 2024-10-29); SHA-256 is of the decoded CSV",
+      "vintage": "2024-09 (the archived current.csv on 2024-10-29, byte-identical to the official 2024-09.csv); SHA-256 is of the decoded CSV",
       "license": "Published by the Federal Reserve Bank of St. Louis for research and replication without an explicit license; some component series are third-party data (for example S&P 500 index levels) whose owners may retain rights, as FRED's terms note. Fetched at preparation time from a pinned Internet Archive snapshot; not redistributed by this repository.",
       "sha256": "b7b33919fef3dad5ba02cc331006477d6d631ff448c04817866f16e23a6bf9a8",
       "size": 649015
@@ -507,7 +507,7 @@
       "sources": [
         "fred-md-2024-10"
       ],
-      "description": "FRED-MD 2024-10 vintage: first row 'tcode' (transformation codes), then 788 months 1959-01..2024-08 of 126 raw series (empty = missing)",
+      "description": "FRED-MD 2024-09 vintage: first row 'tcode' (transformation codes), then 788 months 1959-01..2024-08 of 126 raw series (empty = missing)",
       "sha256": "eebcaa9024b3412849a86445e843d853543fd1b0b767cc2c85a10875fbac56a2",
       "size": 646448
     },

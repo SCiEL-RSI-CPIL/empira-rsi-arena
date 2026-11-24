@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "id": "science-triangle-free-dense-halves-20",
   "name": "Triangle-free graphs on 20 vertices whose every half is dense",
-  "description": "construct() -> list of edges [u, v] of a simple triangle-free graph on vertices 0..19. The score is the minimum number of edges induced by any 10 of the vertices, computed over all 184756 subsets. Maximize; a score above 8 would disprove the Erdős-Rousseau conjecture for n = 20. For n = 20 the conjectured maximum of the score is 8, attained by the balanced C5 blow-up; a triangle-free graph with score 9 would be a counterexample.",
+  "description": "construct() -> list of edges [u, v] of a simple triangle-free graph on vertices 0..19. The score is the minimum number of edges induced by any 10 of the vertices, computed over all 184756 subsets. Maximize; a score above 8 would disprove the Erdős-Rousseau conjecture for n = 20. For n = 20 the conjectured maximum of the score is 8, and triangle-free graphs with score 8 are known; a triangle-free graph with score 9 would be a counterexample.",
   "paper_ids": [
     "science-prize_f"
   ],
@@ -12,7 +12,7 @@
     {
       "url": "https://doi.org/10.1070/sm9615",
       "type": "paper",
-      "locator": "Alexander A. Razborov, More about sparse halves in triangle-free graphs (2022). Crossref record inspected; Erdős Problem #128 ($250) page inspected: every n/2-set of a triangle-free graph is conjectured to span at most n^2/50 edges, tight for the C5 blow-up and the Petersen graph; proved with 1/50 replaced by 27/1024 by Razborov. For n = 20 the conjectured maximum of the score is 8, attained by the balanced C5 blow-up; a triangle-free graph with score 9 would be a counterexample."
+      "locator": "Alexander A. Razborov, More about sparse halves in triangle-free graphs (2022). Crossref record inspected; Erdős Problem #128 ($250) page inspected: every n/2-set of a triangle-free graph is conjectured to span at most n^2/50 edges, tight for the C5 blow-up and the Petersen graph; proved with 1/50 replaced by 27/1024 by Razborov. For n = 20 the conjectured maximum of the score is 8, and triangle-free graphs with score 8 are known; a triangle-free graph with score 9 would be a counterexample."
     },
     {
       "url": "https://www.erdosproblems.com/128",
@@ -95,7 +95,7 @@
   "state_of_the_art": {
     "kind": "conjectured_optimum",
     "value": 8,
-    "statement": "Conjectured maximum n^2/50 = 8 for n = 20, attained by the balanced blow-up of C5; no triangle-free graph with a larger score is known.",
+    "statement": "Conjectured maximum n^2/50 = 8 for n = 20, attained by known constructions; no triangle-free graph with a larger score is known.",
     "sources": [
       {
         "title": "More about sparse halves in triangle-free graphs",
@@ -108,7 +108,7 @@
         "url": "https://www.erdosproblems.com/128"
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 128,
       "url": "https://www.erdosproblems.com/128",
@@ -139,7 +139,7 @@
       {
         "title": "More about sparse halves in triangle-free graphs",
         "url": "https://doi.org/10.1070/sm9615",
-        "task_relation": "For n = 20 the conjectured maximum of the score is 8, attained by the balanced C5 blow-up; a triangle-free graph with score 9 would be a counterexample.",
+        "task_relation": "For n = 20 the conjectured maximum of the score is 8, and triangle-free graphs with score 8 are known; a triangle-free graph with score 9 would be a counterexample.",
         "primary_goal": "Show that every triangle-free graph has a set of n/2 vertices spanning at most n^2/50 edges.",
         "evidence_role": "primary_problem"
       }

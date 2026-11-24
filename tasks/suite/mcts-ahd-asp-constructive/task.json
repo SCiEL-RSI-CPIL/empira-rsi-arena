@@ -311,8 +311,8 @@
   },
   "schema_version": "1.0",
   "labels": {
-    "scientific_contribution": "open_problem",
-    "science_tier": 1,
+    "scientific_contribution": "method",
+    "science_tier": 2,
     "artifact": "program",
     "domain": "mathematics",
     "area": "mathematics",

@@ -37,7 +37,7 @@
       "numpy"
     ],
     "environment_variables": [],
-    "datasets": "QAPLIB instance tho150.dat from the Edinburgh DataShare deposit (CC BY 4.0), fetched and SHA-256 checked by scripts/prepare_frontier_combinatorics.py into suite/_lib/data/frontier_combinatorics/."
+    "datasets": "QAPLIB instance tho150.dat from the Edinburgh DataShare deposit (CC BY 4.0), fetched and SHA-256 checked by scripts/prepare_frontier_combinatorics.py into data/frontier_combinatorics/ of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)."
   },
   "evaluation": {
     "metric": "score",
@@ -144,7 +144,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

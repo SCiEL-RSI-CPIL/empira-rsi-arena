@@ -17,9 +17,9 @@ construct() -> twelve Python prime integers, one for each modulus [101,103,107,1
 
 ## State of the art
 
-The least prime primitive roots of the twelve moduli are 2, 5, 2, 11, 3, 3, 2, 3, 2, 2, 7 and 5 (OEIS A002233), summing to 47.
+The least prime primitive roots of the twelve moduli, terms 26 to 37 of OEIS A002233, sum to 47.
 
-Reference value: proven optimum `47` (reviewed 2026-09-24).
+Reference value: proven optimum `47` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #985](https://www.erdosproblems.com/985), status: open.
 

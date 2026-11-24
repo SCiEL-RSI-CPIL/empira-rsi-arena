@@ -59,7 +59,7 @@ def finite_scalar(value, name, bound=None):
         raise CandidateError(f"{name} must be a real number, got {type(value).__name__}")
     try:
         number = float(value)
-    except (TypeError, ValueError):
+    except (TypeError, ValueError, OverflowError):  # OverflowError: an integer beyond the float range
         raise CandidateError(f"{name} must be a real number, got {type(value).__name__}") from None
     if not math.isfinite(number):
         raise CandidateError(f"{name} must be finite")
@@ -71,8 +71,11 @@ def finite_scalar(value, name, bound=None):
 def finite_vector(value, name, shape, bound=None):
     """Validate a candidate's array output of a fixed shape."""
     try:
-        array = np.asarray(value, dtype=float)
-    except (TypeError, ValueError):
+        array = np.asarray(value)
+        if array.dtype.kind in "bSU":  # booleans and text are not numbers, as in finite_scalar
+            raise TypeError(array.dtype)
+        array = np.asarray(array, dtype=float)
+    except (TypeError, ValueError, OverflowError):
         raise CandidateError(f"{name} must be numeric") from None
     if array.shape != tuple(shape):
         raise CandidateError(f"{name} must have shape {tuple(shape)}, got {array.shape}")

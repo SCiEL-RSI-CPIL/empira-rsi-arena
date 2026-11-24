@@ -64,7 +64,7 @@
       "scientific_contribution": "method",
       "artifact": "construction",
       "data": "none",
-      "verification": "exact",
+      "verification": "simulation",
       "reference": "none"
     },
     "provenance": {
@@ -109,8 +109,8 @@
   "state_of_the_art": {
     "kind": "none",
     "value": null,
-    "as_of": "2026-10-10",
-    "statement": "No published value under this exact discretization and gap measure. For context, the textbook rod crystal (the seed) gives 0.043 here, close to the 3.84 % reported by the MPB tutorial for the same nominal structure, and a 150-second greedy pixel-flip search run during task construction reached 0.311.",
+    "as_of": "2026-11-24",
+    "statement": "No published value under this exact discretization and gap measure. For context, the textbook rod crystal (the seed) gives 0.0431 here, against 3.84 % in the MPB tutorial for the same nominal structure (the difference comes from the pixelated circle and from the tutorial's grid resolution), and a 150-second greedy pixel-flip search run during task construction reached 0.311.",
     "sources": [
       {
         "title": "MPB Python tutorial",
@@ -124,13 +124,13 @@
     "scientific_contribution": "method",
     "artifact": "construction",
     "data": "none",
-    "verification": "exact",
+    "verification": "simulation",
     "reference": "none",
     "science_tier": 2,
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

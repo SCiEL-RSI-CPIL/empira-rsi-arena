@@ -57,7 +57,9 @@ def forecast_steps(days, names, returns, split):
         out[k] = finite_vector((yield finance_sandbox.step("model.forecast")), f"variance forecast for {days[t]}", (n,))
         if (out[k] < 1e-10).any() or (out[k] > 1.0).any():
             raise CandidateError(f"variance forecasts for {days[t]} must lie in [1e-10, 1] (daily, decimal returns squared)")
-        yield finance_sandbox.step("model.update", returns[t].copy())
+        # update()'s return value is not part of the contract: it stays in the child (a model that returns
+        # itself or any other object must not fail on the transport of a value nobody reads).
+        yield finance_sandbox.step("model.update", returns[t].copy(), keep="update_value")
     return out
 
 

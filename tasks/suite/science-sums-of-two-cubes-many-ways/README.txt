@@ -7,13 +7,13 @@
 
 ## Task
 
-construct() -> {'m': m, 'pairs': [[a, b], ...]} with 2 <= m <= 5*10^16 and distinct pairs of positive integers a <= b with a^3 + b^3 = m (checked exactly). Maximize the number of pairs; the optimum is 5, attained only by the fifth taxicab number 48988659276962496. Below 5*10^16 the maximum is 5, attained only by the fifth taxicab number, so the task is a calibrated rediscovery of Ta(5).
+construct() -> {'m': m, 'pairs': [[a, b], ...]} with 2 <= m <= 5*10^16 and distinct pairs of positive integers a <= b with a^3 + b^3 = m (checked exactly). Maximize the number of pairs; the optimum is 5, attained by a single integer in this range. Below 5*10^16 the maximum is 5 and a single integer attains it, so the task is a calibrated rediscovery.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
 ## Candidate interface
 
-construct() -> {'m': m, 'pairs': [[a, b], ...]} with 2 <= m <= 5*10^16 and distinct pairs of positive integers a <= b with a^3 + b^3 = m (checked exactly). Maximize the number of pairs; the optimum is 5, attained only by the fifth taxicab number 48988659276962496.
+construct() -> {'m': m, 'pairs': [[a, b], ...]} with 2 <= m <= 5*10^16 and distinct pairs of positive integers a <= b with a^3 + b^3 = m (checked exactly). Maximize the number of pairs; the optimum is 5, attained by a single integer in this range.
 
 ## State of the art
 
@@ -45,7 +45,7 @@ Underlying problem: Determine how many representations an integer can have as a 
 
 Why it matters: Representation counts of binary cubic forms are tied to Thue equations and ranks of elliptic curves; Erdős asked for polylogarithmic upper bounds.
 
-- [The Fifth Taxicab Number is 48988659276962496](https://cs.uwaterloo.ca/journals/JIS/wilson10.html): Main research objective: Determine how many representations an integer can have as a sum of two cubes (Erdős Problem #829 asks whether the count is at most polylogarithmic). Task connection: Below 5*10^16 the maximum is 5, attained only by the fifth taxicab number, so the task is a calibrated rediscovery of Ta(5).
+- [The Fifth Taxicab Number is 48988659276962496](https://cs.uwaterloo.ca/journals/JIS/wilson10.html): Main research objective: Determine how many representations an integer can have as a sum of two cubes (Erdős Problem #829 asks whether the count is at most polylogarithmic). Task connection: Below 5*10^16 the maximum is 5 and a single integer attains it, so the task is a calibrated rediscovery.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -53,7 +53,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- Below 5*10^16 the maximum is 5, attained only by the fifth taxicab number, so the task is a calibrated rediscovery of Ta(5). Exact local certificates are not Lean proofs; the Mahler measure and reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
+- Below 5*10^16 the maximum is 5 and a single integer attains it, so the task is a calibrated rediscovery. Exact local certificates are not Lean proofs; the Mahler measure and reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -65,7 +65,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://cs.uwaterloo.ca/journals/JIS/wilson10.html (David W. Wilson, The Fifth Taxicab Number is 48988659276962496 (1999). Journal of Integer Sequences article inspected: Wilson's exhaustive search listed every 3-, 4- and 5-way sum of two positive cubes below 5*10^16, and the only 5-way sum found was Ta(5) = 48988659276962496, so no integer below 5*10^16 has six representations. Erdős Problem #829 page inspected (Mordell: unbounded; Mahler: more than (log n)^(1/4) representations infinitely often; Stewart: (log n)^(11/13)). OEIS A011541 inspected. Below 5*10^16 the maximum is 5, attained only by the fifth taxicab number, so the task is a calibrated rediscovery of Ta(5).)
+- paper: https://cs.uwaterloo.ca/journals/JIS/wilson10.html (David W. Wilson, The Fifth Taxicab Number is 48988659276962496 (1999). Journal of Integer Sequences article inspected: Wilson's exhaustive search listed every 3-, 4- and 5-way sum of two positive cubes below 5*10^16, and the only 5-way sum found was Ta(5) = 48988659276962496, so no integer below 5*10^16 has six representations. Erdős Problem #829 page inspected (Mordell: unbounded; Mahler: more than (log n)^(1/4) representations infinitely often; Stewart: (log n)^(11/13)). OEIS A011541 inspected. Below 5*10^16 the maximum is 5 and a single integer attains it, so the task is a calibrated rediscovery.)
 - archive: https://www.erdosproblems.com/829 (Erdős Problem #829 (open); statement, history and current bounds reviewed 2026-09-24.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0601-0700.md#JSP-000685 (JSP-000685; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 

@@ -13,13 +13,13 @@ Source-derived local benchmark; the exact objective and adaptations are specifie
 
 ## Candidate interface
 
-fit_predict(train_inputs, train_targets, test_inputs, info) -> list of len(test_inputs) floats. Inputs are compositions {'formula': str, 'composition': {element: amount}}. Called once per official Matbench v0.1 fold (five calls, KFold(5, shuffle, random_state=18012019)), each in a fresh process that receives that fold's training inputs with targets and its held-out inputs without targets; info = {'task', 'input_type', 'target', 'unit', 'fold', 'n_train', 'n_test'}. Runs in a separate process that receives only these arguments (no test values), with at most 4 threads (OMP/MKL/OpenBLAS set to 4), no network, no subprocesses and no read access to the repository or prepared data; numpy, scipy, scikit-learn, pandas, RDKit and torch are importable; wall-clock limit 170 s per fold. Score: mean over the five folds of the held-out mean absolute error in target units (minimize), the Matbench leaderboard metric
+fit_predict(train_inputs, train_targets, test_inputs, info) -> list of len(test_inputs) floats. Inputs are compositions {'formula': str, 'composition': {element: amount}}. Called once per official Matbench v0.1 fold (five calls, KFold(5, shuffle, random_state=18012019)), each in a fresh process that receives that fold's training inputs with targets and its held-out inputs without targets; info = {'task', 'input_type', 'target', 'unit', 'fold', 'n_train', 'n_test'}. Runs in a separate process that receives only these arguments (no test values), with at most 4 threads (OMP/MKL/OpenBLAS set to 4), no network, no subprocesses and no read access to the repository or prepared data; numpy, scipy, scikit-learn and RDKit are importable (pandas and torch only where the environment provides them; they are not requirements of the task); wall-clock limit 170 s per fold. Score: mean over the five folds of the held-out mean absolute error in target units (minimize), the Matbench leaderboard metric
 
 ## State of the art
 
-Best mean MAE on the Matbench v0.1 leaderboard for matbench_steels: 79.9468 MPa (TPOT-Mat), read on 2026-10-10.
+Best mean MAE on the Matbench v0.1 leaderboard for matbench_steels: 75.5426 MPa (Atomic-AffQRF), read on 2026-11-24; TabPFN-HYD has 76.5947 and TPOT-Mat 79.9468.
 
-Reference value: best known value `79.9468` (reviewed 2026-10-10).
+Reference value: best known value `75.5426` (reviewed 2026-11-24).
 
 - [Matbench leaderboard: matbench_steels](https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_steels/)
 

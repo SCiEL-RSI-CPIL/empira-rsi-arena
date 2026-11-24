@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "id": "science-chowla-cosine-sixteen-frequencies",
   "name": "Sixteen frequencies whose cosine sum stays shallow (Chowla's cosine problem)",
-  "description": "construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling of the full circle and golden-section refinement of the deepest local minima (accuracy about 1e-9). Maximize (make the minimum as shallow as possible). Shallow minima for 16 frequencies probe the finite side of Chowla's problem; no finite optimum is documented.",
+  "description": "construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling and bisection of every interval that a second-derivative bound cannot exclude (certified to about 1e-9). Maximize (make the minimum as shallow as possible). Shallow minima for 16 frequencies probe the finite side of Chowla's problem; no finite optimum is documented.",
   "paper_ids": [
     "science-prize_g"
   ],
@@ -49,7 +49,7 @@
       "k": 16,
       "maximum": 200
     },
-    "interface": "construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling of the full circle and golden-section refinement of the deepest local minima (accuracy about 1e-9). Maximize (make the minimum as shallow as possible).",
+    "interface": "construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling and bisection of every interval that a second-derivative bound cannot exclude (certified to about 1e-9). Maximize (make the minimum as shallow as possible).",
     "label_spec": {
       "scientific_contribution": "open_problem",
       "artifact": "construction",
@@ -82,7 +82,7 @@
     }
   },
   "limitations": [
-    "Floating-point score with sampling refinement; no documented finite value (reference label none).",
+    "Floating-point score; the minimum is certified to about 1e-9 by a second-derivative bound. No documented finite value (reference label none).",
     "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
   ],
   "validation": {
@@ -96,7 +96,7 @@
   "state_of_the_art": {
     "kind": "none",
     "value": null,
-    "statement": "No documented optimum for 16 frequencies; every set has minimum below -c N^(1/7) (Bedert 2025) and N^(1/2) is the conjectured order.",
+    "statement": "No documented optimum for 16 frequencies; every set has minimum below -N^(1/5-o(1)) (Bedert, arXiv:2509.05260, version 3 of July 2026; earlier versions had the exponents 1/12 and 1/7) and N^(1/2) is the conjectured order.",
     "sources": [
       {
         "title": "Negative values of cosine sums",
@@ -111,7 +111,7 @@
         "year": 2025
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 510,
       "url": "https://www.erdosproblems.com/510",

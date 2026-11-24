@@ -96,14 +96,20 @@
   "state_of_the_art": {
     "kind": "none",
     "value": null,
-    "statement": "No documented minimum for n = 256, k = 4. The asymptotic density delta_4 is unknown; the random colouring gives delta_k <= 1/((k-1)2^k).",
+    "statement": "No documented minimum for n = 256, k = 4. The asymptotic density delta_4 is unknown. A random colouring gives delta_k <= 1/((k-1)2^k), which is 1/48 for k = 4; explicit colourings of [n] do better: Butler, Costello and Graham (2010) have 17.35 percent and Lu and Peng (2012) 33.33 percent fewer monochromatic 4-term progressions than a random colouring, so delta_4 <= 1/72.",
     "sources": [
       {
         "title": "Erdős Problem #1186",
         "url": "https://www.erdosproblems.com/1186"
+      },
+      {
+        "title": "Monochromatic 4-term arithmetic progressions in 2-colorings of Z_n",
+        "url": "https://arxiv.org/abs/1107.2888",
+        "authors": "Linyuan Lu, Xing Peng",
+        "year": 2012
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 1186,
       "url": "https://www.erdosproblems.com/1186",

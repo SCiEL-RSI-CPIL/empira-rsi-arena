@@ -25,7 +25,7 @@
     {
       "url": "https://cs.uwaterloo.ca/journals/JIS/VOL13/Challis/challis6.html",
       "type": "paper",
-      "locator": "Michael F. Challis and John P. Robinson, Some Extremal Postage Stamp Bases (2010). Journal of Integer Sequences article and OEIS A066063/A001212 inspected: the two-stamp postage problem has optimal range 212 with 24 denominations and 196 with 23, and a basis of {0..n} is 0 together with a set of denominations, so the minimum size for n = 212 is 25. Erdős Problem #791 page inspected (Rohrbach's problem; (2.181+o(1))n <= g(n)^2 <= (3.458+o(1))n by Yu and Kohonen). For n = 212 the minimum is 25, so the task recovers an extremal basis."
+      "locator": "Michael F. Challis and John P. Robinson, Some Extremal Postage Stamp Bases (2010). Journal of Integer Sequences article and OEIS A066063/A001212 inspected: the two-stamp postage problem has optimal range 212 with 24 denominations (Kohonen and Corander, Addition Chains Meet Postage Stamps, J. Integer Seq. 17 (2014), Art. 14.3.4) and 196 with 23 (Challis and Robinson, addendum of July 2013), and a basis of {0..n} is 0 together with a set of denominations, so the minimum size for n = 212 is 25. Erdős Problem #791 page inspected (Rohrbach's problem; (2.181+o(1))n <= g(n)^2 <= (3.458+o(1))n by Yu and Kohonen). For n = 212 the minimum is 25, so the task recovers an extremal basis."
     },
     {
       "url": "https://www.erdosproblems.com/791",
@@ -71,9 +71,15 @@
         "url": "https://doi.org/10.1016/j.jnt.2016.11.011",
         "authors": "Jukka Kohonen",
         "year": 2017
+      },
+      {
+        "title": "Addition Chains Meet Postage Stamps: Reducing the Number of Multiplications",
+        "url": "https://arxiv.org/abs/1310.7090",
+        "authors": "Jukka Kohonen, Jukka Corander",
+        "year": 2014
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 791,
       "url": "https://www.erdosproblems.com/791",
@@ -96,7 +102,7 @@
     ],
     "reviewed_at": "2026-09-24",
     "reason": "Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.",
-    "verification_basis": "Journal of Integer Sequences article and OEIS A066063/A001212 inspected: the two-stamp postage problem has optimal range 212 with 24 denominations and 196 with 23, and a basis of {0..n} is 0 together with a set of denominations, so the minimum size for n = 212 is 25. Erdős Problem #791 page inspected (Rohrbach's problem; (2.181+o(1))n <= g(n)^2 <= (3.458+o(1))n by Yu and Kohonen).",
+    "verification_basis": "Journal of Integer Sequences article and OEIS A066063/A001212 inspected: the two-stamp postage problem has optimal range 212 with 24 denominations (Kohonen and Corander, Addition Chains Meet Postage Stamps, J. Integer Seq. 17 (2014), Art. 14.3.4) and 196 with 23 (Challis and Robinson, addendum of July 2013), and a basis of {0..n} is 0 together with a set of denominations, so the minimum size for n = 212 is 25. Erdős Problem #791 page inspected (Rohrbach's problem; (2.181+o(1))n <= g(n)^2 <= (3.458+o(1))n by Yu and Kohonen).",
     "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
     "criterion": "primary_research_goal"
   },

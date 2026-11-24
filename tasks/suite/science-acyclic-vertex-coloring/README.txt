@@ -17,9 +17,9 @@ construct() -> fifty Python integer color labels in 0..49 for the pinned degree-
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Noga Alon, Colin McDiarmid and Bruce Reed (1991, Acyclic coloring of graphs) study the underlying problem.
+The optimum is 4: with three colours the three two-coloured forests would have at most 2n - 3 = 97 of the 100 edges, and an acyclic 4-colouring exists (found by local search and verified in the package's tests). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Noga Alon, Colin McDiarmid and Bruce Reed (1991, Acyclic coloring of graphs) study the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `4` (reviewed 2026-11-24).
 
 - [Acyclic coloring of graphs](https://doi.org/10.1002/rsa.3240020303), Noga Alon, Colin McDiarmid and Bruce Reed (1991)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 50, "edges": [[0, 1], [0, 7], [0, 43], [0, 49], [1, 2], [1, 8
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

@@ -16,6 +16,7 @@ if str(SUITE_LIB) not in sys.path:
     sys.path.insert(0, str(SUITE_LIB))
 
 from autoresearch_suite import runtime  # noqa: E402
+from autoresearch_suite import sandboxed  # noqa: E402
 from autoresearch_suite import phys_nuclear  # noqa: E402
 
 DIRECTION = "minimize"
@@ -29,7 +30,7 @@ def task(module):
 
 
 def evaluate(program_path="initial_program.py"):
-    result = runtime.run(program_path, task, timeout=TIMEOUT)
+    result = sandboxed.run(program_path, task, timeout=TIMEOUT)
     result["direction"] = DIRECTION
     return result
 

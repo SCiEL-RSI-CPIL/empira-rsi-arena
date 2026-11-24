@@ -46,12 +46,12 @@
     },
     "interface": "construct() -> candidate. Return integer n in [10000,1000000]. Minimize the largest prime factor of n(n+1), independently computed by exact trial division.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -94,26 +94,30 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+    "kind": "optimum",
+    "value": 13,
+    "statement": "The minimum of P(n(n+1)) over n in [10000, 1000000] is 13. The largest n for which n(n+1) has no prime factor above 11 is 9800 (Lehmer 1964; OEIS A002072), which lies below the window, and a full scan of the window finds two n with P(n(n+1)) = 13.",
     "sources": [
       {
         "title": "Old and New Problems and Results in Combinatorial Number Theory",
         "url": "https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf",
         "authors": "Paul Erdős and Ronald L. Graham",
         "year": 1980
+      },
+      {
+        "title": "OEIS A002072: a(n) = smallest number m such that for all k > m, either k or k+1 has a prime factor > prime(n)",
+        "url": "https://oeis.org/A002072"
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

@@ -46,12 +46,12 @@
     },
     "interface": "construct() -> candidate. Return 1..256 distinct integer denominators in [5,10000000] whose reciprocal sum is exactly 1; minimize their count.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -94,9 +94,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+    "kind": "optimum",
+    "value": 10,
+    "statement": "The fewest distinct unit fractions with denominators at least 5 that sum to 1 is 10: an exhaustive search over increasing denominators finds no representation with 9 or fewer terms and 161 representations with 10 terms, all within the denominator cap. In the notation of Erdős and Graham (1980, p. 35) this is U_5 = 10; Erdős and Straus proved (e-1)n - c < U_n < (e-1)n + c'n/log n.",
     "sources": [
       {
         "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -105,15 +105,15 @@
         "year": 1980
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

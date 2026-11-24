@@ -365,7 +365,9 @@ def strong_edge_colouring(value, instances=STRONG_INSTANCES):
                 require(not {a, b} & {x, y} and not ({x, y} & (adj[a] | adj[b])), "two edges of one colour share or join vertices")
         used.append(len(classes))
         total += len(classes)
-    return total, _report(colours_per_instance=used, erdos_nesetril_bounds=[5*d*d//4 for _, d, _ in instances])
+    # Erdos-Nesetril: 5d^2/4 for even d and (5d^2 - 2d + 1)/4 for odd d.
+    bounds = [(5*d*d-2*d+1)//4 if d % 2 else 5*d*d//4 for _, d, _ in instances]
+    return total, _report(colours_per_instance=used, erdos_nesetril_bounds=bounds)
 
 
 def maximal_cliques(adj, n):

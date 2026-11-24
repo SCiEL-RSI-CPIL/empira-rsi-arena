@@ -1,4 +1,4 @@
-# Large graphs with no regular induced subgraph on six vertices
+# Large graphs with no regular induced subgraph on six or more vertices
 
 **Source collection:** [Problem-bank constructions: Ramsey theory and colourings: source-based research tasks](../../papers/science-prize_e.md)\
 **Task id:** `science-graphs-without-large-regular-induced-subgraphs`\
@@ -17,9 +17,9 @@ construct() -> {'n': n, 'edges': [[u, v], ...]}: a simple graph on vertices 0..n
 
 ## State of the art
 
-G(6) >= 21: graphs on 20 vertices with no regular induced subgraph of order 6 are known (Alexeev and McKay; OEIS A392636); the existence of such a graph on 21 vertices is open.
+G(6) >= 21: graphs on 20 vertices with no regular induced subgraph of order 6 or more are known (Alexeev and McKay; OEIS A392636); the existence of such a graph on 21 vertices is open.
 
-Reference value: best known value `20` (reviewed 2026-09-24).
+Reference value: best known value `20` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #82](https://www.erdosproblems.com/82), status: open.
 
@@ -64,7 +64,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://arxiv.org/abs/2604.08215 (Paul W. Dyson and Brendan D. McKay, Ramsey numbers for regular induced subgraphs (2026). arXiv record inspected; Erdős Problem #82 page inspected: G(5) = 17, G(6) >= 21 and G(7) >= 30 (Alexeev and McKay; Dyson and McKay), where G(k) is the least order forcing a regular induced subgraph on k vertices. OEIS A392636 inspected: graphs on 20 vertices without regular induced subgraphs of order 6 exist; whether any exist on 21 vertices is unknown. A valid graph on n vertices certifies G(6) > n. Graphs with 20 vertices are known; a 21-vertex graph would show G(6) >= 22.)
+- paper: https://arxiv.org/abs/2604.08215 (Paul W. Dyson and Brendan D. McKay, Ramsey numbers for regular induced subgraphs (2026). arXiv record inspected; Erdős Problem #82 page inspected: G(5) = 17, G(6) >= 21 and G(7) >= 30 (Alexeev and McKay; Dyson and McKay), where G(k) is the least order forcing a regular induced subgraph on at least k vertices. OEIS A392636 inspected: graphs on 20 vertices without regular induced subgraphs of order 6 or greater exist; whether any exist on 21 vertices is unknown. A valid graph on n vertices certifies G(6) > n. Graphs with 20 vertices are known; a 21-vertex graph would show G(6) >= 22.)
 - archive: https://www.erdosproblems.com/82 (Erdős Problem #82 (open); statement, history and current bounds reviewed 2026-09-24.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0001-0100.md#JSP-000099 (JSP-000099; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 

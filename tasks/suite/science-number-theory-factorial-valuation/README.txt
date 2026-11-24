@@ -17,9 +17,9 @@ construct() -> candidate. Return a distinct subset of factorial indices [2,32] c
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.
+For indices in [2,32] the largest power of 2 dividing a sum of distinct factorials that contains 2! is 2^32. A sum can be divisible by a higher power only while its partial sums stay divisible by the 2-part of the next factorial, which leaves 400 cases, and a second search modulo 2^33 agrees. Without the index bound the maximum is 2^254 (Lin 1976, quoted by Erdős and Graham 1980, p. 79).
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `32` (reviewed 2026-11-24).
 
 - [Old and New Problems and Results in Combinatorial Number Theory](https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf), Paul Erdős and Ronald L. Graham (1980)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 32, "p": 2, "first": 2}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

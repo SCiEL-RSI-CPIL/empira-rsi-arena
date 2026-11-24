@@ -13,7 +13,7 @@ import csv
 import numpy as np
 
 from . import chem_sandbox
-from .chem_common import data_file, mae, predictions, regression_metrics
+from .chem_common import data_file, finite_or_none, mae, predictions, regression_metrics
 
 ENDPOINTS = {
     "solubility": "log10 aqueous solubility at pH 6.8 (ug/mL)",
@@ -35,6 +35,18 @@ def load(endpoint):
     return tuple(parts)
 
 
+def reportable(value):
+    """Details as they are reported: a metric that overflowed to inf or NaN becomes None.
+
+    A diverged model can return finite predictions so large that the squared-error metrics overflow; the
+    result must still be a JSON document (runtime.main prints with allow_nan=False)."""
+    if isinstance(value, dict):
+        return {key: reportable(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [reportable(item) for item in value]
+    return finite_or_none(value) if isinstance(value, float) else value
+
+
 def adme_score(module, endpoint, wall_seconds=540):
     """Mean absolute error (log10 units) of the candidate's test-set predictions; lower is better."""
     train_smiles, train_values, test_smiles, test_values = load(endpoint)
@@ -44,5 +56,5 @@ def adme_score(module, endpoint, wall_seconds=540):
     predicted = predictions(raw, len(test_smiles))
     metrics = regression_metrics(test_values, predicted)
     baseline = mae(test_values, np.full(len(test_values), float(np.mean(train_values))))
-    return metrics["mae"], {**metrics, "endpoint": endpoint, "property": ENDPOINTS[endpoint], "n_train": len(train_smiles),
-                            "train_mean_predictor_mae": baseline}
+    return metrics["mae"], reportable({**metrics, "endpoint": endpoint, "property": ENDPOINTS[endpoint],
+                                       "n_train": len(train_smiles), "train_mean_predictor_mae": baseline})

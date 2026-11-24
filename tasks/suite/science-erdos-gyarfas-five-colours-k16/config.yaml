@@ -29,7 +29,7 @@ prompt:
   system_message: |
     Edge-colourings of K16 in which every K4 sees five colours
 
-    construct() -> 120 integer colours in 0..119 for the pairs (i,j), 0<=i<j<16, in lexicographic order. Every set of four vertices must span edges of at least five distinct colours. Minimize the number of colours used. A valid colouring certifies f(16) <= colours used. The general bounds give 13 <= f(16) <= 15; no exact value for n = 16 is documented.
+    construct() -> 120 integer colours in 0..119 for the pairs (i,j), 0<=i<j<16, in lexicographic order. Every set of four vertices must span edges of at least five distinct colours. Minimize the number of colours used. A valid colouring certifies f(16) <= colours used. The known bounds give 14 <= f(16) <= 15; no exact value for n = 16 is documented.
 
     Candidate interface: construct() -> 120 integer colours in 0..119 for the pairs (i,j), 0<=i<j<16, in lexicographic order. Every set of four vertices must span edges of at least five distinct colours. Minimize the number of colours used.
 

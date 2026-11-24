@@ -17,13 +17,14 @@ construct() -> 256 colours in {0,1} for the integers 1..256. Minimize the exact 
 
 ## State of the art
 
-No documented minimum for n = 256, k = 4. The asymptotic density delta_4 is unknown; the random colouring gives delta_k <= 1/((k-1)2^k).
+No documented minimum for n = 256, k = 4. The asymptotic density delta_4 is unknown. A random colouring gives delta_k <= 1/((k-1)2^k), which is 1/48 for k = 4; explicit colourings of [n] do better: Butler, Costello and Graham (2010) have 17.35 percent and Lu and Peng (2012) 33.33 percent fewer monochromatic 4-term progressions than a random colouring, so delta_4 <= 1/72.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: no documented value for this finite instance (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #1186](https://www.erdosproblems.com/1186), status: open.
 
 - [Erdős Problem #1186](https://www.erdosproblems.com/1186)
+- [Monochromatic 4-term arithmetic progressions in 2-colorings of Z_n](https://arxiv.org/abs/1107.2888), Linyuan Lu, Xing Peng (2012)
 
 Parameters: `{"n": 256, "length": 4}`
 

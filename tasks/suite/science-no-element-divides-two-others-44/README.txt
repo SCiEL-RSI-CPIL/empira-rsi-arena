@@ -70,5 +70,5 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- Solved finite case from the OEIS table; the simple interval construction [15, 44] already attains 30.
+- Solved finite case from the OEIS table; a simple interval construction already attains 30.
 - Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code.

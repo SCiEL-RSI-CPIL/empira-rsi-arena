@@ -1154,9 +1154,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Lajos Pósa (1976, Hamiltonian circuits in random graphs) studies the underlying problem.",
+    "kind": "optimum",
+    "value": 45,
+    "statement": "The earliest prefix of the pinned order that contains a Hamilton cycle is 45 (minimum degree 2 is first reached at prefix 44, where an exhaustive search finds no Hamilton cycle). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Lajos Pósa (1976, Hamiltonian circuits in random graphs) studies the underlying problem.",
     "sources": [
       {
         "title": "Hamiltonian circuits in random graphs",
@@ -1165,7 +1165,7 @@
         "year": 1976
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "supported",
@@ -1187,12 +1187,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "synthetic",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

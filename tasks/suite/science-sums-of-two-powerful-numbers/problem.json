@@ -9,7 +9,7 @@
   "requires": [],
   "timeout": 120,
   "notes": [
-    "Integers with many certified representations are finite evidence on the conjectured subpolynomial bound. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests."
+    "The cap of 1000 listed pairs is attainable: integers below 10^18 with more than 1000 representations as a sum of two squares exist, and squares are powerful. So 1000 is the maximum score and the task is a capped search exercise, not evidence on the conjectured subpolynomial bound. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests."
   ],
   "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
   "id": "science-sums-of-two-powerful-numbers",
@@ -17,7 +17,7 @@
   "paper_ids": [
     "science-prize_i"
   ],
-  "description": "construct() -> {'N': N, 'pairs': [[a, b], ...]} with 2 <= N <= 10^18 and between 1 and 1000 distinct pairs a <= b, a + b = N (a list of more than 1000 pairs is rejected, so the score is at most 1000), where a and b are powerful (every prime factor appears squared; 1 counts as powerful), checked by exact factorization. The score is the number of pairs, a certified lower bound on the representation count. Maximize. Integers with many certified representations are finite evidence on the conjectured subpolynomial bound.",
+  "description": "construct() -> {'N': N, 'pairs': [[a, b], ...]} with 2 <= N <= 10^18 and between 1 and 1000 distinct pairs a <= b, a + b = N (a list of more than 1000 pairs is rejected, so the score is at most 1000), where a and b are powerful (every prime factor appears squared; 1 counts as powerful), checked by exact factorization. The score is the number of pairs, a certified lower bound on the representation count. Maximize. The cap of 1000 listed pairs is attainable: integers below 10^18 with more than 1000 representations as a sum of two squares exist, and squares are powerful. So 1000 is the maximum score and the task is a capped search exercise, not evidence on the conjectured subpolynomial bound.",
   "benchmark": "Integers up to 10^18 with many representations as sums of two powerful numbers",
   "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
   "paper_direction": null,
@@ -25,7 +25,7 @@
     {
       "url": "https://doi.org/10.1515/crll.2004.027",
       "type": "paper",
-      "locator": "Valentin Blomer, Binary quadratic forms with large discriminants and sums of two squareful numbers (2004). Crossref record inspected (Blomer studies how many integers are sums of two squareful numbers). Erdős Problem #943 page inspected: is the number of representations n^(o(1)) for every n? OEIS A085252 inspected (counts for small n). No record values over a range are documented. Integers with many certified representations are finite evidence on the conjectured subpolynomial bound."
+      "locator": "Valentin Blomer, Binary quadratic forms with large discriminants and sums of two squareful numbers (2004). Crossref record inspected (Blomer studies how many integers are sums of two squareful numbers). Erdős Problem #943 page inspected: is the number of representations n^(o(1)) for every n? OEIS A085252 inspected (counts for small n). No record values over a range are documented. The cap of 1000 listed pairs is attainable: integers below 10^18 with more than 1000 representations as a sum of two squares exist, and squares are powerful. So 1000 is the maximum score and the task is a capped search exercise, not evidence on the conjectured subpolynomial bound."
     },
     {
       "url": "https://www.erdosproblems.com/943",
@@ -39,7 +39,7 @@
     }
   ],
   "limitations": [
-    "No documented value (reference label none); listed pairs certify a lower bound.",
+    "The score is capped at 1000 listed pairs and the cap is attainable, so the optimum (1000) is known; listed pairs certify a lower bound on the representation count.",
     "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
   ],
   "evaluator": "evaluator.py",
@@ -52,9 +52,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No documented record values.",
+    "kind": "optimum",
+    "value": 1000,
+    "statement": "The contract caps the score at 1000 pairs and the cap is attained: 331854559557386125 = 5^3 * 13^2 * 17 * 29 * 37 * 41 * 53 * 61 * 73 * 89 is a sum of two positive squares in 1536 ways, each a pair of powerful numbers (computed for this package).",
     "sources": [
       {
         "title": "Binary quadratic forms with large discriminants and sums of two squareful numbers",
@@ -67,7 +67,7 @@
         "url": "https://oeis.org/A085252"
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 943,
       "url": "https://www.erdosproblems.com/943",
@@ -83,7 +83,7 @@
       {
         "title": "Binary quadratic forms with large discriminants and sums of two squareful numbers",
         "url": "https://doi.org/10.1515/crll.2004.027",
-        "task_relation": "Integers with many certified representations are finite evidence on the conjectured subpolynomial bound.",
+        "task_relation": "The cap of 1000 listed pairs is attainable: integers below 10^18 with more than 1000 representations as a sum of two squares exist, and squares are powerful. So 1000 is the maximum score and the task is a capped search exercise, not evidence on the conjectured subpolynomial bound.",
         "primary_goal": "Decide whether the number of representations of n as a sum of two powerful numbers is n^(o(1)) (Erdős Problem #943).",
         "evidence_role": "primary_problem"
       }
@@ -95,14 +95,14 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "open_problem",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "area": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
-    "science_tier": 1,
+    "reference": "published_value",
+    "science_tier": 2,
     "resources": [
       "cpu"
     ],

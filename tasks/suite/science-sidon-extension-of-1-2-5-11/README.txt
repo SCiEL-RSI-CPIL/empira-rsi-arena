@@ -38,15 +38,14 @@ Research area: `mathematics`.
 
 A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.
 
-Evidence status: **supported**.
+Evidence status: **unreviewed**.
 
 Underlying problem: Decide whether every finite Sidon set extends to a nearly optimal Sidon set (Erdős Problem #44).
 
 Why it matters: Sidon sets are central to additive combinatorics; the extension question underlies the conjectured maximal density N^(1/2).
 
-- [A Complete Annotated Bibliography of Work Related to Sidon Sequences](https://doi.org/10.37236/32): Main research objective: Decide whether every finite Sidon set extends to a nearly optimal Sidon set (Erdős Problem #44). Task connection: Scores near 20 would show that the prescribed elements barely reduce the attainable size at this scale; no value for this seed is documented.
 
-Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
+The only work cited for this problem is a problem collection (A Complete Annotated Bibliography of Work Related to Sidon Sequences), which states the problem but does not have it as its main objective. The audit of 2026-11-24 found no research paper whose main objective is this problem, so no qualifying primary-goal evidence is established here; this is not a finding that the problem is unimportant.
 
 ## Evaluation protocol
 

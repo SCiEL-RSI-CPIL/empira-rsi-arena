@@ -29,7 +29,7 @@ prompt:
   system_message: |
     Long runs of consecutive integers with distinct totients (up to 10^12)
 
-    construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 200 and s + k - 1 <= 10^12. The values phi(s), ..., phi(s + k - 1) must be pairwise distinct (exact factorization). Maximize k. Long runs below 10^12 are finite evidence; (log 10^12)^c is about 27.6^c.
+    construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 200 and s + k - 1 <= 10^12. The values phi(s), ..., phi(s + k - 1) must be pairwise distinct (exact factorization). Maximize k. The length cap 200 is attained: runs of 200 consecutive integers with distinct totients occur below 1.2*10^6 and a sieve finds one in seconds. So 200 is the maximum score, the bound 10^12 plays no role, and the task is a capped search exercise rather than evidence on the conjecture.
 
     Candidate interface: construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 200 and s + k - 1 <= 10^12. The values phi(s), ..., phi(s + k - 1) must be pairwise distinct (exact factorization). Maximize k.
 

@@ -18,7 +18,7 @@
       {
         "url": "https://doi.org/10.1088/0305-4470/15/10/028",
         "type": "paper",
-        "locator": "Barahona (1982) shows that the spin-glass ground-state problem is polynomially solvable on planar lattices but NP-hard in three dimensions, placing these two tasks on either side of that boundary."
+        "locator": "Barahona (1982) shows that the spin-glass ground-state problem is polynomially solvable on two-dimensional lattices without a field and NP-hard in three dimensions and in two dimensions with a field. The instances of this task are periodic in both directions (toroidal, not planar); for the torus, polynomial algorithms are known for integer couplings bounded by a polynomial in the lattice size (Galluccio, Loebl and Vondrak, Math. Program. 90 (2001) 273-290, doi:10.1007/PL00011425)."
       },
       {
         "url": "https://biqmac.aau.at/biqmaclib.html",
@@ -28,7 +28,7 @@
     ],
     "limitations": [
       "The reference values are the optimal cut weights published with the library, obtained by branch-and-cut with no time limit; the task gives a candidate a few minutes of CPU for nine instances, so matching them is hard and the score is budget-dependent.",
-      "Two-dimensional toroidal instances are polynomially solvable in principle (Barahona 1982); a candidate that implements such an algorithm should reach the optimum, which is the intended research content of this task.",
+      "Planar two-dimensional lattices without a field are polynomially solvable by matching (Barahona 1982), but these instances are toroidal: for graphs on the torus, polynomial algorithms are known when the integer couplings are bounded by a polynomial in the lattice size (Pfaffian enumeration; Galluccio, Loebl and Vondrak 2001, who credit Barahona 1982 for toroidal square lattices). The couplings here are integers up to about 3.8e5, so that method is pseudo-polynomial for these instances. A transfer-matrix dynamic programme over rows solves the three 10x10 instances exactly in seconds and confirms their published optima; it does not scale to 15x15 and 20x20 within the budget, where the task is a test of heuristics.",
       "Only these nine fixed instances are scored: a better score is a better heuristic on them, not a statement about the Edwards-Anderson model in general.",
       "Couplings are the integer-scaled Gaussian weights of the published instances; the evaluator reports the corresponding spin-glass energy but scores the cut weight."
     ],
@@ -115,7 +115,8 @@
       "The reference values come from branch-and-cut runs without a time limit; this task gives a few minutes of CPU for nine instances, so the score is budget-dependent and not comparable with exact solvers.",
       "Only these nine fixed instances are scored, so a better score is a better heuristic on them rather than a physical result about the three-dimensional Edwards-Anderson model.",
       "Couplings are the integer-scaled Gaussian weights of the published instances; the evaluator reports the corresponding energy but scores the cut weight.",
-      "Ground-state degeneracy is not examined: the task only measures how close the recomputed cut weight comes to the published optimum."
+      "Ground-state degeneracy is not examined: the task only measures how close the recomputed cut weight comes to the published optimum.",
+      "NP-hardness is a worst-case statement and these instances have at most 343 spins: simulated annealing with a few hundred replicas reaches the published optimum of eight of the nine instances within seconds each (the ninth to within 3e-4), so a score close to 1.0 is attainable inside the budget and the headroom of the task is the gap between the seed (0.885) and 1.0."
     ],
     "labels": {
       "area": "physics",
@@ -470,7 +471,7 @@
       "scientific_contribution": "method",
       "artifact": "construction",
       "data": "none",
-      "verification": "exact",
+      "verification": "simulation",
       "reference": "none"
     },
     "requirements": {
@@ -502,8 +503,8 @@
     "state_of_the_art": {
       "kind": "none",
       "value": null,
-      "as_of": "2026-10-10",
-      "statement": "No published value under this exact discretization and gap measure. For context, the textbook rod crystal (the seed) gives 0.043 here, close to the 3.84 % reported by the MPB tutorial for the same nominal structure, and a 150-second greedy pixel-flip search run during task construction reached 0.311.",
+      "as_of": "2026-11-24",
+      "statement": "No published value under this exact discretization and gap measure. For context, the textbook rod crystal (the seed) gives 0.0431 here, against 3.84 % in the MPB tutorial for the same nominal structure (the difference comes from the pixelated circle and from the tutorial's grid resolution), and a 150-second greedy pixel-flip search run during task construction reached 0.311.",
       "sources": [
         {
           "title": "MPB Python tutorial",

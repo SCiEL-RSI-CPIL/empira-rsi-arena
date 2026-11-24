@@ -17,9 +17,9 @@ construct() -> candidate. Return increasing prime integers <=10000 with successi
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.
+The longest increasing sequence of primes up to 10000 with nondecreasing gaps has 98 terms. This is the exact value of a dynamic programme over the last prime and the last gap, checked against brute force on short lists of primes. Erdős and Graham (1980, pp. 90-91) quote Richter's bound lim inf q_n/n² > 0 for such sequences.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `98` (reviewed 2026-11-24).
 
 - [Old and New Problems and Results in Combinatorial Number Theory](https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf), Paul Erdős and Ronald L. Graham (1980)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 10000}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

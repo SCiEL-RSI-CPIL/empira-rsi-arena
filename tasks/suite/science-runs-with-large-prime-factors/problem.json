@@ -2,14 +2,14 @@
   "protocol": "recreated_verified",
   "family": "science_prize_h_large_factor_run",
   "direction": "maximize",
-  "contract": "construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30 (6961, ..., 6990).",
+  "contract": "construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30.",
   "parameters": {
     "bound": 10000
   },
   "requires": [],
   "timeout": 120,
   "notes": [
-    "For runs starting at most 10^4 the maximum is 30, so the task recovers the run 6961..6990 or an equivalent. Exact local certificates are not Lean proofs; the Mahler measure and reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests."
+    "For runs starting at most 10^4 the maximum is 30, so the task recovers such a run. Exact local certificates are not Lean proofs; the Mahler measure and reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests."
   ],
   "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
   "id": "science-runs-with-large-prime-factors",
@@ -17,7 +17,7 @@
   "paper_ids": [
     "science-prize_h"
   ],
-  "description": "construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30 (6961, ..., 6990). For runs starting at most 10^4 the maximum is 30, so the task recovers the run 6961..6990 or an equivalent.",
+  "description": "construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30. For runs starting at most 10^4 the maximum is 30, so the task recovers such a run.",
   "benchmark": "Runs of consecutive integers each with a prime factor larger than the run length (start at most 10^4)",
   "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
   "paper_direction": null,
@@ -25,7 +25,7 @@
     {
       "url": "https://github.com/QuanyuTang/erdos-problem-962/blob/main/On_Erd%C5%91s_Problem_962.pdf",
       "type": "paper",
-      "locator": "Quanyu Tang, An improved lower bound on Erdős problem #962 (2025). Research note linked from the Erdős Problems page inspected (proves log k(n) >= (1/sqrt 2 - o(1)) sqrt(log n log log n)). Erdős Problem #962 page inspected: k(n) is the largest k such that some m <= n has m+1, ..., m+k each divisible by a prime > k; Erdős had log k(n) >> (log n log log n)^(1/2) and Tao proved k(n) <= (1+o(1)) n^(1/2). OEIS A327909 inspected: the smallest start of a run of n or more integers each with a prime factor greater than n is 6961 for n = 30 and 10305 for n = 31 (the sequence is nondecreasing), so the longest run starting at most 10^4 has 30 terms. For runs starting at most 10^4 the maximum is 30, so the task recovers the run 6961..6990 or an equivalent."
+      "locator": "Quanyu Tang, An improved lower bound on Erdős problem #962 (2025). Research note linked from the Erdős Problems page inspected (proves log k(n) >= (1/sqrt 2 - o(1)) sqrt(log n log log n)). Erdős Problem #962 page inspected: k(n) is the largest k such that some m <= n has m+1, ..., m+k each divisible by a prime > k; Erdős had log k(n) >> (log n log log n)^(1/2) and Tao proved k(n) <= (1+o(1)) n^(1/2). OEIS A327909 inspected: the smallest start of a run of n or more integers each with a prime factor greater than n is 6961 for n = 30 and 10305 for n = 31 (the sequence is nondecreasing), so the longest run starting at most 10^4 has 30 terms. For runs starting at most 10^4 the maximum is 30, so the task recovers such a run."
     },
     {
       "url": "https://www.erdosproblems.com/962",
@@ -83,7 +83,7 @@
       {
         "title": "An improved lower bound on Erdős problem #962",
         "url": "https://github.com/QuanyuTang/erdos-problem-962/blob/main/On_Erd%C5%91s_Problem_962.pdf",
-        "task_relation": "For runs starting at most 10^4 the maximum is 30, so the task recovers the run 6961..6990 or an equivalent.",
+        "task_relation": "For runs starting at most 10^4 the maximum is 30, so the task recovers such a run.",
         "primary_goal": "Estimate k(n), the longest run up to n in which every term has a prime factor exceeding the run length (Erdős Problem #962).",
         "evidence_role": "primary_problem"
       }

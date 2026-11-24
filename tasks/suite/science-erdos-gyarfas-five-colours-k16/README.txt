@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> 120 integer colours in 0..119 for the pairs (i,j), 0<=i<j<16, in lexicographic order. Every set of four vertices must span edges of at least five distinct colours. Minimize the number of colours used. A valid colouring certifies f(16) <= colours used. The general bounds give 13 <= f(16) <= 15; no exact value for n = 16 is documented.
+construct() -> 120 integer colours in 0..119 for the pairs (i,j), 0<=i<j<16, in lexicographic order. Every set of four vertices must span edges of at least five distinct colours. Minimize the number of colours used. A valid colouring certifies f(16) <= colours used. The known bounds give 14 <= f(16) <= 15; no exact value for n = 16 is documented.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,14 +17,15 @@ construct() -> 120 integer colours in 0..119 for the pairs (i,j), 0<=i<j<16, in 
 
 ## State of the art
 
-No documented value for n = 16. General bounds: 5(n-1)/6 < f(n) < n (Erdős and Gyárfás 1997), so 13 <= f(16) <= 15; asymptotically f(n) ~ 5n/6 (Bennett, Cushman, Dudek and Prałat).
+No documented value for n = 16. Lower bound f(n) >= 5(n-1)/6 + 1 (Krop and Krop 2013, improving 5(n-1)/6 of Erdős and Gyárfás 1997), so f(16) >= 14. The published colourings with n-1 colours need n-1 prime (Erdős and Gyárfás) or n not congruent to 1 modulo 3 (Krop and Krop) and do not cover n = 16, but 15 colours suffice: fifteen perfect matchings of K16, no two of which contain a four-cycle, form a valid colouring (one is checked in the package tests). Hence 14 <= f(16) <= 15; asymptotically f(n) ~ 5n/6 (Bennett, Cushman, Dudek and Prałat).
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: no documented value for this finite instance (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #136](https://www.erdosproblems.com/136), status: solved (f(n) ~ 5n/6).
 
 - [A variant of the classical Ramsey problem](https://doi.org/10.1007/bf01195000), Paul Erdős, András Gyárfás (1997)
 - [Erdős Problem #136](https://www.erdosproblems.com/136)
+- [Almost-rainbow edge-colorings of some small subgraphs](https://arxiv.org/abs/0803.0572), Elliot Krop, Irina Krop (2013)
 
 Parameters: `{"n": 16}`
 
@@ -44,7 +45,7 @@ Underlying problem: Determine the least number of colours f(n) such that every K
 
 Why it matters: This is the Erdős-Gyárfás generalized Ramsey function f(n,4,5) (Erdős Problem #136); its asymptotics were settled only in 2022.
 
-- [A variant of the classical Ramsey problem](https://doi.org/10.1007/bf01195000): Main research objective: Determine the least number of colours f(n) such that every K4 receives at least five colours. Task connection: A valid colouring certifies f(16) <= colours used. The general bounds give 13 <= f(16) <= 15; no exact value for n = 16 is documented.
+- [A variant of the classical Ramsey problem](https://doi.org/10.1007/bf01195000): Main research objective: Determine the least number of colours f(n) such that every K4 receives at least five colours. Task connection: A valid colouring certifies f(16) <= colours used. The known bounds give 14 <= f(16) <= 15; no exact value for n = 16 is documented.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -52,7 +53,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- A valid colouring certifies f(16) <= colours used. The general bounds give 13 <= f(16) <= 15; no exact value for n = 16 is documented. Exact local certificates are not Lean proofs. Consult the independent oracle and malformed-input tests.
+- A valid colouring certifies f(16) <= colours used. The known bounds give 14 <= f(16) <= 15; no exact value for n = 16 is documented. Exact local certificates are not Lean proofs. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -64,11 +65,11 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.1007/bf01195000 (Paul Erdős and András Gyárfás, A variant of the classical Ramsey problem (1997). Crossref record inspected; Erdős Problem #136 page inspected: Erdős and Gyárfás proved 5(n-1)/6 < f(n) < n and f(9) = 8; Bennett, Cushman, Dudek and Prałat proved f(n) ~ 5n/6. A valid colouring certifies f(16) <= colours used. The general bounds give 13 <= f(16) <= 15; no exact value for n = 16 is documented.)
+- paper: https://doi.org/10.1007/bf01195000 (Paul Erdős and András Gyárfás, A variant of the classical Ramsey problem (1997). Crossref record inspected; Erdős Problem #136 page inspected: Erdős and Gyárfás proved 5(n-1)/6 < f(n) < n and f(9) = 8; Bennett, Cushman, Dudek and Prałat proved f(n) ~ 5n/6. A valid colouring certifies f(16) <= colours used. The known bounds give 14 <= f(16) <= 15; no exact value for n = 16 is documented.)
 - archive: https://www.erdosproblems.com/136 (Erdős Problem #136 (solved (f(n) ~ 5n/6)); statement, history and current bounds reviewed 2026-09-24.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0101-0200.md#JSP-000140 (JSP-000140; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 
 ## Limitations
 
-- No published value for n = 16 was found (reference label none); improvements are comparable across runs and with the bounds 13 <= f(16) <= 15, not with a recorded optimum.
+- No published value for n = 16 was found (reference label none); improvements are comparable across runs and with the bounds 14 <= f(16) <= 15, not with a recorded optimum.
 - Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code.

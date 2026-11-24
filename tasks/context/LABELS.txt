@@ -172,7 +172,7 @@ One line per source collection (98 corpus papers, the SCiEL supplement the Kaggl
 | [AEL](../papers/ael.md) | TSP, Combinatorial Optimisation | 1 | method 1 | TSP constructive heuristic (method). |
 | [L-AutoDA](../papers/l-autoda.md) | Adversarial Attacks | 1 | method 1 | Decision-based adversarial attack algorithms (method; needs GPU models). |
 | [LLaMEA-HPO](../papers/llamea-hpo.md) | Black-Box Optimisation, Bin Packing, TSP | 1 | method 1 | BBOB optimiser, bin packing and TSP GLS heuristics (method). |
-| [MCTS-AHD](../papers/mcts-ahd.md) | Combinatorial Optimisation, TSP, Black-Box Optimisation | 1 | method 1 | ACO/constructive heuristics for TSP, CVRP, MKP, offline bin packing, admissible tuples (open_problem) and cost-aware BO (method). |
+| [MCTS-AHD](../papers/mcts-ahd.md) | Combinatorial Optimisation, TSP, Black-Box Optimisation | 1 | method 1 | ACO/constructive heuristics for TSP, CVRP, MKP, offline bin packing, admissible sets (method) and cost-aware BO (method). |
 | [Pairwise Validator](../papers/pairwise-validator.md) | Prompt Benchmarks, Code Generation | 1 | method 1 | Circle packing (open_problem), Julia prime counting and ADRS transaction scheduling (method/engineering), prompt benchmarks (benchmark). |
 | [EvoPrompting](../papers/evoprompting.md) | Architecture Search | 34 | engineering 34 | Architecture search on MNIST-1D and CLRS with training (engineering). |
 | [Promptbreeder](../papers/promptbreeder.md) | Prompt Benchmarks, Math Reasoning, Text Classification | 32 | benchmark 32 | Prompt optimisation on arithmetic, commonsense and classification benchmarks (benchmark). |

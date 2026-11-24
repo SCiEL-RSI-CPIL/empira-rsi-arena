@@ -28,7 +28,7 @@ Parameters: `{"dimension": 2, "cpu_seconds": 120}`
 
 ## Labels
 
-Scientific contribution: `open_problem` (tier 1); artifact `program`, domain `natural_science`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `method` (tier 2); artifact `program`, domain `natural_science`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `biology`.
 
@@ -51,7 +51,7 @@ The cited papers' main goal is the HP model and the search for its ground states
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- The benchmark sequences and the best-known energies are transcribed from the cited papers (2D: Kou, Oh and Wong 2006 and Zhang, Kou and Liu 2007; 3D 48-mers: Bachmann and Janke 2004 for the Yue et al. 1995 set; longer 3D chains: Zhang, Kou and Liu 2007 and Wuest and Landau 2012). Only the ten 48-mers have ground states proven by exhaustive hydrophobic-core construction; the other values are the lowest energies reported in that literature, so a lower score is possible in principle. The evaluator checks self-avoidance and recomputes every energy, but it does not prove optimality, and the single CPU budget for all sequences makes the score budget-dependent.
+- The benchmark sequences and the best-known energies are transcribed from the cited papers (2D: Kou, Oh and Wong 2006 and Zhang, Kou and Liu 2007; 3D 48-mers: Bachmann and Janke 2004 for the Yue et al. 1995 set; longer 3D chains: Zhang, Kou and Liu 2007 and Wuest and Landau 2012). The ten 48-mers have ground states proven by exhaustive hydrophobic-core construction, and Hsu et al. (2003) report that the energies of the 64- and 67-residue chains of Yue and Dill (1995) were determined exactly by the same method; the other values are the lowest energies reported in that literature, so only for them is a lower energy (a score above 1.0) possible in principle. The evaluator checks self-avoidance and recomputes every energy, but it does not prove optimality, and the single CPU budget for all sequences makes the score budget-dependent.
 
 ## Run
 
@@ -75,6 +75,6 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 ## Limitations
 
 - The HP model is a coarse two-letter abstraction of a protein: its ground states are not real protein structures, and a better HP energy is a better solution of the stated lattice optimisation problem rather than a structural-biology result.
-- Best-known energies for these 2D sequences are the lowest values reported in the cited literature, not proven optima; the evaluator cannot certify optimality, only recompute energies.
+- Best-known energies for these 2D sequences are the lowest values reported in the cited literature, not proven optima, except for the 25-residue chain, whose -8 equals the parity upper bound on contacts (H-H contacts join residues of opposite parity, and its four H residues at positions 6, 12, 18 and 24 have two free neighbour sites each); the evaluator cannot certify optimality, only recompute energies.
 - All ten sequences share one CPU budget inside the sandboxed subprocess, so the score depends on that budget and is not comparable with the multi-hour searches of the cited papers.
 - The published energies are embedded in the evaluator as reference values only; the candidate never receives them.

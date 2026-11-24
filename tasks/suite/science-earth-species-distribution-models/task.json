@@ -96,7 +96,7 @@
     "No published value is embedded: the benchmark paper's tables could not be retrieved in this environment (the publisher's site refused the request), so the mean AUCs it reports were not checked.",
     "The presence-absence outcomes are public on OSF; the sandbox keeps them away from the candidate process, but search feedback on these fixed sites can still overfit them.",
     "A better score is a better species distribution modelling method on this benchmark, not an ecological discovery.",
-    "The candidate runs in a sandboxed child process that never receives the survey outcomes; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    "The candidate runs in a sandboxed child process that never receives the survey outcomes, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "validation": {
     "level": "source_seed_executed",
@@ -129,7 +129,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

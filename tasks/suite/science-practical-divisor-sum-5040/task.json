@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "id": "science-practical-divisor-sum-5040",
   "name": "Short sums of distinct divisors of 5040",
-  "description": "construct() -> at most 256 distinct positive divisors of n=5040 whose sum is target=4979. Minimize the number of selected divisors. Exact membership and sum checks; this is one finite practical-number instance. Represent 4979 as a sum of distinct divisors of 5040, minimizing the number of terms. This is one finite optimization instance, not Vose’s asymptotic theorem.",
+  "description": "construct() -> at most 256 distinct positive divisors of n=5040 whose sum is target=4979. Minimize the number of selected divisors. Exact membership and sum checks; this is one finite practical-number instance. Represent 4979 as a sum of distinct divisors of 5040, minimizing the number of terms. This is one finite optimization instance, not Vose’s asymptotic theorem. The optimum is 5, established by an exhaustive search over the 60 divisors; this is a rediscovery task.",
   "paper_ids": [
     "science-prize_a"
   ],
@@ -51,13 +51,13 @@
     },
     "interface": "construct() -> at most 256 distinct positive divisors of n=5040 whose sum is target=4979. Minimize the number of selected divisors. Exact membership and sum checks; this is one finite practical-number instance.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "area": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none"
+      "reference": "published_value"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -83,7 +83,8 @@
   },
   "limitations": [
     "Represent 4979 as a sum of distinct divisors of 5040, minimizing the number of terms. This is one finite optimization instance, not Vose’s asymptotic theorem.",
-    "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code."
+    "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code.",
+    "Solved finite case: The minimum is 5; no four distinct divisors of 5040 sum to 4979."
   ],
   "validation": {
     "level": "automated_tests",
@@ -94,9 +95,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Michael D. Vose (1985, Egyptian Fractions) studies the underlying problem.",
+    "kind": "optimum",
+    "value": 5,
+    "statement": "The minimum is 5. No four distinct divisors of 5040 sum to 4979, and five do; an exhaustive search over the 60 divisors (tests/test_audit_prize_a.py) shows both. The instance was fixed for this dataset and has no published value. Michael D. Vose (1985, Egyptian Fractions) studies the underlying problem.",
     "sources": [
       {
         "title": "Egyptian Fractions",
@@ -105,16 +106,16 @@
         "year": 1985
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "area": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "science_tier": 2,
     "resources": [
       "cpu"

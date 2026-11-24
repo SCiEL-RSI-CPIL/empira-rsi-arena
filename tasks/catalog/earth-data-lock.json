@@ -2,8 +2,8 @@
   "schema": "artask.data-lock/1",
   "package": "earth",
   "prepare": "python3 scripts/prepare_earth.py",
-  "raw_cache": ".cache/earth-raw",
-  "derived_directory": "suite/_lib/data/earth",
+  "raw_cache": "earth-raw of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "derived_directory": "data/earth of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
   "sources": [
     {
       "name": "hurdat2-1851-2024-040425.txt",
@@ -23,9 +23,9 @@
       "license": "No constraints on data access or use (licence attribute of the file); work of the U.S. Government (NOAA NCEI, distributed by NOAA PSL)",
       "license_url": "https://psl.noaa.gov/data/gridded/data.noaa.ersst.v5.html",
       "citation": "Huang, B. et al. (2017). Extended Reconstructed Sea Surface Temperature, Version 5 (ERSSTv5): upgrades, validations, and intercomparisons. Journal of Climate 30, 8179-8205.",
-      "retrieved": "2026-10-10",
-      "sha256": "56659057862e8e064365d0c695570a4512937d5ebbf744f4af3f47699c267e81",
-      "size_bytes": 160754608
+      "retrieved": "2026-11-20",
+      "sha256": "952fad739abab3e3c33c955b168f298b9884d2fe48ab259ebf19ac531d8d8386",
+      "size_bytes": 162376295
     },
     {
       "name": "comcat_socal_m2.5_1981_1985.csv",
@@ -34,7 +34,7 @@
       "license": "Public domain (U.S. Geological Survey ANSS Comprehensive Catalog; southern California data from the Southern California Seismic Network)",
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey, Earthquake Hazards Program (2017). Advanced National Seismic System (ANSS) Comprehensive Catalog of Earthquake Events and Products. doi:10.5066/F7MS3QZH",
-      "retrieved": "2026-10-10",
+      "retrieved": "2026-11-20",
       "sha256": "84235de49d3c9123caf5c214d3c23cc74546c540f57bf3273cc1206aa263c881",
       "size_bytes": 1539287
     },
@@ -45,7 +45,7 @@
       "license": "Public domain (U.S. Geological Survey ANSS Comprehensive Catalog; southern California data from the Southern California Seismic Network)",
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey, Earthquake Hazards Program (2017). Advanced National Seismic System (ANSS) Comprehensive Catalog of Earthquake Events and Products. doi:10.5066/F7MS3QZH",
-      "retrieved": "2026-10-10",
+      "retrieved": "2026-11-20",
       "sha256": "261bf01cd4a1164b23703d138f440ed879f7df4fbda18abbc950015af4253811",
       "size_bytes": 1801074
     },
@@ -56,8 +56,8 @@
       "license": "Public domain (U.S. Geological Survey ANSS Comprehensive Catalog; southern California data from the Southern California Seismic Network)",
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey, Earthquake Hazards Program (2017). Advanced National Seismic System (ANSS) Comprehensive Catalog of Earthquake Events and Products. doi:10.5066/F7MS3QZH",
-      "retrieved": "2026-10-10",
-      "sha256": "4e6103563b00c8a27dfca4d11ed9f4c719b1b43cf0b9571fd394baf20e8b0e9d",
+      "retrieved": "2026-11-20",
+      "sha256": "c4b6e266909276600c221770b9d44af2ea2784c2ad10f739cf598415b0f96c68",
       "size_bytes": 2095660
     },
     {
@@ -67,7 +67,7 @@
       "license": "Public domain (U.S. Geological Survey ANSS Comprehensive Catalog; southern California data from the Southern California Seismic Network)",
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey, Earthquake Hazards Program (2017). Advanced National Seismic System (ANSS) Comprehensive Catalog of Earthquake Events and Products. doi:10.5066/F7MS3QZH",
-      "retrieved": "2026-10-10",
+      "retrieved": "2026-11-20",
       "sha256": "9ed2ecde3cdda25bf25fdd74760c4c807d4c852682d52f9bfc5ca599e2e1c56d",
       "size_bytes": 1409606
     },
@@ -78,9 +78,9 @@
       "license": "Public domain (U.S. Geological Survey ANSS Comprehensive Catalog; southern California data from the Southern California Seismic Network)",
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey, Earthquake Hazards Program (2017). Advanced National Seismic System (ANSS) Comprehensive Catalog of Earthquake Events and Products. doi:10.5066/F7MS3QZH",
-      "retrieved": "2026-10-10",
-      "sha256": "87c00ed0d828b17fd89444390131a294b82b80cf10b959627579f69a0f279b48",
-      "size_bytes": 1016538
+      "retrieved": "2026-11-20",
+      "sha256": "f97c1f445e6cba3408b50f7dadbd496b05881353c4890d33db2e29a40d9b707e",
+      "size_bytes": 1016515
     },
     {
       "name": "comcat_socal_m2.5_2006_2010.csv",
@@ -89,9 +89,9 @@
       "license": "Public domain (U.S. Geological Survey ANSS Comprehensive Catalog; southern California data from the Southern California Seismic Network)",
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey, Earthquake Hazards Program (2017). Advanced National Seismic System (ANSS) Comprehensive Catalog of Earthquake Events and Products. doi:10.5066/F7MS3QZH",
-      "retrieved": "2026-10-10",
-      "sha256": "b98645cc144827dacc5ec1e0874a386ced3e2d127fa9ad94c67726441699d1e8",
-      "size_bytes": 1565181
+      "retrieved": "2026-11-20",
+      "sha256": "e2245d9612b57a44ad37fe6307f09d9a833a0898737f4d29db3db962f06b4cbb",
+      "size_bytes": 1565166
     },
     {
       "name": "comcat_socal_m2.5_2011_2015.csv",
@@ -100,7 +100,7 @@
       "license": "Public domain (U.S. Geological Survey ANSS Comprehensive Catalog; southern California data from the Southern California Seismic Network)",
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey, Earthquake Hazards Program (2017). Advanced National Seismic System (ANSS) Comprehensive Catalog of Earthquake Events and Products. doi:10.5066/F7MS3QZH",
-      "retrieved": "2026-10-10",
+      "retrieved": "2026-11-20",
       "sha256": "540470ef710dd24d240350fa0bd24920083201086e92ef28bd48162b8c6805b3",
       "size_bytes": 763917
     },
@@ -111,9 +111,9 @@
       "license": "Public domain (U.S. Geological Survey ANSS Comprehensive Catalog; southern California data from the Southern California Seismic Network)",
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey, Earthquake Hazards Program (2017). Advanced National Seismic System (ANSS) Comprehensive Catalog of Earthquake Events and Products. doi:10.5066/F7MS3QZH",
-      "retrieved": "2026-10-10",
-      "sha256": "0c7fa16c43bd62320fcc1e1e8c544ed7b8d37340775de6bd54e0bbd679072da6",
-      "size_bytes": 1024548
+      "retrieved": "2026-11-20",
+      "sha256": "b1039d789694b4f1be429da0a5a80a32a17e3abd53907240415b3c8fd2474f2b",
+      "size_bytes": 1024945
     },
     {
       "name": "comcat_socal_m2.5_2020_2024.csv",
@@ -122,9 +122,9 @@
       "license": "Public domain (U.S. Geological Survey ANSS Comprehensive Catalog; southern California data from the Southern California Seismic Network)",
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey, Earthquake Hazards Program (2017). Advanced National Seismic System (ANSS) Comprehensive Catalog of Earthquake Events and Products. doi:10.5066/F7MS3QZH",
-      "retrieved": "2026-10-10",
-      "sha256": "354632cd7cfe417554a427116f71cee262d517bd1ceb84ced2d13148f4e56963",
-      "size_bytes": 749535
+      "retrieved": "2026-11-20",
+      "sha256": "3c4d296f1460400d68e746b3f226c67932c94c451b4391b39605080251e50de5",
+      "size_bytes": 749538
     },
     {
       "name": "nceas_AWTtrain_po.csv",
@@ -651,7 +651,7 @@
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey (2026). National Water Information System data (USGS Water Data for the Nation), daily values of discharge (00060) and nitrate plus nitrite (99133).",
       "retrieved": "2026-10-10",
-      "sha256": "7fb8f8bd35b2a9f20a226e04b56cf603ca0c1980cf299beb5f7c96e190ab74e7",
+      "sha256": "d42ca527ef879c9c57e1ed1537d22b40779109b552753246695e5f3aac30d965",
       "size_bytes": 248987
     },
     {
@@ -662,7 +662,7 @@
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey (2026). National Water Information System data (USGS Water Data for the Nation), daily values of discharge (00060) and nitrate plus nitrite (99133).",
       "retrieved": "2026-10-10",
-      "sha256": "3aa995b36265051226c97ac8bda260068f9a1b70b6a51b3fe7d8cf4e1b10c661",
+      "sha256": "3a7d4ca2c8677af0068a87fea0b6d7b4e65b6be81ffdb9ba323b846b89d094b6",
       "size_bytes": 247123
     },
     {
@@ -673,7 +673,7 @@
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey (2026). National Water Information System data (USGS Water Data for the Nation), daily values of discharge (00060) and nitrate plus nitrite (99133).",
       "retrieved": "2026-10-10",
-      "sha256": "e6eaf79f644e122a5ae6c7e77ace7329d9d6094d87fa6f4007f021e78265b3cf",
+      "sha256": "a2f3e272a92f69b9466f96de180e5d8fa3fd8236cc0cd14cbb637e7939b47d54",
       "size_bytes": 248839
     },
     {
@@ -684,7 +684,7 @@
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey (2026). National Water Information System data (USGS Water Data for the Nation), daily values of discharge (00060) and nitrate plus nitrite (99133).",
       "retrieved": "2026-10-10",
-      "sha256": "890c6466442e7fb7a72595f69df53cf1a4e9330c9e2570f6cb9bafddf80e4e50",
+      "sha256": "ef9324a10b802be3acbdf52282637b0063ad35bd1fc9921ef37d0fbfc05464f7",
       "size_bytes": 238038
     },
     {
@@ -695,7 +695,7 @@
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey (2026). National Water Information System data (USGS Water Data for the Nation), daily values of discharge (00060) and nitrate plus nitrite (99133).",
       "retrieved": "2026-10-10",
-      "sha256": "f4990e3100189f09a8be52446d4292393651676da9efd3372524b53555a89ca3",
+      "sha256": "347adba1c23355727be80729e977e9a9b5c8ccad3737b03a4f6ef3933d243b1b",
       "size_bytes": 222383
     },
     {
@@ -706,7 +706,7 @@
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey (2026). National Water Information System data (USGS Water Data for the Nation), daily values of discharge (00060) and nitrate plus nitrite (99133).",
       "retrieved": "2026-10-10",
-      "sha256": "fbc514b16f583c06335be2994f4bd2be26c67a439d6f3a32b151e31e7051b5a9",
+      "sha256": "f853398cac0cd04fa8615c0585a4d7259962f6d4562fca2c8ca188979f290b8e",
       "size_bytes": 245211
     },
     {
@@ -717,8 +717,8 @@
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey (2026). National Water Information System data (USGS Water Data for the Nation), daily values of discharge (00060) and nitrate plus nitrite (99133).",
       "retrieved": "2026-10-10",
-      "sha256": "bf434e4efdf63de4958158615cdbf72ac1cd2b08b2116b8931e89340743a28c5",
-      "size_bytes": 260407
+      "sha256": "87a3d9296ab7e73363cf121f468f141a474960da908ba5b2dbfcf2737b5ce161",
+      "size_bytes": 260560
     },
     {
       "name": "nwis_dv_05484500_00060_99133.rdb",
@@ -728,7 +728,7 @@
       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
       "citation": "U.S. Geological Survey (2026). National Water Information System data (USGS Water Data for the Nation), daily values of discharge (00060) and nitrate plus nitrite (99133).",
       "retrieved": "2026-10-10",
-      "sha256": "c174df5f6788651d35096b529e1aca753757ba0cf9a81a79017a1a0b993df6a8",
+      "sha256": "5b0db1e62776f32bbd9c56be4fd843131d1b18fad4b5b99fff3322acfda76719",
       "size_bytes": 243573
     },
     {
@@ -2192,7 +2192,8 @@
       "citation": "Lan, X., Tans, P. and Thoning, K. W.: Trends in globally-averaged CO2 determined from NOAA Global Monitoring Laboratory measurements; Keeling, C. D. et al. (1976) Atmospheric carbon dioxide variations at Mauna Loa Observatory, Hawaii. Tellus 28, 538-551.",
       "retrieved": "2026-10-10",
       "sha256": "0ce4e7749217b4af2cca8e0bdf263856ad59b0a2946d4e98c7b22ccfbff21cad",
-      "size_bytes": 59678
+      "size_bytes": 59678,
+      "archive_url": "https://web.archive.org/web/20261021085831id_/https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt"
     },
     {
       "name": "iabp_C2000",
@@ -6462,8 +6463,8 @@
         "co2_mm_mlo.txt",
         "ersst.v5.sst.mnmean.nc"
       ],
-      "sha256": "77cb94bb1b25d3006142320d5ed42ba246e438ebb98f285f70db7a34f48a0ac3",
-      "size_bytes": 5460
+      "sha256": "b682c064db322bf1ddefa351b38d6ebfdfb799b934f3460fe06067cbf301b7f8",
+      "size_bytes": 5437
     },
     {
       "path": "completeness/synthetic_catalogues.json.gz",
@@ -6496,8 +6497,8 @@
       "sources": [
         "ersst.v5.sst.mnmean.nc"
       ],
-      "sha256": "99664f0ac1f376df7174a118d4aebb85ee097778cb9bdfaea43f90ba685fbb65",
-      "size_bytes": 3431036
+      "sha256": "cb35cff72660ea3caf73260f158cd6055d49c20a306e14e417f540ffaa715344",
+      "size_bytes": 3431018
     },
     {
       "path": "gmst/hadcrut5_erf_enso_1850_2024.json.gz",
@@ -6605,8 +6606,8 @@
         "comcat_socal_m2.5_2016_2019.csv",
         "comcat_socal_m2.5_2020_2024.csv"
       ],
-      "sha256": "397b00a735ef35a7946535ffe40ea858f78caf870efb207324d1a14243ec6ad5",
-      "size_bytes": 797140
+      "sha256": "ba8fab9b252e47db7c985d3b92e3fcadfff0686c0c26e8195d48b0ac585896f1",
+      "size_bytes": 797175
     },
     {
       "path": "sdm/nceas_226_species.json.gz",
@@ -7031,8 +7032,8 @@
       "path": "twostream/reference_flux_cases.json.gz",
       "module": "earth_twostream",
       "sources": [],
-      "sha256": "03bf0bcd7b8c5751ebe0ce41680ae9f65fcecfbd89dc2fa64086c7f049f5b430",
-      "size_bytes": 264192
+      "sha256": "298f07239eb5816fc7df7c0d1804da5f116b2f299f4ec3bf65d4fe74fa26f6c2",
+      "size_bytes": 172628
     },
     {
       "path": "waves/ndbc_great_lakes_2009_2024.json.gz",

@@ -50,9 +50,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős (1973, Problems and results on combinatorial number theory) studies the underlying problem.",
+    "kind": "optimum",
+    "value": 95,
+    "statement": "There are 395 triples in [1,128] whose three pairwise least common multiples are equal. The smallest set meeting every triple has 33 elements (exact branch and bound, confirmed by an integer program), so the optimum is 128 - 33 = 95.",
     "sources": [
       {
         "title": "Problems and results on combinatorial number theory",
@@ -61,7 +61,7 @@
         "year": 1973
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "unreviewed",
@@ -73,12 +73,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

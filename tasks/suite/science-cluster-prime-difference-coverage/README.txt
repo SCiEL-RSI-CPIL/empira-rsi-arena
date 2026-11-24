@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> a prime p with 3<=p<=maximum=100000. Every positive even d<=p-3 must be a difference of two primes <=p. The evaluator independently checks all differences. Maximize p. Maximize a cluster prime at most 100000; every even difference through p-3 is checked using primes at most p. No density theorem or infinity claim follows. The optimum is 99991, the largest prime below 10^5, which is itself a cluster prime (OEIS A038134); this is a rediscovery task.
+construct() -> a prime p with 3<=p<=maximum=100000. Every positive even d<=p-3 must be a difference of two primes <=p. The evaluator independently checks all differences. Maximize p. Maximize a cluster prime at most 100000; every even difference through p-3 is checked using primes at most p. No density theorem or infinity claim follows. The optimum is known, because OEIS A038134 lists every cluster prime below 10^5; this is a rediscovery task.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 

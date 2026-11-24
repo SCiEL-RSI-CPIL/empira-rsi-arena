@@ -104,7 +104,7 @@
   "state_of_the_art": {
     "kind": "optimum",
     "value": 47,
-    "statement": "The least prime primitive roots of the twelve moduli are 2, 5, 2, 11, 3, 3, 2, 3, 2, 2, 7 and 5 (OEIS A002233), summing to 47.",
+    "statement": "The least prime primitive roots of the twelve moduli, terms 26 to 37 of OEIS A002233, sum to 47.",
     "sources": [
       {
         "title": "OEIS A002233: Least prime primitive root of the n-th prime",
@@ -117,7 +117,7 @@
         "year": 1997
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 985,
       "url": "https://www.erdosproblems.com/985",

@@ -78,3 +78,4 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 - Only these nine fixed instances are scored, so a better score is a better heuristic on them rather than a physical result about the three-dimensional Edwards-Anderson model.
 - Couplings are the integer-scaled Gaussian weights of the published instances; the evaluator reports the corresponding energy but scores the cut weight.
 - Ground-state degeneracy is not examined: the task only measures how close the recomputed cut weight comes to the published optimum.
+- NP-hardness is a worst-case statement and these instances have at most 343 spins: simulated annealing with a few hundred replicas reaches the published optimum of eight of the nine instances within seconds each (the ninth to within 3e-4), so a score close to 1.0 is attainable inside the budget and the headroom of the task is the gap between the seed (0.885) and 1.0.

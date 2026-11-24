@@ -104,7 +104,7 @@
     "The number of buoys grows strongly after 2014, so the test years weight recent conditions and regions with dense deployments.",
     "The IABP product states no licence; it is downloaded by the preparation script and not redistributed.",
     "A better score is a better statistical model of ice drift on these buoys, not a scientific discovery; the held-out tracks are public, so search feedback can overfit them.",
-    "The candidate runs in a sandboxed child process that never receives positions after the start of a forecast day; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    "The candidate runs in a sandboxed child process that never receives positions after the start of a forecast day, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "validation": {
     "level": "source_seed_executed",
@@ -137,7 +137,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

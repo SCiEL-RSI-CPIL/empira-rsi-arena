@@ -7,19 +7,19 @@
 
 ## Task
 
-construct() -> three lists of edge colours, one per instance from bounded_degree_graph(n, d, seed) for (40,4,101), (60,5,102), (80,6,103) in the verifier; colours follow the sorted edge order. Each colour class must be an induced matching (no two edges share a vertex or are joined by an edge). Minimize the total number of colours used; the Erdős-Nešetřil conjecture predicts at most 5d^2/4 per instance (20 + 31 + 45). The score totals colours on three fixed graphs of maximum degree 4, 5 and 6; it measures a colouring method, not the conjecture.
+construct() -> three lists of edge colours, one per instance from bounded_degree_graph(n, d, seed) for (40,4,101), (60,5,102), (80,6,103) in the verifier; colours are integers in 0..m-1, where m is the number of edges of the instance, and follow the sorted edge order. Each colour class must be an induced matching (no two edges share a vertex or are joined by an edge). Minimize the total number of colours used; the Erdős-Nešetřil conjecture predicts at most 5d^2/4 colours for even d and (5d^2 - 2d + 1)/4 for odd d per instance (20 + 29 + 45). The score totals colours on three fixed graphs of maximum degree 4, 5 and 6; it measures a colouring method, not the conjecture.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
 ## Candidate interface
 
-construct() -> three lists of edge colours, one per instance from bounded_degree_graph(n, d, seed) for (40,4,101), (60,5,102), (80,6,103) in the verifier; colours follow the sorted edge order. Each colour class must be an induced matching (no two edges share a vertex or are joined by an edge). Minimize the total number of colours used; the Erdős-Nešetřil conjecture predicts at most 5d^2/4 per instance (20 + 31 + 45).
+construct() -> three lists of edge colours, one per instance from bounded_degree_graph(n, d, seed) for (40,4,101), (60,5,102), (80,6,103) in the verifier; colours are integers in 0..m-1, where m is the number of edges of the instance, and follow the sorted edge order. Each colour class must be an induced matching (no two edges share a vertex or are joined by an edge). Minimize the total number of colours used; the Erdős-Nešetřil conjecture predicts at most 5d^2/4 colours for even d and (5d^2 - 2d + 1)/4 for odd d per instance (20 + 29 + 45).
 
 ## State of the art
 
-Instance-solving task; the conjectured bound 5 Delta^2/4 per instance is a reference line, not a documented optimum.
+Instance-solving task; the conjectured bound per instance (5 Delta^2/4 for even Delta, (5 Delta^2 - 2 Delta + 1)/4 for odd Delta) is a reference line, not a documented optimum.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: no documented value for this finite instance (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #149](https://www.erdosproblems.com/149), status: open.
 

@@ -4130,9 +4130,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Jeff Kahn (2023, Asymptotics for Shamir’s problem) studies the underlying problem.",
+    "kind": "optimum",
+    "value": 31,
+    "statement": "The earliest prefix of the pinned order that contains a perfect matching is 31 (exact-cover search on the prefixes, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Jeff Kahn (2023, Asymptotics for Shamir’s problem) studies the underlying problem.",
     "sources": [
       {
         "title": "Asymptotics for Shamir’s problem",
@@ -4141,7 +4141,7 @@
         "year": 2023
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "supported",
@@ -4163,12 +4163,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "synthetic",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

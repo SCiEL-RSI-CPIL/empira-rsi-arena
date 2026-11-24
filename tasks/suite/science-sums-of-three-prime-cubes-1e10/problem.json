@@ -2,7 +2,7 @@
   "protocol": "recreated_verified",
   "family": "science_prize_h_prime_cubes",
   "direction": "maximize",
-  "contract": "construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4 (first at 999979163).",
+  "contract": "construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4.",
   "parameters": {
     "bound": 10000000000
   },
@@ -17,7 +17,7 @@
   "paper_ids": [
     "science-prize_h"
   ],
-  "description": "construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4 (first at 999979163). For k = 3 and N <= 10^10 the maximum is 4, so the task recovers such an N.",
+  "description": "construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4. For k = 3 and N <= 10^10 the maximum is 4, so the task recovers such an N.",
   "benchmark": "Integers up to 10^10 with many representations as sums of three prime cubes",
   "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
   "paper_direction": null,

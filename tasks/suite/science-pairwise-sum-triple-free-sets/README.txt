@@ -17,9 +17,9 @@ construct() -> distinct integers in 1..128. Forbid THREE DISTINCT members a,b,c 
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Ricky Cipollini (2026, A sharp 5/8 bound for an Erdős–Sós pairwise-sums problem) studies the underlying problem.
+For N = 128 the two-interval construction of Cipollini (2026, Section 5) has 5N/8 + 2 = 82 elements. The same preprint proves that a set without such a triple in [1, 2H] has at most 5H/4 + 6 elements (86 for N = 128) and reports a conjecture of Stijn Cambie that the maximum is floor(5N/8 + 2), which is 82 here. Ricky Cipollini (2026, A sharp 5/8 bound for an Erdős–Sós pairwise-sums problem) studies the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: conjectured optimum `82` (reviewed 2026-11-24).
 
 - [A sharp 5/8 bound for an Erdős–Sós pairwise-sums problem](https://arxiv.org/abs/2606.29361), Ricky Cipollini (2026)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 128}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `open_problem` (tier 1); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

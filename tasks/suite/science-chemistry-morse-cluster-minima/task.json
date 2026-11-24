@@ -44,7 +44,7 @@
     "native_kind": "science_chemistry_morse_clusters",
     "science_family": "science_chemistry_morse_clusters",
     "parameters": {},
-    "interface": "construct(instance) -> array of shape (n, 3): Cartesian coordinates of n atoms in reduced units (pair equilibrium distance 1). instance = {'potential': 'morse', 'rho': range parameter, 'n': atoms}; called once for each of six instances (rho, n) = (3, 80), (6, 38), (6, 75), (10, 38), (10, 50), (10, 80); all six calls together must finish within 300 s, using at most 4 threads. The evaluator recomputes E = sum_{i<j} exp(rho(1-r_ij))(exp(rho(1-r_ij)) - 2) (well depth 1); atoms must be at least 0.5 apart. Score: mean over instances of 100*(E - E_pub)/|E_pub| against the putative global minima tabulated by Doye and Wales (1997) (minimize; 0 matches all six, negative is lower than published). chem_clusters.relax(positions, 'morse', rho) and chem_clusters.morse_energy_gradient(positions, rho) may be called",
+    "interface": "construct(instance) -> array of shape (n, 3): Cartesian coordinates of n atoms in reduced units (pair equilibrium distance 1). instance = {'potential': 'morse', 'rho': range parameter, 'n': atoms}; called once for each of six instances (rho, n) = (3, 80), (6, 38), (6, 75), (10, 38), (10, 50), (10, 80); all six calls together must finish within 300 s (enforced) and should use at most 4 threads (not enforced by the evaluator). The evaluator recomputes E = sum_{i<j} exp(rho(1-r_ij))(exp(rho(1-r_ij)) - 2) (well depth 1); atoms must be at least 0.5 apart. Score: mean over instances of 100*(E - E_pub)/|E_pub| against the putative global minima tabulated by Doye and Wales (1997) (minimize; 0 matches all six, negative is lower than published). chem_clusters.relax(positions, 'morse', rho) and chem_clusters.morse_energy_gradient(positions, rho) may be called",
     "label_spec": {
       "scientific_contribution": "method",
       "artifact": "construction",
@@ -81,7 +81,7 @@
     }
   },
   "limitations": [
-    "The references are the 1997 putative minima; the Cambridge Cluster Database, which may record later improvements, refused connections when the task was prepared, so a candidate may legitimately score below zero. rho = 14, where later work reported new minima, is not used.",
+    "The references are the 1997 putative minima; the Cambridge Cluster Database listed the same six energies on 2026-11-24, so no later improvement is recorded for these instances, and a score below zero would be a new putative minimum that needs independent confirmation. rho = 14, where later work reported new minima, is not used.",
     "The putative minima are published with coordinates in the database, so a candidate that reproduces remembered structures scores well without searching; scores measure constructions, not search efficiency.",
     "The score averages relative energy excesses (percent of |E|) over six instances with a 300 s budget for all of them; results depend on the machine speed for time-limited searches."
   ],
@@ -95,14 +95,14 @@
   "state_of_the_art": {
     "kind": "best_known",
     "value": 0.0,
-    "statement": "Matching the six putative global minima of Doye and Wales (1997) gives 0; no lower energies for these six instances were found in the literature we could read (the Cambridge Cluster Database was not reachable).",
+    "statement": "Matching the six putative global minima of Doye and Wales (1997) gives 0; the Cambridge Cluster Database listed the same six energies on 2026-11-24 and no lower energies for these instances were found in the literature.",
     "sources": [
       {
         "title": "Structural consequences of the range of the interatomic potential: a menagerie of clusters",
         "url": "https://doi.org/10.1039/a706221d"
       }
     ],
-    "as_of": "2026-10-10"
+    "as_of": "2026-11-24"
   },
   "labels": {
     "scientific_contribution": "method",
@@ -116,7 +116,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

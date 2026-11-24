@@ -50,7 +50,7 @@ The cited papers' main goal is RNA secondary-structure prediction from sequence,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- Reference pairings are the Rfam covariance-model consensus structures projected onto each sequence, keeping the canonical pairs whose columns are both present; they are comparative-sequence-analysis structures, not per-sequence experimental structures, and pseudoknots and non-canonical pairs are dropped. Two sequences per family at most, families describing viral elements or CRISPR loci excluded. ViennaRNA is installed in the suite environment, so a candidate may call a thermodynamic folding engine: the research content is improving on it (the evaluator measured ViennaRNA 2.6.4 minimum-free-energy folding at mean F1 0.609 on this set, against 0.401 for the seed).
+- Reference pairings are the Rfam covariance-model consensus structures projected onto each sequence, keeping the canonical pairs whose columns are both present; they are comparative-sequence-analysis structures, not per-sequence experimental structures, and pseudoknots and non-canonical pairs are dropped. Two sequences per family at most, families describing viral elements or CRISPR loci excluded. ViennaRNA is not a requirement of this task and may be absent; where its Python module RNA is installed a candidate may call a thermodynamic folding engine, and improving on it is the research content (the task authors measured ViennaRNA 2.6.4 minimum-free-energy folding at mean F1 0.609 on this set, against 0.401 for the seed).
 
 ## Run
 
@@ -69,12 +69,12 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 - paper: https://doi.org/10.1073/pnas.0401799101 (Mathews et al. (2004): incorporating chemical modification constraints into a dynamic programming algorithm for RNA secondary structure prediction, the problem and accuracy measures used here.)
 - paper: https://doi.org/10.1186/1748-7188-6-26 (Lorenz et al. (2011), ViennaRNA Package 2.0: the thermodynamic folding algorithms that define the state of practice for single-sequence prediction.)
-- archive: https://doi.org/10.1093/nar/gkaa1047 (Rfam (CC0): seed alignments and consensus secondary structures; this task uses Rfam.3d.seed.gz, the families with three-dimensional structures.)
+- archive: https://doi.org/10.1093/nar/gkaa1047 (Rfam (CC0): seed alignments and consensus secondary structures; this task uses Rfam.3d.seed.gz of release 15.1, the families with three-dimensional structures.)
 
 ## Limitations
 
 - Reference structures are consensus structures from comparative sequence analysis projected onto individual sequences, not per-sequence experimental structures; pseudoknots, non-canonical pairs and pairs involving gapped columns are dropped.
 - Only canonical nested pairs with a span of at least four nucleotides are scored, and at most two sequences per family are used, so the set is small (90 sequences, 47 families).
-- ViennaRNA is available in the environment, so a candidate can call a thermodynamic folding engine; an improvement over that engine on this set is a method result on 47 families, not a general advance in RNA folding.
+- Where ViennaRNA is installed (it is optional, not a requirement of the task) a candidate can call a thermodynamic folding engine; an improvement over that engine on this set is a method result on 47 families, not a general advance in RNA folding.
 - Families describing viral elements or CRISPR loci are excluded by name, so the set is biased towards riboswitches, ribozymes, small RNAs and spliceosomal RNAs.
-- Rfam's CURRENT directory tracks the latest release; the derived file's hash pins the exact sequences and structures used.
+- The source is the file of the Rfam 15.1 release directory (https://ftp.ebi.ac.uk/pub/databases/Rfam/15.1/Rfam.3d.seed.gz), pinned by SHA-256; the derived file's hash pins the exact sequences and structures used.

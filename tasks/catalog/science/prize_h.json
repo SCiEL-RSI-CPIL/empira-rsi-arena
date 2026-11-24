@@ -83,7 +83,7 @@
   {
     "id": "science-consecutive-primes-arithmetic-progression-1e9",
     "name": "Consecutive primes in arithmetic progression below 10^9",
-    "description": "construct() -> [p, d, k] describing p, p + d, ..., p + (k-1)d with 2 <= k <= 64, 1 <= d <= 5000 and last term at most 10^9. Every term must be prime (deterministic Miller-Rabin) and no prime may lie strictly between consecutive terms. Maximize k; the optimum below 10^9 is 6. Below 10^9 the longest such progressions have six terms (the first starts at 121174811), so the task recovers a six-term progression.",
+    "description": "construct() -> [p, d, k] describing p, p + d, ..., p + (k-1)d with 2 <= k <= 64, 1 <= d <= 5000 and last term at most 10^9. Every term must be prime (deterministic Miller-Rabin) and no prime may lie strictly between consecutive terms. Maximize k; the optimum below 10^9 is 6. Below 10^9 the longest such progressions have six terms, so the task recovers a six-term progression.",
     "family": "science_prize_h_cpap",
     "parameters": {
       "bound": 1000000000
@@ -101,7 +101,7 @@
       {
         "url": "https://doi.org/10.1090/S0025-5718-67-99657-3",
         "type": "paper",
-        "locator": "L. J. Lander and T. R. Parkin, Consecutive primes in arithmetic progression (1967). Crossref records inspected (Lander and Parkin 1967; Dubner, Forbes, Lygeros, Mizony, Nelson and Zimmermann 2002). OEIS A006560 inspected: the smallest six consecutive primes in arithmetic progression start at 121174811 with difference 30 (Lander and Parkin), and seven terms need a difference of at least 210. A local segmented sieve over all 50,847,534 primes below 10^9 confirmed that no seven consecutive primes below 10^9 form an arithmetic progression. Erdős Problem #141 page inspected. Below 10^9 the longest such progressions have six terms (the first starts at 121174811), so the task recovers a six-term progression."
+        "locator": "L. J. Lander and T. R. Parkin, Consecutive primes in arithmetic progression (1967). Crossref records inspected (Lander and Parkin 1967; Dubner, Forbes, Lygeros, Mizony, Nelson and Zimmermann 2002). OEIS A006560 inspected: the smallest six consecutive primes in arithmetic progression start at 121174811 with difference 30 (Lander and Parkin), and seven terms need a difference of at least 210. A local segmented sieve over all 50,847,534 primes below 10^9 confirmed that no seven consecutive primes below 10^9 form an arithmetic progression. Erdős Problem #141 page inspected. Below 10^9 the longest such progressions have six terms, so the task recovers a six-term progression."
       },
       {
         "url": "https://www.erdosproblems.com/141",
@@ -259,7 +259,7 @@
   {
     "id": "science-sums-of-two-cubes-many-ways",
     "name": "Integers up to 5*10^16 with many representations as sums of two positive cubes",
-    "description": "construct() -> {'m': m, 'pairs': [[a, b], ...]} with 2 <= m <= 5*10^16 and distinct pairs of positive integers a <= b with a^3 + b^3 = m (checked exactly). Maximize the number of pairs; the optimum is 5, attained only by the fifth taxicab number 48988659276962496. Below 5*10^16 the maximum is 5, attained only by the fifth taxicab number, so the task is a calibrated rediscovery of Ta(5).",
+    "description": "construct() -> {'m': m, 'pairs': [[a, b], ...]} with 2 <= m <= 5*10^16 and distinct pairs of positive integers a <= b with a^3 + b^3 = m (checked exactly). Maximize the number of pairs; the optimum is 5, attained by a single integer in this range. Below 5*10^16 the maximum is 5 and a single integer attains it, so the task is a calibrated rediscovery.",
     "family": "science_prize_h_taxicab",
     "parameters": {
       "bound": 50000000000000000
@@ -277,7 +277,7 @@
       {
         "url": "https://cs.uwaterloo.ca/journals/JIS/wilson10.html",
         "type": "paper",
-        "locator": "David W. Wilson, The Fifth Taxicab Number is 48988659276962496 (1999). Journal of Integer Sequences article inspected: Wilson's exhaustive search listed every 3-, 4- and 5-way sum of two positive cubes below 5*10^16, and the only 5-way sum found was Ta(5) = 48988659276962496, so no integer below 5*10^16 has six representations. Erdős Problem #829 page inspected (Mordell: unbounded; Mahler: more than (log n)^(1/4) representations infinitely often; Stewart: (log n)^(11/13)). OEIS A011541 inspected. Below 5*10^16 the maximum is 5, attained only by the fifth taxicab number, so the task is a calibrated rediscovery of Ta(5)."
+        "locator": "David W. Wilson, The Fifth Taxicab Number is 48988659276962496 (1999). Journal of Integer Sequences article inspected: Wilson's exhaustive search listed every 3-, 4- and 5-way sum of two positive cubes below 5*10^16, and the only 5-way sum found was Ta(5) = 48988659276962496, so no integer below 5*10^16 has six representations. Erdős Problem #829 page inspected (Mordell: unbounded; Mahler: more than (log n)^(1/4) representations infinitely often; Stewart: (log n)^(11/13)). OEIS A011541 inspected. Below 5*10^16 the maximum is 5 and a single integer attains it, so the task is a calibrated rediscovery."
       },
       {
         "url": "https://www.erdosproblems.com/829",
@@ -347,7 +347,7 @@
   {
     "id": "science-distinct-divisor-counts-run-1e10",
     "name": "Longest run of consecutive integers with distinct divisor counts below 10^10",
-    "description": "construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 40 and s + k - 1 <= 10^10. The divisor counts tau(s), ..., tau(s + k - 1) must be pairwise distinct (exact factorization). Maximize k; the optimum is 14 (first run at 1745175039). Runs ending below 10^10 have at most 14 terms (first at 1745175039), so the task recovers such a run.",
+    "description": "construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 40 and s + k - 1 <= 10^10. The divisor counts tau(s), ..., tau(s + k - 1) must be pairwise distinct (exact factorization). Maximize k; the optimum is 14. Runs ending below 10^10 have at most 14 terms, so the task recovers such a run.",
     "family": "science_prize_h_divisor_run",
     "parameters": {
       "bound": 10000000000
@@ -365,7 +365,7 @@
       {
         "url": "https://doi.org/10.1112/plms/s3-2.1.257",
         "type": "paper",
-        "locator": "P. Erdős and L. Mirsky, The Distribution of Values of the Divisor Function d(n) (1952). Crossref record inspected; Erdős Problem #945 page inspected (Erdős and Mirsky proved (log x)^(1/2)/log log x << F(x) << exp(O((log x)^(1/2)/log log x)); Beker improved the upper bound; Guy B18). OEIS A048892 inspected: the first run of 14 consecutive integers with distinct divisor counts starts at 1745175039 and the first run of 15 at 31287652672 > 10^10, so F(10^10) = 14. Runs ending below 10^10 have at most 14 terms (first at 1745175039), so the task recovers such a run."
+        "locator": "P. Erdős and L. Mirsky, The Distribution of Values of the Divisor Function d(n) (1952). Crossref record inspected; Erdős Problem #945 page inspected (Erdős and Mirsky proved (log x)^(1/2)/log log x << F(x) << exp(O((log x)^(1/2)/log log x)); Beker improved the upper bound; Guy B18). OEIS A048892 inspected: the first run of 14 consecutive integers with distinct divisor counts starts at 1745175039 and the first run of 15 at 31287652672 > 10^10, so F(10^10) = 14. Runs ending below 10^10 have at most 14 terms, so the task recovers such a run."
       },
       {
         "url": "https://www.erdosproblems.com/945",
@@ -429,7 +429,7 @@
   {
     "id": "science-powerful-numbers-between-squares",
     "name": "Many powerful numbers strictly between consecutive squares (k <= 10^9)",
-    "description": "construct() -> an integer k with 1 <= k <= 10^9. The score is the number of powerful integers (p | n implies p^2 | n) strictly between k^2 and (k+1)^2, counted exactly through the unique form a^2 b^3 with b squarefree. Maximize; the optimum is 11 (first at k = 472532614). For k <= 10^9 the maximum is 11. Erdős's h(n) counts [n^2, (n+1)^2) and so also includes the square n^2; the task counts the open interval as in OEIS A119241.",
+    "description": "construct() -> an integer k with 1 <= k <= 10^9. The score is the number of powerful integers (p | n implies p^2 | n) strictly between k^2 and (k+1)^2, counted exactly through the unique form a^2 b^3 with b squarefree. Maximize; the optimum is 11. For k <= 10^9 the maximum is 11. Erdős's h(n) counts [n^2, (n+1)^2) and so also includes the square n^2; the task counts the open interval as in OEIS A119241.",
     "family": "science_prize_h_powerful",
     "parameters": {
       "bound": 1000000000
@@ -603,7 +603,7 @@
   {
     "id": "science-runs-with-large-prime-factors",
     "name": "Runs of consecutive integers each with a prime factor larger than the run length (start at most 10^4)",
-    "description": "construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30 (6961, ..., 6990). For runs starting at most 10^4 the maximum is 30, so the task recovers the run 6961..6990 or an equivalent.",
+    "description": "construct() -> {'start': s, 'length': k} with 1 <= s <= 10^4 and 1 <= k <= 200. Each of s, ..., s + k - 1 must have a prime factor greater than k (exact factorization). Maximize k; the optimum is 30. For runs starting at most 10^4 the maximum is 30, so the task recovers such a run.",
     "family": "science_prize_h_large_factor_run",
     "parameters": {
       "bound": 10000
@@ -621,7 +621,7 @@
       {
         "url": "https://github.com/QuanyuTang/erdos-problem-962/blob/main/On_Erd%C5%91s_Problem_962.pdf",
         "type": "paper",
-        "locator": "Quanyu Tang, An improved lower bound on Erdős problem #962 (2025). Research note linked from the Erdős Problems page inspected (proves log k(n) >= (1/sqrt 2 - o(1)) sqrt(log n log log n)). Erdős Problem #962 page inspected: k(n) is the largest k such that some m <= n has m+1, ..., m+k each divisible by a prime > k; Erdős had log k(n) >> (log n log log n)^(1/2) and Tao proved k(n) <= (1+o(1)) n^(1/2). OEIS A327909 inspected: the smallest start of a run of n or more integers each with a prime factor greater than n is 6961 for n = 30 and 10305 for n = 31 (the sequence is nondecreasing), so the longest run starting at most 10^4 has 30 terms. For runs starting at most 10^4 the maximum is 30, so the task recovers the run 6961..6990 or an equivalent."
+        "locator": "Quanyu Tang, An improved lower bound on Erdős problem #962 (2025). Research note linked from the Erdős Problems page inspected (proves log k(n) >= (1/sqrt 2 - o(1)) sqrt(log n log log n)). Erdős Problem #962 page inspected: k(n) is the largest k such that some m <= n has m+1, ..., m+k each divisible by a prime > k; Erdős had log k(n) >> (log n log log n)^(1/2) and Tao proved k(n) <= (1+o(1)) n^(1/2). OEIS A327909 inspected: the smallest start of a run of n or more integers each with a prime factor greater than n is 6961 for n = 30 and 10305 for n = 31 (the sequence is nondecreasing), so the longest run starting at most 10^4 has 30 terms. For runs starting at most 10^4 the maximum is 30, so the task recovers such a run."
       },
       {
         "url": "https://www.erdosproblems.com/962",
@@ -685,7 +685,7 @@
   {
     "id": "science-totient-value-with-1000-preimages",
     "name": "Smallest totient value with exactly 1000 preimages",
-    "description": "construct() -> an integer m with 1 <= m <= 10^8 such that phi(x) = m has exactly 1000 solutions x (counted exactly by recursion over the primes p with p - 1 dividing m). Minimize m; the optimum is 1360800. The least value with exactly 1000 preimages is 1360800, so the task recovers it.",
+    "description": "construct() -> an integer m with 1 <= m <= 10^8 such that phi(x) = m has exactly 1000 solutions x (counted exactly by recursion over the primes p with p - 1 dividing m). Minimize m. The least value with exactly 1000 preimages is tabulated (it is the reference in state_of_the_art); it is not printed here because the value is itself the answer.",
     "family": "science_prize_h_totient",
     "parameters": {
       "k": 1000,
@@ -704,7 +704,7 @@
       {
         "url": "https://doi.org/10.2307/121103",
         "type": "paper",
-        "locator": "Kevin Ford, The Number of Solutions of φ(x) = m (1999). Crossref record inspected: Ford proved Sierpiński's conjecture that every multiplicity k >= 2 occurs. OEIS A007374 inspected (b-file by Noe, Johnson and McCranie): the smallest m with exactly 1000 totient preimages is 1360800; the count for 1360800 was reproduced locally. The least value with exactly 1000 preimages is 1360800, so the task recovers it."
+        "locator": "Kevin Ford, The Number of Solutions of φ(x) = m (1999). Crossref record inspected: Ford proved Sierpiński's conjecture that every multiplicity k >= 2 occurs. OEIS A007374 inspected (b-file by Noe, Johnson and McCranie): the smallest m with exactly 1000 totient preimages is 1360800; the count for 1360800 was reproduced locally. The least value with exactly 1000 preimages is tabulated (it is the reference in state_of_the_art); it is not printed here because the value is itself the answer."
       },
       {
         "url": "https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0601-0700.md#JSP-000677",
@@ -1210,7 +1210,7 @@
       }
     ],
     "limitations": [
-      "Solved finite case from the OEIS table; the simple interval construction [15, 44] already attains 30.",
+      "Solved finite case from the OEIS table; a simple interval construction already attains 30.",
       "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
     ],
     "state_of_the_art": {
@@ -1360,7 +1360,7 @@
       {
         "url": "https://cs.uwaterloo.ca/journals/JIS/VOL13/Challis/challis6.html",
         "type": "paper",
-        "locator": "Michael F. Challis and John P. Robinson, Some Extremal Postage Stamp Bases (2010). Journal of Integer Sequences article and OEIS A066063/A001212 inspected: the two-stamp postage problem has optimal range 212 with 24 denominations and 196 with 23, and a basis of {0..n} is 0 together with a set of denominations, so the minimum size for n = 212 is 25. Erdős Problem #791 page inspected (Rohrbach's problem; (2.181+o(1))n <= g(n)^2 <= (3.458+o(1))n by Yu and Kohonen). For n = 212 the minimum is 25, so the task recovers an extremal basis."
+        "locator": "Michael F. Challis and John P. Robinson, Some Extremal Postage Stamp Bases (2010). Journal of Integer Sequences article and OEIS A066063/A001212 inspected: the two-stamp postage problem has optimal range 212 with 24 denominations (Kohonen and Corander, Addition Chains Meet Postage Stamps, J. Integer Seq. 17 (2014), Art. 14.3.4) and 196 with 23 (Challis and Robinson, addendum of July 2013), and a basis of {0..n} is 0 together with a set of denominations, so the minimum size for n = 212 is 25. Erdős Problem #791 page inspected (Rohrbach's problem; (2.181+o(1))n <= g(n)^2 <= (3.458+o(1))n by Yu and Kohonen). For n = 212 the minimum is 25, so the task recovers an extremal basis."
       },
       {
         "url": "https://www.erdosproblems.com/791",
@@ -1397,9 +1397,15 @@
           "url": "https://doi.org/10.1016/j.jnt.2016.11.011",
           "authors": "Jukka Kohonen",
           "year": 2017
+        },
+        {
+          "title": "Addition Chains Meet Postage Stamps: Reducing the Number of Multiplications",
+          "url": "https://arxiv.org/abs/1310.7090",
+          "authors": "Jukka Kohonen, Jukka Corander",
+          "year": 2014
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 791,
         "url": "https://www.erdosproblems.com/791",
@@ -1683,7 +1689,7 @@
   {
     "id": "science-sums-of-three-prime-cubes-1e10",
     "name": "Integers up to 10^10 with many representations as sums of three prime cubes",
-    "description": "construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4 (first at 999979163). For k = 3 and N <= 10^10 the maximum is 4, so the task recovers such an N.",
+    "description": "construct() -> {'N': N, 'triples': [[p, q, r], ...]} with N <= 10^10 and distinct prime triples p <= q <= r (each at most 3000) with p^3 + q^3 + r^3 = N. Maximize the number of triples; the optimum is 4. For k = 3 and N <= 10^10 the maximum is 4, so the task recovers such an N.",
     "family": "science_prize_h_prime_cubes",
     "parameters": {
       "bound": 10000000000
@@ -1847,7 +1853,7 @@
   {
     "id": "science-prime-plus-power-of-two-1e8",
     "name": "Integers up to 10^8 with many representations n = p + 2^k",
-    "description": "construct() -> an integer n with 3 <= n <= 10^8. The score is the number of k >= 0 with n - 2^k prime (deterministic Miller-Rabin). Maximize; the optimum is 19 (first at 53999715). For n <= 10^8 the maximum is 19, so the task recovers such an integer.",
+    "description": "construct() -> an integer n with 3 <= n <= 10^8. The score is the number of k >= 0 with n - 2^k prime (deterministic Miller-Rabin). Maximize; the optimum is 19. For n <= 10^8 the maximum is 19, so the task recovers such an integer.",
     "family": "science_prize_h_prime_power_two",
     "parameters": {
       "bound": 100000000
@@ -1935,7 +1941,7 @@
   {
     "id": "science-odd-covering-divisors-of-51975",
     "name": "Odd covering systems with moduli dividing 51975 (fewest uncovered residues)",
-    "description": "construct() -> classes [[m, r], ...] with distinct moduli m > 1 dividing 51975 = 3^3 * 5^2 * 7 * 11 (hence odd) and 0 <= r < m. The score is the number of residues modulo 51975 covered by no class (exact). Minimize; 0 would be a covering system with distinct odd moduli. With every divisor of 51975 available once, a score of 0 would exhibit an odd covering; positive scores measure how close systems with this modulus come. No minimum is documented.",
+    "description": "construct() -> classes [[m, r], ...] with distinct moduli m > 1 dividing 51975 = 3^3 * 5^2 * 7 * 11 (hence odd) and 0 <= r < m. The score is the number of residues modulo 51975 covered by no class (exact). Minimize. The score 0 (a covering system with distinct odd moduli) is impossible for this modulus by the necessary condition of Berger, Felzenbaum and Fraenkel (1986). Every divisor of 51975 above 1 is available once. The minimum is positive: an odd covering with distinct moduli needs prod (p-1)/(p-2) - sum 1/(p-2) > 2 over the primes p dividing the least common multiple (Berger, Felzenbaum and Fraenkel), and for 3, 5, 7, 11 the left side is 86/45. The score measures how close systems with this modulus come to a covering; it cannot decide the odd covering problem. No minimum is documented.",
     "family": "science_prize_h_odd_covering",
     "parameters": {
       "base": 51975
@@ -1953,7 +1959,7 @@
       {
         "url": "https://doi.org/10.2140/ant.2021.15.609",
         "type": "paper",
-        "locator": "Paul Balister, Béla Bollobás, Robert Morris, Julian Sahasrabudhe and Marius Tiba, The Erdős–Selfridge problem with square-free moduli (2021). Crossref records inspected (Balister, Bollobás, Morris, Sahasrabudhe and Tiba 2021; Hough and Nielsen 2019). Erdős Problem #7 page inspected: no covering exists with distinct odd squarefree moduli, some modulus must be divisible by 2 or 3, and an odd covering would need a least common multiple divisible by 9 or 15; existence is open (Erdős offered $25 for a proof of nonexistence, Selfridge $300 for an example). OEIS A399152 inspected: the analogous minimum using every divisor of an odd M is tabulated only for small M (e.g. 731 for M = 1225). With every divisor of 51975 available once, a score of 0 would exhibit an odd covering; positive scores measure how close systems with this modulus come. No minimum is documented."
+        "locator": "Paul Balister, Béla Bollobás, Robert Morris, Julian Sahasrabudhe and Marius Tiba, The Erdős–Selfridge problem with square-free moduli (2021). Crossref records inspected (Balister, Bollobás, Morris, Sahasrabudhe and Tiba 2021; Hough and Nielsen 2019). Erdős Problem #7 page inspected: no covering exists with distinct odd squarefree moduli, some modulus must be divisible by 2 or 3, and an odd covering would need a least common multiple divisible by 9 or 15; existence is open (Erdős offered $25 for a proof of nonexistence, Selfridge $300 for an example). OEIS A399152 inspected: the analogous minimum using every divisor of an odd M is tabulated only for small M (e.g. 731 for M = 1225). Every divisor of 51975 above 1 is available once. The minimum is positive: an odd covering with distinct moduli needs prod (p-1)/(p-2) - sum 1/(p-2) > 2 over the primes p dividing the least common multiple (Berger, Felzenbaum and Fraenkel), and for 3, 5, 7, 11 the left side is 86/45. The score measures how close systems with this modulus come to a covering; it cannot decide the odd covering problem. No minimum is documented."
       },
       {
         "url": "https://www.erdosproblems.com/7",
@@ -1967,13 +1973,13 @@
       }
     ],
     "limitations": [
-      "No documented minimum for this modulus (reference label none). A positive minimum for one modulus says nothing about others.",
+      "No documented minimum for this modulus (reference label none). The minimum is provably positive (Berger, Felzenbaum and Fraenkel 1986), and a positive minimum for one modulus says nothing about others.",
       "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
     ],
     "state_of_the_art": {
       "kind": "none",
       "value": null,
-      "statement": "No documented minimum for moduli dividing 51975; the analogous all-divisor minimum is tabulated only for small odd moduli (OEIS A399152), always positive.",
+      "statement": "No documented minimum for moduli dividing 51975; the analogous all-divisor minimum is tabulated only for small odd moduli (OEIS A399152), always positive. For 51975 the minimum is positive by the necessary condition of Berger, Felzenbaum and Fraenkel (Acta Arith. 45 (1986) 375-379): prod (p-1)/(p-2) - sum 1/(p-2) > 2 over the prime divisors of the least common multiple, and the left side is 86/45 for 3, 5, 7, 11.",
       "sources": [
         {
           "title": "The Erdős–Selfridge problem with square-free moduli",
@@ -1992,7 +1998,7 @@
           "url": "https://oeis.org/A399152"
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 7,
         "url": "https://www.erdosproblems.com/7",
@@ -2444,7 +2450,7 @@
   {
     "id": "science-many-solutions-k-sigma-k",
     "name": "Integers M <= 10^18 with many solutions of k*sigma(k) = M",
-    "description": "construct() -> {'M': M, 'k': [k_1, ...]} with M <= 10^18 and distinct k_i <= sqrt(M) satisfying k_i * sigma(k_i) = M (checked with exact factorization). The score is the number of listed solutions, a certified lower bound for f(M). Maximize. Values with many certified solutions are finite lower-bound constructions for f; no record values are documented.",
+    "description": "construct() -> {'M': M, 'k': [k_1, ...]} with M <= 10^18 and distinct k_i <= sqrt(M) satisfying k_i * sigma(k_i) = M (checked with exact factorization). At most 1000 solutions may be listed. The score is the number of listed solutions, a certified lower bound for f(M). Maximize. Values with many certified solutions are finite lower-bound constructions for f; no record values are documented.",
     "family": "science_prize_h_k_sigma",
     "parameters": {
       "bound": 1000000000000000000

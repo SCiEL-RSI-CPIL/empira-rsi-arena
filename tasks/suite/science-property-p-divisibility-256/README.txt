@@ -17,9 +17,9 @@ construct() -> a nonempty subset of [1,n=256]. For every a<b<=c in the set, a mu
 
 ## State of the art
 
-The maximum is 86 = floor(256/3) + 1, attained by {171, ..., 256}. An exact integer programme (151,333 divisibility constraints, solved to optimality with HiGHS; scripts/check_state_of_the_art.py --slow) shows that no larger subset of [1,256] has the property. Bedert proved the bound floor(n/3) + 1 for all sufficiently large n, as conjectured by Erdős and Sárközy.
+The maximum is 86 = floor(256/3) + 1. Exact integer programmes, one for each possible smallest element (HiGHS; tests/test_audit_prize_a.py with PRIZE_A_SLOW=1), show that no subset of [1,256] with 87 elements has the property. Bedert proved the bound floor(n/3) + 1 for all sufficiently large n, as conjectured by Erdős and Sárközy.
 
-Reference value: proven optimum `86` (reviewed 2026-09-24).
+Reference value: proven optimum `86` (reviewed 2026-11-24).
 
 - [On a problem of Erdős and Sárközy about sequences with no term dividing the sum of two larger terms](https://arxiv.org/abs/2301.07065), Benjamin Bedert (2023)
 - [On Erdős and Sárközy's sequences with Property P](https://doi.org/10.1007/s00605-016-0995-9), Christian Elsholtz, Stefan Planitzer (2016)

@@ -7,6 +7,18 @@ probes and replays fuzzing inputs; ``mutation_analysis`` replays test calls on
 the original module and on each mutant and reports which mutants are killed.
 The per-subject drivers below turn JSON inputs into calls; they are part of
 the trusted harness, not of the mutated or instrumented code.
+
+Every call of subject code has a step budget: each function entry and each
+loop iteration inside a function of the subject's files spends one step, and
+the call is cut off when the budget is used up. The budget is deterministic,
+so whether an ordinary loop counts as timed out does not depend on the speed
+or load of the machine. CPU-time limits remain for what steps do not measure:
+calls that spend long inside C code, and loops whose single iterations become
+ever more expensive (a mutant that builds ever longer strings would otherwise
+exhaust the memory first). A test whose call on the original module needs more
+than CPU_SECONDS is not used; the same call on a mutant is stopped after
+CPU_SECONDS plus SLOWDOWN times the CPU time the original needed, so a run
+that merely took a little longer than the original's is never a time-out.
 """
 import ast
 import hashlib
@@ -14,9 +26,18 @@ import importlib.abc
 import importlib.util
 import signal
 import sys
+import time
 
 PREFIX = "artask_subject"
 PROBE = "__artask_probe__"
+STEP = "__artask_step__"  # the probe of a function entry or loop body; it also spends one step
+STEP_LIMIT = 50_000  # steps per test call (mutation analysis and spectra); 5 times the largest call the inputs allow
+FUZZ_STEP_LIMIT = 1_000_000  # steps per fuzzing input
+CPU_SECONDS = 0.2  # CPU time per test call on the original module; the steps above cost a small fraction of it
+SLOWDOWN = 10  # a mutant's call gets CPU_SECONDS plus this many times the original's CPU time
+FUZZ_CPU_SECONDS = 5.0  # CPU time per fuzzing input, several times what FUZZ_STEP_LIMIT steps cost
+_STEPS = [0]  # steps left for the running call
+_ARMED = [False]  # whether the CPU-time signal may interrupt the running call
 
 
 class _Timeout(BaseException):
@@ -24,14 +45,17 @@ class _Timeout(BaseException):
 
 
 def _alarm(signum, frame):
-    raise _Timeout()
+    if _ARMED[0]:
+        _ARMED[0] = False  # one interruption per call, and none once the call's outcome is being recorded
+        raise _Timeout()
 
 
 class _Finder(importlib.abc.MetaPathFinder, importlib.abc.Loader):
     """Serves artask_subject.<dotted> from {relative path: source}; directories become packages."""
 
-    def __init__(self, files, transform=None, probe=None):
+    def __init__(self, files, transform=None, probe=None, step=None):
         self.modules, self.probe = {}, probe or _noop
+        self.step = step or self.probe
         for path, source in files.items():
             parts = path[:-3].split("/")
             package = parts[-1] == "__init__"
@@ -55,7 +79,7 @@ class _Finder(importlib.abc.MetaPathFinder, importlib.abc.Loader):
         tree = ast.parse(source, filename=path or module.__name__)
         if self.transform is not None and path is not None:
             tree = self.transform(path, tree)
-        module.__dict__[PROBE] = self.probe
+        module.__dict__[PROBE], module.__dict__[STEP] = self.probe, self.step
         exec(compile(tree, f"<{path or module.__name__}>", "exec"), module.__dict__)
 
 
@@ -63,12 +87,57 @@ def _noop(_):
     pass
 
 
-def load(files, transform=None, probe=None):
+def _spending(record=None):
+    """Step probe: spends one step of the running call's budget and reports the block to ``record``."""
+    steps = _STEPS
+
+    def step(block):
+        steps[0] -= 1
+        if steps[0] < 0:
+            raise _Timeout()  # raised again at every later step, so a handler in the subject cannot absorb it
+        if record is not None:
+            record(block)
+    return step
+
+
+def _add_steps(path, tree):
+    """Transform for mutation analysis: only the step probes of _Instrument, without the other block probes.
+
+    A walk over statements inserts them, which costs a fraction of visiting every node for each mutant."""
+    def step(at):
+        where = {"lineno": at.lineno, "col_offset": at.col_offset, "end_lineno": at.lineno, "end_col_offset": at.col_offset}
+        call = ast.Call(func=ast.Name(id=STEP, ctx=ast.Load(), **where), args=[ast.Constant(value=0, **where)], keywords=[], **where)
+        return ast.Expr(value=call, **where)
+
+    def walk(body, inside):
+        for node in body:
+            function = isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+            for field in ("body", "orelse", "finalbody"):
+                block = getattr(node, field, None)
+                if isinstance(block, list) and block and isinstance(block[0], ast.stmt):
+                    walk(block, inside or function)
+            for part in getattr(node, "handlers", []) + getattr(node, "cases", []):
+                walk(part.body, inside)
+            if function:
+                node.body.insert(_docstring(node.body), step(node))
+            elif inside and isinstance(node, (ast.For, ast.AsyncFor, ast.While)):
+                node.body.insert(0, step(node))
+    walk(tree.body, False)
+    return tree
+
+
+def _docstring(body):
+    """1 when the block starts with a docstring (a probe goes after it), else 0."""
+    first = body[0] if body else None
+    return int(isinstance(first, ast.Expr) and isinstance(first.value, ast.Constant) and isinstance(first.value.value, str))
+
+
+def load(files, transform=None, probe=None, step=None):
     """Fresh import of a subject; returns the import function for dotted names below the prefix."""
     for name in [n for n in sys.modules if n == PREFIX or n.startswith(PREFIX + ".")]:
         del sys.modules[name]
     sys.meta_path[:] = [f for f in sys.meta_path if not isinstance(f, _Finder)]
-    sys.meta_path.insert(0, _Finder(files, transform, probe))
+    sys.meta_path.insert(0, _Finder(files, transform, probe, step))
     import importlib
     return lambda dotted: importlib.import_module(PREFIX + "." + dotted)
 
@@ -79,14 +148,14 @@ class _Instrument(ast.NodeTransformer):
     def __init__(self):
         self.count, self.depth, self.blocks = 0, 0, {}
 
-    def _probe(self):
+    def _probe(self, name=PROBE):
         self.count += 1
-        call = ast.Call(func=ast.Name(id=PROBE, ctx=ast.Load()), args=[ast.Constant(self.count - 1)], keywords=[])
+        call = ast.Call(func=ast.Name(id=name, ctx=ast.Load()), args=[ast.Constant(self.count - 1)], keywords=[])
         return ast.Expr(value=call)
 
-    def _block(self, body, keep_docstring=False):
-        start = 1 if keep_docstring and body and isinstance(body[0], ast.Expr) and isinstance(getattr(body[0], "value", None), ast.Constant) and isinstance(body[0].value.value, str) else 0
-        probe = self._probe()
+    def _block(self, body, keep_docstring=False, step=False):
+        start = _docstring(body) if keep_docstring else 0
+        probe = self._probe(STEP if step else PROBE)
         self.blocks[self.count - 1] = [(s.lineno, s.end_lineno) for s in body]  # statement spans of this block
         return body[:start] + [probe] + body[start:]
 
@@ -94,28 +163,30 @@ class _Instrument(ast.NodeTransformer):
         self.depth += 1
         self.generic_visit(node)
         self.depth -= 1
-        node.body = self._block(node.body, keep_docstring=True)
+        node.body = self._block(node.body, keep_docstring=True, step=True)
         return node
 
     visit_AsyncFunctionDef = visit_FunctionDef
 
-    def _branches(self, node, fields):
+    def _branches(self, node, fields, steps=()):
         self.generic_visit(node)
         if self.depth:
             for field in fields:
-                setattr(node, field, self._block(getattr(node, field)))
+                setattr(node, field, self._block(getattr(node, field), step=field in steps))
         return node
 
     def visit_If(self, node):
         return self._branches(node, ("body", "orelse"))
 
     def visit_For(self, node):
-        return self._branches(node, ("body", "orelse"))
+        return self._branches(node, ("body", "orelse"), steps=("body",))
 
     visit_While = visit_AsyncFor = visit_For
 
     def visit_Try(self, node):
-        return self._branches(node, ("body", "orelse") + (("finalbody",) if node.finalbody else ()))
+        # An else block needs a handler: a probe there would make try/finally without handlers invalid.
+        fields = ("body",) + (("orelse",) if node.handlers else ()) + (("finalbody",) if node.finalbody else ())
+        return self._branches(node, fields)
 
     visit_TryStar = visit_Try
 
@@ -139,22 +210,32 @@ class _Instrument(ast.NodeTransformer):
         return node
 
 
-def _run(function, seconds):
+def _run(function, steps, seconds):
+    """Outcome of one call: ['ok', hash of the repr], ['raise', exception type] or ['timeout'] (a limit was reached)."""
+    _STEPS[0] = steps
     signal.signal(signal.SIGPROF, _alarm)
-    signal.setitimer(signal.ITIMER_PROF, seconds)
     try:
-        value = function()
-        if hasattr(value, "__next__"):
-            value = [item for _, item in zip(range(10001), value)]
-        return ["ok", hashlib.sha256(repr(value).encode("utf-8", "surrogatepass")).hexdigest()[:24]]
+        _ARMED[0] = True
+        signal.setitimer(signal.ITIMER_PROF, seconds)
+        try:
+            value = function()
+            if hasattr(value, "__next__"):
+                value = [item for _, item in zip(range(10001), value)]
+            outcome = ["ok", hashlib.sha256(repr(value).encode("utf-8", "surrogatepass")).hexdigest()[:24]]
+        except _Timeout:
+            outcome = ["timeout"]
+        except RecursionError:
+            outcome = ["raise", "RecursionError"]
+        except BaseException as error:  # noqa: BLE001 - the exception type is the observable outcome
+            outcome = ["raise", type(error).__name__]
+        _ARMED[0] = False
     except _Timeout:
-        return ["timeout"]
-    except RecursionError:
-        return ["raise", "RecursionError"]
-    except BaseException as error:  # noqa: BLE001 - the exception type is the observable outcome
-        return ["raise", type(error).__name__]
+        # The signal arrived after the call had ended, typically because a long operation in C code delayed it
+        # (signals are handled between bytecodes). It must not escape from here and abort the whole analysis.
+        outcome = ["timeout"]
     finally:
         signal.setitimer(signal.ITIMER_PROF, 0)
+    return outcome
 
 
 def _textwrap(imp, call, args):
@@ -255,8 +336,8 @@ def _feed(parser, text):
     parser.close()
 
 
-def coverage(files, instrumented, subject, inputs, per_input_seconds=0.5):
-    """Sorted probe ids hit by the inputs, the probe count, and the number of inputs that timed out."""
+def coverage(files, instrumented, subject, inputs, steps=FUZZ_STEP_LIMIT):
+    """Sorted probe ids hit by the inputs, the probe count, and the number of inputs that reached a limit."""
     hits, counts = set(), {}
 
     def transform(path, tree):
@@ -267,23 +348,35 @@ def coverage(files, instrumented, subject, inputs, per_input_seconds=0.5):
         tree = ast.fix_missing_locations(visitor.visit(tree))
         counts[path] = visitor.count - sum(counts.values())
         return tree
-    imp = load(files, transform, hits.add)
+    _STEPS[0] = steps  # importing the subject runs probed code as well
+    imp = load(files, transform, hits.add, _spending(hits.add))
     target = FUZZ_DRIVERS[subject](imp)
     timeouts = 0
     for text in inputs:
-        timeouts += _run(lambda: target(text), per_input_seconds) == ["timeout"]
+        timeouts += _run(lambda: target(text), steps, FUZZ_CPU_SECONDS) == ["timeout"]
     return {"hits": sorted(hits), "probes": sum(counts.values()), "timeouts": timeouts}
 
 
-def outcomes(files, subject, tests, per_test_seconds=0.2):
-    imp = load(files)
+def _originals(files, subject, tests, steps, transform):
+    """Outcomes of the tests on the original module and the CPU limit of each test's call on a mutant."""
+    _STEPS[0] = steps
+    imp = load(files, transform, None, _spending())
     driver = MUTATION_DRIVERS[subject]
-    return [_run(driver(imp, t["call"], t["args"]), per_test_seconds) for t in tests]
+    results, limits = [], []
+    for test in tests:
+        start = time.process_time()
+        results.append(_run(driver(imp, test["call"], test["args"]), steps, CPU_SECONDS))
+        limits.append(CPU_SECONDS + SLOWDOWN * (time.process_time() - start))
+    return results, limits
 
 
-def mutation_analysis(files, target, subject, tests, mutants, per_test_seconds=0.2):
+def outcomes(files, subject, tests, steps=STEP_LIMIT):
+    return _originals(files, subject, tests, steps, _add_steps)[0]
+
+
+def mutation_analysis(files, target, subject, tests, mutants, steps=STEP_LIMIT):
     """Original outcomes plus, per mutant, the index of the first killing test (or -1)."""
-    original = outcomes(files, subject, tests, per_test_seconds)
+    original, limits = _originals(files, subject, tests, steps, _add_steps)
     usable = [i for i, o in enumerate(original) if o[0] != "timeout"]
     lines = files[target].splitlines(keepends=True)
     killed = []
@@ -291,7 +384,8 @@ def mutation_analysis(files, target, subject, tests, mutants, per_test_seconds=0
         variant = dict(files)
         variant[target] = "".join(lines[:start - 1]) + replacement + "".join(lines[end:])
         try:
-            imp = load(variant)
+            _STEPS[0] = steps
+            imp = load(variant, _add_steps, None, _spending())
             driver = MUTATION_DRIVERS[subject]
             imp(subject)
         except BaseException:  # noqa: BLE001 - a mutant that does not load is killed by any usable test
@@ -299,16 +393,18 @@ def mutation_analysis(files, target, subject, tests, mutants, per_test_seconds=0
             continue
         first = -1
         for i in usable:
-            if _run(driver(imp, tests[i]["call"], tests[i]["args"]), per_test_seconds) != original[i]:
+            if _run(driver(imp, tests[i]["call"], tests[i]["args"]), steps, limits[i]) != original[i]:
                 first = i
                 break
         killed.append(first)
     return {"original": original, "killed": killed, "usable_tests": len(usable)}
 
 
-def spectra(files, target, subject, tests, mutants, per_test_seconds=0.2):
+def spectra(files, target, subject, tests, mutants, steps=STEP_LIMIT):
     """Per mutant: failing and passing test counts and, per block probe, how many failing (ef) and passing (ep) tests reach it."""
-    original = outcomes(files, subject, tests, per_test_seconds)
+    def probed(visitor):  # the original and the mutants spend steps on the same probes: those of the target file
+        return lambda path, tree: ast.fix_missing_locations(visitor.visit(tree)) if path == target else tree
+    original, limits = _originals(files, subject, tests, steps, probed(_Instrument()))
     usable = [i for i, o in enumerate(original) if o[0] != "timeout"]
     lines = files[target].splitlines(keepends=True)
     hits, results, size = set(), [], None
@@ -316,11 +412,9 @@ def spectra(files, target, subject, tests, mutants, per_test_seconds=0.2):
         variant = dict(files)
         variant[target] = "".join(lines[:start - 1]) + replacement + "".join(lines[end:])
         visitor = _Instrument()
-
-        def transform(path, tree, visitor=visitor):
-            return ast.fix_missing_locations(visitor.visit(tree)) if path == target else tree
         try:
-            imp = load(variant, transform, hits.add)
+            _STEPS[0] = steps
+            imp = load(variant, probed(visitor), hits.add, _spending(hits.add))
             imp(subject)
         except BaseException:  # noqa: BLE001 - a mutant that breaks the import has no spectrum
             results.append(None)
@@ -332,7 +426,7 @@ def spectra(files, target, subject, tests, mutants, per_test_seconds=0.2):
         ef, ep, failed = [0] * size, [0] * size, 0
         for i in usable:
             hits.clear()
-            fail = _run(driver(imp, tests[i]["call"], tests[i]["args"]), per_test_seconds) != original[i]
+            fail = _run(driver(imp, tests[i]["call"], tests[i]["args"]), steps, limits[i]) != original[i]
             counts = ef if fail else ep
             for probe in hits:
                 counts[probe] += 1

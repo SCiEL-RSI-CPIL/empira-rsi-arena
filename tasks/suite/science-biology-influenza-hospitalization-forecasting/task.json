@@ -60,7 +60,7 @@
     "label_spec": {
       "area": "biology",
       "domain": "natural_science",
-      "scientific_contribution": "discovery",
+      "scientific_contribution": "method",
       "artifact": "model",
       "data": "real_measurements",
       "verification": "simulation",
@@ -122,16 +122,16 @@
   "labels": {
     "area": "biology",
     "domain": "natural_science",
-    "scientific_contribution": "discovery",
+    "scientific_contribution": "method",
     "artifact": "model",
     "data": "real_measurements",
     "verification": "simulation",
     "reference": "none",
-    "science_tier": 1,
+    "science_tier": 2,
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

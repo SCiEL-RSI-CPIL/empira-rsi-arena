@@ -7,13 +7,13 @@
 
 ## Task
 
-construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 40 and s + k - 1 <= 10^10. The divisor counts tau(s), ..., tau(s + k - 1) must be pairwise distinct (exact factorization). Maximize k; the optimum is 14 (first run at 1745175039). Runs ending below 10^10 have at most 14 terms (first at 1745175039), so the task recovers such a run.
+construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 40 and s + k - 1 <= 10^10. The divisor counts tau(s), ..., tau(s + k - 1) must be pairwise distinct (exact factorization). Maximize k; the optimum is 14. Runs ending below 10^10 have at most 14 terms, so the task recovers such a run.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
 ## Candidate interface
 
-construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 40 and s + k - 1 <= 10^10. The divisor counts tau(s), ..., tau(s + k - 1) must be pairwise distinct (exact factorization). Maximize k; the optimum is 14 (first run at 1745175039).
+construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 40 and s + k - 1 <= 10^10. The divisor counts tau(s), ..., tau(s + k - 1) must be pairwise distinct (exact factorization). Maximize k; the optimum is 14.
 
 ## State of the art
 
@@ -44,7 +44,7 @@ Underlying problem: Estimate F(x), the longest run of consecutive integers up to
 
 Why it matters: Erdős and Mirsky's problem (Erdős Problem #945) measures how irregular the divisor function is on short intervals; whether F(x) is polylogarithmic is open.
 
-- [The Distribution of Values of the Divisor Function d(n)](https://doi.org/10.1112/plms/s3-2.1.257): Main research objective: Estimate F(x), the longest run of consecutive integers up to x with pairwise distinct numbers of divisors. Task connection: Runs ending below 10^10 have at most 14 terms (first at 1745175039), so the task recovers such a run.
+- [The Distribution of Values of the Divisor Function d(n)](https://doi.org/10.1112/plms/s3-2.1.257): Main research objective: Estimate F(x), the longest run of consecutive integers up to x with pairwise distinct numbers of divisors. Task connection: Runs ending below 10^10 have at most 14 terms, so the task recovers such a run.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -52,7 +52,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- Runs ending below 10^10 have at most 14 terms (first at 1745175039), so the task recovers such a run. Exact local certificates are not Lean proofs; the Mahler measure and reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
+- Runs ending below 10^10 have at most 14 terms, so the task recovers such a run. Exact local certificates are not Lean proofs; the Mahler measure and reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -64,7 +64,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.1112/plms/s3-2.1.257 (P. Erdős and L. Mirsky, The Distribution of Values of the Divisor Function d(n) (1952). Crossref record inspected; Erdős Problem #945 page inspected (Erdős and Mirsky proved (log x)^(1/2)/log log x << F(x) << exp(O((log x)^(1/2)/log log x)); Beker improved the upper bound; Guy B18). OEIS A048892 inspected: the first run of 14 consecutive integers with distinct divisor counts starts at 1745175039 and the first run of 15 at 31287652672 > 10^10, so F(10^10) = 14. Runs ending below 10^10 have at most 14 terms (first at 1745175039), so the task recovers such a run.)
+- paper: https://doi.org/10.1112/plms/s3-2.1.257 (P. Erdős and L. Mirsky, The Distribution of Values of the Divisor Function d(n) (1952). Crossref record inspected; Erdős Problem #945 page inspected (Erdős and Mirsky proved (log x)^(1/2)/log log x << F(x) << exp(O((log x)^(1/2)/log log x)); Beker improved the upper bound; Guy B18). OEIS A048892 inspected: the first run of 14 consecutive integers with distinct divisor counts starts at 1745175039 and the first run of 15 at 31287652672 > 10^10, so F(10^10) = 14. Runs ending below 10^10 have at most 14 terms, so the task recovers such a run.)
 - archive: https://www.erdosproblems.com/945 (Erdős Problem #945 (open); statement, history and current bounds reviewed 2026-09-24.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0701-0800.md#JSP-000786 (JSP-000786; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 

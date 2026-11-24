@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> [p,q] of Python integers with 0<p<q<=1000000, representing time p/q. For relative speeds [1,3,4,7,11,18,29] from a stationary runner, maximize the minimum circular distance of (p/q)*v to an integer. Exact rational distances are retained in details; score is their floating serialization. One stationary runner and seven fixed relative integer speeds [1,3,4,7,11,18,29]; maximize the minimum distance at a rational time with denominator<=10^6. This lower-bound certificate does not optimize over all speed sets or prove a universal conjecture. The optimum is exactly 1/5, at t = 1/5; every breakpoint of the piecewise-linear objective has been checked, so this is a rediscovery task.
+construct() -> [p,q] of Python integers with 0<p<q<=1000000, representing time p/q. For relative speeds [1,3,4,7,11,18,29] from a stationary runner, maximize the minimum circular distance of (p/q)*v to an integer. Exact rational distances are retained in details; score is their floating serialization. One stationary runner and seven fixed relative integer speeds [1,3,4,7,11,18,29]; maximize the minimum distance at a rational time with denominator<=10^6. This lower-bound certificate does not optimize over all speed sets or prove a universal conjecture. The optimum is exactly 1/5; every breakpoint of the piecewise-linear objective has been checked, so this is a rediscovery task.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,9 +17,9 @@ construct() -> [p,q] of Python integers with 0<p<q<=1000000, representing time p
 
 ## State of the art
 
-For the speeds {1,3,4,7,11,18,29} the maximum over all times of the minimum distance is exactly 1/5, attained at t = 1/5 (no speed is a multiple of 5). The objective is piecewise linear with breakpoints at denominators dividing v_i + v_j or 2v_i. Checking every denominator up to 116 (scripts/check_state_of_the_art.py) therefore proves optimality. The lonely runner conjecture predicts only 1/8 for seven speeds.
+For the speeds {1,3,4,7,11,18,29} the maximum over all times of the minimum distance is exactly 1/5. The objective is piecewise linear, and a local maximum lies at a time whose denominator divides v_i + v_j or 2v_i; checking all of these times (tests/test_audit_prize_a.py) proves optimality. The lonely runner conjecture predicts only 1/8 for seven speeds.
 
-Reference value: proven optimum `0.2` (reviewed 2026-09-24).
+Reference value: proven optimum `0.2` (reviewed 2026-11-24).
 
 - [Barely lonely runners and very lonely runners](https://arxiv.org/abs/1912.06034), Noah Kravitz (2021)
 
@@ -66,6 +66,6 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- Solved finite case: For the speeds {1,3,4,7,11,18,29} the maximum over all times of the minimum distance is exactly 1/5, attained at t = 1/5 (no speed is a multiple of 5).
+- Solved finite case: For the speeds {1,3,4,7,11,18,29} the maximum over all times of the minimum distance is exactly 1/5.
 - One stationary runner and seven fixed relative integer speeds [1,3,4,7,11,18,29]; maximize the minimum distance at a rational time with denominator<=10^6. This lower-bound certificate does not optimize over all speed sets or prove a universal conjecture.
 - All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code.

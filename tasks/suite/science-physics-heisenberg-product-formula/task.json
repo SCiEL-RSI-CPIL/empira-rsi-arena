@@ -60,7 +60,7 @@
       "field": 0.3,
       "cpu_seconds": 60
     },
-    "interface": "coefficients(stages) -> (a, b), two lists of 12 finite numbers in [-50, 50] with sum(a) = sum(b) = 1 (consistency). The evaluator forms the product formula U(t) = prod_k exp(-i b_k t B) exp(-i a_k t A) in order k = 1..12, where A and B are the odd- and even-bond halves (each including half of the uniform field) of a six-site open XXZ Heisenberg chain with anisotropy 0.8 and field 0.3. Score (minimize): mean over t = 0.25, 0.5 and 1.0 of the spectral norm ||U(t) - exp(-i t (A + B))||. coefficients runs in a sandboxed subprocess with a 60 s CPU budget",
+    "interface": "coefficients(stages) -> (a, b), two lists of 12 finite numbers in [-50, 50] with sum(a) = sum(b) = 1 (consistency). The evaluator forms the product formula U(t) = S_12 ... S_2 S_1 with S_k = exp(-i b_k t B) exp(-i a_k t A): stage 1 acts first, and within a stage the A factor acts before the B factor. With sites numbered 0..5 and Pauli matrices X, Y, Z, the Hamiltonian of the six-site open XXZ chain (anisotropy 0.8, field 0.3) is H = sum_{j=0..4} (X_j X_{j+1} + Y_j Y_{j+1} + 0.8 Z_j Z_{j+1}) + 0.3 sum_{j=0..5} Z_j = A + B, where A holds the bonds (0,1), (2,3), (4,5) and the field on sites 0, 2, 4, and B holds the bonds (1,2), (3,4) and the field on sites 1, 3, 5. Score (minimize): mean over t = 0.25, 0.5 and 1.0 of the spectral norm ||U(t) - exp(-i t (A + B))||. coefficients runs in a sandboxed subprocess with a 60 s CPU budget",
     "label_spec": {
       "area": "quantum_information",
       "domain": "natural_science",
@@ -133,7 +133,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

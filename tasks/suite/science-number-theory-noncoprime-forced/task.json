@@ -46,12 +46,12 @@
     },
     "interface": "construct() -> candidate. Return a nonempty subset of [1,255] containing 255, with gcd(a,b)>1 for all distinct pairs. Maximize cardinality.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -94,9 +94,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Rudolf Ahlswede and Levon H. Khachatrian (1996, Sets of integers with pairwise common divisor and a factor from a specified set of primes) study the underlying problem.",
+    "kind": "optimum",
+    "value": 85,
+    "statement": "The largest pairwise non-coprime subset of [1,255] that contains 255 has 85 elements (exact maximum-clique search, confirmed by an integer program). This is n/p for the least prime factor p of n = 255, the first of the two values in the guess of Erdős and Graham recorded by Erdős (1973, p. 123).",
     "sources": [
       {
         "title": "Sets of integers with pairwise common divisor and a factor from a specified set of primes",
@@ -105,15 +105,15 @@
         "year": 1996
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

@@ -17,9 +17,9 @@ construct() -> an attainable permutation order k in S16. Maximize the exact numb
 
 ## State of the art
 
-In S_16 the most common order is 12, shared by 2,428,557,331,200 permutations (OEIS A061125). Enumerating all 231 cycle types (scripts/check_state_of_the_art.py) confirms that no other order is more frequent. Beker described the maximizing orders asymptotically.
+In S_16 the most common element order is shared by 2,428,557,331,200 permutations. Enumerating all 231 cycle types confirms that no other order is more frequent, and the count agrees with the OEIS table for that order. Beker described the maximizing orders asymptotically.
 
-Reference value: proven optimum `2428557331200` (reviewed 2026-09-24).
+Reference value: proven optimum `2428557331200` (reviewed 2026-11-24).
 
 - [OEIS A061125: Number of degree-n permutations of order exactly 12](https://oeis.org/A061125)
 - [The most probable order of a random permutation](https://arxiv.org/abs/2510.11698), Adrian Beker (2025)

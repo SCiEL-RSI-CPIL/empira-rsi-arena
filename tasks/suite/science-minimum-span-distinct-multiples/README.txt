@@ -17,9 +17,9 @@ construct() -> ten DISTINCT positive Python integers <=1000000, aligned with the
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn, Yanyang Li and Quanyu Tang (2026, Optimal bounds for an Erdős problem on matching integers to distinct multiples) study the underlying problem.
+The minimum span is 16 (exact matching over every window start in one period, lcm = 30030, of the pinned inputs, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn, Yanyang Li and Quanyu Tang (2026, Optimal bounds for an Erdős problem on matching integers to distinct multiples) study the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `16` (reviewed 2026-11-24).
 
 - [Optimal bounds for an Erdős problem on matching integers to distinct multiples](https://arxiv.org/abs/2603.28636), Wouter van Doorn, Yanyang Li and Quanyu Tang (2026)
 
@@ -27,7 +27,7 @@ Parameters: `{"divisors": [6, 10, 14, 15, 21, 22, 26, 33, 35, 39], "maximum": 10
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

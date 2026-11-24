@@ -31,9 +31,9 @@ SOURCE_SPECS = tuple({"name": name, "url": URL.format(a, b), "pinning": "live",
                       "license": "Public domain (U.S. Geological Survey ANSS Comprehensive Catalog; southern California data from the Southern California Seismic Network)",
                       "license_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
                       "citation": "U.S. Geological Survey, Earthquake Hazards Program (2017). Advanced National Seismic System (ANSS) Comprehensive Catalog of Earthquake Events and Products. doi:10.5066/F7MS3QZH",
-                      "retrieved": "2026-10-10"} for name, (a, b) in zip(RAW_SOURCES, CHUNKS))
+                      "retrieved": "2026-11-20"} for name, (a, b) in zip(RAW_SOURCES, CHUNKS))
 DATA = "quakes/comcat_socal_m2.5_1981_2024.json.gz"
-DERIVED = {DATA: "397b00a735ef35a7946535ffe40ea858f78caf870efb207324d1a14243ec6ad5"}
+DERIVED = {DATA: "ba8fab9b252e47db7c985d3b92e3fcadfff0686c0c26e8195d48b0ac585896f1"}
 LAT_EDGES = np.round(np.arange(32.0, 37.0001, 0.1), 1)
 LON_EDGES = np.round(np.arange(-121.0, -113.9999, 0.1), 1)
 TARGET_MAGNITUDE, TARGET_DEPTH = 3.45, 30.0

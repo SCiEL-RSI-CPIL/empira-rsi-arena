@@ -7,10 +7,13 @@ targets and the held-out fold without targets, so no target of a held-out
 fold is ever visible to the call that predicts it (a single process for all
 folds would leak them, because every sample is a training sample of the
 other folds). The score is Matbench's mean over folds of the test MAE for
-regression tasks and of the ROC AUC for classification tasks, computed as
-Matbench computes it for label submissions: predictions are 0/1 labels, so the
-ROC AUC equals the balanced accuracy and is comparable with the leaderboard
-entries, all of which submitted labels. Inputs are compositions ({"formula", "composition"}) or ordered crystal
+regression tasks and of the balanced accuracy for the classification task.
+Classification predictions are 0/1 labels, for which the binary ROC AUC equals
+the balanced accuracy; the value is comparable with the "mean balanced
+accuracy" column of the Matbench leaderboard (computed for every entry, from
+hard labels or from probabilities thresholded at 0.5), not with its
+"probability ROC AUC" column, which needs unthresholded probabilities.
+Inputs are compositions ({"formula", "composition"}) or ordered crystal
 structures ({"lattice" (3x3, Angstrom), "species", "frac_coords"}).
 """
 from __future__ import annotations
@@ -18,6 +21,7 @@ from __future__ import annotations
 import numpy as np
 
 from . import chem_sandbox
+from .chem_adme import reportable
 from .chem_common import average_ranks, load_json, mae, predictions, regression_metrics
 from .runtime import require
 
@@ -51,7 +55,8 @@ def load(task):
 
 
 def matbench_score(module, task, wall_seconds_per_fold=170):
-    """Mean over the five official folds of the held-out MAE (lower is better) or ROC AUC (classification, higher is better)."""
+    """Mean over the five official folds of the held-out MAE (lower is better) or, for classification, of the
+    balanced accuracy of the 0/1 labels (their binary ROC AUC; higher is better)."""
     data = load(task)
     targets = np.asarray(data["targets"], dtype=float)
     n = len(targets)
@@ -79,7 +84,8 @@ def matbench_score(module, task, wall_seconds_per_fold=170):
                                      "mean_rocauc": float(np.mean(auc)), "std_rocauc": float(np.std(auc)),
                                      "mean_balanced_accuracy": float(np.mean([f["balanced_accuracy"] for f in folds])), "folds": folds}
     fold_mae = [f["mae"] for f in folds]
-    return float(np.mean(fold_mae)), {"task": data["task"], "target": data["target"], "unit": data["unit"],
-                                      "input_type": data["input_type"], "samples": n, "mean_mae": float(np.mean(fold_mae)),
-                                      "std_mae": float(np.std(fold_mae)), "mean_rmse": float(np.mean([f["rmse"] for f in folds])),
-                                      "max_max_error": float(max(f["max_error"] for f in folds)), "folds": folds}
+    return float(np.mean(fold_mae)), reportable({
+        "task": data["task"], "target": data["target"], "unit": data["unit"], "input_type": data["input_type"], "samples": n,
+        "mean_mae": float(np.mean(fold_mae)), "std_mae": float(np.std(fold_mae)),
+        "mean_rmse": float(np.mean([f["rmse"] for f in folds])), "max_max_error": float(max(f["max_error"] for f in folds)),
+        "folds": folds})

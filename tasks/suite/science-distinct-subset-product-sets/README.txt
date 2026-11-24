@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> 1..18 distinct integers in 2..40. All 2^k subset products, including the empty product one, must be distinct. Exact arbitrary-precision products are enumerated. Maximize number of selected integers. The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem. Integer one is excluded because it collides with the empty product.
+construct() -> 1..18 distinct integers in 2..40. All 2^k subset products, including the empty product one, must be distinct. Exact arbitrary-precision products are enumerated. Maximize number of selected integers. The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem; the optimum of this instance is 17 (OEIS A401472). Integer one is excluded because it collides with the empty product.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,17 +17,18 @@ construct() -> 1..18 distinct integers in 2..40. All 2^k subset products, includ
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Rushil Raghavan (2025, Sharp Bounds for Sets with Distinct Subset Products) studies the underlying problem.
+The maximum size of a subset of {1,...,40} with distinct subset products is 17 (OEIS A401472, a(40) = 17, the function g(n) of Erdős Problem #795); an independent exhaustive search confirms that 17 is attained and 18 is impossible. Rushil Raghavan (2025, Sharp Bounds for Sets with Distinct Subset Products) studies the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `17` (reviewed 2026-11-24).
 
 - [Sharp Bounds for Sets with Distinct Subset Products](https://arxiv.org/abs/2501.02695), Rushil Raghavan (2025)
+- [OEIS A401472: Maximum size of a subset of {1, ..., n} whose subset products are all distinct](https://oeis.org/A401472)
 
 Parameters: `{"n": 40, "maximum_size": 18}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 
@@ -41,7 +42,7 @@ Underlying problem: Determine the extremal size of multiplicatively dissociated 
 
 Why it matters: The cited paper investigates this mathematical problem as a research objective. The task evaluates a finite construction or certificate for the same quantity, with the local restriction stated explicitly.
 
-- [Rushil Raghavan, Sharp Bounds for Sets with Distinct Subset Products (2025; revised 2026)](https://arxiv.org/abs/2501.02695): Main research objective: Determine the extremal size of multiplicatively dissociated integer sets. Task connection: The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem. Integer one is excluded because it collides with the empty product.
+- [Rushil Raghavan, Sharp Bounds for Sets with Distinct Subset Products (2025; revised 2026)](https://arxiv.org/abs/2501.02695): Main research objective: Determine the extremal size of multiplicatively dissociated integer sets. Task connection: The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem; the optimum of this instance is 17 (OEIS A401472). Integer one is excluded because it collides with the empty product.
 
 Supported by the inspected primary problem statement, rather than the prize listing or an agent benchmark. Finite progress is not automatically a novel scientific result.
 
@@ -67,5 +68,5 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 ## Limitations
 
 - Independent finite computational adaptation. Not a Lean proof, prize submission, general conjecture solution, or guarantee of novelty.
-- The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem. Integer one is excluded because it collides with the empty product.
+- The local instance restricts N=40 and certificate cardinality to 18 to bound exhaustive verification. It supplies finite constructions, not the paper’s asymptotic theorem; the optimum of this instance is 17 (OEIS A401472). Integer one is excluded because it collides with the empty product.
 - Candidate Python code is trusted code; the evaluator process is not a security sandbox.

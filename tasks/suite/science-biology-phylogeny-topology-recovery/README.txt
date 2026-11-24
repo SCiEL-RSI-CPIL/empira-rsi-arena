@@ -13,7 +13,7 @@ Source-derived local benchmark; the exact objective and adaptations are specifie
 
 ## Candidate interface
 
-reconstruct(sequences) -> Newick string over the labels t0..t(n-1) (branch lengths optional, trailing semicolon optional, every taxon exactly once). sequences maps those labels to equal-length DNA strings over ACGT simulated along an unknown tree. reconstruct is called once per instance in a sandboxed subprocess with a 180 s CPU budget for all 20 instances (8 to 32 taxa, 250 to 2000 sites). Score (minimize): mean normalized Robinson-Foulds distance between the non-trivial unrooted splits of the returned tree and those of the generating tree; 0 means recovering every topology exactly
+reconstruct(sequences) -> Newick string over the labels t0..t(n-1) (branch lengths optional, trailing semicolon optional, every taxon exactly once). sequences maps those labels to equal-length DNA strings over ACGT simulated along an unknown tree. reconstruct is called once per instance in a sandboxed subprocess with a 180 s CPU budget for all 20 instances (8 to 32 taxa, 250 to 2000 sites). Score (minimize): mean normalized Robinson-Foulds distance between the non-trivial unrooted splits of the returned tree and those of the generating tree: the number of splits present in only one of the two trees divided by the total number of splits of both trees (for a binary answer this is RF / (2 (n - 3)); an unresolved star tree scores 1); 0 means recovering every topology exactly
 
 ## State of the art
 
@@ -77,3 +77,4 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 - Instances, topologies and branch-length regimes are a local choice (20 instances, 8 to 32 taxa); results do not transfer automatically to empirical alignments.
 - Exact recovery is not guaranteed to be attainable from finite data, so the minimum achievable score is unknown and the seed's value is only a baseline.
 - Branch lengths of the returned tree are ignored: only the unrooted topology is scored.
+- The simulator, the instance parameters and the seeds are public constants of the evaluator and the sandbox allows numpy, so a candidate that re-implements the generator obtains the generating trees without any inference (such a program scores 0.0). Results are meaningful only for candidates that use the sequences alone, and a claimed method should be confirmed on instances drawn with new seeds.

@@ -17,9 +17,9 @@ construct() -> candidate. Return a nonempty subset of [1,256]. For every distinc
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.
+There are 202 pairs a < b in [1,256] with (a+b) | ab, on 136 integers. The smallest set meeting every pair has 68 elements (exact branch and bound, confirmed by an integer program), so the optimum is 256 - 68 = 188. The odd numbers, the example of Erdős and Graham (1980, p. 37), give 128.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `188` (reviewed 2026-11-24).
 
 - [Old and New Problems and Results in Combinatorial Number Theory](https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf), Paul Erdős and Ronald L. Graham (1980)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 256}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

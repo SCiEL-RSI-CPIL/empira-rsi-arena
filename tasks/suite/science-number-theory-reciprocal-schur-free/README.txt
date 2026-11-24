@@ -17,9 +17,9 @@ construct() -> candidate. Return a nonempty subset of [1,180] with no THREE DIST
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.
+There are 131 triples of distinct integers in [1,180] with 1/a = 1/b + 1/c, on 98 integers. The smallest set meeting every triple has 28 elements (exact branch and bound, confirmed by an integer program), so the optimum is 180 - 28 = 152.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `152` (reviewed 2026-11-24).
 
 - [Old and New Problems and Results in Combinatorial Number Theory](https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf), Paul Erdős and Ronald L. Graham (1980)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 180}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

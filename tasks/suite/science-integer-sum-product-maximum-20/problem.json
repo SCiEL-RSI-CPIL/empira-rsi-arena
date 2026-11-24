@@ -50,7 +50,7 @@
   "state_of_the_art": {
     "kind": "none",
     "value": null,
-    "statement": "No documented minimum of max(|A+A|, |AA|) for 20-element integer sets. The Erdős-Szemerédi sum-product conjecture is Erdős Problem #52. Solymosi proved max(|A+A|, |AA|) >= |A|^(4/3)/(2 ceil(log |A|))^(1/3) for sets of real numbers.",
+    "statement": "No documented minimum of max(|A+A|, |AA|) for 20-element integer sets. The Erdős-Szemerédi sum-product conjecture is Erdős Problem #52. Solymosi proved max(|A+A|, |AA|) >= |A|^(4/3)/(2 ceil(log |A|)^(1/3)) for finite sets of positive real numbers.",
     "sources": [
       {
         "title": "Bounding multiplicative energy by the sumset",
@@ -59,7 +59,7 @@
         "year": 2009
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 52,
       "url": "https://www.erdosproblems.com/52",

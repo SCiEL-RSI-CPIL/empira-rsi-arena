@@ -132,7 +132,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "medium",
     "important_to_science": true
   },
   "science_relevance": {

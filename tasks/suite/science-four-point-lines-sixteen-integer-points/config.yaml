@@ -29,7 +29,7 @@ prompt:
   system_message: |
     Sixteen integer points with many four-point lines and no five collinear
 
-    construct() -> exactly 16 distinct integer points [x, y] with |x|, |y| <= 1000 and no five collinear. Maximize the number of lines containing exactly four of the points (exact). Integer configurations are a restriction of the real problem; the real value 15 for n = 16 is an upper reference, not a documented integer optimum.
+    construct() -> exactly 16 distinct integer points [x, y] with |x|, |y| <= 1000 and no five collinear. Maximize the number of lines containing exactly four of the points (exact). Integer configurations are a restriction of the real problem: the best known integer configuration of 16 points has 14 such lines (OEIS A172992), and OEIS A006065 lists 15 for real configurations.
 
     Candidate interface: construct() -> exactly 16 distinct integer points [x, y] with |x|, |y| <= 1000 and no five collinear. Maximize the number of lines containing exactly four of the points (exact).
 

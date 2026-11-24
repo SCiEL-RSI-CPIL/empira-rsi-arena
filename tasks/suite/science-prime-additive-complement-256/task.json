@@ -76,7 +76,7 @@
     }
   },
   "limitations": [
-    "Solved finite case: The minimum is 10: {11, 16, 80, 117, 199, 204, 223, 225, 228, 242} covers [256,512].",
+    "Solved finite case: The minimum is 10.",
     "Choose B in [0,256] so every integer in [256,512] is prime plus B, and minimize |B|. This only certifies finite coverage, not an asymptotic complement.",
     "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code."
   ],
@@ -91,7 +91,7 @@
   "state_of_the_art": {
     "kind": "optimum",
     "value": 10,
-    "statement": "The minimum is 10: {11, 16, 80, 117, 199, 204, 223, 225, 228, 242} covers [256,512]. Exact set-cover integer programmes show that 9 elements cannot. The programmes are split by parity, with every case of the prime 2 enumerated, and solved with HiGHS (scripts/check_state_of_the_art.py --slow). The asymptotic question is Erdős Problem #32.",
+    "statement": "The minimum is 10. Exact set-cover integer programmes give a cover with ten elements and show that nine are not enough: without the targets 256, 257 and 258 the prime 2 is never used, so the even and the odd targets are covered independently, and each half needs five elements (HiGHS; tests/test_audit_prize_a.py with PRIZE_A_SLOW=1). The asymptotic question is Erdős Problem #32.",
     "sources": [
       {
         "title": "The additive complements of primes and Goldbach's problem",
@@ -100,7 +100,7 @@
         "year": 2014
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 32,
       "url": "https://www.erdosproblems.com/32",

@@ -415,12 +415,12 @@
     },
     "interface": "construct() -> a nonempty ordered list of distinct vertices in 0..99 forming a simple path in the pinned graph; all consecutive pairs must be edges. Maximize path vertex count. No path-closing edge is required.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "synthetic",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -459,9 +459,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Miklós Ajtai, János Komlós and Endre Szemerédi (1981, The longest path in a random graph) study the underlying problem.",
+    "kind": "optimum",
+    "value": 34,
+    "statement": "The longest path of the pinned graph has 34 vertices (exhaustive depth-first search, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Miklós Ajtai, János Komlós and Endre Szemerédi (1981, The longest path in a random graph) study the underlying problem.",
     "sources": [
       {
         "title": "The longest path in a random graph",
@@ -470,15 +470,15 @@
         "year": 1981
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "synthetic",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

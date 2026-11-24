@@ -7,13 +7,13 @@
 
 ## Task
 
-construct() -> {'M': M, 'k': [k_1, ...]} with M <= 10^18 and distinct k_i <= sqrt(M) satisfying k_i * sigma(k_i) = M (checked with exact factorization). The score is the number of listed solutions, a certified lower bound for f(M). Maximize. Values with many certified solutions are finite lower-bound constructions for f; no record values are documented.
+construct() -> {'M': M, 'k': [k_1, ...]} with M <= 10^18 and distinct k_i <= sqrt(M) satisfying k_i * sigma(k_i) = M (checked with exact factorization). At most 1000 solutions may be listed. The score is the number of listed solutions, a certified lower bound for f(M). Maximize. Values with many certified solutions are finite lower-bound constructions for f; no record values are documented.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
 ## Candidate interface
 
-construct() -> {'M': M, 'k': [k_1, ...]} with M <= 10^18 and distinct k_i <= sqrt(M) satisfying k_i * sigma(k_i) = M (checked with exact factorization). The score is the number of listed solutions, a certified lower bound for f(M). Maximize.
+construct() -> {'M': M, 'k': [k_1, ...]} with M <= 10^18 and distinct k_i <= sqrt(M) satisfying k_i * sigma(k_i) = M (checked with exact factorization). At most 1000 solutions may be listed. The score is the number of listed solutions, a certified lower bound for f(M). Maximize.
 
 ## State of the art
 
@@ -38,15 +38,14 @@ Research area: `mathematics`.
 
 A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.
 
-Evidence status: **supported**.
+Evidence status: **unreviewed**.
 
 Underlying problem: Bound the number of solutions of k sigma(k) = n (Erdős Problem #1060).
 
 Why it matters: Multiplicities of multiplicative functions such as k sigma(k) measure how far they are from injective, in the spirit of Ford's work on totient multiplicities.
 
-- [Unsolved Problems in Number Theory](https://doi.org/10.1007/978-0-387-26677-0): Main research objective: Bound the number of solutions of k sigma(k) = n (Erdős Problem #1060). Task connection: Values with many certified solutions are finite lower-bound constructions for f; no record values are documented.
 
-Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
+The only work cited for this problem is a problem collection (Unsolved Problems in Number Theory), which states the problem but does not have it as its main objective. The audit of 2026-11-24 found no research paper whose main objective is this problem, so no qualifying primary-goal evidence is established here; this is not a finding that the problem is unimportant.
 
 ## Evaluation protocol
 

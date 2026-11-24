@@ -17,9 +17,9 @@ construct() -> nonempty list of simple cycles, each represented by a list of dis
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Barnabás Janzer, Raphael Steiner and Benny Sudakov (2024, Chromatic number and regular subgraphs) study the underlying problem.
+The optimum is 3: the host is 6-regular, so at most 3 edge-disjoint cycles pass through a vertex, and 3 edge-disjoint Hamilton cycles exist. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Barnabás Janzer, Raphael Steiner and Benny Sudakov (2024, Chromatic number and regular subgraphs) study the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `3` (reviewed 2026-11-24).
 
 - [Chromatic number and regular subgraphs](https://arxiv.org/abs/2410.02437), Barnabás Janzer, Raphael Steiner and Benny Sudakov (2024)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 21, "edges": [[0, 1], [0, 2], [0, 5], [0, 16], [0, 19], [0, 2
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

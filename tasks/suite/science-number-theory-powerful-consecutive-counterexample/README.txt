@@ -7,7 +7,7 @@
 
 ## Task
 
-Provide a positive integer n and complete prime factorizations certifying that n and n+1 are powerful and neither is a square. Every prime exponent must be at least two. The verifier uses exact integers and primality tests. This recreates the resolved yes/no question in JSP-000301, with a local certificate-size bound n+1 <= 10^12 and binary validity score. The published 12167/12168 witness is explicitly credited to Solomon W. Golomb.
+Provide a positive integer n and complete prime factorizations certifying that n and n+1 are powerful and neither is a square. Every prime exponent must be at least two. The verifier uses exact integers and primality tests. This recreates the resolved yes/no question in JSP-000301, with a local certificate-size bound n+1 <= 10^12 and binary validity score. The published witness is explicitly credited to Solomon W. Golomb.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -15,11 +15,19 @@ Source-derived local benchmark; the exact objective and adaptations are specifie
 
 construct() -> {'n': int, 'factorizations': [factors_of_n, factors_of_n_plus_1]}; each factorization is a list of distinct [prime, exponent] pairs. Require 2 <= n < 10**12, every exponent >= 2, complete prime factorizations, and neither integer a square. Score 1 for a valid disproof witness; otherwise invalid. This is a solved-problem rediscovery task, not an optimization leaderboard or Lean proof.
 
+## State of the art
+
+The score is binary: any valid certificate scores 1, the maximum. Valid certificates are published: Golomb (1970) gave two consecutive powerful numbers neither of which is a square. The seed already holds this witness, so the task has no headroom.
+
+Reference value: proven optimum `1` (reviewed 2026-11-24).
+
+- [Powerful Numbers](https://doi.org/10.1080/00029890.1970.11992598), Solomon W. Golomb (1970)
+
 Parameters: `{"maximum": 1000000000000}`
 
 ## Labels
 
-Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 
@@ -53,7 +61,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.1080/00029890.1970.11992598 (Solomon W. Golomb, Powerful Numbers, American Mathematical Monthly 77(8), 1970, pp.848–852. Publisher metadata establishes author/title; the prize record explicitly attributes the 12167 counterexample to this paper. Full paper text was not independently accessible during this review.)
+- paper: https://doi.org/10.1080/00029890.1970.11992598 (Solomon W. Golomb, Powerful Numbers, American Mathematical Monthly 77(8), 1970, pp.848–852. Publisher metadata establishes author/title; the prize record explicitly attributes the counterexample to this paper. Full paper text was not independently accessible during this review.)
 - paper: https://www.fq.math.ca/Scanned/14-2/walker.pdf (David T. Walker, Consecutive integer pairs of powerful numbers and related Diophantine equations, Fibonacci Quarterly 14(2), 1976, pp.111–116. Primary full text inspected: Type II pairs are consecutive powerful non-squares; mathematical witness discovery remains credited to Golomb, not to this local implementation.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0301-0400.md#JSP-000301 (JSP-000301: scoped yes/no question and explicit Golomb counterexample attribution; source revision bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2. Independently paraphrased specification; no implementation copied.)
 

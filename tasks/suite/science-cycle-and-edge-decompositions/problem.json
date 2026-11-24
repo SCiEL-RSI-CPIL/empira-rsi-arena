@@ -52,7 +52,7 @@
   "state_of_the_art": {
     "kind": "none",
     "value": null,
-    "statement": "No published decompositions of these generated instances; the conjecture predicts O(n) pieces, the best general bound is O(n log* n).",
+    "statement": "No published decompositions of these generated instances; the conjecture predicts O(n) pieces, the best published bound is O(n log* n) (Bucić and Montgomery). Since 2026-10-16 the public Erdős problem database lists #184 as 'open (Lean)': a Lean formalisation of a proof that O(n) pieces suffice is linked and has not yet been digested by a human reader.",
     "sources": [
       {
         "title": "Towards the Erdős-Gallai cycle decomposition conjecture",
@@ -61,11 +61,11 @@
         "year": 2024
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 184,
       "url": "https://www.erdosproblems.com/184",
-      "status": "open",
+      "status": "open (Lean)",
       "citation": "T. F. Bloom, Erdős Problem #184, https://www.erdosproblems.com/184, accessed 2026-09-24"
     }
   },

@@ -17,17 +17,18 @@ construct() -> candidate. Return integer n in [10000,1000000]. Minimize the larg
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.
+The minimum of P(n(n+1)) over n in [10000, 1000000] is 13. The largest n for which n(n+1) has no prime factor above 11 is 9800 (Lehmer 1964; OEIS A002072), which lies below the window, and a full scan of the window finds two n with P(n(n+1)) = 13.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `13` (reviewed 2026-11-24).
 
 - [Old and New Problems and Results in Combinatorial Number Theory](https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf), Paul Erdős and Ronald L. Graham (1980)
+- [OEIS A002072: a(n) = smallest number m such that for all k > m, either k or k+1 has a prime factor > prime(n)](https://oeis.org/A002072)
 
 Parameters: `{"lower": 10000, "upper": 1000000}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

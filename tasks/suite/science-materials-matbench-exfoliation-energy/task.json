@@ -57,7 +57,7 @@
     "parameters": {
       "task": "jdft2d"
     },
-    "interface": "fit_predict(train_inputs, train_targets, test_inputs, info) -> list of len(test_inputs) floats. Inputs are ordered crystal structures {'lattice': 3x3 lattice vectors as rows (Angstrom), 'species': element symbols, 'frac_coords': fractional coordinates per site}. Called once per official Matbench v0.1 fold (five calls, KFold(5, shuffle, random_state=18012019)), each in a fresh process that receives that fold's training inputs with targets and its held-out inputs without targets; info = {'task', 'input_type', 'target', 'unit', 'fold', 'n_train', 'n_test'}. Runs in a separate process that receives only these arguments (no test values), with at most 4 threads (OMP/MKL/OpenBLAS set to 4), no network, no subprocesses and no read access to the repository or prepared data; numpy, scipy, scikit-learn, pandas, RDKit and torch are importable; wall-clock limit 170 s per fold. Score: mean over the five folds of the held-out mean absolute error in target units (minimize), the Matbench leaderboard metric",
+    "interface": "fit_predict(train_inputs, train_targets, test_inputs, info) -> list of len(test_inputs) floats. Inputs are ordered crystal structures {'lattice': 3x3 lattice vectors as rows (Angstrom), 'species': element symbols, 'frac_coords': fractional coordinates per site}. Called once per official Matbench v0.1 fold (five calls, KFold(5, shuffle, random_state=18012019)), each in a fresh process that receives that fold's training inputs with targets and its held-out inputs without targets; info = {'task', 'input_type', 'target', 'unit', 'fold', 'n_train', 'n_test'}. Runs in a separate process that receives only these arguments (no test values), with at most 4 threads (OMP/MKL/OpenBLAS set to 4), no network, no subprocesses and no read access to the repository or prepared data; numpy, scipy, scikit-learn and RDKit are importable (pandas and torch only where the environment provides them; they are not requirements of the task); wall-clock limit 170 s per fold. Score: mean over the five folds of the held-out mean absolute error in target units (minimize), the Matbench leaderboard metric",
     "label_spec": {
       "scientific_contribution": "method",
       "artifact": "model",
@@ -119,15 +119,15 @@
   },
   "state_of_the_art": {
     "kind": "best_known",
-    "value": 33.1918,
-    "statement": "Best mean MAE on the Matbench v0.1 leaderboard for matbench_jdft2d: 33.1918 meV/atom (MODNet (v0.1.12)), read on 2026-10-10.",
+    "value": 29.9916,
+    "statement": "Best mean MAE on the Matbench v0.1 leaderboard for matbench_jdft2d: 29.9916 meV/atom (TabPFN-HYD-FT), read on 2026-11-24; MODNet (v0.1.12) follows with 33.1918.",
     "sources": [
       {
         "title": "Matbench leaderboard: matbench_jdft2d",
         "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_jdft2d/"
       }
     ],
-    "as_of": "2026-10-10"
+    "as_of": "2026-11-24"
   },
   "labels": {
     "scientific_contribution": "method",
@@ -141,7 +141,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

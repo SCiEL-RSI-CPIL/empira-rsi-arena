@@ -13,7 +13,7 @@ Source-derived local benchmark; the exact objective and adaptations are specifie
 
 ## Candidate interface
 
-predict_yields(train_reactions, train_yields, test_reactions, info) -> list of len(test_reactions) predicted yields (percent). Buchwald-Hartwig couplings of Ahneman et al. (2018); reaction = {'aryl_halide', 'ligand', 'base', 'additive' (canonical SMILES), 'amine', 'catalyst', 'product', 'reaction_smiles' (rxn_yields format)}. The four out-of-sample tests Test1-Test4 (3057/3055/3058/3055 training and 898/900/897/900 test reactions) are called separately; test additives never occur in training. Each split is predicted in a fresh process that receives the training reactions with yields and the test reactions without yields; info = {'dataset', 'split', 'n_train', 'n_test', 'yield_unit': 'percent'}. Runs in a separate process that receives only these arguments (no test values), with at most 4 threads (OMP/MKL/OpenBLAS set to 4), no network, no subprocesses and no read access to the repository or prepared data; numpy, scipy, scikit-learn, pandas, RDKit and torch are importable; wall-clock limit 200 s per test. Score: mean coefficient of determination R^2 over the four tests (maximize)
+predict_yields(train_reactions, train_yields, test_reactions, info) -> list of len(test_reactions) predicted yields (percent). Buchwald-Hartwig couplings of Ahneman et al. (2018); reaction = {'aryl_halide', 'ligand', 'base', 'additive' (canonical SMILES), 'amine', 'catalyst', 'product', 'reaction_smiles' (rxn_yields format)}. The four out-of-sample tests Test1-Test4 (3057/3055/3058/3055 training and 898/900/897/900 test reactions) are called separately; test additives never occur in training. Each split is predicted in a fresh process that receives the training reactions with yields and the test reactions without yields; info = {'dataset', 'split', 'n_train', 'n_test', 'yield_unit': 'percent'}. Runs in a separate process that receives only these arguments (no test values), with at most 4 threads (OMP/MKL/OpenBLAS set to 4), no network, no subprocesses and no read access to the repository or prepared data; numpy, scipy, scikit-learn and RDKit are importable (pandas and torch only where the environment provides them; they are not requirements of the task); wall-clock limit 200 s per test. Score: mean coefficient of determination R^2 over the four tests (maximize)
 
 ## State of the art
 
@@ -27,7 +27,7 @@ Reference value: no documented value for this finite instance (reviewed 2026-10-
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `model`, domain `natural_science`, data `real_measurements`, verification `sampled`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `method` (tier 2); artifact `model`, domain `natural_science`, data `real_measurements`, verification `sampled`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `chemistry`.
 
@@ -51,6 +51,7 @@ The cited papers' main objective is the underlying problem the task scores; the 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
 - Split boundaries of rxn_yields (rows before 3058/3056/3059/3056 train); the preparation checks that training and test additives are disjoint. Reference check: the reaction SMILES rebuilt by the evaluator are identical to the output of rxn_yields' generate_buchwald_hartwig_rxns (pinned commit) for all 3955 reactions of each test, and R^2 equals scikit-learn's r2_score. Published R^2 values are compared, not reproduced (no published predictions are available).
+- The rxn_yields evaluation clips predictions to [0, 100] before computing R^2; this evaluator scores the returned values unchanged, so a candidate should clip its own predictions.
 
 ## Run
 
@@ -76,7 +77,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- One reaction class with 15 aryl halides, 4 ligands, 3 bases and 23 isoxazole additives that act as deliberate poisons; generalisation to unseen additives says little about other substrates or reaction types.
+- One reaction class with 15 aryl halides, 4 ligands, 3 bases and 23 isoxazole additives that act as deliberate poisons (22 of them occur in the 3955 reactions used here); generalisation to unseen additives says little about other substrates or reaction types.
 - The test yields are public in the source repository; candidates or settings tuned on these splits overfit, so treat scores as development scores.
 - Published values were read from the comparison table of Baraka and El Kerdawy (2022) because the primary articles' sites were not reachable; they are compared, not reproduced, and no published predictions are available.
 - Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container.

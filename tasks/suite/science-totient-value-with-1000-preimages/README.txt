@@ -7,13 +7,13 @@
 
 ## Task
 
-construct() -> an integer m with 1 <= m <= 10^8 such that phi(x) = m has exactly 1000 solutions x (counted exactly by recursion over the primes p with p - 1 dividing m). Minimize m; the optimum is 1360800. The least value with exactly 1000 preimages is 1360800, so the task recovers it.
+construct() -> an integer m with 1 <= m <= 10^8 such that phi(x) = m has exactly 1000 solutions x (counted exactly by recursion over the primes p with p - 1 dividing m). Minimize m. The least value with exactly 1000 preimages is tabulated (it is the reference in state_of_the_art); it is not printed here because the value is itself the answer.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
 ## Candidate interface
 
-construct() -> an integer m with 1 <= m <= 10^8 such that phi(x) = m has exactly 1000 solutions x (counted exactly by recursion over the primes p with p - 1 dividing m). Minimize m; the optimum is 1360800.
+construct() -> an integer m with 1 <= m <= 10^8 such that phi(x) = m has exactly 1000 solutions x (counted exactly by recursion over the primes p with p - 1 dividing m). Minimize m.
 
 ## State of the art
 
@@ -42,7 +42,7 @@ Underlying problem: Determine which multiplicities the Euler totient function at
 
 Why it matters: Carmichael's totient conjecture (no value has exactly one preimage) is open; Ford's theorem on all other multiplicities is a landmark of multiplicative number theory.
 
-- [The Number of Solutions of φ(x) = m](https://doi.org/10.2307/121103): Main research objective: Determine which multiplicities the Euler totient function attains (Carmichael's and Sierpiński's conjectures). Task connection: The least value with exactly 1000 preimages is 1360800, so the task recovers it.
+- [The Number of Solutions of φ(x) = m](https://doi.org/10.2307/121103): Main research objective: Determine which multiplicities the Euler totient function attains (Carmichael's and Sierpiński's conjectures). Task connection: The least value with exactly 1000 preimages is tabulated (it is the reference in state_of_the_art); it is not printed here because the value is itself the answer.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -50,7 +50,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- The least value with exactly 1000 preimages is 1360800, so the task recovers it. Exact local certificates are not Lean proofs; the Mahler measure and reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
+- The least value with exactly 1000 preimages is tabulated (it is the reference in state_of_the_art); it is not printed here because the value is itself the answer. Exact local certificates are not Lean proofs; the Mahler measure and reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -62,7 +62,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.2307/121103 (Kevin Ford, The Number of Solutions of φ(x) = m (1999). Crossref record inspected: Ford proved Sierpiński's conjecture that every multiplicity k >= 2 occurs. OEIS A007374 inspected (b-file by Noe, Johnson and McCranie): the smallest m with exactly 1000 totient preimages is 1360800; the count for 1360800 was reproduced locally. The least value with exactly 1000 preimages is 1360800, so the task recovers it.)
+- paper: https://doi.org/10.2307/121103 (Kevin Ford, The Number of Solutions of φ(x) = m (1999). Crossref record inspected: Ford proved Sierpiński's conjecture that every multiplicity k >= 2 occurs. OEIS A007374 inspected (b-file by Noe, Johnson and McCranie): the smallest m with exactly 1000 totient preimages is 1360800; the count for 1360800 was reproduced locally. The least value with exactly 1000 preimages is tabulated (it is the reference in state_of_the_art); it is not printed here because the value is itself the answer.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0601-0700.md#JSP-000677 (JSP-000677; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 
 ## Limitations

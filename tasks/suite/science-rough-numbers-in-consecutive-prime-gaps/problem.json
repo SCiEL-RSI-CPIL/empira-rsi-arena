@@ -178,9 +178,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Ayla Gafni and Terence Tao (2025, Rough numbers between consecutive primes) study the underlying problem.",
+    "kind": "optimum",
+    "value": 22,
+    "statement": "Exactly 22 of the 32 pinned gaps contain a witness (exhaustive check of every interior integer; the gap indices agree with OEIS A386978), so the optimum is 22. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Ayla Gafni and Terence Tao (2025, Rough numbers between consecutive primes) study the underlying problem.",
     "sources": [
       {
         "title": "Rough numbers between consecutive primes",
@@ -189,7 +189,7 @@
         "year": 2025
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "supported",
@@ -211,12 +211,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

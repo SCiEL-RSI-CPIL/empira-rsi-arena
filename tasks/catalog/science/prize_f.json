@@ -84,7 +84,7 @@
   {
     "id": "science-triangle-free-dense-halves-20",
     "name": "Triangle-free graphs on 20 vertices whose every half is dense",
-    "description": "construct() -> list of edges [u, v] of a simple triangle-free graph on vertices 0..19. The score is the minimum number of edges induced by any 10 of the vertices, computed over all 184756 subsets. Maximize; a score above 8 would disprove the Erdős-Rousseau conjecture for n = 20. For n = 20 the conjectured maximum of the score is 8, attained by the balanced C5 blow-up; a triangle-free graph with score 9 would be a counterexample.",
+    "description": "construct() -> list of edges [u, v] of a simple triangle-free graph on vertices 0..19. The score is the minimum number of edges induced by any 10 of the vertices, computed over all 184756 subsets. Maximize; a score above 8 would disprove the Erdős-Rousseau conjecture for n = 20. For n = 20 the conjectured maximum of the score is 8, and triangle-free graphs with score 8 are known; a triangle-free graph with score 9 would be a counterexample.",
     "family": "science_prize_f_sparse_halves",
     "parameters": {
       "n": 20
@@ -102,7 +102,7 @@
       {
         "url": "https://doi.org/10.1070/sm9615",
         "type": "paper",
-        "locator": "Alexander A. Razborov, More about sparse halves in triangle-free graphs (2022). Crossref record inspected; Erdős Problem #128 ($250) page inspected: every n/2-set of a triangle-free graph is conjectured to span at most n^2/50 edges, tight for the C5 blow-up and the Petersen graph; proved with 1/50 replaced by 27/1024 by Razborov. For n = 20 the conjectured maximum of the score is 8, attained by the balanced C5 blow-up; a triangle-free graph with score 9 would be a counterexample."
+        "locator": "Alexander A. Razborov, More about sparse halves in triangle-free graphs (2022). Crossref record inspected; Erdős Problem #128 ($250) page inspected: every n/2-set of a triangle-free graph is conjectured to span at most n^2/50 edges, tight for the C5 blow-up and the Petersen graph; proved with 1/50 replaced by 27/1024 by Razborov. For n = 20 the conjectured maximum of the score is 8, and triangle-free graphs with score 8 are known; a triangle-free graph with score 9 would be a counterexample."
       },
       {
         "url": "https://www.erdosproblems.com/128",
@@ -122,7 +122,7 @@
     "state_of_the_art": {
       "kind": "conjectured_optimum",
       "value": 8,
-      "statement": "Conjectured maximum n^2/50 = 8 for n = 20, attained by the balanced blow-up of C5; no triangle-free graph with a larger score is known.",
+      "statement": "Conjectured maximum n^2/50 = 8 for n = 20, attained by known constructions; no triangle-free graph with a larger score is known.",
       "sources": [
         {
           "title": "More about sparse halves in triangle-free graphs",
@@ -135,7 +135,7 @@
           "url": "https://www.erdosproblems.com/128"
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 128,
         "url": "https://www.erdosproblems.com/128",
@@ -166,7 +166,7 @@
   {
     "id": "science-triangles-above-turan-16",
     "name": "Fewest triangles in graphs with 16 vertices and 68 edges",
-    "description": "construct() -> exactly 68 distinct edges [u, v] on vertices 0..15. The score is the exact number of triangles. Minimize; the proven optimum is 32 = t * floor(n/2) with t = 68 - 64. With n = 16 and t = 4 the theorem gives at least 32 triangles, and K8,8 plus a 4-edge matching attains 32.",
+    "description": "construct() -> exactly 68 distinct edges [u, v] on vertices 0..15. The score is the exact number of triangles. Minimize; the proven optimum is 32 = t * floor(n/2) with t = 68 - 64. With n = 16 and t = 4 the theorem gives at least 32 triangles, and 32 is attained.",
     "family": "science_prize_f_triangles_above_turan",
     "parameters": {
       "n": 16,
@@ -185,7 +185,7 @@
       {
         "url": "https://doi.org/10.1007/978-3-0348-5438-2_41",
         "type": "paper",
-        "locator": "László Lovász and Miklós Simonovits, On the number of complete subgraphs of a graph II (1983). Crossref record inspected; Erdős Problem #1010 page inspected: every graph with floor(n^2/4)+t edges, t < floor(n/2), has at least t*floor(n/2) triangles, proved independently by Lovász-Simonovits and Nikiforov-Khadzhiivanov. With n = 16 and t = 4 the theorem gives at least 32 triangles, and K8,8 plus a 4-edge matching attains 32."
+        "locator": "László Lovász and Miklós Simonovits, On the number of complete subgraphs of a graph II (1983); the theorem used here is in the first paper of that title (Proceedings of the Fifth British Combinatorial Conference, 1976, pages 431-441, no DOI). Crossref record inspected; Erdős Problem #1010 page inspected: every graph with floor(n^2/4)+t edges, t < floor(n/2), has at least t*floor(n/2) triangles, proved independently by Lovász-Simonovits and Nikiforov-Khadzhiivanov. With n = 16 and t = 4 the theorem gives at least 32 triangles, and 32 is attained."
       },
       {
         "url": "https://www.erdosproblems.com/1010",
@@ -205,7 +205,7 @@
     "state_of_the_art": {
       "kind": "optimum",
       "value": 32,
-      "statement": "At least t*floor(n/2) = 32 triangles (Lovász-Simonovits theorem), attained by K8,8 plus a matching of four edges.",
+      "statement": "At least t*floor(n/2) = 32 triangles (Lovász-Simonovits theorem), and the bound is attained.",
       "sources": [
         {
           "title": "On the number of complete subgraphs of a graph II",
@@ -218,7 +218,7 @@
           "url": "https://www.erdosproblems.com/1010"
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 1010,
         "url": "https://www.erdosproblems.com/1010",
@@ -581,7 +581,7 @@
   {
     "id": "science-triple-systems-matching-two-12",
     "name": "Triple systems on 12 points without three disjoint triples",
-    "description": "construct() -> list of distinct triples [a, b, c] of distinct points in 0..11 containing no three pairwise disjoint triples. Maximize the number of triples; the proven optimum is 100. For n = 12 and s = 2 the maximum is max{56, 100} = 100, attained by all triples meeting two fixed points.",
+    "description": "construct() -> list of distinct triples [a, b, c] of distinct points in 0..11 containing no three pairwise disjoint triples. Maximize the number of triples; the proven optimum is 100. For n = 12 and s = 2 the maximum is max{56, 100} = 100.",
     "family": "science_prize_f_matching_two",
     "parameters": {
       "n": 12,
@@ -600,7 +600,7 @@
       {
         "url": "https://doi.org/10.1016/j.dam.2016.08.003",
         "type": "paper",
-        "locator": "Peter Frankl, On the maximum number of edges in a hypergraph with given matching number (2017). Crossref record and abstract inspected: the maximum number of edges of a 3-uniform hypergraph on n vertices with matching number s is max{C(3s+2,3), C(n,3)-C(n-s,3)} for n >= 3s+2. For n = 12 and s = 2 the maximum is max{56, 100} = 100, attained by all triples meeting two fixed points."
+        "locator": "Peter Frankl, On the maximum number of edges in a hypergraph with given matching number (2017). Crossref record and abstract inspected: the maximum number of edges of a 3-uniform hypergraph on n vertices with matching number s is max{C(3s+2,3), C(n,3)-C(n-s,3)} for n >= 3s+2. For n = 12 and s = 2 the maximum is max{56, 100} = 100."
       },
       {
         "url": "https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0801-0900.md#JSP-000850",
@@ -1654,7 +1654,7 @@
     "state_of_the_art": {
       "kind": "none",
       "value": null,
-      "statement": "No published decompositions of these generated instances; the conjecture predicts O(n) pieces, the best general bound is O(n log* n).",
+      "statement": "No published decompositions of these generated instances; the conjecture predicts O(n) pieces, the best published bound is O(n log* n) (Bucić and Montgomery). Since 2026-10-16 the public Erdős problem database lists #184 as 'open (Lean)': a Lean formalisation of a proof that O(n) pieces suffice is linked and has not yet been digested by a human reader.",
       "sources": [
         {
           "title": "Towards the Erdős-Gallai cycle decomposition conjecture",
@@ -1663,11 +1663,11 @@
           "year": 2024
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 184,
         "url": "https://www.erdosproblems.com/184",
-        "status": "open",
+        "status": "open (Lean)",
         "citation": "T. F. Bloom, Erdős Problem #184, https://www.erdosproblems.com/184, accessed 2026-09-24"
       }
     },

@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "id": "science-number-theory-powerful-consecutive-counterexample",
   "name": "Consecutive powerful non-squares: exact counterexample certificate",
-  "description": "Provide a positive integer n and complete prime factorizations certifying that n and n+1 are powerful and neither is a square. Every prime exponent must be at least two. The verifier uses exact integers and primality tests. This recreates the resolved yes/no question in JSP-000301, with a local certificate-size bound n+1 <= 10^12 and binary validity score. The published 12167/12168 witness is explicitly credited to Solomon W. Golomb.",
+  "description": "Provide a positive integer n and complete prime factorizations certifying that n and n+1 are powerful and neither is a square. Every prime exponent must be at least two. The verifier uses exact integers and primality tests. This recreates the resolved yes/no question in JSP-000301, with a local certificate-size bound n+1 <= 10^12 and binary validity score. The published witness is explicitly credited to Solomon W. Golomb.",
   "paper_ids": [
     "science-prize"
   ],
@@ -12,7 +12,7 @@
     {
       "url": "https://doi.org/10.1080/00029890.1970.11992598",
       "type": "paper",
-      "locator": "Solomon W. Golomb, Powerful Numbers, American Mathematical Monthly 77(8), 1970, pp.848–852. Publisher metadata establishes author/title; the prize record explicitly attributes the 12167 counterexample to this paper. Full paper text was not independently accessible during this review."
+      "locator": "Solomon W. Golomb, Powerful Numbers, American Mathematical Monthly 77(8), 1970, pp.848–852. Publisher metadata establishes author/title; the prize record explicitly attributes the counterexample to this paper. Full paper text was not independently accessible during this review."
     },
     {
       "url": "https://www.fq.math.ca/Scanned/14-2/walker.pdf",
@@ -55,7 +55,7 @@
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -95,6 +95,20 @@
     "tests": "tests/test_science_prize.py",
     "lean_verified": false
   },
+  "state_of_the_art": {
+    "kind": "optimum",
+    "value": 1,
+    "statement": "The score is binary: any valid certificate scores 1, the maximum. Valid certificates are published: Golomb (1970) gave two consecutive powerful numbers neither of which is a square. The seed already holds this witness, so the task has no headroom.",
+    "sources": [
+      {
+        "title": "Powerful Numbers",
+        "url": "https://doi.org/10.1080/00029890.1970.11992598",
+        "authors": "Solomon W. Golomb",
+        "year": 1970
+      }
+    ],
+    "as_of": "2026-11-24"
+  },
   "science_relevance": {
     "status": "supported",
     "scientific_problem": "Construct and understand consecutive powerful integers neither of which is a square.",
@@ -120,13 +134,13 @@
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   }
 }

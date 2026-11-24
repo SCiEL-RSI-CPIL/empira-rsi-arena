@@ -108,7 +108,7 @@ def check_program(program, inputs):
         if not isinstance(instruction, list) or len(instruction) < 2:
             raise CandidateError(f"instruction {i} must be [dest, op, args...]")
         dest, op, *args = instruction
-        if op not in ARITY or len(args) != ARITY[op]:
+        if not isinstance(op, str) or op not in ARITY or len(args) != ARITY[op]:
             raise CandidateError(f"instruction {i}: unknown operation or wrong arity ({op!r})")
         if not isinstance(dest, str) or not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]{0,30}", dest) or dest in defined:
             raise CandidateError(f"instruction {i}: destination must be a new identifier")

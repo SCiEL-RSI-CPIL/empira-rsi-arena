@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> list of distinct triples [a, b, c] of distinct points in 0..11 containing no three pairwise disjoint triples. Maximize the number of triples; the proven optimum is 100. For n = 12 and s = 2 the maximum is max{56, 100} = 100, attained by all triples meeting two fixed points.
+construct() -> list of distinct triples [a, b, c] of distinct points in 0..11 containing no three pairwise disjoint triples. Maximize the number of triples; the proven optimum is 100. For n = 12 and s = 2 the maximum is max{56, 100} = 100.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -41,7 +41,7 @@ Underlying problem: Prove the Erdős matching conjecture for triple systems.
 
 Why it matters: The Erdős matching conjecture is a central open problem for general uniformity; the 3-uniform case solved by Frankl gives an exact finite target.
 
-- [On the maximum number of edges in a hypergraph with given matching number](https://doi.org/10.1016/j.dam.2016.08.003): Main research objective: Prove the Erdős matching conjecture for triple systems. Task connection: For n = 12 and s = 2 the maximum is max{56, 100} = 100, attained by all triples meeting two fixed points.
+- [On the maximum number of edges in a hypergraph with given matching number](https://doi.org/10.1016/j.dam.2016.08.003): Main research objective: Prove the Erdős matching conjecture for triple systems. Task connection: For n = 12 and s = 2 the maximum is max{56, 100} = 100.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -49,7 +49,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- For n = 12 and s = 2 the maximum is max{56, 100} = 100, attained by all triples meeting two fixed points. Exact local certificates are not Lean proofs. Consult the independent oracle and malformed-input tests.
+- For n = 12 and s = 2 the maximum is max{56, 100} = 100. Exact local certificates are not Lean proofs. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -61,7 +61,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.1016/j.dam.2016.08.003 (Peter Frankl, On the maximum number of edges in a hypergraph with given matching number (2017). Crossref record and abstract inspected: the maximum number of edges of a 3-uniform hypergraph on n vertices with matching number s is max{C(3s+2,3), C(n,3)-C(n-s,3)} for n >= 3s+2. For n = 12 and s = 2 the maximum is max{56, 100} = 100, attained by all triples meeting two fixed points.)
+- paper: https://doi.org/10.1016/j.dam.2016.08.003 (Peter Frankl, On the maximum number of edges in a hypergraph with given matching number (2017). Crossref record and abstract inspected: the maximum number of edges of a 3-uniform hypergraph on n vertices with matching number s is max{C(3s+2,3), C(n,3)-C(n-s,3)} for n >= 3s+2. For n = 12 and s = 2 the maximum is max{56, 100} = 100.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0801-0900.md#JSP-000850 (JSP-000850; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 
 ## Limitations

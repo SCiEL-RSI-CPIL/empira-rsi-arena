@@ -68,7 +68,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 - paper: https://doi.org/10.1785/0120050067 (Helmstetter, Kagan and Jackson (2006): one-day forecasts of southern California earthquakes on a 0.1-degree grid, comparing short-term (clustering) and time-independent models by likelihood.)
 - paper: https://doi.org/10.1080/01621459.1988.10478560 (Ogata (1988): the epidemic-type aftershock sequence (ETAS) point-process model of earthquake occurrence.)
 - paper: https://doi.org/10.1785/0120090192 (Zechar, Gerstenberger and Rhoades (2010): Poisson joint-likelihood tests of gridded earthquake forecasts used by CSEP; the task uses the joint log-likelihood and reports the N-test ratio.)
-- archive: https://earthquake.usgs.gov/fdsnws/event/1/ (USGS ANSS Comprehensive Catalog (ComCat, doi:10.5066/F7MS3QZH), FDSN event service: earthquakes with magnitude >= 2.5 in 31-38 N, 122-113 W, 1981-2024 (public domain; retrieved 2026-10-10).)
+- archive: https://earthquake.usgs.gov/fdsnws/event/1/ (USGS ANSS Comprehensive Catalog (ComCat, doi:10.5066/F7MS3QZH), FDSN event service: earthquakes with magnitude >= 2.5 in 31-38 N, 122-113 W, 1981-2024 (public domain; retrieved 2026-11-20).)
 
 ## Limitations
 
@@ -78,4 +78,4 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 - The 2016-2024 period is dominated by the 2019 Ridgecrest sequence, so the score mostly reflects aftershock forecasting skill for one large sequence; the information gain is an estimate with substantial sampling uncertainty.
 - ComCat is a live catalogue; if past events are revised, the derived-file hash check fails and the data must be re-recorded, which changes scores slightly.
 - A better score is a better statistical forecast model on these years, not a scientific discovery; the held-out catalogue is public, so search feedback on this fixed split can overfit it.
-- The candidate runs in a sandboxed child process that never receives events after a forecast day starts; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy.
+- The candidate runs in a sandboxed child process that never receives events after a forecast day starts, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy.

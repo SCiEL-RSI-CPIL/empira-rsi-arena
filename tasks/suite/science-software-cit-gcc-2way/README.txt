@@ -15,7 +15,7 @@ Source-derived local benchmark; the exact objective and adaptations are specifie
 
 generate(model) -> list of rows. model = {'name': str, 'strength': t, 'values': [v_0, ..., v_{k-1}], 'forbidden': [[[p, level], ...], ...]}: parameter p takes a level in 0..v_p-1 and each forbidden entry lists parameter-level pairs that must not all occur in one row. Return a list of rows, each a list of k Python ints. Every row must avoid all forbidden combinations, and the rows together must contain every combination of levels of t distinct parameters that occurs in at least one valid configuration (the evaluator decides feasibility exactly). Score: number of rows, minimised; an array that misses a feasible combination or contains a forbidden one is invalid. generate() runs in a sandboxed subprocess (no files, network or subprocesses; CPU limit 60 s for pairwise and 120 s for 3-way tasks, 2 GB); it should be deterministic (seed any randomness, do not read clocks).
 
-Parameters: `{"instance": "gcc-2way", "cpu_seconds": 60, "reference": 18, "lower_bound": 9}`
+Parameters: `{"instance": "gcc-2way", "cpu_seconds": 60, "reference": 16, "lower_bound": 9}`
 
 ## Labels
 
@@ -65,7 +65,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- Published sizes on these exact files: HHSA 18 rows and CASA 19 rows (FastCA repository supplementary table, 5-hour cutoff). FastCA states that its pairwise arrays are never larger than its competitors' but does not list them, so 18 is a verified published value, not necessarily the best known; the counting lower bound is 9.
+- Published sizes: FastCA and TCA 16 rows, HHSA 18 rows and CASA 19 rows (FastCA repository, tables.pdf, Table 6, 2-way, 1000 s; the 5-hour supplementary table has the same HHSA and CASA sizes). FastCA and TCA ran on CASA's constraint file, which is logically equivalent to the archive's file used here (checked with Z3), so 16 is the best published size for this model; the counting lower bound is 9.
 - The array size is the only objective; generation time is bounded by the sandbox CPU limit and is not scored, whereas the published solvers ran for 1000 s to 5 h in C++.
 - Feasible combinations are decided by an exact search at preparation time and cross-checked with Z3 in the tests; a Z3 disagreement would change the required set.
 - The models are public; a candidate could embed a precomputed array. Scores are comparable with published sizes only for arrays generated within the contract.

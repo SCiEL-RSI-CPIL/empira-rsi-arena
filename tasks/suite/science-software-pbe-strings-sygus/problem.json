@@ -12,7 +12,7 @@
   ],
   "timeout": 300,
   "notes": [
-    "Tasks are the 27 problems of SyGuS-Org/benchmarks lib/PBE_SLIA_Track/from_2018 (commit 13c8deb6; no licence stated, fetched and never redistributed) that have a '-long' variant: the base file's examples and grammar are given, the long variant's other examples are held out (8 to 94 per task; no example conflicts with the base file). The competition scored consistency with the given examples and solving time; generalisation to held-out examples is this dataset's criterion. The interpreter agrees with Z3's string theory on 400 random terms and the standard's edge cases (tests)."
+    "Tasks are the 27 problems of SyGuS-Org/benchmarks lib/PBE_SLIA_Track/from_2018 (commit 13c8deb6; no licence stated, fetched and never redistributed) that have a '-long' variant: the base file's examples and grammar are given, the long variant's other examples are held out (8 to 94 per task counting the repetitions in the benchmark files, 3 to 94 distinct ones; no example conflicts with the base file). The competition scored consistency with the given examples and solving time; generalisation to held-out examples is this dataset's criterion. The interpreter agrees with Z3's string theory on 400 random terms and the standard's edge cases (tests)."
   ],
   "protocol_description": "Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.",
   "id": "science-software-pbe-strings-sygus",
@@ -53,7 +53,7 @@
   ],
   "limitations": [
     "Only 27 tasks, from a few families (11 phone-number tasks, 4 name-combination tasks, 6 university-address tasks and 6 others), so scores move in steps of 1/27 and families are correlated.",
-    "Correctness is judged on examples: the given ones plus 8 to 94 held-out examples of the '-long' variant per task; a program that agrees on all of them but differs elsewhere counts as solved.",
+    "Correctness is judged on examples: the given ones plus 8 to 94 held-out examples of the '-long' variant per task (3 to 94 distinct ones, because the long files repeat examples; bikes has 3); a program that agrees on all of them but differs elsewhere counts as solved.",
     "SyGuS-Comp scored consistency with the given examples and solving time, not generalisation, so published solved counts are not comparable; the benchmark repository notes that errors and duplicates may exist.",
     "The bottom-up enumeration seed solves 8 of 27 within its budget; the tasks are public and solutions could be remembered, which the contract excludes but cannot check.",
     "The interpreter implements the SMT-LIB 2.6 string semantics used by SyGuS-Comp 2018 and was cross-checked against Z3 on random terms; a solver with different edge-case semantics could disagree on unusual programs."
@@ -121,7 +121,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   }
 }

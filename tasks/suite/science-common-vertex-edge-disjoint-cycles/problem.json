@@ -303,9 +303,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Barnabás Janzer, Raphael Steiner and Benny Sudakov (2024, Chromatic number and regular subgraphs) study the underlying problem.",
+    "kind": "optimum",
+    "value": 3,
+    "statement": "The optimum is 3: the host is 6-regular, so at most 3 edge-disjoint cycles pass through a vertex, and 3 edge-disjoint Hamilton cycles exist. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Barnabás Janzer, Raphael Steiner and Benny Sudakov (2024, Chromatic number and regular subgraphs) study the underlying problem.",
     "sources": [
       {
         "title": "Chromatic number and regular subgraphs",
@@ -314,7 +314,7 @@
         "year": 2024
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "supported",
@@ -336,12 +336,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

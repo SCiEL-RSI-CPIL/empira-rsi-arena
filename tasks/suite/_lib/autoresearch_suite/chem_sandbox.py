@@ -9,10 +9,10 @@ resident-memory limit, and an audit hook that hides the prepared data
 directory and the evaluator package (see chem_worker.py). The labels of
 held-out items stay in this (evaluator) process.
 
-The suite's evaluator template imports the candidate module once in the
-evaluator process before scoring; every scoring-relevant candidate call of the
-prediction tasks happens in the child. Framing helpers are shared with
-software_sandbox.
+The evaluators of the prediction tasks load the candidate with
+``sandboxed.run``, so no statement of the candidate is executed in the
+evaluator process; every candidate call happens in the child. Framing helpers
+are shared with software_sandbox.
 """
 from __future__ import annotations
 
@@ -28,6 +28,7 @@ from pathlib import Path
 
 from .chem_common import data_dir
 from .runtime import CandidateError
+from .sandboxed import defines
 from .software_sandbox import SandboxFailure, _drain, _Reader, _rss_mb, _write_frame
 
 WORKER = Path(__file__).resolve().with_name("chem_worker.py")
@@ -113,7 +114,7 @@ def execute(source, entry, args=(), *, wall_seconds=120, cpu_seconds=None, memor
 
 def run_candidate(module, entry, args=(), **kwargs):
     """Run a candidate entry point in the child; any failure is the candidate's (CandidateError)."""
-    if not callable(getattr(module, entry, None)):
+    if not defines(module, entry):
         raise CandidateError(f"candidate must define {entry}()")
     path = getattr(module, "__file__", None)
     if not path or not Path(path).is_file():

@@ -37,7 +37,7 @@
     }
   ],
   "limitations": [
-    "Optimality is proven only for N <= 30 and N = 36 (bold entries of the Packomania table). Packomania publishes these records with 12 decimals, so ties are judged with the 1e-11 margin.",
+    "Optimality is proven for N <= 33 and N = 36: the Packomania table marks N <= 30 and N = 36 in bold, and computer-assisted proofs for N = 31, 32 and 33 were published by Markot (J. Global Optim. 81 (2021) 773-803). Packomania publishes these records with 12 decimals, so ties are judged with the 1e-11 margin.",
     "The record coordinates are public (Packomania), so a candidate can reproduce the record from memory or by downloading it beforehand; scores measure the returned construction, not the search that produced it.",
     "Scores are double-precision radii of the returned centres. A score above the record by at most 1e-11 is reported as a tie; a larger gain is a candidate new record that should be confirmed in higher precision and submitted to the record table before it is claimed.",
     "Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the radius from the returned array but does not sandbox the program."
@@ -54,7 +54,7 @@
   "state_of_the_art": {
     "kind": "best_known",
     "value": 0.071377103865,
-    "statement": "The best known packing of 50 equal circles in a unit square has circle radius 0.071377103865 (Packomania, last update 2026-09-10), credited to Boll, Donovan, Graham and Lubachevsky (2000). No optimality proof is known (proofs exist for N <= 30 and N = 36).",
+    "statement": "The best known packing of 50 equal circles in a unit square has circle radius 0.071377103865 (Packomania, last update 2026-09-10), credited to Boll, Donovan, Graham and Lubachevsky (2000). No optimality proof is known (proofs exist for N <= 33 and N = 36).",
     "sources": [
       {
         "title": "The best known packings of equal circles in a square (Packomania)",
@@ -70,7 +70,7 @@
       }
     ],
     "comparability": "Same instance and objective: N = 50, unit square, maximize the common circle radius; the published centre file (12 decimals) scores 0.07137710386398553 with this evaluator (difference -1.0e-12, within the published precision).",
-    "as_of": "2026-10-11",
+    "as_of": "2026-11-24",
     "attribution": "human"
   },
   "science_relevance": {
@@ -103,7 +103,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   }
 }

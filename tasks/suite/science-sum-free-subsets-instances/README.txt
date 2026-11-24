@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> three subsets, one per instance from sum_free_instance(size, seed) for (60,801), (120,802), (240,803) in the verifier (distinct nonzero integers in [-10000, 10000]). Each subset must be sum-free: no a + b = c with a, b, c in it (a = b allowed). Maximize the total size; every n-element set has a sum-free subset of size at least (n+2)/3 (Bourgain). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n).
+construct() -> three subsets, one per instance from sum_free_instance(size, seed) for (60,801), (120,802), (240,803) in the verifier (distinct nonzero integers in [-10000, 10000]). Each subset must be sum-free: no a + b = c with a, b, c in it (a = b allowed). Maximize the total size; every n-element set has a sum-free subset of size at least (n+2)/3 (Bourgain). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n). The exact optimum is 328 (55 + 103 + 170), which integer programming on the triples a + b = c finds in seconds.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,9 +17,9 @@ construct() -> three subsets, one per instance from sum_free_instance(size, seed
 
 ## State of the art
 
-Instance-solving task; no reference value.
+The exact optimum is 328 = 55 + 103 + 170: the complement of a minimum hitting set of the triples a + b = c inside each instance (7, 29 and 257 triples). Computed for this package by integer programming and proved by branch and bound with exactly verified linear-programming bounds; not published.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `328` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #792](https://www.erdosproblems.com/792), status: open.
 
@@ -28,7 +28,7 @@ Underlying problem: [Erdős Problem #792](https://www.erdosproblems.com/792), st
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 
@@ -42,7 +42,7 @@ Underlying problem: Estimate f(n), the size of the largest sum-free subset guara
 
 Why it matters: Sum-free subsets are a classical problem in additive combinatorics whose constant 1/3 was shown sharp only in 2014.
 
-- [Sets of integers with no large sum-free subset](https://doi.org/10.4007/annals.2014.180.2.5): Main research objective: Estimate f(n), the size of the largest sum-free subset guaranteed in every n-element set of integers (Erdős Problem #792). Task connection: The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n).
+- [Sets of integers with no large sum-free subset](https://doi.org/10.4007/annals.2014.180.2.5): Main research objective: Estimate f(n), the size of the largest sum-free subset guaranteed in every n-element set of integers (Erdős Problem #792). Task connection: The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n). The exact optimum is 328 (55 + 103 + 170), which integer programming on the triples a + b = c finds in seconds.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -50,7 +50,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n). Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
+- The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n). The exact optimum is 328 (55 + 103 + 170), which integer programming on the triples a + b = c finds in seconds. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -62,11 +62,11 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.4007/annals.2014.180.2.5 (Sean Eberhard, Ben Green and Freddie Manners, Sets of integers with no large sum-free subset (2014). Crossref record inspected; Erdős Problem #792 page inspected (f(n) >= n/3 (Erdős), (n+2)/3 (Bourgain), n/3 + c log log n (Bedert 2025); f(n) <= n/3 + o(n) (Eberhard, Green and Manners); Problem 1 on Green's list). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n).)
+- paper: https://doi.org/10.4007/annals.2014.180.2.5 (Sean Eberhard, Ben Green and Freddie Manners, Sets of integers with no large sum-free subset (2014). Crossref record inspected; Erdős Problem #792 page inspected (f(n) >= n/3 (Erdős), (n+2)/3 (Bourgain), n/3 + c log log n (Bedert 2025); f(n) <= n/3 + o(n) (Eberhard, Green and Manners); Problem 1 on Green's list). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n). The exact optimum is 328 (55 + 103 + 170), which integer programming on the triples a + b = c finds in seconds.)
 - archive: https://www.erdosproblems.com/792 (Erdős Problem #792 (open); statement, history and current bounds reviewed 2026-09-24.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0601-0700.md#JSP-000651 (JSP-000651; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 
 ## Limitations
 
-- Instance-solving task on three fixed pseudo-random sets.
+- Instance-solving task on three fixed pseudo-random sets; the exact optimum (328) is known.
 - Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code.

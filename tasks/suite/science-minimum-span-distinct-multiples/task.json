@@ -57,12 +57,12 @@
     },
     "interface": "construct() -> ten DISTINCT positive Python integers <=1000000, aligned with the pinned input [6,10,14,15,21,22,26,33,35,39]. Each representative must be divisible by its corresponding input. Minimize max(representatives)-min(representatives), the length of their closed enclosing interval.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -102,9 +102,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn, Yanyang Li and Quanyu Tang (2026, Optimal bounds for an Erdős problem on matching integers to distinct multiples) study the underlying problem.",
+    "kind": "optimum",
+    "value": 16,
+    "statement": "The minimum span is 16 (exact matching over every window start in one period, lcm = 30030, of the pinned inputs, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn, Yanyang Li and Quanyu Tang (2026, Optimal bounds for an Erdős problem on matching integers to distinct multiples) study the underlying problem.",
     "sources": [
       {
         "title": "Optimal bounds for an Erdős problem on matching integers to distinct multiples",
@@ -113,15 +113,15 @@
         "year": 2026
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

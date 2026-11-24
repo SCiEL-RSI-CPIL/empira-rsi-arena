@@ -29,7 +29,7 @@ prompt:
   system_message: |
     Consecutive powerful non-squares: exact counterexample certificate
 
-    Provide a positive integer n and complete prime factorizations certifying that n and n+1 are powerful and neither is a square. Every prime exponent must be at least two. The verifier uses exact integers and primality tests. This recreates the resolved yes/no question in JSP-000301, with a local certificate-size bound n+1 <= 10^12 and binary validity score. The published 12167/12168 witness is explicitly credited to Solomon W. Golomb.
+    Provide a positive integer n and complete prime factorizations certifying that n and n+1 are powerful and neither is a square. Every prime exponent must be at least two. The verifier uses exact integers and primality tests. This recreates the resolved yes/no question in JSP-000301, with a local certificate-size bound n+1 <= 10^12 and binary validity score. The published witness is explicitly credited to Solomon W. Golomb.
 
     Candidate interface: construct() -> {'n': int, 'factorizations': [factors_of_n, factors_of_n_plus_1]}; each factorization is a list of distinct [prime, exponent] pairs. Require 2 <= n < 10**12, every exponent >= 2, complete prime factorizations, and neither integer a square. Score 1 for a valid disproof witness; otherwise invalid. This is a solved-problem rediscovery task, not an optimization leaderboard or Lean proof.
 

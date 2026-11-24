@@ -2,7 +2,7 @@
   "protocol": "recreated",
   "family": "science_software_fault_localization",
   "direction": "minimize",
-  "contract": "localize(spectrum) -> list of float. spectrum = {'subject': 'textwrap', 'urllib.parse' or 'fractions', 'blocks': n, 'failed': F, 'passed': P, 'ef': [n ints], 'ep': [n ints]} describes one faulty version of the module: F of its pool tests fail (their outcome differs from the correct module's) and P pass, and ef[b] (ep[b]) is the number of failing (passing) tests that execute block b, where blocks are the evaluator's block probes (function entries, branch outcomes, loop bodies and exits, handlers) in a fixed pseudo-random order per fault, so an index does not denote the same block in different faults. Return n finite numbers, a suspiciousness per block (higher means more likely faulty). Score: mean EXAM over the 532 faults, i.e. the faulty block's rank (ties count as their average rank) divided by n, minimised. localize() is called once per fault, all faults in one sandboxed subprocess (no files, network or subprocesses; 120 s CPU in total, 2 GB); it should be deterministic (seed any randomness, do not read clocks).",
+  "contract": "localize(spectrum) -> list of float. spectrum = {'subject': 'textwrap', 'urllib.parse' or 'fractions', 'blocks': n, 'failed': F, 'passed': P, 'ef': [n ints], 'ep': [n ints]} describes one faulty version of the module: F of its pool tests fail (their outcome differs from the correct module's) and P pass, and ef[b] (ep[b]) is the number of failing (passing) tests that execute block b, where blocks are the evaluator's block probes (function entries, branch outcomes, loop bodies and exits, handlers) in a random order that is drawn anew for every fault and every evaluation, so an index does not denote the same block in different faults or evaluations; the faults are presented in a random order as well. Return n finite numbers, a suspiciousness per block (higher means more likely faulty). Score: mean EXAM over the 532 faults, i.e. the faulty block's rank (ties count as their average rank) divided by n, minimised. localize() is called once per fault, all faults in one sandboxed subprocess (no files, network or subprocesses; 120 s CPU in total, 2 GB); it should be deterministic (seed any randomness, do not read clocks).",
   "parameters": {
     "cpu_seconds": 120
   },
@@ -61,7 +61,7 @@
     "Spectra are block hit counts from this evaluator's probes and a seeded 240-call test pool per module, not statement coverage of a project's own test suite; the faulty block is the statement-level block containing the mutated statement (faults on one-line compound statements are left out), so EXAM values are not comparable with published ones.",
     "Undetected mutants and mutants that break the import are excluded; textwrap contributes 110 faults, urllib.parse 183 and fractions 239.",
     "Reference values computed here: Tarantula (the seed) 0.0506, Ochiai 0.0268 and DStar(2) 0.0248 mean EXAM; ranking each faulty block first among blocks with an identical spectrum would give 0.0087, a bound for formulas of the counts that no single formula need reach.",
-    "Blocks are shown in a fixed pseudo-random order per fault, so position carries no information, but the faults are public and a search can still overfit this fault set."
+    "Blocks and faults are shown in a random order that changes with every evaluation, so neither a position nor the number of the call carries information; the score of a formula of the counts does not depend on the order. The faults are public, however: a spectrum identifies its fault, and a search can still overfit this fault set."
   ],
   "evaluator": "evaluator.py",
   "initial_program": "initial_program.py",
@@ -126,7 +126,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   }
 }

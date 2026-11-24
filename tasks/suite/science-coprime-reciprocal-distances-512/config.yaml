@@ -29,9 +29,9 @@ prompt:
   system_message: |
     Pairwise coprime integers below 512 with large sum of 1/(512 - a)
 
-    construct() -> distinct pairwise coprime integers a in 1..511. The score is sum 1/(512 - a) (exact rational, reported as a float); the report also gives sum over primes p < 512 of 1/p. Maximize. Large sums for n = 512 compared with the prime reciprocal sum are finite evidence on the conjectured bound.
+    construct() -> distinct pairwise coprime integers a in 1..511. The score is sum 1/(512 - a) (exact rational, reported as a float); the report also gives sum over primes p < 512 of 1/p. Maximize; the optimum is 2.762987911413. For n = 512 the maximum is 2.762987911413 (the prime reciprocal sum is 2.100662260951): every integer below 512 has at most one prime factor of 23 or more, so an exact dynamic programme over the subsets of the primes up to 19 solves the instance in milliseconds. The task recovers this value; it is one data point for the conjectured bound.
 
-    Candidate interface: construct() -> distinct pairwise coprime integers a in 1..511. The score is sum 1/(512 - a) (exact rational, reported as a float); the report also gives sum over primes p < 512 of 1/p. Maximize.
+    Candidate interface: construct() -> distinct pairwise coprime integers a in 1..511. The score is sum 1/(512 - a) (exact rational, reported as a float); the report also gives sum over primes p < 512 of 1/p. Maximize; the optimum is 2.762987911413.
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

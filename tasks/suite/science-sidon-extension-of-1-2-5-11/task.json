@@ -135,23 +135,15 @@
       "cpu"
     ],
     "cost": "fast",
-    "important_to_science": true
+    "important_to_science": false
   },
   "science_relevance": {
-    "status": "supported",
+    "status": "unreviewed",
     "scientific_problem": "Decide whether every finite Sidon set extends to a nearly optimal Sidon set (Erdős Problem #44).",
     "importance_rationale": "Sidon sets are central to additive combinatorics; the extension question underlies the conjectured maximal density N^(1/2).",
-    "papers": [
-      {
-        "title": "A Complete Annotated Bibliography of Work Related to Sidon Sequences",
-        "url": "https://doi.org/10.37236/32",
-        "task_relation": "Scores near 20 would show that the prescribed elements barely reduce the attainable size at this scale; no value for this seed is documented.",
-        "primary_goal": "Decide whether every finite Sidon set extends to a nearly optimal Sidon set (Erdős Problem #44).",
-        "evidence_role": "primary_problem"
-      }
-    ],
-    "reviewed_at": "2026-09-24",
-    "reason": "Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.",
+    "papers": [],
+    "reviewed_at": "2026-11-24",
+    "reason": "The only work cited for this problem is a problem collection (A Complete Annotated Bibliography of Work Related to Sidon Sequences), which states the problem but does not have it as its main objective. The audit of 2026-11-24 found no research paper whose main objective is this problem, so no qualifying primary-goal evidence is established here; this is not a finding that the problem is unimportant.",
     "verification_basis": "Crossref record inspected; Erdős Problem #44 page inspected (can every finite Sidon set be extended to a Sidon set of size (1-eps)M^(1/2) in [1, M]? A positive answer to #707 implies it, and it implies #329; Guy C9). OEIS A003022 inspected: the shortest 20-mark Golomb ruler has length 283.",
     "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
     "criterion": "primary_research_goal"

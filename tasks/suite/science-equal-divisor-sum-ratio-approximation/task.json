@@ -49,12 +49,12 @@
     },
     "interface": "construct() -> [a,b], positive Python integers <=10000000. Require sigma(a)=sigma(b), where sigma includes ALL positive divisors. Minimize |a/b-3/2|. Factorization and rational error are exact; the score is the binary64 serialization of that rational, with its exact numerator/denominator reported.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -93,9 +93,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Pollack (2015, Remarks on fibers of the sum-of-divisors function) studies the underlying problem.",
+    "kind": "optimum",
+    "value": 8.17496384622239e-08,
+    "statement": "The smallest error is 1/12232470 = 8.175e-8 (exhaustive search over all pairs with equal divisor sums up to 10^7, computed for this package; the ratio 3/2 itself is impossible). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Pollack (2015, Remarks on fibers of the sum-of-divisors function) studies the underlying problem.",
     "sources": [
       {
         "title": "Remarks on fibers of the sum-of-divisors function",
@@ -104,15 +104,15 @@
         "year": 2015
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

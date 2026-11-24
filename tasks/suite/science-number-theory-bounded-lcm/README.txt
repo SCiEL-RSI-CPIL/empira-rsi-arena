@@ -17,9 +17,9 @@ construct() -> candidate. Return a nonempty subset of [1,512] with lcm(a,b)<=512
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Yong-Gao Chen (1998, Sequences with bounded l.c.m. of each pair of terms) studies the underlying problem.
+The largest subset of [1,512] with all pairwise least common multiples at most 512 has 26 elements (exact maximum-clique search, confirmed by an integer program). The sequence conjectured to be extremal in Erdős and Graham (1980, p. 87), the integers up to √(n/2) with the even integers up to √(2n), has 24 elements for n = 512.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `26` (reviewed 2026-11-24).
 
 - [Sequences with bounded l.c.m. of each pair of terms](https://matwbn.icm.edu.pl/ksiazki/aa/aa84/aa8416.pdf), Yong-Gao Chen (1998)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 512}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

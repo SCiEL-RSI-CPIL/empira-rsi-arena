@@ -55,7 +55,7 @@
     "native_kind": "science_chemistry_buchwald_hartwig_yield",
     "science_family": "science_chemistry_buchwald_hartwig_yield",
     "parameters": {},
-    "interface": "predict_yields(train_reactions, train_yields, test_reactions, info) -> list of len(test_reactions) predicted yields (percent). Buchwald-Hartwig couplings of Ahneman et al. (2018); reaction = {'aryl_halide', 'ligand', 'base', 'additive' (canonical SMILES), 'amine', 'catalyst', 'product', 'reaction_smiles' (rxn_yields format)}. The four out-of-sample tests Test1-Test4 (3057/3055/3058/3055 training and 898/900/897/900 test reactions) are called separately; test additives never occur in training. Each split is predicted in a fresh process that receives the training reactions with yields and the test reactions without yields; info = {'dataset', 'split', 'n_train', 'n_test', 'yield_unit': 'percent'}. Runs in a separate process that receives only these arguments (no test values), with at most 4 threads (OMP/MKL/OpenBLAS set to 4), no network, no subprocesses and no read access to the repository or prepared data; numpy, scipy, scikit-learn, pandas, RDKit and torch are importable; wall-clock limit 200 s per test. Score: mean coefficient of determination R^2 over the four tests (maximize)",
+    "interface": "predict_yields(train_reactions, train_yields, test_reactions, info) -> list of len(test_reactions) predicted yields (percent). Buchwald-Hartwig couplings of Ahneman et al. (2018); reaction = {'aryl_halide', 'ligand', 'base', 'additive' (canonical SMILES), 'amine', 'catalyst', 'product', 'reaction_smiles' (rxn_yields format)}. The four out-of-sample tests Test1-Test4 (3057/3055/3058/3055 training and 898/900/897/900 test reactions) are called separately; test additives never occur in training. Each split is predicted in a fresh process that receives the training reactions with yields and the test reactions without yields; info = {'dataset', 'split', 'n_train', 'n_test', 'yield_unit': 'percent'}. Runs in a separate process that receives only these arguments (no test values), with at most 4 threads (OMP/MKL/OpenBLAS set to 4), no network, no subprocesses and no read access to the repository or prepared data; numpy, scipy, scikit-learn and RDKit are importable (pandas and torch only where the environment provides them; they are not requirements of the task); wall-clock limit 200 s per test. Score: mean coefficient of determination R^2 over the four tests (maximize)",
     "label_spec": {
       "scientific_contribution": "method",
       "artifact": "model",
@@ -63,7 +63,7 @@
       "area": "chemistry",
       "data": "real_measurements",
       "verification": "sampled",
-      "reference": "published_value"
+      "reference": "none"
     },
     "setup": {
       "command": "python3 scripts/prepare_chemistry.py",
@@ -104,7 +104,7 @@
     }
   },
   "limitations": [
-    "One reaction class with 15 aryl halides, 4 ligands, 3 bases and 23 isoxazole additives that act as deliberate poisons; generalisation to unseen additives says little about other substrates or reaction types.",
+    "One reaction class with 15 aryl halides, 4 ligands, 3 bases and 23 isoxazole additives that act as deliberate poisons (22 of them occur in the 3955 reactions used here); generalisation to unseen additives says little about other substrates or reaction types.",
     "The test yields are public in the source repository; candidates or settings tuned on these splits overfit, so treat scores as development scores.",
     "Published values were read from the comparison table of Baraka and El Kerdawy (2022) because the primary articles' sites were not reachable; they are compared, not reproduced, and no published predictions are available.",
     "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container.",
@@ -144,12 +144,12 @@
     "area": "chemistry",
     "data": "real_measurements",
     "verification": "sampled",
-    "reference": "published_value",
+    "reference": "none",
     "science_tier": 2,
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "medium",
     "important_to_science": true
   },
   "science_relevance": {

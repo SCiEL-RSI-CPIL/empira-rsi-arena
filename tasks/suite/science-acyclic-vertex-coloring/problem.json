@@ -450,9 +450,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Noga Alon, Colin McDiarmid and Bruce Reed (1991, Acyclic coloring of graphs) study the underlying problem.",
+    "kind": "optimum",
+    "value": 4,
+    "statement": "The optimum is 4: with three colours the three two-coloured forests would have at most 2n - 3 = 97 of the 100 edges, and an acyclic 4-colouring exists (found by local search and verified in the package's tests). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Noga Alon, Colin McDiarmid and Bruce Reed (1991, Acyclic coloring of graphs) study the underlying problem.",
     "sources": [
       {
         "title": "Acyclic coloring of graphs",
@@ -461,7 +461,7 @@
         "year": 1991
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "supported",
@@ -483,12 +483,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

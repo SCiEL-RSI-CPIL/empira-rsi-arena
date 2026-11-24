@@ -29,9 +29,9 @@ prompt:
   system_message: |
     Sixteen frequencies whose cosine sum stays shallow (Chowla's cosine problem)
 
-    construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling of the full circle and golden-section refinement of the deepest local minima (accuracy about 1e-9). Maximize (make the minimum as shallow as possible). Shallow minima for 16 frequencies probe the finite side of Chowla's problem; no finite optimum is documented.
+    construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling and bisection of every interval that a second-derivative bound cannot exclude (certified to about 1e-9). Maximize (make the minimum as shallow as possible). Shallow minima for 16 frequencies probe the finite side of Chowla's problem; no finite optimum is documented.
 
-    Candidate interface: construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling of the full circle and golden-section refinement of the deepest local minima (accuracy about 1e-9). Maximize (make the minimum as shallow as possible).
+    Candidate interface: construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling and bisection of every interval that a second-derivative bound cannot exclude (certified to about 1e-9). Maximize (make the minimum as shallow as possible).
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

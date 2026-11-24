@@ -95,7 +95,7 @@
     "The Sturm-form reference is fitted on the training stations (its maximum-density parameter ends at the upper bound 1.0, so the fitted curve is nearly linear); published coefficients were not used because the paper could not be retrieved here.",
     "SNOTEL data are revised by NRCS; if values change, the derived-file hash check fails and the data must be re-recorded.",
     "A better score is a better depth-to-SWE conversion on this network, not a scientific discovery; the data are public, so search feedback can overfit them.",
-    "The candidate runs in a sandboxed child process that never receives the held-out stations' SWE; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    "The candidate runs in a sandboxed child process that never receives the held-out stations' SWE, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "validation": {
     "level": "source_seed_executed",
@@ -128,7 +128,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

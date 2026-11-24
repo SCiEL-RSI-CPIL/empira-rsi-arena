@@ -74,4 +74,4 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 - The generating model (Gutenberg-Richter times cumulative-normal detection) is stated in the contract, so a candidate can fit it exactly; the score then measures statistical efficiency on this model rather than robustness to model error.
 - The generator and its seed are in the evaluator's source; a candidate that re-implements them could reproduce the truth, so results are only meaningful for candidates that use the magnitudes alone.
 - A better score is a better estimator on this benchmark, not a seismological discovery.
-- The candidate runs in a sandboxed child process that never receives the generating parameters; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy.
+- The candidate runs in a sandboxed child process that never receives the generating parameters, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy.

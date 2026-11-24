@@ -29,7 +29,7 @@ prompt:
   system_message: |
     Eight planar points maximizing the product of distances at fixed diameter
 
-    construct() -> 8 distinct points [x, y] (floats, |coordinate| < 10^6). The score is Delta/n^n, where Delta is the product over ordered pairs of distances after scaling the set to diameter 2; the regular octagon scores exactly 1. Maximize. Scores above 1 beat the regular octagon; the paper's constructions show this is possible, but no value for n = 8 is recorded here.
+    construct() -> 8 distinct points [x, y] (floats, |coordinate| < 10^6). The score is Delta/n^n, where Delta is the product over ordered pairs of distances after scaling the set to diameter 2; the regular octagon scores exactly 1. Maximize. Scores above 1 beat the regular octagon; the best published value for n = 8 is 1.250472 (Table 1 of the paper, conjectured optimal).
 
     Candidate interface: construct() -> 8 distinct points [x, y] (floats, |coordinate| < 10^6). The score is Delta/n^n, where Delta is the product over ordered pairs of distances after scaling the set to diameter 2; the regular octagon scores exactly 1. Maximize.
 

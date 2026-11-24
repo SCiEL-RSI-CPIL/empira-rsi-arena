@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "id": "science-consecutive-primes-arithmetic-progression-1e9",
   "name": "Consecutive primes in arithmetic progression below 10^9",
-  "description": "construct() -> [p, d, k] describing p, p + d, ..., p + (k-1)d with 2 <= k <= 64, 1 <= d <= 5000 and last term at most 10^9. Every term must be prime (deterministic Miller-Rabin) and no prime may lie strictly between consecutive terms. Maximize k; the optimum below 10^9 is 6. Below 10^9 the longest such progressions have six terms (the first starts at 121174811), so the task recovers a six-term progression.",
+  "description": "construct() -> [p, d, k] describing p, p + d, ..., p + (k-1)d with 2 <= k <= 64, 1 <= d <= 5000 and last term at most 10^9. Every term must be prime (deterministic Miller-Rabin) and no prime may lie strictly between consecutive terms. Maximize k; the optimum below 10^9 is 6. Below 10^9 the longest such progressions have six terms, so the task recovers a six-term progression.",
   "paper_ids": [
     "science-prize_h"
   ],
@@ -12,7 +12,7 @@
     {
       "url": "https://doi.org/10.1090/S0025-5718-67-99657-3",
       "type": "paper",
-      "locator": "L. J. Lander and T. R. Parkin, Consecutive primes in arithmetic progression (1967). Crossref records inspected (Lander and Parkin 1967; Dubner, Forbes, Lygeros, Mizony, Nelson and Zimmermann 2002). OEIS A006560 inspected: the smallest six consecutive primes in arithmetic progression start at 121174811 with difference 30 (Lander and Parkin), and seven terms need a difference of at least 210. A local segmented sieve over all 50,847,534 primes below 10^9 confirmed that no seven consecutive primes below 10^9 form an arithmetic progression. Erdős Problem #141 page inspected. Below 10^9 the longest such progressions have six terms (the first starts at 121174811), so the task recovers a six-term progression."
+      "locator": "L. J. Lander and T. R. Parkin, Consecutive primes in arithmetic progression (1967). Crossref records inspected (Lander and Parkin 1967; Dubner, Forbes, Lygeros, Mizony, Nelson and Zimmermann 2002). OEIS A006560 inspected: the smallest six consecutive primes in arithmetic progression start at 121174811 with difference 30 (Lander and Parkin), and seven terms need a difference of at least 210. A local segmented sieve over all 50,847,534 primes below 10^9 confirmed that no seven consecutive primes below 10^9 form an arithmetic progression. Erdős Problem #141 page inspected. Below 10^9 the longest such progressions have six terms, so the task recovers a six-term progression."
     },
     {
       "url": "https://www.erdosproblems.com/141",
@@ -145,7 +145,7 @@
       {
         "title": "Consecutive primes in arithmetic progression",
         "url": "https://doi.org/10.1090/S0025-5718-67-99657-3",
-        "task_relation": "Below 10^9 the longest such progressions have six terms (the first starts at 121174811), so the task recovers a six-term progression.",
+        "task_relation": "Below 10^9 the longest such progressions have six terms, so the task recovers a six-term progression.",
         "primary_goal": "Decide whether there are arbitrarily long arithmetic progressions of consecutive primes.",
         "evidence_role": "primary_problem"
       }

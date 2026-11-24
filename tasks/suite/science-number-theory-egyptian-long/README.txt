@@ -17,9 +17,9 @@ construct() -> candidate. Return 1..256 distinct integer denominators in [5,1000
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.
+The fewest distinct unit fractions with denominators at least 5 that sum to 1 is 10: an exhaustive search over increasing denominators finds no representation with 9 or fewer terms and 161 representations with 10 terms, all within the denominator cap. In the notation of Erdős and Graham (1980, p. 35) this is U_5 = 10; Erdős and Straus proved (e-1)n - c < U_n < (e-1)n + c'n/log n.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `10` (reviewed 2026-11-24).
 
 - [Old and New Problems and Results in Combinatorial Number Theory](https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf), Paul Erdős and Ronald L. Graham (1980)
 
@@ -27,7 +27,7 @@ Parameters: `{"threshold": 4, "maximum": 10000000}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

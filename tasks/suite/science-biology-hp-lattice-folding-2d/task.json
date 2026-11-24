@@ -60,7 +60,7 @@
     "label_spec": {
       "area": "biology",
       "domain": "natural_science",
-      "scientific_contribution": "open_problem",
+      "scientific_contribution": "method",
       "artifact": "program",
       "data": "none",
       "verification": "exact",
@@ -92,7 +92,7 @@
   },
   "limitations": [
     "The HP model is a coarse two-letter abstraction of a protein: its ground states are not real protein structures, and a better HP energy is a better solution of the stated lattice optimisation problem rather than a structural-biology result.",
-    "Best-known energies for these 2D sequences are the lowest values reported in the cited literature, not proven optima; the evaluator cannot certify optimality, only recompute energies.",
+    "Best-known energies for these 2D sequences are the lowest values reported in the cited literature, not proven optima, except for the 25-residue chain, whose -8 equals the parity upper bound on contacts (H-H contacts join residues of opposite parity, and its four H residues at positions 6, 12, 18 and 24 have two free neighbour sites each); the evaluator cannot certify optimality, only recompute energies.",
     "All ten sequences share one CPU budget inside the sandboxed subprocess, so the score depends on that budget and is not comparable with the multi-hour searches of the cited papers.",
     "The published energies are embedded in the evaluator as reference values only; the candidate never receives them."
   ],
@@ -122,16 +122,16 @@
   "labels": {
     "area": "biology",
     "domain": "natural_science",
-    "scientific_contribution": "open_problem",
+    "scientific_contribution": "method",
     "artifact": "program",
     "data": "none",
     "verification": "exact",
     "reference": "published_value",
-    "science_tier": 1,
+    "science_tier": 2,
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

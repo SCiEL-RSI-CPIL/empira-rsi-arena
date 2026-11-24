@@ -29,7 +29,7 @@ prompt:
   system_message: |
     Small vertex sets meeting every maximal clique of three fixed random graphs
 
-    construct() -> three vertex lists, one per instance from random_graph(n, p, seed) for (30,0.3,201), (35,0.25,202), (40,0.2,203) in the verifier. Each list must meet every maximal clique with at least two vertices (all maximal cliques enumerated by Bron-Kerbosch). Minimize the total size. The score totals transversal sizes on three fixed random graphs; it measures a covering method.
+    construct() -> three vertex lists, one per instance from random_graph(n, p, seed) for (30,0.3,201), (35,0.25,202), (40,0.2,203) in the verifier. Each list must meet every maximal clique with at least two vertices (all maximal cliques enumerated by Bron-Kerbosch). Minimize the total size. The score totals transversal sizes on three fixed random graphs; it measures a covering method. The exact optimum is 44 (12 + 13 + 19), which a minimum hitting-set search over the maximal cliques finds at once.
 
     Candidate interface: construct() -> three vertex lists, one per instance from random_graph(n, p, seed) for (30,0.3,201), (35,0.25,202), (40,0.2,203) in the verifier. Each list must meet every maximal clique with at least two vertices (all maximal cliques enumerated by Bron-Kerbosch). Minimize the total size.
 

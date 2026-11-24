@@ -29,9 +29,9 @@ prompt:
   system_message: |
     Odd covering systems with moduli dividing 51975 (fewest uncovered residues)
 
-    construct() -> classes [[m, r], ...] with distinct moduli m > 1 dividing 51975 = 3^3 * 5^2 * 7 * 11 (hence odd) and 0 <= r < m. The score is the number of residues modulo 51975 covered by no class (exact). Minimize; 0 would be a covering system with distinct odd moduli. With every divisor of 51975 available once, a score of 0 would exhibit an odd covering; positive scores measure how close systems with this modulus come. No minimum is documented.
+    construct() -> classes [[m, r], ...] with distinct moduli m > 1 dividing 51975 = 3^3 * 5^2 * 7 * 11 (hence odd) and 0 <= r < m. The score is the number of residues modulo 51975 covered by no class (exact). Minimize. The score 0 (a covering system with distinct odd moduli) is impossible for this modulus by the necessary condition of Berger, Felzenbaum and Fraenkel (1986). Every divisor of 51975 above 1 is available once. The minimum is positive: an odd covering with distinct moduli needs prod (p-1)/(p-2) - sum 1/(p-2) > 2 over the primes p dividing the least common multiple (Berger, Felzenbaum and Fraenkel), and for 3, 5, 7, 11 the left side is 86/45. The score measures how close systems with this modulus come to a covering; it cannot decide the odd covering problem. No minimum is documented.
 
-    Candidate interface: construct() -> classes [[m, r], ...] with distinct moduli m > 1 dividing 51975 = 3^3 * 5^2 * 7 * 11 (hence odd) and 0 <= r < m. The score is the number of residues modulo 51975 covered by no class (exact). Minimize; 0 would be a covering system with distinct odd moduli.
+    Candidate interface: construct() -> classes [[m, r], ...] with distinct moduli m > 1 dividing 51975 = 3^3 * 5^2 * 7 * 11 (hence odd) and 0 <= r < m. The score is the number of residues modulo 51975 covered by no class (exact). Minimize. The score 0 (a covering system with distinct odd moduli) is impossible for this modulus by the necessary condition of Berger, Felzenbaum and Fraenkel (1986).
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

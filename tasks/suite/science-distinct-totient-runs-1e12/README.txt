@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 200 and s + k - 1 <= 10^12. The values phi(s), ..., phi(s + k - 1) must be pairwise distinct (exact factorization). Maximize k. Long runs below 10^12 are finite evidence; (log 10^12)^c is about 27.6^c.
+construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 200 and s + k - 1 <= 10^12. The values phi(s), ..., phi(s + k - 1) must be pairwise distinct (exact factorization). Maximize k. The length cap 200 is attained: runs of 200 consecutive integers with distinct totients occur below 1.2*10^6 and a sieve finds one in seconds. So 200 is the maximum score, the bound 10^12 plays no role, and the task is a capped search exercise rather than evidence on the conjecture.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,9 +17,9 @@ construct() -> {'start': s, 'length': k} with s >= 1, 1 <= k <= 200 and s + k - 
 
 ## State of the art
 
-No documented values.
+The contract caps the run length at 200 and the cap is attained: the first run of 200 consecutive integers with distinct totients starts at 1173985 (sieve to 1.4*10^6 made for this package; a run of 257 starts at 1218073).
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `200` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #1004](https://www.erdosproblems.com/1004), status: open.
 
@@ -30,7 +30,7 @@ Parameters: `{"bound": 1000000000000}`
 
 ## Labels
 
-Scientific contribution: `open_problem` (tier 1); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 
@@ -44,7 +44,7 @@ Underlying problem: Decide whether runs of length (log x)^c with distinct totien
 
 Why it matters: Local distinctness of phi mirrors the Erdős-Mirsky divisor problem (#945) and measures the irregularity of multiplicative functions.
 
-- [On Locally Repeated Values of Certain Arithmetic Functions. III](https://doi.org/10.2307/2046541): Main research objective: Decide whether runs of length (log x)^c with distinct totients exist below x (Erdős Problem #1004). Task connection: Long runs below 10^12 are finite evidence; (log 10^12)^c is about 27.6^c.
+- [On Locally Repeated Values of Certain Arithmetic Functions. III](https://doi.org/10.2307/2046541): Main research objective: Decide whether runs of length (log x)^c with distinct totients exist below x (Erdős Problem #1004). Task connection: The length cap 200 is attained: runs of 200 consecutive integers with distinct totients occur below 1.2*10^6 and a sieve finds one in seconds. So 200 is the maximum score, the bound 10^12 plays no role, and the task is a capped search exercise rather than evidence on the conjecture.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -52,7 +52,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- Long runs below 10^12 are finite evidence; (log 10^12)^c is about 27.6^c. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
+- The length cap 200 is attained: runs of 200 consecutive integers with distinct totients occur below 1.2*10^6 and a sieve finds one in seconds. So 200 is the maximum score, the bound 10^12 plays no role, and the task is a capped search exercise rather than evidence on the conjecture. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -64,11 +64,11 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.2307/2046541 (Paul Erdős, Carl Pomerance and András Sárközy, On Locally Repeated Values of Certain Arithmetic Functions. III (1987). Crossref record inspected; Erdős Problem #1004 page inspected (does some n <= x have phi(n+1), ..., phi(n+K) distinct for K = (log x)^c? Erdős, Pomerance and Sárközy proved K <= n/exp(c(log n)^(1/3))). No finite values are documented. Long runs below 10^12 are finite evidence; (log 10^12)^c is about 27.6^c.)
+- paper: https://doi.org/10.2307/2046541 (Paul Erdős, Carl Pomerance and András Sárközy, On Locally Repeated Values of Certain Arithmetic Functions. III (1987). Crossref record inspected; Erdős Problem #1004 page inspected (does some n <= x have phi(n+1), ..., phi(n+K) distinct for K = (log x)^c? Erdős, Pomerance and Sárközy proved K <= n/exp(c(log n)^(1/3))). No finite values are documented. The length cap 200 is attained: runs of 200 consecutive integers with distinct totients occur below 1.2*10^6 and a sieve finds one in seconds. So 200 is the maximum score, the bound 10^12 plays no role, and the task is a capped search exercise rather than evidence on the conjecture.)
 - archive: https://www.erdosproblems.com/1004 (Erdős Problem #1004 (open); statement, history and current bounds reviewed 2026-09-24.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0801-0900.md#JSP-000836 (JSP-000836; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 
 ## Limitations
 
-- No documented value (reference label none).
+- The score is capped at 200 by the contract and the cap is attained by an elementary sieve, so the optimum (200) is known.
 - Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code.

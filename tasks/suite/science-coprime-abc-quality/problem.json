@@ -17,7 +17,7 @@
   "paper_ids": [
     "science-prize_a"
   ],
-  "description": "construct() -> [a,b,c], positive Python integers <=1000000000000, a<=b, a+b=c, gcd(a,b)=1. Maximize log(c)/log(rad(a*b*c)). The radical is the product of DISTINCT prime factors and is independently factored exactly; only the logarithmic score uses floating arithmetic. Search coprime positive triples a+b=c with c<=10^12, maximizing log(c)/log(rad(abc)). Finite high quality cannot disprove the conjecture, which allows finitely many exceptions at each exponent. The optimum is Reyssat's quality 1.62991 for 2 + 3^10*109 = 23^5; complete tables of high-quality triples show nothing better below 10^20, so this is a rediscovery task.",
+  "description": "construct() -> [a,b,c], positive Python integers <=1000000000000, a<=b, a+b=c, gcd(a,b)=1. Maximize log(c)/log(rad(a*b*c)). The radical is the product of DISTINCT prime factors and is independently factored exactly; only the logarithmic score uses floating arithmetic. Search coprime positive triples a+b=c with c<=10^12, maximizing log(c)/log(rad(abc)). Finite high quality cannot disprove the conjecture, which allows finitely many exceptions at each exponent. The optimum is quality 1.62991, attained by Reyssat's triple; complete tables of high-quality triples show nothing better below 10^20, so this is a rediscovery task.",
   "benchmark": "High-quality coprime abc triples",
   "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
   "paper_direction": null,
@@ -34,7 +34,7 @@
     }
   ],
   "limitations": [
-    "Solved finite case: Reyssat's triple 2 + 3^10·109 = 23^5 (c = 6,436,343) has quality 1.62991.",
+    "Solved finite case: Reyssat's triple, whose c is below 10^12, has quality 1.62991, the highest known.",
     "Search coprime positive triples a+b=c with c<=10^12, maximizing log(c)/log(rad(abc)). Finite high quality cannot disprove the conjecture, which allows finitely many exceptions at each exponent.",
     "All computations are bounded. A valid certificate is not an optimality proof, new theorem, Lean proof, or evidence of prize eligibility. Candidate Python is trusted research code."
   ],
@@ -50,7 +50,7 @@
   "state_of_the_art": {
     "kind": "optimum",
     "value": 1.6299116841,
-    "statement": "Reyssat's triple 2 + 3^10·109 = 23^5 (c = 6,436,343) has quality 1.62991. De Smit's complete tables of triples with quality at least 1.4 and at most twenty digits, surveyed by Martin and Miao, contain nothing of higher quality, so it is the maximum for c <= 10^12.",
+    "statement": "Reyssat's triple (1987), whose c is below 10^12, has quality 1.62991. De Smit's complete tables of triples with quality at least 1.4 and at most twenty digits, surveyed by Martin and Miao, contain nothing of higher quality, so it is the maximum for c <= 10^12.",
     "sources": [
       {
         "title": "abc triples",
@@ -64,7 +64,7 @@
         "authors": "Bart de Smit (maintained)"
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "supported",

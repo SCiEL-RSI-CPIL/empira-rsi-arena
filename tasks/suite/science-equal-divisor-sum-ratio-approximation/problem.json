@@ -52,9 +52,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Pollack (2015, Remarks on fibers of the sum-of-divisors function) studies the underlying problem.",
+    "kind": "optimum",
+    "value": 8.17496384622239e-08,
+    "statement": "The smallest error is 1/12232470 = 8.175e-8 (exhaustive search over all pairs with equal divisor sums up to 10^7, computed for this package; the ratio 3/2 itself is impossible). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Pollack (2015, Remarks on fibers of the sum-of-divisors function) studies the underlying problem.",
     "sources": [
       {
         "title": "Remarks on fibers of the sum-of-divisors function",
@@ -63,7 +63,7 @@
         "year": 2015
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "supported",
@@ -85,12 +85,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

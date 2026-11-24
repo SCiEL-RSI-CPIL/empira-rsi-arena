@@ -13,13 +13,13 @@ Source-derived local benchmark; the exact objective and adaptations are specifie
 
 ## Candidate interface
 
-construct(instance) -> array of shape (n, 3): Cartesian coordinates of n atoms in reduced units (lattice constant 1). instance = {'potential': 'sutton_chen', 'kind': '12-6' | '9-6' | '10-8', 'n': atoms, 'n_exp', 'm_exp', 'c'}; called once for each of six instances (kind, n) = (12-6, 38), (12-6, 75), (9-6, 59), (9-6, 80), (10-8, 55), (10-8, 79); all calls together within 300 s, at most 4 threads. The evaluator recomputes E = sum_i [1/2 sum_{j!=i} r_ij^-n_exp - c sqrt(sum_{j!=i} r_ij^-m_exp)] over all pairs (no cutoff) with (n_exp, m_exp, c) = (12, 6, 144.41), (9, 6, 39.432), (10, 8, 34.408); atoms must be at least 0.35 apart. Score: mean over instances of 100*(E - E_pub)/|E_pub| against the putative global minima tabulated by Doye and Wales (1998) (minimize; 0 matches all six, negative is lower). chem_clusters.relax(positions, 'sutton_chen', kind) and chem_clusters.sutton_chen_energy_gradient(positions, kind) may be called
+construct(instance) -> array of shape (n, 3): Cartesian coordinates of n atoms in reduced units (lattice constant 1). instance = {'potential': 'sutton_chen', 'kind': '12-6' | '9-6' | '10-8', 'n': atoms, 'n_exp', 'm_exp', 'c'}; called once for each of six instances (kind, n) = (12-6, 38), (12-6, 75), (9-6, 59), (9-6, 80), (10-8, 55), (10-8, 79); all calls together within 300 s (enforced) and should use at most 4 threads (not enforced by the evaluator). The evaluator recomputes E = sum_i [1/2 sum_{j!=i} r_ij^-n_exp - c sqrt(sum_{j!=i} r_ij^-m_exp)] over all pairs (no cutoff) with (n_exp, m_exp, c) = (12, 6, 144.41), (9, 6, 39.432), (10, 8, 34.408); atoms must be at least 0.35 apart. Score: mean over instances of 100*(E - E_pub)/|E_pub| against the putative global minima tabulated by Doye and Wales (1998) (minimize; 0 matches all six, negative is lower). chem_clusters.relax(positions, 'sutton_chen', kind) and chem_clusters.sutton_chen_energy_gradient(positions, kind) may be called
 
 ## State of the art
 
-Matching the six putative global minima of Doye and Wales (1998) gives 0. The 2024 GrowPAL search reports lower energies than the Cambridge Cluster Database only for sizes not used here; the database itself could not be compared with the 1998 table.
+Matching the six putative global minima of Doye and Wales (1998) gives 0. The 2024 GrowPAL search reports lower energies than the Cambridge Cluster Database only for sizes not used here; the database entries for the six sizes used here equal the 1998 table (read on 2026-11-24).
 
-Reference value: best known value `0.0` (reviewed 2026-10-10).
+Reference value: best known value `0.0` (reviewed 2026-11-24).
 
 - [Global minima for transition metal clusters described by Sutton-Chen potentials](https://doi.org/10.1039/a709249k)
 - [An Efficient Growth Pattern Algorithm (GrowPAL) for Cluster Structure Prediction](https://doi.org/10.1021/acs.jctc.4c00365)
@@ -73,6 +73,6 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- References are the 1998 putative minima (four decimals); the database, which may hold later updates, could not be checked. Lopez-Castro et al. (2024) report database-level minima for all sizes from 5 to 80 except three (lower energies for 12-6 N = 68 and 10-8 N = 58, not reproduced for 10-8 N = 60); those three are excluded.
+- References are the 1998 putative minima (four decimals); the Cambridge Cluster Database listed the same six energies on 2026-11-24, and its coordinate files score them with this evaluator within 5e-5. Lopez-Castro et al. (2024) report database-level minima for all sizes from 5 to 80 except three (lower energies for 12-6 N = 68 and 10-8 N = 58, not reproduced for 10-8 N = 60); those three are excluded.
 - Putative minima are public, so remembered structures score well without search; the energy is computed without a cutoff, as in the source, and differs from implementations that truncate the sums.
 - The score averages relative energy excesses over six instances within a shared 300 s budget.

@@ -38,15 +38,14 @@ Research area: `mathematics`.
 
 A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.
 
-Evidence status: **supported**.
+Evidence status: **unreviewed**.
 
 Underlying problem: Determine the largest A in {1..n} such that a square product abcd (a <= b <= c <= d) forces ad = bc (Erdős Problem #888).
 
 Why it matters: A multiplicative analogue of Sidon-type conditions whose order of magnitude was settled only recently.
 
-- [Some of my new and almost new problems and results in combinatorial number theory](https://doi.org/10.1515/9783110809794.169): Main research objective: Determine the largest A in {1..n} such that a square product abcd (a <= b <= c <= d) forces ad = bc (Erdős Problem #888). Task connection: For n = 200 the maximum is 102, so the task recovers an extremal set.
 
-Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
+The only work cited for this problem is a problem collection (Some of my new and almost new problems and results in combinatorial number theory), which states the problem but does not have it as its main objective. The audit of 2026-11-24 found no research paper whose main objective is this problem, so no qualifying primary-goal evidence is established here; this is not a finding that the problem is unimportant.
 
 ## Evaluation protocol
 

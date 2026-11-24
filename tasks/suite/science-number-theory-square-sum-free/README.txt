@@ -17,9 +17,9 @@ construct() -> candidate. Return nonempty subset of [1,256] such that a+b is nev
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. A. Khalfalah, S. Lodha and E. Szemerédi (2002, Tight bound for the density of sequence of integers the sum of no two of which is a perfect square) study the underlying problem.
+The largest subset of [1,256] in which no two elements, equal elements included, sum to a square has 89 elements according to an integer program solved to proven optimality (HiGHS, 43 s); the value was not confirmed by a second exact method. The residue class 1 mod 3 gives 86.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `89` (reviewed 2026-11-24).
 
 - [Tight bound for the density of sequence of integers the sum of no two of which is a perfect square](https://www.sciencedirect.com/science/article/pii/S0012365X01004356), A. Khalfalah, S. Lodha and E. Szemerédi (2002)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 256}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

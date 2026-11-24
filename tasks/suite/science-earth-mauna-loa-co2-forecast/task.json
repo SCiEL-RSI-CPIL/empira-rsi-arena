@@ -97,9 +97,9 @@
     "Only the CO2 record and an ENSO index are given; operational forecasts also use fossil-fuel emission estimates, so scores are not comparable with them.",
     "Monthly means carry weather-driven noise of a few tenths of a ppm, and December 2022 - July 2023 values come from Maunakea after the Mauna Loa eruption; differences of a few hundredths of a ppm between candidates are not meaningful.",
     "The 300 origins overlap strongly, so the effective sample is about 25 annual growth anomalies.",
-    "The GML file is updated monthly and recent values can be revised; if they change, the derived-file hash check fails and the data must be re-recorded.",
+    "The GML file is rewritten monthly and old values are revised (ten monthly means of 1974-2014 changed by 0.01 ppm between the files of October and November 2026), so preparation uses the Internet Archive capture of the retrieved file that the data lock names. The ENSO index comes from the live ERSSTv5 file; if its values up to 2024 are revised, the derived-file hash check fails and the data must be re-recorded.",
     "A better score is a better statistical forecast on these years, not a scientific discovery; the record is public, so search feedback can overfit it.",
-    "The candidate runs in a sandboxed child process that never receives months after a forecast origin; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    "The candidate runs in a sandboxed child process that never receives months after a forecast origin, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "validation": {
     "level": "source_seed_executed",
@@ -132,7 +132,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

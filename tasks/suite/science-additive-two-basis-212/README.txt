@@ -19,13 +19,14 @@ construct() -> distinct integers in 0..212 such that every integer 0..212 equals
 
 The least 2-basis of {0..212} has 25 elements (OEIS A066063; two-stamp range 212 needs 24 denominations, A001212).
 
-Reference value: proven optimum `25` (reviewed 2026-09-24).
+Reference value: proven optimum `25` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #791](https://www.erdosproblems.com/791), status: open.
 
 - [OEIS A066063: Size of the smallest subset S of {0..n} such that each element is the sum of two elements of S](https://oeis.org/A066063)
 - [Some Extremal Postage Stamp Bases](https://cs.uwaterloo.ca/journals/JIS/VOL13/Challis/challis6.html), Michael F. Challis, John P. Robinson (2010)
 - [An improved lower bound for finite additive 2-bases](https://doi.org/10.1016/j.jnt.2016.11.011), Jukka Kohonen (2017)
+- [Addition Chains Meet Postage Stamps: Reducing the Number of Multiplications](https://arxiv.org/abs/1310.7090), Jukka Kohonen, Jukka Corander (2014)
 
 Parameters: `{"n": 212}`
 
@@ -65,7 +66,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://cs.uwaterloo.ca/journals/JIS/VOL13/Challis/challis6.html (Michael F. Challis and John P. Robinson, Some Extremal Postage Stamp Bases (2010). Journal of Integer Sequences article and OEIS A066063/A001212 inspected: the two-stamp postage problem has optimal range 212 with 24 denominations and 196 with 23, and a basis of {0..n} is 0 together with a set of denominations, so the minimum size for n = 212 is 25. Erdős Problem #791 page inspected (Rohrbach's problem; (2.181+o(1))n <= g(n)^2 <= (3.458+o(1))n by Yu and Kohonen). For n = 212 the minimum is 25, so the task recovers an extremal basis.)
+- paper: https://cs.uwaterloo.ca/journals/JIS/VOL13/Challis/challis6.html (Michael F. Challis and John P. Robinson, Some Extremal Postage Stamp Bases (2010). Journal of Integer Sequences article and OEIS A066063/A001212 inspected: the two-stamp postage problem has optimal range 212 with 24 denominations (Kohonen and Corander, Addition Chains Meet Postage Stamps, J. Integer Seq. 17 (2014), Art. 14.3.4) and 196 with 23 (Challis and Robinson, addendum of July 2013), and a basis of {0..n} is 0 together with a set of denominations, so the minimum size for n = 212 is 25. Erdős Problem #791 page inspected (Rohrbach's problem; (2.181+o(1))n <= g(n)^2 <= (3.458+o(1))n by Yu and Kohonen). For n = 212 the minimum is 25, so the task recovers an extremal basis.)
 - archive: https://www.erdosproblems.com/791 (Erdős Problem #791 (open); statement, history and current bounds reviewed 2026-09-24.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0601-0700.md#JSP-000650 (JSP-000650; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 

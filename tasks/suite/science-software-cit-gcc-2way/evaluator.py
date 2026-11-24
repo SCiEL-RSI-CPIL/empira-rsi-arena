@@ -16,11 +16,12 @@ if str(SUITE_LIB) not in sys.path:
     sys.path.insert(0, str(SUITE_LIB))
 
 from autoresearch_suite import runtime  # noqa: E402
+from autoresearch_suite import sandboxed  # noqa: E402
 from autoresearch_suite import software_cit  # noqa: E402
 
 DIRECTION = "minimize"
 TIMEOUT = 300
-P = {'instance': 'gcc-2way', 'cpu_seconds': 60, 'reference': 18, 'lower_bound': 9}
+P = {'instance': 'gcc-2way', 'cpu_seconds': 60, 'reference': 16, 'lower_bound': 9}
 
 
 def task(module):
@@ -29,7 +30,7 @@ def task(module):
 
 
 def evaluate(program_path="initial_program.py"):
-    result = runtime.run(program_path, task, timeout=TIMEOUT)
+    result = sandboxed.run(program_path, task, timeout=TIMEOUT)
     result["direction"] = DIRECTION
     return result
 

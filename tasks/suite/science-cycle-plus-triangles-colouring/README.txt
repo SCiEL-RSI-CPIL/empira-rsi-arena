@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> five colourings (one colour in {0, 1, 2} per vertex), one per instance from cycle_plus_triangles(n, seed) for n = 30, 60, 90, 150, 300 with seeds 401..405 in the verifier: the Hamiltonian cycle 0-1-...-(n-1)-0 plus a random partition into triangles avoiding cycle edges. The score is the number of properly coloured instances (0..5). Maximize; every instance is 3-colourable by the Fleischner-Stiebitz theorem. The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof.
+construct() -> five colourings (one colour in {0, 1, 2} per vertex), one per instance from cycle_plus_triangles(n, seed) for n = 30, 60, 90, 150, 300 with seeds 401..405 in the verifier: the Hamiltonian cycle 0-1-...-(n-1)-0 plus a random partition into triangles avoiding cycle edges. The score is the number of properly coloured instances (0..5). Maximize; every instance is 3-colourable by the Fleischner-Stiebitz theorem. The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof. On these five instances a standard min-conflicts local search already reaches the maximum 5 in under a second.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,9 +17,9 @@ construct() -> five colourings (one colour in {0, 1, 2} per vertex), one per ins
 
 ## State of the art
 
-Instance-solving task; every instance is 3-colourable, so 5 is attainable.
+The maximum 5 is attained: every instance is 3-colourable (Fleischner and Stiebitz), and a textbook min-conflicts local search colours all five in under a second.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `5` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #842](https://www.erdosproblems.com/842), status: proved (Fleischner and Stiebitz).
 
@@ -28,7 +28,7 @@ Underlying problem: [Erdős Problem #842](https://www.erdosproblems.com/842), st
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 
@@ -42,7 +42,7 @@ Underlying problem: Show that every cycle-plus-triangles graph is 3-colourable (
 
 Why it matters: The Fleischner-Stiebitz proof is non-constructive, so efficient colouring procedures are of independent interest.
 
-- [A solution to a colouring problem of P. Erdős](https://doi.org/10.1016/0012-365X(92)90588-7): Main research objective: Show that every cycle-plus-triangles graph is 3-colourable (Erdős Problem #842; proved non-constructively). Task connection: The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof.
+- [A solution to a colouring problem of P. Erdős](https://doi.org/10.1016/0012-365X(92)90588-7): Main research objective: Show that every cycle-plus-triangles graph is 3-colourable (Erdős Problem #842; proved non-constructively). Task connection: The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof. On these five instances a standard min-conflicts local search already reaches the maximum 5 in under a second.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -50,7 +50,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
+- The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof. On these five instances a standard min-conflicts local search already reaches the maximum 5 in under a second. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -62,11 +62,11 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.1016/0012-365X(92)90588-7 (Herbert Fleischner and Michael Stiebitz, A solution to a colouring problem of P. Erdős (1992). Crossref record inspected; Erdős Problem #842 page inspected (the cycle-plus-triangles problem, proved by Fleischner and Stiebitz via the Alon-Tarsi method). The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof.)
+- paper: https://doi.org/10.1016/0012-365X(92)90588-7 (Herbert Fleischner and Michael Stiebitz, A solution to a colouring problem of P. Erdős (1992). Crossref record inspected; Erdős Problem #842 page inspected (the cycle-plus-triangles problem, proved by Fleischner and Stiebitz via the Alon-Tarsi method). The score counts fixed instances coloured properly; it measures a constructive colouring method for graphs whose colourability is known only through an algebraic proof. On these five instances a standard min-conflicts local search already reaches the maximum 5 in under a second.)
 - archive: https://www.erdosproblems.com/842 (Erdős Problem #842 (proved (Fleischner and Stiebitz)); statement, history and current bounds reviewed 2026-09-24.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0601-0700.md#JSP-000698 (JSP-000698; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 
 ## Limitations
 
-- Instance-solving task on five fixed pseudo-random instances.
+- Instance-solving task on five fixed pseudo-random instances; the maximum score 5 is reached by standard local search in under a second.
 - Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code.

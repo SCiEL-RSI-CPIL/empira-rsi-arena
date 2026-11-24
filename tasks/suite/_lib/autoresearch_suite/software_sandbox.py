@@ -13,9 +13,10 @@ calls ``oracle(request)`` and receives its JSON answer. Oracles keep their own
 budgets, so a candidate cannot obtain more answers than the task allows.
 
 Failures of the child raise ``runtime.CandidateError`` (or ``HarnessError``
-for trusted harness code) with a short reason. The suite's shared evaluator
-template imports the candidate module once in the evaluator process before
-scoring; every scoring-relevant call of candidate functions happens here.
+for trusted harness code) with a short reason. The evaluators of the sandboxed
+tasks load the candidate with ``sandboxed.run``, so no statement of the
+candidate is executed in the evaluator process: every call of candidate code
+happens in the child.
 """
 from __future__ import annotations
 
@@ -32,6 +33,7 @@ import time
 from pathlib import Path
 
 from .runtime import CandidateError
+from .sandboxed import defines
 
 HEADER = struct.Struct(">Q")
 WORKER = Path(__file__).resolve().with_name("software_worker.py")
@@ -208,9 +210,9 @@ def harness_source(name):
 
 
 def require_entry(module, *names):
-    """Cheap contract check on the imported candidate before sandboxed execution."""
+    """Cheap contract check on the candidate before sandboxed execution (see sandboxed.defines)."""
     for name in names:
-        if not callable(getattr(module, name, None)):
+        if not defines(module, name):
             raise CandidateError(f"candidate must define {name}()")
     path = getattr(module, "__file__", None)
     if not path or not Path(path).is_file():

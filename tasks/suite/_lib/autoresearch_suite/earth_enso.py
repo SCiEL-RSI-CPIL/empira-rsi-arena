@@ -21,9 +21,9 @@ SOURCE_SPECS = ({"name": RAW_SOURCES[0], "url": "https://downloads.psl.noaa.gov/
                  "pinning": "live", "license": "No constraints on data access or use (licence attribute of the file); work of the U.S. Government (NOAA NCEI, distributed by NOAA PSL)",
                  "license_url": "https://psl.noaa.gov/data/gridded/data.noaa.ersst.v5.html",
                  "citation": "Huang, B. et al. (2017). Extended Reconstructed Sea Surface Temperature, Version 5 (ERSSTv5): upgrades, validations, and intercomparisons. Journal of Climate 30, 8179-8205.",
-                 "retrieved": "2026-10-10"},)
+                 "retrieved": "2026-11-20"},)
 DATA = "enso/ersstv5_tropical_pacific_1950_2025.json.gz"
-DERIVED = {DATA: "99664f0ac1f376df7174a118d4aebb85ee097778cb9bdfaea43f90ba685fbb65"}
+DERIVED = {DATA: "cb35cff72660ea3caf73260f158cd6055d49c20a306e14e417f540ffaa715344"}
 FIRST, LAST = (1950, 1), (2025, 12)
 TRAIN_END = (1999, 12)
 TEST_ORIGINS = ((2000, 1), (2024, 12))

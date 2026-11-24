@@ -27,7 +27,7 @@ Parameters: `{"season": "2024-2025", "cpu_seconds": 180}`
 
 ## Labels
 
-Scientific contribution: `discovery` (tier 1); artifact `model`, domain `natural_science`, data `real_measurements`, verification `simulation`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `method` (tier 2); artifact `model`, domain `natural_science`, data `real_measurements`, verification `simulation`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `biology`.
 

@@ -69,6 +69,6 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- Solved finite case: The smallest rank difference between two oppositely ordered fractions in the Farey sequence of order 1000 is 252, i.e.
+- Solved finite case: the smallest rank difference between two oppositely ordered fractions in the Farey sequence of order 1000 is 252.
 - The bank's unrelated 2026 pairwise-sums citation is not used. No optimality or general all-order bound follows from an accepted pair.
 - Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code.

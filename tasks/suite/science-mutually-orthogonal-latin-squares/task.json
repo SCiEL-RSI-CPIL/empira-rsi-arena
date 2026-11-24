@@ -91,7 +91,7 @@
   "state_of_the_art": {
     "kind": "best_known",
     "value": 2,
-    "statement": "Two orthogonal Latin squares of order 10 exist (Parker 1959), and no set of three has been found. Since there is no projective plane of order 10 (Lam, Thiel and Swiercz 1989), at most 8 are possible. The growth of N(n) is Erdős Problem #724.",
+    "statement": "Two orthogonal Latin squares of order 10 exist (Parker 1959), and no set of three has been found. Since there is no projective plane of order 10 (Lam, Thiel and Swiercz 1989) and, by Bruck's completion theorem for nets of small deficiency (1963), seven such squares would extend to nine, at most 6 are possible. The growth of N(n) is Erdős Problem #724.",
     "sources": [
       {
         "title": "Orthogonal Latin squares",
@@ -112,7 +112,7 @@
         "year": 1974
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 724,
       "url": "https://www.erdosproblems.com/724",

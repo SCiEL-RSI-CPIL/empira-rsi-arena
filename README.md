@@ -40,7 +40,7 @@ Our contribution is turning research problems into task packages with a shared e
 | Research tasks awaiting evaluation integration | 254 | 9.85% |
 | **Total** | **2,578** | **100.00%** |
 
-Evaluator definitions cover **90.15%** of the catalog. **1,285** adapted definitions are recorded as verified reconstructions. Recorded numeric seed baselines are available for **956 packages (37.08%)**; **100 (3.88%)** include published numeric references.
+Evaluator definitions cover **90.15%** of the catalog. **1,285** adapted definitions are recorded as verified reconstructions. Recorded numeric seed baselines are available for **963 packages (37.35%)**; **100 (3.88%)** include published numeric references.
 
 Counts refer to task packages, including distinct parameter settings and protocols. The split describes evaluator implementation; validation and runtime requirements are recorded separately for each task.
 

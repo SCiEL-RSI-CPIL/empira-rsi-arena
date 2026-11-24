@@ -18,6 +18,10 @@ to 40 generated held-out tests per program (software_quixbugs_inputs): seeded
 inputs that satisfy the documented preconditions, with expected outputs
 computed by the reference fix. A patch counts as a repair only when it passes
 the visible, the remaining QuixBugs and the generated tests.
+
+A program run is limited by steps (function entries plus loop iterations,
+counted by software_harness_quixbugs), not by time, so neither the prepared
+files nor the verdict on a patch depend on the speed of the machine.
 """
 from __future__ import annotations
 
@@ -27,7 +31,7 @@ import io
 import json
 import zipfile
 
-from . import software_quixbugs_inputs, software_sandbox
+from . import software_data, software_quixbugs_inputs, software_sandbox
 
 SOURCE = "quixbugs"
 SOURCES = (SOURCE,)
@@ -38,6 +42,17 @@ SLOW_TESTS = {  # (program, input) pairs skipped by QuixBugs' pytest suite for r
 }
 TOLERANCE = {"sqrt": lambda args: args[-1]}
 HARNESS = "software_harness_quixbugs.py"
+RESUMABLE = True  # derive() takes a software_data.Steps and can be completed over several runs
+# Steps allowed per test. The reference fixes need at most 761,717 on the kept QuixBugs tests and fewer than 20,000 on
+# the generated ones, with one exception: the recursive levenshtein makes 10,308,990 calls on its longest kept pair.
+STEP_LIMIT = 2_000_000
+HEAVY_TESTS = {"levenshtein": (["rosettacode", "raisethysword"], 25_000_000)}
+
+
+def step_limit(name, args):
+    """Step limit of one test of the program ``name``."""
+    heavy = HEAVY_TESTS.get(name)
+    return heavy[1] if heavy and args == heavy[0] else STEP_LIMIT
 
 
 def statements(source):
@@ -52,7 +67,9 @@ def statements(source):
                 out.append((node.lineno, type(node).__name__.lower() + " " + ast.unparse(node.test) + ":"))
             elif isinstance(node, (ast.For, ast.AsyncFor)):
                 out.append((node.lineno, "for " + ast.unparse(node.target) + " in " + ast.unparse(node.iter) + ":"))
-            elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef, ast.With, ast.AsyncWith, ast.Try)):
+            elif isinstance(node, ast.Match):
+                out.append((node.lineno, "match " + ast.unparse(node.subject) + ":"))
+            elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef, ast.With, ast.AsyncWith, ast.Try, ast.TryStar)):
                 # A decorator replaces the function it wraps, so each one is a statement of its own.
                 out.extend((decorator.lineno, "@" + ast.unparse(decorator)) for decorator in getattr(node, "decorator_list", []))
                 head = ast.unparse(node).splitlines()
@@ -68,6 +85,10 @@ def statements(source):
             for handler in getattr(node, "handlers", []):
                 out.append((handler.lineno, "except " + (ast.unparse(handler.type) if handler.type else "") + ":"))
                 visit(handler.body)
+            for case in getattr(node, "cases", []):  # a case block holds statements of its own, like a handler
+                guard = " if " + ast.unparse(case.guard) if case.guard else ""
+                out.append((case.pattern.lineno, "case " + ast.unparse(case.pattern) + guard + ":"))
+                visit(case.body)
     visit(ast.parse(source).body)
     return out
 
@@ -104,16 +125,20 @@ def passes(result, test):
     return output == expected
 
 
-def run_tests(source, entry, tests, *, cpu_seconds=10):
+def run_tests(source, entry, tests, *, cpu_seconds=120, stop_on_failure=False):
     """Run a program on the tests' inputs in the sandbox and judge the outputs here.
 
     The child receives only the inputs: the expected values never enter the process that runs the program, so a
-    patch cannot read them (for example from the judge's stack frame). A crash or time-out of the child fails all
-    tests."""
+    patch cannot read them (for example from the judge's stack frame). Each test has a step limit (step_limit); the
+    CPU limit of the child is a safety net far above what the allowed steps cost. A crash or time-out of the child
+    fails all tests. With ``stop_on_failure`` the tests after the first run that raises or exceeds its step limit
+    are not run and count as failed."""
     if not tests:
         return []
+    inputs = [t["input"] for t in tests]
     ok, value = software_sandbox.run_harness(software_sandbox.harness_source(HARNESS), "outputs",
-                                             [source, entry, [t["input"] for t in tests], 1.0], cpu_seconds=cpu_seconds, memory_mb=1024)
+                                             [source, entry, inputs, [step_limit(entry, i) for i in inputs], stop_on_failure],
+                                             cpu_seconds=cpu_seconds, memory_mb=1024)
     if not ok or not isinstance(value, list) or len(value) != len(tests):
         return [False] * len(tests)
     return [passes(result, test) for result, test in zip(value, tests)]
@@ -142,8 +167,9 @@ def _programs(archive):
 def generated_tests(fixed, name):
     """Held-out tests from seeded precondition-respecting inputs, expected values from the reference fix."""
     inputs = software_quixbugs_inputs.generate(name)
-    ok, results = software_sandbox.run_harness(software_sandbox.harness_source(HARNESS), "outputs", [fixed, name, inputs, 1.0],
-                                               cpu_seconds=120, memory_mb=1024)
+    ok, results = software_sandbox.run_harness(software_sandbox.harness_source(HARNESS), "outputs",
+                                               [fixed, name, inputs, [step_limit(name, i) for i in inputs]],
+                                               cpu_seconds=300, memory_mb=1024)
     if not ok:
         raise RuntimeError(f"{name}: reference outputs failed: {results}")
     tests = []
@@ -153,7 +179,7 @@ def generated_tests(fixed, name):
             if name in TOLERANCE:
                 test["tolerance"] = TOLERANCE[name](args)
             tests.append(test)
-    if len(tests) < 10 or not all(run_tests(fixed, name, tests, cpu_seconds=60)):
+    if len(tests) < 10 or not all(run_tests(fixed, name, tests)):
         raise RuntimeError(f"{name}: generated tests are too few or fail on the reference fix")
     return tests
 
@@ -166,30 +192,37 @@ def split(outcomes):
     return sorted(visible)
 
 
-def derive(raw):
-    repair, spectra = [], []
-    harness = software_sandbox.harness_source(HARNESS)
+def derive_program(name, buggy, fixed, tests):
+    """[repair record, spectrum record] of one program."""
+    if not all(run_tests(fixed, name, tests)):
+        raise RuntimeError(f"{name}: a kept test fails on the fixed program")
+    outcomes = run_tests(buggy, name, tests)
+    if all(outcomes):
+        raise RuntimeError(f"{name}: no test fails on the buggy program")
+    visible = split(outcomes)
+    generated = generated_tests(fixed, name)
+    repair = {"name": name, "entry": name, "source": buggy, "visible": [tests[i] for i in visible],
+              "held_out": [t for i, t in enumerate(tests) if i not in visible], "generated": generated,
+              "failing_tests": sum(not ok for ok in outcomes),
+              "failing_generated_tests": sum(not ok for ok in run_tests(buggy, name, generated, cpu_seconds=300))}
+    limits = [step_limit(name, t["input"]) for t in tests]
+    ok, traced = software_sandbox.run_harness(software_sandbox.harness_source(HARNESS), "trace_tests", [buggy, name, tests, limits],
+                                              cpu_seconds=600, memory_mb=1024)
+    if not ok:
+        raise RuntimeError(f"{name}: tracing failed: {traced}")
+    executable = sorted({line for line, _ in statements(buggy)})
+    spectrum = {"name": name, "lines": executable, "tests": [[bool(p), [l for l in lines if l in executable]] for p, lines in traced],
+                "faulty_lines": fault_lines(buggy, fixed)}
+    return [repair, spectrum]
+
+
+def derive(raw, steps=None):
+    """Prepared files from the pinned archive; ``steps`` (software_data.Steps) keeps each finished program."""
+    steps = steps or software_data.Steps()
     with zipfile.ZipFile(io.BytesIO(raw[SOURCE])) as archive:
-        for name, buggy, fixed, tests in _programs(archive):
-            if not all(run_tests(fixed, name, tests)):
-                raise RuntimeError(f"{name}: a kept test fails on the fixed program")
-            outcomes = run_tests(buggy, name, tests)
-            if all(outcomes):
-                raise RuntimeError(f"{name}: no test fails on the buggy program")
-            visible = split(outcomes)
-            generated = generated_tests(fixed, name)
-            repair.append({"name": name, "entry": name, "source": buggy, "visible": [tests[i] for i in visible],
-                           "held_out": [t for i, t in enumerate(tests) if i not in visible], "generated": generated,
-                           "failing_tests": sum(not ok for ok in outcomes),
-                           "failing_generated_tests": sum(not ok for ok in run_tests(buggy, name, generated, cpu_seconds=60))})
-            ok, traced = software_sandbox.run_harness(harness, "trace_tests", [buggy, name, tests, 1.0], cpu_seconds=60, memory_mb=1024)
-            if not ok:
-                raise RuntimeError(f"{name}: tracing failed: {traced}")
-            executable = sorted({line for line, _ in statements(buggy)})
-            spectra.append({"name": name, "lines": executable, "tests": [[bool(p), [l for l in lines if l in executable]] for p, lines in traced],
-                            "faulty_lines": fault_lines(buggy, fixed)})
+        records = [steps(name, lambda: derive_program(name, buggy, fixed, tests)) for name, buggy, fixed, tests in _programs(archive)]
     dump = lambda value: json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
-    return {"quixbugs/repair.json": dump(repair), "quixbugs/sbfl.json": dump(spectra)}
+    return {"quixbugs/repair.json": dump([repair for repair, _ in records]), "quixbugs/sbfl.json": dump([spectrum for _, spectrum in records])}
 
 
 MAX_PATCH_CHARS = 20000
@@ -210,7 +243,7 @@ def judge_patch(program, patch):
         return {"status": "rejected", "reason": f"does not parse: {type(error).__name__}"}
     if edits > MAX_EDITS:
         return {"status": "rejected", "reason": f"{edits} statement edits exceed {MAX_EDITS}", "edits": edits}
-    run = lambda tests: all(run_tests(patch, program["entry"], tests, cpu_seconds=20))
+    run = lambda tests: all(run_tests(patch, program["entry"], tests, stop_on_failure=True))
     if not run(program["visible"]):
         return {"status": "unrepaired", "edits": edits, "failed": "visible tests"}
     quixbugs = run(program["held_out"])
@@ -221,7 +254,6 @@ def judge_patch(program, patch):
 
 def repair_score(module, *, cpu_seconds=4):
     """Apply the candidate's repair(task) to every program in its own sandbox; score = fraction repaired."""
-    from . import software_data
     from .runtime import CandidateError
     program_path = software_sandbox.require_entry(module, "repair")
     programs = software_data.load_json("quixbugs/repair.json")

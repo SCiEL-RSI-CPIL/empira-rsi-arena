@@ -32584,8 +32584,8 @@
         "mcts-ahd"
       ],
       "labels": {
-        "scientific_contribution": "open_problem",
-        "science_tier": 1,
+        "scientific_contribution": "method",
+        "science_tier": 2,
         "artifact": "program",
         "domain": "mathematics",
         "area": "mathematics",
@@ -48705,12 +48705,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -48875,7 +48875,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -49082,16 +49082,16 @@
       "labels": {
         "area": "biology",
         "domain": "natural_science",
-        "scientific_contribution": "open_problem",
+        "scientific_contribution": "method",
         "artifact": "program",
         "data": "none",
         "verification": "exact",
         "reference": "published_value",
-        "science_tier": 1,
+        "science_tier": 2,
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -49110,16 +49110,16 @@
       "labels": {
         "area": "biology",
         "domain": "natural_science",
-        "scientific_contribution": "open_problem",
+        "scientific_contribution": "method",
         "artifact": "program",
         "data": "none",
         "verification": "exact",
         "reference": "published_value",
-        "science_tier": 1,
+        "science_tier": 2,
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -49139,16 +49139,16 @@
       "labels": {
         "area": "biology",
         "domain": "natural_science",
-        "scientific_contribution": "discovery",
+        "scientific_contribution": "method",
         "artifact": "model",
         "data": "real_measurements",
         "verification": "simulation",
         "reference": "none",
-        "science_tier": 1,
+        "science_tier": 2,
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -49269,7 +49269,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -49329,7 +49329,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -49401,14 +49401,14 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "open_problem",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
-        "science_tier": 2,
+        "science_tier": 1,
         "resources": [
           "cpu"
         ],
@@ -49444,7 +49444,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -49476,7 +49476,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -49508,7 +49508,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -49540,7 +49540,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -49566,12 +49566,12 @@
         "area": "chemistry",
         "data": "real_measurements",
         "verification": "sampled",
-        "reference": "published_value",
+        "reference": "none",
         "science_tier": 2,
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -49658,7 +49658,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -49687,7 +49687,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -49718,7 +49718,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -49869,13 +49869,13 @@
         "science-prize_i"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "area": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "science_tier": 2,
         "resources": [
           "cpu"
@@ -49921,12 +49921,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "synthetic",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -49947,12 +49947,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -50129,19 +50129,19 @@
         "science-prize_i"
       ],
       "labels": {
-        "scientific_contribution": "open_problem",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "area": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
-        "science_tier": 1,
+        "reference": "published_value",
+        "science_tier": 2,
         "resources": [
           "cpu"
         ],
         "cost": "fast",
-        "important_to_science": true
+        "important_to_science": false
       }
     },
     {
@@ -50322,13 +50322,13 @@
         "science-prize_i"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "area": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "science_tier": 2,
         "resources": [
           "cpu"
@@ -50484,7 +50484,7 @@
         "area": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "science_tier": 1,
         "resources": [
           "cpu"
@@ -50582,12 +50582,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -50634,12 +50634,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -50712,14 +50712,14 @@
         "science-prize_i"
       ],
       "labels": {
-        "scientific_contribution": "open_problem",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "area": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
-        "science_tier": 1,
+        "reference": "published_value",
+        "science_tier": 2,
         "resources": [
           "cpu"
         ],
@@ -50778,7 +50778,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -50869,7 +50869,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -50898,7 +50898,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -50959,7 +50959,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -50988,7 +50988,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51017,7 +51017,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51078,7 +51078,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51107,7 +51107,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51136,7 +51136,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51195,7 +51195,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51317,7 +51317,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51409,7 +51409,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51438,7 +51438,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51467,7 +51467,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51496,7 +51496,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51525,7 +51525,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51554,7 +51554,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51703,7 +51703,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51732,7 +51732,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51761,7 +51761,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51790,7 +51790,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51849,7 +51849,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -51906,7 +51906,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52009,7 +52009,7 @@
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 1,
         "resources": [
@@ -52030,12 +52030,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -52148,7 +52148,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52187,7 +52187,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52216,7 +52216,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52245,7 +52245,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52279,7 +52279,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52307,7 +52307,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -52336,7 +52336,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52366,7 +52366,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52396,7 +52396,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52426,7 +52426,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52456,7 +52456,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52485,7 +52485,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52610,7 +52610,7 @@
         "area": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "science_tier": 1,
         "resources": [
           "cpu"
@@ -52669,7 +52669,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52697,7 +52697,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52725,7 +52725,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52753,7 +52753,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52781,7 +52781,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52809,7 +52809,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52837,7 +52837,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52865,7 +52865,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52893,7 +52893,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52921,7 +52921,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52949,7 +52949,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -52978,7 +52978,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53007,7 +53007,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53036,7 +53036,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53064,7 +53064,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53092,7 +53092,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53120,7 +53120,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53148,7 +53148,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53176,7 +53176,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53204,7 +53204,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53232,7 +53232,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53261,7 +53261,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53290,7 +53290,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53318,7 +53318,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53346,7 +53346,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -53439,12 +53439,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -53945,7 +53945,7 @@
           "cpu"
         ],
         "cost": "fast",
-        "important_to_science": true
+        "important_to_science": false
       }
     },
     {
@@ -54057,7 +54057,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -54209,7 +54209,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -54240,7 +54240,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -54343,7 +54343,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -54482,7 +54482,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -54513,7 +54513,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -54544,7 +54544,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -54575,7 +54575,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -54635,7 +54635,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -54812,7 +54812,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -54838,7 +54838,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -54879,12 +54879,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55139,12 +55139,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55165,12 +55165,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55191,12 +55191,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55217,12 +55217,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55243,12 +55243,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55269,12 +55269,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55321,12 +55321,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55347,12 +55347,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55373,12 +55373,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55399,12 +55399,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55425,12 +55425,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55451,12 +55451,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55477,12 +55477,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55503,12 +55503,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55534,13 +55534,13 @@
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -55555,12 +55555,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55581,12 +55581,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55607,12 +55607,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55633,12 +55633,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55659,12 +55659,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55685,12 +55685,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55711,12 +55711,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55737,12 +55737,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55763,12 +55763,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -55893,12 +55893,12 @@
         "science-prize_b"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -56023,14 +56023,14 @@
         "science-prize_g"
       ],
       "labels": {
-        "scientific_contribution": "open_problem",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "area": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
-        "science_tier": 1,
+        "reference": "published_value",
+        "science_tier": 2,
         "resources": [
           "cpu"
         ],
@@ -56101,14 +56101,14 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "open_problem",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
-        "science_tier": 2,
+        "science_tier": 1,
         "resources": [
           "cpu"
         ],
@@ -56341,7 +56341,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -56402,7 +56402,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -56526,7 +56526,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -56648,7 +56648,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -56671,13 +56671,13 @@
         "scientific_contribution": "method",
         "artifact": "construction",
         "data": "none",
-        "verification": "exact",
+        "verification": "simulation",
         "reference": "none",
         "science_tier": 2,
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -56766,7 +56766,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -56795,7 +56795,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -56873,13 +56873,13 @@
         "science-prize_i"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "area": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "science_tier": 2,
         "resources": [
           "cpu"
@@ -56951,13 +56951,13 @@
         "science-prize_a"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "area": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "science_tier": 2,
         "resources": [
           "cpu"
@@ -57055,14 +57055,14 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "open_problem",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
-        "science_tier": 2,
+        "science_tier": 1,
         "resources": [
           "cpu"
         ],
@@ -57423,12 +57423,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -57579,12 +57579,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "synthetic",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -57605,12 +57605,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "synthetic",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -57631,12 +57631,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -57721,7 +57721,7 @@
           "cpu"
         ],
         "cost": "fast",
-        "important_to_science": true
+        "important_to_science": false
       }
     },
     {
@@ -57903,7 +57903,7 @@
           "cpu"
         ],
         "cost": "fast",
-        "important_to_science": true
+        "important_to_science": false
       }
     },
     {
@@ -57931,7 +57931,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -57960,7 +57960,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -57989,7 +57989,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58018,7 +58018,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58047,7 +58047,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58076,7 +58076,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58105,7 +58105,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -58134,7 +58134,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58163,7 +58163,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58192,7 +58192,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58221,7 +58221,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58250,7 +58250,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58279,7 +58279,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58308,7 +58308,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58337,7 +58337,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58367,7 +58367,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58396,7 +58396,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58425,7 +58425,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58454,7 +58454,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58483,7 +58483,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58512,7 +58512,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58541,7 +58541,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "medium",
         "important_to_science": true
       }
     },
@@ -58571,7 +58571,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },
@@ -58586,12 +58586,12 @@
         "science-prize_c"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "data": "synthetic",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "area": "mathematics",
         "science_tier": 2,
         "resources": [
@@ -58650,7 +58650,7 @@
           "cpu"
         ],
         "cost": "fast",
-        "important_to_science": true
+        "important_to_science": false
       }
     },
     {
@@ -58742,13 +58742,13 @@
         "science-prize_i"
       ],
       "labels": {
-        "scientific_contribution": "method",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "area": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
+        "reference": "published_value",
         "science_tier": 2,
         "resources": [
           "cpu"
@@ -58820,14 +58820,14 @@
         "science-prize_i"
       ],
       "labels": {
-        "scientific_contribution": "open_problem",
+        "scientific_contribution": "rediscovery",
         "artifact": "construction",
         "domain": "mathematics",
         "area": "mathematics",
         "data": "none",
         "verification": "exact",
-        "reference": "none",
-        "science_tier": 1,
+        "reference": "published_value",
+        "science_tier": 2,
         "resources": [
           "cpu"
         ],
@@ -58913,7 +58913,7 @@
         "resources": [
           "cpu"
         ],
-        "cost": "not_run",
+        "cost": "fast",
         "important_to_science": true
       }
     },

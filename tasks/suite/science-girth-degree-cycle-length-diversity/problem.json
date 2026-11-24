@@ -50,9 +50,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Benny Sudakov and Jacques Verstraëte (2007, Cycle lengths in sparse graphs) study the underlying problem.",
+    "kind": "optimum",
+    "value": 2,
+    "statement": "The optimum is 2: in a graph of minimum degree 3 an end vertex of a longest path has three neighbours on the path, which closes cycles of two different lengths, and graphs with exactly two cycle lengths satisfy the contract. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Benny Sudakov and Jacques Verstraëte (2007, Cycle lengths in sparse graphs) study the underlying problem.",
     "sources": [
       {
         "title": "Cycle lengths in sparse graphs",
@@ -61,7 +61,7 @@
         "year": 2007
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "supported",
@@ -83,12 +83,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

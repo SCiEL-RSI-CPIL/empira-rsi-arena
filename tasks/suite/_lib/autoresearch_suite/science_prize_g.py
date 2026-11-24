@@ -8,7 +8,7 @@ and sources are in catalog/science/prize_g.json.
 from collections import Counter
 from fractions import Fraction
 from itertools import combinations
-from math import cos, gcd, isqrt, log, pi, sin, sqrt
+from math import cos, gcd, hypot, isqrt, log, pi, sin, sqrt
 
 from .runtime import require
 from .science_prize import integer, sequence
@@ -208,11 +208,19 @@ def _floats(value, n, dimension):
 def distance_product(value, n=8):
     """Erdős-Herzog-Piranian: product of distances normalized to diameter 2, divided by n^n."""
     pts = _floats(value, n, 2)
-    distances = [sqrt((a[0]-b[0])**2+(a[1]-b[1])**2) for a, b in combinations(pts, 2)]
-    require(min(distances) > 1e-9, "points must be distinct")
+    # hypot neither overflows nor underflows, so a distance is zero only for two equal points; an
+    # absolute tolerance here would reject small copies of a valid set although the score is scale-free
+    distances = [hypot(a[0]-b[0], a[1]-b[1]) for a, b in combinations(pts, 2)]
+    require(min(distances) > 0, "points must be distinct")
     diameter = max(distances)
+
+    def log_scaled(d):
+        share = d/diameter
+        # the quotient underflows only for points closer than 1e-300 diameters; split the logarithm there
+        return log(2*share) if share > 1e-300 else log(2)+log(d)-log(diameter)
+
     # Delta = prod over ordered pairs = (prod over unordered pairs)^2, scaled so the diameter is 2
-    log_delta = 2*sum(log(2*d/diameter) for d in distances)
+    log_delta = 2*sum(log_scaled(d) for d in distances)
     ratio = log_delta - n*log(n)
     return round(2.718281828459045**ratio, 12), _report(points=n, log_ratio=ratio, regular_polygon_ratio=1.0)
 
@@ -238,10 +246,33 @@ def _refine(f, grid, step, sense):
 
 
 def cosine_minimum(frequencies, samples):
+    """Global minimum of sum cos(a*t), certified to 1e-11 by a second-derivative bound.
+
+    The sum is even and 2*pi-periodic, so [0, pi] is enough. On a cell of width h it is at least
+    min(end values) - K*h*h/8 with K = sum a*a >= |f''|: cells that cannot hold the minimum are
+    dropped and the others are halved. Refining a fixed number of grid minima is not enough here,
+    because frequencies with a common factor repeat every minimum many times and the grid can
+    rank all copies of a shallower minimum before the global one.
+    """
     f = lambda t: sum(cos(a*t) for a in frequencies)
-    step = 2*pi/samples
-    # the cosine sum is even and 2*pi-periodic; sample the full circle so neighbours wrap around
-    return _refine(f, [step*i for i in range(samples)], step, -1)
+    curvature = sum(a*a for a in frequencies)
+    half = samples//2
+    width = pi/half
+    values = [f(width*i) for i in range(half+1)]
+    best = min(values)
+    cells = [(width*i, values[i], values[i+1]) for i in range(half)]
+    while curvature*width*width/8 > 1e-11:
+        slack = curvature*width*width/8
+        width /= 2
+        halved = []
+        for left, at_left, at_right in cells:
+            if min(at_left, at_right)-slack > best:
+                continue
+            middle = f(left+width)
+            best = min(best, middle)
+            halved += [(left, at_left, middle), (left+width, middle, at_right)]
+        cells = halved
+    return best
 
 
 def chowla_cosine(value, k=16, maximum=200):

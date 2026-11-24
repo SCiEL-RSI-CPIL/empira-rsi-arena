@@ -13,9 +13,9 @@ earth_worker.py. On macOS it additionally runs under ``sandbox-exec`` with a pro
 network access, reading of the prepared data directory and of the raw download cache, and
 writing outside the working directory.
 
-Residual risks (stated in every task's limitations): the shared evaluator template imports the
-candidate module once in the evaluator process, so module-level code runs there unsandboxed;
-without ``sandbox-exec`` deliberately hostile native code can bypass the audit hook.
+The evaluators load the candidate with ``sandboxed.run``, so no statement of the candidate
+is executed in the evaluator process. Residual risk (stated in every task's limitations): without
+``sandbox-exec`` deliberately hostile native code can bypass the audit hook.
 """
 from __future__ import annotations
 
@@ -36,6 +36,7 @@ import numpy as np
 from arena_task_paths import cache_path, data_root
 from .earth_common import data_dir
 from .runtime import CandidateError
+from .sandboxed import defines
 from .software_sandbox import HEADER, SandboxFailure, _drain, _rss_mb, _write_frame
 
 WORKER = Path(__file__).resolve().with_name("earth_worker.py")
@@ -210,7 +211,7 @@ def execute(source, entry, args=(), *, harness=None, oracle=None, cpu_seconds=12
 def candidate_source(module, *names):
     """Source text of the candidate after a cheap check that the named entry points exist."""
     for name in names:
-        if not callable(getattr(module, name, None)):
+        if not defines(module, name):
             raise CandidateError(f"candidate must define {name}()")
     path = getattr(module, "__file__", None)
     if not path or not Path(path).is_file():

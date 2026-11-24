@@ -91,7 +91,7 @@
   "state_of_the_art": {
     "kind": "optimum",
     "value": 13,
-    "statement": "Hajdu and Saradha proved H(5) = 14. The longest run of residues not coprime to a squarefree n with five prime factors is therefore at most 13, and 2310 = 2·3·5·7·11 attains it.",
+    "statement": "Hajdu and Saradha proved H(5) = 14. The longest run of residues not coprime to a squarefree n with five prime factors is therefore at most 13, and moduli below 1000000 attain it.",
     "sources": [
       {
         "title": "Disproof of a conjecture of Jacobsthal",
@@ -100,7 +100,7 @@
         "year": 2012
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 970,
       "url": "https://www.erdosproblems.com/970",

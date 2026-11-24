@@ -17,9 +17,9 @@ construct() -> distinct vertices of the pinned 17-vertex graph, selecting at lea
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Boris Bukh and Benny Sudakov (2007, Induced subgraphs of Ramsey graphs with many distinct degrees) study the underlying problem.
+The maximum over all vertex subsets with at least eight vertices is 5 distinct degrees (exhaustive enumeration of the 2^17 subsets, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Boris Bukh and Benny Sudakov (2007, Induced subgraphs of Ramsey graphs with many distinct degrees) study the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `5` (reviewed 2026-11-24).
 
 - [Induced subgraphs of Ramsey graphs with many distinct degrees](https://www.borisbukh.org/distinct-degrees.pdf), Boris Bukh and Benny Sudakov (2007)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 17, "edges": [[0, 1], [0, 2], [0, 4], [0, 8], [0, 9], [0, 13]
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

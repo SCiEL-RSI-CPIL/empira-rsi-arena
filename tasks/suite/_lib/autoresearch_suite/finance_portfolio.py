@@ -59,7 +59,8 @@ def relative_weights(positions, n, max_gross):
     if not np.isfinite(x).all():
         raise CandidateError("positions must be finite")
     total = float(x.sum())
-    if abs(total) <= 1e-9 * max(1.0, float(np.abs(x).sum())):
+    # Relative to the positions' own size: the weights are scale free, so a small common scale is not a zero sum.
+    if abs(total) <= 1e-9 * float(np.abs(x).sum()):
         raise CandidateError("positions sum to (almost) zero; relative weights x/|sum(x)| are undefined")
     w = x / abs(total)
     gross = float(np.abs(w).sum())

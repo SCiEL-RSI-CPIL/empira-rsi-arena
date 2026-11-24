@@ -210,10 +210,10 @@ def double_prime_cover(value, largest_prime=1000, cap=100000):
     """One residue per prime up to the bound; score = longest initial interval [1, L] covered at least twice."""
     primes = primes_up_to(largest_prime)
     residues = sequence(value, "one residue per prime", len(primes), len(primes))
-    counts = [0]*(cap+2)
+    counts = [0]*(cap+1)                 # integers 1..cap, so the run cannot pass the stated cap
     for r, p in zip(residues, primes):
         integer(r, f"residue modulo {p}", 0, p-1)
-        for x in range(r or p, cap+2, p):
+        for x in range(r or p, cap+1, p):
             counts[x] += 1
     length = _initial_run(counts, 2)
     return length, _report(primes=len(primes), doubly_covered_length=length, capped=length == cap)
@@ -223,9 +223,9 @@ def budget_prime_cover(value, largest_prime=1000, budget=Fraction(1), cap=100000
     """Classes modulo distinct primes up to the bound with sum 1/p <= budget; score = covered initial length."""
     classes = _classes(value, "classes", 200, lambda m: require(m <= largest_prime and is_prime(m), "moduli must be primes up to the bound"))
     require(sum(Fraction(1, m) for m, _ in classes) <= budget, "sum of reciprocals of the moduli exceeds the budget")
-    counts = bytearray(cap+2)
+    counts = bytearray(cap+1)            # integers 1..cap, so the run cannot pass the stated cap
     for m, r in classes:
-        counts[r or m::m] = b"\x01"*len(range(r or m, cap+2, m))
+        counts[r or m::m] = b"\x01"*len(range(r or m, cap+1, m))
     length = _initial_run(counts, 1)
     return length, _report(classes=len(classes), covered_length=length, reciprocal_sum=str(sum(Fraction(1, m) for m, _ in classes)))
 

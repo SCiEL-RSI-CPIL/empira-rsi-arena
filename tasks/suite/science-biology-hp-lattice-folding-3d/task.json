@@ -65,7 +65,7 @@
     "label_spec": {
       "area": "biology",
       "domain": "natural_science",
-      "scientific_contribution": "open_problem",
+      "scientific_contribution": "method",
       "artifact": "program",
       "data": "none",
       "verification": "exact",
@@ -97,7 +97,7 @@
   },
   "limitations": [
     "The HP model is a two-letter lattice abstraction: its ground states are not real protein structures, so a better energy is a better solution of a lattice optimisation problem, not a structural-biology finding.",
-    "Only the ten 48-mers have ground states established by exhaustive hydrophobic-core construction; the references for the six longer chains are the lowest energies reported in the cited literature and can in principle be beaten.",
+    "The ten 48-mers have ground states established by exhaustive hydrophobic-core construction, and the energies of the 64- and 67-residue chains are reported as exact results of the same method (Hsu et al. 2003, citing Yue and Dill 1995); the references for the 88-, 103-, 124- and 136-residue chains are the lowest energies reported in the cited literature and can in principle be beaten.",
     "All sixteen chains share one CPU budget in the sandboxed subprocess, so scores are budget-dependent and not comparable with the multi-hour or multi-day searches of the cited papers.",
     "The reference energies are used only for scoring; the candidate never receives them."
   ],
@@ -131,16 +131,16 @@
   "labels": {
     "area": "biology",
     "domain": "natural_science",
-    "scientific_contribution": "open_problem",
+    "scientific_contribution": "method",
     "artifact": "program",
     "data": "none",
     "verification": "exact",
     "reference": "published_value",
-    "science_tier": 1,
+    "science_tier": 2,
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

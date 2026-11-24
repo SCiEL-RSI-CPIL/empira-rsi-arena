@@ -53,7 +53,7 @@ The cited papers' main goal is CNOT-efficient synthesis of unitaries, the proble
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- Targets and CNOT budgets are taken from the synthesis literature: one CNOT for CNOT, two for iSWAP, three for SWAP and for any two-qubit unitary, six for the Toffoli gate (proved optimal by Shende and Markov) and twenty for any three-qubit unitary (quantum Shannon decomposition). Each budget is known to be achievable, so a score of 0 exists; the task is to find such circuits numerically. The two generic unitaries are fixed matrix exponentials of Hermitian matrices defined in the evaluator (no random number generator), and the distance ignores a global phase.
+- Targets and CNOT budgets are taken from the synthesis literature: one CNOT for CNOT, two for iSWAP, three for SWAP and for any two-qubit unitary, six for the Toffoli gate (proved optimal by Shende and Markov) and twenty for any three-qubit unitary (quantum Shannon decomposition). Each budget is known to be achievable, so a score of 0 exists; the task is to find such circuits numerically. The three generic unitaries are fixed matrix exponentials of Hermitian matrices defined in the evaluator (no random number generator), and the distance ignores a global phase.
 
 ## Run
 

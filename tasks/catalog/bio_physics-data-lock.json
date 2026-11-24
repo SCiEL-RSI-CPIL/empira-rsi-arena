@@ -2,8 +2,8 @@
   "schema": "artask.data-lock/1",
   "package": "bio_physics",
   "prepare": "python3 scripts/prepare_bio_physics.py",
-  "raw_cache": ".cache/bio_physics-raw",
-  "derived_directory": "suite/_lib/data/bio_physics",
+  "raw_cache": "bio_physics-raw of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "derived_directory": "data/bio_physics of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
   "sources": [
     {
       "name": "ame2016-mass16.txt",
@@ -62,10 +62,10 @@
     },
     {
       "name": "rfam-Rfam.3d.seed.gz",
-      "url": "https://ftp.ebi.ac.uk/pub/databases/Rfam/CURRENT/Rfam.3d.seed.gz",
+      "url": "https://ftp.ebi.ac.uk/pub/databases/Rfam/15.1/Rfam.3d.seed.gz",
       "sha256": "4055ce87a369794a1e4455badcaf7c3bc3a7a524368b5b249e34b2a8d2e8146f",
       "size_bytes": 377401,
-      "pinning": "live (CURRENT points at the latest Rfam release; retrieved from release 15.1) - the derived-file hash is the binding check",
+      "pinning": "file of the Rfam 15.1 release directory (CURRENT is an alias of the latest release)",
       "license": "CC0 1.0 (Rfam)",
       "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
       "citation": "Ontiveros-Palacios, N. et al. Rfam: the RNA families database (release 15.1); seed alignments of families with three-dimensional structures.",

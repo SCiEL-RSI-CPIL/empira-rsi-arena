@@ -17,9 +17,9 @@ construct() -> [a,b], positive Python integers <=10000000. Require sigma(a)=sigm
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Pollack (2015, Remarks on fibers of the sum-of-divisors function) studies the underlying problem.
+The smallest error is 1/12232470 = 8.175e-8 (exhaustive search over all pairs with equal divisor sums up to 10^7, computed for this package; the ratio 3/2 itself is impossible). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Pollack (2015, Remarks on fibers of the sum-of-divisors function) studies the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `8.17496384622239e-08` (reviewed 2026-11-24).
 
 - [Remarks on fibers of the sum-of-divisors function](https://www.pollack-math.net/preimages-maier3.pdf), Paul Pollack (2015)
 
@@ -27,7 +27,7 @@ Parameters: `{"maximum": 10000000, "target": [3, 2]}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

@@ -94,7 +94,7 @@
   "science_relevance": {
     "status": "supported",
     "scientific_problem": "Determine K_3(7,1), the least number of ternary words of length 7 such that every ternary word differs from one of them in at most one position (the football pool problem for 7 matches).",
-    "importance_rationale": "Covering codes are a basic object of coding theory (covering radius, data compression, write-once memories, lossy coding). The football pool problem is the classic open case: exact values are known only up to five matches, and for six to eight matches the gaps between the 1989 constructions and the lower bounds are still open.",
+    "importance_rationale": "Covering codes are a basic object of coding theory (covering radius, data compression, write-once memories, lossy coding). The football pool problem is the classic open case: exact values are known only up to five matches and for 13 matches, where the perfect ternary Hamming code gives K_3(13,1) = 3^10 = 59049, and for six to eight matches the gaps between the 1989 constructions and the lower bounds are still open.",
     "papers": [
       {
         "title": "New upper bounds for the football pool problem for 6, 7, and 8 matches",
@@ -129,7 +129,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   }
 }

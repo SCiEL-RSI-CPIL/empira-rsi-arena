@@ -343,7 +343,7 @@
   {
     "id": "science-distance-product-fixed-diameter-8",
     "name": "Eight planar points maximizing the product of distances at fixed diameter",
-    "description": "construct() -> 8 distinct points [x, y] (floats, |coordinate| < 10^6). The score is Delta/n^n, where Delta is the product over ordered pairs of distances after scaling the set to diameter 2; the regular octagon scores exactly 1. Maximize. Scores above 1 beat the regular octagon; the paper's constructions show this is possible, but no value for n = 8 is recorded here.",
+    "description": "construct() -> 8 distinct points [x, y] (floats, |coordinate| < 10^6). The score is Delta/n^n, where Delta is the product over ordered pairs of distances after scaling the set to diameter 2; the regular octagon scores exactly 1. Maximize. Scores above 1 beat the regular octagon; the best published value for n = 8 is 1.250472 (Table 1 of the paper, conjectured optimal).",
     "family": "science_prize_g_distance_product",
     "parameters": {
       "n": 8
@@ -355,13 +355,13 @@
       "area": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none"
+      "reference": "published_value"
     },
     "sources": [
       {
         "url": "https://arxiv.org/abs/2603.07088",
         "type": "paper",
-        "locator": "Stijn Cambie, Arne Decadt, Yanni Dong, Tao Hu and Quanyu Tang, On the maximum product of distances of diameter 2 point sets (2026). arXiv abstract inspected (extremal sets are convex polygons; constructions drastically improve on regular n-gons for even n); Erdős Problem #1045 page inspected: the regular polygon gives Delta = n^n for even n and is not optimal for even n >= 4 (Hu and Tang; Cambie), and liminf max Delta/n^n >= 1.268 for even n. Scores above 1 beat the regular octagon; the paper's constructions show this is possible, but no value for n = 8 is recorded here."
+        "locator": "Stijn Cambie, Arne Decadt, Yanni Dong, Tao Hu and Quanyu Tang, On the maximum product of distances of diameter 2 point sets (2026). arXiv abstract inspected (extremal sets are convex polygons; constructions drastically improve on regular n-gons for even n); Erdős Problem #1045 page inspected: the regular polygon gives Delta = n^n for even n and is not optimal for even n >= 4 (Hu and Tang; Cambie), and liminf max Delta/n^n >= 1.268 for even n. Scores above 1 beat the regular octagon; the best published value for n = 8 is 1.250472 (Table 1 of the paper, conjectured optimal)."
       },
       {
         "url": "https://www.erdosproblems.com/1045",
@@ -375,13 +375,13 @@
       }
     ],
     "limitations": [
-      "Floating-point score (relative accuracy about 1e-12). No documented value for n = 8 (reference label none).",
+      "Floating-point score (relative accuracy about 1e-12). The reference 1.250472 is a published lower bound that is conjectured, not proven, to be optimal.",
       "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No documented optimum for n = 8; regular octagon = 1 and improvements exist for all even n >= 4 (Hu-Tang; Cambie; Cambie, Decadt, Dong, Hu and Tang 2026).",
+      "kind": "best_known",
+      "value": 1.250472,
+      "statement": "The best published value for n = 8 is Delta/n^n = 1.250472 (log Delta = 16.859060; Cambie, Decadt, Dong, Hu and Tang 2026, Table 1; their Section 3.3 calls the octagon conjecturally optimal). The regular octagon scores 1, and the maximum is proven only for n = 4, where it is 16(7 - 4 sqrt(3)) = 1.148748.",
       "sources": [
         {
           "title": "On the maximum product of distances of diameter 2 point sets",
@@ -394,7 +394,7 @@
           "url": "https://www.erdosproblems.com/1045"
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 1045,
         "url": "https://www.erdosproblems.com/1045",
@@ -425,26 +425,26 @@
   {
     "id": "science-ordinary-lines-twelve-rational-points",
     "name": "Twelve rational points with few ordinary lines",
-    "description": "construct() -> exactly 12 distinct integer points [x, y] with |x|, |y| <= 10^9, not all collinear. Minimize the number of lines containing exactly two of the points (exact). Over the reals the minimum for 12 points is 6; whether integer (rational) coordinates reach 6 is not documented, so scores are compared with that lower bound.",
+    "description": "construct() -> exactly 12 distinct integer points [x, y] with |x|, |y| <= 10^9, not all collinear. Minimize the number of lines containing exactly two of the points (exact). Over the reals the minimum for 12 points is 6 and integer coordinates reach it, so the optimum is 6.",
     "family": "science_prize_g_ordinary_lines",
     "parameters": {
       "n": 12,
       "bound": 1000000000
     },
     "labels": {
-      "scientific_contribution": "open_problem",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "area": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none"
+      "reference": "published_value"
     },
     "sources": [
       {
         "url": "https://doi.org/10.1007/s00454-013-9518-9",
         "type": "paper",
-        "locator": "Ben Green and Terence Tao, On Sets Defining Few Ordinary Lines (2013). Crossref record inspected; OEIS A003034 inspected: the minimal number of ordinary lines of n real points is 6 for n = 12; Erdős Problem #210 page inspected (proved; Green and Tao determine the minimum for large n). Over the reals the minimum for 12 points is 6; whether integer (rational) coordinates reach 6 is not documented, so scores are compared with that lower bound."
+        "locator": "Ben Green and Terence Tao, On Sets Defining Few Ordinary Lines (2013). Crossref record inspected; OEIS A003034 inspected: the minimal number of ordinary lines of n real points is 6 for n = 12; Erdős Problem #210 page inspected (proved; Green and Tao determine the minimum for large n). Over the reals the minimum for 12 points is 6 and integer coordinates reach it, so the optimum is 6."
       },
       {
         "url": "https://www.erdosproblems.com/210",
@@ -458,13 +458,13 @@
       }
     ],
     "limitations": [
-      "No documented rational minimum (reference label none); the real minimum 6 is a lower bound.",
+      "Solved finite case: the real minimum 6 is attained with integer coordinates.",
       "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No documented minimum for rational points; over the reals 12 points have at least 6 ordinary lines and 6 is attained (OEIS A003034).",
+      "kind": "optimum",
+      "value": 6,
+      "statement": "The minimum is 6. Twelve points that are not all collinear determine at least 6 ordinary lines (OEIS A003034; the Kelly-Moser bound 3n/7 already gives 6), and a Böröczky configuration (six points of a conic and six points of a line) has a copy with integer coordinates and exactly 6 ordinary lines, which the package's tests verify with the evaluator.",
       "sources": [
         {
           "title": "OEIS A003034",
@@ -477,7 +477,7 @@
           "year": 2013
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 210,
         "url": "https://www.erdosproblems.com/210",
@@ -587,7 +587,7 @@
   {
     "id": "science-chowla-cosine-sixteen-frequencies",
     "name": "Sixteen frequencies whose cosine sum stays shallow (Chowla's cosine problem)",
-    "description": "construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling of the full circle and golden-section refinement of the deepest local minima (accuracy about 1e-9). Maximize (make the minimum as shallow as possible). Shallow minima for 16 frequencies probe the finite side of Chowla's problem; no finite optimum is documented.",
+    "description": "construct() -> 16 distinct integers in 1..200. The score is min over theta of sum cos(a*theta), divided by sqrt(16), computed by dense sampling and bisection of every interval that a second-derivative bound cannot exclude (certified to about 1e-9). Maximize (make the minimum as shallow as possible). Shallow minima for 16 frequencies probe the finite side of Chowla's problem; no finite optimum is documented.",
     "family": "science_prize_g_chowla",
     "parameters": {
       "k": 16,
@@ -620,13 +620,13 @@
       }
     ],
     "limitations": [
-      "Floating-point score with sampling refinement; no documented finite value (reference label none).",
+      "Floating-point score; the minimum is certified to about 1e-9 by a second-derivative bound. No documented finite value (reference label none).",
       "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
     ],
     "state_of_the_art": {
       "kind": "none",
       "value": null,
-      "statement": "No documented optimum for 16 frequencies; every set has minimum below -c N^(1/7) (Bedert 2025) and N^(1/2) is the conjectured order.",
+      "statement": "No documented optimum for 16 frequencies; every set has minimum below -N^(1/5-o(1)) (Bedert, arXiv:2509.05260, version 3 of July 2026; earlier versions had the exponents 1/12 and 1/7) and N^(1/2) is the conjectured order.",
       "sources": [
         {
           "title": "Negative values of cosine sums",
@@ -641,7 +641,7 @@
           "year": 2025
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 510,
         "url": "https://www.erdosproblems.com/510",
@@ -750,7 +750,7 @@
   {
     "id": "science-four-point-lines-sixteen-integer-points",
     "name": "Sixteen integer points with many four-point lines and no five collinear",
-    "description": "construct() -> exactly 16 distinct integer points [x, y] with |x|, |y| <= 1000 and no five collinear. Maximize the number of lines containing exactly four of the points (exact). Integer configurations are a restriction of the real problem; the real value 15 for n = 16 is an upper reference, not a documented integer optimum.",
+    "description": "construct() -> exactly 16 distinct integer points [x, y] with |x|, |y| <= 1000 and no five collinear. Maximize the number of lines containing exactly four of the points (exact). Integer configurations are a restriction of the real problem: the best known integer configuration of 16 points has 14 such lines (OEIS A172992), and OEIS A006065 lists 15 for real configurations.",
     "family": "science_prize_g_four_point_lines",
     "parameters": {
       "n": 16,
@@ -763,13 +763,13 @@
       "area": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none"
+      "reference": "published_value"
     },
     "sources": [
       {
         "url": "https://doi.org/10.1007/s00454-013-9526-9",
         "type": "paper",
-        "locator": "József Solymosi and Miloš Stojaković, Many Collinear k-Tuples with no k+1 Collinear Points (2013). Crossref record inspected; Erdős Problem #101 ($100) page inspected: sets with no five on a line can have n^(2-O(1/sqrt(log n))) four-point lines (Solymosi and Stojaković). OEIS A006065 lists maximal numbers of 4-point lines for real configurations (15 for n = 16). Integer configurations are a restriction of the real problem; the real value 15 for n = 16 is an upper reference, not a documented integer optimum."
+        "locator": "József Solymosi and Miloš Stojaković, Many Collinear k-Tuples with no k+1 Collinear Points (2013). Crossref record inspected; Erdős Problem #101 ($100) page inspected: sets with no five on a line can have n^(2-O(1/sqrt(log n))) four-point lines (Solymosi and Stojaković). OEIS A006065 lists maximal numbers of 4-point lines for real configurations (15 for n = 16). Integer configurations are a restriction of the real problem: the best known integer configuration of 16 points has 14 such lines (OEIS A172992), and OEIS A006065 lists 15 for real configurations."
       },
       {
         "url": "https://www.erdosproblems.com/101",
@@ -783,13 +783,13 @@
       }
     ],
     "limitations": [
-      "No documented integer optimum (reference label none); OEIS A006065 gives real-plane values.",
+      "The reference 14 is a best-known value (OEIS A172992), not a proven optimum; OEIS A006065 gives real-plane values.",
       "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No documented value for integer points; for real configurations OEIS A006065 lists 15 four-point lines for 16 points.",
+      "kind": "best_known",
+      "value": 14,
+      "statement": "The best known integer configuration of 16 points has 14 four-point lines and no five collinear points (OEIS A172992, best known solutions collected by D. Kamenetsky; not proven optimal). For real configurations OEIS A006065 lists 15 four-point lines for 16 points.",
       "sources": [
         {
           "title": "OEIS A006065",
@@ -800,9 +800,13 @@
           "url": "https://doi.org/10.1007/s00454-013-9526-9",
           "authors": "József Solymosi, Miloš Stojaković",
           "year": 2013
+        },
+        {
+          "title": "OEIS A172992",
+          "url": "https://oeis.org/A172992"
         }
       ],
-      "as_of": "2026-09-24",
+      "as_of": "2026-11-24",
       "erdos": {
         "number": 101,
         "url": "https://www.erdosproblems.com/101",

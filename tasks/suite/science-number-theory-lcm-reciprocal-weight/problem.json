@@ -51,9 +51,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős (1973, Problems and results on combinatorial number theory) studies the underlying problem.",
+    "kind": "optimum",
+    "value": 0.969774168765093,
+    "statement": "The maximum of Σ 1/a over subsets of [2,256] with all pairwise least common multiples above 256 is 0.969774168765093 to double precision, attained by a set of 85 integers (exact maximum-weight independent set search with the integer weights lcm(2, ..., 256)/a, in agreement with an integer program). Schinzel and Szekeres proved Σ 1/a ≤ 31/30 for every n (Erdős 1973, p. 135).",
     "sources": [
       {
         "title": "Problems and results on combinatorial number theory",
@@ -62,7 +62,7 @@
         "year": 1973
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "unreviewed",
@@ -74,12 +74,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

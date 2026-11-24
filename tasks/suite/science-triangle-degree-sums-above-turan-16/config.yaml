@@ -29,7 +29,7 @@ prompt:
   system_message: |
     Graphs on 16 vertices with 65 edges whose triangles have small degree sums
 
-    construct() -> {'n': 16, 'edges': [[u, v], ...]}: a simple graph on 16 vertices with exactly 65 = floor(16^2/4) + 1 edges (so it has triangles). The score is the largest degree sum deg(u) + deg(v) + deg(w) over its triangles. Minimize. Scores below 24 would beat the published construction at n = 16; the conjectured asymptotic value is about 1.464n = 23.4.
+    construct() -> {'n': 16, 'edges': [[u, v], ...]}: a simple graph on 16 vertices with exactly 65 = floor(16^2/4) + 1 edges (so it has triangles). The score is the largest degree sum deg(u) + deg(v) + deg(w) over its triangles. Minimize. Scores below 24 would beat the published construction at n = 16; the best asymptotic construction gives about 1.4639n = 23.4 (a note of July 2026, not yet published in a journal, reports a disproof of the Bollobás-Erdős conjecture h(n) >= (2(sqrt 3 - 1) - o(1))n by a blow-up of the butterfly graph).
 
     Candidate interface: construct() -> {'n': 16, 'edges': [[u, v], ...]}: a simple graph on 16 vertices with exactly 65 = floor(16^2/4) + 1 edges (so it has triangles). The score is the largest degree sum deg(u) + deg(v) + deg(w) over its triangles. Minimize.
 

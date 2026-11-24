@@ -174,12 +174,12 @@
     },
     "interface": "construct() -> a list aligned with the 32 pinned consecutive-prime pairs. Each entry is either None (no certificate) or an integer STRICTLY between its pair whose least prime factor is at least the prime gap. Supply at least one witness; maximize certified gaps. The verifier checks primality, consecutiveness and every least factor independently. None never asserts nonexistence.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -219,9 +219,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Ayla Gafni and Terence Tao (2025, Rough numbers between consecutive primes) study the underlying problem.",
+    "kind": "optimum",
+    "value": 22,
+    "statement": "Exactly 22 of the 32 pinned gaps contain a witness (exhaustive check of every interior integer; the gap indices agree with OEIS A386978), so the optimum is 22. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Ayla Gafni and Terence Tao (2025, Rough numbers between consecutive primes) study the underlying problem.",
     "sources": [
       {
         "title": "Rough numbers between consecutive primes",
@@ -230,15 +230,15 @@
         "year": 2025
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

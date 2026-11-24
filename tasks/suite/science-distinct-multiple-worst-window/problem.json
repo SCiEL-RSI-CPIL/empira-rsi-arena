@@ -49,9 +49,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn (2026, On the length of an interval that contains distinct multiples of the first n positive integers) studies the underlying problem.",
+    "kind": "optimum",
+    "value": 22,
+    "statement": "The maximum of f(12, m) over all m is 22: f(12, m) has period lcm(1..12) = 27720 in m, and one period was evaluated exhaustively for this package. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Wouter van Doorn (2026, On the length of an interval that contains distinct multiples of the first n positive integers) studies the underlying problem.",
     "sources": [
       {
         "title": "On the length of an interval that contains distinct multiples of the first n positive integers",
@@ -60,7 +60,7 @@
         "year": 2026
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "supported",
@@ -82,12 +82,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

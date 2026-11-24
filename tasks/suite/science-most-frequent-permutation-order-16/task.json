@@ -90,7 +90,7 @@
   "state_of_the_art": {
     "kind": "optimum",
     "value": 2428557331200,
-    "statement": "In S_16 the most common order is 12, shared by 2,428,557,331,200 permutations (OEIS A061125). Enumerating all 231 cycle types (scripts/check_state_of_the_art.py) confirms that no other order is more frequent. Beker described the maximizing orders asymptotically.",
+    "statement": "In S_16 the most common element order is shared by 2,428,557,331,200 permutations. Enumerating all 231 cycle types confirms that no other order is more frequent, and the count agrees with the OEIS table for that order. Beker described the maximizing orders asymptotically.",
     "sources": [
       {
         "title": "OEIS A061125: Number of degree-n permutations of order exactly 12",
@@ -103,7 +103,7 @@
         "year": 2025
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
     "scientific_contribution": "rediscovery",

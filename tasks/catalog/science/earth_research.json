@@ -33,7 +33,7 @@
    "Inputs are the post-season best track rather than the real-time operational estimates; verification is at 6-hourly synoptic times only, and off-synoptic landfall records are dropped.",
    "A better score is a better statistical track model on these seasons, not a scientific discovery.",
    "The held-out observations are public, so search feedback on this fixed split can overfit it; freeze a candidate and test it on later or independent data before claiming a scientific improvement.",
-   "Candidate and evaluator share one Python process; the API withholds held-out data but is not a security sandbox."
+   "The candidate runs in a sandboxed child process that receives a storm's best track only up to the forecast time, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -117,7 +117,7 @@
    "Best-track maximum winds are rounded to 5 kt and carry analysis uncertainty of roughly 10 kt or more for weaker systems (Landsea and Franklin 2013), which bounds achievable errors.",
    "A better score is a better statistical intensity model on these seasons, not a scientific discovery.",
    "The held-out observations are public, so search feedback on this fixed split can overfit it; freeze a candidate and test it on later or independent data before claiming a scientific improvement.",
-   "Candidate and evaluator share one Python process; the API withholds held-out data but is not a security sandbox."
+   "The candidate runs in a sandboxed child process that receives a storm's best track only up to the forecast time, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -193,16 +193,16 @@
    {
     "url": "https://downloads.psl.noaa.gov/Datasets/noaa.ersst.v5/sst.mnmean.nc",
     "type": "archive",
-    "locator": "NOAA ERSSTv5 monthly means distributed by NOAA PSL (retrieved 2026-10-10; no constraints on use); months 1950-01 to 2025-12 are used."
+    "locator": "NOAA ERSSTv5 monthly means distributed by NOAA PSL (retrieved 2026-11-20; no constraints on use); months 1950-01 to 2025-12 are used."
    }
   ],
   "limitations": [
    "Inputs are sea-surface temperatures only (Nino indices and the 2-degree tropical Pacific field); operational forecasts also use subsurface ocean heat content, winds and coupled dynamical models, so scores are not comparable with published operational skill.",
    "The Nino indices are computed locally as cosine-weighted means over ERSSTv5 cells centred in each box; they reproduce the familiar NOAA ONI peaks to about 0.1 deg C (checked for 1982/83, 1997/98, 2015/16 and 2023/24) but are not the official index files.",
    "The 300 monthly origins are strongly autocorrelated (about 25 independent years and only a handful of strong events), so score differences of a few hundredths of a degree are not statistically meaningful.",
-   "ERSSTv5 is updated monthly by NOAA; if past values are revised, the derived-file hash check fails and the data must be re-recorded, which changes scores slightly.",
+   "ERSSTv5 is recomputed monthly by NOAA and every update revises recent years (NCEI rewrites its monthly files from January 2008 on; the update of November 2026 changed tropical Pacific cells in 52 months from December 2017, mostly one or two cells by 0.01 deg C, and left the Nino 3.4 series unchanged). The derived-file hash check then fails, so preparation needs an archived copy of the locked source file or a re-recorded lock, which changes inputs slightly.",
    "A better score is a better statistical forecast model on these years, not a scientific discovery; the held-out observations are public, so search feedback on this fixed split can overfit it.",
-   "The candidate runs in a sandboxed child process that never receives verifying months; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives verifying months, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -281,7 +281,7 @@
    {
     "url": "https://earthquake.usgs.gov/fdsnws/event/1/",
     "type": "archive",
-    "locator": "USGS ANSS Comprehensive Catalog (ComCat, doi:10.5066/F7MS3QZH), FDSN event service: earthquakes with magnitude >= 2.5 in 31-38 N, 122-113 W, 1981-2024 (public domain; retrieved 2026-10-10)."
+    "locator": "USGS ANSS Comprehensive Catalog (ComCat, doi:10.5066/F7MS3QZH), FDSN event service: earthquakes with magnitude >= 2.5 in 31-38 N, 122-113 W, 1981-2024 (public domain; retrieved 2026-11-20)."
    }
   ],
   "limitations": [
@@ -291,7 +291,7 @@
    "The 2016-2024 period is dominated by the 2019 Ridgecrest sequence, so the score mostly reflects aftershock forecasting skill for one large sequence; the information gain is an estimate with substantial sampling uncertainty.",
    "ComCat is a live catalogue; if past events are revised, the derived-file hash check fails and the data must be re-recorded, which changes scores slightly.",
    "A better score is a better statistical forecast model on these years, not a scientific discovery; the held-out catalogue is public, so search feedback on this fixed split can overfit it.",
-   "The candidate runs in a sandboxed child process that never receives events after a forecast day starts; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives events after a forecast day starts, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -376,7 +376,7 @@
    "No published value is embedded: the benchmark paper's tables could not be retrieved in this environment (the publisher's site refused the request), so the mean AUCs it reports were not checked.",
    "The presence-absence outcomes are public on OSF; the sandbox keeps them away from the candidate process, but search feedback on these fixed sites can still overfit them.",
    "A better score is a better species distribution modelling method on this benchmark, not an ecological discovery.",
-   "The candidate runs in a sandboxed child process that never receives the survey outcomes; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives the survey outcomes, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -457,10 +457,10 @@
   ],
   "limitations": [
    "Only a single homogeneous layer over a black surface with a Henyey-Greenstein phase function and unit beam irradiance is scored; multilayer atmospheres, surface reflection, real cloud or aerosol phase functions and thermal emission are not.",
-   "The 12000 layers come from a fixed random design (seed 20261010); a closure tuned to this design may be less accurate for other distributions of optical depth, albedo, asymmetry or sun angle.",
-   "The reference is a numerical solution (48 streams per hemisphere, delta-M), not an analytic one: it changes by about 1e-11 when the stream number is doubled and agreed with an independent Monte Carlo simulation to within its sampling error (about 6e-4) on the checked layers; conservative layers are computed with albedo 1 - 1e-10.",
+   "The 12000 layers come from a fixed random design (seed 20261010; 3000 triples of albedo, asymmetry and sun angle, each at four optical depths); the generator and its seed are in the evaluator's source, so a candidate can rebuild the design, but it gains only the four depths at which each triple is scored. A closure tuned to this design may be less accurate for other distributions of optical depth, albedo, asymmetry or sun angle.",
+   "The reference is a numerical solution (48 streams per hemisphere, delta-M), not an analytic one: it changes by about 1e-11 when the stream number is doubled and agreed with an independent Monte Carlo simulation to within its sampling error (about 6e-4) on the checked layers; conservative layers are computed with albedo 1 - 1e-10, and the stored fluxes are rounded to six decimals.",
    "Coefficients may depend on albedo, asymmetry and sun angle but not on optical depth; closures that use extra information (for example tabulated corrections) are allowed, so a better score is a more accurate two-stream approximation, not necessarily a cheaper or more physical one.",
-   "The candidate runs in a sandboxed child process that never receives the reference fluxes; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives the reference fluxes, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -500,8 +500,8 @@
   "state_of_the_art": {
    "kind": "none",
    "value": null,
-   "as_of": "2026-10-10",
-   "statement": "No published value exists for this case distribution. Published closures evaluated by the task's evaluator: delta-PIFM 0.01886, delta-Eddington 0.01897 (the seed), PIFM 0.01935, Eddington 0.01938, delta-quadrature 0.02079, quadrature 0.02342 (mean |dR| + |dT|); delta-Eddington errors reach 0.44 for grazing sun on thin forward-scattering layers.",
+   "as_of": "2026-11-24",
+   "statement": "No published value exists for this case distribution. Published closures evaluated by the task's evaluator: delta-PIFM 0.01904, delta-Eddington 0.01917 (the seed), Eddington 0.01945, PIFM 0.01948, delta-quadrature 0.02072, quadrature 0.02320 (mean |dR| + |dT|); delta-Eddington errors reach 0.40 for grazing sun on thin forward-scattering layers.",
    "sources": [
     {
      "title": "Two-Stream Approximations to Radiative Transfer in Planetary Atmospheres: A Unified Description of Existing Methods and a New Improvement",
@@ -560,7 +560,7 @@
    "Only 45 annual values are scored and internal variability not explained by the ENSO index (roughly 0.1 deg C per year) limits the attainable error; HadCRUT5 itself has a 95% range of about 0.03-0.05 deg C in this period.",
    "A better score is a better statistical or physical emulator of observed warming given these forcings, not by itself a new estimate of climate sensitivity.",
    "HadCRUT5 is a live product; if past annual means are revised, the derived-file hash check fails and the data must be re-recorded.",
-   "The candidate runs in a sandboxed child process that never receives temperatures after 1979; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives temperatures after 1979, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -644,7 +644,8 @@
    "Forecasts of the two windows of one mainshock and of overlapping sequences are not independent; the 1443 test forecasts come from 723 mainshocks.",
    "ComCat is a live catalogue; if past events are revised, the derived-file hash check fails and the data must be re-recorded, which changes scores slightly.",
    "A better score is a better statistical aftershock forecasting model on these years, not a scientific discovery; the held-out catalogue is public, so search feedback on this fixed split can overfit it.",
-   "The candidate runs in a sandboxed child process that never receives events after a forecast start; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives events after a forecast start, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy.",
+   "Three training cases start in the last days of 2014 and their target windows end after 2015-01-01 (all three counts are zero), so the fit-time counts reflect up to 18 days of the test period; one of them overlaps by one day the 30-day test window of the same mainshock."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -729,10 +730,10 @@
    "The samples are drawn from the sensor record by a fixed random design rather than being real laboratory analyses, so they carry sensor rather than laboratory error and no sampling-time bias; real monitoring programmes differ.",
    "Loads are computed only over days with approved sensor data in months with at least 25 such days, so winter gaps (sensors removed for ice) and storms missed by the sensors are not scored.",
    "Sites are large Midwest and lower-Mississippi rivers with strong agricultural nitrate signals; the score says little about small streams or other regions.",
-   "NWIS daily values are live; if approved values are revised, the derived-file hash check fails and the data must be re-recorded.",
+   "NWIS daily values are live and provisional values are approved long after the measurements; each record therefore ends where its approved discharge ended when the lock was recorded on 2026-10-10 (2024-04-14 at Baton Rouge, 2025-09-30 at the other sites). If approved values are revised, the derived-file hash check fails and the data must be re-recorded.",
    "The WRTDS reference is a local implementation following the published method (no edge adjustment); it was checked to recover an exact log-linear model but was not compared with the EGRET package, whose geospatial dependencies were not installed.",
    "A better score is a better load-estimation method on these records, not a scientific discovery; the sensor data are public, so search feedback can overfit them.",
-   "The candidate runs in a sandboxed child process that never receives the unsampled sensor values; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives the unsampled sensor values, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -813,7 +814,7 @@
    "The Sturm-form reference is fitted on the training stations (its maximum-density parameter ends at the upper bound 1.0, so the fitted curve is nearly linear); published coefficients were not used because the paper could not be retrieved here.",
    "SNOTEL data are revised by NRCS; if values change, the derived-file hash check fails and the data must be re-recorded.",
    "A better score is a better depth-to-SWE conversion on this network, not a scientific discovery; the data are public, so search feedback can overfit them.",
-   "The candidate runs in a sandboxed child process that never receives the held-out stations' SWE; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives the held-out stations' SWE, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -899,7 +900,7 @@
    "Buoys are deployed only in the ice-free season and the hindcast uses each buoy's own record, so the score covers open-water months at these seven locations only.",
    "Since 2019 the archive holds 10-minute records; the evaluator keeps, for every field, the valid value closest to each full hour, so some hourly values come from up to 30 minutes away.",
    "A better score is a better statistical or physical wave hindcast at these buoys, not a scientific discovery; the held-out observations are public, so search feedback on this split can overfit it.",
-   "The candidate runs in a sandboxed child process that never receives 2019-2024 wave observations; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives 2019-2024 wave observations, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -983,7 +984,7 @@
    "The verifying track, maximum wind and pressure are given (perfect prognosis); operational radii forecasts must use forecast track and intensity, so errors here are smaller than operational ones and not comparable with them.",
    "Only 34-kt radii are scored, at 6-hourly synoptic times; 50- and 64-kt radii and the radius of maximum wind are available as history but not forecast.",
    "A better score is a better statistical storm-size model on these seasons, not a scientific discovery; the held-out observations are public, so search feedback on this split can overfit it.",
-   "The candidate runs in a sandboxed child process that receives each case's information only when it is requested; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that receives each case's information only when it is requested, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -1062,7 +1063,7 @@
    "The generator and its seed are in the evaluator's source; a candidate that re-implements them could reproduce the truth, so results are only meaningful for candidates that use the observations alone.",
    "No station metadata (documented relocations or instrument changes) are given, unlike in practical homogenisation.",
    "A better score is a better homogenisation method on this benchmark, not a statement about real climate records.",
-   "The candidate runs in a sandboxed child process that never receives the true series; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives the true series, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -1145,9 +1146,9 @@
    "Only the CO2 record and an ENSO index are given; operational forecasts also use fossil-fuel emission estimates, so scores are not comparable with them.",
    "Monthly means carry weather-driven noise of a few tenths of a ppm, and December 2022 - July 2023 values come from Maunakea after the Mauna Loa eruption; differences of a few hundredths of a ppm between candidates are not meaningful.",
    "The 300 origins overlap strongly, so the effective sample is about 25 annual growth anomalies.",
-   "The GML file is updated monthly and recent values can be revised; if they change, the derived-file hash check fails and the data must be re-recorded.",
+   "The GML file is rewritten monthly and old values are revised (ten monthly means of 1974-2014 changed by 0.01 ppm between the files of October and November 2026), so preparation uses the Internet Archive capture of the retrieved file that the data lock names. The ENSO index comes from the live ERSSTv5 file; if its values up to 2024 are revised, the derived-file hash check fails and the data must be re-recorded.",
    "A better score is a better statistical forecast on these years, not a scientific discovery; the record is public, so search feedback can overfit it.",
-   "The candidate runs in a sandboxed child process that never receives months after a forecast origin; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives months after a forecast origin, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -1240,7 +1241,7 @@
    "The number of buoys grows strongly after 2014, so the test years weight recent conditions and regions with dense deployments.",
    "The IABP product states no licence; it is downloaded by the preparation script and not redistributed.",
    "A better score is a better statistical model of ice drift on these buoys, not a scientific discovery; the held-out tracks are public, so search feedback can overfit them.",
-   "The candidate runs in a sandboxed child process that never receives positions after the start of a forecast day; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives positions after the start of a forecast day, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -1332,7 +1333,7 @@
    "The truth is the measured diffuse irradiance after quality control (flags, closure within 8 percent or 20 W m-2); measurement uncertainty of a few percent remains, and rejected minutes (often broken clouds or instrument issues) are not scored.",
    "No clear-sky irradiance model or aerosol data are given; candidates must build any clear-sky reference themselves from the inputs.",
    "A better score is a better separation model for these stations, not a scientific discovery; the data are public, so search feedback can overfit them.",
-   "The candidate runs in a sandboxed child process that never receives the test stations' direct or diffuse irradiance; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives the test stations' direct or diffuse irradiance, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",
@@ -1406,7 +1407,7 @@
    "The generating model (Gutenberg-Richter times cumulative-normal detection) is stated in the contract, so a candidate can fit it exactly; the score then measures statistical efficiency on this model rather than robustness to model error.",
    "The generator and its seed are in the evaluator's source; a candidate that re-implements them could reproduce the truth, so results are only meaningful for candidates that use the magnitudes alone.",
    "A better score is a better estimator on this benchmark, not a seismological discovery.",
-   "The candidate runs in a sandboxed child process that never receives the generating parameters; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+   "The candidate runs in a sandboxed child process that never receives the generating parameters, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "labels": {
    "area": "earth_and_environment",

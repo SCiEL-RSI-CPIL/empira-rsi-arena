@@ -22,7 +22,7 @@
     {
       "url": "https://doi.org/10.1093/nar/gkaa1047",
       "type": "archive",
-      "locator": "Rfam (CC0): seed alignments and consensus secondary structures; this task uses Rfam.3d.seed.gz, the families with three-dimensional structures."
+      "locator": "Rfam (CC0): seed alignments and consensus secondary structures; this task uses Rfam.3d.seed.gz of release 15.1, the families with three-dimensional structures."
     }
   ],
   "requirements": {
@@ -90,9 +90,9 @@
   "limitations": [
     "Reference structures are consensus structures from comparative sequence analysis projected onto individual sequences, not per-sequence experimental structures; pseudoknots, non-canonical pairs and pairs involving gapped columns are dropped.",
     "Only canonical nested pairs with a span of at least four nucleotides are scored, and at most two sequences per family are used, so the set is small (90 sequences, 47 families).",
-    "ViennaRNA is available in the environment, so a candidate can call a thermodynamic folding engine; an improvement over that engine on this set is a method result on 47 families, not a general advance in RNA folding.",
+    "Where ViennaRNA is installed (it is optional, not a requirement of the task) a candidate can call a thermodynamic folding engine; an improvement over that engine on this set is a method result on 47 families, not a general advance in RNA folding.",
     "Families describing viral elements or CRISPR loci are excluded by name, so the set is biased towards riboswitches, ribozymes, small RNAs and spliceosomal RNAs.",
-    "Rfam's CURRENT directory tracks the latest release; the derived file's hash pins the exact sequences and structures used."
+    "The source is the file of the Rfam 15.1 release directory (https://ftp.ebi.ac.uk/pub/databases/Rfam/15.1/Rfam.3d.seed.gz), pinned by SHA-256; the derived file's hash pins the exact sequences and structures used."
   ],
   "validation": {
     "level": "source_seed_executed",
@@ -125,7 +125,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   },
   "science_relevance": {

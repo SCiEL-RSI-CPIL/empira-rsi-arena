@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "id": "science-sum-free-subsets-instances",
   "name": "Large sum-free subsets of three fixed sets of integers",
-  "description": "construct() -> three subsets, one per instance from sum_free_instance(size, seed) for (60,801), (120,802), (240,803) in the verifier (distinct nonzero integers in [-10000, 10000]). Each subset must be sum-free: no a + b = c with a, b, c in it (a = b allowed). Maximize the total size; every n-element set has a sum-free subset of size at least (n+2)/3 (Bourgain). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n).",
+  "description": "construct() -> three subsets, one per instance from sum_free_instance(size, seed) for (60,801), (120,802), (240,803) in the verifier (distinct nonzero integers in [-10000, 10000]). Each subset must be sum-free: no a + b = c with a, b, c in it (a = b allowed). Maximize the total size; every n-element set has a sum-free subset of size at least (n+2)/3 (Bourgain). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n). The exact optimum is 328 (55 + 103 + 170), which integer programming on the triples a + b = c finds in seconds.",
   "paper_ids": [
     "science-prize_i"
   ],
@@ -12,7 +12,7 @@
     {
       "url": "https://doi.org/10.4007/annals.2014.180.2.5",
       "type": "paper",
-      "locator": "Sean Eberhard, Ben Green and Freddie Manners, Sets of integers with no large sum-free subset (2014). Crossref record inspected; Erdős Problem #792 page inspected (f(n) >= n/3 (Erdős), (n+2)/3 (Bourgain), n/3 + c log log n (Bedert 2025); f(n) <= n/3 + o(n) (Eberhard, Green and Manners); Problem 1 on Green's list). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n)."
+      "locator": "Sean Eberhard, Ben Green and Freddie Manners, Sets of integers with no large sum-free subset (2014). Crossref record inspected; Erdős Problem #792 page inspected (f(n) >= n/3 (Erdős), (n+2)/3 (Bourgain), n/3 + c log log n (Bedert 2025); f(n) <= n/3 + o(n) (Eberhard, Green and Manners); Problem 1 on Green's list). The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n). The exact optimum is 328 (55 + 103 + 170), which integer programming on the triples a + b = c finds in seconds."
     },
     {
       "url": "https://www.erdosproblems.com/792",
@@ -48,13 +48,13 @@
     "parameters": {},
     "interface": "construct() -> three subsets, one per instance from sum_free_instance(size, seed) for (60,801), (120,802), (240,803) in the verifier (distinct nonzero integers in [-10000, 10000]). Each subset must be sum-free: no a + b = c with a, b, c in it (a = b allowed). Maximize the total size; every n-element set has a sum-free subset of size at least (n+2)/3 (Bourgain).",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "area": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none"
+      "reference": "published_value"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -79,7 +79,7 @@
     }
   },
   "limitations": [
-    "Instance-solving task on three fixed pseudo-random sets.",
+    "Instance-solving task on three fixed pseudo-random sets; the exact optimum (328) is known.",
     "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
   ],
   "validation": {
@@ -91,9 +91,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "Instance-solving task; no reference value.",
+    "kind": "optimum",
+    "value": 328,
+    "statement": "The exact optimum is 328 = 55 + 103 + 170: the complement of a minimum hitting set of the triples a + b = c inside each instance (7, 29 and 257 triples). Computed for this package by integer programming and proved by branch and bound with exactly verified linear-programming bounds; not published.",
     "sources": [
       {
         "title": "Sets of integers with no large sum-free subset",
@@ -106,7 +106,7 @@
         "url": "https://www.erdosproblems.com/792"
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 792,
       "url": "https://www.erdosproblems.com/792",
@@ -115,13 +115,13 @@
     }
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "area": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "science_tier": 2,
     "resources": [
       "cpu"
@@ -137,7 +137,7 @@
       {
         "title": "Sets of integers with no large sum-free subset",
         "url": "https://doi.org/10.4007/annals.2014.180.2.5",
-        "task_relation": "The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n).",
+        "task_relation": "The score totals sum-free subset sizes on three fixed random sets; it measures a search method, not the worst case in f(n). The exact optimum is 328 (55 + 103 + 170), which integer programming on the triples a + b = c finds in seconds.",
         "primary_goal": "Estimate f(n), the size of the largest sum-free subset guaranteed in every n-element set of integers (Erdős Problem #792).",
         "evidence_role": "primary_problem"
       }

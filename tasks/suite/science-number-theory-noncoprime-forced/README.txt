@@ -17,9 +17,9 @@ construct() -> candidate. Return a nonempty subset of [1,255] containing 255, wi
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Rudolf Ahlswede and Levon H. Khachatrian (1996, Sets of integers with pairwise common divisor and a factor from a specified set of primes) study the underlying problem.
+The largest pairwise non-coprime subset of [1,255] that contains 255 has 85 elements (exact maximum-clique search, confirmed by an integer program). This is n/p for the least prime factor p of n = 255, the first of the two values in the guess of Erdős and Graham recorded by Erdős (1973, p. 123).
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `85` (reviewed 2026-11-24).
 
 - [Sets of integers with pairwise common divisor and a factor from a specified set of primes](https://matwbn.icm.edu.pl/ksiazki/aa/aa75/aa7536.pdf), Rudolf Ahlswede and Levon H. Khachatrian (1996)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 255, "forced": 255}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

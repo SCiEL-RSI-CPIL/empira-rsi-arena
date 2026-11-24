@@ -46,12 +46,12 @@
     },
     "interface": "construct() -> 1..60 distinct integers in 1..256. Whenever two subsets have different cardinalities their sums must differ. Repeated sums within the SAME cardinality are allowed. The empty subset is included. Maximize set size using exact cardinality-indexed subset-sum dynamic programming.",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "open_problem",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -90,28 +90,34 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős, Jean-Louis Nicolas and András Sárközy (1991, Sommes de sous-ensembles) study the underlying problem.",
+    "kind": "conjectured_optimum",
+    "value": 31,
+    "statement": "The largest admissible set known in [1, 256] has 31 elements: an interval construction of Straus has k elements exactly when k <= 2 sqrt(N + 1/4) - 1. Erdős conjectured that this is the maximum, and Deshouillers and Freiman (1999) proved the conjecture for sufficiently large N; it is not proven for N = 256. Paul Erdős, Jean-Louis Nicolas and András Sárközy (1991, Sommes de sous-ensembles) study the underlying problem.",
     "sources": [
       {
         "title": "Sommes de sous-ensembles",
         "url": "https://www.numdam.org/item/JTNB_1991__3_1_55_0/",
         "authors": "Paul Erdős, Jean-Louis Nicolas and András Sárközy",
         "year": 1991
+      },
+      {
+        "title": "On an additive problem of Erdős and Straus, 2",
+        "url": "https://www.numdam.org/item/AST_1999__258__141_0/",
+        "authors": "Jean-Marc Deshouillers, Gregory A. Freiman",
+        "year": 1999
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "open_problem",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
-    "science_tier": 2,
+    "science_tier": 1,
     "resources": [
       "cpu"
     ],

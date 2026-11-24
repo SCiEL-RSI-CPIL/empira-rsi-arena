@@ -17,9 +17,9 @@ construct() -> partition of vertices 0..13 into nonempty lists. Every part must 
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Annika Heckel (2024, The difference between the chromatic and the cochromatic number of a random graph) studies the underlying problem.
+The cochromatic number of the pinned graph is 4 (exhaustive dynamic programming over all vertex subsets, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Annika Heckel (2024, The difference between the chromatic and the cochromatic number of a random graph) studies the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `4` (reviewed 2026-11-24).
 
 - [The difference between the chromatic and the cochromatic number of a random graph](https://arxiv.org/abs/2409.17614), Annika Heckel (2024)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 14, "edges": [[0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 10]
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `synthetic`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `synthetic`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

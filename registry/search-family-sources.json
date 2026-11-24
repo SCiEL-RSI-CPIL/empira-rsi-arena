@@ -7,11 +7,11 @@
     "repository_url": "https://github.com/Doldrums/arena",
     "revision": "main",
     "manifest_path": "registry/task-library-manifest.json",
-    "manifest_sha256": "74f361c8c9812113a64bf00b42c745150cfe975c0ec833f9b85148852b072a4c",
+    "manifest_sha256": "82432f913cf27ae0d6b3ce8cecc5e6f3a64350a82aa8e970f21135dc5003231f",
     "catalog_path": "catalog/tasks.json",
     "index_path": "suite/index.json",
-    "catalog_sha256": "7a48a2a4e4f14edff24848037c240d0ad7d419d18e081432a075ced19c07307b",
-    "index_sha256": "e3948b177689b3d74d72fb3e1548ee348c0ee72851eedf420941bbe82de33eab"
+    "catalog_sha256": "264fa223d52a79de2ecb6aae1918f68163789f01519d259b88749d63ebe11f00",
+    "index_sha256": "49cd83f106695b0254814939f06ca82e7be04c11e3c3ac0f104ee64e4af5cd9b"
   },
   "files": [
     {

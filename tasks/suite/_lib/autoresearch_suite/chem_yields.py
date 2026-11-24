@@ -20,6 +20,7 @@ from __future__ import annotations
 import numpy as np
 
 from . import chem_sandbox
+from .chem_adme import reportable
 from .chem_common import load_json, predictions, r2, regression_metrics
 
 AMINE = "Cc1ccc(N)cc1"
@@ -75,7 +76,7 @@ def buchwald_hartwig_score(module, wall_seconds_per_split=200):
         rows.append(_split_score(module, name, train, [r["yield"] for r in split["train"]], test,
                                  np.array([r["yield"] for r in split["test"]]), wall_seconds_per_split, "buchwald_hartwig"))
         rows[-1]["published_yield_bert_r2"] = PUBLISHED_BH[name]
-    return float(np.mean([r["r2"] for r in rows])), {"splits": rows, "mean_r2": float(np.mean([r["r2"] for r in rows]))}
+    return float(np.mean([r["r2"] for r in rows])), reportable({"splits": rows, "mean_r2": float(np.mean([r["r2"] for r in rows]))})
 
 
 def suzuki_miyaura_score(module, wall_seconds_per_split=80):
@@ -89,8 +90,8 @@ def suzuki_miyaura_score(module, wall_seconds_per_split=80):
         rows.append(_split_score(module, f"random_split_{k}", [reactions[i] for i in train], yields[train],
                                  [reactions[i] for i in test], yields[test], wall_seconds_per_split, "suzuki_miyaura"))
     scores = [r["r2"] for r in rows]
-    return float(np.mean(scores)), {"splits": rows, "mean_r2": float(np.mean(scores)), "std_r2": float(np.std(scores)),
-                                    "min_r2": float(min(scores))}
+    return float(np.mean(scores)), reportable({"splits": rows, "mean_r2": float(np.mean(scores)), "std_r2": float(np.std(scores)),
+                                               "min_r2": float(min(scores))})
 
 
 __all__ = ["buchwald_hartwig_score", "suzuki_miyaura_score", "buchwald_hartwig_reactions", "r2"]

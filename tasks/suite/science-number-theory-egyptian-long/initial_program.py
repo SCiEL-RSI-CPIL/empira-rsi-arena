@@ -2,8 +2,9 @@
 # EVOLVE-BLOCK-START
 def construct():
     # Subset dynamic programming over divisors of a locally chosen common denominator.
+    # Denominators are tried in decreasing order: a valid but long representation.
     target, reached = 2520, {0: []}
-    for d in range(5, target + 1):
+    for d in range(target, 4, -1):
         if target % d:
             continue
         w = target // d

@@ -17,9 +17,9 @@ construct() -> six disjoint triples covering vertices 0..17 exactly once. Score 
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Jeff Kahn (2023, Asymptotics for Shamir’s problem) studies the underlying problem.
+The earliest prefix of the pinned order that contains a perfect matching is 31 (exact-cover search on the prefixes, computed for this package). No value is published for this instance, which was fixed for this dataset; the task compares search methods. Jeff Kahn (2023, Asymptotics for Shamir’s problem) studies the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `31` (reviewed 2026-11-24).
 
 - [Asymptotics for Shamir’s problem](https://doi.org/10.1016/j.aim.2023.109019), Jeff Kahn (2023)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 18, "edge_order": [[0, 1, 6], [4, 13, 14], [2, 3, 16], [9, 10
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `synthetic`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `synthetic`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

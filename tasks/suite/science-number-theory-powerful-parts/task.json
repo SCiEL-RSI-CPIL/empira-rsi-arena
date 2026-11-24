@@ -46,12 +46,12 @@
     },
     "interface": "construct() -> candidate. Return an integer n in [10000,1000000]. Its powerful part is the product of FULL prime powers p^e with exponent e>=2 in its factorization. Maximize powerful_part(n)*powerful_part(n+1).",
     "label_spec": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "provenance": {
@@ -94,9 +94,9 @@
     "lean_verified": false
   },
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+    "kind": "optimum",
+    "value": 216340800500,
+    "statement": "A full scan of n in [10000, 1000000] gives the maximum 216340800500 of B_2(n)·B_2(n+1), attained once, at a pair of consecutive powerful numbers. Erdős and Graham (1980, pp. 68-69) ask whether the product of the powerful parts of k consecutive integers stays below n^(2+ε).",
     "sources": [
       {
         "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -105,15 +105,15 @@
         "year": 1980
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

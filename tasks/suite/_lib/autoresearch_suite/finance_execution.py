@@ -117,13 +117,20 @@ def optimum(index):
 
 
 def validate(problem, trades):
+    """Accept a schedule within the tolerances and return the one that is scored: nonnegative and summing to X.
+
+    The tolerances exist for rounding. Scoring the schedule as returned would reward selling 1e-6 less than the
+    order with an objective below the optimum, so the accepted schedule is rescaled to the order size.
+    """
     X, N = problem["shares"], problem["periods"]
     n = finite_vector(trades, f"trades for {problem['name']}", (N,))
     if (n < -1e-9 * X).any():
         raise CandidateError(f"{problem['name']}: a sell program cannot buy (negative trade)")
     if abs(float(n.sum()) - X) > 1e-6 * X:
         raise CandidateError(f"{problem['name']}: trades sum to {n.sum():.6g}, not the order size {X:.6g}")
-    return n
+    n = np.clip(n, 0.0, None)
+    total = float(n.sum())
+    return n if total == X else n * (X / total)
 
 
 def schedules():

@@ -10,7 +10,7 @@
   "requires": [],
   "timeout": 120,
   "notes": [
-    "Integer configurations are a restriction of the real problem; the real value 15 for n = 16 is an upper reference, not a documented integer optimum. Exact local certificates are not Lean proofs; floating-point scores are stated as such. Consult the independent oracle and malformed-input tests."
+    "Integer configurations are a restriction of the real problem: the best known integer configuration of 16 points has 14 such lines (OEIS A172992), and OEIS A006065 lists 15 for real configurations. Exact local certificates are not Lean proofs; floating-point scores are stated as such. Consult the independent oracle and malformed-input tests."
   ],
   "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
   "id": "science-four-point-lines-sixteen-integer-points",
@@ -18,7 +18,7 @@
   "paper_ids": [
     "science-prize_g"
   ],
-  "description": "construct() -> exactly 16 distinct integer points [x, y] with |x|, |y| <= 1000 and no five collinear. Maximize the number of lines containing exactly four of the points (exact). Integer configurations are a restriction of the real problem; the real value 15 for n = 16 is an upper reference, not a documented integer optimum.",
+  "description": "construct() -> exactly 16 distinct integer points [x, y] with |x|, |y| <= 1000 and no five collinear. Maximize the number of lines containing exactly four of the points (exact). Integer configurations are a restriction of the real problem: the best known integer configuration of 16 points has 14 such lines (OEIS A172992), and OEIS A006065 lists 15 for real configurations.",
   "benchmark": "Sixteen integer points with many four-point lines and no five collinear",
   "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
   "paper_direction": null,
@@ -26,7 +26,7 @@
     {
       "url": "https://doi.org/10.1007/s00454-013-9526-9",
       "type": "paper",
-      "locator": "József Solymosi and Miloš Stojaković, Many Collinear k-Tuples with no k+1 Collinear Points (2013). Crossref record inspected; Erdős Problem #101 ($100) page inspected: sets with no five on a line can have n^(2-O(1/sqrt(log n))) four-point lines (Solymosi and Stojaković). OEIS A006065 lists maximal numbers of 4-point lines for real configurations (15 for n = 16). Integer configurations are a restriction of the real problem; the real value 15 for n = 16 is an upper reference, not a documented integer optimum."
+      "locator": "József Solymosi and Miloš Stojaković, Many Collinear k-Tuples with no k+1 Collinear Points (2013). Crossref record inspected; Erdős Problem #101 ($100) page inspected: sets with no five on a line can have n^(2-O(1/sqrt(log n))) four-point lines (Solymosi and Stojaković). OEIS A006065 lists maximal numbers of 4-point lines for real configurations (15 for n = 16). Integer configurations are a restriction of the real problem: the best known integer configuration of 16 points has 14 such lines (OEIS A172992), and OEIS A006065 lists 15 for real configurations."
     },
     {
       "url": "https://www.erdosproblems.com/101",
@@ -40,7 +40,7 @@
     }
   ],
   "limitations": [
-    "No documented integer optimum (reference label none); OEIS A006065 gives real-plane values.",
+    "The reference 14 is a best-known value (OEIS A172992), not a proven optimum; OEIS A006065 gives real-plane values.",
     "Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code."
   ],
   "evaluator": "evaluator.py",
@@ -53,9 +53,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No documented value for integer points; for real configurations OEIS A006065 lists 15 four-point lines for 16 points.",
+    "kind": "best_known",
+    "value": 14,
+    "statement": "The best known integer configuration of 16 points has 14 four-point lines and no five collinear points (OEIS A172992, best known solutions collected by D. Kamenetsky; not proven optimal). For real configurations OEIS A006065 lists 15 four-point lines for 16 points.",
     "sources": [
       {
         "title": "OEIS A006065",
@@ -66,9 +66,13 @@
         "url": "https://doi.org/10.1007/s00454-013-9526-9",
         "authors": "József Solymosi, Miloš Stojaković",
         "year": 2013
+      },
+      {
+        "title": "OEIS A172992",
+        "url": "https://oeis.org/A172992"
       }
     ],
-    "as_of": "2026-09-24",
+    "as_of": "2026-11-24",
     "erdos": {
       "number": 101,
       "url": "https://www.erdosproblems.com/101",
@@ -79,12 +83,12 @@
   "science_relevance": {
     "status": "supported",
     "scientific_problem": "Determine how many four-point lines a set with no five collinear points can have.",
-    "importance_rationale": "Erdős offered $100 for the question whether such lines are o(n^2) (Erdős Problem #101), disproved in the stated form only by an intricate construction.",
+    "importance_rationale": "Erdős offered $100 for the question whether such lines are o(n^2) (Erdős Problem #101), which is still open; the construction of Solymosi and Stojaković with n^(2-O(1/sqrt(log n))) four-point lines shows only that no bound of the form n^(2-c) holds.",
     "papers": [
       {
         "title": "Many Collinear k-Tuples with no k+1 Collinear Points",
         "url": "https://doi.org/10.1007/s00454-013-9526-9",
-        "task_relation": "Integer configurations are a restriction of the real problem; the real value 15 for n = 16 is an upper reference, not a documented integer optimum.",
+        "task_relation": "Integer configurations are a restriction of the real problem: the best known integer configuration of 16 points has 14 such lines (OEIS A172992), and OEIS A006065 lists 15 for real configurations.",
         "primary_goal": "Determine how many four-point lines a set with no five collinear points can have.",
         "evidence_role": "primary_problem"
       }
@@ -102,7 +106,7 @@
     "area": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "science_tier": 1,
     "resources": [
       "cpu"

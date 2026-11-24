@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> three vertex lists, one per instance from random_graph(n, p, seed) for (30,0.3,201), (35,0.25,202), (40,0.2,203) in the verifier. Each list must meet every maximal clique with at least two vertices (all maximal cliques enumerated by Bron-Kerbosch). Minimize the total size. The score totals transversal sizes on three fixed random graphs; it measures a covering method.
+construct() -> three vertex lists, one per instance from random_graph(n, p, seed) for (30,0.3,201), (35,0.25,202), (40,0.2,203) in the verifier. Each list must meet every maximal clique with at least two vertices (all maximal cliques enumerated by Bron-Kerbosch). Minimize the total size. The score totals transversal sizes on three fixed random graphs; it measures a covering method. The exact optimum is 44 (12 + 13 + 19), which a minimum hitting-set search over the maximal cliques finds at once.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,9 +17,9 @@ construct() -> three vertex lists, one per instance from random_graph(n, p, seed
 
 ## State of the art
 
-Instance-solving task; no reference value.
+The exact optimum is 44 = 12 + 13 + 19: minimum hitting sets of the 76, 90 and 97 maximal cliques of the three graphs (computed for this package by integer programming and by an exact search; not published).
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `44` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #610](https://www.erdosproblems.com/610), status: proved (Lean).
 
@@ -28,7 +28,7 @@ Underlying problem: [Erdős Problem #610](https://www.erdosproblems.com/610), st
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 
@@ -42,7 +42,7 @@ Underlying problem: Estimate the clique transversal number tau(G) (Erdős Proble
 
 Why it matters: Clique transversals are a hitting-set problem on the clique hypergraph, related to independent sets in triangle-free graphs.
 
-- [Covering the cliques of a graph with vertices](https://doi.org/10.1016/0012-365X(92)90681-5): Main research objective: Estimate the clique transversal number tau(G) (Erdős Problems #610, #611 and #151). Task connection: The score totals transversal sizes on three fixed random graphs; it measures a covering method.
+- [Covering the cliques of a graph with vertices](https://doi.org/10.1016/0012-365X(92)90681-5): Main research objective: Estimate the clique transversal number tau(G) (Erdős Problems #610, #611 and #151). Task connection: The score totals transversal sizes on three fixed random graphs; it measures a covering method. The exact optimum is 44 (12 + 13 + 19), which a minimum hitting-set search over the maximal cliques finds at once.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -50,7 +50,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- The score totals transversal sizes on three fixed random graphs; it measures a covering method. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
+- The score totals transversal sizes on three fixed random graphs; it measures a covering method. The exact optimum is 44 (12 + 13 + 19), which a minimum hitting-set search over the maximal cliques finds at once. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -62,11 +62,11 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.1016/0012-365X(92)90681-5 (Paul Erdős, Tibor Gallai and Zsolt Tuza, Covering the cliques of a graph with vertices (1992). Crossref record inspected; Erdős Problem #610 page inspected (Erdős, Gallai and Tuza proved tau(G) <= n - sqrt(2n) + O(1); tau(G) <= n - c sqrt(n log n) follows from Joret, Micek, Reed and Smid) and related problems #151 and #611. The score totals transversal sizes on three fixed random graphs; it measures a covering method.)
+- paper: https://doi.org/10.1016/0012-365X(92)90681-5 (Paul Erdős, Tibor Gallai and Zsolt Tuza, Covering the cliques of a graph with vertices (1992). Crossref record inspected; Erdős Problem #610 page inspected (Erdős, Gallai and Tuza proved tau(G) <= n - sqrt(2n) + O(1); tau(G) <= n - c sqrt(n log n) follows from Joret, Micek, Reed and Smid) and related problems #151 and #611. The score totals transversal sizes on three fixed random graphs; it measures a covering method. The exact optimum is 44 (12 + 13 + 19), which a minimum hitting-set search over the maximal cliques finds at once.)
 - archive: https://www.erdosproblems.com/610 (Erdős Problem #610 (proved (Lean)); statement, history and current bounds reviewed 2026-09-24.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0101-0200.md#JSP-000150 (JSP-000150; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 
 ## Limitations
 
-- Instance-solving task on three fixed pseudo-random graphs.
+- Instance-solving task on three fixed pseudo-random graphs; the exact optimum (44) is known.
 - Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code.

@@ -52,9 +52,9 @@
     }
   ],
   "state_of_the_art": {
-    "kind": "none",
-    "value": null,
-    "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+    "kind": "optimum",
+    "value": 32,
+    "statement": "For indices in [2,32] the largest power of 2 dividing a sum of distinct factorials that contains 2! is 2^32. A sum can be divisible by a higher power only while its partial sums stay divisible by the 2-part of the next factorial, which leaves 400 cases, and a second search modulo 2^33 agrees. Without the index bound the maximum is 2^254 (Lin 1976, quoted by Erdős and Graham 1980, p. 79).",
     "sources": [
       {
         "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -63,7 +63,7 @@
         "year": 1980
       }
     ],
-    "as_of": "2026-09-24"
+    "as_of": "2026-11-24"
   },
   "science_relevance": {
     "status": "unreviewed",
@@ -75,12 +75,12 @@
     "criterion": "primary_research_goal"
   },
   "labels": {
-    "scientific_contribution": "method",
+    "scientific_contribution": "rediscovery",
     "artifact": "construction",
     "domain": "mathematics",
     "data": "none",
     "verification": "exact",
-    "reference": "none",
+    "reference": "published_value",
     "area": "mathematics",
     "science_tier": 2,
     "resources": [

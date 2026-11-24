@@ -72,7 +72,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Limitations
 
-- Optimality is proven only for N <= 30 and N = 36 (bold entries of the Packomania table). Packomania publishes these records with 12 decimals, so ties are judged with the 1e-11 margin.
+- Optimality is proven for N <= 33 and N = 36: the Packomania table marks N <= 30 and N = 36 in bold, and computer-assisted proofs for N = 31, 32 and 33 were published by Markot (J. Global Optim. 81 (2021) 773-803). Packomania publishes these records with 12 decimals, so ties are judged with the 1e-11 margin.
 - The record coordinates are public (Packomania), so a candidate can reproduce the record from memory or by downloading it beforehand; scores measure the returned construction, not the search that produced it.
 - Scores are double-precision radii of the returned centres. A score above the record by at most 1e-11 is reported as a tie; a larger gain is a candidate new record that should be confirmed in higher precision and submitted to the record table before it is claimed.
 - Candidate Python runs inside the evaluator process and is trusted research code; the evaluator recomputes the radius from the returned array but does not sandbox the program.

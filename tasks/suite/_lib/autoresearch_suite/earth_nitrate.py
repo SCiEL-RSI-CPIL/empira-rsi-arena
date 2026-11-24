@@ -39,6 +39,10 @@ SOURCE_SPECS = tuple({"name": name, "url": URL.format(site), "pinning": "live",
 DATA = "nitrate/nwis_sensor_nitrate_8_sites.json.gz"
 DERIVED = {DATA: "e4236451d52fcd4876d9b76e26b410ed056152e54f650a9a90a209d008817294"}
 EPOCH = dt.date(1970, 1, 1)
+# Last day used at each site. NWIS approves provisional records in blocks, long after the measurements. Days approved
+# after the lock was recorded (2026-10-10) would lengthen a record, move its high-flow threshold and redraw its
+# samples, so every record ends where its approved discharge ended on that date.
+RECORD_END = {site: "2025-09-30" for site in SITES} | {"07374000": "2024-04-14"}
 CFS = 0.028316846592  # m3/s per cubic foot per second
 KG_PER_DAY = 86.4  # kg/day for 1 mg/L at 1 m3/s
 MIN_MONTH_DAYS, MIN_YEAR_DAYS = 25, 300
@@ -81,7 +85,8 @@ def sample_design(days, discharge, truth, seed):
 def derive(paths):
     sites = {}
     for (site, (name, lat, lon, area)), raw in zip(SITES.items(), RAW_SOURCES):
-        rows = [r for r in parse(paths[raw]) if r[1] is not None and r[1] > 0]
+        end = (dt.date.fromisoformat(RECORD_END[site]) - EPOCH).days
+        rows = [r for r in parse(paths[raw]) if r[0] <= end and r[1] is not None and r[1] > 0]
         first = next(i for i, r in enumerate(rows) if r[2] is not None)
         rows = rows[first:]
         days = np.array([r[0] for r in rows])

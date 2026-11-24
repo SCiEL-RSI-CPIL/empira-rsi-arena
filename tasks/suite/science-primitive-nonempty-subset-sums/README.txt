@@ -17,9 +17,9 @@ construct() -> 1..30 distinct integers in 1..256. Form every NONEMPTY subset sum
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Konstantinos Gaitanas (2019, Two divisibility problems on subset sums) studies the underlying problem.
+For N = 256 = 2^8 the construction of Erdős, Lev, Rauzy, Sándor and Sárközy (1999), as described by Gaitanas (2019, Section 4), has 8 elements, and Gaitanas notes that this bound has not been improved. His Theorem 3 (the elements sum to at least 2^(k+1) - 3) limits a set in [1, 256] to at most 10 elements. Konstantinos Gaitanas (2019, Two divisibility problems on subset sums) studies the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: best known value `8` (reviewed 2026-11-24).
 
 - [Two divisibility problems on subset sums](https://arxiv.org/abs/1911.11097), Konstantinos Gaitanas (2019)
 
@@ -27,7 +27,7 @@ Parameters: `{"n": 256, "maximum_size": 30}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `open_problem` (tier 1); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

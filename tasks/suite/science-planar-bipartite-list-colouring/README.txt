@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> four colourings, one per instance from planar_bipartite_lists(splits, seed) for (20,701), (40,702), (60,703), (100,704) in the verifier: a bipartite quadrangulation grown from the cube by inserting squares into random faces (minimum degree 3), with a random list of 3 colours from 0..4 per vertex. Each vertex must take a colour from its list and adjacent vertices must differ. The score is the number of properly coloured instances (0..4). Maximize; all are colourable by the Alon-Tarsi theorem. The score counts fixed instances coloured properly from their lists; it measures a constructive list-colouring method for a theorem proved non-constructively.
+construct() -> four colourings, one per instance from planar_bipartite_lists(splits, seed) for (20,701), (40,702), (60,703), (100,704) in the verifier: a bipartite quadrangulation grown from the cube by inserting squares into random faces (minimum degree 3), with a random list of 3 colours from 0..4 per vertex. Each vertex must take a colour from its list and adjacent vertices must differ. The score is the number of properly coloured instances (0..4). Maximize; all are colourable by the Alon-Tarsi theorem. The score counts fixed instances coloured properly from their lists; it measures a constructive list-colouring method for a theorem proved non-constructively. On these four instances a greedy that always colours a vertex with the fewest remaining list colours already reaches the maximum 4 without backtracking.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,15 +17,15 @@ construct() -> four colourings, one per instance from planar_bipartite_lists(spl
 
 ## State of the art
 
-Instance-solving task; every instance is colourable, so 4 is attainable.
+The maximum 4 is attained: every instance is colourable (Alon and Tarsi), and a smallest-list-first greedy colours all four without backtracking.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `4` (reviewed 2026-11-24).
 
 - [Colorings and orientations of graphs](https://doi.org/10.1007/BF01204715), N. Alon, M. Tarsi (1992)
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 
@@ -39,7 +39,7 @@ Underlying problem: Colour planar bipartite graphs from arbitrary lists of three
 
 Why it matters: Choosability is a central refinement of graph colouring; the Alon-Tarsi method underlies many results in the area.
 
-- [Colorings and orientations of graphs](https://doi.org/10.1007/BF01204715): Main research objective: Colour planar bipartite graphs from arbitrary lists of three colours (proved possible by Alon and Tarsi). Task connection: The score counts fixed instances coloured properly from their lists; it measures a constructive list-colouring method for a theorem proved non-constructively.
+- [Colorings and orientations of graphs](https://doi.org/10.1007/BF01204715): Main research objective: Colour planar bipartite graphs from arbitrary lists of three colours (proved possible by Alon and Tarsi). Task connection: The score counts fixed instances coloured properly from their lists; it measures a constructive list-colouring method for a theorem proved non-constructively. On these four instances a greedy that always colours a vertex with the fewest remaining list colours already reaches the maximum 4 without backtracking.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -47,7 +47,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- The score counts fixed instances coloured properly from their lists; it measures a constructive list-colouring method for a theorem proved non-constructively. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
+- The score counts fixed instances coloured properly from their lists; it measures a constructive list-colouring method for a theorem proved non-constructively. On these four instances a greedy that always colours a vertex with the fewest remaining list colours already reaches the maximum 4 without backtracking. Exact local certificates are not Lean proofs; reciprocal sums are reported as floats. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -59,10 +59,10 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.1007/BF01204715 (Noga Alon and Michael Tarsi, Colorings and orientations of graphs (1992). Crossref record and abstract inspected: Alon and Tarsi's orientation theorem (a graph with an orientation of maximum outdegree d whose even and odd Eulerian subgraphs differ in number is (d+1)-choosable) implies that every planar bipartite graph is 3-choosable. No Erdős Problems page corresponds to this bank entry. The score counts fixed instances coloured properly from their lists; it measures a constructive list-colouring method for a theorem proved non-constructively.)
+- paper: https://doi.org/10.1007/BF01204715 (Noga Alon and Michael Tarsi, Colorings and orientations of graphs (1992). Crossref record and abstract inspected: Alon and Tarsi's orientation theorem (a graph with an orientation of maximum outdegree d whose even and odd Eulerian subgraphs differ in number is (d+1)-choosable) implies that every planar bipartite graph is 3-choosable. No Erdős Problems page corresponds to this bank entry. The score counts fixed instances coloured properly from their lists; it measures a constructive list-colouring method for a theorem proved non-constructively. On these four instances a greedy that always colours a vertex with the fewest remaining list colours already reaches the maximum 4 without backtracking.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0501-0600.md#JSP-000511 (JSP-000511; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 
 ## Limitations
 
-- Instance-solving task on four fixed pseudo-random instances.
+- Instance-solving task on four fixed pseudo-random instances; the maximum score 4 is reached by a smallest-list-first greedy without backtracking.
 - Independent Python implementation; no paper text, upstream evaluator, Lean proof or prize-bank content is redistributed. Candidate Python executes as trusted research code.

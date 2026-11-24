@@ -41,16 +41,16 @@
     {
       "url": "https://downloads.psl.noaa.gov/Datasets/noaa.ersst.v5/sst.mnmean.nc",
       "type": "archive",
-      "locator": "NOAA ERSSTv5 monthly means distributed by NOAA PSL (retrieved 2026-10-10; no constraints on use); months 1950-01 to 2025-12 are used."
+      "locator": "NOAA ERSSTv5 monthly means distributed by NOAA PSL (retrieved 2026-11-20; no constraints on use); months 1950-01 to 2025-12 are used."
     }
   ],
   "limitations": [
     "Inputs are sea-surface temperatures only (Nino indices and the 2-degree tropical Pacific field); operational forecasts also use subsurface ocean heat content, winds and coupled dynamical models, so scores are not comparable with published operational skill.",
     "The Nino indices are computed locally as cosine-weighted means over ERSSTv5 cells centred in each box; they reproduce the familiar NOAA ONI peaks to about 0.1 deg C (checked for 1982/83, 1997/98, 2015/16 and 2023/24) but are not the official index files.",
     "The 300 monthly origins are strongly autocorrelated (about 25 independent years and only a handful of strong events), so score differences of a few hundredths of a degree are not statistically meaningful.",
-    "ERSSTv5 is updated monthly by NOAA; if past values are revised, the derived-file hash check fails and the data must be re-recorded, which changes scores slightly.",
+    "ERSSTv5 is recomputed monthly by NOAA and every update revises recent years (NCEI rewrites its monthly files from January 2008 on; the update of November 2026 changed tropical Pacific cells in 52 months from December 2017, mostly one or two cells by 0.01 deg C, and left the Nino 3.4 series unchanged). The derived-file hash check then fails, so preparation needs an archived copy of the locked source file or a re-recorded lock, which changes inputs slightly.",
     "A better score is a better statistical forecast model on these years, not a scientific discovery; the held-out observations are public, so search feedback on this fixed split can overfit it.",
-    "The candidate runs in a sandboxed child process that never receives verifying months; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    "The candidate runs in a sandboxed child process that never receives verifying months, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "evaluator": "evaluator.py",
   "initial_program": "initial_program.py",
@@ -111,7 +111,7 @@
     "resources": [
       "cpu"
     ],
-    "cost": "not_run",
+    "cost": "fast",
     "important_to_science": true
   }
 }

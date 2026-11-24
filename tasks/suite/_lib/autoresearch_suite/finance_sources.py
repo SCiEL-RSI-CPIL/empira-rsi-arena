@@ -183,7 +183,11 @@ def gsw_monthly(payloads):
 
 
 def fred_md(payloads):
-    """FRED-MD vintage: a 'tcode' row with the transformation codes, then one row per month (yyyymm keys)."""
+    """FRED-MD vintage: a 'tcode' row with the transformation codes, then one row per month (yyyymm keys).
+
+    The pinned source "fred-md-2024-10" is current.csv as archived on 2024-10-29; it is byte-identical to the
+    official 2024-09.csv (data to 2024-08), not to 2024-10.csv.
+    """
     import csv
     rows = [r for r in csv.reader(io.StringIO(payloads["fred-md-2024-10"].decode("utf-8"))) if r and r[0]]
     header, codes = rows[0], rows[1]

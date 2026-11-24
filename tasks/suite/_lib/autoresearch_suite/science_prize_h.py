@@ -49,6 +49,24 @@ def cyclotomic(m):
     return tuple(int(c) for c in poly)
 
 
+def _poly_gcd(a, b):
+    """Monic greatest common divisor of two rational polynomials (Euclid)."""
+    while any(b):
+        a, b = b, _poly_divmod(a, b)[1]
+    return [Fraction(c)/a[-1] for c in a]
+
+
+def _squarefree_layers(poly):
+    """Squarefree polynomials whose product is poly up to a constant: layer k holds once every root
+    of multiplicity at least k. Exact; the root finder is only accurate on simple roots."""
+    layers, f = [], [Fraction(c) for c in poly]
+    while len(f) > 1:
+        g = _poly_gcd(f, [i*c for i, c in enumerate(f)][1:])
+        layers.append(_poly_divmod(f, g)[0])
+        f = g
+    return layers
+
+
 def _roots(coeffs):
     """Aberth-Ehrlich iteration for all complex roots (constant term first)."""
     n = len(coeffs)-1
@@ -87,8 +105,7 @@ def mahler_measure(value, max_degree=12, max_coefficient=3):
     require(coeffs[-1] != 0, "leading coefficient must be nonzero")
     poly = list(coeffs)
     while poly[0] == 0:
-        poly.pop(0)
-    require(len(poly) >= 2, "polynomial must have a nonzero root")
+        poly.pop(0)                      # a factor x^k does not change the measure
     rest = list(poly)
     for m in range(1, 64):
         phi = cyclotomic(m)
@@ -101,7 +118,12 @@ def mahler_measure(value, max_degree=12, max_coefficient=3):
             rest = [int(x) for x in q]
     # Kronecker: an integer polynomial has measure one iff it is +-x^k times cyclotomic factors.
     require(not (len(rest) == 1 and abs(rest[0]) == 1), "measure equals one (product of cyclotomic polynomials)")
-    measure = abs(poly[-1])*prod(max(1.0, abs(z)) for z in _roots(poly))
+    # The cyclotomic factors are dropped exactly (their measure is one) and repeated factors are split
+    # into squarefree layers: roots on the unit circle or of multiplicity above one would otherwise
+    # shift the product by up to 1e-5. A constant c*x^k has no layer and measure |c|.
+    measure = float(abs(rest[-1]))
+    for layer in _squarefree_layers(rest):
+        measure *= prod(max(1.0, abs(z)) for z in _roots([float(c) for c in layer]))
     return round(measure, 10), _report(degree=len(coeffs)-1, measure=measure)
 
 

@@ -17,9 +17,9 @@ construct() -> a list aligned with the 32 pinned consecutive-prime pairs. Each e
 
 ## State of the art
 
-No value is published for this instance, which was fixed for this dataset; the task compares search methods. Ayla Gafni and Terence Tao (2025, Rough numbers between consecutive primes) study the underlying problem.
+Exactly 22 of the 32 pinned gaps contain a witness (exhaustive check of every interior integer; the gap indices agree with OEIS A386978), so the optimum is 22. No value is published for this instance, which was fixed for this dataset; the task compares search methods. Ayla Gafni and Terence Tao (2025, Rough numbers between consecutive primes) study the underlying problem.
 
-Reference value: no documented value for this finite instance (reviewed 2026-09-24).
+Reference value: proven optimum `22` (reviewed 2026-11-24).
 
 - [Rough numbers between consecutive primes](https://arxiv.org/abs/2508.06463), Ayla Gafni and Terence Tao (2025)
 
@@ -27,7 +27,7 @@ Parameters: `{"gaps": [[10007, 10009], [10009, 10037], [10037, 10039], [10039, 1
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `rediscovery` (tier 2); artifact `construction`, domain `mathematics`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 Research area: `mathematics`.
 

@@ -76,20 +76,12 @@
     }
   },
   "science_relevance": {
-    "status": "supported",
+    "status": "unreviewed",
     "scientific_problem": "Determine the largest A in {1..n} such that a square product abcd (a <= b <= c <= d) forces ad = bc (Erdős Problem #888).",
     "importance_rationale": "A multiplicative analogue of Sidon-type conditions whose order of magnitude was settled only recently.",
-    "papers": [
-      {
-        "title": "Some of my new and almost new problems and results in combinatorial number theory",
-        "url": "https://doi.org/10.1515/9783110809794.169",
-        "task_relation": "For n = 200 the maximum is 102, so the task recovers an extremal set.",
-        "primary_goal": "Determine the largest A in {1..n} such that a square product abcd (a <= b <= c <= d) forces ad = bc (Erdős Problem #888).",
-        "evidence_role": "primary_problem"
-      }
-    ],
-    "reviewed_at": "2026-09-24",
-    "reason": "Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.",
+    "papers": [],
+    "reviewed_at": "2026-11-24",
+    "reason": "The only work cited for this problem is a problem collection (Some of my new and almost new problems and results in combinatorial number theory), which states the problem but does not have it as its main objective. The audit of 2026-11-24 found no research paper whose main objective is this problem, so no qualifying primary-goal evidence is established here; this is not a finding that the problem is unimportant.",
     "verification_basis": "Crossref record inspected; Erdős Problem #888 page inspected (a question of Erdős, Sárközy and Sós; |A| = o(n); primes and semiprimes give (1+o(1)) n log log n/log n, and a matching upper bound was proved recently and verified in Lean). OEIS A387584 inspected (b-file by Sievers for n <= 203): the maximum for n = 200 is 102, attained by the primes together with the products of two distinct primes.",
     "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
     "criterion": "primary_research_goal"
@@ -107,6 +99,6 @@
       "cpu"
     ],
     "cost": "fast",
-    "important_to_science": true
+    "important_to_science": false
   }
 }

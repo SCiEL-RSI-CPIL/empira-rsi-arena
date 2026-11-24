@@ -9,12 +9,12 @@
       "maximum": 10000000
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -37,9 +37,9 @@
       "Minimize the number of distinct unit fractions representing one with all denominators above a fixed threshold; denominator and term caps are local."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 10,
+      "statement": "The fewest distinct unit fractions with denominators at least 5 that sum to 1 is 10: an exhaustive search over increasing denominators finds no representation with 9 or fewer terms and 161 representations with 10 terms, all within the denominator cap. In the notation of Erdős and Graham (1980, p. 35) this is U_5 = 10; Erdős and Straus proved (e-1)n - c < U_n < (e-1)n + c'n/log n.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -48,7 +48,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -81,12 +81,12 @@
       "n": 24
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -109,9 +109,9 @@
       "Finite version of the extremal S* question; operands are distinct selected elements and the target is excluded from its own subsum."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 19,
+      "statement": "The largest subset of [1,24] in which no reciprocal is a sum of reciprocals of other elements has 19 elements, by an exhaustive search in exact arithmetic (the property is inherited by subsets). The upper half (12, 24] of the interval, the example of Erdős and Graham (1980, p. 37), has 12 elements.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -120,7 +120,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -153,12 +153,12 @@
       "n": 180
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -181,9 +181,9 @@
       "Three-distinct-element specialization of the reciprocal equation, weaker than forbidding arbitrary reciprocal subsums."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 152,
+      "statement": "There are 131 triples of distinct integers in [1,180] with 1/a = 1/b + 1/c, on 98 integers. The smallest set meeting every triple has 28 elements (exact branch and bound, confirmed by an integer program), so the optimum is 180 - 28 = 152.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -192,7 +192,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -227,12 +227,12 @@
       "maximum": 10000000
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -260,9 +260,9 @@
       "One fixed rational instance of the denominator-size problem; the paper provides asymptotic bounds, not this local benchmark optimum."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Yang P. Liu and Mehtaab Sawhney (2024, On further questions regarding unit fractions) study the underlying problem.",
+      "kind": "optimum",
+      "value": 186,
+      "statement": "D(5,31) = 186 in the notation of Erdős and Graham (1980, p. 38). If all denominators were below 186, the multiples 31j of 31 among them would have j ≤ 5 and would have to satisfy Σ 1/j ≡ 5 (mod 31), which has no solution; so the largest denominator is at least 186, and representations with largest denominator 186 exist.",
       "sources": [
         {
           "title": "On further questions regarding unit fractions",
@@ -271,7 +271,7 @@
           "year": 2024
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -352,12 +352,12 @@
       ]
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -381,9 +381,9 @@
       "Feasibility and rational objective are computed exactly; the standard score envelope converts the final rational to binary64, so exact numerator/denominator details should be used to resolve nearly tied scores."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 1.3439388840443045e-10,
+      "statement": "The smallest positive value of 1 - Σ 1/d over subsets of {2, ..., 48} is 84529/628964612926650, about 1.344e-10. A meet-in-the-middle search evaluated exactly every subset whose sum lies within 2e-10 of 1; 10646 subsets sum to exactly 1 and are excluded by the contract.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -392,7 +392,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -425,12 +425,12 @@
       "n": 30
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -454,9 +454,9 @@
       "Feasibility and rational objective are computed exactly; the standard score envelope converts the final rational to binary64, so exact numerator/denominator details should be used to resolve nearly tied scores."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 5.727559907126471e-09,
+      "statement": "The smallest nonzero value of |Σ δ_k/k| with δ_k in {-1, 0, 1} and k ≤ 30 is 1/174594420 = 13340/lcm(1, ..., 30), by an exact meet-in-the-middle search over all 3^30 sign patterns. The trivial lower bound of Erdős and Graham (1980, p. 42) is 1/lcm(2, ..., 30).",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -465,7 +465,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -498,12 +498,12 @@
       "n": 22
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -526,9 +526,9 @@
       "Maximizes the size of a dissociated reciprocal set. This is not the counting task for all harmonic subset sums."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 16,
+      "statement": "The largest subset of [1,22] whose reciprocals have pairwise distinct subset sums has 16 elements, by an exhaustive search in exact arithmetic (the property is inherited by subsets). In the notation of Erdős and Graham (1980, p. 43) this is r(22) = 16.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -537,7 +537,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -570,12 +570,12 @@
       "n": 256
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -598,9 +598,9 @@
       "The prescribed distinct-pair divisibility exclusion does not require the quotient to belong to the selected set, unlike the reciprocal Schur task. The source writes x,y without explicitly excluding equality; this implementation follows the bank's stated distinct-pair variant."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 188,
+      "statement": "There are 202 pairs a < b in [1,256] with (a+b) | ab, on 136 integers. The smallest set meeting every pair has 68 elements (exact branch and bound, confirmed by an integer program), so the optimum is 256 - 68 = 188. The odd numbers, the example of Erdős and Graham (1980, p. 37), give 128.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -609,7 +609,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -788,12 +788,12 @@
       "upper": 1000000
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -816,9 +816,9 @@
       "The B2 powerful-part construction allows squarefree factors and does not require either whole integer to be powerful or nonsquare; distinct from the existing Golomb counterexample certificate."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 216340800500,
+      "statement": "A full scan of n in [10000, 1000000] gives the maximum 216340800500 of B_2(n)·B_2(n+1), attained once, at a pair of consecutive powerful numbers. Erdős and Graham (1980, pp. 68-69) ask whether the product of the powerful parts of k consecutive integers stays below n^(2+ε).",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -827,7 +827,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -861,12 +861,12 @@
       "upper": 1000000
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -889,18 +889,22 @@
       "Searches a bounded window for smooth consecutive integers. The local lower cutoff prevents the trivial pair 1,2; it proves no asymptotic bound."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 13,
+      "statement": "The minimum of P(n(n+1)) over n in [10000, 1000000] is 13. The largest n for which n(n+1) has no prime factor above 11 is 9800 (Lehmer 1964; OEIS A002072), which lies below the window, and a full scan of the window finds two n with P(n(n+1)) = 13.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
           "url": "https://mathweb.ucsd.edu/~ronspubs/80_11_number_theory.pdf",
           "authors": "Paul Erdős and Ronald L. Graham",
           "year": 1980
+        },
+        {
+          "title": "OEIS A002072: a(n) = smallest number m such that for all k > m, either k or k+1 has a prime factor > prime(n)",
+          "url": "https://oeis.org/A002072"
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -935,12 +939,12 @@
       "first": 2
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -963,9 +967,9 @@
       "Fixes the smallest factorial index as required by the original valuation question. The seed is a local greedy algorithm; any known numerical identity it rediscovers is not a novel result."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 32,
+      "statement": "For indices in [2,32] the largest power of 2 dividing a sum of distinct factorials that contains 2! is 2^32. A sum can be divisible by a higher power only while its partial sums stay divisible by the 2-part of the next factorial, which leaves 400 cases, and a second search modulo 2^33 agrees. Without the index bound the maximum is 2^254 (Lin 1976, quoted by Erdős and Graham 1980, p. 79).",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -974,7 +978,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -1079,12 +1083,12 @@
       "n": 256
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1112,9 +1116,9 @@
       "Explicit diagonal-including restriction resolves the terse bank wording; all pairs are verified with integer square roots. It is distinct from square DIFFERENCE avoidance."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. A. Khalfalah, S. Lodha and E. Szemerédi (2002, Tight bound for the density of sequence of integers the sum of no two of which is a perfect square) study the underlying problem.",
+      "kind": "optimum",
+      "value": 89,
+      "statement": "The largest subset of [1,256] in which no two elements, equal elements included, sum to a square has 89 elements according to an integer program solved to proven optimality (HiGHS, 43 s); the value was not confirmed by a second exact method. The residue class 1 mod 3 gives 86.",
       "sources": [
         {
           "title": "Tight bound for the density of sequence of integers the sum of no two of which is a perfect square",
@@ -1123,7 +1127,7 @@
           "year": 2002
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -1156,12 +1160,12 @@
       "n": 512
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1189,9 +1193,9 @@
       "Finite instance of the extremal bounded-lcm problem. The simple seed does not import Chen's asymptotic construction."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Yong-Gao Chen (1998, Sequences with bounded l.c.m. of each pair of terms) studies the underlying problem.",
+      "kind": "optimum",
+      "value": 26,
+      "statement": "The largest subset of [1,512] with all pairwise least common multiples at most 512 has 26 elements (exact maximum-clique search, confirmed by an integer program). The sequence conjectured to be extremal in Erdős and Graham (1980, p. 87), the integers up to √(n/2) with the even integers up to √(2n), has 24 elements for n = 512.",
       "sources": [
         {
           "title": "Sequences with bounded l.c.m. of each pair of terms",
@@ -1200,7 +1204,7 @@
           "year": 1998
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -1233,12 +1237,12 @@
       "n": 10000
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1261,9 +1265,9 @@
       "Finite inverse form of the growth-rate question for convex prime subsequences; keeps the source non-strict gap inequality."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 98,
+      "statement": "The longest increasing sequence of primes up to 10000 with nondecreasing gaps has 98 terms. This is the exact value of a dynamic programme over the last prime and the last gap, checked against brute force on short lists of primes. Erdős and Graham (1980, pp. 90-91) quote Richter's bound lim inf q_n/n² > 0 for such sequences.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -1272,7 +1276,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -1384,12 +1388,12 @@
       "length": 24
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1412,9 +1416,9 @@
       "Uses the source minimum f(n,t) at t=24, correcting the preliminary feasibility proposal's reversed direction; the source asks for a uniform lower bound on this minimum."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 14,
+      "statement": "A full scan of n in [1000, 1000000] gives the minimum 14 of f(n,24), the number of distinct parts of n+1, ..., n+24 composed of primes below 24; 40 values of n attain it. Erdős and Graham (1980, p. 91) ask whether f(n,t) > εt for all n.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -1423,7 +1427,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -1531,12 +1535,12 @@
       "bound": 128
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1559,9 +1563,9 @@
       "The candidate chooses a hard AMBIENT set; the evaluator solves Sidon extraction exactly. This reverses the outer optimization compared with constructing a large Sidon set in a fixed interval."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Alexandre Bailleul and Robin Riblet (2026, On the largest Sidon subset in a finite subset of R^N) study the underlying problem.",
+      "kind": "optimum",
+      "value": 5,
+      "statement": "Every set of 12 integers in [0,128] contains a Sidon subset with 5 elements and some contain none with 6, so the optimum is 5. This comes from an exhaustive search over all 12-element subsets of [0,128], extended in increasing order and cut as soon as a Sidon 5-subset appears. Bailleul and Riblet (2026) prove that every n-element set of integers contains a Sidon subset of size at least (1/(3√3) + o(1))√n.",
       "sources": [
         {
           "title": "On the largest Sidon subset in a finite subset of R^N",
@@ -1570,7 +1574,7 @@
           "year": 2026
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -1604,12 +1608,12 @@
       "forced": 255
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1632,9 +1636,9 @@
       "Fixes n=255 in g(n), the source's exact forced-maximum-element formulation; no solution to a general coprime-family conjecture is claimed."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Rudolf Ahlswede and Levon H. Khachatrian (1996, Sets of integers with pairwise common divisor and a factor from a specified set of primes) study the underlying problem.",
+      "kind": "optimum",
+      "value": 85,
+      "statement": "The largest pairwise non-coprime subset of [1,255] that contains 255 has 85 elements (exact maximum-clique search, confirmed by an integer program). This is n/p for the least prime factor p of n = 255, the first of the two values in the guess of Erdős and Graham recorded by Erdős (1973, p. 123).",
       "sources": [
         {
           "title": "Sets of integers with pairwise common divisor and a factor from a specified set of primes",
@@ -1643,7 +1647,7 @@
           "year": 1996
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -1749,12 +1753,12 @@
       "n": 128
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1777,9 +1781,9 @@
       "Finite extremal version of the equal-lcm-triple density question. Distinct from the equal-gcd and bounded-lcm objectives."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős (1973, Problems and results on combinatorial number theory) studies the underlying problem.",
+      "kind": "optimum",
+      "value": 95,
+      "statement": "There are 395 triples in [1,128] whose three pairwise least common multiples are equal. The smallest set meeting every triple has 33 elements (exact branch and bound, confirmed by an integer program), so the optimum is 128 - 33 = 95.",
       "sources": [
         {
           "title": "Problems and results on combinatorial number theory",
@@ -1788,7 +1792,7 @@
           "year": 1973
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -1821,12 +1825,12 @@
       "n": 256
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1850,9 +1854,9 @@
       "Feasibility and rational objective are computed exactly; the standard score envelope converts the final rational to binary64, so exact numerator/denominator details should be used to resolve nearly tied scores."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős (1973, Problems and results on combinatorial number theory) studies the underlying problem.",
+      "kind": "optimum",
+      "value": 0.969774168765093,
+      "statement": "The maximum of Σ 1/a over subsets of [2,256] with all pairwise least common multiples above 256 is 0.969774168765093 to double precision, attained by a set of 85 integers (exact maximum-weight independent set search with the integer weights lcm(2, ..., 256)/a, in agreement with an integer program). Schinzel and Szekeres proved Σ 1/a ≤ 31/30 for every n (Erdős 1973, p. 135).",
       "sources": [
         {
           "title": "Problems and results on combinatorial number theory",
@@ -1861,7 +1865,7 @@
           "year": 1973
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -1894,12 +1898,12 @@
       "target": 123457
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1922,9 +1926,9 @@
       "One fixed-target version of the small-prime-factor additive decomposition question; no universal bound for all large integers is asserted."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 11,
+      "statement": "Checking all 61728 decompositions 123457 = a + b gives the minimum 11 of max(P(a), P(b)), attained by exactly one unordered pair. Erdős and Graham (1980, p. 70) ask whether every large n is a sum a + b with P(a), P(b) < n^ε.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -1933,7 +1937,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -1966,12 +1970,12 @@
       "n": 12
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -1994,9 +1998,9 @@
       "Exact finite version of equation (6). Distinct from the existing 100! benchmark: no fixed factor count, all factors must exceed 12, and the objective minimizes the largest rather than maximizing the smallest."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 33,
+      "statement": "12! is a product of distinct integers from 13 to 33 and not of distinct integers from 13 to 32 (exhaustive search over the divisors of 12!), so the optimum is 33. In equation (6) of Erdős and Graham (1980, p. 75) this is the least n + i_k for n = 12.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -2005,7 +2009,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -2039,12 +2043,12 @@
       "size": 3
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -2067,9 +2071,9 @@
       "Finite construction model for the Straus sumset-density question. Three elements per summand set and the bounding box are local; finite cardinality does not establish infinite density."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 9,
+      "statement": "Two 3-element sets have at most 9 distinct sums, and sets A, B in [1,128] whose 9 sums are pairwise coprime exist, so the optimum is 9.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -2078,7 +2082,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -2113,12 +2117,12 @@
       "length": 5
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -2141,9 +2145,9 @@
       "A fixed-prime instance of the least run-start r(k,m,p), with k=2 and m=5. Each residue is certified by its root; no limsup over primes is computed."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 1,
+      "statement": "The integers 1, 2, 3, 4 and 5 are all quadratic residues modulo 1009, so r(2,5,1009) = 1, the smallest start the contract allows, and the optimum is 1. The modulus has 32 runs of five consecutive quadratic residues; the last one starts at 1004.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -2152,7 +2156,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",
@@ -2185,12 +2189,12 @@
       "p": 1009
     },
     "labels": {
-      "scientific_contribution": "method",
+      "scientific_contribution": "rediscovery",
       "artifact": "construction",
       "domain": "mathematics",
       "data": "none",
       "verification": "exact",
-      "reference": "none",
+      "reference": "published_value",
       "area": "mathematics"
     },
     "sources": [
@@ -2213,9 +2217,9 @@
       "Finite obstruction search for the modular inverse-pair interval question. Diagonal pairs are checked, so the self-inverse residues 1 and 1008 cannot be present; this is stricter than the preliminary distinct-pair proposal."
     ],
     "state_of_the_art": {
-      "kind": "none",
-      "value": null,
-      "statement": "No value is published for this instance, which was fixed for this dataset; the task compares search methods. Paul Erdős and Ronald L. Graham (1980, Old and New Problems and Results in Combinatorial Number Theory) study the underlying problem.",
+      "kind": "optimum",
+      "value": 85,
+      "statement": "A scan of all intervals in [1,1008] shows that the longest interval containing no x, y (x = y allowed) with x·y ≡ 1 (mod 1009) has length 85: two intervals attain it and none of length 86 exists. Erdős and Graham (1980, p. 89) ask whether every interval of length p^c, c > 1/2, contains such a pair for large p.",
       "sources": [
         {
           "title": "Old and New Problems and Results in Combinatorial Number Theory",
@@ -2224,7 +2228,7 @@
           "year": 1980
         }
       ],
-      "as_of": "2026-09-24"
+      "as_of": "2026-11-24"
     },
     "provenance": {
       "category": "independent_reimplementation",

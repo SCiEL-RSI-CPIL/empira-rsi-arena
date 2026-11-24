@@ -2,8 +2,8 @@
   "schema": "artask.data-lock/1",
   "package": "frontier_combinatorics",
   "prepare": "python3 scripts/prepare_frontier_combinatorics.py",
-  "raw_cache": ".cache/frontier_combinatorics-raw",
-  "directory": "suite/_lib/data/frontier_combinatorics",
+  "raw_cache": "frontier_combinatorics-raw of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "directory": "data/frontier_combinatorics of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
   "sources": [
     {
       "name": "qapdata.tar.gz",

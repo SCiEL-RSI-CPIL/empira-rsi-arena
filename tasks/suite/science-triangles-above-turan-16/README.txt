@@ -7,7 +7,7 @@
 
 ## Task
 
-construct() -> exactly 68 distinct edges [u, v] on vertices 0..15. The score is the exact number of triangles. Minimize; the proven optimum is 32 = t * floor(n/2) with t = 68 - 64. With n = 16 and t = 4 the theorem gives at least 32 triangles, and K8,8 plus a 4-edge matching attains 32.
+construct() -> exactly 68 distinct edges [u, v] on vertices 0..15. The score is the exact number of triangles. Minimize; the proven optimum is 32 = t * floor(n/2) with t = 68 - 64. With n = 16 and t = 4 the theorem gives at least 32 triangles, and 32 is attained.
 
 Source-derived local benchmark; the exact objective and adaptations are specified below.
 
@@ -17,9 +17,9 @@ construct() -> exactly 68 distinct edges [u, v] on vertices 0..15. The score is 
 
 ## State of the art
 
-At least t*floor(n/2) = 32 triangles (Lovász-Simonovits theorem), attained by K8,8 plus a matching of four edges.
+At least t*floor(n/2) = 32 triangles (Lovász-Simonovits theorem), and the bound is attained.
 
-Reference value: proven optimum `32` (reviewed 2026-09-24).
+Reference value: proven optimum `32` (reviewed 2026-11-24).
 
 Underlying problem: [Erdős Problem #1010](https://www.erdosproblems.com/1010), status: proved (Lovász-Simonovits; Nikiforov-Khadzhiivanov).
 
@@ -44,7 +44,7 @@ Underlying problem: Determine the minimum number of triangles in graphs with a g
 
 Why it matters: Supersaturation for triangles (Erdős Problem #1010) is a foundational result of extremal graph theory; this finite case is a calibrated rediscovery.
 
-- [On the number of complete subgraphs of a graph II](https://doi.org/10.1007/978-3-0348-5438-2_41): Main research objective: Determine the minimum number of triangles in graphs with a given number of edges above the Turán threshold. Task connection: With n = 16 and t = 4 the theorem gives at least 32 triangles, and K8,8 plus a 4-edge matching attains 32.
+- [On the number of complete subgraphs of a graph II](https://doi.org/10.1007/978-3-0348-5438-2_41): Main research objective: Determine the minimum number of triangles in graphs with a given number of edges above the Turán threshold. Task connection: With n = 16 and t = 4 the theorem gives at least 32 triangles, and 32 is attained.
 
 Primary research directly studies this mathematical objective; the finite scope, reference value and rediscovery status are explicit.
 
@@ -52,7 +52,7 @@ Primary research directly studies this mathematical objective; the finite scope,
 
 Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
 
-- With n = 16 and t = 4 the theorem gives at least 32 triangles, and K8,8 plus a 4-edge matching attains 32. Exact local certificates are not Lean proofs. Consult the independent oracle and malformed-input tests.
+- With n = 16 and t = 4 the theorem gives at least 32 triangles, and 32 is attained. Exact local certificates are not Lean proofs. Consult the independent oracle and malformed-input tests.
 
 ## Run
 
@@ -64,7 +64,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Sources
 
-- paper: https://doi.org/10.1007/978-3-0348-5438-2_41 (László Lovász and Miklós Simonovits, On the number of complete subgraphs of a graph II (1983). Crossref record inspected; Erdős Problem #1010 page inspected: every graph with floor(n^2/4)+t edges, t < floor(n/2), has at least t*floor(n/2) triangles, proved independently by Lovász-Simonovits and Nikiforov-Khadzhiivanov. With n = 16 and t = 4 the theorem gives at least 32 triangles, and K8,8 plus a 4-edge matching attains 32.)
+- paper: https://doi.org/10.1007/978-3-0348-5438-2_41 (László Lovász and Miklós Simonovits, On the number of complete subgraphs of a graph II (1983); the theorem used here is in the first paper of that title (Proceedings of the Fifth British Combinatorial Conference, 1976, pages 431-441, no DOI). Crossref record inspected; Erdős Problem #1010 page inspected: every graph with floor(n^2/4)+t edges, t < floor(n/2), has at least t*floor(n/2) triangles, proved independently by Lovász-Simonovits and Nikiforov-Khadzhiivanov. With n = 16 and t = 4 the theorem gives at least 32 triangles, and 32 is attained.)
 - archive: https://www.erdosproblems.com/1010 (Erdős Problem #1010 (proved (Lovász-Simonovits; Nikiforov-Khadzhiivanov)); statement, history and current bounds reviewed 2026-09-24.)
 - benchmark: https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0801-0900.md#JSP-000840 (JSP-000840; pinned discovery source, independently paraphrased. Primary mathematical attribution follows the papers above.)
 

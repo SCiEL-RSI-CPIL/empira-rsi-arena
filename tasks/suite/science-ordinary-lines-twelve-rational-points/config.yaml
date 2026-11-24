@@ -29,7 +29,7 @@ prompt:
   system_message: |
     Twelve rational points with few ordinary lines
 
-    construct() -> exactly 12 distinct integer points [x, y] with |x|, |y| <= 10^9, not all collinear. Minimize the number of lines containing exactly two of the points (exact). Over the reals the minimum for 12 points is 6; whether integer (rational) coordinates reach 6 is not documented, so scores are compared with that lower bound.
+    construct() -> exactly 12 distinct integer points [x, y] with |x|, |y| <= 10^9, not all collinear. Minimize the number of lines containing exactly two of the points (exact). Over the reals the minimum for 12 points is 6 and integer coordinates reach it, so the optimum is 6.
 
     Candidate interface: construct() -> exactly 12 distinct integer points [x, y] with |x|, |y| <= 10^9, not all collinear. Minimize the number of lines containing exactly two of the points (exact).
 

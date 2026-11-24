@@ -75,4 +75,4 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 - The generator and its seed are in the evaluator's source; a candidate that re-implements them could reproduce the truth, so results are only meaningful for candidates that use the observations alone.
 - No station metadata (documented relocations or instrument changes) are given, unlike in practical homogenisation.
 - A better score is a better homogenisation method on this benchmark, not a statement about real climate records.
-- The candidate runs in a sandboxed child process that never receives the true series; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy.
+- The candidate runs in a sandboxed child process that never receives the true series, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy.
