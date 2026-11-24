@@ -9,14 +9,14 @@
   "parameters": {
     "n": 26,
     "best_known": 138,
-    "lower_bound": 111
+    "lower_bound": 105
   },
   "requires": [
     "py:numpy"
   ],
   "timeout": 120,
   "notes": [
-    "Best known size 138 (Dobbelaere's list), proven lower bound 111.",
+    "Best known size 138 (Dobbelaere's list), proven lower bound 105 (the list withdrew its stronger bounds for 13 or more inputs on 2026-11-20 because of an error in a proof of Van Voorhis 1972; 105 is 39, the proven optimum for 12 inputs, plus ceil(log2 k) for each further input k).",
     "No data files.",
     "The size-minimisation problem for sorting networks on 26 wires, from Dobbelaere's list of smallest known sorting networks.",
     "Exact 0-1 verification over all 2^26 inputs, in blocks of 2^24.",

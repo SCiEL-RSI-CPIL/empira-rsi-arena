@@ -15,7 +15,7 @@
   "requires": [
     "py:numpy",
     "py:sklearn",
-    "file:data/matbench/mp_e_form.json"
+    "file:data/arnew/matbench/mp_e_form.json"
   ],
   "timeout": 3600,
   "notes": [

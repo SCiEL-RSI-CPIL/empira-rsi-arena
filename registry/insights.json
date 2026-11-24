@@ -1,6 +1,6 @@
 {
   "schema": "arena.insights/1",
-  "catalog_digest": "df9b7a3aabfc26c37190c5d9b52cd546f5ea04275ab2b2491a319e8902faa101",
+  "catalog_digest": "3a0ef0e52d685878715f28e205603c400a85fd1d255d2cc22da8e4e25a97ae5c",
   "taxonomy_digest": "ad6f9723a8f788dfe66da0cacb9fde132709b3940cef1ad6a9a389af2fcbb730",
   "sources": [
     {
@@ -10,11 +10,11 @@
       "repository_url": "https://github.com/Doldrums/arena",
       "revision": "main",
       "manifest_path": "registry/task-library-manifest.json",
-      "manifest_sha256": "82432f913cf27ae0d6b3ce8cecc5e6f3a64350a82aa8e970f21135dc5003231f",
+      "manifest_sha256": "0b9422f47a7ed8c3ba96bcea926aa083ad13cb9bbdc96f6222d8e6541d5db0a4",
       "catalog_path": "catalog/tasks.json",
       "index_path": "suite/index.json",
-      "catalog_sha256": "264fa223d52a79de2ecb6aae1918f68163789f01519d259b88749d63ebe11f00",
-      "index_sha256": "49cd83f106695b0254814939f06ca82e7be04c11e3c3ac0f104ee64e4af5cd9b"
+      "catalog_sha256": "1282ab3caff48cb6208856f84cbee011df721d114a25a39dce0d90b4e48dcb2a",
+      "index_sha256": "ebf912e4aada19181e676311af71a6aff92549bd6ebdc42ec5407e4c37d00d03"
     }
   ],
   "denominator": {

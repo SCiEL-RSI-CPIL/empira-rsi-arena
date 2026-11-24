@@ -14,7 +14,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/qap/tho40.dat"
+    "file:data/arnew/qap/tho40.dat"
   ],
   "timeout": 120,
   "notes": [

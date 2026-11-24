@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/eva1aprime6x6opt.mps.gz"
+    "file:data/arnew/miplib/eva1aprime6x6opt.mps.gz"
   ],
   "timeout": 900,
   "notes": [

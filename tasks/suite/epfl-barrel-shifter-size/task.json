@@ -45,7 +45,7 @@
   "evaluation": {
     "metric": "score",
     "direction": "minimize",
-    "protocol": "specified_only",
+    "protocol": "paper_reimplementation",
     "benchmark": "EPFL barrel-shifter, LUT-6 count",
     "paper_metric": "Record comparison; see problem.json notes",
     "profiles": [
@@ -94,7 +94,7 @@
       "error_key": "error",
       "requires": [
         "abc",
-        "file:data/epfl/bar.aig"
+        "file:data/arnew/epfl/bar.aig"
       ],
       "timeout": 2400,
       "validity_key": "valid"
@@ -105,14 +105,13 @@
     "Most records come from SAT-based exact synthesis of subcircuits, which an ABC script cannot express.",
     "Requires the Berkeley ABC binary (set ARNEW_ABC).",
     "LUTs and levels are counted from the written network by the convention of the EPFL table (single-input nodes are free), not from ABC's print_stats.",
-    "The starting program already reaches the best known value (run of 2026-11-11), so only a better value shows anything on this task.",
     "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
   ],
   "validation": {
     "level": "real_instance_seed_run",
     "source_reviewed": "2026-11-02",
-    "evidence": "scripts/test_new_families.py",
-    "tests": "scripts/test_new_families.py",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
     "upstream_reproduction": true,
     "record_level": "record_reproduced",
     "unsure": false,

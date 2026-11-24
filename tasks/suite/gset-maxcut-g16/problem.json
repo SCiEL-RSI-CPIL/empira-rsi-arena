@@ -12,7 +12,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/gset/G16"
+    "file:data/arnew/gset/G16"
   ],
   "timeout": 600,
   "notes": [
@@ -20,7 +20,7 @@
     "G-set file G16 from https://web.stanford.edu/~yyye/yyye/Gset/G16",
     "G-set graph G16: a sparse planar-type graph of the generator's 'union of planar graphs' class (edge count below twice the planar maximum 3n-6; a few high-degree hubs; 800 vertices, 4672 edges, all weights 1); the weight of a cut is the sum of the weights of edges whose endpoints lie on different sides.",
     "Specialised solvers (breakout local search, simulated bifurcation, GES-PR) are strong on this set.",
-    "The data file digest is not pinned until scripts/prepare_new_data.py has fetched it."
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it."
   ],
   "labels": {
     "scientific_contribution": "method",
@@ -94,7 +94,7 @@
   ],
   "limitations": [
     "Specialised solvers (breakout local search, simulated bifurcation, GES-PR) are strong on this set.",
-    "The data file digest is not pinned until scripts/prepare_new_data.py has fetched it.",
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it.",
     "The task states no record. See VALIDITY.md."
   ],
   "evaluator": "evaluator.py",

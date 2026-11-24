@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/tokyometro.mps.gz"
+    "file:data/arnew/miplib/tokyometro.mps.gz"
   ],
   "timeout": 900,
   "notes": [

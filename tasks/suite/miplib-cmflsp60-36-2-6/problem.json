@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/cmflsp60-36-2-6.mps.gz"
+    "file:data/arnew/miplib/cmflsp60-36-2-6.mps.gz"
   ],
   "timeout": 900,
   "notes": [

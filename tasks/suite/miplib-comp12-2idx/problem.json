@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/comp12-2idx.mps.gz"
+    "file:data/arnew/miplib/comp12-2idx.mps.gz"
   ],
   "timeout": 900,
   "notes": [

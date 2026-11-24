@@ -39,7 +39,7 @@ Best known solution 118923 (not proven optimal; CVRPLIB, checked 2026-11-11).
 
 CVRPLIB X instance file X-n979-k58.vrp (galgos.inf.puc-rio.br/cvrplib, download/instance/id)
 
-Requires: `py:numpy`, `file:data/cvrp/X-n979-k58.vrp`. Run `python3 scripts/prepare_new_data.py --family cvrp` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `file:data/arnew/cvrp/X-n979-k58.vrp`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family cvrp` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

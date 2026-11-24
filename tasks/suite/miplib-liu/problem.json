@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/liu.mps.gz"
+    "file:data/arnew/miplib/liu.mps.gz"
   ],
   "timeout": 900,
   "notes": [

@@ -20,7 +20,7 @@ from arnew import cvrp  # noqa: E402
 runtime = common.runtime
 DIRECTION = "minimize"
 TIMEOUT = 300
-P = {'instance': 'X-n766-k71', 'best_known': 114417}
+P = {'instance': 'X-n766-k71', 'best_known': 114413}
 
 
 def task(module):

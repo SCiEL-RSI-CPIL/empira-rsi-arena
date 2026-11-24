@@ -20,7 +20,7 @@ from arnew import jssp  # noqa: E402
 runtime = common.runtime
 DIRECTION = "minimize"
 TIMEOUT = 300
-P = {'instance': 'dmu66', 'lower_bound': 5526, 'best_known': 5690}
+P = {'instance': 'dmu66', 'lower_bound': 5526, 'best_known': 5685}
 
 
 def task(module):

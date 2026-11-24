@@ -12,7 +12,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/gset/G77"
+    "file:data/arnew/gset/G77"
   ],
   "timeout": 600,
   "notes": [
@@ -20,7 +20,7 @@
     "G-set file G77 from https://web.stanford.edu/~yyye/yyye/Gset/G77",
     "G-set graph G77: a two-dimensional toroidal grid graph (4-regular, 14000 vertices, 28000 edges, weights +1 and -1); the weight of a cut is the sum of the weights of edges whose endpoints lie on different sides.",
     "For the three large toroidal graphs G72, G77 and G81 the 2025 report considers its cuts optimal. That is reported, not proven, so a result here can at best be expected to match them.",
-    "The data file digest is not pinned until scripts/prepare_new_data.py has fetched it."
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it."
   ],
   "labels": {
     "scientific_contribution": "method",
@@ -94,7 +94,7 @@
   ],
   "limitations": [
     "For the three large toroidal graphs G72, G77 and G81 the 2025 report considers its cuts optimal. That is reported, not proven, so a result here can at best be expected to match them.",
-    "The data file digest is not pinned until scripts/prepare_new_data.py has fetched it.",
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it.",
     "The task states no record. See VALIDITY.md."
   ],
   "evaluator": "evaluator.py",

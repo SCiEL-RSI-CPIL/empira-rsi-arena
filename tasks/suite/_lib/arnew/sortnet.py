@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from .common import CandidateError, require
+from .common import CandidateError, exact_int, require
 
 MAX_EXACT_N = 32
 BLOCK_BITS = 24
@@ -19,7 +19,7 @@ def check(comparators, n):
     if n > MAX_EXACT_N:
         raise NotImplementedError(f"exact 0-1 verification is implemented for n <= {MAX_EXACT_N} only (2^n inputs); n = {n} needs a symmetry- or SAT-based verifier")
     try:
-        comps = [(int(a), int(b)) for a, b in comparators]
+        comps = [(exact_int(a), exact_int(b)) for a, b in comparators]  # 0.9 must not be read as wire 0
     except (TypeError, ValueError):
         raise CandidateError("return a list of (i, j) integer pairs") from None
     require(len(comps) > 0, "the network has no comparators")

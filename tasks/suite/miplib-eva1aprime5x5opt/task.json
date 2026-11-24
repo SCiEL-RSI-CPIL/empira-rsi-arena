@@ -44,7 +44,7 @@
   "evaluation": {
     "metric": "score",
     "direction": "minimize",
-    "protocol": "specified_only",
+    "protocol": "paper_reimplementation",
     "benchmark": "MIPLIB 2017 open instance eva1aprime5x5opt",
     "paper_metric": "Record comparison; see problem.json notes",
     "profiles": [
@@ -93,7 +93,7 @@
         "py:numpy",
         "py:scipy",
         "py:highspy",
-        "file:data/miplib/eva1aprime5x5opt.mps.gz"
+        "file:data/arnew/miplib/eva1aprime5x5opt.mps.gz"
       ],
       "timeout": 900,
       "validity_key": "valid"
@@ -109,8 +109,8 @@
   "validation": {
     "level": "real_instance_seed_run",
     "source_reviewed": "2026-11-02",
-    "evidence": "scripts/test_new_families.py",
-    "tests": "scripts/test_new_families.py",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
     "upstream_reproduction": true,
     "record_level": "record_reproduced",
     "unsure": false,

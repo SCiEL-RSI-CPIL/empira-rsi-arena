@@ -14,7 +14,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/qap/tai60a.dat"
+    "file:data/arnew/qap/tai60a.dat"
   ],
   "timeout": 120,
   "notes": [

@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/siena1.mps.gz"
+    "file:data/arnew/miplib/siena1.mps.gz"
   ],
   "timeout": 900,
   "notes": [

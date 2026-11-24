@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/pb-grow22.mps.gz"
+    "file:data/arnew/miplib/pb-grow22.mps.gz"
   ],
   "timeout": 900,
   "notes": [

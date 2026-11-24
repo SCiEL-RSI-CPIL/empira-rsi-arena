@@ -4,12 +4,12 @@ Records: the longest snakes on T. Ace's leaderboard (minortriad.com/snake), each
 """
 from __future__ import annotations
 
-from .common import CandidateError, require
+from .common import CandidateError, exact_int, require
 
 
 def check(vertices, n):
     try:
-        v = [int(x) for x in vertices]
+        v = [exact_int(x) for x in vertices]  # 3.7 must not be read as vertex 3
     except (TypeError, ValueError):
         raise CandidateError("return a list of integers") from None
     require(len(v) >= 2, "a snake needs at least two vertices")

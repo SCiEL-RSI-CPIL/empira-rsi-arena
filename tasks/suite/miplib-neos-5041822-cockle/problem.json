@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/neos-5041822-cockle.mps.gz"
+    "file:data/arnew/miplib/neos-5041822-cockle.mps.gz"
   ],
   "timeout": 900,
   "notes": [

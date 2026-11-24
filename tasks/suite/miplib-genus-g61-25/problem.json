@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/genus-g61-25.mps.gz"
+    "file:data/arnew/miplib/genus-g61-25.mps.gz"
   ],
   "timeout": 900,
   "notes": [

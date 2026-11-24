@@ -38,7 +38,7 @@ Listed objective -10618.750838372318 (in the model's own sense).
 
 https://miplib.zib.de/WebData/instances/rmine21.mps.gz (size varies; some files are large)
 
-Requires: `py:numpy`, `py:scipy`, `py:highspy`, `file:data/miplib/rmine21.mps.gz`. Run `python3 scripts/prepare_new_data.py --family miplib` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `py:scipy`, `py:highspy`, `file:data/arnew/miplib/rmine21.mps.gz`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family miplib` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

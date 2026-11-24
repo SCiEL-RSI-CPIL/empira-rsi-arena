@@ -14,7 +14,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/qap/sko72.dat"
+    "file:data/arnew/qap/sko72.dat"
   ],
   "timeout": 120,
   "notes": [

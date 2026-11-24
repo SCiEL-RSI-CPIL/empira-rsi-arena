@@ -41,12 +41,12 @@ The best-known cut was not read for this instance; check the G-set literature be
 
 G-set file G17 from https://web.stanford.edu/~yyye/yyye/Gset/G17
 
-Requires: `py:numpy`, `file:data/gset/G17`. Run `python3 scripts/prepare_new_data.py --family gset` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `file:data/arnew/gset/G17`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family gset` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 
 - Specialised solvers (breakout local search, simulated bifurcation, GES-PR) are strong on this set.
-- The data file digest is not pinned until scripts/prepare_new_data.py has fetched it.
+- The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it.
 - A record is the best published value that could be confirmed (see "Record validation" above and VALIDITY.md), not a proof that nothing better exists; read the source again before claiming an improvement.
 
 ## Run

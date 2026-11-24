@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/kottenpark09.mps.gz"
+    "file:data/arnew/miplib/kottenpark09.mps.gz"
   ],
   "timeout": 900,
   "notes": [

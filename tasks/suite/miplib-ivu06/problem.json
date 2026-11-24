@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/ivu06.mps.gz"
+    "file:data/arnew/miplib/ivu06.mps.gz"
   ],
   "timeout": 900,
   "notes": [

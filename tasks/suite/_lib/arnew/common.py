@@ -67,9 +67,37 @@ def read_data(family, name):
     return raw
 
 
+def unit_rows(p):
+    """Rows of a finite array scaled to unit length. The squares of coordinates above about 1e154 overflow: such a row has norm inf,
+    plain division turns it into the zero vector, and a zero vector has cosine 0 (90 degrees) with every point. Those rows are divided
+    by their largest coordinate first; all other rows are computed exactly as before."""
+    import numpy as np
+
+    with np.errstate(over="ignore"):
+        norms = np.linalg.norm(p, axis=1, keepdims=True)
+    big = ~np.isfinite(norms[:, 0])
+    if big.any():
+        p = np.array(p, dtype=float)
+        p[big] /= np.abs(p[big]).max(axis=1, keepdims=True)
+        norms = np.linalg.norm(p, axis=1, keepdims=True)
+    return p / norms
+
+
+def exact_int(x):
+    """int(x) for an integer-valued number. Raises ValueError for 3.9, "3", nan and inf: int() reads the first as 3, parses the second
+    and raises OverflowError (which the callers do not catch) for the last."""
+    try:
+        n = int(x)
+    except OverflowError:
+        raise ValueError("not an integer") from None
+    if n != x:
+        raise ValueError("not an integer")
+    return n
+
+
 def as_int_list(value, what):
     try:
-        out = [int(x) for x in value]
+        out = [exact_int(x) for x in value]
     except (TypeError, ValueError):
         raise CandidateError(f"{what} must be a sequence of integers") from None
     return out

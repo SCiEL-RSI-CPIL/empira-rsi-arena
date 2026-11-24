@@ -15,7 +15,7 @@
   "requires": [
     "py:numpy",
     "py:sklearn",
-    "file:data/matbench/log_kvrh.json"
+    "file:data/arnew/matbench/log_kvrh.json"
   ],
   "timeout": 2400,
   "notes": [

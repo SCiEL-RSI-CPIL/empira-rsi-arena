@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/fastxgemm-n3r21s3t6.mps.gz"
+    "file:data/arnew/miplib/fastxgemm-n3r21s3t6.mps.gz"
   ],
   "timeout": 900,
   "notes": [

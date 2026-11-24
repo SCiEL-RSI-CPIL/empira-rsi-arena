@@ -40,7 +40,7 @@ Leaderboard best 0.0491 MAE (coNGN), snapshot of matbench.materialsproject.org r
 
 matbench_log_kvrh.json.gz from ml.materialsproject.org, folds from the official validation file
 
-Requires: `py:numpy`, `py:sklearn`, `file:data/matbench/log_kvrh.json`. Run `python3 scripts/prepare_new_data.py --family matbench` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `py:sklearn`, `file:data/arnew/matbench/log_kvrh.json`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family matbench` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

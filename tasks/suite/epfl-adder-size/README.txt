@@ -39,7 +39,7 @@ Best known LUT-6 count: 129.
 
 arithmetic/adder.aig from github.com/lsils/benchmarks
 
-Requires: `abc`, `file:data/epfl/adder.aig`. Run `python3 scripts/prepare_new_data.py --family epfl` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `abc`, `file:data/arnew/epfl/adder.aig`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family epfl` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

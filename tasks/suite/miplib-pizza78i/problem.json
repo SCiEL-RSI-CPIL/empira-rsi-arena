@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/pizza78i.mps.gz"
+    "file:data/arnew/miplib/pizza78i.mps.gz"
   ],
   "timeout": 900,
   "notes": [

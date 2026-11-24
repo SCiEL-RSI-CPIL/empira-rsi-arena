@@ -62,7 +62,7 @@
   "evaluation": {
     "metric": "score",
     "direction": "maximize",
-    "protocol": "specified_only",
+    "protocol": "paper_reimplementation",
     "benchmark": "Max-cut, G-set G77",
     "paper_metric": "Record comparison; see problem.json notes",
     "profiles": [
@@ -111,7 +111,7 @@
       "error_key": "error",
       "requires": [
         "py:numpy",
-        "file:data/gset/G77"
+        "file:data/arnew/gset/G77"
       ],
       "timeout": 600,
       "validity_key": "valid"
@@ -120,14 +120,14 @@
   },
   "limitations": [
     "For the three large toroidal graphs G72, G77 and G81 the 2025 report considers its cuts optimal. That is reported, not proven, so a result here can at best be expected to match them.",
-    "The data file digest is not pinned until scripts/prepare_new_data.py has fetched it.",
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it.",
     "The task states no record. See VALIDITY.md."
   ],
   "validation": {
     "level": "real_instance_seed_run",
     "source_reviewed": "2026-11-02",
-    "evidence": "scripts/test_new_families.py",
-    "tests": "scripts/test_new_families.py",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
     "upstream_reproduction": false,
     "record_level": "no_record_claimed",
     "unsure": false,

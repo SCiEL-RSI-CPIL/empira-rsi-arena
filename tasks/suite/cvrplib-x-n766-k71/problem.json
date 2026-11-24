@@ -8,18 +8,18 @@
   "contract": "solve(inst) -> list of routes; a route is a list of customer ids from 1 to n in visiting order (the depot is node 0 and is not listed; empty routes are ignored). inst is a dict with n (number of customers), capacity, coords (array of shape (n + 1, 2), row 0 is the depot), demand (integer array of length n + 1, demand[0] = 0) and name. Score: the total cost, minimized.",
   "parameters": {
     "instance": "X-n766-k71",
-    "best_known": 114417
+    "best_known": 114413
   },
   "requires": [
     "py:numpy",
-    "file:data/cvrp/X-n766-k71.vrp"
+    "file:data/arnew/cvrp/X-n766-k71.vrp"
   ],
   "timeout": 300,
   "notes": [
-    "Best known solution 114417 (not proven optimal; CVRPLIB, checked 2026-11-11).",
+    "Best known solution 114413 (not proven optimal; CVRPLIB, checked 2026-11-24).",
     "CVRPLIB X instance file X-n766-k71.vrp (galgos.inf.puc-rio.br/cvrplib, download/instance/id)",
     "X-n766-k71 is an instance of the CVRPLIB X set with 765 customers and vehicle capacity 166, whose depot lies in the corner (0, 0) of a grid with integer coordinates from 0 to 1000.",
-    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record."
+    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-24; check for newer values before claiming a record."
   ],
   "labels": {
     "scientific_contribution": "method",
@@ -73,7 +73,7 @@
     }
   ],
   "limitations": [
-    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record.",
+    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-24; check for newer values before claiming a record.",
     "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
   ],
   "evaluator": "evaluator.py",

@@ -72,12 +72,12 @@
       "numpy"
     ],
     "environment_variables": [],
-    "datasets": "No data files are needed to run the task. The record comes from the coordinates at https://spherical-codes.org/data/3/32, which only the record validation reads (scripts/prepare_new_data.py --family sphere)."
+    "datasets": "No data files are needed to run the task. The record comes from the coordinates at https://spherical-codes.org/data/3/32, which only the record validation reads (scripts/new_open_problems/prepare_new_data.py --family sphere)."
   },
   "evaluation": {
     "metric": "score",
     "direction": "maximize",
-    "protocol": "specified_only",
+    "protocol": "paper_reimplementation",
     "benchmark": "Spherical code, 32 points in dimension 3",
     "paper_metric": "Record comparison; see problem.json notes",
     "profiles": [
@@ -113,7 +113,7 @@
     "commit": null,
     "commands": [],
     "notes": [
-      "No data files are needed to run the task. The record comes from the coordinates at https://spherical-codes.org/data/3/32, which only the record validation reads (scripts/prepare_new_data.py --family sphere)."
+      "No data files are needed to run the task. The record comes from the coordinates at https://spherical-codes.org/data/3/32, which only the record validation reads (scripts/new_open_problems/prepare_new_data.py --family sphere)."
     ],
     "suite": {
       "protocol": "recreated_verified",
@@ -140,8 +140,8 @@
   "validation": {
     "level": "family_tests_and_seed_run",
     "source_reviewed": "2026-11-02",
-    "evidence": "scripts/test_new_families.py",
-    "tests": "scripts/test_new_families.py",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
     "upstream_reproduction": true,
     "record_level": "record_reproduced",
     "unsure": false,
@@ -217,7 +217,7 @@
     "slug": "sphere-d3-n32",
     "description": "Place 32 points on the unit sphere in R^3 so that the smallest angle between two of them is as large as possible (the Tammes problem). The angle between two points is the angle at the centre of the sphere, the arccosine of the inner product of the two unit vectors.",
     "benchmark": "Spherical code, 32 points in dimension 3",
-    "dataset": "No data files are needed to run the task. The record comes from the coordinates at https://spherical-codes.org/data/3/32, which only the record validation reads (scripts/prepare_new_data.py --family sphere).",
+    "dataset": "No data files are needed to run the task. The record comes from the coordinates at https://spherical-codes.org/data/3/32, which only the record validation reads (scripts/new_open_problems/prepare_new_data.py --family sphere).",
     "metric": "score",
     "direction": "maximize",
     "source_url": "https://hdl.handle.net/1721.1/153543",
@@ -226,6 +226,6 @@
     "requirements": [
       "py:numpy"
     ],
-    "execution_notes": "No data files are needed to run the task. The record comes from the coordinates at https://spherical-codes.org/data/3/32, which only the record validation reads (scripts/prepare_new_data.py --family sphere)."
+    "execution_notes": "No data files are needed to run the task. The record comes from the coordinates at https://spherical-codes.org/data/3/32, which only the record validation reads (scripts/new_open_problems/prepare_new_data.py --family sphere)."
   }
 }

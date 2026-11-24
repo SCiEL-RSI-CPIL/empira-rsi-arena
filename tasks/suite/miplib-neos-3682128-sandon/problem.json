@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/neos-3682128-sandon.mps.gz"
+    "file:data/arnew/miplib/neos-3682128-sandon.mps.gz"
   ],
   "timeout": 900,
   "notes": [

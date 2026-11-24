@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/nb10tb.mps.gz"
+    "file:data/arnew/miplib/nb10tb.mps.gz"
   ],
   "timeout": 900,
   "notes": [

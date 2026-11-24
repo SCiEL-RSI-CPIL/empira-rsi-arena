@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/bmocbd3.mps.gz"
+    "file:data/arnew/miplib/bmocbd3.mps.gz"
   ],
   "timeout": 900,
   "notes": [

@@ -14,7 +14,7 @@
   },
   "requires": [
     "abc",
-    "file:data/epfl/sqrt.aig"
+    "file:data/arnew/epfl/sqrt.aig"
   ],
   "timeout": 2400,
   "notes": [

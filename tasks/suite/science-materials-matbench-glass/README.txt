@@ -39,7 +39,7 @@ Leaderboard best 0.9603 balanced accuracy (MODNet v0.1.12), snapshot of matbench
 
 matbench_glass.json.gz from ml.materialsproject.org, folds from the official validation file
 
-Requires: `py:numpy`, `py:sklearn`, `file:data/matbench/glass.json`. Run `python3 scripts/prepare_new_data.py --family matbench` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `py:sklearn`, `file:data/arnew/matbench/glass.json`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family matbench` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

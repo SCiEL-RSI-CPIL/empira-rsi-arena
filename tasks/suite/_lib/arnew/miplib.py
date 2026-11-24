@@ -4,13 +4,19 @@ The model is read with HiGHS (highspy) from the instance's .mps.gz. Feasibility 
 integrality and rows, checked on the values as returned (integer variables are not rounded first). This is stricter than
 MIPLIB's own check: of 194 published best solutions replayed on 2026-11-11, 157 pass and 37 do not (33 of those violate it
 by less than 1e-5), so a result that beats a record here also beats it there, but some records cannot be matched here.
+MIPLIB's rule, from the source of its checker (miplib2017-testscript-v1.0.4.zip, checker/src/model.cpp and main.cpp): a bound may be
+violated by tol * max(1, |bound|, |x|), a row by tol * max(1, positive part of its activity, |side|), integrality by tol, in exact
+rational arithmetic, with tol = 1e-5 by default and 1e-4 in the MIPLIB run scripts (scripts/run.sh). Everything accepted here is
+accepted there.
 The score is the objective in minimisation form (maximisation models are negated); `objective` in the result is the
 value in the model's own sense, which is what MIPLIB lists.
 """
 from __future__ import annotations
 
 import gzip
+import os
 import shutil
+import sys
 import tempfile
 from pathlib import Path
 
@@ -51,6 +57,7 @@ def _parse_mps(path):
     rows, rtype, cols, cidx, ints = {}, [], [], {}, []
     cost, entries, rhs, ranges = {}, [], {}, {}
     lower, upper, section, in_int, objname, offset, maximise = {}, {}, "", False, None, 0.0, False
+    bounded = set()  # columns named in BOUNDS
     with open(path) as f:
         for line in f:
             if not line.strip() or line[0] == "*":
@@ -94,6 +101,7 @@ def _parse_mps(path):
             elif section == "BOUNDS":
                 kind, col = t[0], t[2]
                 val = float(t[3]) if len(t) > 3 else 0.0
+                bounded.add(col)
                 if kind in ("UP", "UI"):
                     upper[col] = val
                     if val < 0 and lower[col] == 0.0:
@@ -115,6 +123,9 @@ def _parse_mps(path):
                     raise RuntimeError(f"unsupported MPS bound type {kind}")
                 if kind in ("UI", "LI", "BV"):
                     ints[cidx[col]] = True
+    for col, is_int in zip(cols, ints):
+        if is_int and col not in bounded:
+            upper[col] = 1.0  # MPS convention (MIPLIB's solution checker, HiGHS): an integer column without a BOUNDS entry is binary
     m, n = len(rtype), len(cols)
     ri, ci, vv = zip(*entries) if entries else ((), (), ())
     A = sp.csr_matrix((vv, (ri, ci)), shape=(m, n))
@@ -137,6 +148,27 @@ def _parse_mps(path):
             "maximise": bool(maximise), "row_names": list(rows), "col_names": cols}
 
 
+def _highs():
+    """A HiGHS instance with output switched off. The first Highs() of a process prints a banner to the C-level stdout before any
+    option can be set (highspy 1.16), and the harness reads the evaluator's JSON result from stdout: the banner made every MIPLIB
+    task fail in `run.py evaluate` ("Expecting value: line 1 column 1"). It is sent to stderr; later instances print nothing."""
+    import ctypes
+
+    import highspy
+
+    sys.stdout.flush()
+    saved = os.dup(1)
+    try:
+        os.dup2(2, 1)
+        h = highspy.Highs()
+        ctypes.CDLL(None).fflush(None)  # the banner must leave the C buffer while stdout still points at stderr
+    finally:
+        os.dup2(saved, 1)
+        os.close(saved)
+    h.setOptionValue("output_flag", False)
+    return h
+
+
 def load(name, workdir):
     import highspy
     import scipy.sparse as sp
@@ -146,16 +178,14 @@ def load(name, workdir):
     with gzip.open(data_dir("miplib") / (name + ".mps.gz"), "rb") as src, open(mps, "wb") as dst:
         shutil.copyfileobj(src, dst)
     indicators = []
-    h = highspy.Highs()
-    h.setOptionValue("output_flag", False)
+    h = _highs()
     status = h.readModel(str(mps))
     if status == highspy.HighsStatus.kError or h.getLp().num_col_ == 0:
         # rejected as is: retry on a cleaned copy (the seed's HiGHS runs then read the same cleaned file; indicator rows are checked by `check`)
         clean = Path(workdir) / (name + ".clean.mps")
         indicators = _split_indicators(mps, clean)
         clean.replace(mps)
-        h = highspy.Highs()
-        h.setOptionValue("output_flag", False)
+        h = _highs()
         status = h.readModel(str(mps))
     lp = h.getLp()
     n, m = lp.num_col_, lp.num_row_

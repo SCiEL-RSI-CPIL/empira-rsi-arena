@@ -2,7 +2,9 @@
 a larger code published later (scripts/dnacode_newer_codes.json).
 
 Alphabet A, C, G, T. A code is a set of distinct words of length n over it, all containing the same number w of letters from
-{C, G} (constant GC-content; w is free, as in the tables and papers, whose entries are the maximum over w), with Hamming distance
+{C, G} (constant GC-content; w is free here. The tables of King and of Gaborit and King are for w = floor(n/2): King 2003, section
+"Tables"; Chee and Ling 2008, section V. A table entry is therefore a valid record for this relaxed task, but a larger code with
+another w improves this task and not the table entry), with Hamming distance
 at least d between any two different words. Until 2026-11-18 the verifier fixed w = n // 2, which put four thesis records out of reach:
 the codes of Aboluion et al. for (n, d) = (10, 5), (14, 7), (14, 8) and (18, 9) have weights 6, 6, 8 and 10 (their codes have only even GC-weights). In the reverse-complement variant (A4GC,RC), also
 d(x, rc(y)) >= d for ALL words x, y of the code, x = y included, where rc reverses the word and swaps A<->T, C<->G.

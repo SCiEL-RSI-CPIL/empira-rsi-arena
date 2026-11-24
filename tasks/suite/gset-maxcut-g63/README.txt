@@ -41,12 +41,12 @@ No verified record: the value in the registry could not be confirmed against a p
 
 G-set file G63 from https://web.stanford.edu/~yyye/yyye/Gset/G63
 
-Requires: `py:numpy`, `file:data/gset/G63`. Run `python3 scripts/prepare_new_data.py --family gset` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `file:data/arnew/gset/G63`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family gset` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 
 - Specialised solvers (breakout local search, simulated bifurcation, GES-PR) are strong on this set.
-- The data file digest is not pinned until scripts/prepare_new_data.py has fetched it.
+- The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it.
 - A record is the best published value that could be confirmed (see "Record validation" above and VALIDITY.md), not a proof that nothing better exists; read the source again before claiming an improvement.
 
 ## Run

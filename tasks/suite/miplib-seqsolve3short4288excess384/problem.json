@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/seqsolve3short4288excess384.mps.gz"
+    "file:data/arnew/miplib/seqsolve3short4288excess384.mps.gz"
   ],
   "timeout": 900,
   "notes": [

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from .common import CandidateError, read_data, require
+from .common import CandidateError, exact_int, read_data, require
 
 
 def instance(name):
@@ -31,7 +31,7 @@ def instance(name):
 def route_cost(routes, inst):
     n, cap, xy, dem = inst["n"], inst["capacity"], inst["coords"], inst["demand"]
     try:
-        routes = [[int(c) for c in r] for r in routes]
+        routes = [[exact_int(c) for c in r] for r in routes]  # 3.7 must not be read as customer 3
     except (TypeError, ValueError):
         raise CandidateError("return a list of routes, each a list of customer ids") from None
     seen = np.zeros(n + 1, dtype=np.int64)

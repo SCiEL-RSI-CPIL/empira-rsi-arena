@@ -47,7 +47,7 @@
   "evaluation": {
     "metric": "score",
     "direction": "minimize",
-    "protocol": "specified_only",
+    "protocol": "paper_reimplementation",
     "benchmark": "Sorting network on 24 inputs",
     "paper_metric": "Record comparison; see problem.json notes",
     "profiles": [
@@ -60,7 +60,7 @@
     "parameters": {
       "n": 24,
       "best_known": 120,
-      "lower_bound": 100
+      "lower_bound": 95
     },
     "interface": "construct() -> list of comparators (i, j) with 0 <= i < j < 24, in the order in which they are applied (at least one). The network is verified on all 2^24 inputs of zeros and ones, which is equivalent to sorting every input. Score: number of comparators, minimized (the depth is not scored).",
     "label_spec": {
@@ -108,8 +108,8 @@
   "validation": {
     "level": "family_tests_and_seed_run",
     "source_reviewed": "2026-11-02",
-    "evidence": "scripts/test_new_families.py",
-    "tests": "scripts/test_new_families.py",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
     "upstream_reproduction": true,
     "record_level": "record_reproduced",
     "unsure": false,

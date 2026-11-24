@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/rfds-4-days.mps.gz"
+    "file:data/arnew/miplib/rfds-4-days.mps.gz"
   ],
   "timeout": 900,
   "notes": [

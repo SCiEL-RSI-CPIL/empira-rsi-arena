@@ -14,7 +14,7 @@
   },
   "requires": [
     "abc",
-    "file:data/epfl/int2float.aig"
+    "file:data/arnew/epfl/int2float.aig"
   ],
   "timeout": 2400,
   "notes": [

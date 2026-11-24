@@ -77,7 +77,7 @@
   "evaluation": {
     "metric": "score",
     "direction": "minimize",
-    "protocol": "specified_only",
+    "protocol": "paper_reimplementation",
     "benchmark": "Job-shop scheduling dmu46",
     "paper_metric": "Record comparison; see problem.json notes",
     "profiles": [
@@ -125,7 +125,7 @@
       "error_key": "error",
       "requires": [
         "py:numpy",
-        "file:data/jssp/dmu46.txt"
+        "file:data/arnew/jssp/dmu46.txt"
       ],
       "timeout": 300,
       "validity_key": "valid"
@@ -140,8 +140,8 @@
   "validation": {
     "level": "real_instance_seed_run",
     "source_reviewed": "2026-11-02",
-    "evidence": "scripts/test_new_families.py",
-    "tests": "scripts/test_new_families.py",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
     "upstream_reproduction": true,
     "record_level": "record_reproduced",
     "unsure": false,

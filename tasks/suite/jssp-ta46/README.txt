@@ -39,7 +39,7 @@ Lower bound 1976, best known makespan 2002 (O. Shylo's bounds pages and the Sche
 
 ta46 split from instance_data.txt of thomasWeise/jsspInstancesAndResults (819 KB, all instances in one file)
 
-Requires: `py:numpy`, `file:data/jssp/ta46.txt`. Run `python3 scripts/prepare_new_data.py --family jssp` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `file:data/arnew/jssp/ta46.txt`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family jssp` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

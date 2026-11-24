@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/supportcase35.mps.gz"
+    "file:data/arnew/miplib/supportcase35.mps.gz"
   ],
   "timeout": 900,
   "notes": [

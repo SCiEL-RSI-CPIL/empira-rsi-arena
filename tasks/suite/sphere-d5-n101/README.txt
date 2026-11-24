@@ -36,7 +36,7 @@ The code listed for this size in Cohn's table of spherical codes reaches 46.7497
 
 ## Data and requirements
 
-No data files are needed to run the task. The record comes from the coordinates at https://spherical-codes.org/data/5/101, which only the record validation reads (scripts/prepare_new_data.py --family sphere).
+No data files are needed to run the task. The record comes from the coordinates at https://spherical-codes.org/data/5/101, which only the record validation reads (scripts/new_open_problems/prepare_new_data.py --family sphere).
 
 Requires: `py:numpy`.
 

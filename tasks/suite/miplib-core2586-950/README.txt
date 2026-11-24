@@ -39,7 +39,7 @@ Listed objective 944.0 (in the model's own sense).
 
 https://miplib.zib.de/WebData/instances/core2586-950.mps.gz (size varies; some files are large)
 
-Requires: `py:numpy`, `py:scipy`, `py:highspy`, `file:data/miplib/core2586-950.mps.gz`. Run `python3 scripts/prepare_new_data.py --family miplib` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `py:scipy`, `py:highspy`, `file:data/arnew/miplib/core2586-950.mps.gz`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family miplib` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

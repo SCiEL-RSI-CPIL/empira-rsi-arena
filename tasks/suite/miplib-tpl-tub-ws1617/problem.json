@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/tpl-tub-ws1617.mps.gz"
+    "file:data/arnew/miplib/tpl-tub-ws1617.mps.gz"
   ],
   "timeout": 900,
   "notes": [

@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/neos-5151569-mologa.mps.gz"
+    "file:data/arnew/miplib/neos-5151569-mologa.mps.gz"
   ],
   "timeout": 900,
   "notes": [

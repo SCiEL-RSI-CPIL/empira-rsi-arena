@@ -150,6 +150,9 @@ from pathlib import Path as _Path
 # 2026 challenge; X_OPEN and XL above are the values first read from the paper and the older page). Six values were
 # corrected on 2026-11-11 from the published solution files: X-n957-k87 (85465 was a misreading of 85464) and five XL
 # instances whose best known solution improved after 2026-11-02 (n4063-k347, n4153-k291, n4738-k487, n6588-k473, n8389-k2028).
+# Read again on 2026-11-24 (all 139 rows of the instance page, and the four solution files replayed): XL-n6168-k1922 1527114 and
+# XL-n9784-k2774 4076838 (the task packages had these values, this file did not), X-n766-k71 114413 (was 114417) and
+# XL-n8389-k2028 3352570 (was 3352664).
 LIVE = _json.loads((_Path(__file__).with_name("cvrplib_live_bks.json")).read_text())
 X_INSTANCES = [(n, LIVE[n]) for n, _ in parse(X_OPEN)]
 XL_INSTANCES = [(n, LIVE[n]) for n, _ in parse(XL)]

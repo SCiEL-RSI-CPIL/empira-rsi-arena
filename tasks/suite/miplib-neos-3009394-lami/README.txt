@@ -32,13 +32,12 @@ Listed objective 5.5 (in the model's own sense).
 
 https://miplib.zib.de/WebData/instances/neos-3009394-lami.mps.gz (size varies; some files are large)
 
-Requires: `py:numpy`, `py:scipy`, `py:highspy`, `file:data/miplib/neos-3009394-lami.mps.gz`. Run `python3 scripts/prepare_new_data.py --family miplib` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `py:scipy`, `py:highspy`, `file:data/arnew/miplib/neos-3009394-lami.mps.gz`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family miplib` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 
 - The objective listed on the open-instances page may have been improved since 2026-11-11 (the list did not change between 2026-11-02 and 2026-11-11).
 - Candidates may call HiGHS through highspy; a stronger solver is a method, not a discovery by the workflow.
-- The starting program already reaches the best known value (run of 2026-11-11), so only a better value shows anything on this task.
 - A record is the best published value that could be confirmed (see "Record validation" above and VALIDITY.md), not a proof that nothing better exists; read the source again before claiming an improvement.
 
 ## Run

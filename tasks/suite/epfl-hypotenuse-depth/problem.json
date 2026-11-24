@@ -14,7 +14,7 @@
   },
   "requires": [
     "abc",
-    "file:data/epfl/hyp.aig"
+    "file:data/arnew/epfl/hyp.aig"
   ],
   "timeout": 2400,
   "notes": [

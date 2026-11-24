@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/bppc6-06.mps.gz"
+    "file:data/arnew/miplib/bppc6-06.mps.gz"
   ],
   "timeout": 900,
   "notes": [

@@ -13,7 +13,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/jssp/dmu42.txt"
+    "file:data/arnew/jssp/dmu42.txt"
   ],
   "timeout": 300,
   "notes": [

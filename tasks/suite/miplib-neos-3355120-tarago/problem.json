@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/neos-3355120-tarago.mps.gz"
+    "file:data/arnew/miplib/neos-3355120-tarago.mps.gz"
   ],
   "timeout": 900,
   "notes": [

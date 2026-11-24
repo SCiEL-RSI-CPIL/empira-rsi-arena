@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/rwth-timetable.mps.gz"
+    "file:data/arnew/miplib/rwth-timetable.mps.gz"
   ],
   "timeout": 900,
   "notes": [

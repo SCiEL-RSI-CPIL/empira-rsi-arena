@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/fhnw-binschedule1.mps.gz"
+    "file:data/arnew/miplib/fhnw-binschedule1.mps.gz"
   ],
   "timeout": 900,
   "notes": [

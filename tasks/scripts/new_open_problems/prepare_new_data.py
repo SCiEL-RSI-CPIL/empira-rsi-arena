@@ -87,6 +87,9 @@ def derive_matbench(folder):
     validation = (folder / "raw" / "validation.json").read_bytes()
     made = []
     for t in MATBENCH_NEW:
+        if not (folder / "raw" / f"matbench_{t}.json.gz").is_file():
+            print(f"matbench_{t}: raw file not fetched (--only), task file not derived")  # with --only the run used to stop here with FileNotFoundError
+            continue
         payloads = {f"matbench-{t.replace('_', '-')}": (folder / "raw" / f"matbench_{t}.json.gz").read_bytes(), "matbench-validation": validation}
         (folder / f"{t}.json").write_bytes(cs.matbench_deriver(t)(payloads))
         made.append(f"{t}.json")
@@ -154,6 +157,8 @@ def main():
     items = plan(a.family)
     if a.only:
         want = set(a.only.split(","))
+        if a.family == "matbench":
+            want.add("raw/validation.json")  # the official folds: every Matbench task file is derived from it
         items = [(n, u) for n, u in items if n in want]
     if a.family == "jssp":
         items = [("instance_data.txt", JSSP_URL)]

@@ -15,7 +15,7 @@
   "requires": [
     "py:numpy",
     "py:sklearn",
-    "file:data/matbench/mp_gap.json"
+    "file:data/arnew/matbench/mp_gap.json"
   ],
   "timeout": 3600,
   "notes": [

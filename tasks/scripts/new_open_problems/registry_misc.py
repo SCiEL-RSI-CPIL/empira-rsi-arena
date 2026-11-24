@@ -7,7 +7,7 @@ the maintained QAPLIB table; the snake-in-the-box records are not stored here (t
 # ---- QAPLIB, instances not solved to optimality: name -> (n, best known, best lower bound). tai256c, tho150, wil100 are
 # ---- already tasks of autoresearch-tasks and are left out. Values of the maintained QAPLIB table (qaplib.mgi.polymtl.ca, read in the
 # ---- Internet Archive copy of 2026-05-09, unchanged since 2020), compared on 2026-11-15: it has stronger lower bounds than the first version
-# ---- for 18 instances. One best known value is not QAPLIB's: tai100a, 21043560 (Misevicius 2019, Memetic Computing 11:331-332), where QAPLIB
+# ---- for 18 instances. One best known value is not QAPLIB's: tai100a, 21040996 (Sergienko et al. 2024, see QAP_LATER), where QAPLIB
 # ---- still lists 21044752 (2017) and the first version had 21052466 from an older mirror. scripts/validate_records.py checks all of this.
 QAP = {
     "sko42": (42, 15812, 15332), "sko49": (49, 23386, 22650), "sko56": (56, 34458, 33385), "sko64": (64, 48498, 47017),
@@ -40,6 +40,8 @@ assert len(QAP) == 29
 # ---- The lower bound is the larger of the two, the upper bound the smaller. The first version of this table was read from
 # ---- thomasWeise/jsspInstancesAndResults, which is no longer updated: 25 of its 85 "open" instances are closed today (JSSP_CLOSED), and 40 of
 # ---- the other 60 have a better upper bound. scripts/validate_records.py --families jssp re-derives every row from the pinned snapshots.
+# ---- Read again on 2026-11-24: the ScheduleOpt table has smaller upper bounds for dmu66 (5685, was 5690) and dmu68 (5733, was 5735), both
+# ---- credited to "DOFP2026"; the other 58 rows are unchanged and no instance is closed.
 JSSP = {}
 def _j(prefix, rows):
     for name, jobs, machines, lb, ub in rows:
@@ -57,7 +59,7 @@ _j("dmu", [("dmu11", 30, 15, 3402, 3430), ("dmu12", 30, 15, 3481, 3492), ("dmu16
            ("dmu57", 30, 20, 4462, 4643), ("dmu58", 30, 20, 4484, 4701), ("dmu59", 30, 20, 4366, 4607),
            ("dmu60", 30, 20, 4468, 4721), ("dmu61", 40, 15, 5038, 5159), ("dmu62", 40, 15, 5176, 5244),
            ("dmu63", 40, 15, 5245, 5296), ("dmu64", 40, 15, 5155, 5225), ("dmu65", 40, 15, 5122, 5158),
-           ("dmu66", 40, 20, 5526, 5690), ("dmu67", 40, 20, 5661, 5774), ("dmu68", 40, 20, 5513, 5735),
+           ("dmu66", 40, 20, 5526, 5685), ("dmu67", 40, 20, 5661, 5774), ("dmu68", 40, 20, 5513, 5733),
            ("dmu69", 40, 20, 5511, 5682), ("dmu70", 40, 20, 5633, 5868), ("dmu71", 50, 15, 6129, 6204),
            ("dmu72", 50, 15, 6434, 6448), ("dmu73", 50, 15, 6107, 6132), ("dmu74", 50, 15, 6168, 6196),
            ("dmu75", 50, 15, 6123, 6186), ("dmu76", 50, 20, 6479, 6708), ("dmu77", 50, 20, 6520, 6739),
@@ -71,9 +73,12 @@ assert len(JSSP_CLOSED) == 25 and not set(JSSP) & set(JSSP_CLOSED)
 
 # ---- Sorting networks (Dobbelaere's list): n -> (best size, depth of that network, proven size lower bound).
 # ---- n = 16, 17, 18 already exist as suite tasks.
-SORTNET = {19: (85, 12, 73), 20: (91, 12, 78), 21: (99, 15, 84), 22: (106, 13, 89), 23: (114, 14, 95), 24: (120, 13, 100),
-           25: (130, 15, 106), 26: (138, 15, 111), 27: (147, 16, 117), 28: (155, 14, 123), 29: (164, 15, 129),
-           30: (172, 14, 135), 31: (180, 14, 141), 32: (185, 14, 147)}
+# ---- Lower bounds as the list gives them since 2026-11-20 ("Reverting lower bounds for networks with 13 or more inputs due to error in
+# ---- proof in [VVoorh72]"): 39 for 12 inputs (proven, Harder) plus ceil(log2 k) for every further input k. The values read on 2026-11-02
+# ---- (73, 78, 84, 89, 95, 100, 106, 111, 117, 123, 129, 135, 141, 147) rested on the withdrawn bound. Sizes and depths are unchanged.
+SORTNET = {19: (85, 12, 70), 20: (91, 12, 75), 21: (99, 15, 80), 22: (106, 13, 85), 23: (114, 14, 90), 24: (120, 13, 95),
+           25: (130, 15, 100), 26: (138, 15, 105), 27: (147, 16, 110), 28: (155, 14, 115), 29: (164, 15, 120),
+           30: (172, 14, 125), 31: (180, 14, 130), 32: (185, 14, 135)}
 
 # ---- Snake-in-the-box, dimensions 10..13 (9 already exists). The July 2026 census (arXiv:2607.15270) improved all of
 # ---- them; only the dimension-9 value (191, previously 190) was read, so no record value is stored for these.

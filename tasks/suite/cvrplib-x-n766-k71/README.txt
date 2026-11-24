@@ -30,19 +30,19 @@ Papers whose main objective is this problem (the evidence for `important_to_scie
 
 ## Record
 
-Best known solution 114417 (not proven optimal; CVRPLIB, checked 2026-11-11).
+Best known solution 114413 (not proven optimal; CVRPLIB, checked 2026-11-24).
 
-**Record validation:** reproduced. published routes evaluated by our verifier = 114417; equals the cost in the .sol file and in the registry.
+**Record validation:** reproduced. published routes evaluated by our verifier = 114413; equals the cost in the .sol file published by CVRPLIB on 2026-11-24.
 
 ## Data and requirements
 
 CVRPLIB X instance file X-n766-k71.vrp (galgos.inf.puc-rio.br/cvrplib, download/instance/id)
 
-Requires: `py:numpy`, `file:data/cvrp/X-n766-k71.vrp`. Run `python3 scripts/prepare_new_data.py --family cvrp` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `file:data/arnew/cvrp/X-n766-k71.vrp`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family cvrp` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 
-- The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record.
+- The BKS is the cost of the solution file published by CVRPLIB on 2026-11-24; check for newer values before claiming a record.
 - A record is the best published value that could be confirmed (see "Record validation" above and VALIDITY.md), not a proof that nothing better exists; read the source again before claiming an improvement.
 
 ## Run

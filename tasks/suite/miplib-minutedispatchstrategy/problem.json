@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/minutedispatchstrategy.mps.gz"
+    "file:data/arnew/miplib/minutedispatchstrategy.mps.gz"
   ],
   "timeout": 900,
   "notes": [

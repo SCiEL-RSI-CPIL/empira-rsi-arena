@@ -15,7 +15,7 @@
   "requires": [
     "py:numpy",
     "py:sklearn",
-    "file:data/matbench/mp_is_metal.json"
+    "file:data/arnew/matbench/mp_is_metal.json"
   ],
   "timeout": 3600,
   "notes": [

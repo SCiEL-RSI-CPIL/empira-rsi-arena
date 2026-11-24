@@ -40,7 +40,7 @@ Best known solution 229518 (CVRPLIB, checked 2026-11-11; these values still move
 
 CVRPLIB XL instance file XL-n4245-k203.vrp (galgos.inf.puc-rio.br/cvrplib, download/instance/id)
 
-Requires: `py:numpy`, `file:data/cvrp/XL-n4245-k203.vrp`. Run `python3 scripts/prepare_new_data.py --family cvrp` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `file:data/arnew/cvrp/XL-n4245-k203.vrp`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family cvrp` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

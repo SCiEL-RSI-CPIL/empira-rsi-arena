@@ -39,14 +39,13 @@ Best known LUT-6 levels: 2.
 
 random_control/dec.aig from github.com/lsils/benchmarks
 
-Requires: `abc`, `file:data/epfl/dec.aig`. Run `python3 scripts/prepare_new_data.py --family epfl` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `abc`, `file:data/arnew/epfl/dec.aig`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family epfl` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 
 - Most records come from SAT-based exact synthesis of subcircuits, which an ABC script cannot express.
 - Requires the Berkeley ABC binary (set ARNEW_ABC).
 - LUTs and levels are counted from the written network by the convention of the EPFL table (single-input nodes are free), not from ABC's print_stats.
-- The starting program already reaches the best known value (run of 2026-11-11), so only a better value shows anything on this task.
 - A record is the best published value that could be confirmed (see "Record validation" above and VALIDITY.md), not a proof that nothing better exists; read the source again before claiming an improvement.
 
 ## Run

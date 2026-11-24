@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/zeil.mps.gz"
+    "file:data/arnew/miplib/zeil.mps.gz"
   ],
   "timeout": 900,
   "notes": [

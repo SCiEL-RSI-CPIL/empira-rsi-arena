@@ -9,19 +9,19 @@
   "parameters": {
     "instance": "dmu68",
     "lower_bound": 5513,
-    "best_known": 5735
+    "best_known": 5733
   },
   "requires": [
     "py:numpy",
-    "file:data/jssp/dmu68.txt"
+    "file:data/arnew/jssp/dmu68.txt"
   ],
   "timeout": 300,
   "notes": [
-    "Lower bound 5513, best known makespan 5735 (O. Shylo's bounds pages and the ScheduleOpt benchmark library, 2026-11-11).",
+    "Lower bound 5513, best known makespan 5733 (O. Shylo's bounds pages and the ScheduleOpt benchmark library, 2026-11-24).",
     "dmu68 split from instance_data.txt of thomasWeise/jsspInstancesAndResults (819 KB, all instances in one file)",
     "Demirkol, Mehta and Uzsoy (1998) benchmark instance dmu68 of the cscmax subfamily, 40 jobs x 20 machines.",
-    "The bounds are those of 2026-11-11 (larger lower bound and smaller upper bound of the two tables); both tables change several times a year, so read them again before claiming a record.",
-    "The record lies 4.03% above the lower bound."
+    "The bounds are those of 2026-11-24 (larger lower bound and smaller upper bound of the two tables); both tables change several times a year, so read them again before claiming a record.",
+    "The record lies 3.99% above the lower bound."
   ],
   "labels": {
     "scientific_contribution": "method",
@@ -102,9 +102,9 @@
     }
   ],
   "limitations": [
-    "The bounds are those of 2026-11-11 (larger lower bound and smaller upper bound of the two tables); both tables change several times a year, so read them again before claiming a record.",
-    "The record lies 4.03% above the lower bound.",
-    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+    "The bounds are those of 2026-11-24 (larger lower bound and smaller upper bound of the two tables); both tables change several times a year, so read them again before claiming a record.",
+    "The record lies 3.99% above the lower bound.",
+    "The record is the upper bound of the ScheduleOpt table, which publishes no schedule for it; it is not replayed. The schedule of makespan 5735 published on O. Shylo's page is replayed by this task's verifier."
   ],
   "evaluator": "evaluator.py",
   "initial_program": "initial_program.py",

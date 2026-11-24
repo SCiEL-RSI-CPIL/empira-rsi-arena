@@ -8,14 +8,13 @@ from __future__ import annotations
 
 import numpy as np
 
-from .common import CandidateError, require
+from .common import CandidateError, require, unit_rows
 
 IMPROVEMENT_TOL = 1e-8
 
 
 def energy(points):
-    p = np.asarray(points, dtype=float)
-    p = p / np.linalg.norm(p, axis=1, keepdims=True)
+    p = unit_rows(np.asarray(points, dtype=float))
     d = np.linalg.norm(p[:, None, :] - p[None, :, :], axis=-1)
     iu = np.triu_indices(len(p), 1)
     return float(np.sum(1.0 / d[iu]))

@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/ger50-17-ptp-pop-3t.mps.gz"
+    "file:data/arnew/miplib/ger50-17-ptp-pop-3t.mps.gz"
   ],
   "timeout": 900,
   "notes": [

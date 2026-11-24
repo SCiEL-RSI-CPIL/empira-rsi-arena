@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/neos-4533806-waima.mps.gz"
+    "file:data/arnew/miplib/neos-4533806-waima.mps.gz"
   ],
   "timeout": 900,
   "notes": [

@@ -14,7 +14,7 @@
   },
   "requires": [
     "abc",
-    "file:data/epfl/ctrl.aig"
+    "file:data/arnew/epfl/ctrl.aig"
   ],
   "timeout": 2400,
   "notes": [
@@ -23,8 +23,7 @@
     "EPFL combinational benchmark 'Alu control unit' (7 inputs, 26 outputs; Amaru, Gaillardon and De Micheli, IWLS 2015, tables I and II): a simple ALU control unit producing signals for ALU operation, register destination, memory operations and jumps. The task maps it to 6-input LUTs and scores the number of LUT levels.",
     "Most records come from SAT-based exact synthesis of subcircuits, which an ABC script cannot express.",
     "Requires the Berkeley ABC binary (set ARNEW_ABC).",
-    "LUTs and levels are counted from the written network by the convention of the EPFL table (single-input nodes are free), not from ABC's print_stats.",
-    "The starting program already reaches the best known value (run of 2026-11-11), so only a better value shows anything on this task."
+    "LUTs and levels are counted from the written network by the convention of the EPFL table (single-input nodes are free), not from ABC's print_stats."
   ],
   "labels": {
     "scientific_contribution": "engineering",
@@ -83,7 +82,6 @@
     "Most records come from SAT-based exact synthesis of subcircuits, which an ABC script cannot express.",
     "Requires the Berkeley ABC binary (set ARNEW_ABC).",
     "LUTs and levels are counted from the written network by the convention of the EPFL table (single-input nodes are free), not from ABC's print_stats.",
-    "The starting program already reaches the best known value (run of 2026-11-11), so only a better value shows anything on this task.",
     "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
   ],
   "evaluator": "evaluator.py",

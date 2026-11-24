@@ -12,7 +12,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/gset/G81"
+    "file:data/arnew/gset/G81"
   ],
   "timeout": 600,
   "notes": [
@@ -20,7 +20,7 @@
     "G-set file G81 from https://web.stanford.edu/~yyye/yyye/Gset/G81",
     "G-set graph G81: a two-dimensional toroidal grid graph (4-regular, 20000 vertices, 40000 edges, weights +1 and -1); the weight of a cut is the sum of the weights of edges whose endpoints lie on different sides.",
     "For the three large toroidal graphs G72, G77 and G81 the 2025 report considers its cuts optimal. That is reported, not proven, so a result here can at best be expected to match them.",
-    "The data file digest is not pinned until scripts/prepare_new_data.py has fetched it."
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it."
   ],
   "labels": {
     "scientific_contribution": "method",
@@ -94,7 +94,7 @@
   ],
   "limitations": [
     "For the three large toroidal graphs G72, G77 and G81 the 2025 report considers its cuts optimal. That is reported, not proven, so a result here can at best be expected to match them.",
-    "The data file digest is not pinned until scripts/prepare_new_data.py has fetched it.",
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it.",
     "The record was found in a hashed snapshot of its source; it is not replayed. See VALIDITY.md."
   ],
   "evaluator": "evaluator.py",

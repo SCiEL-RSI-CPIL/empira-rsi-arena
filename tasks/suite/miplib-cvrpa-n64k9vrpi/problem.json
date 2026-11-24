@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/cvrpa-n64k9vrpi.mps.gz"
+    "file:data/arnew/miplib/cvrpa-n64k9vrpi.mps.gz"
   ],
   "timeout": 900,
   "notes": [

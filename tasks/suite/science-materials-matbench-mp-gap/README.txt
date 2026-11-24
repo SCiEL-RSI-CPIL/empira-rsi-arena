@@ -38,7 +38,7 @@ Leaderboard best 0.1559 MAE (coGN), snapshot of matbench.materialsproject.org re
 
 matbench_mp_gap.json.gz from ml.materialsproject.org, folds from the official validation file
 
-Requires: `py:numpy`, `py:sklearn`, `file:data/matbench/mp_gap.json`. Run `python3 scripts/prepare_new_data.py --family matbench` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `py:sklearn`, `file:data/arnew/matbench/mp_gap.json`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family matbench` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

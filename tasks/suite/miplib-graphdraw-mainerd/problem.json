@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/graphdraw-mainerd.mps.gz"
+    "file:data/arnew/miplib/graphdraw-mainerd.mps.gz"
   ],
   "timeout": 900,
   "notes": [

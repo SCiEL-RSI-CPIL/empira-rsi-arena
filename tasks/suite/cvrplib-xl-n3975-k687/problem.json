@@ -12,7 +12,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/cvrp/XL-n3975-k687.vrp"
+    "file:data/arnew/cvrp/XL-n3975-k687.vrp"
   ],
   "timeout": 900,
   "notes": [

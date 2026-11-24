@@ -40,7 +40,7 @@ Best known 1185996137, best lower bound 1151591000 (QAPLIB).
 
 tai100b.dat from the QAPLIB deposit (Edinburgh DataShare, doi 10.7488/ds/3428, CC BY 4.0)
 
-Requires: `py:numpy`, `file:data/qap/tai100b.dat`. Run `python3 scripts/prepare_new_data.py --family qap` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `file:data/arnew/qap/tai100b.dat`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family qap` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

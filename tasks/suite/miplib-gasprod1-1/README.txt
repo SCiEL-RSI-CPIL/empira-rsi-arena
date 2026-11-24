@@ -32,7 +32,7 @@ Listed objective 291.1753206178255 (in the model's own sense).
 
 https://miplib.zib.de/WebData/instances/gasprod1-1.mps.gz (size varies; some files are large)
 
-Requires: `py:numpy`, `py:scipy`, `py:highspy`, `file:data/miplib/gasprod1-1.mps.gz`. Run `python3 scripts/prepare_new_data.py --family miplib` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `py:scipy`, `py:highspy`, `file:data/arnew/miplib/gasprod1-1.mps.gz`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family miplib` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

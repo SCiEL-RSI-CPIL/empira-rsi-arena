@@ -1,6 +1,7 @@
 """Matbench v0.1 tasks missing from autoresearch-tasks (glass, log_kvrh, mp_gap, mp_is_metal, mp_e_form).
 
-Same protocol as the old suite's chem_matbench: the five official folds (KFold 5, shuffle, random_state 18012019), each
+Same protocol as the old suite's chem_matbench: the five official folds, read from Matbench's own validation file (it documents 5 splits,
+shuffle, random_state 18012019; the classification folds are those of StratifiedKFold, the regression folds those of KFold), each
 prediction call in a fresh sandboxed child process that sees the training folds with targets and the held-out fold without.
 The score is the mean over folds of the held-out MAE (regression) or of the ROC AUC computed on 0/1 label predictions
 (classification, as the old suite's chem_matbench does). The candidate returns 0/1 labels for the classification tasks, so the ROC AUC of the labels equals the

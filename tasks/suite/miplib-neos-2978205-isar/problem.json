@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/neos-2978205-isar.mps.gz"
+    "file:data/arnew/miplib/neos-2978205-isar.mps.gz"
   ],
   "timeout": 900,
   "notes": [

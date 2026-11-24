@@ -14,7 +14,7 @@
   },
   "requires": [
     "abc",
-    "file:data/epfl/voter.aig"
+    "file:data/arnew/epfl/voter.aig"
   ],
   "timeout": 2400,
   "notes": [

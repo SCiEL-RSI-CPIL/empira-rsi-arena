@@ -62,7 +62,7 @@
   "evaluation": {
     "metric": "score",
     "direction": "minimize",
-    "protocol": "specified_only",
+    "protocol": "paper_reimplementation",
     "benchmark": "CVRP XL-n8389-k2028",
     "paper_metric": "Record comparison; see problem.json notes",
     "profiles": [
@@ -74,7 +74,7 @@
     "science_family": "cvrp",
     "parameters": {
       "instance": "XL-n8389-k2028",
-      "best_known": 3352664
+      "best_known": 3352570
     },
     "interface": "solve(inst) -> list of routes; a route is a list of customer ids from 1 to n in visiting order (the depot is node 0 and is not listed; empty routes are ignored). inst is a dict with n (number of customers), capacity, coords (array of shape (n + 1, 2), row 0 is the depot), demand (integer array of length n + 1, demand[0] = 0) and name. Score: the total cost, minimized.",
     "label_spec": {
@@ -107,7 +107,7 @@
       "error_key": "error",
       "requires": [
         "py:numpy",
-        "file:data/cvrp/XL-n8389-k2028.vrp"
+        "file:data/arnew/cvrp/XL-n8389-k2028.vrp"
       ],
       "timeout": 900,
       "validity_key": "valid"
@@ -115,22 +115,22 @@
     "declared_status": "requires_setup"
   },
   "limitations": [
-    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record.",
+    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-24; check for newer values before claiming a record.",
     "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
   ],
   "validation": {
     "level": "real_instance_seed_run",
     "source_reviewed": "2026-11-02",
-    "evidence": "scripts/test_new_families.py",
-    "tests": "scripts/test_new_families.py",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
     "upstream_reproduction": true,
     "record_level": "record_reproduced",
     "unsure": false,
     "record_validation": {
-      "record": 3352664,
+      "record": 3352570,
       "checks": [
-        "published routes evaluated by our verifier = 3352664",
-        "equals the cost in the .sol file and in the registry"
+        "published routes evaluated by our verifier = 3352570",
+        "equals the cost in the .sol file published by CVRPLIB on 2026-11-24"
       ],
       "sources": [
         "sources/cvrplib_bks/XL-n8389-k2028.sol",
@@ -138,7 +138,7 @@
         "data/cvrp/XL-n8389-k2028.vrp"
       ],
       "notes": [],
-      "validated": "2026-11-18"
+      "validated": "2026-11-24"
     }
   },
   "labels": {

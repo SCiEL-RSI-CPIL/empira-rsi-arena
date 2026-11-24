@@ -12,7 +12,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/gset/G66"
+    "file:data/arnew/gset/G66"
   ],
   "timeout": 600,
   "notes": [
@@ -20,7 +20,7 @@
     "G-set file G66 from https://web.stanford.edu/~yyye/yyye/Gset/G66",
     "G-set graph G66: a two-dimensional toroidal grid graph (4-regular, 9000 vertices, 18000 edges, weights +1 and -1); the weight of a cut is the sum of the weights of edges whose endpoints lie on different sides.",
     "Specialised solvers (breakout local search, simulated bifurcation, GES-PR) are strong on this set.",
-    "The data file digest is not pinned until scripts/prepare_new_data.py has fetched it."
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it."
   ],
   "labels": {
     "scientific_contribution": "method",
@@ -94,7 +94,7 @@
   ],
   "limitations": [
     "Specialised solvers (breakout local search, simulated bifurcation, GES-PR) are strong on this set.",
-    "The data file digest is not pinned until scripts/prepare_new_data.py has fetched it.",
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it.",
     "The task states no record. See VALIDITY.md."
   ],
   "evaluator": "evaluator.py",

@@ -40,7 +40,7 @@ Best known 149150, best lower bound 140893 (QAPLIB).
 
 sko100e.dat from the QAPLIB deposit (Edinburgh DataShare, doi 10.7488/ds/3428, CC BY 4.0)
 
-Requires: `py:numpy`, `file:data/qap/sko100e.dat`. Run `python3 scripts/prepare_new_data.py --family qap` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `file:data/arnew/qap/sko100e.dat`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family qap` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

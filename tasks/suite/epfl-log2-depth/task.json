@@ -45,7 +45,7 @@
   "evaluation": {
     "metric": "score",
     "direction": "minimize",
-    "protocol": "specified_only",
+    "protocol": "paper_reimplementation",
     "benchmark": "EPFL log2, LUT-6 levels",
     "paper_metric": "Record comparison; see problem.json notes",
     "profiles": [
@@ -94,7 +94,7 @@
       "error_key": "error",
       "requires": [
         "abc",
-        "file:data/epfl/log2.aig"
+        "file:data/arnew/epfl/log2.aig"
       ],
       "timeout": 2400,
       "validity_key": "valid"
@@ -110,8 +110,8 @@
   "validation": {
     "level": "real_instance_seed_run",
     "source_reviewed": "2026-11-02",
-    "evidence": "scripts/test_new_families.py",
-    "tests": "scripts/test_new_families.py",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
     "upstream_reproduction": true,
     "record_level": "record_reproduced",
     "unsure": false,

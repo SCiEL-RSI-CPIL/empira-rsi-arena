@@ -14,7 +14,7 @@
   },
   "requires": [
     "abc",
-    "file:data/epfl/priority.aig"
+    "file:data/arnew/epfl/priority.aig"
   ],
   "timeout": 2400,
   "notes": [

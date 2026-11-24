@@ -12,7 +12,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/gset/G44"
+    "file:data/arnew/gset/G44"
   ],
   "timeout": 600,
   "notes": [
@@ -20,7 +20,7 @@
     "G-set file G44 from https://web.stanford.edu/~yyye/yyye/Gset/G44",
     "G-set graph G44: a sparse random graph of density 2 percent (1000 vertices, 9990 edges, all weights 1, average degree 20.0); the weight of a cut is the sum of the weights of edges whose endpoints lie on different sides.",
     "Specialised solvers (breakout local search, simulated bifurcation, GES-PR) are strong on this set.",
-    "The data file digest is not pinned until scripts/prepare_new_data.py has fetched it."
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it."
   ],
   "labels": {
     "scientific_contribution": "method",
@@ -94,7 +94,7 @@
   ],
   "limitations": [
     "Specialised solvers (breakout local search, simulated bifurcation, GES-PR) are strong on this set.",
-    "The data file digest is not pinned until scripts/prepare_new_data.py has fetched it.",
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it.",
     "The task states no record. See VALIDITY.md."
   ],
   "evaluator": "evaluator.py",

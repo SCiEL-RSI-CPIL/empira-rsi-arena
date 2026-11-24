@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/shipsched.mps.gz"
+    "file:data/arnew/miplib/shipsched.mps.gz"
   ],
   "timeout": 900,
   "notes": [

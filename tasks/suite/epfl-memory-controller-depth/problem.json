@@ -14,7 +14,7 @@
   },
   "requires": [
     "abc",
-    "file:data/epfl/mem_ctrl.aig"
+    "file:data/arnew/epfl/mem_ctrl.aig"
   ],
   "timeout": 2400,
   "notes": [

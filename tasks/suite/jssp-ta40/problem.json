@@ -13,7 +13,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/jssp/ta40.txt"
+    "file:data/arnew/jssp/ta40.txt"
   ],
   "timeout": 300,
   "notes": [

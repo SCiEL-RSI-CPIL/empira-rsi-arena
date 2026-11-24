@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/bley_xs1noM.mps.gz"
+    "file:data/arnew/miplib/bley_xs1noM.mps.gz"
   ],
   "timeout": 900,
   "notes": [

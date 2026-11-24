@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/neos-4232544-orira.mps.gz"
+    "file:data/arnew/miplib/neos-4232544-orira.mps.gz"
   ],
   "timeout": 900,
   "notes": [

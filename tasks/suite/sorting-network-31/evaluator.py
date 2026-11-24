@@ -20,7 +20,7 @@ from arnew import sortnet  # noqa: E402
 runtime = common.runtime
 DIRECTION = "minimize"
 TIMEOUT = 900
-P = {'n': 31, 'best_known': 180, 'lower_bound': 141}
+P = {'n': 31, 'best_known': 180, 'lower_bound': 130}
 
 
 def task(module):

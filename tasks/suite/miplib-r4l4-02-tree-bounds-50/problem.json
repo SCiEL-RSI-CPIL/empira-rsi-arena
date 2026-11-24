@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/r4l4-02-tree-bounds-50.mps.gz"
+    "file:data/arnew/miplib/r4l4-02-tree-bounds-50.mps.gz"
   ],
   "timeout": 900,
   "notes": [

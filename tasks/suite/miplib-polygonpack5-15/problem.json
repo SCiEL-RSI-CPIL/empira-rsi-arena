@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/polygonpack5-15.mps.gz"
+    "file:data/arnew/miplib/polygonpack5-15.mps.gz"
   ],
   "timeout": 900,
   "notes": [

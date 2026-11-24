@@ -11,7 +11,7 @@
     "adapted": 975,
     "identical": 1142,
     "target_file_changed": 2,
-    "written_here": 23
+    "written_here": 24
   },
   "files": [
     {
@@ -240,7 +240,7 @@
     },
     {
       "path": "catalog/tasks.json",
-      "sha256": "264fa223d52a79de2ecb6aae1918f68163789f01519d259b88749d63ebe11f00",
+      "sha256": "1282ab3caff48cb6208856f84cbee011df721d114a25a39dce0d90b4e48dcb2a",
       "source_path": "catalog/tasks.json",
       "source_sha256": "448c918105cdf434369ef9eb08218d209c8f5325f6b85e7a184dce9852f75b68",
       "origin": "adapted",
@@ -1038,7 +1038,7 @@
     },
     {
       "path": "suite/index.json",
-      "sha256": "49cd83f106695b0254814939f06ca82e7be04c11e3c3ac0f104ee64e4af5cd9b",
+      "sha256": "ebf912e4aada19181e676311af71a6aff92549bd6ebdc42ec5407e4c37d00d03",
       "source_path": "suite/index.json",
       "source_sha256": "8995a1f90274a948139d7bf18ce568925395512d7eecc05ec7fb03b9c50a9d48",
       "origin": "adapted",
@@ -15267,6 +15267,12 @@
       "note": "regression tests of the evaluator audit of 2026-11-24"
     },
     {
+      "path": "tests/test_audit_open_problems.py",
+      "sha256": "bb610833ed732cd9398f5f323ed650fa816720be219af5cbf75ac1ad7ce2444e",
+      "origin": "written for this addition",
+      "note": "regression tests of the evaluator audit of 2026-11-24"
+    },
+    {
       "path": "tests/test_audit_prize_a.py",
       "sha256": "887a397c676d9b6b54601491ec5d850ff7a69c591d48eeff5d785054a6eae936",
       "origin": "written for this addition",
@@ -15942,7 +15948,7 @@
     },
     {
       "path": "validation/suite-additions-audit.json",
-      "sha256": "96edc14fcf551c0201ea0f922448639591b5bb3f5eb977aca7a73c729527e6bd",
+      "sha256": "39e8de6493cc537729df697d4433897cc1b6612a424bf7539c42341a6ac7e17b",
       "origin": "written for this addition",
       "note": "receipt of the evaluator audit of 2026-11-24"
     },

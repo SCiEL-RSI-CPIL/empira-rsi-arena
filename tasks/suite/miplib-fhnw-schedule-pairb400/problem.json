@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/fhnw-schedule-pairb400.mps.gz"
+    "file:data/arnew/miplib/fhnw-schedule-pairb400.mps.gz"
   ],
   "timeout": 900,
   "notes": [

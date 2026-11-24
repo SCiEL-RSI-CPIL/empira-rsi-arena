@@ -38,7 +38,7 @@ Listed objective -27262.58917622233 (in the model's own sense).
 
 https://miplib.zib.de/WebData/instances/lr2-22dr3-333vc4v17a-t60.mps.gz (size varies; some files are large)
 
-Requires: `py:numpy`, `py:scipy`, `py:highspy`, `file:data/miplib/lr2-22dr3-333vc4v17a-t60.mps.gz`. Run `python3 scripts/prepare_new_data.py --family miplib` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `py:scipy`, `py:highspy`, `file:data/arnew/miplib/lr2-22dr3-333vc4v17a-t60.mps.gz`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family miplib` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 

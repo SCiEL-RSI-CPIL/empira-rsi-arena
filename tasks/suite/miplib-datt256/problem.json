@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/datt256.mps.gz"
+    "file:data/arnew/miplib/datt256.mps.gz"
   ],
   "timeout": 900,
   "notes": [

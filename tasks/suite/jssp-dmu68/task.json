@@ -72,7 +72,7 @@
   "evaluation": {
     "metric": "score",
     "direction": "minimize",
-    "protocol": "specified_only",
+    "protocol": "paper_reimplementation",
     "benchmark": "Job-shop scheduling dmu68",
     "paper_metric": "Record comparison; see problem.json notes",
     "profiles": [
@@ -85,7 +85,7 @@
     "parameters": {
       "instance": "dmu68",
       "lower_bound": 5513,
-      "best_known": 5735
+      "best_known": 5733
     },
     "interface": "solve(inst) -> starts, a list of n_jobs lists of non-negative integers: starts[j][k] is the start time of operation k of job j. inst has name, n_jobs, n_machines and jobs[j] = list of (machine, duration) pairs in processing order, machines numbered from 0. Operation k + 1 of a job may not start before operation k has ended, and two operations on one machine may not overlap (one may start at the moment the other ends). Score: the makespan, minimized.",
     "label_spec": {
@@ -120,7 +120,7 @@
       "error_key": "error",
       "requires": [
         "py:numpy",
-        "file:data/jssp/dmu68.txt"
+        "file:data/arnew/jssp/dmu68.txt"
       ],
       "timeout": 300,
       "validity_key": "valid"
@@ -128,23 +128,23 @@
     "declared_status": "requires_setup"
   },
   "limitations": [
-    "The bounds are those of 2026-11-11 (larger lower bound and smaller upper bound of the two tables); both tables change several times a year, so read them again before claiming a record.",
-    "The record lies 4.03% above the lower bound.",
-    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+    "The bounds are those of 2026-11-24 (larger lower bound and smaller upper bound of the two tables); both tables change several times a year, so read them again before claiming a record.",
+    "The record lies 3.99% above the lower bound.",
+    "The record is the upper bound of the ScheduleOpt table, which publishes no schedule for it; it is not replayed. The schedule of makespan 5735 published on O. Shylo's page is replayed by this task's verifier."
   ],
   "validation": {
     "level": "real_instance_seed_run",
     "source_reviewed": "2026-11-02",
-    "evidence": "scripts/test_new_families.py",
-    "tests": "scripts/test_new_families.py",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
     "upstream_reproduction": true,
-    "record_level": "record_reproduced",
+    "record_level": "record_matches_pinned_source",
     "unsure": false,
     "record_validation": {
-      "record": 5735,
+      "record": 5733,
       "checks": [
         "Shylo's bounds page: lower bound 5493, upper bound 5735",
-        "ScheduleOpt jobshop table: lower bound 5513, upper bound 5749",
+        "ScheduleOpt jobshop table: lower bound 5513, upper bound 5733",
         "the schedule published on Shylo's page, replayed by our verifier: makespan 5735"
       ],
       "sources": [
@@ -156,7 +156,7 @@
         "data/jssp/dmu68.txt"
       ],
       "notes": [],
-      "validated": "2026-11-11"
+      "validated": "2026-11-24"
     }
   },
   "labels": {

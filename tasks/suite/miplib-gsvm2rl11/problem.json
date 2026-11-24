@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/gsvm2rl11.mps.gz"
+    "file:data/arnew/miplib/gsvm2rl11.mps.gz"
   ],
   "timeout": 900,
   "notes": [

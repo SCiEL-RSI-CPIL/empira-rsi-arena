@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/milo-v13-4-3d-4-0.mps.gz"
+    "file:data/arnew/miplib/milo-v13-4-3d-4-0.mps.gz"
   ],
   "timeout": 900,
   "notes": [

@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/gasprod1-1.mps.gz"
+    "file:data/arnew/miplib/gasprod1-1.mps.gz"
   ],
   "timeout": 900,
   "notes": [

@@ -4,13 +4,14 @@ import numpy as np
 
 
 def solve(model):
-    # Baseline: run HiGHS for a fixed time and return its incumbent (zeros clipped to the bounds if it found none).
+    # Baseline: stop HiGHS at its first feasible solution and return it (zeros clipped to the bounds if it found none).
     import highspy
 
     h = highspy.Highs()
     h.setOptionValue("output_flag", False)
     h.setOptionValue("threads", 1)
     h.setOptionValue("time_limit", 30.0)
+    h.setOptionValue("mip_max_improving_sols", 1)
     h.readModel(model["mps_path"])
     h.run()
     x = np.array(h.getSolution().col_value, dtype=float)

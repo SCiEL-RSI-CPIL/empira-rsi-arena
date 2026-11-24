@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/neos-3691541-lonja.mps.gz"
+    "file:data/arnew/miplib/neos-3691541-lonja.mps.gz"
   ],
   "timeout": 900,
   "notes": [

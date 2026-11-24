@@ -1,8 +1,8 @@
 {
   "schema": "arena.task-audit/1",
   "audited_on": "2026-11-24",
-  "scope": "Second review of the 318 task packages added from autoresearch-tasks commit 374288ac83ee35dc6b08b5ce2484f2af208c7e07, made after a maintainer reported missing and incorrect evaluators.",
-  "method": "Ten auditors, one per group of packages. For every package the evaluator was compared with the cited paper and, where one exists, with the benchmark's official or widely used public implementation; an independent implementation written from the definition was compared with the library on the seed, on reference objects from the literature and on random valid, invalid and hostile inputs; the seed was run. A defect was fixed only after it had been demonstrated, and every fix has a regression test in tasks/tests/test_audit_*.py. Statement changes were applied to every copy of a statement and checked for consistency.",
+  "scope": "Second review of the 318 task packages added from autoresearch-tasks commit 374288ac83ee35dc6b08b5ce2484f2af208c7e07, made after a maintainer reported missing and incorrect evaluators, and a review of the evaluators of the 1,301 instance-level open-problem packages added in the same pull request.",
+  "method": "Ten auditors, one per group of packages. For every package the evaluator was compared with the cited paper and, where one exists, with the benchmark's official or widely used public implementation; an independent implementation written from the definition was compared with the library on the seed, on reference objects from the literature and on random valid, invalid and hostile inputs; the seed was run. A defect was fixed only after it had been demonstrated, and every fix has a regression test in tasks/tests/test_audit_*.py. Statement changes were applied to every copy of a statement and checked for consistency. The open-problem packages were swept mechanically and their thirteen verifier modules were audited in the same way.",
   "summary": {
     "packages": 318,
     "packages_with_findings": 223,
@@ -13947,6 +13947,732 @@
       "Maximum Nash welfare: the optimality proofs rest on HiGHS with its default absolute gap (1e-6 in the sum of log utilities); only the 4-agent instance was verified in exact arithmetic over all allocations.",
       "Origin tests: tests/test_finance_kidney.py exceeds the time limit of the machine (replaced by the duality proof of all eight optima); one test each of test_finance_ccef.py and test_finance_tracking.py needs the generator-only module finance_specs_or and was not run; test_finance_data.py needs generator scripts and was replaced by a direct comparison of the lock with finance_data.DERIVED_SHA256 (equal).",
       "The seed-score receipts and the registry were not regenerated (not this auditor's files); see changes outside the audited files."
+    ]
+  },
+  "open_problem_packages": {
+    "packages": 1301,
+    "sweep": {
+      "packages": 1301,
+      "scripts": [
+        "sweep/sweep1.py",
+        "sweep/sweep2.py",
+        "sweep/sweep3.py"
+      ],
+      "files_present": "all 1,301 packages have evaluator.py, initial_program.py, problem.json, task.json, README.txt and config.yaml",
+      "wrappers": "every evaluator.py imports arnew.common and exactly one family module, and every attribute it uses exists in that module (AST check of all 1,301 wrappers against the 14 arnew modules): admet.run x22, cvrp.instance x139, cvrp.route_cost x139, dnacode.check x130, epfl.evaluate x40, jssp.instance x60, jssp.makespan x60, matbench.score x5, maxcut.cut_value x71, maxcut.instance x71, miplib.check x212, miplib.load x212, qap.instance x29, qap.objective x29, snake.check x4, sortnet.check x14, sphere.IMPROVEMENT_TOL x349, sphere.check x349, thomson.IMPROVEMENT_TOL x226, thomson.check x226. Every seed defines the entry point its wrapper calls.",
+      "parameter_agreement": "0 disagreements in 1,301 packages between: P, DIRECTION and TIMEOUT in evaluator.py; parameters, direction, timeout, requires, family and protocol in problem.json; execution.parameters, evaluation.direction, execution.suite.{timeout,requires,family,protocol} and execution.interface in task.json; the record of tasks/catalog/tasks.json (equal to task.json as a whole); tasks/suite/index.json; registry/catalog.json. description and contract are present verbatim in config.yaml, README.txt and the evaluator docstring of every package. (State of the PR head; the 18 packages whose evaluator constants this audit corrected need the statement changes listed below to agree again.)",
+      "requires": {
+        "with_a_working_route": "2,290 of 2,352 entries. py:numpy, py:scipy, py:sklearn, py:highspy, py:rdkit import in the project interpreter. All 556 file: entries are produced by tasks/scripts/new_open_problems/prepare_new_data.py (checked name by name against plan(), the job-shop split and the QAP archive); the route was run for ten families on 2026-11-24 (gset 6 files, sphere 2, jssp 60, thomson 1, dnacode 1, qap 29, cvrp 6, epfl 4, miplib 4, matbench 3) and every file is byte-identical to the origin's manifest.",
+        "without_a_route_in_this_repository": {
+          "abc (40 EPFL packages)": "the Berkeley ABC binary; nothing in the repository builds or fetches it, and the path the library looks at (tasks/tools/abc/abc) does not exist. The packages run with ARNEW_ABC set to a binary built elsewhere (checked with the origin's build of commit f0a3fec3).",
+          "py:PyTDC (22 ADMET packages)": "not importable in the project interpreter (ModuleNotFoundError: tdc) and not declared in pyproject.toml or uv.lock; the fallback of arnew.admet (tasks/tools/venv-admet) does not exist here and the statements point to 'the README's setup steps', which this repository does not have. The packages run with run.py evaluate --python <interpreter with PyTDC and rdkit> (checked with the origin's environment, PyTDC 1.0.0). PyTDC then downloads the benchmark (1.5 MB) during the first evaluation: there is no preparation step and no pinned digest for it."
+        },
+        "notes": [
+          "requires names the files as data/<family>/<file>; the library reads <ARENA_TASK_CACHE_DIR>/data/arnew/<family>/<file> (elsewhere in the catalog file:data/<x>/... is the path under the cache root).",
+          "MANIFEST.json is written by the preparation script from whatever it downloaded (trust on first use). The repository carries no lock for these 1,291 files, unlike the families with tasks/catalog/*-data-lock.json; 71 max-cut packages say so themselves ('The data file digest is not pinned until scripts/prepare_new_data.py has fetched it').",
+          "Matbench: the smallest evaluation needs 46 MB (validation.json) and the route failed for a single task until fixed in this audit (see family matbench).",
+          "highspy is used by 212 packages and is not a declared dependency of the repository (not in pyproject.toml / uv.lock); version 1.16.0 is installed in the project interpreter."
+        ]
+      },
+      "best_known_against_registry": {
+        "compared": "cvrp 139 (cvrplib_live_bks.json), miplib 212, qap 29, jssp 60, sortnet 14, epfl 40, admet 22, maxcut 71: 587 packages; best_known and, where present, lower_bound.",
+        "at_the_pr_head": "67 packages differed from the registry file they are said to be generated from: cvrplib-xl-n6168-k1922 (package 1527114, registry 1527161) and cvrplib-xl-n9784-k2774 (4076838 against 4076853), where the package is right (live table and replayed solution file) and the registry file was stale; 65 MIPLIB packages whose best_known is the exact objective of the replayed published solution while the registry holds the value read from the page (62 differ only in the last digits; neos-1423785 21893.26382173285 against 21893.26 and set3-09 176497.15242401615 against 176497.15 because the page rounds; t1717 158260.000000003 against 158260). The registry files were brought in line with the packages (they are consistent for all 587 now, except the 18 values this audit changed on purpose, which wait for their statement changes).",
+        "not_in_this_repository": "the registries of sphere (scripts/sphere_records.json), dnacode (the table page and scripts/dnacode_newer_codes.json), thomson (the Wikipedia table), snake (the leaderboard) and matbench were not ported; these 714 packages were compared with the sources themselves instead (see the families)."
+      },
+      "cited_paths": {
+        "exists": "suite/_lib/arnew (README and evaluator docstring of all 1,301 packages) is the only cited path that exists in this repository.",
+        "missing": [
+          {
+            "path": "OPEN_PROBLEMS_REGISTRY.md",
+            "where": "problem.json",
+            "packages": 1301,
+            "example": "OPEN_PROBLEMS_REGISTRY.md"
+          },
+          {
+            "path": "REVIEW.md",
+            "where": "README",
+            "packages": 8,
+            "example": "REVIEW.md"
+          },
+          {
+            "path": "REVIEW.md",
+            "where": "problem.json",
+            "packages": 16,
+            "example": "REVIEW.md"
+          },
+          {
+            "path": "VALIDITY.md",
+            "where": "README",
+            "packages": 1301,
+            "example": "VALIDITY.md"
+          },
+          {
+            "path": "VALIDITY.md",
+            "where": "problem.json",
+            "packages": 1301,
+            "example": "VALIDITY.md"
+          },
+          {
+            "path": "data/admet",
+            "where": "README",
+            "packages": 22,
+            "example": "data/admet"
+          },
+          {
+            "path": "data/admet",
+            "where": "problem.json",
+            "packages": 22,
+            "example": "data/admet"
+          },
+          {
+            "path": "data/cvrp/*",
+            "where": "record_validation.sources",
+            "packages": 139,
+            "example": "data/cvrp/X-n1001-k43.vrp"
+          },
+          {
+            "path": "data/dnacode/*",
+            "where": "record_validation.sources",
+            "packages": 130,
+            "example": "data/dnacode/dnacodes.html"
+          },
+          {
+            "path": "data/epfl/*",
+            "where": "record_validation.sources",
+            "packages": 30,
+            "example": "data/epfl/adder.aig"
+          },
+          {
+            "path": "data/jssp/*",
+            "where": "record_validation.sources",
+            "packages": 60,
+            "example": "data/jssp/dmu11.txt"
+          },
+          {
+            "path": "data/matbench/*",
+            "where": "record_validation.sources",
+            "packages": 5,
+            "example": "data/matbench/glass.json"
+          },
+          {
+            "path": "data/miplib/*",
+            "where": "record_validation.sources",
+            "packages": 194,
+            "example": "data/miplib/allcolor58.mps.gz"
+          },
+          {
+            "path": "data/qap/*",
+            "where": "record_validation.sources",
+            "packages": 29,
+            "example": "data/qap/sko100a.dat"
+          },
+          {
+            "path": "data/sphere/*",
+            "where": "record_validation.sources",
+            "packages": 698,
+            "example": "data/sphere/cohn.3.100.csv"
+          },
+          {
+            "path": "data/thomson/*",
+            "where": "record_validation.sources",
+            "packages": 226,
+            "example": "data/thomson/thomson_problem.wikitext"
+          },
+          {
+            "path": "scripts/an independent check",
+            "where": "config.yaml",
+            "packages": 1301,
+            "example": "scripts/an independent check"
+          },
+          {
+            "path": "scripts/an independent check",
+            "where": "evaluator docstring",
+            "packages": 1301,
+            "example": "scripts/an independent check"
+          },
+          {
+            "path": "scripts/prepare_new_data.py",
+            "where": "README",
+            "packages": 998,
+            "example": "scripts/prepare_new_data.py"
+          },
+          {
+            "path": "scripts/prepare_new_data.py",
+            "where": "problem.json",
+            "packages": 491,
+            "example": "scripts/prepare_new_data.py"
+          },
+          {
+            "path": "scripts/test_new_families.py",
+            "where": "validation.evidence",
+            "packages": 1301,
+            "example": "scripts/test_new_families.py"
+          },
+          {
+            "path": "scripts/test_new_families.py",
+            "where": "validation.tests",
+            "packages": 1301,
+            "example": "scripts/test_new_families.py"
+          },
+          {
+            "path": "sources/*.gz",
+            "where": "record_validation.sources",
+            "packages": 29,
+            "example": "sources/qapsoln.tar.gz"
+          },
+          {
+            "path": "sources/*.html",
+            "where": "record_validation.sources",
+            "packages": 1402,
+            "example": "sources/cvrplib_instances.html"
+          },
+          {
+            "path": "sources/*.md",
+            "where": "record_validation.sources",
+            "packages": 100,
+            "example": "sources/epfl_best_results_README.md"
+          },
+          {
+            "path": "sources/*.pdf",
+            "where": "record_validation.sources",
+            "packages": 1,
+            "example": "sources/sergienko_2024_tai100a.pdf"
+          },
+          {
+            "path": "sources/*.sln",
+            "where": "record_validation.sources",
+            "packages": 1,
+            "example": "sources/qaplib_polymtl_tai100a.sln"
+          },
+          {
+            "path": "sources/*.zip",
+            "where": "record_validation.sources",
+            "packages": 11,
+            "example": "sources/dna10_idsia.zip"
+          },
+          {
+            "path": "sources/cvrplib_bks/*.sol",
+            "where": "record_validation.sources",
+            "packages": 139,
+            "example": "sources/cvrplib_bks/X-n1001-k43.sol"
+          },
+          {
+            "path": "sources/dnacodes_2026/*.txt",
+            "where": "record_validation.sources",
+            "packages": 37,
+            "example": "sources/dnacodes_2026/GC_n10_d6.txt"
+          },
+          {
+            "path": "sources/epfl_best/depth/*.blif",
+            "where": "record_validation.sources",
+            "packages": 20,
+            "example": "sources/epfl_best/depth/adder_depth_2026.blif"
+          },
+          {
+            "path": "sources/epfl_best/size/*.blif",
+            "where": "record_validation.sources",
+            "packages": 20,
+            "example": "sources/epfl_best/size/adder_size_2022.blif"
+          },
+          {
+            "path": "sources/jssp_shylo/*.html",
+            "where": "record_validation.sources",
+            "packages": 180,
+            "example": "sources/jssp_shylo/TA.html"
+          },
+          {
+            "path": "sources/jssp_shylo/solutions/*.html",
+            "where": "record_validation.sources",
+            "packages": 60,
+            "example": "sources/jssp_shylo/solutions/dmu11.html"
+          },
+          {
+            "path": "sources/miplib_details/*.html",
+            "where": "record_validation.sources",
+            "packages": 212,
+            "example": "sources/miplib_details/allcolor58.html"
+          },
+          {
+            "path": "sources/miplib_sol/*.gz",
+            "where": "record_validation.sources",
+            "packages": 205,
+            "example": "sources/miplib_sol/allcolor58.sol.gz"
+          },
+          {
+            "path": "sources/sergienko_2024_tai100a.pdf",
+            "where": "README",
+            "packages": 1,
+            "example": "sources/sergienko_2024_tai100a.pdf"
+          },
+          {
+            "path": "sources/tdc/*.html",
+            "where": "record_validation.sources",
+            "packages": 22,
+            "example": "sources/tdc/21ames.html"
+          },
+          {
+            "path": "tools/venv-admet",
+            "where": "README",
+            "packages": 22,
+            "example": "tools/venv-admet"
+          },
+          {
+            "path": "tools/venv-admet",
+            "where": "problem.json",
+            "packages": 44,
+            "example": "tools/venv-admet"
+          }
+        ],
+        "summary": "Every package cites paths of the origin repository that were not ported: scripts/test_new_families.py (validation.evidence and validation.tests, 1,301), VALIDITY.md (limitations and README, 1,301), OPEN_PROBLEMS_REGISTRY.md (papers[].title, 1,301), scripts/an independent check (evaluator docstring and config.yaml header, 1,301), scripts/prepare_new_data.py (README of 998 packages and notes of 491; the script is at tasks/scripts/new_open_problems/prepare_new_data.py here), sources/... and data/... (validation.record_validation.sources, 3,900 entries), tools/venv-admet (22), REVIEW.md (8)."
+      },
+      "protocol_value": {
+        "found": "all 1,301 packages have evaluation.protocol = 'specified_only', kind = 'native', an executable suite protocol (recreated_verified 935, recreated 366).",
+        "what_the_repository_says": "tasks/src/autoresearch_tasks/registry.py only checks membership in (portable_reference, upstream, specified_only, paper_reimplementation) (line 263) and derives readiness from execution.suite.protocol, so the value has no effect on running. tasks/context/TASKS.txt does not define the values of evaluation.protocol; it defines kind 'specification' as 'the task is identified in the paper but no complete public evaluator was found'. In tasks/catalog/tasks.json the value follows kind without exception outside this collection: all 445 packages of kind 'specification' have specified_only, 367 of the 383 of kind 'upstream' have upstream (the other 16 have 'recreated', a value registry.py does not allow; they are outside this group), and the 449 executable native packages have paper_reimplementation (447) or portable_reference (2). The origin's generators agree: scripts/an independent check writes 'upstream' if a pinned upstream evaluator runs, else 'specified_only', for paper tasks, and scripts/import_science.py writes 'paper_reimplementation' for natively implemented source-based tasks, the closest relatives of these packages.",
+        "conclusion": "'specified_only' is wrong for these packages: it says that only a specification exists, while each has an evaluator written in this repository for a task defined by its sources. The value used for every comparable package is 'paper_reimplementation'. See mass_changes[0]."
+      },
+      "test_file": {
+        "found": "scripts/test_new_families.py is named as validation.evidence and validation.tests by all 1,301 packages. No file of that name exists anywhere in the repository (git ls-files, 17,358 files); it is the origin's own check script (344 lines, also dependent on the origin's catalog/, sources/ and validate_records*.py, none of which were ported).",
+        "context": "Elsewhere in the catalog 371 of 377 validation.evidence paths exist (validation/*.json reports); validation.tests paths of other families are mostly missing too (391 packages name tests/test_*.py files of the origin).",
+        "conclusion": "the packages cite evidence that a reader of this repository cannot open. tasks/tests/test_audit_open_problems.py (25 tests, added by this audit) exercises every arnew verifier and the registry constants; see mass_changes[1]."
+      },
+      "seeds_run": "62 packages in 13 families through run.py evaluate (per family below); all complete as their statements say after the fixes of this audit. No seed score is recorded in tasks/validation/suite-additions-report.json; where the origin recorded one (scripts/seed_results_*.json) it is reproduced, except the time-budgeted seeds (dnacode, miplib) and thomson-n470."
+    },
+    "families": {
+      "sphere": {
+        "verdict": "fixed",
+        "reference": "Definition: minimum angular distance of a spherical code (Tammes problem in dimension 3). Record source: H. Cohn, Table of spherical codes, https://spherical-codes.org/ (coordinates at https://spherical-codes.org/data/<dim>/<n>). Independent implementation: scratch checks/sphere_records.py (extended precision, angle from the chord length).",
+        "checks": [
+          "arnew.sphere.check against an independent longdouble/chord implementation on the table's coordinates for all 349 sizes: equal within 1e-9 degrees; best_known of every package equals the table's angle within 5.0e-10 degrees (it is that angle rounded to 9 decimals).",
+          "Live table, 9 sizes (d3 n16/50/130, d4 n11/68/130, d5 n12/98/130) fetched 2026-11-24: bytes identical to the origin's copies, angles equal to the package records.",
+          "Hostile inputs (checks/hostile.py): NaN, inf, zero and tiny rows, wrong shapes, ragged, None are rejected; scaled rows, bools, numeric strings and object arrays are normalised; duplicate points score 0.",
+          "Improvement margin 1e-5 degrees against records known to 1e-9: cannot turn evaluation noise (about 1e-13 degrees) into a record.",
+          "Seeds through run.py: d3-n16 47.980345, d3-n50 26.607414, d3-n130 16.761656, d4-n11 64.456444, d4-n130 27.905675, d5-n12 71.400271, d5-n130 34.865348; all valid, below the record, equal to the origin's recorded scores; unchanged by the fix.",
+          "Preparation route: cohn.3.16.csv and pack.3.16.txt fetched by the script, digests equal to the origin's manifest (the packages themselves need no data)."
+        ],
+        "findings": [
+          {
+            "severity": "error",
+            "kind": "numerical",
+            "what": "Rows with coordinates above about 1e154 made the verifier report a minimum angle of 90 degrees for any n and dimension: the squares overflow, the norm is inf, the row becomes the zero vector and has cosine 0 with every point. A candidate returning np.full((n, dim), 1e200), n copies of one direction, was scored 90.0 and reported as beating the record on every one of the 349 tasks (true minimum angle 0).",
+            "fix": "code: tasks/suite/_lib/arnew/common.py:unit_rows (new), used by tasks/suite/_lib/arnew/sphere.py:min_angle: a row whose norm is not finite is divided by its largest coordinate first; all other rows are computed exactly as before (seed scores bit-identical)",
+            "confidence": "high"
+          }
+        ]
+      },
+      "thomson": {
+        "verdict": "fixed",
+        "reference": "Thomson problem: Coulomb energy sum over pairs of 1/|x_i - x_j| on the unit sphere. Record source: table of putative minima in https://en.wikipedia.org/wiki/Thomson_problem (9 decimals); second source used by the origin: Wales and Ulker, Cambridge Cluster Database. Independent implementation: scratch checks/thomson_records.py (math.fsum over exact unit vectors; own L-BFGS optimiser).",
+        "checks": [
+          "best_known of all 226 packages equals the table entry of the page fetched 2026-11-24 through the preparation script (bytes identical to the origin's copy; 234 rows, 9 decimals).",
+          "Re-derivation of 11 sizes (N = 9, 10, 11, 13, 14, 15, 20, 24, 32, 48, 72) with an own optimiser from random starts: each energy agrees with the table within 2e-9, none is lower by more than the improvement margin of 1e-8.",
+          "arnew.thomson.check against the plain fsum definition: equal to 1e-10; coincident points rejected; nearly coincident points give a huge finite energy.",
+          "Seeds through run.py: n9 25.761642, n10 32.718392, n100 4448.579565, n204 19200.085212, n470 104824.222577; valid, above the record; the first four equal the origin's records, n470 differs in the 6th digit (104824.7253 there): the seed's gradient descent is not converged at that size and depends on the BLAS."
+        ],
+        "findings": [
+          {
+            "severity": "error",
+            "kind": "accepts_invalid",
+            "what": "A point with coordinates above about 1e154 became the zero vector (norm inf) and was scored as a charge at the centre of the sphere, at distance 1 from every other charge: an object that is not on the sphere was accepted with an energy lower than that of the direction it stands for (61.324 instead of 62.062 in the reproduction). It cannot beat a record (a centre charge costs N - 1, more than a surface charge), but it is an invalid configuration scored as valid.",
+            "fix": "code: tasks/suite/_lib/arnew/thomson.py:energy uses common.unit_rows (same change as for sphere); seed scores bit-identical",
+            "confidence": "high"
+          }
+        ]
+      },
+      "miplib": {
+        "verdict": "fixed_and_statement_change",
+        "reference": "MIPLIB 2017 (Gleixner et al. 2021), open instances: https://miplib.zib.de/tag_open.html. Official feasibility definition: the solution checker distributed with the MIPLIB test scripts, https://miplib.zib.de/downloads/miplib2017-testscript-v1.0.4.zip, checker/src/model.cpp (Var::checkBounds, Var::checkIntegrality, LinearConstraint::check, IndicatorConstraint::check), main.cpp (default tolerance 1e-5) and scripts/run.sh (LINTOL = INTTOL = 1e-4); MPS conventions in checker/src/mpsinput.cpp. Independent implementation: own MPS reader with those conventions and exact rational evaluation, scratch checks/miplib_independent.py.",
+        "checks": [
+          "Official rule read from the source: a bound may be violated by tol * max(1, |bound|, |x|); a row by tol * max(1, positive part of the activity, |side|); integrality by tol (absolute); an indicator row binds when its binary is on the trigger side of 1/2; all in exact rational arithmetic. The task's rule (1e-6 absolute everywhere, in floating point) is contained in it, so nothing accepted here is rejected there.",
+          "34 smallest instances (origin's files; 4 of them also prepared on 2026-11-24, byte-identical): bounds, integrality, costs, objective offset, sense and row count of the model built by arnew.miplib.load equal the independent reader for 33 (the 34th has an INDICATORS section, which the independent reader does not handle), including the two instances read by the plain reader (bley_xs1, bley_xs1noM).",
+          "30 published solutions of those instances evaluated exactly: the library accepts 25 with the published objective and rejects 5; the exact check agrees in all 30. The 5 rejected ones (neos-1420790, n370b, fhnw-schedule-paira100, neos-3691541-lonja, neos-3682128-sandon; violations 1.2e-6 to 9.4e-6) are feasible by the official rule at its default 1e-5.",
+          "Live open-instances page fetched 2026-11-24: all 212 instances are still open; for the 206 with a solution the listed objective agrees with the package to the digits printed; the 6 without a solution still have none. No instance has OBJSENSE MAX (five say 'Max problem is converted into Min one'), so the negation path is exercised only by the synthetic test.",
+          "Hostile inputs on a synthetic model (test file): out-of-bound, fractional, NaN, wrong length, None rejected; a value within 5e-7 of a row bound accepted and not rounded.",
+          "Seeds through run.py after the fix: milo-v13-4-3d-4-0 1024249.49 (valid), liu 2040 (valid), supportcase30 invalid ('a constraint is violated', as recorded), neos-3009394-lami 5.7857 with the new seed. The scores of the HiGHS seeds differ from the origin's (986730.90 and 2268): the seed runs HiGHS for 30 s of wall-clock time."
+        ],
+        "findings": [
+          {
+            "severity": "error",
+            "kind": "cannot_run",
+            "what": "Every MIPLIB package failed in run.py evaluate with 'Expecting value: line 1 column 1 (char 0)': with highspy 1.16.0, the version installed in the project interpreter, the first Highs() of a process prints a two-line banner to the C-level stdout before any option can be set, in front of the JSON result that the runner parses (bridge.py redirects only Python's sys.stdout). The same banner precedes the JSON of `python evaluator.py`.",
+            "fix": "code: tasks/suite/_lib/arnew/miplib.py:_highs (new; sends the banner of the first instance to stderr, flushes the C buffer, sets output_flag off), used by load for both of its HiGHS instances",
+            "confidence": "high"
+          },
+          {
+            "severity": "warning",
+            "kind": "rejects_valid",
+            "what": "The feasibility rule is stricter than MIPLIB's own: 1e-6 absolute against tol * max(1, scale) with tol = 1e-5 (checker default) or 1e-4 (MIPLIB's run scripts). The published best solution of 37 packages is therefore invalid here (their record_validation says so; 5 of them were confirmed above as feasible by the official rule and infeasible by the task's). The statement describes the task's rule correctly, and the stricter rule cannot produce a false record; but for these 37 instances the listed record may be unreachable under the task's rule, and the origin's review kept the rule because it 'could not find MIPLIB's exact rule stated'. It is stated in the checker's source, quoted in the reference above.",
+            "fix": "none: the rule is a documented design choice of the author and is kept; the docstring of tasks/suite/_lib/arnew/miplib.py now quotes the official rule. If comparability with MIPLIB is wanted, check() can apply the official scaling with tol = 1e-5 in a few lines, and the description of 212 packages changes with it",
+            "confidence": "high"
+          },
+          {
+            "severity": "warning",
+            "kind": "accepts_invalid",
+            "what": "The plain MPS reader used when HiGHS rejects a file (bley_xs1 and bley_xs1noM, matrix entries of 1e20) gave an integer column declared between MARKER lines and without a BOUNDS entry the bounds [0, inf). In the MPS convention of MIPLIB's checker (mpsinput.cpp: 'for integer variables, default bounds are 0 <= x < 1') and of HiGHS such a column is binary; a value of 2 was accepted. No package is affected today: every integer column of the two instances has a BOUNDS entry.",
+            "fix": "code: tasks/suite/_lib/arnew/miplib.py:_parse_mps (integer columns without a BOUNDS entry get the upper bound 1)",
+            "confidence": "high"
+          },
+          {
+            "severity": "warning",
+            "kind": "no_headroom",
+            "what": "The seed of miplib-neos-3009394-lami reaches the listed objective 5.5 (HiGHS within its 30 s).",
+            "fix": "code: tasks/suite/miplib-neos-3009394-lami/initial_program.py stops HiGHS at its first feasible solution (mip_max_improving_sols = 1): score 5.7857142857, valid, the same in two runs | statement: 2 entries removing the limitation and note",
+            "confidence": "high"
+          },
+          {
+            "severity": "warning",
+            "kind": "numerical",
+            "what": "beats_best_known is objective < best_known with no margin, and best_known is a float: an equally good solution whose float sum differs in the last bit is flagged as beating the record. The score is not affected.",
+            "fix": "none: 212 generated wrappers, proposal in mass_changes[6]",
+            "confidence": "high"
+          },
+          {
+            "severity": "warning",
+            "kind": "cannot_run",
+            "what": "By the origin's record 120 seeds return an infeasible vector (valid = false at the start of a search; the packages say so) and 2 (mining, supportcase31) do not return within the task's 900 s because HiGHS does not honour its 30 s limit there. Confirmed here for one instance (supportcase30: invalid); the two that hang were not run (two-minute limit of this machine).",
+            "fix": "none: an open instance has no cheap feasible point; the two hanging seeds need a compute node to reproduce",
+            "confidence": "medium"
+          },
+          {
+            "severity": "note",
+            "kind": "wrong_fact",
+            "what": "65 registry values differed from the packages in the last digits (the packages carry the exact objective of the replayed solution); the registry was synchronised.",
+            "fix": "code: tasks/scripts/new_open_problems/registry_miplib.py (65 values, docstring)",
+            "confidence": "high"
+          }
+        ]
+      },
+      "cvrp": {
+        "verdict": "fixed_and_statement_change",
+        "reference": "CVRPLIB: instance files (TSPLIB format, EDGE_WEIGHT_TYPE EUC_2D), published solution files and the best-known table at https://galgos.inf.puc-rio.br/cvrplib/index.php/en/instances; TSPLIB rounding nint(x) = int(x + 0.5). The conventions (each leg rounded to the nearest integer, depot legs included, number of routes not fixed by the k of the name) were confirmed on the 139 published solutions, whose stated costs they reproduce exactly (the best solution of XL-n1048-k237 has 238 routes). The set papers (Uchoa et al. 2017 for X) were not re-read. Independent implementation: own TSPLIB-style parser and integer route cost, scratch checks/cvrp_sol.py.",
+        "checks": [
+          "All 139 published solution files (origin's pinned copies) on the instance files: library cost = independent cost = cost stated in the file for every instance. Conventions hold for all 139 files: TYPE CVRP, EUC_2D, integer coordinates (so no distance is ever exactly half-way and np.rint equals nint), depot = node 1 with demand 0, nodes numbered 1..DIMENSION, positive customer demands.",
+          "Live table fetched 2026-11-24, all 139 rows: 137 best-known values equal the packages; none is marked optimal; download ids equal cvrplib_ids.json.",
+          "Six solution files downloaded on 2026-11-24 on six instance files prepared by the script: X-n280-k17 33503, X-n766-k71 114413, XL-n1048-k237 380090, XL-n6168-k1922 1527114, XL-n8389-k2028 3352570, XL-n9784-k2774 4076838: library = independent = stated cost.",
+          "3,000 random route sets on synthetic instances (valid, duplicated or missing customer, overloaded route, empty routes): accept/reject and cost equal to the independent implementation. Hostile inputs: depot listed, ids out of range, NaN, flat list, None rejected.",
+          "Seeds through run.py: x-n280-k17 115186, x-n766-k71 305805, xl-n1048-k237 703927; valid; the first equals the origin's record."
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "kind": "wrong_fact",
+            "what": "Two records are behind CVRPLIB: X-n766-k71 is 114413 (package 114417) and XL-n8389-k2028 is 3352570 (package 3352664). With the old values a result between the two would be flagged as beating the best known solution.",
+            "fix": "code: P['best_known'] in tasks/suite/cvrplib-x-n766-k71/evaluator.py and tasks/suite/cvrplib-xl-n8389-k2028/evaluator.py; tasks/scripts/new_open_problems/cvrplib_live_bks.json | statement: 8 entries for the two packages",
+            "confidence": "high"
+          },
+          {
+            "severity": "warning",
+            "kind": "wrong_fact",
+            "what": "The registry file cvrplib_live_bks.json disagreed with two packages generated later than it (XL-n6168-k1922: 1527161 against 1527114; XL-n9784-k2774: 4076853 against 4076838); the packages are right.",
+            "fix": "code: tasks/scripts/new_open_problems/cvrplib_live_bks.json (four values in all), comment in registry_cvrp.py",
+            "confidence": "high"
+          },
+          {
+            "severity": "warning",
+            "kind": "accepts_invalid",
+            "what": "Customer ids that are not integers were truncated or parsed: [[1.9, 2.2], [3.7]] was scored as [[1, 2], [3]], [['1', '2'], ['3']] likewise. The scored routes are real ones, so no false score arises.",
+            "fix": "code: tasks/suite/_lib/arnew/cvrp.py:route_cost uses common.exact_int",
+            "confidence": "high"
+          }
+        ]
+      },
+      "dnacode": {
+        "verdict": "statement_change",
+        "reference": "O. D. King, Bounds for DNA codes with constant GC-content, Electron. J. Combin. 10 (2003) R33 (definitions of A4GC(n,d,w) and A4GC,RC(n,d,w): H(x, y) >= d for distinct codewords and H(x, y^RC) >= d for all, not necessarily distinct, codewords; tables for w = n/2), https://www.combinatorics.org/ojs/index.php/eljc/article/view/v10i1r33; Chee and Ling, IEEE Trans. Inform. Theory 54 (2008) 391-394, arXiv:0803.3657 (tables for w = floor(n/2)); table page of Gaborit and King, https://rambutan.umassmed.edu/king/dnacodes.html (last updated 23 June 2010). Independent implementations: pure-Python definition and an exact branch-and-bound clique search, scratch checks/fuzz_exact.py, checks/dnacode_exact.py, checks/dnacode_replay.py.",
+        "checks": [
+          "4,000 random word sets (n = 2..8, with and without the reverse-complement rule; 2,506 valid): accept/reject and size equal to the pure-Python definition.",
+          "Exact maximum codes by clique search for A4GC(4,3), (4,4), (5,4), (5,5) and A4GC,RC(4,3), (4,4), (5,4), (5,5), for every GC-weight w: the maxima at w = floor(n/2) are 12, 4, 10, 3 and 6, 2, 3, 1, the optimal entries of the table, and no other w gives more; each optimal code is accepted by the library. This confirms the verifier's reading of the constraints (complement A-T, C-G; reverse complement applied to all pairs including a word with itself).",
+          "Table page fetched 2026-11-24 through the preparation script (bytes identical to the origin's copy), both tables parsed (340 entries): the 130 packages are exactly the 130 entries that are not marked optimal and are at most 2000; best_known equals the table for 82 packages and is larger for 48 (a later published code).",
+          "The 48 records above the table entry: 33 replayed directly from the code files pinned by the origin (a 2026 repository of codes), and 4 by the derivation the package describes (the reverse-complement code together with the reverse complements of its words: gc-n9-d4 628, gc-n12-d7 200, gc-n12-d8 124, gc-n14-d10 52); each passes the library and the independent verifier at exactly the record. The other 11 come from the codeword archive named in Aboluion, Smith and Perkins 2012 (dna10_idsia.zip), which is not on this machine: not replayed here.",
+          "Hostile inputs: lower case, bytes, tuples, a bare string, wrong length, other letters (including a Cyrillic look-alike), duplicates, more than 20,000 words, None rejected; a generator and numpy strings accepted.",
+          "Seeds through run.py: gc-n6-d3 69, gc-n7-d3 189, gcrc-n7-d3 96, gcrc-n9-d6 14, gc-n20-d16 8, gcrc-n20-d16 4; valid, below the record; five equal the origin's records, gc-n20-d16 scored 9 there."
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "kind": "wrong_fact",
+            "what": "All 130 packages say 'The tables list the maximum over the GC-content w'. The tables are for w = floor(n/2): King 2003 gives his tables 'for these same parameters' as the earlier ones, 'n <= 12 (n even) with d <= n and w = n/2', and Chee and Ling 2008 describe the Gaborit-King table as 'the best available lower bounds on A4GC,RC(n, d, floor(n/2)), the size of DNA codes having 50% GC-content'. The task (any one constant w) is a relaxation of the tabulated problem: every record stays valid for the task, but a larger code with another w would improve the task's record and not the table entry, which the statement should say. The same sentence is in the docstring of arnew/dnacode.py.",
+            "fix": "statement: mass_changes[5] (one sentence in notes of 130 packages) | code: docstring of tasks/suite/_lib/arnew/dnacode.py",
+            "confidence": "medium"
+          },
+          {
+            "severity": "warning",
+            "kind": "other",
+            "what": "The seed is a random greedy search with a wall-clock budget of 15 s, so its score depends on the speed of the machine (9 words recorded by the origin for dnacode-gc-n20-d16, 8 words on 2026-11-24). It stays valid and far below the record.",
+            "fix": "none: proposal in mass_changes[7] (130 generated seeds; their scores would have to be recorded again)",
+            "confidence": "high"
+          },
+          {
+            "severity": "note",
+            "kind": "other",
+            "what": "11 of the 48 records above the table entry could not be replayed in this audit because their source, the archive dna10_idsia.zip, is not on this machine (gc-n16-d11, gc-n17-d11, gcrc-n10-d5, gcrc-n12-d5, gcrc-n14-d7, gcrc-n14-d8, gcrc-n15-d8, gcrc-n16-d11, gcrc-n17-d11, gcrc-n18-d9, gcrc-n20-d16); the packages report them as replayed by the origin.",
+            "fix": "none: could not verify",
+            "confidence": "low"
+          }
+        ]
+      },
+      "maxcut": {
+        "verdict": "ok",
+        "reference": "Max-cut on the G-set graphs (Helmberg and Rendl 2000; files at https://web.stanford.edu/~yyye/yyye/Gset/, format 'n m' then 'i j w' with 1-based vertices). Published solutions: K. M. Zick, arXiv:2505.18508, appendices C, D, E (hexadecimal bitstrings for G72, G77, G81). Independent implementation: loop over the edge list, scratch checks/maxcut_zick.py and checks/fuzz_exact.py.",
+        "checks": [
+          "2,000 random graphs with weights -1, 1 and 3: cut value equal to the independent sum. All 8 partitions of a 3-vertex graph in the test file.",
+          "The three bitstrings printed in arXiv:2505.18508 on the files prepared on 2026-11-24: G72 7008, G77 9940, G81 14060 by the library and by the independent loop, the values the paper claims. The record of gset-maxcut-g81 (14060) is thereby reproduced by this verifier.",
+          "Hostile inputs: 0.5, NaN, inf, 2, -1, wrong length, strings, None rejected; bools and 0.0/1.0 accepted.",
+          "Preparation: G1, G14, G63, G72, G77, G81 fetched; digests equal to the origin's manifest.",
+          "Seeds through run.py: g1 11342, g14 2911, g63 25711, g72 5168, g81 10454; valid, equal to the origin's records."
+        ],
+        "findings": [
+          {
+            "severity": "note",
+            "kind": "other",
+            "what": "69 of the 71 packages state no record (best_known null, beats_best_known null), and say so. For two of them a published, replayable value exists in the source the collection already cites for G81: G72 = 7008 and G77 = 9940 (arXiv:2505.18508, appendices C and D), both reproduced by this verifier. Not changed: a missing reference is not a defect and the packages are truthful.",
+            "fix": "none: optional improvement; statement changes would be parameters.best_known 7008 / 9940, notes and labels.reference = published_value for gset-maxcut-g72 and -g77",
+            "confidence": "high"
+          },
+          {
+            "severity": "note",
+            "kind": "other",
+            "what": "The note of gset-maxcut-g81 says the cut of 14060 is 'reported in 2025 (not independently verified)'. It is verified now: the paper's bitstring gives 14060 with this verifier.",
+            "fix": "none: the statement is cautious, not wrong",
+            "confidence": "high"
+          }
+        ]
+      },
+      "jssp": {
+        "verdict": "fixed_and_statement_change",
+        "reference": "Job-shop scheduling, makespan objective: operations of a job in order, no two operations of a machine overlap, no preemption (Taillard 1993; Demirkol, Mehta and Uzsoy 1998; Storer, Wu and Vaccari 1992 instances). Bound tables: O. Shylo, http://optimizizer.com/TA.php, DMU.php, Extra.php (with a schedule per upper bound) and ScheduleOpt, https://github.com/ScheduleOpt/benchmarks (jobshop/README.md). Independent implementation: pairwise disjunctive check, scratch checks/jssp_replay.py.",
+        "checks": [
+          "All 60 schedules published on Shylo's pages (origin's pinned copies; one job order per machine) turned into start times by a longest-path pass and checked on the instance files prepared on 2026-11-24: library makespan = independent makespan = makespan stated on the page for all 60; every instance has each machine exactly once per job and the stated size.",
+          "3,000 random schedules on synthetic instances (zero durations included): accept/reject and makespan equal to the independent check. Hostile inputs: 3.9, negative start, NaN, missing row, extra column, strings, flat list rejected.",
+          "Live tables fetched 2026-11-24: no instance of the 60 is closed, 58 have the bounds of the packages, 2 have a smaller upper bound.",
+          "Preparation: the 819 KB file is split into 60 instance files, all byte-identical to the origin's.",
+          "Seeds through run.py: swv07 2115, dmu41 4516, ta30 1935, ta50 2493, dmu66 8265, dmu80 9423; valid, equal to the origin's records."
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "kind": "wrong_fact",
+            "what": "Two records are behind the ScheduleOpt table: dmu66 has the upper bound 5685 (package 5690) and dmu68 has 5733 (package 5735), both credited to 'DOFP2026'. A schedule between the two values would be flagged as beating the best known.",
+            "fix": "code: P['best_known'] in tasks/suite/jssp-dmu66/evaluator.py and tasks/suite/jssp-dmu68/evaluator.py; tasks/scripts/new_open_problems/registry_misc.py:JSSP | statement: 12 entries for the two packages; changes outside the audited files for their protocol and record level (the new records are not replayed: the table publishes no schedule)",
+            "confidence": "high"
+          }
+        ]
+      },
+      "epfl": {
+        "verdict": "fixed_and_statement_change",
+        "reference": "EPFL combinational benchmark suite (Amaru, Gaillardon and De Micheli, IWLS 2015) and its best-results table for 6-input LUTs, https://github.com/lsils/benchmarks (best_results/README.md, LUT-6 count and levels); Berkeley ABC for mapping (if) and equivalence (cec). Independent implementation: own BLIF reader (LUT = node with at least two inputs, level = longest chain of LUTs), scratch checks/epfl_best.py and checks/epfl_probe.py.",
+        "checks": [
+          "Live table fetched 2026-11-24: LUT count and level record of all 20 circuits equal the registry and the 40 packages.",
+          "All 40 published best circuits (origin's pinned copies) counted by arnew.epfl.blif_stats and by the independent reader: identical triples (LUTs, levels, widest node) for all 40, the scored quantity equals the record for all 40, no node has more than 6 inputs. This confirms the counting convention (single-input nodes and constants are free) against the table.",
+          "With the real ABC (origin's build) on circuits prepared on 2026-11-24: the best circuits of ctrl (size, depth) are equivalent to the benchmark by cec; those of int2float need cec -n (their pins are renamed), which does not concern candidates, whose networks keep the benchmark's names.",
+          "Hostile scripts on ctrl and int2float through arnew.epfl.evaluate: collapse (a 7- or 11-input node) rejected; mapping to library gates rejected; another function (cone) rejected even when the script prints 'Networks are equivalent'; shell escape, write_blif, quit, -K 8, empty script rejected; a script that generates another circuit in the working directory (gen, which the name filter lets through) is rejected by the equivalence check; rewrite, resub, sweep accepted.",
+          "Seeds through run.py with ARNEW_ABC: alu-control-unit size 29, int-to-float size 51 and depth 3, decoder size 287 (equal to the origin's records); the four replaced seeds below. Without ABC the result is 'ABC not found; install Berkeley ABC and set ARNEW_ABC'."
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "kind": "no_headroom",
+            "what": "Four seeds already attain the best known value ('strash; dc2; if -K 6'): alu-control-unit depth 2, barrel-shifter size 512 and depth 4, decoder depth 2. The packages said so in a limitation.",
+            "fix": "code: initial_program.py of epfl-alu-control-unit-depth, epfl-barrel-shifter-size, epfl-barrel-shifter-depth ('strash; if -K 4') and epfl-decoder-depth ('strash; if -K 3'); new seed scores 3, 1408, 6 and 3 (records 2, 512, 4, 2) | statement: 8 entries removing the limitation and note",
+            "confidence": "high"
+          },
+          {
+            "severity": "note",
+            "kind": "cannot_run",
+            "what": "The requirement 'abc' has no preparation route in this repository (see sweep.requires). Not verified here: the 32 packages on larger circuits, in particular hypotenuse, whose equivalence check takes about 450 s by the origin's record and cannot run under this machine's two-minute limit.",
+            "fix": "none: needs a decision on how ABC is provided",
+            "confidence": "high"
+          },
+          {
+            "severity": "note",
+            "kind": "other",
+            "what": "The name filter of check_script is hygiene, as its docstring says: commands such as gen, %read, @write, dsd_save, exdc_set, undo or a bare file name pass it and can read or write files in the temporary working directory. Soundness does not depend on it: the written network is parsed and compared by a separate ABC process. blif_stats would also read an .exdc section as part of the network (it keeps every .names and adds the outputs); in the only reachable case tried the equivalence check rejected the result, and an extra section can only add LUTs, so no gain was found.",
+            "fix": "none: no way to lower a score was found",
+            "confidence": "low"
+          }
+        ]
+      },
+      "qap": {
+        "verdict": "ok",
+        "reference": "QAPLIB (Burkard, Karisch and Rendl 1997): file = n, matrix A, matrix B; cost of a permutation p = sum over i, j of a[i][j] * b[p(i)][p(j)]. Tables: the maintained QAPLIB page (Polytechnique Montreal; its host did not resolve on 2026-11-24, the origin's copy of 2026-05-09 was used) and the Lehigh mirror https://coral.ise.lehigh.edu/data-sets/qaplib/ fetched 2026-11-24. tai100a: Sergienko et al., Cybernetics and Computer Technologies 2024(3):25-33, doi:10.34229/2707-451X.24.3.3. The evaluator is autoresearch_suite.frontier_combinatorics_qap (shared module, read only).",
+        "checks": [
+          "All 29 QAPLIB solution files (origin's archive) on the 29 instance files prepared on 2026-11-24 (byte-identical to the origin's): the library objective equals an independent pure-Python sum for the permutation and for its inverse; the stated value is reached in one of the two conventions for all 29; it equals best_known for 28. For tai100a the archive holds the older 21052466.",
+          "Tables: best known and lower bound of 28 packages equal the maintained table; the Lehigh mirror agrees on the best known of the same 28 (its bounds are older). tai100a: 21040996, confirmed as 'a new best solution value' in the abstract of the 2024 paper (fetched 2026-11-24); the permutation printed in the paper was not replayed here (the PDF text could not be extracted with the tools available).",
+          "1,500 random permutations and non-permutations on random matrices: equal to the independent sum; floats, bools, strings, 1-based and repeated entries rejected.",
+          "Seeds through run.py: tai30a 2098700, sko42 18902, tho40 312934, tai100a 23926646, tai150b 621314634; valid, equal to the origin's records."
+        ],
+        "findings": [
+          {
+            "severity": "note",
+            "kind": "other",
+            "what": "A comment of registry_misc.py still named 21043560 as the tai100a value while the table below it and the package hold 21040996.",
+            "fix": "code: comment in tasks/scripts/new_open_problems/registry_misc.py",
+            "confidence": "high"
+          }
+        ]
+      },
+      "admet": {
+        "verdict": "ok",
+        "reference": "Therapeutics Data Commons, ADMET benchmark group (Huang et al. 2021), https://tdcommons.ai/benchmark/admet_group/overview/: fixed test set, five train/validation scaffold splits with seeds 1..5, the metric of each endpoint in tdc.metadata.admet_metrics, mean and standard deviation over the five runs by BenchmarkGroup.evaluate_many. The evaluator calls PyTDC's own admet_group (get_train_valid_split(split_type='default', seed), evaluate_many), so the official implementation is the scorer.",
+        "checks": [
+          "The metric of all 22 endpoints in the registry and the packages equals the table tdc.metadata.admet_metrics of PyTDC 1.0.0, read from the installed package (mae 5, roc-auc 8, pr-auc 5, spearman 4 endpoints), and the direction of every package follows it (mae minimised, the others maximised).",
+          "Live leaderboard pages of 8 endpoints fetched 2026-11-24 (Caco2, HIA, Lipophilicity, VDss, CYP2C9 inhibition, CYP3A4 substrate, DILI, LD50): leader and score equal the package records (0.256, 0.993, 0.456, 0.713, 0.859, 0.667, 0.956, 0.552).",
+          "Seeds through run.py --python <origin's ADMET environment>: hia-hou 0.942 (std 0.004), dili 0.847 (std 0.011), equal to the origin's records; with the project interpreter: ModuleNotFoundError: tdc.",
+          "A candidate that looks for the test labels in the stack frames, through the benchmark loader and in the data folder scores 0.5 on hia-hou: every scoring call runs in the sandboxed child process, which receives the test molecules without labels.",
+          "Time limits: 5 calls of at most 700 s inside the task's 3,600 s."
+        ],
+        "findings": [
+          {
+            "severity": "note",
+            "kind": "cannot_run",
+            "what": "Needs PyTDC, which the project interpreter does not have and the repository does not declare; the setup the statements refer to (tools/venv-admet, 'the README's setup steps') does not exist here. The benchmark data are downloaded by PyTDC during the first evaluation, without a pinned digest.",
+            "fix": "statement: mass_changes[9] (the setup note of 22 packages) | changes outside the audited files (declare PyTDC)",
+            "confidence": "high"
+          },
+          {
+            "severity": "note",
+            "kind": "other",
+            "what": "Not run here: the 20 other seeds (the slowest takes 25 minutes by the origin's record; solubility 1,502 s of the task's 3,600 s).",
+            "fix": "none: outside this machine's limits",
+            "confidence": "high"
+          }
+        ]
+      },
+      "sortnet": {
+        "verdict": "fixed_and_statement_change",
+        "reference": "Knuth, TAOCP vol. 3, 5.3.4 (zero-one principle; size = number of comparators, depth = number of layers). Record source: B. Dobbelaere, List of sorting networks, https://bertdobbelaere.github.io/sorting_networks.html and sorting_networks_extended.html (last change 2026-11-20). Independent implementations: brute force over all 0-1 inputs (n <= 11) and one Python big integer per wire over all 2^n inputs (n <= 26), scratch checks/fuzz_exact.py and checks/sortnet_live.py.",
+        "checks": [
+          "1,344 random networks (Batcher networks with comparators removed, replaced or shuffled; n = 2..11; BLOCK_BITS 24, 3, 6 and 7 so that the path of the wires above the block, used for n = 25..32, is exercised): accept/reject, size and depth equal to brute force in every case.",
+          "The smallest network of the live list for each n = 19..32 parsed from the page and verified: all 14 sort, sizes and depths equal the registry and the packages (85/12, 91/12, 99/15, 106/13, 114/14, 120/13, 130/15, 138/15, 147/16, 155/14, 164/15, 172/14, 180/14, 185/14); the independent big-integer verifier agrees for n = 19..26 and rejects each network with its last comparator removed. n = 32 takes 23 s.",
+          "Hostile inputs: reversed or equal wires, out-of-range wires, empty list, triples, NaN rejected; n = 1 has no valid network.",
+          "Seeds (Batcher) through run.py: n19 91, n20 97, n24 127, n28 161, n31 186, n32 191; valid, above the records, equal to the origin's records."
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "kind": "wrong_fact",
+            "what": "The 'proven lower bound' of every package (73, 78, 84, 89, 95, 100, 106, 111, 117, 123, 129, 135, 141, 147 for n = 19..32) is no longer what the cited list states: on 2026-11-20 the list withdrew its lower bounds for 13 or more inputs ('Reverting lower bounds for networks with 13 or more inputs due to error in proof in [VVoorh72]') and now gives 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135 (39 for 12 inputs plus ceil(log2 k) per further input). The bound is not used in scoring and is not shown to a search; it is stated in notes and parameters.",
+            "fix": "code: tasks/scripts/new_open_problems/registry_misc.py:SORTNET and the constant P['lower_bound'] of the 14 evaluator.py files | statement: 28 entries (parameters.lower_bound and notes of sorting-network-19..32)",
+            "confidence": "high"
+          },
+          {
+            "severity": "warning",
+            "kind": "accepts_invalid",
+            "what": "Comparator indices that are not integers were truncated or parsed: (0.2, 1.9) was read as (0, 1) and ('0', '1') as (0, 1). The resulting network is a real one, so no false score arises, but the contract asks for integer pairs.",
+            "fix": "code: tasks/suite/_lib/arnew/common.py:exact_int (new), used in tasks/suite/_lib/arnew/sortnet.py:check",
+            "confidence": "high"
+          }
+        ]
+      },
+      "matbench": {
+        "verdict": "fixed",
+        "reference": "Matbench v0.1 (Dunn et al. 2020): official folds in matbench_v0.1_validation.json of materialsproject/matbench (pinned commit 936176db), mean over the five folds of the test MAE (regression) or of the ROC AUC of the predicted labels, which matbench computes from labels and which equals the balanced accuracy (classification). Leaderboards: https://matbench.materialsproject.org/ (per-task pages). The scorer is autoresearch_suite.chem_matbench (shared, read only). Independent check: scratch checks/matbench_folds.py.",
+        "checks": [
+          "glass prepared on 2026-11-24 (46 MB for the validation file): the derived task file is byte-identical to the origin's; its five test folds equal the official test ids and the complements equal the official train ids; the targets equal the raw gfa column. The official classification folds are those of StratifiedKFold(5, shuffle, random_state 18012019), not of KFold, as an independent split shows.",
+          "The library's ROC AUC on 0/1 labels equals scikit-learn's roc_auc_score and balanced_accuracy_score to 2e-16 on 200 random cases.",
+          "Live leaderboards of all five tasks fetched 2026-11-24: glass best balanced accuracy 0.9603 (MODNet v0.1.12), mp_is_metal 0.9520 (CGCNN v2019, in the table of label submissions), log_kvrh MAE 0.0491 (coNGN), mp_gap 0.1559 (coGN), mp_e_form 0.0170 (coGN): equal to the five package records.",
+          "Seed of glass through run.py (a copy with n_jobs = 1 to respect this machine's one-thread rule; the forest is the same): 0.8408236441772786, the origin's recorded score to the last digit. A candidate that searches the disk for the task file is refused by the sandbox ('directory listing denied')."
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "kind": "cannot_run",
+            "what": "The documented way to prepare one Matbench task, prepare_new_data.py --family matbench --only raw/matbench_glass.json.gz --yes, downloaded the file and then stopped with FileNotFoundError (raw/validation.json), without writing the manifest: --only did not fetch the validation file, and the derivation step read all five raw files (485 MB) whatever had been requested.",
+            "fix": "code: tasks/scripts/new_open_problems/prepare_new_data.py: main (the validation file is always part of a Matbench request) and derive_matbench (tasks whose raw file is absent are skipped)",
+            "confidence": "high"
+          },
+          {
+            "severity": "note",
+            "kind": "other",
+            "what": "The module docstring said the official folds are 'KFold 5'; for the two classification tasks they are stratified. The code reads the folds from the official file, so nothing is scored differently.",
+            "fix": "code: docstring of tasks/suite/_lib/arnew/matbench.py",
+            "confidence": "high"
+          },
+          {
+            "severity": "note",
+            "kind": "other",
+            "what": "Not run here: the four other seeds (each needs 4 to 167 MB of raw data and up to 90 s per evaluation by the origin's record); log_kvrh, mp_gap, mp_is_metal, mp_e_form were compared with the live leaderboard only.",
+            "fix": "none: download size above the limit set for this audit",
+            "confidence": "high"
+          }
+        ]
+      },
+      "snake": {
+        "verdict": "fixed",
+        "reference": "Snake-in-the-box: longest induced path in the hypercube Q_n (Kautz 1958); length = number of edges. Record source: T. Ace, Snake-in-the-Box lower bounds, https://www.minortriad.com/snake/ (leaderboard with one transition sequence per record). Independent implementation: pairwise Hamming-distance definition, scratch checks/fuzz_exact.py and checks/snake_live.py.",
+        "checks": [
+          "3,000 random walks in Q_2..Q_6 (induced and not): accept/reject and length equal to the pairwise definition.",
+          "The four record snakes of the live leaderboard (fetched 2026-11-24) replayed from their transition sequences: 379, 750, 1480 and 2946 edges in dimensions 10..13, accepted by the library and by the independent check, equal to the package records; a corrupted copy of each is rejected.",
+          "Hostile inputs: duplicates, out-of-range and negative vertices, closed cycle, chord, single vertex, nested lists, NaN rejected.",
+          "Seeds through run.py: 145, 232, 585, 1017 for dimensions 10..13; valid, equal to the origin's records."
+        ],
+        "findings": [
+          {
+            "severity": "warning",
+            "kind": "accepts_invalid",
+            "what": "Vertices that are not integers were truncated or parsed: [0, 1.5, 3.2, 7.9, 6.1] was accepted as the snake 0, 1, 3, 7, 6 and ['0', '1', '3'] as 0, 1, 3; inf raised OverflowError instead of a rejection. The scored path is a real snake, so no false score arises.",
+            "fix": "code: tasks/suite/_lib/arnew/snake.py:check uses common.exact_int",
+            "confidence": "high"
+          }
+        ]
+      }
+    },
+    "seed_score_changes": [
+      {
+        "task": "epfl-alu-control-unit-depth",
+        "before": 2.0,
+        "after": 3.0,
+        "record": 2,
+        "why": "seed replaced (it equalled the record)"
+      },
+      {
+        "task": "epfl-barrel-shifter-size",
+        "before": 512.0,
+        "after": 1408.0,
+        "record": 512,
+        "why": "seed replaced (it equalled the record)"
+      },
+      {
+        "task": "epfl-barrel-shifter-depth",
+        "before": 4.0,
+        "after": 6.0,
+        "record": 4,
+        "why": "seed replaced (it equalled the record)"
+      },
+      {
+        "task": "epfl-decoder-depth",
+        "before": 2.0,
+        "after": 3.0,
+        "record": 2,
+        "why": "seed replaced (it equalled the record)"
+      },
+      {
+        "task": "miplib-neos-3009394-lami",
+        "before": 5.5,
+        "after": 5.7857142857,
+        "record": 5.5,
+        "why": "seed replaced (it equalled the record)"
+      },
+      {
+        "task": "all 212 miplib-* through run.py",
+        "before": null,
+        "after": "a score or an infeasibility message, as the origin recorded",
+        "record": null,
+        "why": "the evaluator could not return a result through run.py (HiGHS banner); checked on miplib-liu (2040.0), miplib-milo-v13-4-3d-4-0 (1024249.4896), miplib-supportcase30 (infeasible), miplib-neos-3009394-lami"
+      }
+    ],
+    "not_verified": [
+      "MIPLIB: 208 of 212 packages were not run (2.2 GB of instance files; the 12 largest need more memory than this machine allows). The verifier was cross-checked on the 34 smallest instances and 30 published solutions; the other published solutions were not replayed again (the origin reports 157 accepted, 37 rejected, 12 not replayed). The two seeds that the origin reports as not returning (mining, supportcase31) were not reproduced.",
+      "MIPLIB tolerance: the official rule was found and documented, the verifier was not changed to it (the author's stricter rule is deliberate and cannot give a false record). A decision for the maintainers.",
+      "EPFL: only the four smallest circuits were run with ABC (ctrl, int2float, bar, dec: 8 packages); the equivalence check of the large circuits exceeds this machine's two-minute limit. The functional equivalence of the published best circuits was checked for two circuits only (the origin reports 30 of 40).",
+      "ADMET: 2 of 22 seeds run (hia-hou, dili), with the origin's PyTDC environment; Matbench: 1 of 5 (glass; the others need 4 to 167 MB of raw data each).",
+      "DNA codes: 11 records that rest on the archive dna10_idsia.zip were not replayed (archive not on this machine); the tables of Aboluion, Smith and Perkins 2012 and of Gaborit and King 2005 were not read (King 2003 and Chee and Ling 2008 were).",
+      "QAP tai100a: the 2024 paper's abstract confirms 21040996; its printed permutation was not replayed (PDF text not extractable with the tools here).",
+      "Thomson and sphere records were compared with one live table each; a re-optimisation of the listed sphere codes was not repeated. Thomson records were re-derived for 11 small sizes only.",
+      "Best-known cuts for the 69 max-cut packages without a record were not collected; G72 = 7008 and G77 = 9940 (arXiv:2505.18508, replayed here) are offered in the family notes.",
+      "The proposals in mass_changes[6] (margin in the MIPLIB wrappers) and mass_changes[7] (deterministic DNA-code seed) were not applied: generated files of 212 and 130 packages.",
+      "Outside this group, seen in passing and not touched: registry.validate reports 35 errors at the PR head, none for a package of this group (16 'invalid evaluation protocol' for records of kind 'upstream' with the value 'recreated', 16 'status inconsistent', 3 'evaluator_adapter'); tasks/tests/test_collection_runtime.py expects 1,277 tasks where the catalog has 2,578; run.py evaluate uses a default timeout of 300 s whatever the task's own timeout is (ADMET and Matbench need --timeout).",
+      "collect.py builds the allowed paths from tasks/suite/_lib/autoresearch_suite/; for this group the modules are under tasks/suite/_lib/arnew/ (library_package in open-problems.info.json), so the script will report the nine changed arnew modules as outside the scope until it reads that key. With that key all 38 paths are inside the group's files and no evaluator docstring changed (checked by hand).",
+      "The 60 statement changes and the mass changes are not applied in the checkout. Until they are, 18 packages have evaluator constants that differ from problem.json on purpose (2 CVRP records, 2 job-shop records, 14 sorting-network lower bounds)."
     ]
   }
 }

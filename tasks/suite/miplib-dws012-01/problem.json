@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/dws012-01.mps.gz"
+    "file:data/arnew/miplib/dws012-01.mps.gz"
   ],
   "timeout": 900,
   "notes": [

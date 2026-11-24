@@ -13,12 +13,11 @@ from __future__ import annotations
 
 import numpy as np
 
-from .common import CandidateError, read_data, require
+from .common import CandidateError, read_data, require, unit_rows
 
 
 def min_angle(points):
-    p = np.asarray(points, dtype=float)
-    p = p / np.linalg.norm(p, axis=1, keepdims=True)
+    p = unit_rows(np.asarray(points, dtype=float))
     g = p @ p.T
     np.fill_diagonal(g, -1.0)
     return float(np.degrees(np.arccos(np.clip(g.max(), -1.0, 1.0))))

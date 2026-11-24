@@ -2,5 +2,6 @@
 # EVOLVE-BLOCK-START
 def script():
     # ABC commands run after `read <circuit>`; the network they leave must consist of LUTs with at most 6 inputs.
-    return "strash; dc2; if -K 6"
+    # A plain mapping to 3-input LUTs: a valid starting point that leaves room for improvement.
+    return "strash; if -K 3"
 # EVOLVE-BLOCK-END

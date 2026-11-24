@@ -8,18 +8,18 @@
   "contract": "solve(inst) -> list of routes; a route is a list of customer ids from 1 to n in visiting order (the depot is node 0 and is not listed; empty routes are ignored). inst is a dict with n (number of customers), capacity, coords (array of shape (n + 1, 2), row 0 is the depot), demand (integer array of length n + 1, demand[0] = 0) and name. Score: the total cost, minimized.",
   "parameters": {
     "instance": "XL-n8389-k2028",
-    "best_known": 3352664
+    "best_known": 3352570
   },
   "requires": [
     "py:numpy",
-    "file:data/cvrp/XL-n8389-k2028.vrp"
+    "file:data/arnew/cvrp/XL-n8389-k2028.vrp"
   ],
   "timeout": 900,
   "notes": [
-    "Best known solution 3352664 (CVRPLIB, checked 2026-11-11; these values still move: five improved between 2026-11-02 and 2026-11-11).",
+    "Best known solution 3352570 (CVRPLIB, checked 2026-11-24; these values still move: this one improved between 2026-11-02 and 2026-11-11 and again before 2026-11-24).",
     "CVRPLIB XL instance file XL-n8389-k2028.vrp (galgos.inf.puc-rio.br/cvrplib, download/instance/id)",
     "XL-n8389-k2028 is an instance of the CVRPLIB XL set with 8,388 customers and vehicle capacity 208; its depot lies in the corner (0, 0), with a mix of random and clustered customers (4 seeds) and demands drawn uniformly from 1-100 (attributes from Table 1 of arXiv:2601.11467).",
-    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record."
+    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-24; check for newer values before claiming a record."
   ],
   "labels": {
     "scientific_contribution": "method",
@@ -88,7 +88,7 @@
     }
   ],
   "limitations": [
-    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record.",
+    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-24; check for newer values before claiming a record.",
     "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
   ],
   "evaluator": "evaluator.py",

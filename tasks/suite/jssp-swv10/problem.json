@@ -13,7 +13,7 @@
   },
   "requires": [
     "py:numpy",
-    "file:data/jssp/swv10.txt"
+    "file:data/arnew/jssp/swv10.txt"
   ],
   "timeout": 300,
   "notes": [

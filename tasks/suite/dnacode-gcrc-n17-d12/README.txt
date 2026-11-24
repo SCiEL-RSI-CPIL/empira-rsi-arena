@@ -33,7 +33,7 @@ Papers whose main objective is this problem (the evidence for `important_to_scie
 
 ## Record
 
-Lower bound 30 (construction 'c'), not proven optimal; the table was last updated 23 June 2010. The tables list the maximum over the GC-content w (the same number of letters from C and G in every word); this task lets the code choose any one w, so a table value is reachable whichever w it uses (until 2026-11-18 the task fixed w = floor(n/2), which put four records of Aboluion et al. out of reach).
+Lower bound 30 (construction 'c'), not proven optimal; the table was last updated 23 June 2010. The tables of King and of Gaborit and King are for GC-content w = floor(n/2) (King 2003, section 'Tables': 'with d <= n and w = n/2'; Chee and Ling 2008, section V: 'lower bounds on A4GC,RC(n, d, floor(n/2)), the size of DNA codes having 50% GC-content'). This task lets the code choose any one constant w, a relaxation of the tabulated problem: a table value stays reachable with w = floor(n/2), and a larger code with another w improves this task's record but not the table entry (until 2026-11-18 the task fixed w = floor(n/2), which put four records of Aboluion et al. out of reach).
 
 **Record validation:** matches a pinned source. table entry 30 (construction 'c') read by machine from the pinned page; the page is dated 23 June 2010. Note: No code file is published for this entry. Compared since 2010: a 2026 repository of later codes (none for these parameters) and the tables of Montemanni, Smith and Koul 2014 (no larger value); compared on 2026-11-18: Tables 10.51 and 10.52 of the 2011 thesis of Aboluion (reported in Aboluion, Smith and Perkins 2012), read by hand, no larger value (paper not obtained).
 

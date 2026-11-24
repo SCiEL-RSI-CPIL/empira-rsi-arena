@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/graph40-20-1rand.mps.gz"
+    "file:data/arnew/miplib/graph40-20-1rand.mps.gz"
   ],
   "timeout": 900,
   "notes": [

@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/dano3mip.mps.gz"
+    "file:data/arnew/miplib/dano3mip.mps.gz"
   ],
   "timeout": 900,
   "notes": [

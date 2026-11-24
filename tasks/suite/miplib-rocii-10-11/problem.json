@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/rocII-10-11.mps.gz"
+    "file:data/arnew/miplib/rocII-10-11.mps.gz"
   ],
   "timeout": 900,
   "notes": [

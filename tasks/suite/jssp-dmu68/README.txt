@@ -31,20 +31,20 @@ Papers whose main objective is this problem (the evidence for `important_to_scie
 
 ## Record
 
-Lower bound 5513, best known makespan 5735 (O. Shylo's bounds pages and the ScheduleOpt benchmark library, 2026-11-11).
+Lower bound 5513, best known makespan 5733 (O. Shylo's bounds pages and the ScheduleOpt benchmark library, 2026-11-24).
 
-**Record validation:** reproduced. Shylo's bounds page: lower bound 5493, upper bound 5735; ScheduleOpt jobshop table: lower bound 5513, upper bound 5749; the schedule published on Shylo's page, replayed by our verifier: makespan 5735.
+**Record validation:** matches a pinned source. Shylo's bounds page: lower bound 5493, upper bound 5735; ScheduleOpt jobshop table: lower bound 5513, upper bound 5733; the schedule published on Shylo's page, replayed by our verifier: makespan 5735.
 
 ## Data and requirements
 
 dmu68 split from instance_data.txt of thomasWeise/jsspInstancesAndResults (819 KB, all instances in one file)
 
-Requires: `py:numpy`, `file:data/jssp/dmu68.txt`. Run `python3 scripts/prepare_new_data.py --family jssp` for the data (see that script; nothing is downloaded without `--yes`).
+Requires: `py:numpy`, `file:data/arnew/jssp/dmu68.txt`. Run `python3 scripts/new_open_problems/prepare_new_data.py --family jssp` for the data (see that script; nothing is downloaded without `--yes`).
 
 ## Limitations
 
-- The bounds are those of 2026-11-11 (larger lower bound and smaller upper bound of the two tables); both tables change several times a year, so read them again before claiming a record.
-- The record lies 4.03% above the lower bound.
+- The bounds are those of 2026-11-24 (larger lower bound and smaller upper bound of the two tables); both tables change several times a year, so read them again before claiming a record.
+- The record lies 3.99% above the lower bound.
 - A record is the best published value that could be confirmed (see "Record validation" above and VALIDITY.md), not a proof that nothing better exists; read the source again before claiming an improvement.
 
 ## Run

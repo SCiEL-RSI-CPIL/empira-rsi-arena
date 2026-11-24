@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/lr2-22dr3-333vc4v17a-t60.mps.gz"
+    "file:data/arnew/miplib/lr2-22dr3-333vc4v17a-t60.mps.gz"
   ],
   "timeout": 900,
   "notes": [

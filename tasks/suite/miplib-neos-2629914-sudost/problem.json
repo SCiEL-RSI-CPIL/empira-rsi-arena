@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/neos-2629914-sudost.mps.gz"
+    "file:data/arnew/miplib/neos-2629914-sudost.mps.gz"
   ],
   "timeout": 900,
   "notes": [

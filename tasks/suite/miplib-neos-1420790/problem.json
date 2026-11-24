@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/neos-1420790.mps.gz"
+    "file:data/arnew/miplib/neos-1420790.mps.gz"
   ],
   "timeout": 900,
   "notes": [

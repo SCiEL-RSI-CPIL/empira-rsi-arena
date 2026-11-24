@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/genus-sym-grafo5708-48.mps.gz"
+    "file:data/arnew/miplib/genus-sym-grafo5708-48.mps.gz"
   ],
   "timeout": 900,
   "notes": [

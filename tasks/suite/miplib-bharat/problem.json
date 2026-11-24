@@ -14,7 +14,7 @@
     "py:numpy",
     "py:scipy",
     "py:highspy",
-    "file:data/miplib/bharat.mps.gz"
+    "file:data/arnew/miplib/bharat.mps.gz"
   ],
   "timeout": 900,
   "notes": [

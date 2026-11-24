@@ -30,7 +30,7 @@ Papers whose main objective is this problem (the evidence for `important_to_scie
 
 ## Record
 
-Best known size 147 (Dobbelaere's list), proven lower bound 117.
+Best known size 147 (Dobbelaere's list), proven lower bound 110 (the list withdrew its stronger bounds for 13 or more inputs on 2026-11-20 because of an error in a proof of Van Voorhis 1972; 110 is 39, the proven optimum for 12 inputs, plus ceil(log2 k) for each further input k).
 
 **Record validation:** reproduced. smallest listed network for n=27 has 147 comparators, depth 16; sorts every input (exact check by our verifier).
 
