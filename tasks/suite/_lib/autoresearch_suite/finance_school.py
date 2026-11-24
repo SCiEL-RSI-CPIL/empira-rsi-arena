@@ -16,8 +16,10 @@ import hashlib
 
 import numpy as np
 
+from . import finance_sandbox
 from .runtime import CandidateError
 
+ENTRY = "assign_students"
 # (students, schools, list length, seed, walk-zone tiers)
 SIZES = [(150, 6, 5, 11, 1), (200, 8, 6, 12, 1), (200, 8, 6, 13, 3), (250, 10, 6, 14, 1), (300, 10, 6, 15, 2), (300, 12, 6, 16, 1)]
 INSTANCE_SHA256 = {
@@ -137,15 +139,26 @@ def blocking_pair(problem, match):
     return None
 
 
-def school_score(assign):
-    """Share of the DA-STB-to-optimum total-rank reduction achieved (maximize; 0 = DA-STB, 1 = optimal)."""
-    if not callable(assign):
-        raise CandidateError("assign_students must be callable")
-    rows, gained, possible = [], 0, 0
+def matchings():
+    """Scoring loop: one candidate call per instance; the optimal total ranks stay in this process."""
+    matches = []
     for index in range(len(SIZES)):
         problem = instance(index)
         given = {k: (v.copy() if isinstance(v, np.ndarray) else v) for k, v in problem.items()}
-        match = validate(problem, assign(given))
+        matches.append(validate(problem, (yield finance_sandbox.step(ENTRY, given))))
+    return matches
+
+
+def school_score(candidate):
+    """Share of the DA-STB-to-optimum total-rank reduction achieved (maximize; 0 = DA-STB, 1 = optimal).
+
+    ``candidate`` is the candidate module (its assign_students runs in the sandbox) or a trusted callable.
+    """
+    rows, gained, possible = [], 0, 0
+    matches = finance_sandbox.run(candidate, matchings(), ENTRY)
+    for index in range(len(SIZES)):
+        problem = instance(index)
+        match = matches[index]
         block = blocking_pair(problem, match)
         if block is not None:
             raise CandidateError(f"instance {index}: student {block[0]} and school {block[1]} block the matching")

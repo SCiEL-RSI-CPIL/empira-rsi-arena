@@ -13,21 +13,20 @@
       "warning": 26
     },
     "statements_corrected": 17,
-    "code_corrections": 7,
-    "open_items": 18
+    "code_corrections": 8,
+    "open_items": 17
   },
   "origin_tests": {
     "what": "The origin's unittest modules cited by the added packages (tests/test_*.py at the pinned commit), run against this library's copy of the shared modules; generator-only modules the tests import were taken from the origin. One module per interpreter, 110-second limit per module.",
     "modules": 65,
-    "modules_passed": 62,
-    "tests_run": 540,
+    "modules_passed": 64,
+    "tests_run": 548,
     "tests_skipped": 31,
     "modules_failed": [],
     "modules_stopped_by_time_limit": [
-      "test_finance_fairdiv",
-      "test_finance_kidney",
-      "test_finance_marketmaking"
-    ]
+      "test_finance_kidney"
+    ],
+    "run_on": "2026-11-24"
   },
   "corrected_statements": [
     {
@@ -199,6 +198,31 @@
       "file": "suite/_lib/autoresearch_suite/bio_flu.py",
       "finding": "All forecast jobs are passed to one child process, so the histories of later reference dates, which contain the verifying weeks of earlier dates, are in the candidate's process. The contract says the candidate never sees later weeks.",
       "correction": "The reference dates are released one at a time through the sandbox oracle: the next history is sent only after a valid forecast for the current date, inside one child process with the same 180 s CPU budget for the season. A forecaster that read later histories from the driver frame scored a mean WIS of 4.1 before and fails after; the seed scores 172.63 both times."
+    },
+    {
+      "tasks": [
+        "science-economics-fredmd-industrial-production-forecasting",
+        "science-economics-fredmd-inflation-forecasting",
+        "science-economics-fredmd-unemployment-forecasting",
+        "science-economics-kidney-exchange",
+        "science-economics-maximum-nash-welfare",
+        "science-economics-school-choice-tie-breaking",
+        "science-finance-arbitrage-free-svi-surface",
+        "science-finance-cardinality-constrained-frontier",
+        "science-finance-covariance-minimum-variance",
+        "science-finance-equity-premium-prediction",
+        "science-finance-index-tracking",
+        "science-finance-market-making",
+        "science-finance-optimal-execution",
+        "science-finance-portfolio-choice-ff20",
+        "science-finance-portfolio-choice-industry10",
+        "science-finance-portfolio-choice-industry49",
+        "science-finance-volatility-forecasting",
+        "science-finance-yield-curve-forecasting"
+      ],
+      "file": "suite/_lib/autoresearch_suite/finance_sandbox.py and the fourteen finance_*.py scoring modules",
+      "finding": "Candidates run in the evaluator's process with the library importable, including the reference solvers and stored optima that define the best score; the three FRED-MD seeds import the evaluator module. A candidate could read the realised target from the scoring loop's frame.",
+      "correction": "Every scoring loop is a generator driven through finance_sandbox.py: the candidate's function runs in the sandboxed child process of the earth tasks, which holds the candidate's source and the arguments released so far; the arguments of a call are sent only after the value of the previous call was received, and the evaluator package and data files cannot be reached from the child. The FRED-MD seeds carry their own copy of the benchmark autoregression. A forecaster that read the realised premium from the scoring loop's frame scored an out-of-sample R^2 of 100.0 before and 0.0 after; a school-choice candidate that called the evaluator's own solver scored 1.0 before and fails on the import after. All 18 seed scores are unchanged, and the origin's tests of these modules pass through the trusted in-process route that benchmarks and tests keep."
     }
   ],
   "open": [
@@ -219,15 +243,6 @@
       ],
       "finding": "The rule that coefficients may not depend on optical depth is enforced only by not passing it; the fixed, seeded design lets a candidate recover it.",
       "why_open": "Needs a crossed design or a disclosure like the one the synthetic earth tasks carry."
-    },
-    {
-      "group": "evaluator isolation",
-      "severity": "warning",
-      "tasks": [
-        "science-finance-* and science-economics-* (18 tasks)"
-      ],
-      "finding": "Candidates run in the evaluator's process with the library importable, including the reference solvers and stored optima that define the best score; the three FRED-MD seeds import the evaluator module.",
-      "why_open": "Needs the sandboxed worker the software, chemistry and earth tasks use. The packages state that candidate code is trusted."
     },
     {
       "group": "no headroom",

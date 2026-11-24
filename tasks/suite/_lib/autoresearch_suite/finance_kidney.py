@@ -12,10 +12,11 @@ from functools import lru_cache
 
 import numpy as np
 
-from . import finance_data
+from . import finance_data, finance_sandbox
 from .runtime import CandidateError
 
 TABLE = "kidney_preflib_pools.csv"
+ENTRY = "select_exchanges"
 MAX_CYCLE = 3
 # Proven optima (HiGHS on the cycle formulation, relative MIP gap 0); re-checked by tests/test_finance_kidney.py.
 OPTIMA = {"00036-00000151": 166, "00036-00000152": 175, "00036-00000153": 158, "00036-00000154": 145,
@@ -64,16 +65,27 @@ def check_clearing(name, cycles):
     return transplants, counts
 
 
-def kidney_score(select_exchanges):
-    """Total transplants divided by the total proven optimum over the fixed pools (maximize; 1 is optimal)."""
-    if not callable(select_exchanges):
-        raise CandidateError("select_exchanges must be callable")
-    rows, total, best = [], 0, 0
+def clearings():
+    """Scoring loop: one candidate call per pool; the proven optima stay in this process."""
+    results = {}
     for name in PAIRS:
         pairs, edges = pool(name)
         given = {"name": name, "pairs": pairs, "edges": edges.copy(), "max_cycle_length": MAX_CYCLE,
                  "time_limit_seconds": 60.0}
-        transplants, counts = check_clearing(name, select_exchanges(given))
+        results[name] = check_clearing(name, (yield finance_sandbox.step(ENTRY, given)))
+    return results
+
+
+def kidney_score(candidate):
+    """Total transplants divided by the total proven optimum over the fixed pools (maximize; 1 is optimal).
+
+    ``candidate`` is the candidate module (its select_exchanges runs in the sandbox) or a trusted callable.
+    """
+    rows, total, best = [], 0, 0
+    results = finance_sandbox.run(candidate, clearings(), ENTRY)
+    for name in PAIRS:
+        pairs, edges = pool(name)
+        transplants, counts = results[name]
         total += transplants
         best += OPTIMA[name]
         rows.append({"pool": name, "pairs": pairs, "edges": int(len(edges)), "transplants": transplants,

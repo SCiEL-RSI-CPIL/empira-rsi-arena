@@ -1,7 +1,7 @@
 {
   "schema": "arena.search-families/1",
-  "catalog_digest": "1faa8f185e28a6a5740711a141348b1217561ded9b2ec83a7df8964787201065",
-  "source_digest": "48b1fdde352d70c3f50d13a04f68cea1cbee53cf5ba2824f01e763022918ea97",
+  "catalog_digest": "0bf1974439de7af1b29fe88c3e4efd4ab85af4b1364fdbe200d1597127972d6b",
+  "source_digest": "7eabf497cc39b4bb82d0f53f415df42225bddb76aa3a1f27d41a84a3b69e348b",
   "sources": [
     {
       "path": "catalog/papers.json",

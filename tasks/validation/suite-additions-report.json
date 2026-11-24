@@ -3030,19 +3030,25 @@
       "status": "ok",
       "score": 1.0,
       "valid": true,
-      "seconds": 3.4,
+      "seconds": 6.1,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
-        "suite/_lib/autoresearch_suite/finance_macro.py": "315db7ea10d3c68b8affdd7a4e61743922ec967644725460c6524d7bd884fd24",
+        "suite/_lib/autoresearch_suite/finance_macro.py": "c37b0ca57f89eebd5d4d8b9841cd30bf7d77ca9ca6ec24e2124d42f0ebb706c9",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/finance_stats.py": "6c59f1e0ec11ba094c819156023627e07fea13f9df00dca65a3dc7e2b02c4ca4",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-economics-fredmd-industrial-production-forecasting/evaluator.py": "8bfcba4849ebd5c3a65a648b6177d9030b559a6045735e2a46e803f7bd87302f",
-        "suite/science-economics-fredmd-industrial-production-forecasting/initial_program.py": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355"
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-economics-fredmd-industrial-production-forecasting/evaluator.py": "9526bcfbc1a085adef32828bcced09f31c35a908cb822b483ee69a8bc8f91296",
+        "suite/science-economics-fredmd-industrial-production-forecasting/initial_program.py": "c3d468b21b749fcf9fad727c57540a5aefbc5a9f25f1969bd8f34ddc95165b8e"
       },
-      "candidate_sha256": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355",
-      "evaluator_sha256": "8bfcba4849ebd5c3a65a648b6177d9030b559a6045735e2a46e803f7bd87302f",
+      "candidate_sha256": "c3d468b21b749fcf9fad727c57540a5aefbc5a9f25f1969bd8f34ddc95165b8e",
+      "evaluator_sha256": "9526bcfbc1a085adef32828bcced09f31c35a908cb822b483ee69a8bc8f91296",
       "prepared_data_sha256": {
         "data/finance/fredmd_2024_10.csv": "eebcaa9024b3412849a86445e843d853543fd1b0b767cc2c85a10875fbac56a2"
       },
@@ -3061,14 +3067,15 @@
         "one_sided_p_better_than_ar_h1": 0.5,
         "one_sided_p_better_than_ar_h6": 0.5,
         "one_sided_p_better_than_ar_h12": 0.5,
-        "elapsed_seconds": 2.48401
+        "elapsed_seconds": 5.304453
       },
       "recorded_in_source": {
         "score": 1.0,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:19:19.327942+00:00"
+      "finished_at": "2026-11-24T14:56:11.807052+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-economics-fredmd-inflation-forecasting",
@@ -3077,19 +3084,25 @@
       "status": "ok",
       "score": 1.0,
       "valid": true,
-      "seconds": 3.3,
+      "seconds": 6.1,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
-        "suite/_lib/autoresearch_suite/finance_macro.py": "315db7ea10d3c68b8affdd7a4e61743922ec967644725460c6524d7bd884fd24",
+        "suite/_lib/autoresearch_suite/finance_macro.py": "c37b0ca57f89eebd5d4d8b9841cd30bf7d77ca9ca6ec24e2124d42f0ebb706c9",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/finance_stats.py": "6c59f1e0ec11ba094c819156023627e07fea13f9df00dca65a3dc7e2b02c4ca4",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-economics-fredmd-inflation-forecasting/evaluator.py": "f36e038b6036b0909da34e3fa1f3a9607e61bc9cfce89e7eecb00bf828d4ee2b",
-        "suite/science-economics-fredmd-inflation-forecasting/initial_program.py": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355"
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-economics-fredmd-inflation-forecasting/evaluator.py": "59a785af830eeb4552b1c27308debdb64e526411bd77d16de73d7ce1ae389041",
+        "suite/science-economics-fredmd-inflation-forecasting/initial_program.py": "c3d468b21b749fcf9fad727c57540a5aefbc5a9f25f1969bd8f34ddc95165b8e"
       },
-      "candidate_sha256": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355",
-      "evaluator_sha256": "f36e038b6036b0909da34e3fa1f3a9607e61bc9cfce89e7eecb00bf828d4ee2b",
+      "candidate_sha256": "c3d468b21b749fcf9fad727c57540a5aefbc5a9f25f1969bd8f34ddc95165b8e",
+      "evaluator_sha256": "59a785af830eeb4552b1c27308debdb64e526411bd77d16de73d7ce1ae389041",
       "prepared_data_sha256": {
         "data/finance/fredmd_2024_10.csv": "eebcaa9024b3412849a86445e843d853543fd1b0b767cc2c85a10875fbac56a2"
       },
@@ -3108,14 +3121,15 @@
         "one_sided_p_better_than_ar_h1": 0.5,
         "one_sided_p_better_than_ar_h6": 0.5,
         "one_sided_p_better_than_ar_h12": 0.5,
-        "elapsed_seconds": 2.557564
+        "elapsed_seconds": 5.310155
       },
       "recorded_in_source": {
         "score": 1.0,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:19:22.677299+00:00"
+      "finished_at": "2026-11-24T14:56:11.840026+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-economics-fredmd-unemployment-forecasting",
@@ -3124,19 +3138,25 @@
       "status": "ok",
       "score": 1.0,
       "valid": true,
-      "seconds": 2.8,
+      "seconds": 5.8,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
-        "suite/_lib/autoresearch_suite/finance_macro.py": "315db7ea10d3c68b8affdd7a4e61743922ec967644725460c6524d7bd884fd24",
+        "suite/_lib/autoresearch_suite/finance_macro.py": "c37b0ca57f89eebd5d4d8b9841cd30bf7d77ca9ca6ec24e2124d42f0ebb706c9",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/finance_stats.py": "6c59f1e0ec11ba094c819156023627e07fea13f9df00dca65a3dc7e2b02c4ca4",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-economics-fredmd-unemployment-forecasting/evaluator.py": "9945f8e414e26fd9144fa89ece76747371d73eff2354b9e03fcf78d122def1af",
-        "suite/science-economics-fredmd-unemployment-forecasting/initial_program.py": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355"
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-economics-fredmd-unemployment-forecasting/evaluator.py": "1e7e4d83dd1e9d069b71b912ed3c08e7dc7db232442428b719cf1cdac8d55c89",
+        "suite/science-economics-fredmd-unemployment-forecasting/initial_program.py": "c3d468b21b749fcf9fad727c57540a5aefbc5a9f25f1969bd8f34ddc95165b8e"
       },
-      "candidate_sha256": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355",
-      "evaluator_sha256": "9945f8e414e26fd9144fa89ece76747371d73eff2354b9e03fcf78d122def1af",
+      "candidate_sha256": "c3d468b21b749fcf9fad727c57540a5aefbc5a9f25f1969bd8f34ddc95165b8e",
+      "evaluator_sha256": "1e7e4d83dd1e9d069b71b912ed3c08e7dc7db232442428b719cf1cdac8d55c89",
       "prepared_data_sha256": {
         "data/finance/fredmd_2024_10.csv": "eebcaa9024b3412849a86445e843d853543fd1b0b767cc2c85a10875fbac56a2"
       },
@@ -3155,14 +3175,15 @@
         "one_sided_p_better_than_ar_h1": 0.5,
         "one_sided_p_better_than_ar_h6": 0.5,
         "one_sided_p_better_than_ar_h12": 0.5,
-        "elapsed_seconds": 2.010035
+        "elapsed_seconds": 5.022359
       },
       "recorded_in_source": {
         "score": 1.0,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:19:25.482678+00:00"
+      "finished_at": "2026-11-24T14:56:11.543435+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-economics-kidney-exchange",
@@ -3171,18 +3192,24 @@
       "status": "ok",
       "score": 0.860668380462725,
       "valid": true,
-      "seconds": 2.1,
+      "seconds": 2.6,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
-        "suite/_lib/autoresearch_suite/finance_kidney.py": "5b9e85821ff073bdd2aeb3d42b6f541eec6dc1a6cd77599d06864b0b7906ea55",
+        "suite/_lib/autoresearch_suite/finance_kidney.py": "d256c93f9d2c682cbee10a00d3591ba9565a2b1db643c90f9c0c599884e85d8d",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-economics-kidney-exchange/evaluator.py": "688a6cceff6080d1a544a8756749e9bc1e288e1446b84280d7e047285a25ca73",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-economics-kidney-exchange/evaluator.py": "36898427ff5816e0a2f84b10f83b6a99fa0a41df8bd1c6941d566a8d6736379f",
         "suite/science-economics-kidney-exchange/initial_program.py": "d8716531577153394683d7c24bface8c87387bca472c0930295dd3a61e05cc87"
       },
       "candidate_sha256": "d8716531577153394683d7c24bface8c87387bca472c0930295dd3a61e05cc87",
-      "evaluator_sha256": "688a6cceff6080d1a544a8756749e9bc1e288e1446b84280d7e047285a25ca73",
+      "evaluator_sha256": "36898427ff5816e0a2f84b10f83b6a99fa0a41df8bd1c6941d566a8d6736379f",
       "prepared_data_sha256": {
         "data/finance/kidney_preflib_pools.csv": "3f6f248c99a42a9bcf8352fb6e21765e4ec8e01fe298677f7ae5a89a71062ad2"
       },
@@ -3196,14 +3223,15 @@
         "error": null,
         "transplants": 1674,
         "optimum_transplants": 1945,
-        "elapsed_seconds": 1.276056
+        "elapsed_seconds": 1.715484
       },
       "recorded_in_source": {
         "score": 0.860668380462725,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:19:27.636064+00:00"
+      "finished_at": "2026-11-24T14:56:14.133232+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-economics-maximum-nash-welfare",
@@ -3212,16 +3240,23 @@
       "status": "ok",
       "score": 0.871978163969993,
       "valid": true,
-      "seconds": 1.5,
+      "seconds": 0.9,
       "reason": null,
       "file_sha256": {
-        "suite/_lib/autoresearch_suite/finance_fairdiv.py": "68f4ed20b289b6ab21babff0c81800a9ffaf55d273db5d61d33c008ae2aa999f",
+        "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
+        "suite/_lib/autoresearch_suite/finance_fairdiv.py": "8082066807b7716d9a41f003739e8aac8ce855eb1e3dbfa2d28880baceed3b5d",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-economics-maximum-nash-welfare/evaluator.py": "204c53c1b98b5bf80578167159057d45f410352cc3374700d06cfba7ba9f9af3",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-economics-maximum-nash-welfare/evaluator.py": "91f9d32ba1b5fe471b7aa1b10d214bcb3a5807230a5dc545f0994ed5c67e3acd",
         "suite/science-economics-maximum-nash-welfare/initial_program.py": "6939fb28ebb47fe40d7d11aa8ff02e0cc3537decbfb6ab8c251e89e8466e1a1a"
       },
       "candidate_sha256": "6939fb28ebb47fe40d7d11aa8ff02e0cc3537decbfb6ab8c251e89e8466e1a1a",
-      "evaluator_sha256": "204c53c1b98b5bf80578167159057d45f410352cc3374700d06cfba7ba9f9af3",
+      "evaluator_sha256": "91f9d32ba1b5fe471b7aa1b10d214bcb3a5807230a5dc545f0994ed5c67e3acd",
       "prepared_data_sha256": {},
       "source_execution": true,
       "fixture_only": false,
@@ -3232,14 +3267,15 @@
         "valid": true,
         "error": null,
         "ef1_instances": 8,
-        "elapsed_seconds": 0.022657
+        "elapsed_seconds": 0.109154
       },
       "recorded_in_source": {
         "score": 0.871978163969993,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:14:34.160213+00:00"
+      "finished_at": "2026-11-24T14:56:12.721929+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-economics-school-choice-tie-breaking",
@@ -3248,16 +3284,23 @@
       "status": "ok",
       "score": 0.0,
       "valid": true,
-      "seconds": 1.1,
+      "seconds": 0.9,
       "reason": null,
       "file_sha256": {
-        "suite/_lib/autoresearch_suite/finance_school.py": "23273931345696a6b9d9a06b6bd65c6167ad817b694e919ed7dcf95ab8c8fa4a",
+        "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
+        "suite/_lib/autoresearch_suite/finance_school.py": "520416e61603873d2a3c8885318c492717b58218c6a68785f6ae6a6233b12597",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-economics-school-choice-tie-breaking/evaluator.py": "886b28499663ab3b42f894472a9d360c9e09939090566b993d0141b013c2e188",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-economics-school-choice-tie-breaking/evaluator.py": "c9ee94675325edb7095653ac956f677a3e2246eb6ffabaa2bb3b97515c541e00",
         "suite/science-economics-school-choice-tie-breaking/initial_program.py": "cad3afef83e73962ea2fc439cb6bfc2d1b8fb472804503fd2834dd513c4cbdf2"
       },
       "candidate_sha256": "cad3afef83e73962ea2fc439cb6bfc2d1b8fb472804503fd2834dd513c4cbdf2",
-      "evaluator_sha256": "886b28499663ab3b42f894472a9d360c9e09939090566b993d0141b013c2e188",
+      "evaluator_sha256": "c9ee94675325edb7095653ac956f677a3e2246eb6ffabaa2bb3b97515c541e00",
       "prepared_data_sha256": {},
       "source_execution": true,
       "fixture_only": false,
@@ -3267,14 +3310,15 @@
         "direction": "maximize",
         "valid": true,
         "error": null,
-        "elapsed_seconds": 0.039296
+        "elapsed_seconds": 0.138867
       },
       "recorded_in_source": {
         "score": 0.0,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:14:34.984819+00:00"
+      "finished_at": "2026-11-24T14:56:12.794297+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-edge-disjoint-monochromatic-triangles-11",
@@ -3561,19 +3605,25 @@
       "status": "ok",
       "score": 5.946309537468145,
       "valid": true,
-      "seconds": 0.8,
+      "seconds": 1.0,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/finance_stats.py": "6c59f1e0ec11ba094c819156023627e07fea13f9df00dca65a3dc7e2b02c4ca4",
-        "suite/_lib/autoresearch_suite/finance_volsurface.py": "fefd0b76ef11915af709c7da17f9c19475aab7ce2a3fdba8fba9759b8b43eacd",
+        "suite/_lib/autoresearch_suite/finance_volsurface.py": "fe24bb0e2856163899f979344e14773ae1c91033225e5d7c61a5e476c4ac4890",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-arbitrage-free-svi-surface/evaluator.py": "f4c9c4a38a917fb651d54a4301a7d969d47b1803c233e5fbf4c4a6144d0a5af8",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-arbitrage-free-svi-surface/evaluator.py": "e67db5a8bf86e10ac51a4c8e74b46e4cbd4ab2780dbe305c53e3e55e75ffd78e",
         "suite/science-finance-arbitrage-free-svi-surface/initial_program.py": "d2cbaed6d28d7afeba2e6354476dab1674cdca483038a706258774f7a4dc62df"
       },
       "candidate_sha256": "d2cbaed6d28d7afeba2e6354476dab1674cdca483038a706258774f7a4dc62df",
-      "evaluator_sha256": "f4c9c4a38a917fb651d54a4301a7d969d47b1803c233e5fbf4c4a6144d0a5af8",
+      "evaluator_sha256": "e67db5a8bf86e10ac51a4c8e74b46e4cbd4ab2780dbe305c53e3e55e75ffd78e",
       "prepared_data_sha256": {
         "data/finance/dax_2002_surface.csv": "c241abeef02a4f9429a26939d55612e94483b1e747e74ff17cfe77263271df68"
       },
@@ -3590,14 +3640,15 @@
         "min_durrleman_g": 1.0,
         "min_calendar_gap": 0.006578709890410962,
         "quotes": 104,
-        "elapsed_seconds": 0.052518
+        "elapsed_seconds": 0.194678
       },
       "recorded_in_source": {
         "score": 5.946309537468145,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:19:28.492471+00:00"
+      "finished_at": "2026-11-24T14:56:13.716156+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-finance-cardinality-constrained-frontier",
@@ -3606,19 +3657,25 @@
       "status": "ok",
       "score": 1.5349469216791403,
       "valid": true,
-      "seconds": 7.5,
+      "seconds": 8.6,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
-        "suite/_lib/autoresearch_suite/finance_ccef.py": "04c35f11e9cf89ce5d19d3f180cd2763146d9a2b62317628ad670547ae2db96e",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
+        "suite/_lib/autoresearch_suite/finance_ccef.py": "20999c5bcf64d81db550ff22aec86105463c0e905cda612e354fac5258529335",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/finance_stats.py": "6c59f1e0ec11ba094c819156023627e07fea13f9df00dca65a3dc7e2b02c4ca4",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-cardinality-constrained-frontier/evaluator.py": "6a9661cb1517314753ded2e62e68deadb88ef9b936334010243d89a320eb8987",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-cardinality-constrained-frontier/evaluator.py": "037e247ba6b478fd413c7f793689c3345b8c751d5098cf0259a88097878a127c",
         "suite/science-finance-cardinality-constrained-frontier/initial_program.py": "37259b6e741fbd0ff385c093928c44bfc55d11b8c454bb72d9484633a4cfaa30"
       },
       "candidate_sha256": "37259b6e741fbd0ff385c093928c44bfc55d11b8c454bb72d9484633a4cfaa30",
-      "evaluator_sha256": "6a9661cb1517314753ded2e62e68deadb88ef9b936334010243d89a320eb8987",
+      "evaluator_sha256": "037e247ba6b478fd413c7f793689c3345b8c751d5098cf0259a88097878a127c",
       "prepared_data_sha256": {
         "data/finance/orlib_port1.csv": "1293606ba3b093704170717d7fa870df7ac6374edf511cbf99f1413a94fab31c",
         "data/finance/orlib_port2.csv": "c9cc40c29e9ebdcbc3ff86a6457f730136c42f03a7424feb9820ca4cf29f78be",
@@ -3641,14 +3698,15 @@
         "error": null,
         "targets_per_market": 51,
         "K": 10,
-        "elapsed_seconds": 6.665043
+        "elapsed_seconds": 7.787565
       },
       "recorded_in_source": {
         "score": 1.5349469216791403,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:19:36.050210+00:00"
+      "finished_at": "2026-11-24T14:56:21.455789+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-finance-covariance-minimum-variance",
@@ -3657,18 +3715,24 @@
       "status": "ok",
       "score": 11.97417989011042,
       "valid": true,
-      "seconds": 1.5,
+      "seconds": 2.0,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
-        "suite/_lib/autoresearch_suite/finance_covariance.py": "e1263f3ad4ac2cd5ec30da22bb0c30df1263b076ba9210ed321ba997b1bbde9e",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
+        "suite/_lib/autoresearch_suite/finance_covariance.py": "bf31af9645dae3efa4370e3817abae2aa0440e1b40b4bf91c31c9f5fd19e8201",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-covariance-minimum-variance/evaluator.py": "4519f8bcf59fb938e57d2f4e378da0f48763487e0638b0edc51848ec5f51bd9a",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-covariance-minimum-variance/evaluator.py": "4b5c0c9ea7d075d01ce9dbc0f1d5be622b5ce9e0c3c35c0eddae45317b0cd1ef",
         "suite/science-finance-covariance-minimum-variance/initial_program.py": "3046ca51734c4a10922e3c18b485ff14d5500c52ef007e2649d9280c8f6bc2ca"
       },
       "candidate_sha256": "3046ca51734c4a10922e3c18b485ff14d5500c52ef007e2649d9280c8f6bc2ca",
-      "evaluator_sha256": "4519f8bcf59fb938e57d2f4e378da0f48763487e0638b0edc51848ec5f51bd9a",
+      "evaluator_sha256": "4b5c0c9ea7d075d01ce9dbc0f1d5be622b5ce9e0c3c35c0eddae45317b0cd1ef",
       "prepared_data_sha256": {
         "data/finance/ind49_vw_daily.csv": "08caaef561ae5a4be311e8a7bf24c79e0a7c8754ecc3ffec89ed4e79ced3638d"
       },
@@ -3692,14 +3756,15 @@
         "sample_covariance_sd": 11.97417989011042,
         "equal_weight_sd": 16.788774887350538,
         "relative_to_sample_covariance": 1.0,
-        "elapsed_seconds": 0.57045
+        "elapsed_seconds": 1.200482
       },
       "recorded_in_source": {
         "score": 11.974179890110419,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "equal_to_1e-9",
-      "finished_at": "2026-11-20T14:19:37.539772+00:00"
+      "finished_at": "2026-11-24T14:56:15.708048+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-finance-equity-premium-prediction",
@@ -3708,19 +3773,25 @@
       "status": "ok",
       "score": 0.0,
       "valid": true,
-      "seconds": 0.9,
+      "seconds": 2.8,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
-        "suite/_lib/autoresearch_suite/finance_premium.py": "a79fc2e87e7c9d7b85e4c10ebc4e7dc679f9f48c7e211d0a13f88349d3936d75",
+        "suite/_lib/autoresearch_suite/finance_premium.py": "f3c26877f1194431e151ce257c1a742d2f6ae54af3f041faa00a676f3f13e98a",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/finance_stats.py": "6c59f1e0ec11ba094c819156023627e07fea13f9df00dca65a3dc7e2b02c4ca4",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-equity-premium-prediction/evaluator.py": "91547af9eb14c70463a1f30b0bf832ce4c235f4646de8474a0a599e02fdbfb02",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-equity-premium-prediction/evaluator.py": "eb502f1a291692c3a734a98350071219adc9e22cf346ab6f6d76c3cef9f627a7",
         "suite/science-finance-equity-premium-prediction/initial_program.py": "8a45aa1159e42214a68dd921eb8651c53f9736fdaa86f295863f5615700c5e44"
       },
       "candidate_sha256": "8a45aa1159e42214a68dd921eb8651c53f9736fdaa86f295863f5615700c5e44",
-      "evaluator_sha256": "91547af9eb14c70463a1f30b0bf832ce4c235f4646de8474a0a599e02fdbfb02",
+      "evaluator_sha256": "eb502f1a291692c3a734a98350071219adc9e22cf346ab6f6d76c3cef9f627a7",
       "prepared_data_sha256": {
         "data/finance/goyal_welch_monthly.csv": "f15431437234fbfde36d592ceb34b9aaa2f1d4420377459cd1bcfe4008c7e4ff"
       },
@@ -3744,14 +3815,15 @@
         "oos_r2_percent_from_2000": 0.0,
         "share_negative_forecasts": 0.0,
         "mean_forecast": 0.00516578309900689,
-        "elapsed_seconds": 0.058916
+        "elapsed_seconds": 1.973251
       },
       "recorded_in_source": {
         "score": 0.0,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:19:38.438967+00:00"
+      "finished_at": "2026-11-24T14:56:16.946074+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-finance-index-tracking",
@@ -3760,19 +3832,25 @@
       "status": "ok",
       "score": 1.087112778897455,
       "valid": true,
-      "seconds": 1.9,
+      "seconds": 2.5,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/finance_stats.py": "6c59f1e0ec11ba094c819156023627e07fea13f9df00dca65a3dc7e2b02c4ca4",
-        "suite/_lib/autoresearch_suite/finance_tracking.py": "021f55bdd8e289adafdedd61757ba3c102af84fe0e0216d03614da8ba072ccc0",
+        "suite/_lib/autoresearch_suite/finance_tracking.py": "b6366604056bcefb3d09af82bf38704f2802ecbe76eee16cce47faf2c02057e8",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-index-tracking/evaluator.py": "ee6936acd17668bf42cf23d736ea3af3f71d80f674c6bc4c4edeacbff72fe11a",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-index-tracking/evaluator.py": "4db3bade73e137f5ccb00b00457e6cf775ec29892aa051768cba6332b74aeb0e",
         "suite/science-finance-index-tracking/initial_program.py": "b00b9ea33df7ba0d92acbf8e0acd6fa14c13a8145e9e64606cefec0743790bc6"
       },
       "candidate_sha256": "b00b9ea33df7ba0d92acbf8e0acd6fa14c13a8145e9e64606cefec0743790bc6",
-      "evaluator_sha256": "ee6936acd17668bf42cf23d736ea3af3f71d80f674c6bc4c4edeacbff72fe11a",
+      "evaluator_sha256": "4db3bade73e137f5ccb00b00457e6cf775ec29892aa051768cba6332b74aeb0e",
       "prepared_data_sha256": {
         "data/finance/orlib_indtrack1.csv": "47ee06ba664c6e9f87b0a098be779aefb1345f40acba91d3d5045373721db618",
         "data/finance/orlib_indtrack2.csv": "7d16bea33af3017ebc975b9531e295d351231fa57b497ad8ab979757048404db",
@@ -3791,14 +3869,15 @@
         "weeks": 145,
         "K": 10,
         "cost_rate": 0.01,
-        "elapsed_seconds": 1.082173
+        "elapsed_seconds": 1.570774
       },
       "recorded_in_source": {
         "score": 1.0871127788974557,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "equal_to_1e-9",
-      "finished_at": "2026-11-20T14:19:40.422663+00:00"
+      "finished_at": "2026-11-24T14:56:18.212815+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-finance-market-making",
@@ -3807,17 +3886,23 @@
       "status": "ok",
       "score": 0.7416437144830402,
       "valid": true,
-      "seconds": 51.1,
+      "seconds": 53.5,
       "reason": null,
       "file_sha256": {
-        "suite/_lib/autoresearch_suite/finance_marketmaking.py": "b02d115bc080137001186426868829b5c569fea71bde70c3b4874a272357ffe7",
-        "suite/_lib/autoresearch_suite/finance_stats.py": "6c59f1e0ec11ba094c819156023627e07fea13f9df00dca65a3dc7e2b02c4ca4",
+        "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
+        "suite/_lib/autoresearch_suite/finance_marketmaking.py": "6f87ce4ceb92b4e67b2ea1c8f036443a1c9de6a3afab91679b2744be4e3f80f2",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-market-making/evaluator.py": "fdc9670e38b6bb009fbc6dfeeb0a9e8c55aa3c92ba3c88a146c00bb3de39ed13",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-market-making/evaluator.py": "698beb719a95d45f10e550ebdf5600bf80011ae2b88e0c6b91a87f85235baa62",
         "suite/science-finance-market-making/initial_program.py": "a13454d55775b7722647786c175312b8621ee18a0314564ba6b3c715900c7f67"
       },
       "candidate_sha256": "a13454d55775b7722647786c175312b8621ee18a0314564ba6b3c715900c7f67",
-      "evaluator_sha256": "fdc9670e38b6bb009fbc6dfeeb0a9e8c55aa3c92ba3c88a146c00bb3de39ed13",
+      "evaluator_sha256": "698beb719a95d45f10e550ebdf5600bf80011ae2b88e0c6b91a87f85235baa62",
       "prepared_data_sha256": {},
       "source_execution": true,
       "fixture_only": false,
@@ -3828,14 +3913,15 @@
         "valid": true,
         "error": null,
         "paths": 4000,
-        "elapsed_seconds": 50.247298
+        "elapsed_seconds": 52.735503
       },
       "recorded_in_source": {
         "score": null,
         "receipt": null
       },
       "agreement": "no_recorded_score",
-      "finished_at": "2026-11-20T14:15:31.253774+00:00"
+      "finished_at": "2026-11-24T14:57:10.516445+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-finance-optimal-execution",
@@ -3844,17 +3930,24 @@
       "status": "ok",
       "score": 221.43362593249705,
       "valid": true,
-      "seconds": 3.8,
+      "seconds": 3.2,
       "reason": null,
       "file_sha256": {
-        "suite/_lib/autoresearch_suite/finance_execution.py": "c0ed0d8b5b7aeee13a3a9cc255560c344c989b8d41cf783a10eb7c92cd9fee46",
+        "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
+        "suite/_lib/autoresearch_suite/finance_execution.py": "2db3d1e8153636384529da7a1f3fe405f45d418dffec090c67ff2c7c01f5b29f",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/finance_stats.py": "6c59f1e0ec11ba094c819156023627e07fea13f9df00dca65a3dc7e2b02c4ca4",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-optimal-execution/evaluator.py": "d43454938eeac456bba517978fe3195b139362b801dc5dbd00c39111053cfd94",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-optimal-execution/evaluator.py": "48898610774ac4fc1d58d9af37317ef7add9811882b11d8209bdd4aecb760ede",
         "suite/science-finance-optimal-execution/initial_program.py": "7ae54b1850c1a58921d93da68bb4bd0ada01007fd57dee9ea70c2ab026a14fb4"
       },
       "candidate_sha256": "7ae54b1850c1a58921d93da68bb4bd0ada01007fd57dee9ea70c2ab026a14fb4",
-      "evaluator_sha256": "d43454938eeac456bba517978fe3195b139362b801dc5dbd00c39111053cfd94",
+      "evaluator_sha256": "48898610774ac4fc1d58d9af37317ef7add9811882b11d8209bdd4aecb760ede",
       "prepared_data_sha256": {},
       "source_execution": true,
       "fixture_only": false,
@@ -3865,14 +3958,15 @@
         "valid": true,
         "error": null,
         "max_excess_percent": 731.1676041134763,
-        "elapsed_seconds": 2.598998
+        "elapsed_seconds": 2.330168
       },
       "recorded_in_source": {
         "score": 221.43362593249705,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:14:45.646517+00:00"
+      "finished_at": "2026-11-24T14:56:21.420130+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-finance-portfolio-choice-ff20",
@@ -3881,18 +3975,24 @@
       "status": "ok",
       "score": 0.15008033553346536,
       "valid": true,
-      "seconds": 0.8,
+      "seconds": 1.1,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
-        "suite/_lib/autoresearch_suite/finance_portfolio.py": "814810fcc5c0b95720b489883be5eb4d8094a05c9db9a0400e25a2a6be7ad224",
+        "suite/_lib/autoresearch_suite/finance_portfolio.py": "db72d6e0ab12c5329c79627659cc9babc7ebafe2557eecb8accaa464699cb113",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-portfolio-choice-ff20/evaluator.py": "1aebfe395df7cd303a57930d0f58ea487210e1d33ed021b40fdcc569e1eb7a83",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-portfolio-choice-ff20/evaluator.py": "a821ef887586b4c49e328c42e5fb6fce476d287696163cff19faa88c7b80bafa",
         "suite/science-finance-portfolio-choice-ff20/initial_program.py": "4ecba1159c4f3c14aeef3c95d337d6933e095d8076d6c4c252e4aeb839aacdcc"
       },
       "candidate_sha256": "4ecba1159c4f3c14aeef3c95d337d6933e095d8076d6c4c252e4aeb839aacdcc",
-      "evaluator_sha256": "1aebfe395df7cd303a57930d0f58ea487210e1d33ed021b40fdcc569e1eb7a83",
+      "evaluator_sha256": "a821ef887586b4c49e328c42e5fb6fce476d287696163cff19faa88c7b80bafa",
       "prepared_data_sha256": {
         "data/finance/ff25_vw_monthly.csv": "c8414c3aacc1c06619dba2bc07f3d72c854d6bd04accaa78036788884a41e80d",
         "data/finance/ff_factors_monthly.csv": "2af86e4be533d6b244511b3587304987c08750043b41fd8aa19c21b17f94c390"
@@ -3923,14 +4023,15 @@
         "sharpe_minus_equal_weight": 0.0,
         "jobson_korkie_memmel_z": 0.0,
         "one_sided_p_value_vs_equal_weight": 0.5,
-        "elapsed_seconds": 0.045567
+        "elapsed_seconds": 0.317753
       },
       "recorded_in_source": {
         "score": 0.1500803355334654,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "equal_to_1e-9",
-      "finished_at": "2026-11-20T14:19:41.257705+00:00"
+      "finished_at": "2026-11-24T14:56:22.520810+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-finance-portfolio-choice-industry10",
@@ -3939,18 +4040,24 @@
       "status": "ok",
       "score": 0.15329800834955942,
       "valid": true,
-      "seconds": 0.9,
+      "seconds": 1.0,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
-        "suite/_lib/autoresearch_suite/finance_portfolio.py": "814810fcc5c0b95720b489883be5eb4d8094a05c9db9a0400e25a2a6be7ad224",
+        "suite/_lib/autoresearch_suite/finance_portfolio.py": "db72d6e0ab12c5329c79627659cc9babc7ebafe2557eecb8accaa464699cb113",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-portfolio-choice-industry10/evaluator.py": "a7ddd4a00f5f9fb9c34531fba05cadfd4bbe4a9fdf679e1761bd9d6e180fdcf0",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-portfolio-choice-industry10/evaluator.py": "5ba02df7f52e8a1fe6a4178a9941764981411ff6b8531793a7e67fc26a224d34",
         "suite/science-finance-portfolio-choice-industry10/initial_program.py": "4ecba1159c4f3c14aeef3c95d337d6933e095d8076d6c4c252e4aeb839aacdcc"
       },
       "candidate_sha256": "4ecba1159c4f3c14aeef3c95d337d6933e095d8076d6c4c252e4aeb839aacdcc",
-      "evaluator_sha256": "a7ddd4a00f5f9fb9c34531fba05cadfd4bbe4a9fdf679e1761bd9d6e180fdcf0",
+      "evaluator_sha256": "5ba02df7f52e8a1fe6a4178a9941764981411ff6b8531793a7e67fc26a224d34",
       "prepared_data_sha256": {
         "data/finance/ind10_vw_monthly.csv": "858b46297d8e47513ec555fadf724dc43ea62550f1556adce86974b940f882ca",
         "data/finance/ff_factors_monthly.csv": "2af86e4be533d6b244511b3587304987c08750043b41fd8aa19c21b17f94c390"
@@ -3981,14 +4088,15 @@
         "sharpe_minus_equal_weight": 0.0,
         "jobson_korkie_memmel_z": 0.0,
         "one_sided_p_value_vs_equal_weight": 0.5,
-        "elapsed_seconds": 0.041938
+        "elapsed_seconds": 0.245714
       },
       "recorded_in_source": {
         "score": 0.15329800834955942,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:19:42.206987+00:00"
+      "finished_at": "2026-11-24T14:56:22.452850+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-finance-portfolio-choice-industry49",
@@ -3997,18 +4105,24 @@
       "status": "ok",
       "score": 0.1571231013188625,
       "valid": true,
-      "seconds": 1.0,
+      "seconds": 1.2,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
-        "suite/_lib/autoresearch_suite/finance_portfolio.py": "814810fcc5c0b95720b489883be5eb4d8094a05c9db9a0400e25a2a6be7ad224",
+        "suite/_lib/autoresearch_suite/finance_portfolio.py": "db72d6e0ab12c5329c79627659cc9babc7ebafe2557eecb8accaa464699cb113",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-portfolio-choice-industry49/evaluator.py": "af6cdaed3428b1b6a0ae57311a344b95bfe67329b5cda9ba57c94ce909820c50",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-portfolio-choice-industry49/evaluator.py": "1f1b47b5220e5abd956c8d368f27514bebdb8710e6efdefbcdaaeab1619fc455",
         "suite/science-finance-portfolio-choice-industry49/initial_program.py": "4ecba1159c4f3c14aeef3c95d337d6933e095d8076d6c4c252e4aeb839aacdcc"
       },
       "candidate_sha256": "4ecba1159c4f3c14aeef3c95d337d6933e095d8076d6c4c252e4aeb839aacdcc",
-      "evaluator_sha256": "af6cdaed3428b1b6a0ae57311a344b95bfe67329b5cda9ba57c94ce909820c50",
+      "evaluator_sha256": "1f1b47b5220e5abd956c8d368f27514bebdb8710e6efdefbcdaaeab1619fc455",
       "prepared_data_sha256": {
         "data/finance/ind49_vw_monthly.csv": "d4cce6fd50934f63e159a36520a387667ad7a7e05c934ed0e8d26215fe6ec18c",
         "data/finance/ff_factors_monthly.csv": "2af86e4be533d6b244511b3587304987c08750043b41fd8aa19c21b17f94c390"
@@ -4039,14 +4153,15 @@
         "sharpe_minus_equal_weight": 0.0,
         "jobson_korkie_memmel_z": 0.0,
         "one_sided_p_value_vs_equal_weight": 0.5,
-        "elapsed_seconds": 0.053901
+        "elapsed_seconds": 0.456567
       },
       "recorded_in_source": {
         "score": 0.15712310131886248,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "equal_to_1e-9",
-      "finished_at": "2026-11-20T14:19:43.283266+00:00"
+      "finished_at": "2026-11-24T14:56:23.711804+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-finance-volatility-forecasting",
@@ -4055,19 +4170,25 @@
       "status": "ok",
       "score": -7.562745814012316,
       "valid": true,
-      "seconds": 1.5,
+      "seconds": 2.2,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/finance_stats.py": "6c59f1e0ec11ba094c819156023627e07fea13f9df00dca65a3dc7e2b02c4ca4",
-        "suite/_lib/autoresearch_suite/finance_volatility.py": "fd79de3494f124d9f670d8ab0e250eaef6c5a22ea5fa5038dece50e6aee8a817",
+        "suite/_lib/autoresearch_suite/finance_volatility.py": "08efe8db56877e8249407fa8a8bd07dfe07cc9f9337e0c4584246c388a684362",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-volatility-forecasting/evaluator.py": "bd0dbeb6985a6293bb186580305f136a7f0a935c00aeddf259d5202b52a8d8a8",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-volatility-forecasting/evaluator.py": "05f5c49f016c3f4e35f826f8e43e1ac13e74ffb6e3dbd30cc94e5cad3301d02f",
         "suite/science-finance-volatility-forecasting/initial_program.py": "8a074975577f8a8c04578ed0d86f4ada2b53180608b1d5618304057f2b4dbd36"
       },
       "candidate_sha256": "8a074975577f8a8c04578ed0d86f4ada2b53180608b1d5618304057f2b4dbd36",
-      "evaluator_sha256": "bd0dbeb6985a6293bb186580305f136a7f0a935c00aeddf259d5202b52a8d8a8",
+      "evaluator_sha256": "05f5c49f016c3f4e35f826f8e43e1ac13e74ffb6e3dbd30cc94e5cad3301d02f",
       "prepared_data_sha256": {
         "data/finance/ind49_vw_daily.csv": "08caaef561ae5a4be311e8a7bf24c79e0a7c8754ecc3ffec89ed4e79ced3638d",
         "data/finance/ff_factors_daily.csv": "da1edec5aeb29085e637dfdaa7ccc0452d690a3baf3db814ad6dbca0fd83a38f"
@@ -4091,14 +4212,15 @@
         "diebold_mariano_vs_riskmetrics": 4.836339676546121,
         "one_sided_p_better_than_riskmetrics": 0.9999993387407606,
         "series_beating_riskmetrics": 1,
-        "elapsed_seconds": 0.587022
+        "elapsed_seconds": 1.437186
       },
       "recorded_in_source": {
         "score": -7.562745814012316,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:19:44.783397+00:00"
+      "finished_at": "2026-11-24T14:56:24.713432+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-finance-yield-curve-forecasting",
@@ -4107,19 +4229,25 @@
       "status": "ok",
       "score": 1.0,
       "valid": true,
-      "seconds": 0.8,
+      "seconds": 1.1,
       "reason": null,
       "file_sha256": {
         "suite/_lib/arena_task_paths.py": "a232fa1b8bb0def22ba57173217aaeb319cae544450fe16cfbe898d9d7dee732",
+        "suite/_lib/autoresearch_suite/earth_common.py": "9b2f70b9f5aba1783887ae7d7a6604ee6d0c698601dc65a64cea461c9bc5ecb8",
+        "suite/_lib/autoresearch_suite/earth_sandbox.py": "ed39858f53964f09a9bd4a7d9b6e2b82f57741a771b3013a524e2ff27fec0a5f",
+        "suite/_lib/autoresearch_suite/earth_worker.py": "1339f8fc94aea6ee751c392c8318e8d70240ca78814297ba2679ac968dcfb484",
         "suite/_lib/autoresearch_suite/finance_data.py": "925fc7e167b771676135bb91e488dd67ec7b4b5893b47d06d3e209b25cfe7c1e",
+        "suite/_lib/autoresearch_suite/finance_sandbox.py": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
         "suite/_lib/autoresearch_suite/finance_stats.py": "6c59f1e0ec11ba094c819156023627e07fea13f9df00dca65a3dc7e2b02c4ca4",
-        "suite/_lib/autoresearch_suite/finance_yields.py": "a9248581c59bbb2c56f345338cc56c46d01d09bb2fe4e8979082b0c51566004b",
+        "suite/_lib/autoresearch_suite/finance_yields.py": "e856132dafaf434f5d2366ffd4243caea4ebeef2840a755e09e66a13443f36ed",
         "suite/_lib/autoresearch_suite/runtime.py": "e5274a3bab8202885a7d57e009e8f74075fc206d0f52c70cf5ce917f7f1a4248",
-        "suite/science-finance-yield-curve-forecasting/evaluator.py": "b230b1b7065d8fd1d207155b395e6515d506aba452a530469fd1ca437ec991be",
+        "suite/_lib/autoresearch_suite/software_sandbox.py": "09ed7a566e7a4949e848dd21d69ca863bad9dbc2c3676dcf57134e9412e7fa68",
+        "suite/_lib/autoresearch_suite/software_worker.py": "94f58ddc9fec0cc29e52f6e3dc7667f0cedd1b76d70db952308332eebee1705e",
+        "suite/science-finance-yield-curve-forecasting/evaluator.py": "5e67cd81d469cadd0241a3cbc742cf414459acba901d4103a4842e7f48d79f18",
         "suite/science-finance-yield-curve-forecasting/initial_program.py": "3b4b655ebf43e2bc12f0e7d2279bc64b1ee73b0d02f1ed4a18c41992de0b2d00"
       },
       "candidate_sha256": "3b4b655ebf43e2bc12f0e7d2279bc64b1ee73b0d02f1ed4a18c41992de0b2d00",
-      "evaluator_sha256": "b230b1b7065d8fd1d207155b395e6515d506aba452a530469fd1ca437ec991be",
+      "evaluator_sha256": "5e67cd81d469cadd0241a3cbc742cf414459acba901d4103a4842e7f48d79f18",
       "prepared_data_sha256": {
         "data/finance/gsw_yields_monthly.csv": "0d99c2597e2dcb5d2f3b836132421d41d669af0e49ceed356900b50d733743b8"
       },
@@ -4140,14 +4268,15 @@
         "one_sided_p_better_than_random_walk_h6": 0.5,
         "diebold_mariano_h12": 0.0,
         "one_sided_p_better_than_random_walk_h12": 0.5,
-        "elapsed_seconds": 0.027454
+        "elapsed_seconds": 0.292495
       },
       "recorded_in_source": {
         "score": 1.0,
         "receipt": "validation/finance-checks.json"
       },
       "agreement": "identical_to_recorded",
-      "finished_at": "2026-11-20T14:19:45.586171+00:00"
+      "finished_at": "2026-11-24T14:56:24.809682+00:00",
+      "note": "re-run on 2026-11-24 (Linux x86_64) after the candidate calls were moved into the sandboxed child process; the seed score is unchanged"
     },
     {
       "id": "science-five-uniform-hypergraphs-without-property-b",

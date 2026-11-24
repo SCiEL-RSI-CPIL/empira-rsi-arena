@@ -17,10 +17,11 @@ from functools import lru_cache
 
 import numpy as np
 
-from . import finance_data
+from . import finance_data, finance_sandbox
 from .finance_stats import finite_vector
 from .runtime import CandidateError
 
+ENTRY = "build_frontier"
 MARKETS = {1: "Hang Seng", 2: "DAX 100", 3: "FTSE 100", 4: "S&P 100", 5: "Nikkei 225"}
 K, MIN_WEIGHT, MAX_WEIGHT, POINTS = 10, 0.01, 1.0, 51
 TOLERANCE = 1e-8  # absolute tolerance on the return target, the budget and the holding bounds
@@ -81,17 +82,28 @@ def validate(weights, mean, goals, name):
     return np.where(np.abs(w) > 1e-12, w, 0.0)
 
 
-def frontier_score(build_frontier):
-    """Mean percentage error over targets, averaged over markets (minimize; 0 would lie on the UEF)."""
-    if not callable(build_frontier):
-        raise CandidateError("build_frontier must be callable")
-    per_market = {}
+def frontiers():
+    """Scoring loop: one candidate call per market; the unconstrained frontier it is scored against stays here."""
+    weights = {}
     for index, name in MARKETS.items():
-        mean, cov, uef_r, uef_s = market(index)
+        mean, cov, _, _ = market(index)
         goals = targets(index)
         problem = {"name": name, "mean": mean.copy(), "cov": cov.copy(), "K": K, "min_weight": MIN_WEIGHT,
                    "max_weight": MAX_WEIGHT, "target_returns": goals.copy()}
-        w = validate(build_frontier(problem), mean, goals, name)
+        weights[index] = validate((yield finance_sandbox.step(ENTRY, problem)), mean, goals, name)
+    return weights
+
+
+def frontier_score(candidate):
+    """Mean percentage error over targets, averaged over markets (minimize; 0 would lie on the UEF).
+
+    ``candidate`` is the candidate module (its build_frontier runs in the sandbox) or a trusted callable.
+    """
+    per_market = {}
+    weights = finance_sandbox.run(candidate, frontiers(), ENTRY)
+    for index, name in MARKETS.items():
+        mean, cov, uef_r, uef_s = market(index)
+        w = weights[index]
         risk = np.sqrt(np.maximum(np.einsum("ki,ij,kj->k", w, cov, w), 0.0))
         errors = [percentage_error(s, r, uef_r, uef_s) for s, r in zip(risk, w @ mean)]
         per_market[name] = float(np.mean(errors))

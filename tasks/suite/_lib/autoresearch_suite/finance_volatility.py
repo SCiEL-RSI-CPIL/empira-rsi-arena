@@ -11,11 +11,12 @@ from __future__ import annotations
 
 import numpy as np
 
-from . import finance_data
+from . import finance_data, finance_sandbox
 from .finance_stats import diebold_mariano, finite_vector
 from .runtime import CandidateError
 
 START, TRAIN_END, END = "19710312", "19991231", "20250930"
+ENTRY = "make_forecaster"
 
 
 def load():
@@ -47,28 +48,33 @@ class _RiskMetrics:
         self.h = 0.94 * self.h + 0.06 * r ** 2
 
 
-def run(make_forecaster, days, names, returns, split):
-    model = make_forecaster(returns[:split].copy(), list(names))
-    if not (callable(getattr(model, "forecast", None)) and callable(getattr(model, "update", None))):
-        raise CandidateError("make_forecaster must return an object with forecast() and update(returns)")
+def forecast_steps(days, names, returns, split):
+    """Scoring loop: the model stays in the candidate's process; a day's returns are sent after its forecast."""
+    yield finance_sandbox.step(ENTRY, returns[:split].copy(), list(names), keep="model")
     n = returns.shape[1]
-    forecasts = np.empty((len(days) - split, n))
+    out = np.empty((len(days) - split, n))
     for k, t in enumerate(range(split, len(days))):
-        forecasts[k] = finite_vector(model.forecast(), f"variance forecast for {days[t]}", (n,))
-        if (forecasts[k] < 1e-10).any() or (forecasts[k] > 1.0).any():
+        out[k] = finite_vector((yield finance_sandbox.step("model.forecast")), f"variance forecast for {days[t]}", (n,))
+        if (out[k] < 1e-10).any() or (out[k] > 1.0).any():
             raise CandidateError(f"variance forecasts for {days[t]} must lie in [1e-10, 1] (daily, decimal returns squared)")
-        model.update(returns[t].copy())
-    return forecasts
+        yield finance_sandbox.step("model.update", returns[t].copy())
+    return out
 
 
-def volatility_score(make_forecaster):
-    """Mean QLIKE over all evaluation days and the 50 series (minimize)."""
-    if not callable(make_forecaster):
-        raise CandidateError("make_forecaster must be callable")
+def run(make_forecaster, days, names, returns, split):
+    """Variance forecasts of a candidate module (sandboxed) or a trusted forecaster for every evaluation day."""
+    return finance_sandbox.run(make_forecaster, forecast_steps(days, names, returns, split), ENTRY)
+
+
+def volatility_score(candidate):
+    """Mean QLIKE over all evaluation days and the 50 series (minimize).
+
+    ``candidate`` is the candidate module (its make_forecaster and the model run in the sandbox) or a trusted callable.
+    """
     days, names, returns = load()
     split = next(i for i, d in enumerate(days) if d > TRAIN_END)
     actual = returns[split:]
-    loss = qlike(run(make_forecaster, days, names, returns, split), actual)
+    loss = qlike(run(candidate, days, names, returns, split), actual)
     bench = qlike(run(_RiskMetrics, days, names, returns, split), actual)
     dm, p = diebold_mariano(loss.mean(axis=1), bench.mean(axis=1), lags=5)
     return float(loss.mean()), {

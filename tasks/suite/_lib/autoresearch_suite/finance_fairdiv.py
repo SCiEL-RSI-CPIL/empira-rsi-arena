@@ -15,8 +15,10 @@ import math
 
 import numpy as np
 
+from . import finance_sandbox
 from .runtime import CandidateError
 
+ENTRY = "allocate"
 POINTS = 1000
 SIZES = [(4, 16, 101), (5, 20, 102), (6, 24, 103), (8, 32, 104), (10, 40, 105), (12, 48, 106), (15, 60, 107), (15, 60, 108)]
 # SHA-256 of the generated valuation matrices (guards against a changed random stream).
@@ -138,14 +140,24 @@ def validate(raw, n, m):
     return np.array(owner)
 
 
-def fair_division_score(allocate):
-    """Mean of Nash welfare / optimal Nash welfare over the fixed instances (maximize; 1 is optimal)."""
-    if not callable(allocate):
-        raise CandidateError("allocate must be callable")
+def allocations():
+    """Scoring loop: one candidate call per instance; the optimal welfare stays in this process."""
+    owners = []
+    for index, (n, m, _) in enumerate(SIZES):
+        owners.append(validate((yield finance_sandbox.step(ENTRY, valuations(index).copy())), n, m))
+    return owners
+
+
+def fair_division_score(candidate):
+    """Mean of Nash welfare / optimal Nash welfare over the fixed instances (maximize; 1 is optimal).
+
+    ``candidate`` is the candidate module (its allocate runs in the sandbox) or a trusted callable.
+    """
     rows, ratios = [], []
+    owners = finance_sandbox.run(candidate, allocations(), ENTRY)
     for index, (n, m, _) in enumerate(SIZES):
         values = valuations(index)
-        owner = validate(allocate(values.copy()), n, m)
+        owner = owners[index]
         u = utilities(values, owner)
         ratio = nash_welfare(u) / OPTIMUM[index]
         ratios.append(ratio)

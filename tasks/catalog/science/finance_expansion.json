@@ -29,7 +29,8 @@
       "The evaluation months are public and fixed. Strategies or hyperparameters tuned on them overfit, and a candidate that reads the prepared files or embeds remembered returns could look ahead; the evaluator only prevents look-ahead through its interface. Treat scores as development scores and freeze a candidate before testing it on months after 2025-09.",
       "A monthly Sharpe ratio estimated from 50 to 52 years of returns has a standard error of about 0.04, so differences from 1/N below that size are not statistically meaningful; the one-sided Jobson-Korkie-Memmel p-value against 1/N is reported in the details.",
       "Returns are value-weighted CRSP portfolio returns from the CRSP 202509 vintage of the French library; later vintages revise history slightly. Costs are a flat 50 bp of traded value with no market impact, borrowing spread, short-sale fees or taxes, and positions are financed at the one-month T-bill rate.",
-      "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid."
+      "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "method",
@@ -111,7 +112,8 @@
       "The evaluation months are public and fixed. Strategies or hyperparameters tuned on them overfit, and a candidate that reads the prepared files or embeds remembered returns could look ahead; the evaluator only prevents look-ahead through its interface. Treat scores as development scores and freeze a candidate before testing it on months after 2025-09.",
       "A monthly Sharpe ratio estimated from 50 to 52 years of returns has a standard error of about 0.04, so differences from 1/N below that size are not statistically meaningful; the one-sided Jobson-Korkie-Memmel p-value against 1/N is reported in the details.",
       "Returns are value-weighted CRSP portfolio returns from the CRSP 202509 vintage of the French library; later vintages revise history slightly. Costs are a flat 50 bp of traded value with no market impact, borrowing spread, short-sale fees or taxes, and positions are financed at the one-month T-bill rate.",
-      "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid."
+      "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "method",
@@ -194,7 +196,8 @@
       "The evaluation months are public and fixed. Strategies or hyperparameters tuned on them overfit, and a candidate that reads the prepared files or embeds remembered returns could look ahead; the evaluator only prevents look-ahead through its interface. Treat scores as development scores and freeze a candidate before testing it on months after 2025-09.",
       "A monthly Sharpe ratio estimated from 50 to 52 years of returns has a standard error of about 0.04, so differences from 1/N below that size are not statistically meaningful; the one-sided Jobson-Korkie-Memmel p-value against 1/N is reported in the details.",
       "Returns are value-weighted CRSP portfolio returns from the CRSP 202509 vintage of the French library; later vintages revise history slightly. Costs are a flat 50 bp of traded value with no market impact, borrowing spread, short-sale fees or taxes, and positions are financed at the one-month T-bill rate.",
-      "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid."
+      "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "method",
@@ -282,7 +285,8 @@
       "The evaluation months are public. A candidate that reads the prepared file, embeds remembered returns or is tuned on 1965-2025 can look ahead; the interface only passes data up to the origin. Treat scores as development scores and freeze a candidate before testing it on later months.",
       "Monthly out-of-sample R^2 values in this literature are fractions of a percent with sampling error of the same order; the Clark-West statistic is reported, but a small positive score is not by itself evidence of predictability.",
       "One data vintage (the 2025 update, which revises some historical series) is used as if it were available in real time; apart from the one-month inflation lag, publication delays and revisions of the predictors are not modelled.",
-      "The score uses log equity premia and the unadjusted out-of-sample R^2; it does not measure economic value (certainty-equivalent gains, trading costs or leverage limits), and csp is only available until 2002-12."
+      "The score uses log equity premia and the unadjusted out-of-sample R^2; it does not measure economic value (certainty-equivalent gains, trading costs or leverage limits), and csp is only available until 2002-12.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "discovery",
@@ -368,7 +372,8 @@
       "This is a model-based rediscovery task: the optimum of every instance is known (closed form or a convex solve), so a perfect score reproduces known solutions and says nothing about real trading costs.",
       "Impact parameters follow the stylized Almgren-Chriss example rather than estimates for a specific stock; the intraday volume and volatility profiles are stylized U shapes, not measured curves.",
       "Prices follow an arithmetic random walk without drift or information; the schedule is static (no adaptation to realized prices), permanent impact is zero in the power-law instances to keep the problem convex, and buying back shares is not allowed.",
-      "The reference optimum is computed numerically for six of the twelve instances; scores within about 1e-7 percent of zero are optimal to solver tolerance and can be marginally negative."
+      "The reference optimum is computed numerically for six of the twelve instances; scores within about 1e-7 percent of zero are optimal to solver tolerance and can be marginally negative.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "rediscovery",
@@ -446,7 +451,8 @@
       "One historical surface with 104 quotes (mid implied volatilities without bid-ask spreads); a better fit on this surface is a development result, and quotes may themselves contain small arbitrages or rounding to four decimals.",
       "The no-arbitrage check is numerical: Durrleman's g and calendar spreads are evaluated on a dense grid of |k| <= 6 refined near every SVI vertex with tolerance 1e-10, plus exact wing conditions; it is not a proof for every strike, and the surface between quoted maturities is not checked.",
       "The candidate is restricted to raw SVI slices; other arbitrage-free parameterizations (for example SSVI, which is a special case, or non-parametric surfaces) must be expressed as raw SVI per maturity.",
-      "Forwards use QuantLib's zero rates and no dividends (the DAX is a total-return index); maturities use the original day counts rather than QuantLib's week-rounded ones."
+      "Forwards use QuantLib's zero rates and no dividends (the DAX is a total-return index); maturities use the original day counts rather than QuantLib's week-rounded ones.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "method",
@@ -533,7 +539,8 @@
     "limitations": [
       "The pools are synthetic (Saidman et al. generator, donated to PrefLib by John Dickerson), not registry data; PrefLib removed other faulty kidney instances in September 2026 and only pools without altruists are used here.",
       "Static, single-period clearing that maximizes the number of transplants: no altruist-initiated chains, no crossmatch-failure probabilities, no patient priorities or weights and no dynamic arrivals, all of which matter in practice.",
-      "Every pool's optimum is known, so a score of 1 reproduces the integer-programming solution; the 600 s limit makes the task about fast clearing on the larger pools, and time-limited candidates can depend on hardware."
+      "Every pool's optimum is known, so a score of 1 reproduces the integer-programming solution; the 600 s limit makes the task about fast clearing on the larger pools, and time-limited candidates can depend on hardware.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "method",
@@ -610,7 +617,8 @@
     "limitations": [
       "Instances are synthetic Spliddit-style point splits (common good quality times idiosyncratic taste), not data from Spliddit users.",
       "Every instance's optimum is known (exact program solved in at most about 30 s), so a perfect score reproduces known optima; instance sizes are small enough for exact solution and do not test scalability.",
-      "Only Nash welfare is scored; envy-freeness up to one good is reported but not required, and strategic misreporting of values is ignored."
+      "Only Nash welfare is scored; envy-freeness up to one good is reported but not required, and strategic misreporting of values is ignored.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "method",
@@ -689,7 +697,8 @@
       "Markets are synthetic (random homes and schools on a unit square, school quality, distance and taste shocks, nested walk zones and 5% siblings); they mimic coarse NYC-style priorities but are not real application data.",
       "Preferences are taken as truthful: the score measures welfare given reported preferences, and mechanisms that exploit it can be manipulable; Abdulkadiroglu, Pathak and Roth show no strategy-proof mechanism dominates DA-STB.",
       "Total rank with unassigned students counted as list length + 1 is one welfare criterion among several (for example rank profiles or the number assigned); the proven optimum depends on that choice.",
-      "Instances are small enough for exact optimization (150 to 300 students) and their optima are known, so a perfect score reproduces the integer-programming solution."
+      "Instances are small enough for exact optimization (150 to 300 students) and their optima are known, so a perfect score reproduces the integer-programming solution.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "method",
@@ -768,7 +777,8 @@
       "Assets are 49 industry portfolios rather than individual stocks, so the cross-section is smaller and less noisy than in Ledoit and Wolf's experiments; N/T = 0.39 with the fixed 126-day window.",
       "The evaluation period is public and fixed; estimators tuned on it overfit, and a candidate that reads the prepared file could look ahead. The interface only passes the trailing window.",
       "Unconstrained minimum-variance weights are used (short positions allowed, no transaction costs or turnover limits), and returns are value-weighted CRSP portfolio returns of one data vintage.",
-      "The score is a single realized standard deviation over 54 years; differences of a few hundredths of a percentage point are within sampling error."
+      "The score is a single realized standard deviation over 54 years; differences of a few hundredths of a percentage point are within sampling error.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "method",
@@ -856,7 +866,8 @@
       "Squared daily returns are a noisy proxy for the daily variance; QLIKE ranks forecasts consistently with this proxy but the loss level is not a variance-accuracy measure, and intraday realized variances are not available here.",
       "Forecasts are for close-to-close total returns (no mean adjustment); weekends, holidays and overnight effects are treated like any other trading day.",
       "The evaluation period 2000-2025 is public. A candidate that reads the prepared files or memorizes returns can look ahead; the interface only passes returns up to the previous day. Treat scores as development scores.",
-      "One data vintage of CRSP value-weighted portfolio returns is used; the 50 series are strongly correlated, so they do not provide 50 independent comparisons."
+      "One data vintage of CRSP value-weighted portfolio returns is used; the 50 series are strongly correlated, so they do not provide 50 independent comparisons.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "discovery",
@@ -936,7 +947,8 @@
       "GSW yields are smoothed fitted values from a Svensson curve, not observed bond yields; fitting error and smoothing make them easier to forecast than raw yields, and maturities below one year are excluded because GSW caution against them.",
       "The evaluation origins (1990-2024) and the data file are public; tuning on them or reading the prepared file can produce look-ahead. Forecasts at different origins overlap for the 6- and 12-month horizons, so the effective sample is smaller than 415.",
       "One data vintage (archived 2025-08-09) is used as if it were real-time; the live file is revised without notice.",
-      "RMSE ratios against the random walk have wide sampling uncertainty; Diebold-Mariano statistics per horizon are reported but a ratio slightly below 1 is weak evidence."
+      "RMSE ratios against the random walk have wide sampling uncertainty; Diebold-Mariano statistics per horizon are reported but a ratio slightly below 1 is weak evidence.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "discovery",
@@ -1016,7 +1028,8 @@
     "limitations": [
       "A single data vintage (2024-10) is used as if it were available in real time: data revisions and publication lags (ragged edges) of the 126 series are ignored, so forecasts are pseudo-out-of-sample.",
       "Forecasts whose target window includes March-December 2020 are excluded from the RMSE; the pandemic months would otherwise dominate the comparison. The 2021-2023 inflation episode is included.",
-      "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported."
+      "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "discovery",
@@ -1096,7 +1109,8 @@
     "limitations": [
       "A single data vintage (2024-10) is used as if it were available in real time: data revisions and publication lags (ragged edges) of the 126 series are ignored, so forecasts are pseudo-out-of-sample.",
       "Forecasts whose target window includes March-December 2020 are excluded from the RMSE; the pandemic months would otherwise dominate the comparison. The 2021-2023 inflation episode is included.",
-      "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported."
+      "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "discovery",
@@ -1176,7 +1190,8 @@
     "limitations": [
       "A single data vintage (2024-10) is used as if it were available in real time: data revisions and publication lags (ragged edges) of the 126 series are ignored, so forecasts are pseudo-out-of-sample.",
       "Forecasts whose target window includes March-December 2020 are excluded from the RMSE; the pandemic months would otherwise dominate the comparison. The 2021-2023 inflation episode is included.",
-      "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported."
+      "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "discovery",
@@ -1259,7 +1274,8 @@
     "limitations": [
       "Portfolios are required at 51 fixed target returns rather than at the 51 risk-aversion weights of the published lambda sweep, so published mean percentage errors (for example 1.0957 for Hang Seng by simulated annealing) are not directly comparable with this score.",
       "The unconstrained frontier is a relaxation: no cardinality-constrained portfolio reaches zero error, and the attainable minimum per market is unknown (the problem is NP-hard).",
-      "Means and covariances are in-sample estimates from weekly prices of 1992-1997; the score measures optimization quality on these fixed inputs, not out-of-sample investment performance. Transaction costs, round lots and turnover are ignored."
+      "Means and covariances are in-sample estimates from weekly prices of 1992-1997; the score measures optimization quality on these fixed inputs, not out-of-sample investment performance. Transaction costs, round lots and turnover are ignored.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "method",
@@ -1352,7 +1368,8 @@
     "limitations": [
       "The protocol (optional rebalancing every 13 weeks with costs charged to the portfolio, free initial purchase, at most K stocks, pure tracking without an excess-return objective) differs from Beasley et al.'s single-rebalance model with a cost budget, so their published tracking errors are not directly comparable.",
       "Weekly prices of 1992-1997 for constituents at the end of the sample; survivorship and constituent changes are not modelled, and dividends are ignored as in the OR-Library data.",
-      "The out-of-sample period (145 weeks) is public and short; candidates tuned on it overfit, and tracking errors from one period have wide sampling uncertainty."
+      "The out-of-sample period (145 weeks) is public and short; candidates tuned on it overfit, and tracking errors from one period have wide sampling uncertainty.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "method",
@@ -1436,7 +1453,8 @@
     "limitations": [
       "The market is simulated: Brownian mid price, independent Poisson fills with exponential intensity, no adverse selection, latency, queue position or tick size. Good scores do not imply profitable trading in real limit-order books.",
       "The optimal policy of this discrete model is known (computed by dynamic programming), so a score of about 1 reproduces a known solution; the closed-form approximation of the literature already scores 0.998.",
-      "Scores are Monte Carlo estimates on 4000 fixed paths per regime; the random stream is fixed and visible in the evaluator source, so a candidate that reproduces it could anticipate fills (treat this as cheating)."
+      "Scores are Monte Carlo estimates on 4000 fixed paths per regime; the random stream is fixed and visible in the evaluator source, so a candidate that reproduces it could anticipate fills (treat this as cheating).",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
     ],
     "labels": {
       "scientific_contribution": "rediscovery",

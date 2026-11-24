@@ -15,11 +15,12 @@ import math
 
 import numpy as np
 
-from . import finance_data
+from . import finance_data, finance_sandbox
 from .finance_stats import finite_vector
 from .runtime import CandidateError
 
 TABLE = "dax_2002_surface.csv"
+ENTRY = "fit_surface"
 TOLERANCE = 1e-10       # allowed negative violation of g(k) and of calendar spreads (total variance units)
 K_RANGE = 6.0           # dense checks on |k| <= 6 plus refinement near every SVI vertex
 MIN_SIGMA = 1e-4
@@ -103,13 +104,19 @@ def validate(raw, slices):
     return params, min(worst_g), min(worst_calendar)
 
 
-def surface_score(fit_surface):
-    """RMSE of implied volatility in volatility points over all quotes (minimize)."""
-    if not callable(fit_surface):
-        raise CandidateError("fit_surface must be callable")
-    data = load()
+def fitted(data):
+    """Scoring loop: one candidate call with the quotes; the arbitrage checks run in this process."""
     quotes = {key: (value.copy() if isinstance(value, np.ndarray) else value) for key, value in data.items()}
-    params, min_g, min_calendar = validate(fit_surface(quotes), len(data["maturities"]))
+    return validate((yield finance_sandbox.step(ENTRY, quotes)), len(data["maturities"]))
+
+
+def surface_score(candidate):
+    """RMSE of implied volatility in volatility points over all quotes (minimize).
+
+    ``candidate`` is the candidate module (its fit_surface runs in the sandbox) or a trusted callable.
+    """
+    data = load()
+    params, min_g, min_calendar = finance_sandbox.run(candidate, fitted(data), ENTRY)
     errors = np.empty_like(data["implied_vol"])
     for i, p in enumerate(params):
         w = svi(p, data["log_moneyness"][i])[0]

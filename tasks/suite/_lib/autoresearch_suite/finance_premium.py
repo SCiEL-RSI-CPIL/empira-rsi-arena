@@ -10,10 +10,10 @@ from __future__ import annotations
 
 import numpy as np
 
-from . import finance_data, finance_stats
-from .runtime import CandidateError
+from . import finance_data, finance_sandbox, finance_stats
 
 TABLE = "goyal_welch_monthly.csv"
+ENTRY = "forecast_premium"
 FIRST_RETURN = 192601  # first month with CRSP S&P 500 returns
 
 
@@ -43,21 +43,28 @@ def prevailing_mean_forecast(history_view):
     return float(np.mean(premium[history_view["yyyymm"] >= FIRST_RETURN]))
 
 
-def premium_score(forecast, *, start=196501, end=202512):
-    """OOS R^2 (percent) of next-month log equity-premium forecasts over [start, end] (maximize)."""
-    if not callable(forecast):
-        raise CandidateError("forecast_premium must be callable")
-    months, data, premium = load()
-    targets = [i for i in range(1, len(months)) if start <= months[i] <= end]
-    if not targets or months[-1] < end:
-        raise RuntimeError("forecast period exceeds the data")
+def forecasts(months, data, premium, targets):
+    """Scoring loop: one candidate call per origin. The realised premium never leaves this process."""
     actual, predicted, bench = [], [], []
     for i in targets:
         view = history(months, data, premium, i - 1)
         bench.append(prevailing_mean_forecast(view))
-        predicted.append(finance_stats.finite_scalar(forecast(view), f"forecast for {months[i]}", bound=0.5))
+        value = yield finance_sandbox.step(ENTRY, view)
+        predicted.append(finance_stats.finite_scalar(value, f"forecast for {months[i]}", bound=0.5))
         actual.append(premium[i])
-    actual, predicted, bench = np.array(actual), np.array(predicted), np.array(bench)
+    return np.array(actual), np.array(predicted), np.array(bench)
+
+
+def premium_score(candidate, *, start=196501, end=202512):
+    """OOS R^2 (percent) of next-month log equity-premium forecasts over [start, end] (maximize).
+
+    ``candidate`` is the candidate module (its forecast_premium runs in the sandbox) or a trusted callable.
+    """
+    months, data, premium = load()
+    targets = [i for i in range(1, len(months)) if start <= months[i] <= end]
+    if not targets or months[-1] < end:
+        raise RuntimeError("forecast period exceeds the data")
+    actual, predicted, bench = finance_sandbox.run(candidate, forecasts(months, data, premium, targets), ENTRY)
     score = finance_stats.oos_r2(actual, predicted, bench)
     cw, cw_p = finance_stats.clark_west(actual, predicted, bench)
     target_months = months[targets]

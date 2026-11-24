@@ -2,7 +2,7 @@
   "protocol": "recreated_verified",
   "family": "science_economics_nash_welfare",
   "direction": "maximize",
-  "contract": "allocate(values) -> list of m agent indices, the owner of each good. values is an (n, m) int array; row i holds agent i's additive values for the m indivisible goods and sums to 1000 (Spliddit-style point split). Eight fixed instances with (n, m) = (4, 16), (5, 20), (6, 24), (8, 32), (10, 40), (12, 48), (15, 60), (15, 60). Nash welfare is the geometric mean of the agents' utilities (0 if any agent gets nothing). Score: mean over instances of Nash welfare divided by the proven maximum Nash welfare (maximize; 1 is optimal); envy-freeness up to one good is reported per instance",
+  "contract": "allocate(values) -> list of m agent indices, the owner of each good. values is an (n, m) int array; row i holds agent i's additive values for the m indivisible goods and sums to 1000 (Spliddit-style point split). Eight fixed instances with (n, m) = (4, 16), (5, 20), (6, 24), (8, 32), (10, 40), (12, 48), (15, 60), (15, 60). Nash welfare is the geometric mean of the agents' utilities (0 if any agent gets nothing). Score: mean over instances of Nash welfare divided by the proven maximum Nash welfare (maximize; 1 is optimal); envy-freeness up to one good is reported per instance. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
   "parameters": {},
   "requires": [
     "py:numpy"
@@ -36,7 +36,8 @@
   "limitations": [
     "Instances are synthetic Spliddit-style point splits (common good quality times idiosyncratic taste), not data from Spliddit users.",
     "Every instance's optimum is known (exact program solved in at most about 30 s), so a perfect score reproduces known optima; instance sizes are small enough for exact solution and do not test scalability.",
-    "Only Nash welfare is scored; envy-freeness up to one good is reported but not required, and strategic misreporting of values is ignored."
+    "Only Nash welfare is scored; envy-freeness up to one good is reported but not required, and strategic misreporting of values is ignored.",
+    "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "evaluator": "evaluator.py",
   "initial_program": "initial_program.py",

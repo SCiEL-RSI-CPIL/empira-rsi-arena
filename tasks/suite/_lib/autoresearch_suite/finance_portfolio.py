@@ -13,10 +13,11 @@ import math
 
 import numpy as np
 
-from . import finance_data
+from . import finance_data, finance_sandbox
 from .runtime import CandidateError
 
 FACTORS = "ff_factors_monthly.csv"
+ENTRY = "choose_weights"
 DATASETS = {
     # DGU dataset 2: ten industry portfolios plus the US equity market (N = 11).
     "industry10_market": {"table": "ind10_vw_monthly.csv", "market": True, "drop": ()},
@@ -67,8 +68,11 @@ def relative_weights(positions, n, max_gross):
     return w
 
 
-def backtest(policy, months, excess, rf, *, window, cost, max_gross, previous_context=True):
-    """Run the rolling-window protocol; returns per-month arrays and diagnostics."""
+def backtest_steps(months, excess, rf, *, window, cost, max_gross, previous_context=True):
+    """Scoring loop of the rolling-window protocol; returns per-month arrays and diagnostics.
+
+    Each call receives the estimation window and the drifted weights; the month's returns stay in this process.
+    """
     T, n = excess.shape
     if T <= window + 1:
         raise RuntimeError("sample too short for the estimation window")
@@ -78,7 +82,7 @@ def backtest(policy, months, excess, rf, *, window, cost, max_gross, previous_co
         context = {"cost_rate": cost, "window": window, "max_gross": max_gross,
                    "risk_free": rf[t - window:t].copy(),
                    "previous_weights": None if drifted is None or not previous_context else drifted.copy()}
-        w = relative_weights(policy(excess[t - window:t].copy(), context), n, max_gross)
+        w = relative_weights((yield finance_sandbox.step(ENTRY, excess[t - window:t].copy(), context)), n, max_gross)
         trade = 0.0 if drifted is None else float(np.abs(w - drifted).sum())
         total_assets = excess[t] + rf[t]
         port = float(rf[t] + w @ excess[t])  # positions financed at the risk-free rate
@@ -92,6 +96,11 @@ def backtest(policy, months, excess, rf, *, window, cost, max_gross, previous_co
         drifted = w * (1.0 + total_assets) / (1.0 + port)
     return {"net": np.array(net), "gross": np.array(gross_ret), "turnover": np.array(turnover),
             "exposure": np.array(exposure), "months": months[window:]}
+
+
+def backtest(policy, months, excess, rf, **settings):
+    """Run the rolling-window protocol for a candidate module (sandboxed) or a trusted callable."""
+    return finance_sandbox.run(policy, backtest_steps(months, excess, rf, **settings), ENTRY)
 
 
 def sharpe(returns):
@@ -119,12 +128,13 @@ def equal_weight(history, context):
     return np.ones(history.shape[1])
 
 
-def portfolio_choice_score(policy, dataset, *, start, end, window=120, cost=0.005, max_gross=20.0):
-    """Monthly net-of-cost out-of-sample Sharpe ratio of the candidate policy (maximize)."""
-    if not callable(policy):
-        raise CandidateError("choose_weights must be callable")
+def portfolio_choice_score(candidate, dataset, *, start, end, window=120, cost=0.005, max_gross=20.0):
+    """Monthly net-of-cost out-of-sample Sharpe ratio of the candidate policy (maximize).
+
+    ``candidate`` is the candidate module (its choose_weights runs in the sandbox) or a trusted callable.
+    """
     months, names, excess, rf = load(dataset, start, end)
-    run = backtest(policy, months, excess, rf, window=window, cost=cost, max_gross=max_gross)
+    run = backtest(candidate, months, excess, rf, window=window, cost=cost, max_gross=max_gross)
     base = backtest(equal_weight, months, excess, rf, window=window, cost=cost, max_gross=max_gross)
     score = sharpe(run["net"])
     z, p = jobson_korkie_memmel(run["net"], base["net"])

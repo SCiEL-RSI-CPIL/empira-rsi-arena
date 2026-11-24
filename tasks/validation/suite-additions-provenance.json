@@ -8,10 +8,10 @@
   "added_task_count": 318,
   "renaming": "suite/<id>/README.md is stored as suite/<id>/README.txt, as in the first import.",
   "summary": {
-    "adapted": 98,
-    "identical": 1953,
+    "adapted": 196,
+    "identical": 1855,
     "target_file_changed": 1,
-    "written_here": 5
+    "written_here": 7
   },
   "files": [
     {
@@ -98,11 +98,11 @@
     },
     {
       "path": "catalog/science/finance_expansion.json",
-      "sha256": "b15be1539b5faa935a2d6ce81ae65b60ef604bff862740e97e87d92a6c96983d",
+      "sha256": "713a54f8882cc5abb491c8d402094fbb83766744d43c66313d11cada3a394436",
       "source_path": "catalog/science/finance_expansion.json",
       "source_sha256": "dca288b52fc110f1ff68e8ad103a48d680fd90b4b0aea76b3d92e103f0f84349",
       "origin": "adapted",
-      "note": "statement corrected: 5b number of numerically solved instances; 5c FTSE tabu-search value"
+      "note": "statement corrected: 5b number of numerically solved instances; 5c FTSE tabu-search value; contracts and limitations of the 18 finance and economics packages state the sandbox"
     },
     {
       "path": "catalog/science/frontier_combinatorics.json",
@@ -227,11 +227,11 @@
     },
     {
       "path": "catalog/tasks.json",
-      "sha256": "82a8fdf371be6617738e2bed33fcb216b7535fe722b2122746e47432f3d6b42c",
+      "sha256": "7a48a2a4e4f14edff24848037c240d0ad7d419d18e081432a075ced19c07307b",
       "source_path": "catalog/tasks.json",
       "source_sha256": "448c918105cdf434369ef9eb08218d209c8f5325f6b85e7a184dce9852f75b68",
       "origin": "adapted",
-      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 1 reference value out of date; 1 reference value out of date (shared limitation sentence); 2 enforced limit of 1000 pairs not stated; 3 wrong lower bound for f(4); 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121; 5a number of chains; 5b number of numerically solved instances; 5c FTSE tabu-search value; 5e authors of the cited paper; 5f Füredi's lower bound; 5g block order in the contract; 5h authors of arXiv:2603.07088; extended afterwards with the 1,301 open-problems records (source id open-problems-2026-11), which are not part of this addition"
+      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 1 reference value out of date; 1 reference value out of date (shared limitation sentence); 2 enforced limit of 1000 pairs not stated; 3 wrong lower bound for f(4); 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121; 5a number of chains; 5b number of numerically solved instances; 5c FTSE tabu-search value; 5e authors of the cited paper; 5f Füredi's lower bound; 5g block order in the contract; 5h authors of arXiv:2603.07088; extended afterwards with the 1,301 open-problems records (source id open-problems-2026-11), which are not part of this addition; contracts and limitations of the 18 finance and economics packages state the sandbox"
     },
     {
       "path": "scripts/prepare_bio_physics.py",
@@ -526,17 +526,19 @@
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_ccef.py",
-      "sha256": "04c35f11e9cf89ce5d19d3f180cd2763146d9a2b62317628ad670547ae2db96e",
+      "sha256": "20999c5bcf64d81db550ff22aec86105463c0e905cda612e354fac5258529335",
       "source_path": "suite/_lib/autoresearch_suite/finance_ccef.py",
       "source_sha256": "04c35f11e9cf89ce5d19d3f180cd2763146d9a2b62317628ad670547ae2db96e",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_covariance.py",
-      "sha256": "e1263f3ad4ac2cd5ec30da22bb0c30df1263b076ba9210ed321ba997b1bbde9e",
+      "sha256": "bf31af9645dae3efa4370e3817abae2aa0440e1b40b4bf91c31c9f5fd19e8201",
       "source_path": "suite/_lib/autoresearch_suite/finance_covariance.py",
       "source_sha256": "e1263f3ad4ac2cd5ec30da22bb0c30df1263b076ba9210ed321ba997b1bbde9e",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_data.py",
@@ -548,60 +550,73 @@
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_execution.py",
-      "sha256": "c0ed0d8b5b7aeee13a3a9cc255560c344c989b8d41cf783a10eb7c92cd9fee46",
+      "sha256": "2db3d1e8153636384529da7a1f3fe405f45d418dffec090c67ff2c7c01f5b29f",
       "source_path": "suite/_lib/autoresearch_suite/finance_execution.py",
       "source_sha256": "c0ed0d8b5b7aeee13a3a9cc255560c344c989b8d41cf783a10eb7c92cd9fee46",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_fairdiv.py",
-      "sha256": "68f4ed20b289b6ab21babff0c81800a9ffaf55d273db5d61d33c008ae2aa999f",
+      "sha256": "8082066807b7716d9a41f003739e8aac8ce855eb1e3dbfa2d28880baceed3b5d",
       "source_path": "suite/_lib/autoresearch_suite/finance_fairdiv.py",
       "source_sha256": "68f4ed20b289b6ab21babff0c81800a9ffaf55d273db5d61d33c008ae2aa999f",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_kidney.py",
-      "sha256": "5b9e85821ff073bdd2aeb3d42b6f541eec6dc1a6cd77599d06864b0b7906ea55",
+      "sha256": "d256c93f9d2c682cbee10a00d3591ba9565a2b1db643c90f9c0c599884e85d8d",
       "source_path": "suite/_lib/autoresearch_suite/finance_kidney.py",
       "source_sha256": "5b9e85821ff073bdd2aeb3d42b6f541eec6dc1a6cd77599d06864b0b7906ea55",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_macro.py",
-      "sha256": "315db7ea10d3c68b8affdd7a4e61743922ec967644725460c6524d7bd884fd24",
+      "sha256": "c37b0ca57f89eebd5d4d8b9841cd30bf7d77ca9ca6ec24e2124d42f0ebb706c9",
       "source_path": "suite/_lib/autoresearch_suite/finance_macro.py",
       "source_sha256": "4eb5ea74cd71b7c5566046d4c41ada8f42fd116ccc64ea7e8c48baf99bdd22cb",
       "origin": "adapted",
-      "note": "benchmark computed before the candidate is called (review receipt)"
+      "note": "benchmark computed before the candidate is called (review receipt); candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_marketmaking.py",
-      "sha256": "b02d115bc080137001186426868829b5c569fea71bde70c3b4874a272357ffe7",
+      "sha256": "6f87ce4ceb92b4e67b2ea1c8f036443a1c9de6a3afab91679b2744be4e3f80f2",
       "source_path": "suite/_lib/autoresearch_suite/finance_marketmaking.py",
       "source_sha256": "b02d115bc080137001186426868829b5c569fea71bde70c3b4874a272357ffe7",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_portfolio.py",
-      "sha256": "814810fcc5c0b95720b489883be5eb4d8094a05c9db9a0400e25a2a6be7ad224",
+      "sha256": "db72d6e0ab12c5329c79627659cc9babc7ebafe2557eecb8accaa464699cb113",
       "source_path": "suite/_lib/autoresearch_suite/finance_portfolio.py",
       "source_sha256": "814810fcc5c0b95720b489883be5eb4d8094a05c9db9a0400e25a2a6be7ad224",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_premium.py",
-      "sha256": "a79fc2e87e7c9d7b85e4c10ebc4e7dc679f9f48c7e211d0a13f88349d3936d75",
+      "sha256": "f3c26877f1194431e151ce257c1a742d2f6ae54af3f041faa00a676f3f13e98a",
       "source_path": "suite/_lib/autoresearch_suite/finance_premium.py",
       "source_sha256": "a79fc2e87e7c9d7b85e4c10ebc4e7dc679f9f48c7e211d0a13f88349d3936d75",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
+    },
+    {
+      "path": "suite/_lib/autoresearch_suite/finance_sandbox.py",
+      "sha256": "dbd3015f7fb64f0e60378d17086263b5a2f8570aefd69ec6533cd1e491af80cf",
+      "origin": "written for this addition",
+      "note": "sandbox session for the finance and economics candidates (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_school.py",
-      "sha256": "23273931345696a6b9d9a06b6bd65c6167ad817b694e919ed7dcf95ab8c8fa4a",
+      "sha256": "520416e61603873d2a3c8885318c492717b58218c6a68785f6ae6a6233b12597",
       "source_path": "suite/_lib/autoresearch_suite/finance_school.py",
       "source_sha256": "23273931345696a6b9d9a06b6bd65c6167ad817b694e919ed7dcf95ab8c8fa4a",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_sources.py",
@@ -619,31 +634,35 @@
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_tracking.py",
-      "sha256": "021f55bdd8e289adafdedd61757ba3c102af84fe0e0216d03614da8ba072ccc0",
+      "sha256": "b6366604056bcefb3d09af82bf38704f2802ecbe76eee16cce47faf2c02057e8",
       "source_path": "suite/_lib/autoresearch_suite/finance_tracking.py",
       "source_sha256": "021f55bdd8e289adafdedd61757ba3c102af84fe0e0216d03614da8ba072ccc0",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_volatility.py",
-      "sha256": "fd79de3494f124d9f670d8ab0e250eaef6c5a22ea5fa5038dece50e6aee8a817",
+      "sha256": "08efe8db56877e8249407fa8a8bd07dfe07cc9f9337e0c4584246c388a684362",
       "source_path": "suite/_lib/autoresearch_suite/finance_volatility.py",
       "source_sha256": "fd79de3494f124d9f670d8ab0e250eaef6c5a22ea5fa5038dece50e6aee8a817",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_volsurface.py",
-      "sha256": "fefd0b76ef11915af709c7da17f9c19475aab7ce2a3fdba8fba9759b8b43eacd",
+      "sha256": "fe24bb0e2856163899f979344e14773ae1c91033225e5d7c61a5e476c4ac4890",
       "source_path": "suite/_lib/autoresearch_suite/finance_volsurface.py",
       "source_sha256": "fefd0b76ef11915af709c7da17f9c19475aab7ce2a3fdba8fba9759b8b43eacd",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/finance_yields.py",
-      "sha256": "a9248581c59bbb2c56f345338cc56c46d01d09bb2fe4e8979082b0c51566004b",
+      "sha256": "e856132dafaf434f5d2366ffd4243caea4ebeef2840a755e09e66a13443f36ed",
       "source_path": "suite/_lib/autoresearch_suite/finance_yields.py",
       "source_sha256": "a9248581c59bbb2c56f345338cc56c46d01d09bb2fe4e8979082b0c51566004b",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "candidate calls run in the sandboxed child process through finance_sandbox.py (review receipt, evaluator isolation)"
     },
     {
       "path": "suite/_lib/autoresearch_suite/frontier_combinatorics_codes.py",
@@ -4087,150 +4106,171 @@
     },
     {
       "path": "suite/science-economics-fredmd-industrial-production-forecasting/README.txt",
-      "sha256": "bfde52bf294b3d88bbe772eb891a730314bba9adc7756c4d40604a1222c9bbca",
+      "sha256": "f10aaf4e9249d8080d1fc20125a33dd0ec5977c991040a4fd295d0c9c106eda4",
       "source_path": "suite/science-economics-fredmd-industrial-production-forecasting/README.md",
       "source_sha256": "bfde52bf294b3d88bbe772eb891a730314bba9adc7756c4d40604a1222c9bbca",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-industrial-production-forecasting/config.yaml",
-      "sha256": "6ae34010c95fc320ae222d6fc6ccc895696c674f8530244da926fc0a81a5fb52",
+      "sha256": "f8d6fa477fbdea0904cddd83cb6e3b5b0747617afbde4a88dc1000c5c0e6a9fe",
       "source_path": "suite/science-economics-fredmd-industrial-production-forecasting/config.yaml",
       "source_sha256": "6ae34010c95fc320ae222d6fc6ccc895696c674f8530244da926fc0a81a5fb52",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-industrial-production-forecasting/evaluator.py",
-      "sha256": "8bfcba4849ebd5c3a65a648b6177d9030b559a6045735e2a46e803f7bd87302f",
+      "sha256": "9526bcfbc1a085adef32828bcced09f31c35a908cb822b483ee69a8bc8f91296",
       "source_path": "suite/science-economics-fredmd-industrial-production-forecasting/evaluator.py",
       "source_sha256": "8bfcba4849ebd5c3a65a648b6177d9030b559a6045735e2a46e803f7bd87302f",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-industrial-production-forecasting/initial_program.py",
-      "sha256": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355",
+      "sha256": "c3d468b21b749fcf9fad727c57540a5aefbc5a9f25f1969bd8f34ddc95165b8e",
       "source_path": "suite/science-economics-fredmd-industrial-production-forecasting/initial_program.py",
       "source_sha256": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "self-contained copy of the benchmark autoregression, because the evaluator package cannot be imported in the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-industrial-production-forecasting/problem.json",
-      "sha256": "a3971b206c6a806278b652a31f594aa72b545094ada0107332f05f14800b4cfa",
+      "sha256": "03b63f7e93c017f879cdcda972ce3797d010a58b80a396ef817ff43a379964a3",
       "source_path": "suite/science-economics-fredmd-industrial-production-forecasting/problem.json",
       "source_sha256": "a3971b206c6a806278b652a31f594aa72b545094ada0107332f05f14800b4cfa",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-industrial-production-forecasting/task.json",
-      "sha256": "8363df4a7d1b24b0d777c796412547d40ceac0e145bdbcf4ba62d4d9197d22bd",
+      "sha256": "6c92005f26c37286223f8acdd486596c90989aacc88e35dfb729f2751aaf10ed",
       "source_path": "suite/science-economics-fredmd-industrial-production-forecasting/task.json",
       "source_sha256": "8363df4a7d1b24b0d777c796412547d40ceac0e145bdbcf4ba62d4d9197d22bd",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-inflation-forecasting/README.txt",
-      "sha256": "fc152a55fa87a103a7e3010691030b1a443f5f41b4892ab2e9386e477907a770",
+      "sha256": "e1231a329e043faa95ef85c06f33a09754538da29ecdc395017d5ddbb0f4c6e4",
       "source_path": "suite/science-economics-fredmd-inflation-forecasting/README.md",
       "source_sha256": "fc152a55fa87a103a7e3010691030b1a443f5f41b4892ab2e9386e477907a770",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-inflation-forecasting/config.yaml",
-      "sha256": "386b47991803448f66f2d0f30a6c5ebad89d5bd701352c315a62bb5640ef46bc",
+      "sha256": "8eb4bf22cf210a75a9c49cd27e37731da79046353e7167c11914241ec092a75b",
       "source_path": "suite/science-economics-fredmd-inflation-forecasting/config.yaml",
       "source_sha256": "386b47991803448f66f2d0f30a6c5ebad89d5bd701352c315a62bb5640ef46bc",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-inflation-forecasting/evaluator.py",
-      "sha256": "f36e038b6036b0909da34e3fa1f3a9607e61bc9cfce89e7eecb00bf828d4ee2b",
+      "sha256": "59a785af830eeb4552b1c27308debdb64e526411bd77d16de73d7ce1ae389041",
       "source_path": "suite/science-economics-fredmd-inflation-forecasting/evaluator.py",
       "source_sha256": "f36e038b6036b0909da34e3fa1f3a9607e61bc9cfce89e7eecb00bf828d4ee2b",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-inflation-forecasting/initial_program.py",
-      "sha256": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355",
+      "sha256": "c3d468b21b749fcf9fad727c57540a5aefbc5a9f25f1969bd8f34ddc95165b8e",
       "source_path": "suite/science-economics-fredmd-inflation-forecasting/initial_program.py",
       "source_sha256": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "self-contained copy of the benchmark autoregression, because the evaluator package cannot be imported in the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-inflation-forecasting/problem.json",
-      "sha256": "1294be47c10d4779011914dfa945ccd08c16463f950ff2d29ad9e202d97caa86",
+      "sha256": "281e79fcc423c6aae0e92dcc557f3a58f007bc96779f085b21a1a478c831495d",
       "source_path": "suite/science-economics-fredmd-inflation-forecasting/problem.json",
       "source_sha256": "1294be47c10d4779011914dfa945ccd08c16463f950ff2d29ad9e202d97caa86",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-inflation-forecasting/task.json",
-      "sha256": "386ada44a62da3e7acfa6d7013afab417da3dafb95cff2e5efc49f1ca8fcada2",
+      "sha256": "2eddeec4799dda2820870f924249967091ec3e4451c78634861b76cfb914bfc0",
       "source_path": "suite/science-economics-fredmd-inflation-forecasting/task.json",
       "source_sha256": "386ada44a62da3e7acfa6d7013afab417da3dafb95cff2e5efc49f1ca8fcada2",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-unemployment-forecasting/README.txt",
-      "sha256": "3dfdf4f9351ab19dc0e1f22fbeb1d6d847beed30bc43b617fd0712dd2313068e",
+      "sha256": "5377a6cf459e0e43b878ce582c175839e2e6d1f7b6200bc4df6c93c8f5829f9a",
       "source_path": "suite/science-economics-fredmd-unemployment-forecasting/README.md",
       "source_sha256": "3dfdf4f9351ab19dc0e1f22fbeb1d6d847beed30bc43b617fd0712dd2313068e",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-unemployment-forecasting/config.yaml",
-      "sha256": "3f96cc260d00a2f39efebdb5214111a4a3d656b8e433ac23da8bf58771fd97a9",
+      "sha256": "386e85fcd5fe7fd6e4b9e6fe4de79f3af4dcd21c9621d41bd39d2ecd97bcf579",
       "source_path": "suite/science-economics-fredmd-unemployment-forecasting/config.yaml",
       "source_sha256": "3f96cc260d00a2f39efebdb5214111a4a3d656b8e433ac23da8bf58771fd97a9",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-unemployment-forecasting/evaluator.py",
-      "sha256": "9945f8e414e26fd9144fa89ece76747371d73eff2354b9e03fcf78d122def1af",
+      "sha256": "1e7e4d83dd1e9d069b71b912ed3c08e7dc7db232442428b719cf1cdac8d55c89",
       "source_path": "suite/science-economics-fredmd-unemployment-forecasting/evaluator.py",
       "source_sha256": "9945f8e414e26fd9144fa89ece76747371d73eff2354b9e03fcf78d122def1af",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-unemployment-forecasting/initial_program.py",
-      "sha256": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355",
+      "sha256": "c3d468b21b749fcf9fad727c57540a5aefbc5a9f25f1969bd8f34ddc95165b8e",
       "source_path": "suite/science-economics-fredmd-unemployment-forecasting/initial_program.py",
       "source_sha256": "36ad81315f2bf7206ec3337effee986d5576367d40dea553454dd2869bd9a355",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "self-contained copy of the benchmark autoregression, because the evaluator package cannot be imported in the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-unemployment-forecasting/problem.json",
-      "sha256": "6f50e59b244a3c9b15940c29382146b3e7c0c15fdbdcdb1edb2b97a5c0040de8",
+      "sha256": "153fda01a57a8dad770e6e959447d29e41fd02e2fe3eb5223743e95a09e5a224",
       "source_path": "suite/science-economics-fredmd-unemployment-forecasting/problem.json",
       "source_sha256": "6f50e59b244a3c9b15940c29382146b3e7c0c15fdbdcdb1edb2b97a5c0040de8",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-fredmd-unemployment-forecasting/task.json",
-      "sha256": "70626098c4a9ed77e355835be7ef6b1cbe3e68ebf8e1a28ab47404f5c2e6199b",
+      "sha256": "da1d7aa962708aae3df904708b4469d961bfff07ba9ece64bad212a632dae6e2",
       "source_path": "suite/science-economics-fredmd-unemployment-forecasting/task.json",
       "source_sha256": "70626098c4a9ed77e355835be7ef6b1cbe3e68ebf8e1a28ab47404f5c2e6199b",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-kidney-exchange/README.txt",
-      "sha256": "f4c2f304572c9a250423cbacce3949b67b01d3ef89dbe2accd70146076b9911d",
+      "sha256": "41d2bde18dbfeaed81cca5322f5f75c54ae3ec1e9e5de91b3c09ee229830b9d8",
       "source_path": "suite/science-economics-kidney-exchange/README.md",
       "source_sha256": "f4c2f304572c9a250423cbacce3949b67b01d3ef89dbe2accd70146076b9911d",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-kidney-exchange/config.yaml",
-      "sha256": "bccb0f91a14be19e7b0ef5f3f9ca4dbd4f42c17dbfaa5a4069b40109bf624ab3",
+      "sha256": "bc1eaa0c05f5e98c5b3aef458008b81e280f9b6500fcab9ac585066808c091f7",
       "source_path": "suite/science-economics-kidney-exchange/config.yaml",
       "source_sha256": "bccb0f91a14be19e7b0ef5f3f9ca4dbd4f42c17dbfaa5a4069b40109bf624ab3",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-economics-kidney-exchange/evaluator.py",
-      "sha256": "688a6cceff6080d1a544a8756749e9bc1e288e1446b84280d7e047285a25ca73",
+      "sha256": "36898427ff5816e0a2f84b10f83b6a99fa0a41df8bd1c6941d566a8d6736379f",
       "source_path": "suite/science-economics-kidney-exchange/evaluator.py",
       "source_sha256": "688a6cceff6080d1a544a8756749e9bc1e288e1446b84280d7e047285a25ca73",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-economics-kidney-exchange/initial_program.py",
@@ -4241,38 +4281,43 @@
     },
     {
       "path": "suite/science-economics-kidney-exchange/problem.json",
-      "sha256": "8aebf1ab2ce48354bb7add0e6c611d299abfe4886f328b5c8e44265140a71f62",
+      "sha256": "bc1a42fe309fb5d267bf309d7fffb601223ee7914d00f43362e2d9f965b57ff2",
       "source_path": "suite/science-economics-kidney-exchange/problem.json",
       "source_sha256": "8aebf1ab2ce48354bb7add0e6c611d299abfe4886f328b5c8e44265140a71f62",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-kidney-exchange/task.json",
-      "sha256": "6bc2e8c3697f1602a5d202261e6a20be5e71ba79ff8f7b033e06fd9e4d01fa38",
+      "sha256": "cc1ec0660cdb705f9b67915968f80ea2f456978dab1684783eb6174faaf188d5",
       "source_path": "suite/science-economics-kidney-exchange/task.json",
       "source_sha256": "6bc2e8c3697f1602a5d202261e6a20be5e71ba79ff8f7b033e06fd9e4d01fa38",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-maximum-nash-welfare/README.txt",
-      "sha256": "37f997b0e60799c9e90bc75f301f5c1b0e6d784abadcfafafe736e0b4c9aa9b8",
+      "sha256": "cc9dd1d10ea16ea81a994b6213229004da0cde80f6d8cb7528e50900787ae1ec",
       "source_path": "suite/science-economics-maximum-nash-welfare/README.md",
       "source_sha256": "37f997b0e60799c9e90bc75f301f5c1b0e6d784abadcfafafe736e0b4c9aa9b8",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-maximum-nash-welfare/config.yaml",
-      "sha256": "b42153bb808f93de016e39edf9308e88740aaa30c5bad901b6e7397b33a47add",
+      "sha256": "b874972c98594d71ad29285998a14a852b351368c8b59e88b416ae5fb5412d58",
       "source_path": "suite/science-economics-maximum-nash-welfare/config.yaml",
       "source_sha256": "b42153bb808f93de016e39edf9308e88740aaa30c5bad901b6e7397b33a47add",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-economics-maximum-nash-welfare/evaluator.py",
-      "sha256": "204c53c1b98b5bf80578167159057d45f410352cc3374700d06cfba7ba9f9af3",
+      "sha256": "91f9d32ba1b5fe471b7aa1b10d214bcb3a5807230a5dc545f0994ed5c67e3acd",
       "source_path": "suite/science-economics-maximum-nash-welfare/evaluator.py",
       "source_sha256": "204c53c1b98b5bf80578167159057d45f410352cc3374700d06cfba7ba9f9af3",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-economics-maximum-nash-welfare/initial_program.py",
@@ -4283,38 +4328,43 @@
     },
     {
       "path": "suite/science-economics-maximum-nash-welfare/problem.json",
-      "sha256": "81318a19e8000a6562c7fdc2dc935e6f0c6254f104bd9308a4d5412e1176fcab",
+      "sha256": "797135279a8efc7cd8a2fc263ec4782a3f021a9c8d19cde7900bfba4073e4b46",
       "source_path": "suite/science-economics-maximum-nash-welfare/problem.json",
       "source_sha256": "81318a19e8000a6562c7fdc2dc935e6f0c6254f104bd9308a4d5412e1176fcab",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-maximum-nash-welfare/task.json",
-      "sha256": "d54e6fd04a8721cd84c2c9a1b9cc7b5173714b14733ac28babae08d6df6e4e40",
+      "sha256": "7f848b977f6de8b9b26377c001817a3c3d26591cba59c95f323971b8939091b6",
       "source_path": "suite/science-economics-maximum-nash-welfare/task.json",
       "source_sha256": "d54e6fd04a8721cd84c2c9a1b9cc7b5173714b14733ac28babae08d6df6e4e40",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-school-choice-tie-breaking/README.txt",
-      "sha256": "027c78fef538e71e7c6aa64c9485ff0e8b35aea8b3c2e0ba794ce059fcfce74b",
+      "sha256": "45dbc71cb26328b8d76f4bf1c1264d2a581946c3968fdc01aae9eeb3c91ecf76",
       "source_path": "suite/science-economics-school-choice-tie-breaking/README.md",
       "source_sha256": "027c78fef538e71e7c6aa64c9485ff0e8b35aea8b3c2e0ba794ce059fcfce74b",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-school-choice-tie-breaking/config.yaml",
-      "sha256": "bba5c97b6406b48777113a6588097ab9182859cdc98637263ce46064581b4f6a",
+      "sha256": "1ac4e8892459364e8fad400e648aabf590749db98d1f325520c0abac592b68b2",
       "source_path": "suite/science-economics-school-choice-tie-breaking/config.yaml",
       "source_sha256": "bba5c97b6406b48777113a6588097ab9182859cdc98637263ce46064581b4f6a",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-economics-school-choice-tie-breaking/evaluator.py",
-      "sha256": "886b28499663ab3b42f894472a9d360c9e09939090566b993d0141b013c2e188",
+      "sha256": "c9ee94675325edb7095653ac956f677a3e2246eb6ffabaa2bb3b97515c541e00",
       "source_path": "suite/science-economics-school-choice-tie-breaking/evaluator.py",
       "source_sha256": "886b28499663ab3b42f894472a9d360c9e09939090566b993d0141b013c2e188",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-economics-school-choice-tie-breaking/initial_program.py",
@@ -4325,17 +4375,19 @@
     },
     {
       "path": "suite/science-economics-school-choice-tie-breaking/problem.json",
-      "sha256": "eb204b51287146d3160a6c009cf3eb8f6af03ab6eb657086fbfa262faa90e557",
+      "sha256": "876d978043d42b4931072c8580c55b54a31c319a50b1f2685e42ca085a615007",
       "source_path": "suite/science-economics-school-choice-tie-breaking/problem.json",
       "source_sha256": "eb204b51287146d3160a6c009cf3eb8f6af03ab6eb657086fbfa262faa90e557",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-economics-school-choice-tie-breaking/task.json",
-      "sha256": "ec1a483b7850ee857480acb8465b8dffd16da368c7ccd0d5b80e9c3f9c4ea7d1",
+      "sha256": "75262e9b9ffc7de2ae749e0b15c970f1ead29fead4bae607baaa6978d8afc443",
       "source_path": "suite/science-economics-school-choice-tie-breaking/task.json",
       "source_sha256": "ec1a483b7850ee857480acb8465b8dffd16da368c7ccd0d5b80e9c3f9c4ea7d1",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-edge-disjoint-monochromatic-triangles-11/README.txt",
@@ -4633,24 +4685,27 @@
     },
     {
       "path": "suite/science-finance-arbitrage-free-svi-surface/README.txt",
-      "sha256": "ca170f4ea4be781f97bf38a13c0b5b606426f685ab4a3dc78f63aa729b7e1820",
+      "sha256": "9677ceb30e95f9386d99accf2d1ac86489acb80d736a312d0dcf19652d327028",
       "source_path": "suite/science-finance-arbitrage-free-svi-surface/README.md",
       "source_sha256": "ca170f4ea4be781f97bf38a13c0b5b606426f685ab4a3dc78f63aa729b7e1820",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-arbitrage-free-svi-surface/config.yaml",
-      "sha256": "9b805415773062ca334a369d50ec5e2f8c1077a6899c95e7bba01cc19c576863",
+      "sha256": "a967dcc4f1dafe22dd8ab24705a283b7d1921e4d0dd87ce144c3d80d29906387",
       "source_path": "suite/science-finance-arbitrage-free-svi-surface/config.yaml",
       "source_sha256": "9b805415773062ca334a369d50ec5e2f8c1077a6899c95e7bba01cc19c576863",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-arbitrage-free-svi-surface/evaluator.py",
-      "sha256": "f4c9c4a38a917fb651d54a4301a7d969d47b1803c233e5fbf4c4a6144d0a5af8",
+      "sha256": "e67db5a8bf86e10ac51a4c8e74b46e4cbd4ab2780dbe305c53e3e55e75ffd78e",
       "source_path": "suite/science-finance-arbitrage-free-svi-surface/evaluator.py",
       "source_sha256": "f4c9c4a38a917fb651d54a4301a7d969d47b1803c233e5fbf4c4a6144d0a5af8",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-arbitrage-free-svi-surface/initial_program.py",
@@ -4661,39 +4716,43 @@
     },
     {
       "path": "suite/science-finance-arbitrage-free-svi-surface/problem.json",
-      "sha256": "c6068d40eccc1c4ab17085601ba468da4e2f5f73ef68f622518b7d9533222255",
+      "sha256": "e93aeedb791a1a0005e1f17e0e866229984b8063527def915518ecd7f099392b",
       "source_path": "suite/science-finance-arbitrage-free-svi-surface/problem.json",
       "source_sha256": "c6068d40eccc1c4ab17085601ba468da4e2f5f73ef68f622518b7d9533222255",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-arbitrage-free-svi-surface/task.json",
-      "sha256": "7bb0ab4688eb58745469ff3ab345231f0704f0a4b875f0c81c0af7642a6c3170",
+      "sha256": "c8613233195a25b6bb1b9ab11be5fad37af7554939848fe53a6784f5346c45f8",
       "source_path": "suite/science-finance-arbitrage-free-svi-surface/task.json",
       "source_sha256": "7bb0ab4688eb58745469ff3ab345231f0704f0a4b875f0c81c0af7642a6c3170",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-cardinality-constrained-frontier/README.txt",
-      "sha256": "b5c70268b03398ef5b1cfb912a18509d6ead4668fe9c08439395cf665bffad24",
+      "sha256": "b8d7ff855a3ddb3dc882b7a6f4be37d025240c90a3cd9804f2fdbe1916041a82",
       "source_path": "suite/science-finance-cardinality-constrained-frontier/README.md",
       "source_sha256": "944b05313ecbe113711bc41f6524af946967cca8cf44ddb91a06f21cbee12b5e",
       "origin": "adapted",
-      "note": "statement corrected: 5c FTSE tabu-search value"
+      "note": "statement corrected: 5c FTSE tabu-search value; contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-cardinality-constrained-frontier/config.yaml",
-      "sha256": "ee9ae659249629025e0fa947f3ac9b876154555fb6fb3fa9194c26f37c1875c3",
+      "sha256": "976f091bf74990f411532664945fea508a8fbe667e5a459942361eade5b5dc95",
       "source_path": "suite/science-finance-cardinality-constrained-frontier/config.yaml",
       "source_sha256": "ee9ae659249629025e0fa947f3ac9b876154555fb6fb3fa9194c26f37c1875c3",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-cardinality-constrained-frontier/evaluator.py",
-      "sha256": "6a9661cb1517314753ded2e62e68deadb88ef9b936334010243d89a320eb8987",
+      "sha256": "037e247ba6b478fd413c7f793689c3345b8c751d5098cf0259a88097878a127c",
       "source_path": "suite/science-finance-cardinality-constrained-frontier/evaluator.py",
       "source_sha256": "6a9661cb1517314753ded2e62e68deadb88ef9b936334010243d89a320eb8987",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-cardinality-constrained-frontier/initial_program.py",
@@ -4704,41 +4763,43 @@
     },
     {
       "path": "suite/science-finance-cardinality-constrained-frontier/problem.json",
-      "sha256": "c176c0695a5eb37a014954889176b62237a30355a9a0cd3a262a176c46e238eb",
+      "sha256": "88a869634812d6049f7ed2e25641c01a00a57fb9db8dfd349cbcc28144ce9e4f",
       "source_path": "suite/science-finance-cardinality-constrained-frontier/problem.json",
       "source_sha256": "536306c65ff5f1f978d48b7a7c20c7ea614a996becf1196796fde106293b5f0a",
       "origin": "adapted",
-      "note": "statement corrected: 5c FTSE tabu-search value"
+      "note": "statement corrected: 5c FTSE tabu-search value; contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-cardinality-constrained-frontier/task.json",
-      "sha256": "60201eca49d6bd829b3cc9d3416e0fc581d468f3587469d58656186789eee868",
+      "sha256": "ffae344d8d2818894937a4c364a769952afd713827c90755f99157fe950a8e98",
       "source_path": "suite/science-finance-cardinality-constrained-frontier/task.json",
       "source_sha256": "cdf80fd644832c449b2ef395cec5fcde678d4853ee5c1c9f5a537d0fdb72ccd6",
       "origin": "adapted",
-      "note": "statement corrected: 5c FTSE tabu-search value"
+      "note": "statement corrected: 5c FTSE tabu-search value; contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-covariance-minimum-variance/README.txt",
-      "sha256": "ebd0035788bf235e910f08ba9e964710ed3f8916c798c8c6470df646127f4289",
+      "sha256": "793eb3dd1d118fd426890a04dcdc6162df98786ce09c6bcd2c5202c14c13485a",
       "source_path": "suite/science-finance-covariance-minimum-variance/README.md",
       "source_sha256": "59c6cc0335c7afc8f7b00a741f325ca0c3037b2705b7fb01d261351d41f3d6bf",
       "origin": "adapted",
-      "note": "statement corrected: 5d estimation window of the cited paper"
+      "note": "statement corrected: 5d estimation window of the cited paper; contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-covariance-minimum-variance/config.yaml",
-      "sha256": "5ad4edd8ac07b2249007df00a24c3a2600176a5c7d705b7aad6167526d6c3f9e",
+      "sha256": "dc28947d776294b8d45fab5b56ccc9a65101432afb247f6ac7d9dbe25fc0ec8f",
       "source_path": "suite/science-finance-covariance-minimum-variance/config.yaml",
       "source_sha256": "5ad4edd8ac07b2249007df00a24c3a2600176a5c7d705b7aad6167526d6c3f9e",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-covariance-minimum-variance/evaluator.py",
-      "sha256": "4519f8bcf59fb938e57d2f4e378da0f48763487e0638b0edc51848ec5f51bd9a",
+      "sha256": "4b5c0c9ea7d075d01ce9dbc0f1d5be622b5ce9e0c3c35c0eddae45317b0cd1ef",
       "source_path": "suite/science-finance-covariance-minimum-variance/evaluator.py",
       "source_sha256": "4519f8bcf59fb938e57d2f4e378da0f48763487e0638b0edc51848ec5f51bd9a",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-covariance-minimum-variance/initial_program.py",
@@ -4749,39 +4810,43 @@
     },
     {
       "path": "suite/science-finance-covariance-minimum-variance/problem.json",
-      "sha256": "978561c904f1be2325ac42a344a172d3cb6d5e363864c3c7f18bc4fde55bae46",
+      "sha256": "f0918056a14d155d7c2d28d53fe14f80d570a1c7b6ba42867b312f6b9d2ffc08",
       "source_path": "suite/science-finance-covariance-minimum-variance/problem.json",
       "source_sha256": "e64fe5f642d1fa2b1e40f914b5578a4d2b228f1571346e43f1ae80f30a904462",
       "origin": "adapted",
-      "note": "statement corrected: 5d estimation window of the cited paper"
+      "note": "statement corrected: 5d estimation window of the cited paper; contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-covariance-minimum-variance/task.json",
-      "sha256": "55f91edfe2afe4687d88cbeeb9daedf97db5751aec945cb05c830177095bb82b",
+      "sha256": "8eb8e2e5331b837472d5bbf32719c19b8dcee358551f430a2952acec60b7326f",
       "source_path": "suite/science-finance-covariance-minimum-variance/task.json",
       "source_sha256": "55f91edfe2afe4687d88cbeeb9daedf97db5751aec945cb05c830177095bb82b",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-equity-premium-prediction/README.txt",
-      "sha256": "29ed3fc30c2f0010835da1c1339ec29614f6489e7981fc5b2b49762ad0af4d94",
+      "sha256": "649e31b2c7cd7998d7ccc6985de569b8ec451d14fbeeaa9d44b268ef0e4ffb30",
       "source_path": "suite/science-finance-equity-premium-prediction/README.md",
       "source_sha256": "29ed3fc30c2f0010835da1c1339ec29614f6489e7981fc5b2b49762ad0af4d94",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-equity-premium-prediction/config.yaml",
-      "sha256": "b03a753e9f4257f5bcf8449dd25603a90a2e6d86ed919f1962e80d030ad9a5eb",
+      "sha256": "470435c2ec4d015bc08a4f824e746653619b44f1c1dd62b386831aefafc31508",
       "source_path": "suite/science-finance-equity-premium-prediction/config.yaml",
       "source_sha256": "b03a753e9f4257f5bcf8449dd25603a90a2e6d86ed919f1962e80d030ad9a5eb",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-equity-premium-prediction/evaluator.py",
-      "sha256": "91547af9eb14c70463a1f30b0bf832ce4c235f4646de8474a0a599e02fdbfb02",
+      "sha256": "eb502f1a291692c3a734a98350071219adc9e22cf346ab6f6d76c3cef9f627a7",
       "source_path": "suite/science-finance-equity-premium-prediction/evaluator.py",
       "source_sha256": "91547af9eb14c70463a1f30b0bf832ce4c235f4646de8474a0a599e02fdbfb02",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-equity-premium-prediction/initial_program.py",
@@ -4792,38 +4857,43 @@
     },
     {
       "path": "suite/science-finance-equity-premium-prediction/problem.json",
-      "sha256": "d0ad96d368a3e0a2a518eff0672a1580bf1e6ca108a3b7871e73408b0bc3ae11",
+      "sha256": "804a300b18196050e99cd0efc91b599bbe36976fdad5f445d54987f21d4b17cd",
       "source_path": "suite/science-finance-equity-premium-prediction/problem.json",
       "source_sha256": "d0ad96d368a3e0a2a518eff0672a1580bf1e6ca108a3b7871e73408b0bc3ae11",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-equity-premium-prediction/task.json",
-      "sha256": "f2268b30013d1ac0dda38f8c859c03fa3249c282fc754a245e7b6919882ff8c4",
+      "sha256": "bffcf7aba5badc5c461c94156c5d3bf72c07e23adde6c335d1f483abffda90e6",
       "source_path": "suite/science-finance-equity-premium-prediction/task.json",
       "source_sha256": "f2268b30013d1ac0dda38f8c859c03fa3249c282fc754a245e7b6919882ff8c4",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-index-tracking/README.txt",
-      "sha256": "38fde904f1e65d5274db24b61b5f1ea008fc37c65d3299a2473b34aeb8ec816e",
+      "sha256": "4c98a0b463b6f1487d01d624cd9f71e1a791284f2362e2fc6a54c1771d4bc052",
       "source_path": "suite/science-finance-index-tracking/README.md",
       "source_sha256": "38fde904f1e65d5274db24b61b5f1ea008fc37c65d3299a2473b34aeb8ec816e",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-index-tracking/config.yaml",
-      "sha256": "16563f834fc02ca423bfca84c21ae4b2bf2b5b85e7be096d01699a9abd8d164a",
+      "sha256": "07bc4e6522df2eca1309fba0cce90bfb8e11ccbccc3a537b72431eb68c25f243",
       "source_path": "suite/science-finance-index-tracking/config.yaml",
       "source_sha256": "16563f834fc02ca423bfca84c21ae4b2bf2b5b85e7be096d01699a9abd8d164a",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-index-tracking/evaluator.py",
-      "sha256": "ee6936acd17668bf42cf23d736ea3af3f71d80f674c6bc4c4edeacbff72fe11a",
+      "sha256": "4db3bade73e137f5ccb00b00457e6cf775ec29892aa051768cba6332b74aeb0e",
       "source_path": "suite/science-finance-index-tracking/evaluator.py",
       "source_sha256": "ee6936acd17668bf42cf23d736ea3af3f71d80f674c6bc4c4edeacbff72fe11a",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-index-tracking/initial_program.py",
@@ -4834,38 +4904,43 @@
     },
     {
       "path": "suite/science-finance-index-tracking/problem.json",
-      "sha256": "cd243a8aa521c86259ca9e3c97ded0476f62c5226daacd39807aaa222a9aaec6",
+      "sha256": "40b66f4dc093c837113e304c176d01242a0e01f9877317fda59bad80cb58de84",
       "source_path": "suite/science-finance-index-tracking/problem.json",
       "source_sha256": "cd243a8aa521c86259ca9e3c97ded0476f62c5226daacd39807aaa222a9aaec6",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-index-tracking/task.json",
-      "sha256": "c1ecd927bb2bf5b84bc69e43d5dcd416c20aeba846fc034aeea37e567c4bec0e",
+      "sha256": "8a265591270887de3f3a96eef1630936587288868e54cd4d813757576c1f5875",
       "source_path": "suite/science-finance-index-tracking/task.json",
       "source_sha256": "c1ecd927bb2bf5b84bc69e43d5dcd416c20aeba846fc034aeea37e567c4bec0e",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-market-making/README.txt",
-      "sha256": "dab45be0658b2c6d41e2e501725bdb61177efd0304a265ddba3efd09c6f7134b",
+      "sha256": "3880edc9807b161c2a819053c2612c6c3eccdeba7cd48641cf287a91d32f19d0",
       "source_path": "suite/science-finance-market-making/README.md",
       "source_sha256": "dab45be0658b2c6d41e2e501725bdb61177efd0304a265ddba3efd09c6f7134b",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-market-making/config.yaml",
-      "sha256": "2a2ad7d1e2752401609942a5cfe9551b8c16ae5986d7f3de827364ee6c43b841",
+      "sha256": "51ee2fa2db187e4271a78723ff9a604bb235deab28dbcd6e03613845d360347c",
       "source_path": "suite/science-finance-market-making/config.yaml",
       "source_sha256": "2a2ad7d1e2752401609942a5cfe9551b8c16ae5986d7f3de827364ee6c43b841",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-market-making/evaluator.py",
-      "sha256": "fdc9670e38b6bb009fbc6dfeeb0a9e8c55aa3c92ba3c88a146c00bb3de39ed13",
+      "sha256": "698beb719a95d45f10e550ebdf5600bf80011ae2b88e0c6b91a87f85235baa62",
       "source_path": "suite/science-finance-market-making/evaluator.py",
       "source_sha256": "fdc9670e38b6bb009fbc6dfeeb0a9e8c55aa3c92ba3c88a146c00bb3de39ed13",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-market-making/initial_program.py",
@@ -4876,39 +4951,43 @@
     },
     {
       "path": "suite/science-finance-market-making/problem.json",
-      "sha256": "36353382c2528ff14a39275c588050a79471029bf2ac143c19b7c5764ee89cb7",
+      "sha256": "cac4d23dfa201bae05cbf078353340711d02dfecd95cc44c941e0758b87c471c",
       "source_path": "suite/science-finance-market-making/problem.json",
       "source_sha256": "36353382c2528ff14a39275c588050a79471029bf2ac143c19b7c5764ee89cb7",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-market-making/task.json",
-      "sha256": "5bf84eecd6912ff50d025c223ea3810fa80db0e905a668a8c1f7603cc049f6e7",
+      "sha256": "75287f3377195956584195c157f0683e649a28404e88fe8f0985babb4704bd70",
       "source_path": "suite/science-finance-market-making/task.json",
       "source_sha256": "5bf84eecd6912ff50d025c223ea3810fa80db0e905a668a8c1f7603cc049f6e7",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-optimal-execution/README.txt",
-      "sha256": "0c50a46ebb1df68876af0f9acedd5870fc91ee3a378f7dad9fc499ef08798b98",
+      "sha256": "13db4fa25139b88efbdbba4e13fb9f31363d36e8a66dcca58d5f411adc6e10c0",
       "source_path": "suite/science-finance-optimal-execution/README.md",
       "source_sha256": "16379189418063c7f8adde7c99c51f731c5d98c4c81467f2c0200eee01c4740e",
       "origin": "adapted",
-      "note": "statement corrected: 5b number of numerically solved instances"
+      "note": "statement corrected: 5b number of numerically solved instances; contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-optimal-execution/config.yaml",
-      "sha256": "0b02c5e64e8607c100c0acaa9dd2f7d2e46b81d6405a27c8d64e12f7ea400aca",
+      "sha256": "35cf2bed472050953634cc7cf110a8041f01c7f63ff9e5d686cc20021afe9a4c",
       "source_path": "suite/science-finance-optimal-execution/config.yaml",
       "source_sha256": "0b02c5e64e8607c100c0acaa9dd2f7d2e46b81d6405a27c8d64e12f7ea400aca",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-optimal-execution/evaluator.py",
-      "sha256": "d43454938eeac456bba517978fe3195b139362b801dc5dbd00c39111053cfd94",
+      "sha256": "48898610774ac4fc1d58d9af37317ef7add9811882b11d8209bdd4aecb760ede",
       "source_path": "suite/science-finance-optimal-execution/evaluator.py",
       "source_sha256": "d43454938eeac456bba517978fe3195b139362b801dc5dbd00c39111053cfd94",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-optimal-execution/initial_program.py",
@@ -4919,40 +4998,43 @@
     },
     {
       "path": "suite/science-finance-optimal-execution/problem.json",
-      "sha256": "cbaee254cb6433c8cf4aa17e3612d6b012d76e803b74d59c8bf1d2258e14129b",
+      "sha256": "45f8cbad006985cbcbfa886c481565d4f113377609900ef1d8497cc7b4af4c15",
       "source_path": "suite/science-finance-optimal-execution/problem.json",
       "source_sha256": "2eae3acf6d01ddc3e57ea84b7a4749562c3bd75a8155f221b6f7030210d697a2",
       "origin": "adapted",
-      "note": "statement corrected: 5b number of numerically solved instances"
+      "note": "statement corrected: 5b number of numerically solved instances; contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-optimal-execution/task.json",
-      "sha256": "4deeb2a2b1e04635a36bb294dc9bdf87a1331b4d914dc411f87c2e6561d922a7",
+      "sha256": "d3d50b6a60b431bd7825190f479497021a0a3cd1cb06d1cd10d58d2e78fffb93",
       "source_path": "suite/science-finance-optimal-execution/task.json",
       "source_sha256": "a36ffc7769a74a3d6f500cee723b87b6c61ee44e1f8ceb08a6ccea41d98621f5",
       "origin": "adapted",
-      "note": "statement corrected: 5b number of numerically solved instances"
+      "note": "statement corrected: 5b number of numerically solved instances; contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-ff20/README.txt",
-      "sha256": "e6b7659202588680e3d75f67efd9815efe00c3328bba1e2034baa3232f84170d",
+      "sha256": "a3c03a2a2884f3598b9fa35ed6d788df4aa00d7e14b6c190a61d389e8e634458",
       "source_path": "suite/science-finance-portfolio-choice-ff20/README.md",
       "source_sha256": "e6b7659202588680e3d75f67efd9815efe00c3328bba1e2034baa3232f84170d",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-ff20/config.yaml",
-      "sha256": "8638cdf1a3b59b6f0506c07888421156e8e25bc71721a7bf53db4be77b8af41e",
+      "sha256": "c03ebb31d4c58dfd85aa72811abf1a88bb496953ae9c4f081b3a2dbfc09359bf",
       "source_path": "suite/science-finance-portfolio-choice-ff20/config.yaml",
       "source_sha256": "8638cdf1a3b59b6f0506c07888421156e8e25bc71721a7bf53db4be77b8af41e",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-ff20/evaluator.py",
-      "sha256": "1aebfe395df7cd303a57930d0f58ea487210e1d33ed021b40fdcc569e1eb7a83",
+      "sha256": "a821ef887586b4c49e328c42e5fb6fce476d287696163cff19faa88c7b80bafa",
       "source_path": "suite/science-finance-portfolio-choice-ff20/evaluator.py",
       "source_sha256": "1aebfe395df7cd303a57930d0f58ea487210e1d33ed021b40fdcc569e1eb7a83",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-ff20/initial_program.py",
@@ -4963,38 +5045,43 @@
     },
     {
       "path": "suite/science-finance-portfolio-choice-ff20/problem.json",
-      "sha256": "726dae62967ba1262c7ee2d63218d3fc78edb85a62d49c92bb3843c03c95291b",
+      "sha256": "e62ef62e5532b6a7554efabf6c68519ec4fe8162443d6f3a8ec501ae28b0cc8f",
       "source_path": "suite/science-finance-portfolio-choice-ff20/problem.json",
       "source_sha256": "726dae62967ba1262c7ee2d63218d3fc78edb85a62d49c92bb3843c03c95291b",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-ff20/task.json",
-      "sha256": "322ed200aef803749c2ede6d1356264063060c7f438fe2ac314167d6f78da454",
+      "sha256": "8e734189ef22c48ebfb0d479480f6d28e3d487ca4ba04fc9a1608b3dc8bd1755",
       "source_path": "suite/science-finance-portfolio-choice-ff20/task.json",
       "source_sha256": "322ed200aef803749c2ede6d1356264063060c7f438fe2ac314167d6f78da454",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry10/README.txt",
-      "sha256": "0e4da5fc2e321e5c018fd627eb48e810ba38a58eeb9c5192afa248c32bf8d4fd",
+      "sha256": "1798da730542a3f78cb24c491a5a31aeda572011afbd8bca91a6ab65acd7e18e",
       "source_path": "suite/science-finance-portfolio-choice-industry10/README.md",
       "source_sha256": "0e4da5fc2e321e5c018fd627eb48e810ba38a58eeb9c5192afa248c32bf8d4fd",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry10/config.yaml",
-      "sha256": "02be61f2d23b982b2de625596a926da7000063ba38982d9dc9cea07135e97352",
+      "sha256": "98bfa3a62d29c9e36ec5a9f01359ffbb5ea56255cdbe9d4f31d2d0475d1c2ec9",
       "source_path": "suite/science-finance-portfolio-choice-industry10/config.yaml",
       "source_sha256": "02be61f2d23b982b2de625596a926da7000063ba38982d9dc9cea07135e97352",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry10/evaluator.py",
-      "sha256": "a7ddd4a00f5f9fb9c34531fba05cadfd4bbe4a9fdf679e1761bd9d6e180fdcf0",
+      "sha256": "5ba02df7f52e8a1fe6a4178a9941764981411ff6b8531793a7e67fc26a224d34",
       "source_path": "suite/science-finance-portfolio-choice-industry10/evaluator.py",
       "source_sha256": "a7ddd4a00f5f9fb9c34531fba05cadfd4bbe4a9fdf679e1761bd9d6e180fdcf0",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry10/initial_program.py",
@@ -5005,38 +5092,43 @@
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry10/problem.json",
-      "sha256": "80ed46336c599596451250a5f4ddf92d77b780bf252b012e0de953e608af271c",
+      "sha256": "2e9c8427e63a31f9f0fcbff8281e10efb43bb37fb75d5e22e050b64fa78d3b66",
       "source_path": "suite/science-finance-portfolio-choice-industry10/problem.json",
       "source_sha256": "80ed46336c599596451250a5f4ddf92d77b780bf252b012e0de953e608af271c",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry10/task.json",
-      "sha256": "5470862a27bbf173742e23fc062f224251c8a9e021ace4e9312be78de8a8bf9a",
+      "sha256": "929e68e5e6a3df3dd779a8d6becbd164d5627ee569145e1303e36a8c6b64e080",
       "source_path": "suite/science-finance-portfolio-choice-industry10/task.json",
       "source_sha256": "5470862a27bbf173742e23fc062f224251c8a9e021ace4e9312be78de8a8bf9a",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry49/README.txt",
-      "sha256": "9aad5528b88369ae97ce2b64839aa15a73411317ffdaf27b3dd05d5374bf4c3e",
+      "sha256": "b50854f5515bcdd3a5965ac25a4ffdb8ec3fe72b602c67aa8398fb15814c7c13",
       "source_path": "suite/science-finance-portfolio-choice-industry49/README.md",
       "source_sha256": "9aad5528b88369ae97ce2b64839aa15a73411317ffdaf27b3dd05d5374bf4c3e",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry49/config.yaml",
-      "sha256": "469c9c425f77b17929fc4141e026d29f5df7962bdbbf615b581a1aea06b731c4",
+      "sha256": "5cc95da2e43d7c911b80fe63eb037c265ee98dca193d08dfc94138095ee7a0eb",
       "source_path": "suite/science-finance-portfolio-choice-industry49/config.yaml",
       "source_sha256": "469c9c425f77b17929fc4141e026d29f5df7962bdbbf615b581a1aea06b731c4",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry49/evaluator.py",
-      "sha256": "af6cdaed3428b1b6a0ae57311a344b95bfe67329b5cda9ba57c94ce909820c50",
+      "sha256": "1f1b47b5220e5abd956c8d368f27514bebdb8710e6efdefbcdaaeab1619fc455",
       "source_path": "suite/science-finance-portfolio-choice-industry49/evaluator.py",
       "source_sha256": "af6cdaed3428b1b6a0ae57311a344b95bfe67329b5cda9ba57c94ce909820c50",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry49/initial_program.py",
@@ -5047,38 +5139,43 @@
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry49/problem.json",
-      "sha256": "e78d6c63e44693628af817ccd6a0c1013fb6bfc8b52317c4535f5ef11540d4e0",
+      "sha256": "55b613f352f945ce77628909097406edd5230837205f1f3cf8cd3f1732fd2c41",
       "source_path": "suite/science-finance-portfolio-choice-industry49/problem.json",
       "source_sha256": "e78d6c63e44693628af817ccd6a0c1013fb6bfc8b52317c4535f5ef11540d4e0",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-portfolio-choice-industry49/task.json",
-      "sha256": "78e975e437c1a4a64882bfc1fd5b62f32cd99adc0e253ca0bc381531d63b5679",
+      "sha256": "3a5153dd85c7c8f0b865a665df962df15a12164f33f193998e81fc399c721dac",
       "source_path": "suite/science-finance-portfolio-choice-industry49/task.json",
       "source_sha256": "78e975e437c1a4a64882bfc1fd5b62f32cd99adc0e253ca0bc381531d63b5679",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-volatility-forecasting/README.txt",
-      "sha256": "263f700f14b086770ee8d7ecafa752a481202a1aa13a30f785a9a0ea3595645f",
+      "sha256": "8161a98862fe8f3aba5165bd1cb5500371fcbd4e027a806dec858c1bbe2c055e",
       "source_path": "suite/science-finance-volatility-forecasting/README.md",
       "source_sha256": "263f700f14b086770ee8d7ecafa752a481202a1aa13a30f785a9a0ea3595645f",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-volatility-forecasting/config.yaml",
-      "sha256": "3f8e726656025b55785fe7f75bfa4ef4776f87a77b3fd3081c5014b3f1a51a33",
+      "sha256": "0c1a67633dbc32efc2d7071f25c68195e246dfbdd1c2f3adbe01bfe714f4431f",
       "source_path": "suite/science-finance-volatility-forecasting/config.yaml",
       "source_sha256": "3f8e726656025b55785fe7f75bfa4ef4776f87a77b3fd3081c5014b3f1a51a33",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-volatility-forecasting/evaluator.py",
-      "sha256": "bd0dbeb6985a6293bb186580305f136a7f0a935c00aeddf259d5202b52a8d8a8",
+      "sha256": "05f5c49f016c3f4e35f826f8e43e1ac13e74ffb6e3dbd30cc94e5cad3301d02f",
       "source_path": "suite/science-finance-volatility-forecasting/evaluator.py",
       "source_sha256": "bd0dbeb6985a6293bb186580305f136a7f0a935c00aeddf259d5202b52a8d8a8",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-volatility-forecasting/initial_program.py",
@@ -5089,38 +5186,43 @@
     },
     {
       "path": "suite/science-finance-volatility-forecasting/problem.json",
-      "sha256": "e3ed509adbaa9bac755d4d774f07c9367a61394a7ce68457c4fbde5423ebd608",
+      "sha256": "dfd0c8a323a5e1a41973f350568e7dc2b9f4201d7c7b90656d4acd7176811025",
       "source_path": "suite/science-finance-volatility-forecasting/problem.json",
       "source_sha256": "e3ed509adbaa9bac755d4d774f07c9367a61394a7ce68457c4fbde5423ebd608",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-volatility-forecasting/task.json",
-      "sha256": "f8d7ea4480142ecca547825dcd488a62ecb4044c70cb85bb18e4f4ef8a660eab",
+      "sha256": "ff13d89bcf74613a080ec06c85db350be77ed13f1e73cf83c73ebea661a51986",
       "source_path": "suite/science-finance-volatility-forecasting/task.json",
       "source_sha256": "f8d7ea4480142ecca547825dcd488a62ecb4044c70cb85bb18e4f4ef8a660eab",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-yield-curve-forecasting/README.txt",
-      "sha256": "20a13016258daf5fba4ee8fe6200b82a5f6da1af280b22c63c5c8acfb7b19423",
+      "sha256": "9147e770b6ac13c02102f746c84d38bee0ab10c4dd4ec0fa68d18abe0feb46eb",
       "source_path": "suite/science-finance-yield-curve-forecasting/README.md",
       "source_sha256": "20a13016258daf5fba4ee8fe6200b82a5f6da1af280b22c63c5c8acfb7b19423",
-      "origin": "identical copy, renamed"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-yield-curve-forecasting/config.yaml",
-      "sha256": "14eee57a8548b2f59fcb01f9d23adc4989904a1b52219803fba1a3b2f447edb4",
+      "sha256": "86325716062fa1ed8eed97fd6169b6254e264b3184c5f4600ea626c6f127cb74",
       "source_path": "suite/science-finance-yield-curve-forecasting/config.yaml",
       "source_sha256": "14eee57a8548b2f59fcb01f9d23adc4989904a1b52219803fba1a3b2f447edb4",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract in the prompt states the sandbox"
     },
     {
       "path": "suite/science-finance-yield-curve-forecasting/evaluator.py",
-      "sha256": "b230b1b7065d8fd1d207155b395e6515d506aba452a530469fd1ca437ec991be",
+      "sha256": "5e67cd81d469cadd0241a3cbc742cf414459acba901d4103a4842e7f48d79f18",
       "source_path": "suite/science-finance-yield-curve-forecasting/evaluator.py",
       "source_sha256": "b230b1b7065d8fd1d207155b395e6515d506aba452a530469fd1ca437ec991be",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "hands the candidate module to the scoring module so that its function runs in the sandbox; the contract states the sandbox"
     },
     {
       "path": "suite/science-finance-yield-curve-forecasting/initial_program.py",
@@ -5131,17 +5233,19 @@
     },
     {
       "path": "suite/science-finance-yield-curve-forecasting/problem.json",
-      "sha256": "5559d5b3acdc5aeb456f6b746122d01c4dde4919ccdab57702c9a64f1bb1c51c",
+      "sha256": "05e573e04999f683a0a36d1f3354543c61a5ced1d4ad40c03c3fdf2f1ab20428",
       "source_path": "suite/science-finance-yield-curve-forecasting/problem.json",
       "source_sha256": "5559d5b3acdc5aeb456f6b746122d01c4dde4919ccdab57702c9a64f1bb1c51c",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-finance-yield-curve-forecasting/task.json",
-      "sha256": "2092ac85e192104c5e69fc8ca0a9f85827c81e252d1dc17eb90f1dcdb7517847",
+      "sha256": "526ed3f52368fb3e3bc268f4858dcb46029b9af3a2ac7d2fa60655dd7f449254",
       "source_path": "suite/science-finance-yield-curve-forecasting/task.json",
       "source_sha256": "2092ac85e192104c5e69fc8ca0a9f85827c81e252d1dc17eb90f1dcdb7517847",
-      "origin": "identical copy"
+      "origin": "adapted",
+      "note": "contract and limitations state the sandbox"
     },
     {
       "path": "suite/science-five-uniform-hypergraphs-without-property-b/README.txt",
@@ -14390,6 +14494,12 @@
       "note": "task count"
     },
     {
+      "path": "tests/test_finance_sandbox.py",
+      "sha256": "a9eae7b8b3ea14a8e98d92637cd398cab99c56a241325a44f3c34ff28c6bdf8f",
+      "origin": "written for this addition",
+      "note": "tests of the isolation of the finance and economics candidates"
+    },
+    {
       "path": "tests/test_suite_additions.py",
       "sha256": "0eb741cfc6f14671994e61b3b8be4f43d227d72b6c4ac0d2b8af6a18c83a2645",
       "origin": "written for this addition",
@@ -14495,13 +14605,13 @@
     },
     {
       "path": "validation/suite-additions-report.json",
-      "sha256": "158fff07802ecb5c8d7a5ead3fdec3b2353b840e46c60a7ab0209077f02dce97",
+      "sha256": "5c288cda7208ad4058c6eb5d0932a5ed2fdea266ace71bbfcf1ff1290c7e08de",
       "origin": "written for this addition",
       "note": "seed executions of the added packages in this layout"
     },
     {
       "path": "validation/suite-additions-review.json",
-      "sha256": "c69c0cfc7058db3869f89abbeca3a0758711be30ba845b9ad96aa4a65c7bdaee",
+      "sha256": "40299dd0c166a28e0fbd36bcd061c036eb79f05f280d40c6707034069235334a",
       "origin": "written for this addition",
       "note": "review findings and their disposition"
     }

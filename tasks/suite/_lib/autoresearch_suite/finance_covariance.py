@@ -13,10 +13,11 @@ import math
 
 import numpy as np
 
-from . import finance_data
+from . import finance_data, finance_sandbox
 from .runtime import CandidateError
 
 TABLE = "ind49_vw_daily.csv"
+ENTRY = "estimate_covariance"
 WINDOW = 126
 HOLD = 21
 
@@ -50,16 +51,21 @@ def gmv_weights(sigma):
     return x / x.sum()
 
 
-def backtest(estimator, returns):
-    """Daily out-of-sample GMV returns and gross exposures for an estimator of the covariance matrix."""
+def backtest_steps(returns):
+    """Scoring loop: daily out-of-sample GMV returns and gross exposures; the holding-period returns stay here."""
     T, n = returns.shape
     realized, gross = [], []
     for start in range(WINDOW, T, HOLD):
-        sigma = validate(estimator(returns[start - WINDOW:start].copy()), n)
+        sigma = validate((yield finance_sandbox.step(ENTRY, returns[start - WINDOW:start].copy())), n)
         w = gmv_weights(sigma)
         realized.append(returns[start:start + HOLD] @ w)
         gross.append(float(np.abs(w).sum()))
     return np.concatenate(realized), np.array(gross)
+
+
+def backtest(estimator, returns):
+    """Daily out-of-sample GMV returns and gross exposures for a candidate module (sandboxed) or a trusted estimator."""
+    return finance_sandbox.run(estimator, backtest_steps(returns), ENTRY)
 
 
 def annualized_sd(daily):
@@ -70,12 +76,13 @@ def sample_covariance(window):
     return np.cov(window, rowvar=False)
 
 
-def covariance_score(estimate_covariance, end="20250930"):
-    """Annualized out-of-sample standard deviation (percent) of the candidate's GMV portfolio (minimize)."""
-    if not callable(estimate_covariance):
-        raise CandidateError("estimate_covariance must be callable")
+def covariance_score(candidate, end="20250930"):
+    """Annualized out-of-sample standard deviation (percent) of the candidate's GMV portfolio (minimize).
+
+    ``candidate`` is the candidate module (its estimate_covariance runs in the sandbox) or a trusted callable.
+    """
     days, names, returns = load(end)
-    realized, gross = backtest(estimate_covariance, returns)
+    realized, gross = backtest(candidate, returns)
     sample, sample_gross = backtest(sample_covariance, returns)
     equal = returns[WINDOW:].mean(axis=1)  # daily-rebalanced 1/N over the same days
     score = annualized_sd(realized)

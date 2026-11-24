@@ -16,10 +16,11 @@ from functools import lru_cache
 
 import numpy as np
 
-from . import finance_data
+from . import finance_data, finance_sandbox
 from .finance_stats import finite_vector
 from .runtime import CandidateError
 
+ENTRY = "rebalance"
 MARKETS = {1: "Hang Seng", 2: "DAX 100", 3: "FTSE 100", 4: "S&P 100", 5: "Nikkei 225"}
 K, MIN_WEIGHT, MAX_WEIGHT, COST = 10, 0.01, 1.0, 0.01
 START, END, EVERY = 145, 290, 13
@@ -61,8 +62,11 @@ def trade(shares, prices, weights, value, charge):
     return weights * after / prices, after, float(np.abs(weights * after - current).sum())
 
 
-def track(rebalance, index):
-    """Weekly log returns of portfolio and index over the out-of-sample weeks, plus traded value."""
+def track_steps(index):
+    """Scoring loop for one market: weekly log returns of portfolio and index, plus traded value.
+
+    Each call receives prices up to the rebalancing week; later prices stay in this process.
+    """
     level, prices = market(index)
     n = prices.shape[1]
     shares = np.zeros(n)
@@ -73,7 +77,7 @@ def track(rebalance, index):
             state = {"week": week, "index_prices": level[:week + 1].copy(), "stock_prices": prices[:week + 1].copy(),
                      "holdings": shares.copy(), "portfolio_value": base, "K": K, "min_weight": MIN_WEIGHT,
                      "max_weight": MAX_WEIGHT, "cost_rate": COST, "rebalance_every": EVERY}
-            raw = rebalance(state)
+            raw = yield finance_sandbox.step(ENTRY, state)
             if raw is None and week == START:
                 raise CandidateError("an initial portfolio is required at week 145")
             if raw is not None:  # the initial purchase is free; later trades pay COST and lower this week's return
@@ -84,15 +88,27 @@ def track(rebalance, index):
     return np.array(portfolio), benchmark, traded
 
 
-def tracking_score(rebalance):
-    """Mean over markets of the out-of-sample tracking error (percent per week; minimize)."""
-    if not callable(rebalance):
-        raise CandidateError("rebalance must be callable")
+def track(rebalance, index):
+    """Weekly log returns of portfolio and index for a candidate module (sandboxed) or a trusted callable."""
+    return finance_sandbox.run(rebalance, track_steps(index), ENTRY)
+
+
+def markets():
+    """Scoring loop over the five markets, in one session."""
     rows = {}
     for index, name in MARKETS.items():
-        r, b, traded = track(rebalance, index)
+        r, b, traded = yield from track_steps(index)
         rows[name] = {"tracking_error_percent": 100.0 * float(np.sqrt(np.mean((r - b) ** 2))),
                       "excess_return_percent_per_year": 100.0 * 52.0 * float(np.mean(r - b)),
                       "traded_value_after_start": traded}
+    return rows
+
+
+def tracking_score(candidate):
+    """Mean over markets of the out-of-sample tracking error (percent per week; minimize).
+
+    ``candidate`` is the candidate module (its rebalance runs in the sandbox) or a trusted callable.
+    """
+    rows = finance_sandbox.run(candidate, markets(), ENTRY)
     score = float(np.mean([v["tracking_error_percent"] for v in rows.values()]))
     return score, {"markets": rows, "weeks": END - START, "K": K, "cost_rate": COST}

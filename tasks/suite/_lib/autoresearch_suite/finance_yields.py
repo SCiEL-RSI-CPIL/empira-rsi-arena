@@ -10,11 +10,11 @@ from __future__ import annotations
 
 import numpy as np
 
-from . import finance_data
+from . import finance_data, finance_sandbox
 from .finance_stats import diebold_mariano, finite_vector
-from .runtime import CandidateError
 
 TABLE = "gsw_yields_monthly.csv"
+ENTRY = "forecast_yields"
 HORIZONS = (1, 6, 12)
 SCORED = (1, 2, 3, 5, 7, 10)  # maturities in years that enter the score
 FIRST_ORIGIN, LAST_ORIGIN = 199001, 202407
@@ -29,23 +29,31 @@ def load():
     return months, yields
 
 
-def yield_score(forecast_yields):
-    """Mean over horizons and scored maturities of RMSE(candidate) / RMSE(random walk) (minimize)."""
-    if not callable(forecast_yields):
-        raise CandidateError("forecast_yields must be callable")
+def forecast_errors(months, yields, origins, columns):
+    """Scoring loop: one candidate call per origin. Later yields stay in this process."""
+    errors = np.empty((len(HORIZONS), len(origins), len(columns)))
+    naive = np.empty_like(errors)
+    for k, t in enumerate(origins):
+        history = {"yyyymm": months[:t + 1].copy(), "maturities": np.arange(1.0, 11.0), "yields": yields[:t + 1].copy()}
+        value = yield finance_sandbox.step(ENTRY, history, list(HORIZONS))
+        forecast = finite_vector(value, f"forecast at {months[t]}", (len(HORIZONS), 10), bound=30.0)
+        for i, h in enumerate(HORIZONS):
+            errors[i, k] = forecast[i, columns] - yields[t + h, columns]
+            naive[i, k] = yields[t, columns] - yields[t + h, columns]
+    return errors, naive
+
+
+def yield_score(candidate):
+    """Mean over horizons and scored maturities of RMSE(candidate) / RMSE(random walk) (minimize).
+
+    ``candidate`` is the candidate module (its forecast_yields runs in the sandbox) or a trusted callable.
+    """
     months, yields = load()
     origins = [t for t, m in enumerate(months) if FIRST_ORIGIN <= m <= LAST_ORIGIN]
     if origins[-1] + max(HORIZONS) >= len(months):
         raise RuntimeError("forecast targets exceed the data")
     columns = [m - 1 for m in SCORED]
-    errors = np.empty((len(HORIZONS), len(origins), len(columns)))
-    naive = np.empty_like(errors)
-    for k, t in enumerate(origins):
-        history = {"yyyymm": months[:t + 1].copy(), "maturities": np.arange(1.0, 11.0), "yields": yields[:t + 1].copy()}
-        forecast = finite_vector(forecast_yields(history, HORIZONS), f"forecast at {months[t]}", (len(HORIZONS), 10), bound=30.0)
-        for i, h in enumerate(HORIZONS):
-            errors[i, k] = forecast[i, columns] - yields[t + h, columns]
-            naive[i, k] = yields[t, columns] - yields[t + h, columns]
+    errors, naive = finance_sandbox.run(candidate, forecast_errors(months, yields, origins, columns), ENTRY)
     rmse = np.sqrt(np.mean(errors ** 2, axis=1))
     rmse_naive = np.sqrt(np.mean(naive ** 2, axis=1))
     ratio = rmse / rmse_naive

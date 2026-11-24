@@ -53,7 +53,7 @@
     "native_kind": "science_finance_covariance_gmv",
     "science_family": "science_finance_covariance_gmv",
     "parameters": {},
-    "interface": "estimate_covariance(returns) -> (49, 49) symmetric positive-definite float array. returns is a (126, 49) float array of the previous 126 daily returns (decimal, oldest first) of the 49 Fama-French industry portfolios. Called every 21 trading days from 1971-09 to 2025-09 (649 times); the evaluator forms the global minimum-variance weights w = S^-1 1 / (1' S^-1 1) from the estimate, holds them for the next 21 days and scores the annualized standard deviation (percent) of the 13,629 daily out-of-sample portfolio returns (minimize). The estimate must be finite, symmetric (1e-10 relative) and positive definite with condition number below 1e12",
+    "interface": "estimate_covariance(returns) -> (49, 49) symmetric positive-definite float array. returns is a (126, 49) float array of the previous 126 daily returns (decimal, oldest first) of the 49 Fama-French industry portfolios. Called every 21 trading days from 1971-09 to 2025-09 (649 times); the evaluator forms the global minimum-variance weights w = S^-1 1 / (1' S^-1 1) from the estimate, holds them for the next 21 days and scores the annualized standard deviation (percent) of the 13,629 daily out-of-sample portfolio returns (minimize). The estimate must be finite, symmetric (1e-10 relative) and positive definite with condition number below 1e12. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
     "label_spec": {
       "scientific_contribution": "method",
       "artifact": "program",
@@ -102,7 +102,8 @@
     "Assets are 49 industry portfolios rather than individual stocks, so the cross-section is smaller and less noisy than in Ledoit and Wolf's experiments; N/T = 0.39 with the fixed 126-day window.",
     "The evaluation period is public and fixed; estimators tuned on it overfit, and a candidate that reads the prepared file could look ahead. The interface only passes the trailing window.",
     "Unconstrained minimum-variance weights are used (short positions allowed, no transaction costs or turnover limits), and returns are value-weighted CRSP portfolio returns of one data vintage.",
-    "The score is a single realized standard deviation over 54 years; differences of a few hundredths of a percentage point are within sampling error."
+    "The score is a single realized standard deviation over 54 years; differences of a few hundredths of a percentage point are within sampling error.",
+    "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
   ],
   "validation": {
     "level": "automated_tests",

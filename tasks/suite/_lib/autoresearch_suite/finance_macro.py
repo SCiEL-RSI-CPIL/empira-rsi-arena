@@ -13,11 +13,11 @@ from __future__ import annotations
 
 import numpy as np
 
-from . import finance_data
+from . import finance_data, finance_sandbox
 from .finance_stats import diebold_mariano, finite_vector
-from .runtime import CandidateError
 
 TABLE = "fredmd_2024_10.csv"
+ENTRY = "forecast_target"
 KINDS = {"INDPRO": "growth", "CPIAUCSL": "growth", "UNRATE": "difference"}
 HORIZONS = (1, 6, 12)
 FIRST_ORIGIN, LAST_ORIGIN, ESTIMATION_START = 199001, 202308, 196001
@@ -69,24 +69,31 @@ def ar_bic(history, horizons):
     return np.array(out)
 
 
-def macro_score(forecast, target):
-    """Mean over horizons of RMSE(candidate) / RMSE(direct AR-BIC) for one FRED-MD target (minimize)."""
-    if not callable(forecast):
-        raise CandidateError("forecast_target must be callable")
-    months, names, tcodes, panel = load()
+def forecasts(months, names, tcodes, panel, target, origins):
+    """Scoring loop: one candidate call per origin. Later months and the realised targets stay in this process."""
     kind = KINDS[target]
     levels = panel[:, names.index(target)]
-    origins = [t for t, m in enumerate(months) if FIRST_ORIGIN <= m <= LAST_ORIGIN]
-    if origins[-1] + max(HORIZONS) >= len(months):
-        raise RuntimeError("forecast targets exceed the data")
     predicted, bench, actual = (np.empty((len(origins), len(HORIZONS))) for _ in range(3))
     for k, t in enumerate(origins):
         history = {"yyyymm": months[:t + 1].copy(), "series": list(names), "tcodes": tcodes.copy(),
                    "panel": panel[:t + 1].copy(), "target": target, "target_kind": kind}
-        # The benchmark is computed first: the candidate receives the same history object and may change it.
         bench[k] = ar_bic(history, HORIZONS)
-        predicted[k] = finite_vector(forecast(history, HORIZONS), f"forecast at {months[t]}", (len(HORIZONS),), bound=1e3)
+        value = yield finance_sandbox.step(ENTRY, history, list(HORIZONS))
+        predicted[k] = finite_vector(value, f"forecast at {months[t]}", (len(HORIZONS),), bound=1e3)
         actual[k] = [ahead(levels, kind, t, h) for h in HORIZONS]
+    return predicted, bench, actual
+
+
+def macro_score(candidate, target):
+    """Mean over horizons of RMSE(candidate) / RMSE(direct AR-BIC) for one FRED-MD target (minimize).
+
+    ``candidate`` is the candidate module (its forecast_target runs in the sandbox) or a trusted callable.
+    """
+    months, names, tcodes, panel = load()
+    origins = [t for t, m in enumerate(months) if FIRST_ORIGIN <= m <= LAST_ORIGIN]
+    if origins[-1] + max(HORIZONS) >= len(months):
+        raise RuntimeError("forecast targets exceed the data")
+    predicted, bench, actual = finance_sandbox.run(candidate, forecasts(months, names, tcodes, panel, target, origins), ENTRY)
     scored = np.array([[not any(EXCLUDED[0] <= months[t + j] <= EXCLUDED[1] for j in range(1, h + 1)) for h in HORIZONS]
                        for t in origins])
     rmse = np.array([np.sqrt(np.mean((predicted[m, i] - actual[m, i]) ** 2)) for i, m in enumerate(scored.T)])

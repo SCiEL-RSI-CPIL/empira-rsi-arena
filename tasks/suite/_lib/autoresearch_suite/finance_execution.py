@@ -17,9 +17,11 @@ import math
 
 import numpy as np
 
+from . import finance_sandbox
 from .finance_stats import finite_vector
 from .runtime import CandidateError
 
+ENTRY = "trade_schedule"
 AC = {"shares": 1e6, "price": 50.0, "horizon_days": 5.0, "sigma": 0.95, "epsilon": 0.0625, "gamma": 2.5e-7, "eta": 2.5e-6}
 DAILY_VOLUME = 5e6  # AC Table 1: median daily volume
 
@@ -124,15 +126,23 @@ def validate(problem, trades):
     return n
 
 
-def execution_score(trade_schedule):
-    """Mean percent excess of U over the exact optimum across the fixed instances (minimize; 0 is optimal)."""
-    if not callable(trade_schedule):
-        raise CandidateError("trade_schedule must be callable")
-    rows, excess = [], []
-    for index, spec in enumerate(INSTANCES):
+def schedules():
+    """Scoring loop: one candidate call per instance; the optimum stays in this process."""
+    rows = []
+    for spec in INSTANCES:
         problem = instance(spec)
         given = {k: (v.copy() if isinstance(v, np.ndarray) else v) for k, v in problem.items()}
-        n = validate(problem, trade_schedule(given))
+        rows.append((problem, validate(problem, (yield finance_sandbox.step(ENTRY, given)))))
+    return rows
+
+
+def execution_score(candidate):
+    """Mean percent excess of U over the exact optimum across the fixed instances (minimize; 0 is optimal).
+
+    ``candidate`` is the candidate module (its trade_schedule runs in the sandbox) or a trusted callable.
+    """
+    rows, excess = [], []
+    for index, (spec, (problem, n)) in enumerate(zip(INSTANCES, finance_sandbox.run(candidate, schedules(), ENTRY))):
         value, expected, variance = objective(problem, n)
         best, method = optimum(index)
         gap = 100.0 * (value - best) / best

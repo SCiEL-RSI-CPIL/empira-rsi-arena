@@ -8,10 +8,10 @@
       "repository_url": "https://github.com/Doldrums/arena",
       "revision": "main",
       "manifest_path": "registry/task-library-manifest.json",
-      "manifest_sha256": "8523cf81de0d82e6c886f1057280cccb7795f5f3bbd0f4587d105d451029b141",
+      "manifest_sha256": "74f361c8c9812113a64bf00b42c745150cfe975c0ec833f9b85148852b072a4c",
       "catalog_path": "catalog/tasks.json",
       "index_path": "suite/index.json",
-      "catalog_sha256": "82a8fdf371be6617738e2bed33fcb216b7535fe722b2122746e47432f3d6b42c",
+      "catalog_sha256": "7a48a2a4e4f14edff24848037c240d0ad7d419d18e081432a075ced19c07307b",
       "index_sha256": "e3948b177689b3d74d72fb3e1548ee348c0ee72851eedf420941bbe82de33eab"
     }
   ],
@@ -110031,11 +110031,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "forecast_target(history, horizons) -> array of 3 floats: forecasts of the task's target 1, 6 and 12 months after the origin (horizons = (1, 6, 12)). Targets: for INDPRO and CPIAUCSL the annualized average growth 1200/h * ln(x_{t+h}/x_t) (percent per year); for UNRATE the change u_{t+h} - u_t (percentage points). history = {'yyyymm': (T,) ints, 'series': list of the 126 FRED-MD mnemonics, 'tcodes': (126,) McCracken-Ng transformation codes, 'panel': (T, 126) raw levels from 1959-01 through the origin month (NaN = missing), 'target': mnemonic, 'target_kind': 'growth' or 'difference'}. Called at the 404 month-end origins 1990-01..2023-08 of the 2024-10 vintage (pseudo-real-time); |forecast| <= 1000. Score: mean over horizons of RMSE(candidate) / RMSE(direct autoregression with BIC lag order 0-6 estimated from 1960), excluding forecasts whose target window includes 2020-03..2020-12 (minimize; the autoregressive seed scores exactly 1)",
+      "contract": "forecast_target(history, horizons) -> array of 3 floats: forecasts of the task's target 1, 6 and 12 months after the origin (horizons = [1, 6, 12]). Targets: for INDPRO and CPIAUCSL the annualized average growth 1200/h * ln(x_{t+h}/x_t) (percent per year); for UNRATE the change u_{t+h} - u_t (percentage points). history = {'yyyymm': (T,) ints, 'series': list of the 126 FRED-MD mnemonics, 'tcodes': (126,) McCracken-Ng transformation codes, 'panel': (T, 126) raw levels from 1959-01 through the origin month (NaN = missing), 'target': mnemonic, 'target_kind': 'growth' or 'difference'}. Called at the 404 month-end origins 1990-01..2023-08 of the 2024-10 vintage (pseudo-real-time); |forecast| <= 1000. Score: mean over horizons of RMSE(candidate) / RMSE(direct autoregression with BIC lag order 0-6 estimated from 1960), excluding forecasts whose target window includes 2020-03..2020-12 (minimize; the autoregressive seed scores exactly 1). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-economics-fredmd-industrial-production-forecasting/problem.json",
         "path": "suite/science-economics-fredmd-industrial-production-forecasting/problem.json",
-        "sha256": "a3971b206c6a806278b652a31f594aa72b545094ada0107332f05f14800b4cfa"
+        "sha256": "03b63f7e93c017f879cdcda972ce3797d010a58b80a396ef817ff43a379964a3"
       },
       "provenance": {
         "kind": "native",
@@ -110059,7 +110059,8 @@
         "limitations": [
           "A single data vintage (2024-10) is used as if it were available in real time: data revisions and publication lags (ragged edges) of the 126 series are ignored, so forecasts are pseudo-out-of-sample.",
           "Forecasts whose target window includes March-December 2020 are excluded from the RMSE; the pandemic months would otherwise dominate the comparison. The 2021-2023 inflation episode is included.",
-          "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported."
+          "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -110092,11 +110093,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "forecast_target(history, horizons) -> array of 3 floats: forecasts of the task's target 1, 6 and 12 months after the origin (horizons = (1, 6, 12)). Targets: for INDPRO and CPIAUCSL the annualized average growth 1200/h * ln(x_{t+h}/x_t) (percent per year); for UNRATE the change u_{t+h} - u_t (percentage points). history = {'yyyymm': (T,) ints, 'series': list of the 126 FRED-MD mnemonics, 'tcodes': (126,) McCracken-Ng transformation codes, 'panel': (T, 126) raw levels from 1959-01 through the origin month (NaN = missing), 'target': mnemonic, 'target_kind': 'growth' or 'difference'}. Called at the 404 month-end origins 1990-01..2023-08 of the 2024-10 vintage (pseudo-real-time); |forecast| <= 1000. Score: mean over horizons of RMSE(candidate) / RMSE(direct autoregression with BIC lag order 0-6 estimated from 1960), excluding forecasts whose target window includes 2020-03..2020-12 (minimize; the autoregressive seed scores exactly 1)",
+      "contract": "forecast_target(history, horizons) -> array of 3 floats: forecasts of the task's target 1, 6 and 12 months after the origin (horizons = [1, 6, 12]). Targets: for INDPRO and CPIAUCSL the annualized average growth 1200/h * ln(x_{t+h}/x_t) (percent per year); for UNRATE the change u_{t+h} - u_t (percentage points). history = {'yyyymm': (T,) ints, 'series': list of the 126 FRED-MD mnemonics, 'tcodes': (126,) McCracken-Ng transformation codes, 'panel': (T, 126) raw levels from 1959-01 through the origin month (NaN = missing), 'target': mnemonic, 'target_kind': 'growth' or 'difference'}. Called at the 404 month-end origins 1990-01..2023-08 of the 2024-10 vintage (pseudo-real-time); |forecast| <= 1000. Score: mean over horizons of RMSE(candidate) / RMSE(direct autoregression with BIC lag order 0-6 estimated from 1960), excluding forecasts whose target window includes 2020-03..2020-12 (minimize; the autoregressive seed scores exactly 1). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-economics-fredmd-inflation-forecasting/problem.json",
         "path": "suite/science-economics-fredmd-inflation-forecasting/problem.json",
-        "sha256": "1294be47c10d4779011914dfa945ccd08c16463f950ff2d29ad9e202d97caa86"
+        "sha256": "281e79fcc423c6aae0e92dcc557f3a58f007bc96779f085b21a1a478c831495d"
       },
       "provenance": {
         "kind": "native",
@@ -110120,7 +110121,8 @@
         "limitations": [
           "A single data vintage (2024-10) is used as if it were available in real time: data revisions and publication lags (ragged edges) of the 126 series are ignored, so forecasts are pseudo-out-of-sample.",
           "Forecasts whose target window includes March-December 2020 are excluded from the RMSE; the pandemic months would otherwise dominate the comparison. The 2021-2023 inflation episode is included.",
-          "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported."
+          "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -110153,11 +110155,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "forecast_target(history, horizons) -> array of 3 floats: forecasts of the task's target 1, 6 and 12 months after the origin (horizons = (1, 6, 12)). Targets: for INDPRO and CPIAUCSL the annualized average growth 1200/h * ln(x_{t+h}/x_t) (percent per year); for UNRATE the change u_{t+h} - u_t (percentage points). history = {'yyyymm': (T,) ints, 'series': list of the 126 FRED-MD mnemonics, 'tcodes': (126,) McCracken-Ng transformation codes, 'panel': (T, 126) raw levels from 1959-01 through the origin month (NaN = missing), 'target': mnemonic, 'target_kind': 'growth' or 'difference'}. Called at the 404 month-end origins 1990-01..2023-08 of the 2024-10 vintage (pseudo-real-time); |forecast| <= 1000. Score: mean over horizons of RMSE(candidate) / RMSE(direct autoregression with BIC lag order 0-6 estimated from 1960), excluding forecasts whose target window includes 2020-03..2020-12 (minimize; the autoregressive seed scores exactly 1)",
+      "contract": "forecast_target(history, horizons) -> array of 3 floats: forecasts of the task's target 1, 6 and 12 months after the origin (horizons = [1, 6, 12]). Targets: for INDPRO and CPIAUCSL the annualized average growth 1200/h * ln(x_{t+h}/x_t) (percent per year); for UNRATE the change u_{t+h} - u_t (percentage points). history = {'yyyymm': (T,) ints, 'series': list of the 126 FRED-MD mnemonics, 'tcodes': (126,) McCracken-Ng transformation codes, 'panel': (T, 126) raw levels from 1959-01 through the origin month (NaN = missing), 'target': mnemonic, 'target_kind': 'growth' or 'difference'}. Called at the 404 month-end origins 1990-01..2023-08 of the 2024-10 vintage (pseudo-real-time); |forecast| <= 1000. Score: mean over horizons of RMSE(candidate) / RMSE(direct autoregression with BIC lag order 0-6 estimated from 1960), excluding forecasts whose target window includes 2020-03..2020-12 (minimize; the autoregressive seed scores exactly 1). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-economics-fredmd-unemployment-forecasting/problem.json",
         "path": "suite/science-economics-fredmd-unemployment-forecasting/problem.json",
-        "sha256": "6f50e59b244a3c9b15940c29382146b3e7c0c15fdbdcdb1edb2b97a5c0040de8"
+        "sha256": "153fda01a57a8dad770e6e959447d29e41fd02e2fe3eb5223743e95a09e5a224"
       },
       "provenance": {
         "kind": "native",
@@ -110181,7 +110183,8 @@
         "limitations": [
           "A single data vintage (2024-10) is used as if it were available in real time: data revisions and publication lags (ragged edges) of the 126 series are ignored, so forecasts are pseudo-out-of-sample.",
           "Forecasts whose target window includes March-December 2020 are excluded from the RMSE; the pandemic months would otherwise dominate the comparison. The 2021-2023 inflation episode is included.",
-          "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported."
+          "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -110214,11 +110217,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "select_exchanges(pool) -> list of cycles; each cycle is a list of 2 or 3 distinct pair indices [v1, ..., vk] such that the donor of v1 is compatible with the patient of v2, ..., and the donor of vk with the patient of v1, and no pair appears in two cycles. pool = {'name': str, 'pairs': n (256 or 512), 'edges': (E, 2) int array of compatible (donor_pair, patient_pair), 0-based, 'max_cycle_length': 3, 'time_limit_seconds': 60.0 (advisory)}. Called once for each of eight PrefLib kidney pools (00036-00000151..154 with 256 pairs, 00036-00000191..194 with 512 pairs, no altruists). Score: total transplants (pairs on the chosen cycles) divided by the total proven optimum, 1945 (maximize; 1 is optimal). The whole evaluation must finish within 600 s",
+      "contract": "select_exchanges(pool) -> list of cycles; each cycle is a list of 2 or 3 distinct pair indices [v1, ..., vk] such that the donor of v1 is compatible with the patient of v2, ..., and the donor of vk with the patient of v1, and no pair appears in two cycles. pool = {'name': str, 'pairs': n (256 or 512), 'edges': (E, 2) int array of compatible (donor_pair, patient_pair), 0-based, 'max_cycle_length': 3, 'time_limit_seconds': 60.0 (advisory)}. Called once for each of eight PrefLib kidney pools (00036-00000151..154 with 256 pairs, 00036-00000191..194 with 512 pairs, no altruists). Score: total transplants (pairs on the chosen cycles) divided by the total proven optimum, 1945 (maximize; 1 is optimal). The whole evaluation must finish within 600 s. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-economics-kidney-exchange/problem.json",
         "path": "suite/science-economics-kidney-exchange/problem.json",
-        "sha256": "8aebf1ab2ce48354bb7add0e6c611d299abfe4886f328b5c8e44265140a71f62"
+        "sha256": "bc1a42fe309fb5d267bf309d7fffb601223ee7914d00f43362e2d9f965b57ff2"
       },
       "provenance": {
         "kind": "native",
@@ -110247,7 +110250,8 @@
         "limitations": [
           "The pools are synthetic (Saidman et al. generator, donated to PrefLib by John Dickerson), not registry data; PrefLib removed other faulty kidney instances in September 2026 and only pools without altruists are used here.",
           "Static, single-period clearing that maximizes the number of transplants: no altruist-initiated chains, no crossmatch-failure probabilities, no patient priorities or weights and no dynamic arrivals, all of which matter in practice.",
-          "Every pool's optimum is known, so a score of 1 reproduces the integer-programming solution; the 600 s limit makes the task about fast clearing on the larger pools, and time-limited candidates can depend on hardware."
+          "Every pool's optimum is known, so a score of 1 reproduces the integer-programming solution; the 600 s limit makes the task about fast clearing on the larger pools, and time-limited candidates can depend on hardware.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -110337,11 +110341,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "allocate(values) -> list of m agent indices, the owner of each good. values is an (n, m) int array; row i holds agent i's additive values for the m indivisible goods and sums to 1000 (Spliddit-style point split). Eight fixed instances with (n, m) = (4, 16), (5, 20), (6, 24), (8, 32), (10, 40), (12, 48), (15, 60), (15, 60). Nash welfare is the geometric mean of the agents' utilities (0 if any agent gets nothing). Score: mean over instances of Nash welfare divided by the proven maximum Nash welfare (maximize; 1 is optimal); envy-freeness up to one good is reported per instance",
+      "contract": "allocate(values) -> list of m agent indices, the owner of each good. values is an (n, m) int array; row i holds agent i's additive values for the m indivisible goods and sums to 1000 (Spliddit-style point split). Eight fixed instances with (n, m) = (4, 16), (5, 20), (6, 24), (8, 32), (10, 40), (12, 48), (15, 60), (15, 60). Nash welfare is the geometric mean of the agents' utilities (0 if any agent gets nothing). Score: mean over instances of Nash welfare divided by the proven maximum Nash welfare (maximize; 1 is optimal); envy-freeness up to one good is reported per instance. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-economics-maximum-nash-welfare/problem.json",
         "path": "suite/science-economics-maximum-nash-welfare/problem.json",
-        "sha256": "81318a19e8000a6562c7fdc2dc935e6f0c6254f104bd9308a4d5412e1176fcab"
+        "sha256": "797135279a8efc7cd8a2fc263ec4782a3f021a9c8d19cde7900bfba4073e4b46"
       },
       "provenance": {
         "kind": "native",
@@ -110360,7 +110364,8 @@
         "limitations": [
           "Instances are synthetic Spliddit-style point splits (common good quality times idiosyncratic taste), not data from Spliddit users.",
           "Every instance's optimum is known (exact program solved in at most about 30 s), so a perfect score reproduces known optima; instance sizes are small enough for exact solution and do not test scalability.",
-          "Only Nash welfare is scored; envy-freeness up to one good is reported but not required, and strategic misreporting of values is ignored."
+          "Only Nash welfare is scored; envy-freeness up to one good is reported but not required, and strategic misreporting of values is ignored.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -110448,11 +110453,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "assign_students(problem) -> array of S ints: the school of each student (-1 = unassigned). problem = {'students': S, 'schools': C, 'list_length': L, 'preferences': (S, L) school indices from most to least preferred, 'priorities': (S, C) ints (higher = higher priority, equal = tie; walk-zone tiers and siblings), 'capacities': (C,), 'lottery': (S,) the single tie-breaking order used by the DA-STB benchmark (lottery[0] wins all ties)}. Valid only if every student gets a school on her list or nothing, capacities hold, and the matching is weakly stable: no student prefers a school that has a free seat or admits someone of strictly lower priority there. Six fixed instances (150 to 300 students). Score: (total rank under DA-STB - total rank of the candidate) / (total rank under DA-STB - proven minimum total rank over weakly stable matchings), summed over instances; rank 1 is a first choice and unassigned counts L + 1 (maximize; the DA-STB seed scores 0 and the optimum 1)",
+      "contract": "assign_students(problem) -> array of S ints: the school of each student (-1 = unassigned). problem = {'students': S, 'schools': C, 'list_length': L, 'preferences': (S, L) school indices from most to least preferred, 'priorities': (S, C) ints (higher = higher priority, equal = tie; walk-zone tiers and siblings), 'capacities': (C,), 'lottery': (S,) the single tie-breaking order used by the DA-STB benchmark (lottery[0] wins all ties)}. Valid only if every student gets a school on her list or nothing, capacities hold, and the matching is weakly stable: no student prefers a school that has a free seat or admits someone of strictly lower priority there. Six fixed instances (150 to 300 students). Score: (total rank under DA-STB - total rank of the candidate) / (total rank under DA-STB - proven minimum total rank over weakly stable matchings), summed over instances; rank 1 is a first choice and unassigned counts L + 1 (maximize; the DA-STB seed scores 0 and the optimum 1). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-economics-school-choice-tie-breaking/problem.json",
         "path": "suite/science-economics-school-choice-tie-breaking/problem.json",
-        "sha256": "eb204b51287146d3160a6c009cf3eb8f6af03ab6eb657086fbfa262faa90e557"
+        "sha256": "876d978043d42b4931072c8580c55b54a31c319a50b1f2685e42ca085a615007"
       },
       "provenance": {
         "kind": "native",
@@ -110482,7 +110487,8 @@
           "Markets are synthetic (random homes and schools on a unit square, school quality, distance and taste shocks, nested walk zones and 5% siblings); they mimic coarse NYC-style priorities but are not real application data.",
           "Preferences are taken as truthful: the score measures welfare given reported preferences, and mechanisms that exploit it can be manipulable; Abdulkadiroglu, Pathak and Roth show no strategy-proof mechanism dominates DA-STB.",
           "Total rank with unassigned students counted as list length + 1 is one welfare criterion among several (for example rank profiles or the number assigned); the proven optimum depends on that choice.",
-          "Instances are small enough for exact optimization (150 to 300 students) and their optima are known, so a perfect score reproduces the integer-programming solution."
+          "Instances are small enough for exact optimization (150 to 300 students) and their optima are known, so a perfect score reproduces the integer-programming solution.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -110959,11 +110965,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "fit_surface(quotes) -> (8, 5) array of raw SVI parameters [a, b, rho, m, sigma], one row per maturity in increasing order; total implied variance w(k) = a + b*(rho*(k - m) + sqrt((k - m)^2 + sigma^2)) in log-forward moneyness k = ln(K/F). quotes = {'spot': 4468.17, 'maturities': (8,) years (days/365), 'maturity_days', 'zero_rates', 'forwards' (spot*exp(r*T), no dividends), 'strikes': (13,), 'implied_vol': (8, 13), 'log_moneyness': (8, 13), 'total_variance': (8, 13)} for DAX index options on 2002-07-05. Valid only without static arbitrage: b >= 0, |rho| < 1, sigma >= 1e-4, a + b*sigma*sqrt(1 - rho^2) > 0, wing slopes b(1 + |rho|) <= 2, Durrleman's g(k) >= -1e-10 and w_{i+1}(k) - w_i(k) >= -1e-10 on a dense grid of |k| <= 6 refined near every vertex, and wing slopes b(1 +- rho) non-decreasing in maturity. Score: root-mean-square error of the fitted implied volatilities sqrt(w/T) against the 104 quotes, in volatility points (minimize)",
+      "contract": "fit_surface(quotes) -> (8, 5) array of raw SVI parameters [a, b, rho, m, sigma], one row per maturity in increasing order; total implied variance w(k) = a + b*(rho*(k - m) + sqrt((k - m)^2 + sigma^2)) in log-forward moneyness k = ln(K/F). quotes = {'spot': 4468.17, 'maturities': (8,) years (days/365), 'maturity_days', 'zero_rates', 'forwards' (spot*exp(r*T), no dividends), 'strikes': (13,), 'implied_vol': (8, 13), 'log_moneyness': (8, 13), 'total_variance': (8, 13)} for DAX index options on 2002-07-05. Valid only without static arbitrage: b >= 0, |rho| < 1, sigma >= 1e-4, a + b*sigma*sqrt(1 - rho^2) > 0, wing slopes b(1 + |rho|) <= 2, Durrleman's g(k) >= -1e-10 and w_{i+1}(k) - w_i(k) >= -1e-10 on a dense grid of |k| <= 6 refined near every vertex, and wing slopes b(1 +- rho) non-decreasing in maturity. Score: root-mean-square error of the fitted implied volatilities sqrt(w/T) against the 104 quotes, in volatility points (minimize). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-arbitrage-free-svi-surface/problem.json",
         "path": "suite/science-finance-arbitrage-free-svi-surface/problem.json",
-        "sha256": "c6068d40eccc1c4ab17085601ba468da4e2f5f73ef68f622518b7d9533222255"
+        "sha256": "e93aeedb791a1a0005e1f17e0e866229984b8063527def915518ecd7f099392b"
       },
       "provenance": {
         "kind": "native",
@@ -110988,7 +110994,8 @@
           "One historical surface with 104 quotes (mid implied volatilities without bid-ask spreads); a better fit on this surface is a development result, and quotes may themselves contain small arbitrages or rounding to four decimals.",
           "The no-arbitrage check is numerical: Durrleman's g and calendar spreads are evaluated on a dense grid of |k| <= 6 refined near every SVI vertex with tolerance 1e-10, plus exact wing conditions; it is not a proof for every strike, and the surface between quoted maturities is not checked.",
           "The candidate is restricted to raw SVI slices; other arbitrage-free parameterizations (for example SSVI, which is a special case, or non-parametric surfaces) must be expressed as raw SVI per maturity.",
-          "Forwards use QuantLib's zero rates and no dividends (the DAX is a total-return index); maturities use the original day counts rather than QuantLib's week-rounded ones."
+          "Forwards use QuantLib's zero rates and no dividends (the DAX is a total-return index); maturities use the original day counts rather than QuantLib's week-rounded ones.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -111031,11 +111038,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "build_frontier(problem) -> (51, N) float array: one portfolio per target return. problem = {'name': market, 'mean': (N,) expected weekly returns, 'cov': (N, N) covariance, 'K': 10, 'min_weight': 0.01, 'max_weight': 1.0, 'target_returns': (51,) evenly spaced from the return of the unconstrained minimum-variance portfolio to the highest return attainable with the constraints}. Every portfolio must hold exactly 10 assets (|w| <= 1e-12 counts as not held), each held weight in [0.01, 1], weights summing to 1 and expected return equal to its target (all within 1e-8). Called once for each OR-Library market: Hang Seng (N = 31), DAX 100 (85), FTSE 100 (89), S&P 100 (98), Nikkei 225 (225). Score: Chang et al.'s percentage error of each portfolio against the published unconstrained efficient frontier, min(100|s - s*(r)|/s*(r), 100|r - r*(s)|/r*(s)) by linear interpolation on the 2000 published frontier points (s = standard deviation, r = return), averaged over the 51 targets and then over the five markets (minimize)",
+      "contract": "build_frontier(problem) -> (51, N) float array: one portfolio per target return. problem = {'name': market, 'mean': (N,) expected weekly returns, 'cov': (N, N) covariance, 'K': 10, 'min_weight': 0.01, 'max_weight': 1.0, 'target_returns': (51,) evenly spaced from the return of the unconstrained minimum-variance portfolio to the highest return attainable with the constraints}. Every portfolio must hold exactly 10 assets (|w| <= 1e-12 counts as not held), each held weight in [0.01, 1], weights summing to 1 and expected return equal to its target (all within 1e-8). Called once for each OR-Library market: Hang Seng (N = 31), DAX 100 (85), FTSE 100 (89), S&P 100 (98), Nikkei 225 (225). Score: Chang et al.'s percentage error of each portfolio against the published unconstrained efficient frontier, min(100|s - s*(r)|/s*(r), 100|r - r*(s)|/r*(s)) by linear interpolation on the 2000 published frontier points (s = standard deviation, r = return), averaged over the 51 targets and then over the five markets (minimize). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-cardinality-constrained-frontier/problem.json",
         "path": "suite/science-finance-cardinality-constrained-frontier/problem.json",
-        "sha256": "c176c0695a5eb37a014954889176b62237a30355a9a0cd3a262a176c46e238eb"
+        "sha256": "88a869634812d6049f7ed2e25641c01a00a57fb9db8dfd349cbcc28144ce9e4f"
       },
       "provenance": {
         "kind": "native",
@@ -111064,7 +111071,8 @@
         "limitations": [
           "Portfolios are required at 51 fixed target returns rather than at the 51 risk-aversion weights of the published lambda sweep, so published mean percentage errors (for example 1.0957 for Hang Seng by simulated annealing) are not directly comparable with this score.",
           "The unconstrained frontier is a relaxation: no cardinality-constrained portfolio reaches zero error, and the attainable minimum per market is unknown (the problem is NP-hard).",
-          "Means and covariances are in-sample estimates from weekly prices of 1992-1997; the score measures optimization quality on these fixed inputs, not out-of-sample investment performance. Transaction costs, round lots and turnover are ignored."
+          "Means and covariances are in-sample estimates from weekly prices of 1992-1997; the score measures optimization quality on these fixed inputs, not out-of-sample investment performance. Transaction costs, round lots and turnover are ignored.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -111097,11 +111105,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "estimate_covariance(returns) -> (49, 49) symmetric positive-definite float array. returns is a (126, 49) float array of the previous 126 daily returns (decimal, oldest first) of the 49 Fama-French industry portfolios. Called every 21 trading days from 1971-09 to 2025-09 (649 times); the evaluator forms the global minimum-variance weights w = S^-1 1 / (1' S^-1 1) from the estimate, holds them for the next 21 days and scores the annualized standard deviation (percent) of the 13,629 daily out-of-sample portfolio returns (minimize). The estimate must be finite, symmetric (1e-10 relative) and positive definite with condition number below 1e12",
+      "contract": "estimate_covariance(returns) -> (49, 49) symmetric positive-definite float array. returns is a (126, 49) float array of the previous 126 daily returns (decimal, oldest first) of the 49 Fama-French industry portfolios. Called every 21 trading days from 1971-09 to 2025-09 (649 times); the evaluator forms the global minimum-variance weights w = S^-1 1 / (1' S^-1 1) from the estimate, holds them for the next 21 days and scores the annualized standard deviation (percent) of the 13,629 daily out-of-sample portfolio returns (minimize). The estimate must be finite, symmetric (1e-10 relative) and positive definite with condition number below 1e12. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-covariance-minimum-variance/problem.json",
         "path": "suite/science-finance-covariance-minimum-variance/problem.json",
-        "sha256": "978561c904f1be2325ac42a344a172d3cb6d5e363864c3c7f18bc4fde55bae46"
+        "sha256": "f0918056a14d155d7c2d28d53fe14f80d570a1c7b6ba42867b312f6b9d2ffc08"
       },
       "provenance": {
         "kind": "native",
@@ -111131,7 +111139,8 @@
           "Assets are 49 industry portfolios rather than individual stocks, so the cross-section is smaller and less noisy than in Ledoit and Wolf's experiments; N/T = 0.39 with the fixed 126-day window.",
           "The evaluation period is public and fixed; estimators tuned on it overfit, and a candidate that reads the prepared file could look ahead. The interface only passes the trailing window.",
           "Unconstrained minimum-variance weights are used (short positions allowed, no transaction costs or turnover limits), and returns are value-weighted CRSP portfolio returns of one data vintage.",
-          "The score is a single realized standard deviation over 54 years; differences of a few hundredths of a percentage point are within sampling error."
+          "The score is a single realized standard deviation over 54 years; differences of a few hundredths of a percentage point are within sampling error.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -111164,11 +111173,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "forecast_premium(history) -> float: forecast of next month's log equity premium log(1+R_m) - log(1+R_f) (decimal, |forecast| <= 0.5). history is a dict of 1-D float arrays from 1871-01 through the forecast origin month t (NaN where a series is unavailable): the Welch-Goyal columns 'Index', 'D12', 'E12', 'b/m', 'tbl', 'AAA', 'BAA', 'lty', 'ntis', 'Rfree', 'infl', 'ltr', 'corpr', 'svar', 'csp', 'CRSP_SPvw', 'CRSP_SPvwx' (decimal rates; inflation of month t is withheld because the CPI is published with a lag), 'yyyymm' (integers) and 'equity_premium' (log excess return of each month, NaN before 1926-01). Called once per origin for the 732 targets 1965-01..2025-12. Score: Campbell-Thompson out-of-sample R^2 in percent against the prevailing mean of the equity premium since 1926-01 (maximize; the seed scores exactly 0)",
+      "contract": "forecast_premium(history) -> float: forecast of next month's log equity premium log(1+R_m) - log(1+R_f) (decimal, |forecast| <= 0.5). history is a dict of 1-D float arrays from 1871-01 through the forecast origin month t (NaN where a series is unavailable): the Welch-Goyal columns 'Index', 'D12', 'E12', 'b/m', 'tbl', 'AAA', 'BAA', 'lty', 'ntis', 'Rfree', 'infl', 'ltr', 'corpr', 'svar', 'csp', 'CRSP_SPvw', 'CRSP_SPvwx' (decimal rates; inflation of month t is withheld because the CPI is published with a lag), 'yyyymm' (integers) and 'equity_premium' (log excess return of each month, NaN before 1926-01). Called once per origin for the 732 targets 1965-01..2025-12. Score: Campbell-Thompson out-of-sample R^2 in percent against the prevailing mean of the equity premium since 1926-01 (maximize; the seed scores exactly 0). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-equity-premium-prediction/problem.json",
         "path": "suite/science-finance-equity-premium-prediction/problem.json",
-        "sha256": "d0ad96d368a3e0a2a518eff0672a1580bf1e6ca108a3b7871e73408b0bc3ae11"
+        "sha256": "804a300b18196050e99cd0efc91b599bbe36976fdad5f445d54987f21d4b17cd"
       },
       "provenance": {
         "kind": "native",
@@ -111198,7 +111207,8 @@
           "The evaluation months are public. A candidate that reads the prepared file, embeds remembered returns or is tuned on 1965-2025 can look ahead; the interface only passes data up to the origin. Treat scores as development scores and freeze a candidate before testing it on later months.",
           "Monthly out-of-sample R^2 values in this literature are fractions of a percent with sampling error of the same order; the Clark-West statistic is reported, but a small positive score is not by itself evidence of predictability.",
           "One data vintage (the 2025 update, which revises some historical series) is used as if it were available in real time; apart from the one-month inflation lag, publication delays and revisions of the predictors are not modelled.",
-          "The score uses log equity premia and the unadjusted out-of-sample R^2; it does not measure economic value (certainty-equivalent gains, trading costs or leverage limits), and csp is only available until 2002-12."
+          "The score uses log equity premia and the unadjusted out-of-sample R^2; it does not measure economic value (certainty-equivalent gains, trading costs or leverage limits), and csp is only available until 2002-12.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -111236,11 +111246,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "rebalance(state) -> array of N target weights, or None to keep the current shares. Called at weeks 145, 158, ..., 288 (every 13 weeks) for each OR-Library market: Hang Seng (N = 31), DAX 100 (85), FTSE 100 (89), S&P 100 (98), Nikkei 225 (225). state = {'week': t, 'index_prices': (t+1,) weekly index levels for weeks 0..t, 'stock_prices': (t+1, N), 'holdings': (N,) shares held, 'portfolio_value': value before trading, 'K': 10, 'min_weight': 0.01, 'max_weight': 1.0, 'cost_rate': 0.01, 'rebalance_every': 13}. Weights: at most 10 stocks held (|w| <= 1e-12 counts as not held), each held weight in [0.01, 1], summing to 1; a portfolio is required at week 145. The first purchase is free, later trades pay 1% of the traded value, and shares are held fixed between rebalances. Score: out-of-sample tracking error, the root-mean-square difference between weekly log returns of the portfolio (net of costs) and of the index over weeks 146..290, in percent, averaged over the five markets (minimize)",
+      "contract": "rebalance(state) -> array of N target weights, or None to keep the current shares. Called at weeks 145, 158, ..., 288 (every 13 weeks) for each OR-Library market: Hang Seng (N = 31), DAX 100 (85), FTSE 100 (89), S&P 100 (98), Nikkei 225 (225). state = {'week': t, 'index_prices': (t+1,) weekly index levels for weeks 0..t, 'stock_prices': (t+1, N), 'holdings': (N,) shares held, 'portfolio_value': value before trading, 'K': 10, 'min_weight': 0.01, 'max_weight': 1.0, 'cost_rate': 0.01, 'rebalance_every': 13}. Weights: at most 10 stocks held (|w| <= 1e-12 counts as not held), each held weight in [0.01, 1], summing to 1; a portfolio is required at week 145. The first purchase is free, later trades pay 1% of the traded value, and shares are held fixed between rebalances. Score: out-of-sample tracking error, the root-mean-square difference between weekly log returns of the portfolio (net of costs) and of the index over weeks 146..290, in percent, averaged over the five markets (minimize). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-index-tracking/problem.json",
         "path": "suite/science-finance-index-tracking/problem.json",
-        "sha256": "cd243a8aa521c86259ca9e3c97ded0476f62c5226daacd39807aaa222a9aaec6"
+        "sha256": "40b66f4dc093c837113e304c176d01242a0e01f9877317fda59bad80cb58de84"
       },
       "provenance": {
         "kind": "native",
@@ -111264,7 +111274,8 @@
         "limitations": [
           "The protocol (optional rebalancing every 13 weeks with costs charged to the portfolio, free initial purchase, at most K stocks, pure tracking without an excess-return objective) differs from Beasley et al.'s single-rebalance model with a cost budget, so their published tracking errors are not directly comparable.",
           "Weekly prices of 1992-1997 for constituents at the end of the sample; survivorship and constituent changes are not modelled, and dividends are ignored as in the OR-Library data.",
-          "The out-of-sample period (145 weeks) is public and short; candidates tuned on it overfit, and tracking errors from one period have wide sampling uncertainty."
+          "The out-of-sample period (145 weeks) is public and short; candidates tuned on it overfit, and tracking errors from one period have wide sampling uncertainty.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -111296,11 +111307,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "quote(t, inventory, mid, params) -> (bid_depths, ask_depths): two float arrays of shape (4000,), one entry per simulated path, the distances below and above the mid price at which to quote in this step (np.inf = no quote; values >= -3/k). Called at every step n = 0..999 of each regime with t = n*dt, inventory (4000,) ints in [-Q, Q], mid (4000,) prices and params = {'sigma', 'A', 'k', 'gamma', 'T', 'steps', 'Q'}. Model: the bid is hit with probability 1 - exp(-A exp(-k bid_depth) dt) and the ask lifted likewise, independently; each fill earns its depth and moves inventory by one unit within |q| <= Q = 30 (quotes that would breach the bound are ignored); the mid moves by sigma*sqrt(dt)*N(0,1). Objective per path: spread captured minus (gamma/2)*sigma^2*sum(q^2 dt). Score: mean over three regimes (Avellaneda-Stoikov's example sigma 2, A 140, k 1.5, T 1 with gamma 0.05 and 0.5, and a thinner market) of the mean objective divided by that of the exact optimal policy of this discrete model on the same random numbers (maximize; about 1 at the optimum)",
+      "contract": "quote(t, inventory, mid, params) -> (bid_depths, ask_depths): two float arrays of shape (4000,), one entry per simulated path, the distances below and above the mid price at which to quote in this step (np.inf = no quote; values >= -3/k). Called at every step n = 0..999 of each regime with t = n*dt, inventory (4000,) ints in [-Q, Q], mid (4000,) prices and params = {'sigma', 'A', 'k', 'gamma', 'T', 'steps', 'Q'}. Model: the bid is hit with probability 1 - exp(-A exp(-k bid_depth) dt) and the ask lifted likewise, independently; each fill earns its depth and moves inventory by one unit within |q| <= Q = 30 (quotes that would breach the bound are ignored); the mid moves by sigma*sqrt(dt)*N(0,1). Objective per path: spread captured minus (gamma/2)*sigma^2*sum(q^2 dt). Score: mean over three regimes (Avellaneda-Stoikov's example sigma 2, A 140, k 1.5, T 1 with gamma 0.05 and 0.5, and a thinner market) of the mean objective divided by that of the exact optimal policy of this discrete model on the same random numbers (maximize; about 1 at the optimum). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-market-making/problem.json",
         "path": "suite/science-finance-market-making/problem.json",
-        "sha256": "36353382c2528ff14a39275c588050a79471029bf2ac143c19b7c5764ee89cb7"
+        "sha256": "cac4d23dfa201bae05cbf078353340711d02dfecd95cc44c941e0758b87c471c"
       },
       "provenance": {
         "kind": "native",
@@ -111324,7 +111335,8 @@
         "limitations": [
           "The market is simulated: Brownian mid price, independent Poisson fills with exponential intensity, no adverse selection, latency, queue position or tick size. Good scores do not imply profitable trading in real limit-order books.",
           "The optimal policy of this discrete model is known (computed by dynamic programming), so a score of about 1 reproduces a known solution; the closed-form approximation of the literature already scores 0.998.",
-          "Scores are Monte Carlo estimates on 4000 fixed paths per regime; the random stream is fixed and visible in the evaluator source, so a candidate that reproduces it could anticipate fills (treat this as cheating)."
+          "Scores are Monte Carlo estimates on 4000 fixed paths per regime; the random stream is fixed and visible in the evaluator source, so a candidate that reproduces it could anticipate fills (treat this as cheating).",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -111357,11 +111369,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "trade_schedule(problem) -> array of N nonnegative trade sizes n_1..n_N (shares sold in each period) summing to X (within 1e-6 relative). problem = {'shares': X, 'periods': N, 'horizon_days': T, 'tau': T/N, 'price': 50.0, 'sigma': (N,) volatility per period ($/share/day^0.5), 'eta': (N,) temporary-impact coefficients, 'beta': impact exponent (1 = linear), 'epsilon': fixed cost ($/share), 'gamma': linear permanent impact ($/share^2), 'risk_aversion': lambda (1/$), 'name': str}. Discrete Almgren-Chriss objective: E = gamma*X^2/2 - gamma*sum(n_k^2)/2 + epsilon*sum|n_k| + sum_k tau*eta_k*|n_k/tau|^(1+beta); V = tau*sum_k sigma_k^2*x_k^2 with holdings x_k = X - (n_1+...+n_k); U = E + lambda*V. Twelve fixed instances: Almgren-Chriss Table 1 parameters with varied N, lambda and volatility, power-law impact (beta 0.6 and 0.5) and U-shaped intraday liquidity and volatility. Score: mean over instances of 100*(U - U*)/U*, where U* is the exact optimum (closed form for constant linear impact, otherwise a convex solve); minimize, 0 is optimal",
+      "contract": "trade_schedule(problem) -> array of N nonnegative trade sizes n_1..n_N (shares sold in each period) summing to X (within 1e-6 relative). problem = {'shares': X, 'periods': N, 'horizon_days': T, 'tau': T/N, 'price': 50.0, 'sigma': (N,) volatility per period ($/share/day^0.5), 'eta': (N,) temporary-impact coefficients, 'beta': impact exponent (1 = linear), 'epsilon': fixed cost ($/share), 'gamma': linear permanent impact ($/share^2), 'risk_aversion': lambda (1/$), 'name': str}. Discrete Almgren-Chriss objective: E = gamma*X^2/2 - gamma*sum(n_k^2)/2 + epsilon*sum|n_k| + sum_k tau*eta_k*|n_k/tau|^(1+beta); V = tau*sum_k sigma_k^2*x_k^2 with holdings x_k = X - (n_1+...+n_k); U = E + lambda*V. Twelve fixed instances: Almgren-Chriss Table 1 parameters with varied N, lambda and volatility, power-law impact (beta 0.6 and 0.5) and U-shaped intraday liquidity and volatility. Score: mean over instances of 100*(U - U*)/U*, where U* is the exact optimum (closed form for constant linear impact, otherwise a convex solve); minimize, 0 is optimal. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-optimal-execution/problem.json",
         "path": "suite/science-finance-optimal-execution/problem.json",
-        "sha256": "cbaee254cb6433c8cf4aa17e3612d6b012d76e803b74d59c8bf1d2258e14129b"
+        "sha256": "45f8cbad006985cbcbfa886c481565d4f113377609900ef1d8497cc7b4af4c15"
       },
       "provenance": {
         "kind": "native",
@@ -111381,7 +111393,8 @@
           "This is a model-based rediscovery task: the optimum of every instance is known (closed form or a convex solve), so a perfect score reproduces known solutions and says nothing about real trading costs.",
           "Impact parameters follow the stylized Almgren-Chriss example rather than estimates for a specific stock; the intraday volume and volatility profiles are stylized U shapes, not measured curves.",
           "Prices follow an arithmetic random walk without drift or information; the schedule is static (no adaptation to realized prices), permanent impact is zero in the power-law instances to keep the problem convex, and buying back shares is not allowed.",
-          "The reference optimum is computed numerically for six of the twelve instances; scores within about 1e-7 percent of zero are optimal to solver tolerance and can be marginally negative."
+          "The reference optimum is computed numerically for six of the twelve instances; scores within about 1e-7 percent of zero are optimal to solver tolerance and can be marginally negative.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -111415,11 +111428,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "choose_weights(excess_returns, context) -> array of N finite positions x. excess_returns is a (120, N) float array of the previous 120 monthly excess returns (decimal, oldest first) of the task's N assets; context = {'cost_rate': 0.005, 'window': 120, 'max_gross': 20.0, 'risk_free': (120,) monthly T-bill returns, 'previous_weights': drifted relative weights just before rebalancing (None in the first month)}. The evaluator forms DeMiguel-Garlappi-Uppal relative weights w = x/|sum(x)| (sum(x) must be nonzero and sum|w| <= 20), holds w for the next month, charges 0.5% of sum|w - previous_weights| per rebalance and requires wealth to stay positive. Score: monthly Sharpe ratio of the net out-of-sample excess returns over every month of the task period (maximize); the 1/N rule is recomputed on the same months for comparison",
+      "contract": "choose_weights(excess_returns, context) -> array of N finite positions x. excess_returns is a (120, N) float array of the previous 120 monthly excess returns (decimal, oldest first) of the task's N assets; context = {'cost_rate': 0.005, 'window': 120, 'max_gross': 20.0, 'risk_free': (120,) monthly T-bill returns, 'previous_weights': drifted relative weights just before rebalancing (None in the first month)}. The evaluator forms DeMiguel-Garlappi-Uppal relative weights w = x/|sum(x)| (sum(x) must be nonzero and sum|w| <= 20), holds w for the next month, charges 0.5% of sum|w - previous_weights| per rebalance and requires wealth to stay positive. Score: monthly Sharpe ratio of the net out-of-sample excess returns over every month of the task period (maximize); the 1/N rule is recomputed on the same months for comparison. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-portfolio-choice-ff20/problem.json",
         "path": "suite/science-finance-portfolio-choice-ff20/problem.json",
-        "sha256": "726dae62967ba1262c7ee2d63218d3fc78edb85a62d49c92bb3843c03c95291b"
+        "sha256": "e62ef62e5532b6a7554efabf6c68519ec4fe8162443d6f3a8ec501ae28b0cc8f"
       },
       "provenance": {
         "kind": "native",
@@ -111439,7 +111452,8 @@
           "The evaluation months are public and fixed. Strategies or hyperparameters tuned on them overfit, and a candidate that reads the prepared files or embeds remembered returns could look ahead; the evaluator only prevents look-ahead through its interface. Treat scores as development scores and freeze a candidate before testing it on months after 2025-09.",
           "A monthly Sharpe ratio estimated from 50 to 52 years of returns has a standard error of about 0.04, so differences from 1/N below that size are not statistically meaningful; the one-sided Jobson-Korkie-Memmel p-value against 1/N is reported in the details.",
           "Returns are value-weighted CRSP portfolio returns from the CRSP 202509 vintage of the French library; later vintages revise history slightly. Costs are a flat 50 bp of traded value with no market impact, borrowing spread, short-sale fees or taxes, and positions are financed at the one-month T-bill rate.",
-          "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid."
+          "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -111473,11 +111487,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "choose_weights(excess_returns, context) -> array of N finite positions x. excess_returns is a (120, N) float array of the previous 120 monthly excess returns (decimal, oldest first) of the task's N assets; context = {'cost_rate': 0.005, 'window': 120, 'max_gross': 20.0, 'risk_free': (120,) monthly T-bill returns, 'previous_weights': drifted relative weights just before rebalancing (None in the first month)}. The evaluator forms DeMiguel-Garlappi-Uppal relative weights w = x/|sum(x)| (sum(x) must be nonzero and sum|w| <= 20), holds w for the next month, charges 0.5% of sum|w - previous_weights| per rebalance and requires wealth to stay positive. Score: monthly Sharpe ratio of the net out-of-sample excess returns over every month of the task period (maximize); the 1/N rule is recomputed on the same months for comparison",
+      "contract": "choose_weights(excess_returns, context) -> array of N finite positions x. excess_returns is a (120, N) float array of the previous 120 monthly excess returns (decimal, oldest first) of the task's N assets; context = {'cost_rate': 0.005, 'window': 120, 'max_gross': 20.0, 'risk_free': (120,) monthly T-bill returns, 'previous_weights': drifted relative weights just before rebalancing (None in the first month)}. The evaluator forms DeMiguel-Garlappi-Uppal relative weights w = x/|sum(x)| (sum(x) must be nonzero and sum|w| <= 20), holds w for the next month, charges 0.5% of sum|w - previous_weights| per rebalance and requires wealth to stay positive. Score: monthly Sharpe ratio of the net out-of-sample excess returns over every month of the task period (maximize); the 1/N rule is recomputed on the same months for comparison. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-portfolio-choice-industry10/problem.json",
         "path": "suite/science-finance-portfolio-choice-industry10/problem.json",
-        "sha256": "80ed46336c599596451250a5f4ddf92d77b780bf252b012e0de953e608af271c"
+        "sha256": "2e9c8427e63a31f9f0fcbff8281e10efb43bb37fb75d5e22e050b64fa78d3b66"
       },
       "provenance": {
         "kind": "native",
@@ -111497,7 +111511,8 @@
           "The evaluation months are public and fixed. Strategies or hyperparameters tuned on them overfit, and a candidate that reads the prepared files or embeds remembered returns could look ahead; the evaluator only prevents look-ahead through its interface. Treat scores as development scores and freeze a candidate before testing it on months after 2025-09.",
           "A monthly Sharpe ratio estimated from 50 to 52 years of returns has a standard error of about 0.04, so differences from 1/N below that size are not statistically meaningful; the one-sided Jobson-Korkie-Memmel p-value against 1/N is reported in the details.",
           "Returns are value-weighted CRSP portfolio returns from the CRSP 202509 vintage of the French library; later vintages revise history slightly. Costs are a flat 50 bp of traded value with no market impact, borrowing spread, short-sale fees or taxes, and positions are financed at the one-month T-bill rate.",
-          "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid."
+          "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -111531,11 +111546,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "choose_weights(excess_returns, context) -> array of N finite positions x. excess_returns is a (120, N) float array of the previous 120 monthly excess returns (decimal, oldest first) of the task's N assets; context = {'cost_rate': 0.005, 'window': 120, 'max_gross': 20.0, 'risk_free': (120,) monthly T-bill returns, 'previous_weights': drifted relative weights just before rebalancing (None in the first month)}. The evaluator forms DeMiguel-Garlappi-Uppal relative weights w = x/|sum(x)| (sum(x) must be nonzero and sum|w| <= 20), holds w for the next month, charges 0.5% of sum|w - previous_weights| per rebalance and requires wealth to stay positive. Score: monthly Sharpe ratio of the net out-of-sample excess returns over every month of the task period (maximize); the 1/N rule is recomputed on the same months for comparison",
+      "contract": "choose_weights(excess_returns, context) -> array of N finite positions x. excess_returns is a (120, N) float array of the previous 120 monthly excess returns (decimal, oldest first) of the task's N assets; context = {'cost_rate': 0.005, 'window': 120, 'max_gross': 20.0, 'risk_free': (120,) monthly T-bill returns, 'previous_weights': drifted relative weights just before rebalancing (None in the first month)}. The evaluator forms DeMiguel-Garlappi-Uppal relative weights w = x/|sum(x)| (sum(x) must be nonzero and sum|w| <= 20), holds w for the next month, charges 0.5% of sum|w - previous_weights| per rebalance and requires wealth to stay positive. Score: monthly Sharpe ratio of the net out-of-sample excess returns over every month of the task period (maximize); the 1/N rule is recomputed on the same months for comparison. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-portfolio-choice-industry49/problem.json",
         "path": "suite/science-finance-portfolio-choice-industry49/problem.json",
-        "sha256": "e78d6c63e44693628af817ccd6a0c1013fb6bfc8b52317c4535f5ef11540d4e0"
+        "sha256": "55b613f352f945ce77628909097406edd5230837205f1f3cf8cd3f1732fd2c41"
       },
       "provenance": {
         "kind": "native",
@@ -111556,7 +111571,8 @@
           "The evaluation months are public and fixed. Strategies or hyperparameters tuned on them overfit, and a candidate that reads the prepared files or embeds remembered returns could look ahead; the evaluator only prevents look-ahead through its interface. Treat scores as development scores and freeze a candidate before testing it on months after 2025-09.",
           "A monthly Sharpe ratio estimated from 50 to 52 years of returns has a standard error of about 0.04, so differences from 1/N below that size are not statistically meaningful; the one-sided Jobson-Korkie-Memmel p-value against 1/N is reported in the details.",
           "Returns are value-weighted CRSP portfolio returns from the CRSP 202509 vintage of the French library; later vintages revise history slightly. Costs are a flat 50 bp of traded value with no market impact, borrowing spread, short-sale fees or taxes, and positions are financed at the one-month T-bill rate.",
-          "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid."
+          "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -111590,11 +111606,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "make_forecaster(training_returns, names) -> object with forecast() and update(returns). training_returns is a (7280, 50) float array of daily returns (decimal) from 1971-03-12 to 1999-12-31: column 0 is the CRSP value-weighted market (Mkt-RF + RF), columns 1-49 the value-weighted Fama-French industries; names lists the 50 series. The evaluator then walks through the 6,475 trading days 2000-01-03..2025-09-30: forecast() must return a (50,) array of next-day return variances in [1e-10, 1]; afterwards update(r) receives that day's (50,) returns. Score: mean QLIKE loss log(h) + r^2/h over all days and series (minimize); the RiskMetrics EWMA benchmark (lambda 0.94), the difference and a Diebold-Mariano statistic are reported",
+      "contract": "make_forecaster(training_returns, names) -> object with forecast() and update(returns). training_returns is a (7280, 50) float array of daily returns (decimal) from 1971-03-12 to 1999-12-31: column 0 is the CRSP value-weighted market (Mkt-RF + RF), columns 1-49 the value-weighted Fama-French industries; names lists the 50 series. The evaluator then walks through the 6,475 trading days 2000-01-03..2025-09-30: forecast() must return a (50,) array of next-day return variances in [1e-10, 1]; afterwards update(r) receives that day's (50,) returns. Score: mean QLIKE loss log(h) + r^2/h over all days and series (minimize); the RiskMetrics EWMA benchmark (lambda 0.94), the difference and a Diebold-Mariano statistic are reported. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-volatility-forecasting/problem.json",
         "path": "suite/science-finance-volatility-forecasting/problem.json",
-        "sha256": "e3ed509adbaa9bac755d4d774f07c9367a61394a7ce68457c4fbde5423ebd608"
+        "sha256": "dfd0c8a323a5e1a41973f350568e7dc2b9f4201d7c7b90656d4acd7176811025"
       },
       "provenance": {
         "kind": "native",
@@ -111624,7 +111640,8 @@
           "Squared daily returns are a noisy proxy for the daily variance; QLIKE ranks forecasts consistently with this proxy but the loss level is not a variance-accuracy measure, and intraday realized variances are not available here.",
           "Forecasts are for close-to-close total returns (no mean adjustment); weekends, holidays and overnight effects are treated like any other trading day.",
           "The evaluation period 2000-2025 is public. A candidate that reads the prepared files or memorizes returns can look ahead; the interface only passes returns up to the previous day. Treat scores as development scores.",
-          "One data vintage of CRSP value-weighted portfolio returns is used; the 50 series are strongly correlated, so they do not provide 50 independent comparisons."
+          "One data vintage of CRSP value-weighted portfolio returns is used; the 50 series are strongly correlated, so they do not provide 50 independent comparisons.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,
@@ -111657,11 +111674,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "forecast_yields(history, horizons) -> (3, 10) float array: forecasts (percent) of the zero-coupon yields at maturities 1..10 years, 1, 6 and 12 months after the origin (rows follow horizons = (1, 6, 12)). history = {'yyyymm': (T,) ints, 'maturities': array 1.0..10.0 (years), 'yields': (T, 10) end-of-month Gurkaynak-Sack-Wright continuously compounded zero-coupon yields (percent) from 1972-01 through the origin month}. Called at the 415 month-end origins 1990-01..2024-07; |forecast| <= 30. Score: RMSE of the candidate divided by the RMSE of the random walk (no-change forecast), averaged over the three horizons and the maturities 1, 2, 3, 5, 7 and 10 years (minimize; the random-walk seed scores exactly 1)",
+      "contract": "forecast_yields(history, horizons) -> (3, 10) float array: forecasts (percent) of the zero-coupon yields at maturities 1..10 years, 1, 6 and 12 months after the origin (rows follow horizons = [1, 6, 12]). history = {'yyyymm': (T,) ints, 'maturities': array 1.0..10.0 (years), 'yields': (T, 10) end-of-month Gurkaynak-Sack-Wright continuously compounded zero-coupon yields (percent) from 1972-01 through the origin month}. Called at the 415 month-end origins 1990-01..2024-07; |forecast| <= 30. Score: RMSE of the candidate divided by the RMSE of the random walk (no-change forecast), averaged over the three horizons and the maturities 1, 2, 3, 5, 7 and 10 years (minimize; the random-walk seed scores exactly 1). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn, pandas and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/science-finance-yield-curve-forecasting/problem.json",
         "path": "suite/science-finance-yield-curve-forecasting/problem.json",
-        "sha256": "5559d5b3acdc5aeb456f6b746122d01c4dde4919ccdab57702c9a64f1bb1c51c"
+        "sha256": "05e573e04999f683a0a36d1f3354543c61a5ced1d4ad40c03c3fdf2f1ab20428"
       },
       "provenance": {
         "kind": "native",
@@ -111686,7 +111703,8 @@
           "GSW yields are smoothed fitted values from a Svensson curve, not observed bond yields; fitting error and smoothing make them easier to forecast than raw yields, and maturities below one year are excluded because GSW caution against them.",
           "The evaluation origins (1990-2024) and the data file are public; tuning on them or reading the prepared file can produce look-ahead. Forecasts at different origins overlap for the 6- and 12-month horizons, so the effective sample is smaller than 415.",
           "One data vintage (archived 2025-08-09) is used as if it were real-time; the live file is revised without notice.",
-          "RMSE ratios against the random walk have wide sampling uncertainty; Diebold-Mariano statistics per horizon are reported but a ratio slightly below 1 is weak evidence."
+          "RMSE ratios against the random walk have wide sampling uncertainty; Diebold-Mariano statistics per horizon are reported but a ratio slightly below 1 is weak evidence.",
+          "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions; module-level code still runs once in the evaluator process when the shared template imports the candidate, and outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
         ],
         "validation_level": "automated_tests",
         "upstream_reproduction": false,

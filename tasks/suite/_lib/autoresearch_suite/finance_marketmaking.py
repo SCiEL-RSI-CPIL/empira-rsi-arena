@@ -19,9 +19,10 @@ import math
 
 import numpy as np
 
-from .finance_stats import finite_vector
+from . import finance_sandbox
 from .runtime import CandidateError
 
+ENTRY = "quote"
 REGIMES = [  # Avellaneda-Stoikov's example (sigma 2, A 140, k 1.5, T 1) with two risk aversions, and a thinner market
     {"name": "as-low-risk-aversion", "sigma": 2.0, "A": 140.0, "k": 1.5, "gamma": 0.05, "T": 1.0, "steps": 1000, "Q": 30, "seed": 501},
     {"name": "as-high-risk-aversion", "sigma": 2.0, "A": 140.0, "k": 1.5, "gamma": 0.5, "T": 1.0, "steps": 1000, "Q": 30, "seed": 502},
@@ -71,8 +72,11 @@ def optimal_policy(index):
     return bids, asks, float(theta[r["Q"]])
 
 
-def simulate(quote, index):
-    """Per-path risk-adjusted P&L of a quoting policy on the regime's fixed random numbers."""
+def simulate_steps(index):
+    """Scoring loop for one regime: per-path risk-adjusted P&L on the regime's fixed random numbers.
+
+    Each call receives the time, inventories and mid prices; the random numbers that decide the fills stay here.
+    """
     r = REGIMES[index]
     rng = np.random.default_rng(r["seed"])
     dt, Q = r["T"] / r["steps"], r["Q"]
@@ -82,7 +86,7 @@ def simulate(quote, index):
     spread, penalty, fills = np.zeros(PATHS), np.zeros(PATHS), 0
     for n in range(r["steps"]):
         u_bid, u_ask, z = rng.random(PATHS), rng.random(PATHS), rng.standard_normal(PATHS)
-        out = quote(n * dt, q.copy(), mid.copy(), dict(params))
+        out = yield finance_sandbox.step(ENTRY, n * dt, q.copy(), mid.copy(), dict(params))
         if not isinstance(out, (tuple, list)) or len(out) != 2:
             raise CandidateError("quote must return (bid_depths, ask_depths)")
         db, da = (np.asarray(x, dtype=float) for x in out)
@@ -98,6 +102,11 @@ def simulate(quote, index):
         mid = mid + r["sigma"] * math.sqrt(dt) * z
     return spread - penalty, {"mean_abs_terminal_inventory": float(np.abs(q).mean()), "fills_per_path": fills / PATHS,
                               "mean_spread_capture": float(spread.mean()), "mean_inventory_penalty": float(penalty.mean())}
+
+
+def simulate(quote, index):
+    """Per-path risk-adjusted P&L of a candidate module (sandboxed) or a trusted quoting function."""
+    return finance_sandbox.run(quote, simulate_steps(index), ENTRY)
 
 
 def table_policy(index):
@@ -117,13 +126,23 @@ def glft_approximation(t, q, mid, params):
     return 1.0 / k + (2 * q + 1) / 2.0 * slope, 1.0 / k - (2 * q - 1) / 2.0 * slope
 
 
-def market_making_score(quote):
-    """Mean over regimes of mean risk-adjusted P&L / that of the exact optimal policy (maximize; about 1 at the optimum)."""
-    if not callable(quote):
-        raise CandidateError("quote must be callable")
+def regimes():
+    """Scoring loop over the regimes, in one session."""
+    results = []
+    for index in range(len(REGIMES)):
+        results.append((yield from simulate_steps(index)))
+    return results
+
+
+def market_making_score(candidate):
+    """Mean over regimes of mean risk-adjusted P&L / that of the exact optimal policy (maximize; about 1 at the optimum).
+
+    ``candidate`` is the candidate module (its quote runs in the sandbox) or a trusted callable.
+    """
     rows, ratios = [], []
+    simulated = finance_sandbox.run(candidate, regimes(), ENTRY)
     for index, regime in enumerate(REGIMES):
-        values, stats = simulate(quote, index)
+        values, stats = simulated[index]
         reference, _ = simulate(table_policy(index), index)
         ratios.append(float(values.mean() / reference.mean()))
         rows.append({"regime": regime["name"], "mean_value": float(values.mean()), "optimal_policy_value": float(reference.mean()),
