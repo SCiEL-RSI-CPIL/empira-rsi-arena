@@ -22,7 +22,7 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 300
   max_retries: 2
 
 prompt:
@@ -31,7 +31,7 @@ prompt:
 
     LLVM function inlining for binary size task evaluated in Magellan: Autonomous Discovery of Novel Compiler Optimization Heuristics with AlphaEvolve.
 
-    Candidate interface: see evaluator.py
+    Candidate interface: should_inline(features) -> bool, called by LLVM's ML inline advisor (interactive mode) for every eligible call site; features is a dict of int values with LLVM 23's MLInlineAdvisor feature names: sroa_savings, sroa_losses, load_elimination, call_penalty, call_argument_setup, load_relative_intrinsic, lowered_call_arg_setup, indirect_call_penalty, jump_table_penalty, case_cluster_penalty, switch_default_dest_penalty, switch_penalty, unsimplified_common_instructions, num_loops, dead_blocks, simplified_instructions, constant_args, constant_offset_ptr_args, callsite_cost, cold_cc_penalty, last_call_to_static_bonus, is_multiple_blocks, nested_inlines, nested_inline_cost_estimate, threshold, callee_basic_block_count, callsite_height, node_count, nr_ctant_params, cost_estimate, edge_count, caller_users, caller_conditionally_executed_blocks, caller_basic_block_count, callee_conditionally_executed_blocks, callee_users, is_callee_avail_external, is_caller_avail_external. Legality and mandatory inlining stay with LLVM. Score (minimize): text-section bytes of the sqlite3 shell (SQLite amalgamation, clang -Oz bitcode, opt default<O2>, llc -O2, linked) built with the policy divided by the same build with LLVM's default inlining heuristic. Needs opt, llc, llvm-size and clang of one LLVM >= 17 installation (PATH, LLVM_BIN or Homebrew's llvm keg)
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

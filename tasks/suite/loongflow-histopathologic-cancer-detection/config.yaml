@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 780
   max_retries: 2
 
 prompt:
   system_message: |
     histopathologic-cancer-detection
 
-    Predict metastatic cancer presence in histopathology image patches.
+    Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 45,819 labelled 48 x 48 PatchCamelyon lymph-node patch crops and returns a tumour probability in [0, 1] for each of 11,672 test crops from held-out whole-slide images, within a 600 s wall-clock budget on 4 CPU threads; scored by ROC AUC (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: fit_predict(train, test_inputs, time_budget_s) -> float array of shape (n_test,). train: dict with 'images' (uint8 array (n, 48, 48, 3), RGB centre crops of 96 x 96 PatchCamelyon patches of lymph-node sections) and 'labels' (int array (n,), 1 when the central 32 x 32 pixel region contains tumour tissue); test_inputs: dict with 'images'; return the probability of tumour for each test crop, in [0, 1]. time_budget_s = 600. fit_predict runs in a sandboxed child process: 4 CPU threads (thread settings of the numerical libraries, not an operating-system limit), no GPU, no network, no child processes, no pretrained weights or external data, reads limited to the Python installation and the task's public inputs, writes limited to a temporary working directory, memory limit 3.5 GB. time_budget_s wall-clock seconds start when the candidate's source starts executing in the child (imports and module-level code count); the process is killed 15 s after the budget (score: invalid). The evaluator holds the test labels and recomputes the metric; nothing the candidate reports is trusted. Score (maximize): ROC AUC (MLE-bench grade.py; predictions outside [0, 1] are invalid)
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

@@ -1,0 +1,146 @@
+{
+  "schema": "artask.upgrades/1",
+  "package": "llm_tools",
+  "reviewed_on": "2026-10-10",
+  "tasks": {
+    "evox-telemetry-repair": {
+      "family": "llm_tools_telemetry",
+      "params": {
+        "seed": 42,
+        "rows": 30
+      },
+      "protocol": "recreated_verified",
+      "requires": [
+        "file:data/llm_tools/telemetry/evaluation_data.csv"
+      ],
+      "notes": [
+        "Source: the pre-release ADRS telemetry-repair example (openevolve/examples/ADRS/telemetry_repair in UCB-ADRS/ADRS at commit 259292f3ad1924c03be684996dbd83e6891c3e39, Apache-2.0), which the authors later removed from their main branch; byte-identical copies of evaluator.py and evaluation_data.csv are in mert-cemri/autoevolve (Apache-2.0), and mit-nms/Engram (MIT) differs only by one added constant. The pinned skydiscover release used for EvoX lists the task as 'Coming soon', so identity with the evaluator behind the EvoX and AdaEvolve tables is not established.",
+        "Protocol: the original evaluate() first looks for an input-validation-eval Dataset (six perturbation scenarios of 500 rows) that is not part of the repository and then falls back to evaluate_legacy; this task implements evaluate_legacy: 30 of the 40 rows of the Abilene snapshot drawn with random.seed(42), +-2% noise on every counter and one bug type per row (dropped, scaled, correlated dropped, correlated scaled), row score 0.75 counter repair + 0.05 status repair + 0.2 confidence calibration, averaged over rows.",
+        "Verification: the port and the original evaluate_legacy (run unchanged from the pinned file) give identical scores, to 1e-15, for three fixed candidates (the seed 0.0511, an echo-the-measurements program 0.8385, a peer-consistency heuristic 0.9434), and the original evaluator gives 0.8222 for the repository's reference program initial_program_reference_selfcontained.py (Hodor plus democratic trust propagation), which equals the human/SOTA value 0.8222 reported by EvoX (Table 3) and AdaEvolve (Table 2). Details in validation/llm_tools-checks.json.",
+        "Deviation (sandbox): the candidate runs in a resource-limited child without file, network or subprocess access, because evaluation_data.csv holds the ground truth. Inside the child the standard library and numpy are available but pandas and scipy cannot be imported (their imports load blocked modules), so the repository's reference programs, which use pandas, do not run here unchanged.",
+        "Deviation (leak fix): in the original, interfaces hit by a correlated bug are copied from the clean data and keep their _ground_truth_rx/_ground_truth_tx fields, so a candidate could read the true counters; these fields are removed before the candidate sees the telemetry.",
+        "Deviation (strict contract): the original skipped interfaces missing from the output (a candidate returning one well-repaired interface scored 1.0), accepted non-tuple values and scored a crashing row 0; here every interface must be present with (original, repaired, confidence) triples, a finite repaired counter and a confidence in [0, 1], and any crash or malformed output makes the candidate invalid. Lists are accepted in place of tuples (the sandbox returns JSON).",
+        "Deviation (randomness): in the original a candidate that draws from or reseeds Python's global random generator changes the perturbations of later rows; the reference program reseeds it, which is part of how 0.8222 arises: on this task's fixed scenarios the same program scores 0.7994 (computed in-process, because it imports pandas). Here the perturbations are drawn by the evaluator from its own random.Random(42) stream and are identical for every candidate; for candidates that do not touch the global generator they equal the original's perturbations.",
+        "Data and headroom: the snapshot covers 30 directed interfaces of the Abilene backbone (12 routers; the 40 rows are timestamps from March to September 2004) and every interface status is 'up', so status repair is trivially 1 for a pass-through. Simple baselines are strong: echoing the measured counters scores 0.838 and pairing each rx with the peer's tx scores 0.943, above the published human value 0.822; the published best evolved programs score about 0.95-0.96, so the remaining headroom is small.",
+        "The underlying Abilene measurements carry no stated licence of their own (the repository is Apache-2.0); the file is fetched and SHA-256 checked by scripts/prepare_llm_tools.py telemetry and is not redistributed."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/UCB-ADRS/ADRS/tree/259292f3ad1924c03be684996dbd83e6891c3e39/openevolve/examples/ADRS/telemetry_repair",
+          "type": "repository",
+          "locator": "evaluator.py (evaluate_legacy, apply_test_perturbations, scoring functions) and initial_program_reference_selfcontained.py"
+        },
+        {
+          "url": "https://github.com/UCB-ADRS/ADRS/blob/259292f3ad1924c03be684996dbd83e6891c3e39/openevolve/examples/ADRS/telemetry_repair/ref_data/evaluation_data.csv",
+          "type": "benchmark",
+          "locator": "40 Abilene telemetry rows (787,281 bytes)"
+        },
+        {
+          "url": "https://github.com/mert-cemri/autoevolve/tree/main/examples_ADRS/telemetry_repair",
+          "type": "repository",
+          "locator": "identical copy of evaluator.py and evaluation_data.csv"
+        }
+      ],
+      "superseded_limitations": [
+        "Telemetry-repair directory is not present at inspected commit.",
+        "Telemetry Repair is explicitly marked Coming soon in pinned benchmarks/ADRS/README.md; no implementation released."
+      ]
+    },
+    "mipro-hover": {
+      "family": "llm_tools_hover",
+      "params": {
+        "samples": 30,
+        "seed": 0,
+        "budget_usd": 0.5
+      },
+      "protocol": "recreated",
+      "requires": [
+        "file:data/llm_tools/hover/claims.json",
+        "file:data/llm_tools/hover/index"
+      ],
+      "notes": [
+        "Recreation of the HoVer multi-hop retrieval task as released in the GEPA artifact (gepa-ai/gepa-artifact at cbefbc1aa0f43dd39874ec4bf42211365dbda42e, MIT): the retriever is bm25s 0.2.12 (k1 0.9, b 0.4, English stopwords, PyStemmer 2.2.0.3 Snowball stemmer, the versions pinned by the artifact) over the 5,233,330 2017 Wikipedia abstracts of dspy/cache (wiki.abstracts.2017.tar.gz at revision ef6a5e72a98b47cef31574a400fea8fe149559a3), each rendered as 'title | abstract' and deduplicated by text as in the artifact's search() (top-k selection through jax.lax.top_k, as bm25s does when jax is installed; the artifact pins jax 0.6.0, this environment has 0.11.2); the metric is the artifact's discrete_retrieval_eval (every gold supporting title, normalised as dspy.evaluate.normalize_text, among the retrieved titles).",
+        "Split: GEPA's HoVer data are the 3-document claims of the HoVer train release (6,084 claims), shuffled with random.Random(0) and split 40/40/20 into test/validation/train pools, with the test pool trimmed to 300 claims by random.Random(1).sample; this procedure is reimplemented over hover_train_release_v1.1.json (hover-nlp/hover at 39b84697) instead of the Hugging Face loading script, so identity with GEPA's 300 test claims rests on the same file order and Python's random module and was not checked against GEPA's own files. Each evaluation uses a fixed 30-claim sample of these 300 (ARTASK_LLM_SAMPLES overrides the size); candidates are optimised and scored on the same sample, so scores are in-sample.",
+        "Program structure: GEPA (and MIPRO) optimise the prompts of a fixed DSPy program with 3 hops; here the whole program is the candidate, constrained to GEPA's retrieval budget: at most 3 search calls per claim, at most 10 documents per call and 24 in total (GEPA retrieves 7, 7 and 10). The documents returned by search are scored; the candidate's return value is ignored, so a program cannot claim titles it did not retrieve.",
+        "MIPRO itself evaluated HoVer with its own Wikipedia retriever (not reproduced here), Recall@21 (3 hops of 7 passages), a Llama-3-8B task model and its own splits (500/500/1,520 claims restricted to 3 supporting facts, so about 17% of its test claims need only two documents, whereas the claims here have three gold documents); those settings are not reproduced and its numbers (39.0 test recall for MIPRO, Table 2) are not comparable with scores here. GEPA's reported HoVer scores (Qwen3-8B and GPT-4.1-mini task models) were not reproduced either. The third cited paper (Reward-Free Evolving Agents via Pairwise Validator) runs GEPA's HoVer setting with Qwen3-8B, Qwen3-32B, Gemma-4-E4B and gpt-oss-20b, 375 iterations, a 30-claim validation pool and a 50-claim test set (its Table 8); its HoVer scores (Table 2) were not reproduced either.",
+        "Model: the default task model is google/gemini-2.5-flash at temperature 0 through OpenRouter, budget USD 0.5 per evaluation (ARTASK_LLM_BUDGET_USD overrides); responses are cached.",
+        "Deviation: a search whose query bm25s cannot score (for example a query made only of stopwords) returns an empty list instead of failing the claim.",
+        "Data: all 900 gold titles of the 300 test claims occur as document titles of the corpus. The prepared corpus and index take about 2.5 GB of disk (docs.jsonl 1.5 GB, bm25s arrays 1.0 GB, memory-mapped at evaluation; a search takes about 0.05 s); building them once took about 3 minutes on one core and several GB of memory. The HoVer claims are CC BY-SA 4.0; the abstracts are Wikipedia text (CC BY-SA) whose dspy/cache repository states no licence; nothing is redistributed (scripts/prepare_llm_tools.py hover)."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/gepa-ai/gepa-artifact/tree/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/hover",
+          "type": "repository",
+          "locator": "hover_program.py (bm25s retriever, HoverMultiHop), hover_utils.py (discrete_retrieval_eval), hover_data.py and benchmark.py (split)"
+        },
+        {
+          "url": "https://github.com/hover-nlp/hover/blob/39b84697f196308f398a251a7aea9b82ae0f0562/data/hover/hover_train_release_v1.1.json",
+          "type": "benchmark",
+          "locator": "HoVer train release v1.1 (18,171 claims)"
+        },
+        {
+          "url": "https://huggingface.co/dspy/cache/blob/ef6a5e72a98b47cef31574a400fea8fe149559a3/wiki.abstracts.2017.tar.gz",
+          "type": "archive",
+          "locator": "2017 Wikipedia abstracts (5,233,330 documents)"
+        }
+      ],
+      "superseded_limitations": [
+        "Current DSPy repository has MIPROv2 optimizer but the seven original 2024 benchmark drivers were not located in the inspected tree; API library availability alone does not make original tasks executable."
+      ]
+    },
+    "l-autoda-cifar-10-decision-based-adversarial-attack": {
+      "family": "llm_tools_autoda",
+      "params": {
+        "set": "heldout",
+        "images": 20,
+        "queries": 2500,
+        "seed": 0,
+        "s0": 0.05,
+        "threads": 4
+      },
+      "protocol": "recreated_verified",
+      "requires": [
+        "file:data/llm_tools/autoda/resnet18_cifar10.bin",
+        "file:data/llm_tools/autoda/images.npy",
+        "file:data/llm_tools/autoda/attack_sets.json"
+      ],
+      "notes": [
+        "Task: L-AutoDA (Guo et al., GECCO 2024 Companion) evolves the proposal function draw_proposals(org_img, best_adv_img, std_normal_noise, hyperparams) of an L2 decision-based random-walk attack; the paper's target is a CIFAR-10 ResNet-18 (Dadalto's edadaltocg/resnet18_cifar10, used here at revision ccacbae365101b9bfa45e1f17f4acac30c2601b2, MIT), its evolution fitness is the mean L2 distance on the first eight CIFAR-10 test images with at most 8,000 queries, and its test protocol uses 100 images per class at 2,500, 5,000 and 10,000 queries (Table 2).",
+        "Framework: the evaluator implements Algorithm 1 as in the pinned repository's EvoAttack (pgg3/L-AutoDA at f35ca7915c60425e884325f08e9203091c39da82, no licence file): all images advance in lockstep, one query per image per step, proposals clipped to [0, 1], a proposal is accepted when misclassified and closer in L2 (compared with the repository's float32 norm computation), p <- 0.95 p + 0.05 [accepted] and s <- s f(p)^0.1 with the paper's piecewise-linear f; s starts at 0.05 as in the repository's code (the paper's text gives 0.001 as the initial value; the parameter s0 selects it). Every accepted example is re-verified with the model at the end (one that no longer classifies as adversarial falls back to its starting distance).",
+        "Verification: (a) the rebuilt model classifies 94.98% of the 10,000 CIFAR-10 test images correctly, the accuracy on the model card (0.9498); (b) with the same model, starting points, noise stream and the seed proposal function, the evaluator's loop and the repository's EvoAttack (its code run unchanged through foolbox 3.3.4, with numpy.random.normal replaced by the evaluator's noise stream) return byte-identical adversarial examples for 4 images x 200 queries and 8 images x 1,500 queries (validation/llm_tools-checks.json). The paper's attack-success numbers were not reproduced.",
+        "Reduced budget (deviation): the default fitness is the mean L2 over 20 correctly classified held-out test images (2 per class, a seeded sample of test indices >= 8) at 2,500 queries per image, the paper's smallest test budget, instead of 1,000 images; the paper's evolution protocol (the first eight test images that the model classifies correctly, 8,000 queries) is available with the parameters set='evolution', images=8, queries=8000. Scores are not comparable with the paper's tables.",
+        "Wall clock (deviation): the repository aborts an attack after 120 s of wall-clock time, which makes its fitness depend on hardware speed; there is no such abort here, the score depends only on the query budget.",
+        "Target model (deviation): the pinned repository attacks RobustBench's 'Standard' WRN-28-10 instead of the paper's ResNet-18; the paper's model is used here, rebuilt as a ResNet-18 with a 3x3 stem and no max-pool (timm's layout, strict state-dict load) behind CIFAR normalisation (mean 0.4914/0.4822/0.4465, std 0.2023/0.1994/0.2010), run on the CPU in float32 with 4 threads and 8-image chunks.",
+        "Starting points (deviation): the paper starts from images with incorrect labels; here each attacked image starts from the L2-nearest of 10 seeded test images that the model assigns to a different class (fixed when the data are prepared; these selections cost no queries). The repository instead searches a blended-uniform-noise starting point.",
+        "Noise (deviation): std_normal_noise comes from numpy's default_rng(seed) in the sandboxed child rather than the unseeded global generator, so an evaluation is deterministic on a fixed machine; proposals within floating-point rounding of the decision boundary may be classified differently on other hardware or thread counts.",
+        "Sandbox: draw_proposals runs in a resource-limited child without file or network access (numpy and the standard library only) and sees the original images, its own proposals and which of them were accepted, never the labels or the model.",
+        "Data: CIFAR-10 test images come from the binary archive at https://www.cs.toronto.edu/~kriz/cifar-10-binary.tar.gz (no licence stated; the page asks users to cite Krizhevsky 2009), downloaded and SHA-256 checked by scripts/prepare_llm_tools.py autoda, which stores only the attacked images and their starting points; nothing is redistributed."
+      ],
+      "sources": [
+        {
+          "url": "https://arxiv.org/abs/2401.15335",
+          "type": "paper",
+          "locator": "Section 5.1 (setup), Algorithm 1, Table 2"
+        },
+        {
+          "url": "https://github.com/pgg3/L-AutoDA/tree/f35ca7915c60425e884325f08e9203091c39da82",
+          "type": "repository",
+          "locator": "core/attacks/EVOAttack_template.py (EvoAttack loop, f(p), 120 s abort), core/search_utils/task.py (draw_proposals contract)"
+        },
+        {
+          "url": "https://huggingface.co/edadaltocg/resnet18_cifar10/tree/ccacbae365101b9bfa45e1f17f4acac30c2601b2",
+          "type": "repository",
+          "locator": "pytorch_model.bin (44,774,261 bytes), config.json (normalisation)"
+        },
+        {
+          "url": "https://www.cs.toronto.edu/~kriz/cifar.html",
+          "type": "benchmark",
+          "locator": "CIFAR-10 binary version, test_batch.bin"
+        }
+      ],
+      "superseded_limitations": [
+        "Official L-AutoDA release pinned; the attack evaluation needs PyTorch and RobustBench model downloads."
+      ]
+    }
+  }
+}

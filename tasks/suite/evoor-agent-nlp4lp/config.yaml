@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 900
   max_retries: 2
 
 prompt:
   system_message: |
     NLP4LP
 
-    NLP4LP
+    Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client and optionally local numpy/scipy code, returns the optimal objective value of an NLP4LP optimization word problem; scored by accuracy within 1e-3*max(1, |optimum|) on a fixed 30-problem sample of the 178 cleaned problems (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client; the program may also run code locally (numpy and scipy, including scipy.optimize.milp and linprog, are available). `question` is an NLP4LP optimization word problem followed by a request for its optimal objective value. Answer rule: the last numeric literal of the final answer (the text after the last 'Answer:' marker, else the last \boxed{...}, else the last non-empty line) must satisfy |answer - optimum| <= 1e-3 * max(1, |optimum|). Score: accuracy on a fixed 30-problem sample of the 178 cleaned NLP4LP problems; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

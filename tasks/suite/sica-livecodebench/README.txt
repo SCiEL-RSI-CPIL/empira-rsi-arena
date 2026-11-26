@@ -2,22 +2,24 @@
 
 **Paper:** A Self-Improving Coding Agent (https://arxiv.org/pdf/2504.15228)\
 **Task id:** `sica-livecodebench`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated_verified`\
 **Direction:** maximize\
 
 ## Task
 
-LiveCodeBench: optimize the candidate specified by the paper and evaluate against the named benchmark.
+Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to produce a Python solution(*args) function for LiveCodeBench LeetCode problems; scored by the mean fraction of public and private tests passed on a fixed 20-problem sample, with 20 s per test and 60 s per problem (higher is better).
 
 Benchmark named in the paper: LiveCodeBench. Paper metric: benchmark score; time and API cost enter combined utility.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+solve(question: str, llm) -> str. `question` is a LiveCodeBench LeetCode problem in SICA's layout (title, difficulty, description, the required function `solution(*args)` and the public examples as calls); the last ```python block of the reply (else the whole reply) is executed. `llm(...)` is a budgeted, cached OpenRouter chat client. For every public and private test, `solution` is called in a fresh namespace of a resource-limited child process with the JSON-decoded input lines as arguments; a test passes when the plain-data result equals the expected output after tuples become lists, or when numbers (or lists of numbers) agree within 1e-6, as in SICA's test template. Limits: 20 s per test and 60 s per problem. Score: mean over a fixed 20-problem sample of the fraction of tests passed; higher is better
+
+Parameters: `{"benchmark": "livecodebench", "samples": 20, "seed": 0, "per_test": 20.0, "time_limit": 60.0, "private_tests": "all"}`
 
 ## Labels
 
-Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `software_engineering`, data `public_benchmark`, verification `none`, reference `none`, resources `model_api, simulator`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `software_engineering`, data `public_benchmark`, verification `sampled`, reference `none`, resources `model_api`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -30,7 +32,17 @@ No qualifying paper whose main objective is this underlying scientific or real-w
 
 ## Evaluation protocol
 
-Not executable in this suite: Candidates are LLM agents scored inside the LiveCodeBench environment (tools, web, games or code sandboxes); the environment and model access are external.
+Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
+
+- Data and selection: release_v5 of livecodebench/code_generation_lite (revision 0fe84c3912ea0c4d4a78037083943e8f0c4dd505). SICA's loader shuffles the 880 problems with random.seed(2) and keeps problems whose tests are functional (stdin problems are skipped); the first 50 kept problems are used, the paper's subset size (the code's default is 8). Running SICA's own from_raw parser on the full release files reproduces exactly these 50; only their 50 lines are fetched (locked byte ranges). Each evaluation uses a fixed 20-problem sample of the 50.
+- Scoring check: on 4 solutions (3 correct, 1 wrong) and 125 tests, the local harness agrees test by test with SICA's own generated test files run in subprocesses.
+- SICA's loader decompresses private tests only when their base64 text contains '='; for 20 of the 50 problems (no padding) it silently keeps only the public examples. This task uses every test by default, which is stricter than SICA's runs on those problems; parameters {"private_tests": "sica_loader"} reproduce SICA's behaviour.
+- Execution: SICA runs each test as a separate Docker process with a 20 s timeout; here one resource-limited child process per problem runs the tests with 20 s per test and 60 s in total, so slow solutions can lose tests that SICA would pass. SICA's search utility also weighs time and API cost; only the benchmark score is used here.
+- Candidate: SICA's self-improving coding agent with tools in a container is replaced by a free-form solve(question, llm) program that may generate and run code locally; the default model is google/gemini-2.5-flash at temperature 0. Not verified: the paper's scores were not reproduced.
+- Whether the 50 locally selected problems are the 50 questions of the paper's run cannot be verified from the paper. The fraction-of-tests score is SICA's code; it differs from LiveCodeBench's standard all-tests-pass criterion, and the paper calls it Benchmark Accuracy without defining it. The paper's agents use Sonnet 3.5 (v2) and o3-mini at about US$1.6-2.7 per problem (Table 1); the local budget is about US$0.0125 per problem. The local problem statement is worded locally, not SICA's text.
+- The candidate runs as trusted code in the evaluator's process, and the reference answers are stored in data/llm_bench of the task cache (ARENA_TASK_CACHE_DIR), so a candidate could read them; it can also replace the evaluator's scoring functions, raise the model client's budget attribute and read OPENROUTER_API_KEY from the environment, so the per-evaluation budget bounds an honest program only. Scores assume a candidate that does none of this.
+- Model-driven evaluation: the score is an estimate on a fixed seeded sample and depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0), the sample size (task parameter `samples`, overridden by ARTASK_LLM_SAMPLES) and the per-evaluation budget (ARTASK_LLM_BUDGET_USD, default 0.25). Responses are cached under llm-cache in the task cache (ARTASK_LLM_CACHE overrides) and shared by all candidates: a repeated call, also one at temperature > 0, returns the stored reply, and a cached reply costs nothing against the budget. `valid` is null because a sampled model score cannot certify a candidate.
+- The generated code runs as a module named 'solution' (not '__main__'), so a demonstration under if __name__ == '__main__' is not executed, as in the source evaluator; whatever processes it starts are killed when the problem's tests end. As SICA's score_problem does, LiveCodeBench's import block (from string/re/datetime/collections/heapq/bisect/copy/math/random/statistics/itertools/functools/operator/io/sys/json/builtins/typing import *, and the plain imports) is provided, so code using List, Counter or inf without importing them runs. An integer result too large for a float fails its test.
 
 ## Run
 
@@ -42,16 +54,19 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `service:llm_api`
+- `py:numpy`
 - `env:OPENROUTER_API_KEY`
-- `environment:LiveCodeBench`
+- `network:openrouter`
+- `py:sortedcontainers`
+- `file:data/llm_bench/livecodebench_sica.json.gz`
 
 ## Sources
 
-- paper: https://arxiv.org/pdf/2504.15228 (Sections 4 and 4.1)
+- paper: https://arxiv.org/pdf/2504.15228 (Section 4 and Table 1 (LiveCodeBench); utility defined in Section 3)
 - repository: https://github.com/MaximeRobeyns/self_improving_coding_agent/tree/ed8275dca4d3c5dbf77229964351fe9b424797dc (base_agent/src/benchmarks/livecodebench.py)
+- benchmark: https://huggingface.co/datasets/livecodebench/code_generation_lite/tree/0fe84c3912ea0c4d4a78037083943e8f0c4dd505 (release_v5 files test.jsonl to test5.jsonl (50 lines fetched))
+- repository: https://github.com/MaximeRobeyns/self_improving_coding_agent/blob/ed8275dca4d3c5dbf77229964351fe9b424797dc/base_agent/src/benchmarks/livecodebench.py (problem selection (seed 2) and functional test template)
 
 ## Limitations
 
 - Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed.
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.

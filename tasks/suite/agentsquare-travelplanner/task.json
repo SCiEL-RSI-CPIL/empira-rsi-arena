@@ -2,12 +2,12 @@
   "schema_version": "1.0",
   "id": "agentsquare-travelplanner",
   "name": "TravelPlanner",
-  "description": "TravelPlanner task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.",
+  "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that gathers flights, lodging, restaurants and attractions with TravelPlanner's search tools and submits a JSON travel plan, using a budgeted OpenRouter model client; scored by the mean commonsense-constraint pass rate (of 8) on 10 hard validation queries, at most 30 actions each (higher is better).",
   "paper_ids": [
     "agentsquare"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2410.06153",
@@ -18,6 +18,31 @@
       "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c",
       "type": "repository",
       "locator": "tasks/travelplanner"
+    },
+    {
+      "url": "https://arxiv.org/abs/2410.06153",
+      "type": "paper",
+      "locator": "Section 4.1 and Appendix A.1 (tasks and metrics)"
+    },
+    {
+      "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/travelplanner",
+      "type": "repository",
+      "locator": "Two-stage mode.txt; agents/eval_main.py (queries 151-180, ReactAgent max_steps 30)"
+    },
+    {
+      "url": "https://github.com/OSU-NLP-Group/TravelPlanner/tree/e52c87f4ac348a3410c46dc3553c519db5ec5e23/tools",
+      "type": "repository",
+      "locator": "tool implementations (ported)"
+    },
+    {
+      "url": "https://huggingface.co/spaces/osunlp/TravelPlannerLeaderboard/tree/a57daf2e45155a5378dcf75ee9fe374e671ee048/database",
+      "type": "archive",
+      "locator": "benchmark database"
+    },
+    {
+      "url": "https://huggingface.co/datasets/osunlp/TravelPlanner/tree/8736504ecfc31b7f8b7e40122873c337e83fff7c",
+      "type": "benchmark",
+      "locator": "validation.csv"
     }
   ],
   "requirements": {
@@ -32,7 +57,7 @@
     ]
   },
   "evaluation": {
-    "metric": "micro pass rate",
+    "metric": "score",
     "paper_metric": "micro pass rate",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -76,8 +101,8 @@
     "setup_steps": [],
     "notes": [],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_travel",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -85,18 +110,24 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:TravelPlanner"
+        "network:openrouter",
+        "py:pandas",
+        "file:data/agent_bench/travel/flights.csv",
+        "file:data/llm_bench/travelplanner_validation.json",
+        "file:data/llm_bench/travel_accommodations.csv",
+        "file:data/llm_bench/travel_restaurants.csv",
+        "file:data/llm_bench/travel_attractions.csv",
+        "file:data/llm_bench/travel_distance.csv",
+        "file:data/llm_bench/travel_city_states.txt"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_agent_env",
-      "unsupported_reason": "Candidates are LLM agents scored inside the TravelPlanner environment (tools, web, games or code sandboxes); the environment and model access are external."
+      "timeout": 1800,
+      "validity_key": "valid"
     }
   },
   "limitations": [
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
+    "The 10 episodes are a fixed list of public benchmark items that every evaluation replays, and act may return actions without calling the model. A program that replays memorised answers or actions for these episodes is scored like an agent, so the score says nothing about other episodes of the benchmark."
   ],
   "source_specification": {
     "name": "TravelPlanner",
@@ -127,14 +158,13 @@
     "scientific_contribution": "benchmark",
     "science_tier": 3,
     "artifact": "agent",
-    "domain": "software_engineering",
-    "area": "software_engineering",
+    "domain": "language",
+    "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "simulator"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 3600
   max_retries: 2
 
 prompt:
   system_message: |
     ALFWorld
 
-    ALFWorld task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.
+    Write a Python act(instruction, observation, valid_actions, history, llm) agent that issues one text command per step in ALFWorld household games, using a budgeted OpenRouter model client; scored by the success rate over 12 fixed games (2 per task type from the 134 out-of-distribution games), at most 49 actions each (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: ALFWorld text games (AlfredTWEnv's eval_out_of_distribution set, 134 games); a fixed sample of 2 games per task type (12 episodes), at most 49 actions each, no admissible-command list. Episode score: 1 when the game reports won, else 0. Score: success rate over the 12 episodes; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 480
   max_retries: 2
 
 prompt:
   system_message: |
     denoising-dirty-documents
 
-    Predict clean document image pixel values and minimize RMSE against ground truth.
+    Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 144 noisy/clean NoisyOffice document image pairs and returns a cleaned image (intensities on a 0-1 scale) for each of 72 noisy test images of an unseen text passage, within a 300 s wall-clock budget on 4 CPU threads; scored by pixel RMSE against the clean pages (lower is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: fit_predict(train, test_inputs, time_budget_s) -> list of float arrays. train: dict with 'noisy' and 'clean', lists of 2-D uint8 grey-level images (0 = black, 255 = white; pairs share their shape); test_inputs: dict with 'noisy' (list of 2-D uint8 images); return one cleaned image per test image, same order and shape, intensities on the [0, 1] scale (finite; values are not clipped). time_budget_s = 300. fit_predict runs in a sandboxed child process: 4 CPU threads (thread settings of the numerical libraries, not an operating-system limit), no GPU, no network, no child processes, no pretrained weights or external data, reads limited to the Python installation and the task's public inputs, writes limited to a temporary working directory, memory limit 3.5 GB. time_budget_s wall-clock seconds start when the candidate's source starts executing in the child (imports and module-level code count); the process is killed 15 s after the budget (score: invalid). The evaluator holds the test labels and recomputes the metric; nothing the candidate reports is trusted. Score (minimize): root mean squared error over all pixels of all test images against the clean ground truth divided by 255 (MLE-bench grade.py)
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

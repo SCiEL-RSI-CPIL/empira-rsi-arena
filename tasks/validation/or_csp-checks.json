@@ -1,0 +1,471 @@
+{
+ "schema": "artask.or_csp-checks/1",
+ "package": "or_csp",
+ "date": "2026-10-07",
+ "environment": {
+  "python": "3.12.14",
+  "platform": "macOS-15.8.1-arm64 (Apple M4 Max, 14 cores)",
+  "packages": {
+   "numpy": "2.5.3",
+   "cpmpy": "0.10.1",
+   "ortools": "9.14.6206",
+   "protobuf": "6.31.1"
+  },
+  "tools": {
+   "g++": "Homebrew GCC 16.2.0 (g++-16)",
+   "llvm": "Homebrew LLVM 23.1.1",
+   "cargo": "1.98.1 (extraction-gym cross-check only)"
+  },
+  "interpreter": "autoresearch-tasks/.cache/sciel-env/bin/python"
+ },
+ "installs": ["pip install cpmpy==0.10.1 ortools==9.14.6206 into sciel-env (downgrades protobuf 7.36.2 -> 6.31.1; onnxruntime and transformers still import)"],
+ "data": "python3 scripts/prepare_or_csp.py fetched and verified all 84 locked files (catalog/or_csp-data-lock.json; 37.2 MB stored)",
+ "tasks": {
+  "pdr-car-sequencing-csplib-1": {
+   "family": "csplib_reformulation_car_sequencing",
+   "protocol": "recreated",
+   "seed_score": 1.0007013953455726,
+   "valid": true,
+   "elapsed_seconds": 24.572611,
+   "wall_seconds": 24.63,
+   "seed_run_time": "2026-10-07T03:37:13",
+   "seed_result": {
+    "score": 1.0007013953455726,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 24.572611,
+    "baseline_total_seconds": 11.975967,
+    "candidate_total_seconds": 11.967573,
+    "timeouts": 0,
+    "per_instance_geometric_mean_speedup": 1.005193
+   },
+   "invalid_candidate_checks": [
+     {"program": "pdr_invalid.py", "score": null, "valid": false, "error": "instance {'seed': 107, 'n_cars': 50, 'n_pool': 12, 'bias': 2.0}: answer must be a dict with exactly the keys ['sequence']"}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_csplib.py: pinned instance-set hashes, checkers on known solutions and corruptions, every baseline as candidate (valid, score near 1), seven contract breaches rejected, forced timeout counted as 2 x cap",
+   "seed_score_earlier_run": 0.9993210165922823,
+   "reference_check": "The seed is the baseline model itself, so its score measures timing noise only (two runs: 0.9993 and 1.0007). Every baseline answer is re-checked by the independent CSPLib checker in every evaluation. No published reference: the paper's AutoIG instances and baseline models are not released."
+  },
+  "pdr-vessel-loading-csplib-8": {
+   "family": "csplib_reformulation_vessel_loading",
+   "protocol": "recreated",
+   "seed_score": 1.0077685665002667,
+   "valid": true,
+   "elapsed_seconds": 22.513401,
+   "wall_seconds": 22.56,
+   "seed_run_time": "2026-10-07T03:37:36",
+   "seed_result": {
+    "score": 1.0077685665002667,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 22.513401,
+    "baseline_total_seconds": 11.030551,
+    "candidate_total_seconds": 10.94552,
+    "timeouts": 0,
+    "per_instance_geometric_mean_speedup": 1.013145
+   },
+   "invalid_candidate_checks": [
+     {"program": "pdr_invalid.py", "score": null, "valid": false, "error": "instance {'seed': 203, 'deck_width': 12, 'deck_length': 12, 'n_containers': 10, 'n_classes': 3, 'fill': 0.85, 'sep_max': 2}: answer must be a dict with exactly the keys ['east', 'north', 'south', 'west']"}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_csplib.py: pinned instance-set hashes, checkers on known solutions and corruptions, every baseline as candidate (valid, score near 1), seven contract breaches rejected, forced timeout counted as 2 x cap",
+   "seed_score_earlier_run": 1.0016577964020017,
+   "reference_check": "The seed is the baseline model itself, so its score measures timing noise only (two runs: 1.0017 and 1.0078). Every baseline answer is re-checked by the independent CSPLib checker in every evaluation. No published reference: the paper's AutoIG instances and baseline models are not released."
+  },
+  "pdr-social-golfer-csplib-10": {
+   "family": "csplib_reformulation_social_golfers",
+   "protocol": "recreated",
+   "seed_score": 1.001992372891487,
+   "valid": true,
+   "elapsed_seconds": 25.65778,
+   "wall_seconds": 25.71,
+   "seed_run_time": "2026-10-07T03:38:03",
+   "seed_result": {
+    "score": 1.001992372891487,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 25.65778,
+    "baseline_total_seconds": 12.572349,
+    "candidate_total_seconds": 12.54735,
+    "timeouts": 0,
+    "per_instance_geometric_mean_speedup": 1.001506
+   },
+   "invalid_candidate_checks": [
+     {"program": "pdr_invalid.py", "score": null, "valid": false, "error": "instance {'weeks': 4, 'groups': 4, 'group_size': 4}: answer must be a dict with exactly the keys ['schedule']"}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_csplib.py: pinned instance-set hashes, checkers on known solutions and corruptions, every baseline as candidate (valid, score near 1), seven contract breaches rejected, forced timeout counted as 2 x cap",
+   "seed_score_earlier_run": 0.986383944211538,
+   "reference_check": "The seed is the baseline model itself, so its score measures timing noise only (two runs: 0.9864 and 1.0020). Every baseline answer is re-checked by the independent CSPLib checker in every evaluation. No published reference: the paper's AutoIG instances and baseline models are not released."
+  },
+  "pdr-balanced-incomplete-block-design-csplib-28": {
+   "family": "csplib_reformulation_bibd",
+   "protocol": "recreated",
+   "seed_score": 1.0010954769251876,
+   "valid": true,
+   "elapsed_seconds": 16.48727,
+   "wall_seconds": 16.54,
+   "seed_run_time": "2026-10-07T03:38:20",
+   "seed_result": {
+    "score": 1.0010954769251876,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 16.48727,
+    "baseline_total_seconds": 7.953188,
+    "candidate_total_seconds": 7.944485,
+    "timeouts": 0,
+    "per_instance_geometric_mean_speedup": 1.003213
+   },
+   "invalid_candidate_checks": [
+     {"program": "pdr_invalid.py", "score": null, "valid": false, "error": "instance {'v': 8, 'b': 56, 'r': 21, 'k': 3, 'lam': 6}: answer must be a dict with exactly the keys ['matrix']"}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_csplib.py: pinned instance-set hashes, checkers on known solutions and corruptions, every baseline as candidate (valid, score near 1), seven contract breaches rejected, forced timeout counted as 2 x cap",
+   "seed_score_earlier_run": 1.0013604585054359,
+   "reference_check": "The seed is the baseline model itself, so its score measures timing noise only (two runs: 1.0014 and 1.0011). Every baseline answer is re-checked by the independent CSPLib checker in every evaluation. No published reference: the paper's AutoIG instances and baseline models are not released."
+  },
+  "pdr-balanced-academic-curriculum-csplib-30": {
+   "family": "csplib_reformulation_bacp",
+   "protocol": "recreated",
+   "seed_score": 1.0045002485846093,
+   "valid": true,
+   "elapsed_seconds": 21.412472,
+   "wall_seconds": 21.46,
+   "seed_run_time": "2026-10-07T03:38:42",
+   "seed_result": {
+    "score": 1.0045002485846093,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 21.412472,
+    "baseline_total_seconds": 10.425467,
+    "candidate_total_seconds": 10.37876,
+    "timeouts": 0,
+    "per_instance_geometric_mean_speedup": 1.008092
+   },
+   "invalid_candidate_checks": [
+     {"program": "pdr_invalid.py", "score": null, "valid": false, "error": "instance {'seed': 401, 'n_courses': 100, 'n_periods': 10, 'density': 0.03, 'load_slack': 0, 'count_slack': 0}: answer must be a dict with exactly the keys ['period']"}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_csplib.py: pinned instance-set hashes, checkers on known solutions and corruptions, every baseline as candidate (valid, score near 1), seven contract breaches rejected, forced timeout counted as 2 x cap",
+   "seed_score_earlier_run": 1.0056923021510944,
+   "reference_check": "The seed is the baseline model itself, so its score measures timing noise only (two runs: 1.0057 and 1.0045). Every baseline answer is re-checked by the independent CSPLib checker in every evaluation. No published reference: the paper's AutoIG instances and baseline models are not released."
+  },
+  "pdr-error-correction-codes-csplib-36": {
+   "family": "csplib_reformulation_error_correcting_codes",
+   "protocol": "recreated",
+   "seed_score": 1.0008271963130067,
+   "valid": true,
+   "elapsed_seconds": 22.976904,
+   "wall_seconds": 23.03,
+   "seed_run_time": "2026-10-07T03:39:06",
+   "seed_result": {
+    "score": 1.0008271963130067,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 22.976904,
+    "baseline_total_seconds": 11.198861,
+    "candidate_total_seconds": 11.189605,
+    "timeouts": 0,
+    "per_instance_geometric_mean_speedup": 1.000279
+   },
+   "invalid_candidate_checks": [
+     {"program": "pdr_invalid.py", "score": null, "valid": false, "error": "instance {'alphabet_size': 2, 'length': 8, 'num_codewords': 16, 'min_dist': 3, 'distance': 'hamming'}: answer must be a dict with exactly the keys ['codewords']"}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_csplib.py: pinned instance-set hashes, checkers on known solutions and corruptions, every baseline as candidate (valid, score near 1), seven contract breaches rejected, forced timeout counted as 2 x cap",
+   "seed_score_earlier_run": 1.0035181738818864,
+   "reference_check": "The seed is the baseline model itself, so its score measures timing noise only (two runs: 1.0035 and 1.0008). Every baseline answer is re-checked by the independent CSPLib checker in every evaluation. No published reference: the paper's AutoIG instances and baseline models are not released."
+  },
+  "pdr-covering-arrays-csplib-45": {
+   "family": "csplib_reformulation_covering_array",
+   "protocol": "recreated",
+   "seed_score": 1.0067043823726083,
+   "valid": true,
+   "elapsed_seconds": 17.068814,
+   "wall_seconds": 17.12,
+   "seed_run_time": "2026-10-07T03:39:24",
+   "seed_result": {
+    "score": 1.0067043823726083,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 17.068814,
+    "baseline_total_seconds": 8.25919,
+    "candidate_total_seconds": 8.204186,
+    "timeouts": 0,
+    "per_instance_geometric_mean_speedup": 1.007114
+   },
+   "invalid_candidate_checks": [
+     {"program": "pdr_invalid.py", "score": null, "valid": false, "error": "instance {'t': 2, 'k': 6, 'g': 3, 'b': 12}: answer must be a dict with exactly the keys ['matrix']"}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_csplib.py: pinned instance-set hashes, checkers on known solutions and corruptions, every baseline as candidate (valid, score near 1), seven contract breaches rejected, forced timeout counted as 2 x cap",
+   "seed_score_earlier_run": 1.0066107451866648,
+   "reference_check": "The seed is the baseline model itself, so its score measures timing noise only (two runs: 1.0066 and 1.0067). Every baseline answer is re-checked by the independent CSPLib checker in every evaluation. No published reference: the paper's AutoIG instances and baseline models are not released.",
+   "reformulation_checks": [
+     {"program": "one-hot viewpoint with explicit coverage witnesses", "score": 0.3796, "per_instance_geometric_mean_speedup": 1.0926, "note": "1.3-2.5x faster on 6 of 8 instances, but one PAR2 timeout dominates the total-time ratio"},
+     {"program": "channelled column codes + double-lex symmetry breaking", "score": 0.3183, "note": "slower, two timeouts"},
+     {"program": "paper-style enumeration streamliner (first g**t columns increasing for every row subset)", "valid": false, "note": "over-constrained for k > t: CP-SAT proves infeasibility and the evaluator rejects the false infeasibility claim"}
+   ]
+  },
+  "pdr-tail-assignment-csplib-115": {
+   "family": "csplib_reformulation_tail_assignment",
+   "protocol": "recreated",
+   "seed_score": 1.024356623740105,
+   "valid": true,
+   "elapsed_seconds": 23.307642,
+   "wall_seconds": 23.36,
+   "seed_run_time": "2026-10-07T03:39:48",
+   "seed_result": {
+    "score": 1.024356623740105,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 23.307642,
+    "baseline_total_seconds": 11.280041,
+    "candidate_total_seconds": 11.01183,
+    "timeouts": 0,
+    "per_instance_geometric_mean_speedup": 1.016245
+   },
+   "invalid_candidate_checks": [
+     {"program": "pdr_invalid.py", "score": null, "valid": false, "error": "instance {'seed': 303, 'n_planes': 4, 'min_legs': 4, 'max_legs': 7, 'n_airports': 3, 'restrict': 0.4}: answer must be a dict with exactly the keys ['routes']"}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_csplib.py: pinned instance-set hashes, checkers on known solutions and corruptions, every baseline as candidate (valid, score near 1), seven contract breaches rejected, forced timeout counted as 2 x cap",
+   "seed_score_earlier_run": 1.0215261044638562,
+   "reference_check": "The seed is the baseline model itself, so its score measures timing noise only (two runs: 1.0215 and 1.0244). Every baseline answer is re-checked by the independent CSPLib checker in every evaluation. No published reference: the paper's AutoIG instances and baseline models are not released."
+  },
+  "magellan-xla-auto-sharding-iopddl": {
+   "family": "iopddl_sharding",
+   "protocol": "recreated_verified",
+   "seed_score": 0.12085999725097388,
+   "valid": true,
+   "elapsed_seconds": 16.473905,
+   "wall_seconds": 16.54,
+   "seed_run_time": "2026-10-07T03:40:05",
+   "seed_result": {
+    "score": 0.12085999725097388,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 16.473905,
+    "total_points": 0.6042999862548694,
+    "feasible": 5
+   },
+   "invalid_candidate_checks": [
+     {"program": "iop_short.py", "score": null, "valid": false, "error": "incorrect solution size: 34931 indices for 34932 nodes"},
+     {"program": "iop_float.py", "score": null, "valid": false, "error": "strategy indices must be integers"},
+     {"program": "iop_empty.py", "score": 0.0, "valid": true, "error": null, "feasible": 0}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_iopddl.py: official unit-test example costs (495, 415 without limit, 445 optimum, error cases), exact integers beyond int64, contest points and statuses, late answers, malformed answers, tamper-proof scoring, best costs equal the contest CSV minima, lock completeness",
+   "reference_check": {
+    "official_evaluator": "iopddl.cc (github.com/google/iopddl @8a61c4359c5a330a04c8ef1780402cc254d28f29) linked with Homebrew abseil 2026.08 and nlohmann/json @a006a7a4",
+    "cases": 35,
+    "agree": 35,
+    "records": [
+      {"benchmark": "G", "solution": "min_usage", "official": "COST 107000000015059840271", "port": "COST 107000000015059840271"},
+      {"benchmark": "G", "solution": "min_node_cost", "official": "COST 108000000015063094233", "port": "COST 108000000015063094233"},
+      {"benchmark": "G", "solution": "max_usage", "official": "ERROR RESOURCE_EXHAUSTED", "port": "ERROR usage limit exceeded"},
+      {"benchmark": "G", "solution": "random", "official": "ERROR RESOURCE_EXHAUSTED", "port": "ERROR usage limit exceeded"},
+      {"benchmark": "G", "solution": "icm_seed", "official": "COST 905601429", "port": "COST 905601429"},
+      {"benchmark": "G", "solution": "too_short", "official": "ERROR INVALID_ARGUMENT", "port": "ERROR incorrect solution size: 815 indices for 816 nodes"},
+      {"benchmark": "G", "solution": "out_of_range", "official": "ERROR OUT_OF_RANGE", "port": "ERROR strategy index out of range"},
+      {"benchmark": "A", "solution": "min_usage", "official": "COST 10102000000029276086004", "port": "COST 10102000000029276086004"},
+      {"benchmark": "A", "solution": "min_node_cost", "official": "COST 4393000000029312468510", "port": "COST 4393000000029312468510"},
+      {"benchmark": "A", "solution": "max_usage", "official": "ERROR RESOURCE_EXHAUSTED", "port": "ERROR usage limit exceeded"},
+      {"benchmark": "A", "solution": "random", "official": "ERROR RESOURCE_EXHAUSTED", "port": "ERROR usage limit exceeded"},
+      {"benchmark": "A", "solution": "icm_seed", "official": "COST 581000000021894426769", "port": "COST 581000000021894426769"},
+      {"benchmark": "A", "solution": "too_short", "official": "ERROR INVALID_ARGUMENT", "port": "ERROR incorrect solution size: 34931 indices for 34932 nodes"},
+      {"benchmark": "A", "solution": "out_of_range", "official": "ERROR OUT_OF_RANGE", "port": "ERROR strategy index out of range"},
+      {"benchmark": "M", "solution": "min_usage", "official": "COST 4878000002174362146285", "port": "COST 4878000002174362146285"},
+      {"benchmark": "M", "solution": "min_node_cost", "official": "COST 4878000002174362146285", "port": "COST 4878000002174362146285"},
+      {"benchmark": "M", "solution": "max_usage", "official": "ERROR RESOURCE_EXHAUSTED", "port": "ERROR usage limit exceeded"},
+      {"benchmark": "M", "solution": "random", "official": "ERROR RESOURCE_EXHAUSTED", "port": "ERROR usage limit exceeded"},
+      {"benchmark": "M", "solution": "icm_seed", "official": "COST 82654759933", "port": "COST 82654759933"},
+      {"benchmark": "M", "solution": "too_short", "official": "ERROR INVALID_ARGUMENT", "port": "ERROR incorrect solution size: 32893 indices for 32894 nodes"},
+      {"benchmark": "M", "solution": "out_of_range", "official": "ERROR OUT_OF_RANGE", "port": "ERROR strategy index out of range"},
+      {"benchmark": "S", "solution": "min_usage", "official": "COST 3755000000021848122048", "port": "COST 3755000000021848122048"},
+      {"benchmark": "S", "solution": "min_node_cost", "official": "COST 3872000000021848132831", "port": "COST 3872000000021848132831"},
+      {"benchmark": "S", "solution": "max_usage", "official": "ERROR RESOURCE_EXHAUSTED", "port": "ERROR usage limit exceeded"},
+      {"benchmark": "S", "solution": "random", "official": "ERROR RESOURCE_EXHAUSTED", "port": "ERROR usage limit exceeded"},
+      {"benchmark": "S", "solution": "icm_seed", "official": "COST 403000000010130750386", "port": "COST 403000000010130750386"},
+      {"benchmark": "S", "solution": "too_short", "official": "ERROR INVALID_ARGUMENT", "port": "ERROR incorrect solution size: 28525 indices for 28526 nodes"},
+      {"benchmark": "S", "solution": "out_of_range", "official": "ERROR OUT_OF_RANGE", "port": "ERROR strategy index out of range"},
+      {"benchmark": "Y", "solution": "min_usage", "official": "COST 1785000008622547190391", "port": "COST 1785000008622547190391"},
+      {"benchmark": "Y", "solution": "min_node_cost", "official": "COST 1782000008622547133359", "port": "COST 1782000008622547133359"},
+      {"benchmark": "Y", "solution": "max_usage", "official": "ERROR RESOURCE_EXHAUSTED", "port": "ERROR usage limit exceeded"},
+      {"benchmark": "Y", "solution": "random", "official": "ERROR RESOURCE_EXHAUSTED", "port": "ERROR usage limit exceeded"},
+      {"benchmark": "Y", "solution": "icm_seed", "official": "COST 2005000016879296967405", "port": "COST 2005000016879296967405"},
+      {"benchmark": "Y", "solution": "too_short", "official": "ERROR INVALID_ARGUMENT", "port": "ERROR incorrect solution size: 62184 indices for 62185 nodes"},
+      {"benchmark": "Y", "solution": "out_of_range", "official": "ERROR OUT_OF_RANGE", "port": "ERROR strategy index out of range"}
+    ],
+    "example_costs": "example.json: [0,1,2,0,0] -> 495, [0,0,2,1,0] -> 445 (official binary and port); [0,0,1,1,0] -> RESOURCE_EXHAUSTED"
+   }
+  },
+  "magellan-xla-enzyme-jax-e-graph-extraction": {
+   "family": "egraph_extraction",
+   "protocol": "recreated",
+   "seed_score": 1.0306781213176195,
+   "valid": true,
+   "elapsed_seconds": 1.914503,
+   "wall_seconds": 1.94,
+   "seed_run_time": "2026-10-07T03:40:19",
+   "seed_result": {
+    "score": 1.0306781213176195,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 1.914503
+   },
+   "invalid_candidate_checks": [
+     {"program": "eg_noroot.py", "score": null, "valid": false, "error": "root e-class '95' has no chosen e-node"},
+     {"program": "eg_list.py", "score": null, "valid": false, "error": "extract must return a dict mapping e-class id strings to e-node id strings"}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_egraph.py: DAG cost counts shared e-classes once, seven invalid extractions incl. a cycle, Rust-order sequential summation, tamper-proof scoring, seed equals extraction-gym bottom-up DAG cost on vgg/resnet50/bert",
+   "reference_check": {
+    "extraction_gym": "github.com/egraphs-good/extraction-gym @903ba0f818b50608fe20ae9e0f03c35cb27bc50a built with cargo 1.98.1; a local copy dumped the chosen e-nodes (environment-variable patch to src/main.rs)",
+    "dag_cost_exact": 20,
+    "dag_cost_cases": 20,
+    "dag_records": [
+      {"graph": "vgg", "extractor": "bottom-up", "rust_dag": 4.852382016833872, "port_dag": 4.852382016833872},
+      {"graph": "vgg", "extractor": "faster-bottom-up", "rust_dag": 4.852382016833872, "port_dag": 4.852382016833872},
+      {"graph": "vgg", "extractor": "prio-queue", "rust_dag": 4.852382016833872, "port_dag": 4.852382016833872},
+      {"graph": "vgg", "extractor": "faster-greedy-dag", "rust_dag": 4.850757016778516, "port_dag": 4.850757016778516},
+      {"graph": "resnet50", "extractor": "bottom-up", "rust_dag": 4.396866964176297, "port_dag": 4.396866964176297},
+      {"graph": "resnet50", "extractor": "faster-bottom-up", "rust_dag": 4.396866964176297, "port_dag": 4.396866964176297},
+      {"graph": "resnet50", "extractor": "prio-queue", "rust_dag": 4.396866964176297, "port_dag": 4.396866964176297},
+      {"graph": "resnet50", "extractor": "faster-greedy-dag", "rust_dag": 4.396866964176297, "port_dag": 4.396866964176297},
+      {"graph": "bert", "extractor": "bottom-up", "rust_dag": 0.82470399630256, "port_dag": 0.82470399630256},
+      {"graph": "bert", "extractor": "faster-bottom-up", "rust_dag": 0.82470399630256, "port_dag": 0.82470399630256},
+      {"graph": "bert", "extractor": "prio-queue", "rust_dag": 0.82470399630256, "port_dag": 0.82470399630256},
+      {"graph": "bert", "extractor": "faster-greedy-dag", "rust_dag": 0.82470399630256, "port_dag": 0.82470399630256},
+      {"graph": "nasneta", "extractor": "bottom-up", "rust_dag": 18.80070003592664, "port_dag": 18.80070003592664},
+      {"graph": "nasneta", "extractor": "faster-bottom-up", "rust_dag": 18.762500035625635, "port_dag": 18.762500035625635},
+      {"graph": "nasneta", "extractor": "prio-queue", "rust_dag": 18.80070003592664, "port_dag": 18.80070003592664},
+      {"graph": "nasneta", "extractor": "faster-greedy-dag", "rust_dag": 16.322293040515433, "port_dag": 16.322293040515433},
+      {"graph": "nasrnn", "extractor": "bottom-up", "rust_dag": 0.9724250177441718, "port_dag": 0.9724250177441718},
+      {"graph": "nasrnn", "extractor": "faster-bottom-up", "rust_dag": 0.9724250177441718, "port_dag": 0.9724250177441718},
+      {"graph": "nasrnn", "extractor": "prio-queue", "rust_dag": 0.9724250177441718, "port_dag": 0.9724250177441718},
+      {"graph": "nasrnn", "extractor": "faster-greedy-dag", "rust_dag": 0.9633390190010687, "port_dag": 0.9633390190010687}
+    ],
+    "corruptions_rejected": [
+      {"graph": "vgg", "corruption": "missing_root", "result": "rejected: root e-class '95' has no chosen e-node"},
+      {"graph": "vgg", "corruption": "wrong_class", "result": "rejected: e-node '1178__0' is not in e-class '207'"},
+      {"graph": "vgg", "corruption": "missing_reachable", "result": "rejected: e-class '0' is reachable but has no chosen e-node"},
+      {"graph": "resnet50", "corruption": "missing_root", "result": "rejected: root e-class '192' has no chosen e-node"},
+      {"graph": "resnet50", "corruption": "wrong_class", "result": "rejected: e-node '3626__0' is not in e-class '828'"},
+      {"graph": "resnet50", "corruption": "missing_reachable", "result": "rejected: e-class '191' is reachable but has no chosen e-node"},
+      {"graph": "bert", "corruption": "missing_root", "result": "rejected: root e-class '191' has no chosen e-node"},
+      {"graph": "bert", "corruption": "wrong_class", "result": "rejected: e-node '2081__0' is not in e-class '38659'"},
+      {"graph": "bert", "corruption": "missing_reachable", "result": "rejected: e-class '187' is reachable but has no chosen e-node"},
+      {"graph": "nasneta", "corruption": "missing_root", "result": "rejected: root e-class '805' has no chosen e-node"},
+      {"graph": "nasneta", "corruption": "wrong_class", "result": "rejected: e-node '38793__0' is not in e-class '16546'"},
+      {"graph": "nasneta", "corruption": "missing_reachable", "result": "rejected: e-class '0' is reachable but has no chosen e-node"},
+      {"graph": "nasrnn", "corruption": "missing_root", "result": "rejected: root e-class '402' has no chosen e-node"},
+      {"graph": "nasrnn", "corruption": "wrong_class", "result": "rejected: e-node '13836__0' is not in e-class '24545'"},
+      {"graph": "nasrnn", "corruption": "missing_reachable", "result": "rejected: e-class '401' is reachable but has no chosen e-node"}
+    ],
+    "cycles_on_real_graphs": "a cyclic choice built along an e-class cycle reachable from the root is rejected on vgg (e-class 88), resnet50 (64) and bert (52)",
+    "seed": "the Python bottom-up seed reproduces extraction-gym's bottom-up choices exactly on all five e-graphs"
+   }
+  },
+  "coral-frontier-cs-polyominoes-packing": {
+   "family": "frontier_cs_polyomino",
+   "protocol": "recreated_verified",
+   "seed_score": 43.296286262857144,
+   "valid": true,
+   "elapsed_seconds": 5.247416,
+   "wall_seconds": 5.27,
+   "seed_run_time": "2026-10-07T03:40:24",
+   "seed_result": {
+    "score": 43.296286262857144,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 5.247416,
+    "status_counts": {
+     "accepted": 70
+    }
+   },
+   "invalid_candidate_checks": [
+     {"program": "poly_compile_error.py", "score": null, "valid": false, "error": "compilation failed: /var/folders/mj/vzgsrz9n7y5ck20bxmtk_pjc0000gq/T/or_csp_frontier__b2awlp2/solution.cpp:1:5: error: cannot declare '::main' to be a global variable\n    1 | int main( { return 0; }\n      |     ^~~~\n/var/folders/mj/vzgsrz9n"},
+     {"program": "poly_nosource.py", "score": null, "valid": false, "error": "candidate must define SOLUTION_CPP, the C++17 source of a complete program"},
+     {"program": "poly_garbage.py", "score": 0.0, "valid": true, "error": null, "status_counts": {"rejected": 70}}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_frontier.py: launcher CPU limit, crash, memory hog and normal run; compile error and missing source invalid; seed score reproduced to 1e-9",
+   "reference_check": {
+    "independent_checker": "Python checker written from the statement (reflect, rotate clockwise, translate; bounds; overlaps; ratio = cells / (W x H)) vs the official chk.cc compiled with g++-16",
+    "per_program": {
+     "seed": {
+      "cases": 70,
+      "agree": 70,
+      "accepted_official": 70
+     },
+     "reference": {
+      "cases": 70,
+      "agree": 70,
+      "accepted_official": 70
+     },
+     "gpt5": {
+      "cases": 70,
+      "agree": 70,
+      "accepted_official": 0
+     }
+    },
+    "tolerance": "ratios equal within 5e-10 (the checker prints 9 decimals)",
+    "harness_scores": {
+     "seed": 43.296286,
+     "examples/reference.cpp": "89.121 and 89.126 in two runs (time-bounded search)",
+     "examples/gpt5.cpp": "0.0 (cells out of bounds on every case under the official checker)"
+    }
+   }
+  },
+  "magellan-llvm-function-inlining-for-binary-size": {
+   "family": "llvm_inlining_size",
+   "protocol": "recreated",
+   "seed_score": 1.0114005010448055,
+   "valid": true,
+   "elapsed_seconds": 10.598753,
+   "wall_seconds": 10.62,
+   "seed_run_time": "2026-10-07T03:40:39",
+   "seed_result": {
+    "score": 1.0114005010448055,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 10.598753,
+    "text_bytes": 700852,
+    "default_heuristic_text_bytes": 692952,
+    "decisions": 15834,
+    "inlined": 0,
+    "llvm": "Homebrew LLVM version 23.1.1"
+   },
+   "invalid_candidate_checks": [
+     {"program": "inl_float.py", "score": null, "valid": false, "error": "should_inline must return a bool, got float"},
+     {"program": "inl_keyerror.py", "score": null, "valid": false, "error": "should_inline raised KeyError: 'no_such_feature'"},
+     {"program": "inl_missing.py", "score": null, "valid": false, "error": "candidate must define should_inline(features) -> bool"}
+   ],
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_or_csp_llvm.py: tensor decoding; replaying LLVM's default decisions reproduces the default build; candidates never see the default decision; failing and non-bool policies invalid without hanging; compiler failure reported; seed larger than default on SQLite",
+   "reference_check": {
+    "default_replay": "answering each decision with LLVM's own default decision (-inliner-interactive-include-default) gave 692,952 text bytes, equal to the default heuristic build (17,595 + 2,104 decisions on sqlite3.c and shell.c)",
+    "policies": {
+     "never inline (seed)": 700852,
+     "cost_estimate <= threshold": 692884,
+     "default heuristic": 692952
+    }
+   }
+  }
+ },
+ "dropped": {
+  "evox-frontier-cs": "Benchmark-level aggregate, not one task: EvoX and AdaEvolve (skydiscover benchmarks/frontier-cs-eval) run a separate search per Frontier-CS problem (FRONTIER_CS_PROBLEM) and report the mean official score over the 172 problems of their run; one candidate program cannot be scored across problems with different inputs and outputs. Scoring the aggregate needs the Frontier-CS judge for every problem (188 algorithmic problem directories at commit e6ef46eb, 74 interactive with interactors), i.e. the Docker judge service. Per-problem tasks can be recreated like coral-frontier-cs-polyominoes-packing.",
+  "magellan-llvm-function-inlining-for-clang-runtime": "The reward is end-to-end runtime of clang itself built with the evolved inliner, PGO and distributed ThinLTO at -O3; each candidate needs a full clang rebuild (CPU-hours) plus macro-benchmark timing, and the reported effects (-2.4% to +0.61%) are within the run-to-run timing noise of a CPU evaluator.",
+  "magellan-llvm-register-allocation": "The reward is runtime on Google's production search workload; Magellan's change is from -0.55% to -0.15%, below the 1-2% run-to-run CPU-time noise measured here. LLVM 23 exposes an interactive priority-advisor channel, but it provides no reward, and a static spill-cost proxy would measure a different objective."
+ },
+ "label_rules_needed": {
+  "csplib_reformulation_<problem> (8)": ["method", "program", "combinatorial_optimisation", "synthetic", "simulation"],
+  "iopddl_sharding": ["engineering", "program", "systems", "public_benchmark", "exact"],
+  "egraph_extraction": ["engineering", "program", "systems", "public_benchmark", "exact"],
+  "frontier_cs_polyomino": ["method", "program", "combinatorial_optimisation", "public_benchmark", "exact"],
+  "llvm_inlining_size": ["engineering", "program", "systems", "public_benchmark", "simulation"]
+ },
+ "llm_cost_usd": 0.0
+}

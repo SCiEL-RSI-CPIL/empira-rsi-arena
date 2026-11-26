@@ -8,11 +8,11 @@
     "repository_url": "https://github.com/Doldrums/arena",
     "revision": "main",
     "manifest_path": "registry/task-library-manifest.json",
-    "manifest_sha256": "0b9422f47a7ed8c3ba96bcea926aa083ad13cb9bbdc96f6222d8e6541d5db0a4",
+    "manifest_sha256": "2eaad8b7f6f981e8189f8a012569a4d3690183ea3c4edc58b4a7c78a1c673ae7",
     "catalog_path": "catalog/tasks.json",
     "index_path": "suite/index.json",
-    "catalog_sha256": "1282ab3caff48cb6208856f84cbee011df721d114a25a39dce0d90b4e48dcb2a",
-    "index_sha256": "ebf912e4aada19181e676311af71a6aff92549bd6ebdc42ec5407e4c37d00d03"
+    "catalog_sha256": "f1943705459c57f4a7e684914db6d0384575e5409009520f67c3ce1b3c5e9b53",
+    "index_sha256": "6ceb6a5c70dec50065cd7310bc985ff8b28d03d9f16bfc76e86cb86e957a1233"
   },
   "summary": {
     "task_count": 2578,
@@ -2522,26 +2522,30 @@
     {
       "task_id": "agentsquare-alfworld",
       "status": "missing",
-      "metric": "success rate",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 0
+        },
+        "seed": 0,
         "dataset": null,
         "source": {
           "path": "suite/agentsquare-alfworld/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/agentsquare-alfworld/problem.json",
-          "sha256": "595301af75dcdb1528f6e3e7510d32fef77ae3cd5ccf75e135e39043cafcba04",
+          "sha256": "8360de905551dc39fb6313429b2e5c0dd4b2f1d51dc3e8687ea2aefa4c10fbd0",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/agentsquare-alfworld/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/agentsquare-alfworld/evaluator.py",
-          "sha256": "beb7bcd1a8997021cfdfcae25f7e99e48db07d2478f29d720d8488c0ceb41461",
+          "sha256": "7badd62dfc1db838565ba91449926cf13edbf10f0b5ab9ef52a77606e9880a8c",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -2550,26 +2554,30 @@
     {
       "task_id": "agentsquare-m3tooleval",
       "status": "missing",
-      "metric": "success rate",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 0
+        },
+        "seed": 0,
         "dataset": null,
         "source": {
           "path": "suite/agentsquare-m3tooleval/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/agentsquare-m3tooleval/problem.json",
-          "sha256": "b025e88815ca7187f3b477b7387566141baf2d7a923633ab3832bce798fa5cfe",
+          "sha256": "b468e4335df5482dacb05658a56000ed39f2fd7ac97e73214685813e00376a15",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/agentsquare-m3tooleval/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/agentsquare-m3tooleval/evaluator.py",
-          "sha256": "9369a73f544b4047c41e4f229d4b6985cf7e8ab3b4426a0b91d0bd16995cde5d",
+          "sha256": "44708d937da2d7833cad620ab986b96adcec09cd32699bf69f5d08bdd0d561cf",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -2578,26 +2586,30 @@
     {
       "task_id": "agentsquare-pddl",
       "status": "missing",
-      "metric": "progress rate",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 0
+        },
+        "seed": 0,
         "dataset": null,
         "source": {
           "path": "suite/agentsquare-pddl/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/agentsquare-pddl/problem.json",
-          "sha256": "16e3c5c13792aabc6e91cc6a519d5b2d9c7f4fdc4d003b247373569fe02776cc",
+          "sha256": "6655b72c326e2e1453af55e9d5fceecd4b32a82d8ce8193e684aa180e931fef3",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/agentsquare-pddl/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/agentsquare-pddl/evaluator.py",
-          "sha256": "802e35dc7544dce32924fb6cdec6fbd41797e04501f7e8c9cd20aee6b866f4d3",
+          "sha256": "7d0da12731648d0c17f350e635a91914221faeda395d97cd65857763a8f0f53d",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -2606,26 +2618,30 @@
     {
       "task_id": "agentsquare-scienceworld",
       "status": "missing",
-      "metric": "progress rate",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 0
+        },
+        "seed": 0,
         "dataset": null,
         "source": {
           "path": "suite/agentsquare-scienceworld/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/agentsquare-scienceworld/problem.json",
-          "sha256": "dd72ae56ab53dde6a5ac9312917e528aa8742fcedf827ae26c60003b273f4780",
+          "sha256": "8a3e15e437ca696d440812bdb531359a086cd3275e9ce7d43614bea3bed6e0e3",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/agentsquare-scienceworld/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/agentsquare-scienceworld/evaluator.py",
-          "sha256": "27507939ee7cfe7e7ae13978639b2d74e909b8f7d068149bf146950575703cfb",
+          "sha256": "27bf78b3dcaf0dc86b35a75bee05f2644d145336ab74b407e2265b2ba930e1b4",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -2634,26 +2650,30 @@
     {
       "task_id": "agentsquare-travelplanner",
       "status": "missing",
-      "metric": "micro pass rate",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 0
+        },
+        "seed": 0,
         "dataset": null,
         "source": {
           "path": "suite/agentsquare-travelplanner/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/agentsquare-travelplanner/problem.json",
-          "sha256": "414224c8c6ffed296197da3a4bd98e54504cfcbbda44dcb3d265044243385b04",
+          "sha256": "d90b3cc75913efb3c72c9a9e482dc2452cd53255c5275cdc5a684c951839da9a",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/agentsquare-travelplanner/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/agentsquare-travelplanner/evaluator.py",
-          "sha256": "1f54a5aacb6b3d91dfef51f7169430fe8cf249040b0fa1224b29942797c2c5bf",
+          "sha256": "aa96399111b1135d396361f2f4fbc5ec33b12c04407f4a9f8e35092ae210b430",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -13835,26 +13855,31 @@
     {
       "task_id": "cocoevo-leetcode-contest",
       "status": "missing",
-      "metric": "pass@1",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated_verified",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "leetcode_contest",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "leetcode_contest",
         "source": {
           "path": "suite/cocoevo-leetcode-contest/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/cocoevo-leetcode-contest/problem.json",
-          "sha256": "83aec2be175e36ca5e04698647a5b99b57c0be14193c184f9a5266436305baee",
+          "sha256": "52375b8a8b8773a225cebe2603305a8ba0f4888a3abf59ff066845a60fa537c2",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/cocoevo-leetcode-contest/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/cocoevo-leetcode-contest/evaluator.py",
-          "sha256": "154c7039e026a93cd54d33b3747aa770b3feeddcd98b809061882cc6abd72c35",
+          "sha256": "bcab9571e4b2b2fa03e09205856a17c2898681a80efd808b01fe4d5edca55354",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -14696,9 +14721,9 @@
     {
       "task_id": "coral-frontier-cs-polyominoes-packing",
       "status": "missing",
-      "metric": "packing score",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated_verified",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -14708,14 +14733,16 @@
         "source": {
           "path": "suite/coral-frontier-cs-polyominoes-packing/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/coral-frontier-cs-polyominoes-packing/problem.json",
-          "sha256": "d65096452543fbf50c9cd20069d0ced623b9e40ba838dfb6e57c0846e019b797",
+          "sha256": "5d774f768520ec4df3bfa56b3695e3cf406b390fcd024a1dcbcee964925d9469",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/coral-frontier-cs-polyominoes-packing/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/coral-frontier-cs-polyominoes-packing/evaluator.py",
-          "sha256": "a9c52a43028f63b5d24436f8608fd273c7154d5c368642e163bed14bace431aa",
+          "sha256": "f45fe79dafb5a0eeef83075fe47e707e5115dbcb6c9a313fdd11205dcbba887d",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -21195,9 +21222,9 @@
     {
       "task_id": "dgm-aider-polyglot",
       "status": "missing",
-      "metric": "pass@1 task success",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -21207,14 +21234,16 @@
         "source": {
           "path": "suite/dgm-aider-polyglot/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/dgm-aider-polyglot/problem.json",
-          "sha256": "014912f9ff2c80688adf64e3694903b20dba45d2f72168edad00e0ea9559137f",
+          "sha256": "f0345a9b5a43af98ad04dc96e9376d64f1329ace0e788037b33708eeccfc16bb",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/dgm-aider-polyglot/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/dgm-aider-polyglot/evaluator.py",
-          "sha256": "0d42ce9b37f18f693a480812317264740179fe10f7b8622029135fb03057a90b",
+          "sha256": "27527d86a54238d617c99bc09dc9854a5e7e29f84cac4421e50ab9e72fb2076a",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -25773,26 +25802,31 @@
     {
       "task_id": "elm-single-step-code-bug-repair",
       "status": "missing",
-      "metric": "horizontal distance / terrain return / repair accuracy respectively",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "elm_repair",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "elm_repair",
         "source": {
           "path": "suite/elm-single-step-code-bug-repair/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/elm-single-step-code-bug-repair/problem.json",
-          "sha256": "dbb88cfac3fde928b37f0f9e15cc47f05f24d961fbf776700ec5f1e712d7448c",
+          "sha256": "39b3bfb4c8e2775364db6e5c488159db95db4023a85c8cced2e0b049ff449a4e",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/elm-single-step-code-bug-repair/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/elm-single-step-code-bug-repair/evaluator.py",
-          "sha256": "bf3f65dce9783e266bbf466e266259f5e087ca322c93fd903daf776bc02a030d",
+          "sha256": "d135a262eba0e068d98d4c213ef594e6bf4c339484fd9c6560ed7d0adb96e731",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -25801,9 +25835,9 @@
     {
       "task_id": "elm-sodarace-walker-program-evolution",
       "status": "missing",
-      "metric": "horizontal distance / terrain return / repair accuracy respectively",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -25813,14 +25847,16 @@
         "source": {
           "path": "suite/elm-sodarace-walker-program-evolution/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/elm-sodarace-walker-program-evolution/problem.json",
-          "sha256": "b00f90bd79564c966505426a6208a14f32b1373502b7cb614dd0f5943972c489",
+          "sha256": "ea116eb464791fc1e858e99ab08535e695f8c05a8f6406c1525293817a7c2b4c",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/elm-sodarace-walker-program-evolution/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/elm-sodarace-walker-program-evolution/evaluator.py",
-          "sha256": "a6374ea87cfc9b1fd607cef956cefc889de7af7c0cbddef117838f37095184d0",
+          "sha256": "46b1a363c5c781795d083506ae0c6bff5fe9438e867539e50a00ea1eff30f309",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -25885,9 +25921,9 @@
     {
       "task_id": "enpire-gym-pusht-simulation",
       "status": "missing",
-      "metric": "task success rate",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -25897,14 +25933,16 @@
         "source": {
           "path": "suite/enpire-gym-pusht-simulation/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/enpire-gym-pusht-simulation/problem.json",
-          "sha256": "2c9942a81323a1d09748b8453751cab5256676914fe1d9607198d418df2a3f37",
+          "sha256": "e0185292a5062c0df1810763fd2e1193ad5daff57aaf2145c571f3fdc640fe17",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/enpire-gym-pusht-simulation/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/enpire-gym-pusht-simulation/evaluator.py",
-          "sha256": "582eac7ddc3c4ad082d30101b397a4c8ca33df05096bd0bbd77d5d6d26c54041",
+          "sha256": "8031d16ef26a15e416d6580f1613c34a172104184c27baa3f1c8d266cbea1c15",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -26081,26 +26119,30 @@
     {
       "task_id": "eob-eob-bbob-benchmark-synthesis",
       "status": "missing",
-      "metric": "landscape similarity and algorithm distinction capability",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 0
+        },
+        "seed": 0,
         "dataset": null,
         "source": {
           "path": "suite/eob-eob-bbob-benchmark-synthesis/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/eob-eob-bbob-benchmark-synthesis/problem.json",
-          "sha256": "2b13c23f1d0e39adcef02fd4c3aad5d09510cab807c15709ecdf3d4fd22d889b",
+          "sha256": "e32a7e97c32e20159e804e4c6f09ac8c2df6a006fc0ee5f73fcc1e11540a51f7",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/eob-eob-bbob-benchmark-synthesis/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/eob-eob-bbob-benchmark-synthesis/evaluator.py",
-          "sha256": "2e35a6a2b356d3e67337fbacd58116f99babe23a74df65ea6dc051e9be9f1018",
+          "sha256": "4568e801d637d3821f34e7b22f06fe2d88269b0b2a3d0452e2fe8f5d32699b9f",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -27693,9 +27735,9 @@
     {
       "task_id": "eureka-ballbalance",
       "status": "missing",
-      "metric": "task-specific fitness and human-normalized score",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -27705,14 +27747,16 @@
         "source": {
           "path": "suite/eureka-ballbalance/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/eureka-ballbalance/problem.json",
-          "sha256": "5dc487f86f9c83db67197280b4e9bd11c4cea30d53b0e78168082bb28eea5be3",
+          "sha256": "055e7fc4398135cb5c90becc82048164f67c065c9ae5b26404239dc6d3510471",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/eureka-ballbalance/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/eureka-ballbalance/evaluator.py",
-          "sha256": "99f07092dfc21b2f09c5adb7a02601c97f58b9628a81fade5f6299b9890fd1ab",
+          "sha256": "0f6ce5c787c682412e883c422b1f4c23f69676955a63d94edb0ab253cc5d3a8d",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -28619,9 +28663,9 @@
     {
       "task_id": "eurekagent-jigsaw-toxic-comment",
       "status": "missing",
-      "metric": "competition score and medal threshold",
-      "direction": null,
-      "protocol": "unsupported",
+      "metric": "score",
+      "direction": "maximize",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -28631,14 +28675,16 @@
         "source": {
           "path": "suite/eurekagent-jigsaw-toxic-comment/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/eurekagent-jigsaw-toxic-comment/problem.json",
-          "sha256": "93cbb1ed10a0a28c352108c6c1b56cc82b75f4c42e64c7b8176d5d282e77a4ea",
+          "sha256": "35640999d16f21c04d716e99a6a52c9fe461d45cc831ade9ecfaa79b86dbf0a2",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/eurekagent-jigsaw-toxic-comment/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/eurekagent-jigsaw-toxic-comment/evaluator.py",
-          "sha256": "42d02d97a2d8a02a08534479b4191877604a37d7a40222cedcd2cde1835582b3",
+          "sha256": "20ca53b8e53f18a3ba0dbc9a0b2dff747170a4827501ed5d9a04e6220b9ef895",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -29968,26 +30014,31 @@
     {
       "task_id": "evoor-agent-nlp4lp",
       "status": "missing",
-      "metric": "optimization-model solution accuracy",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "nlp4lp",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "nlp4lp",
         "source": {
           "path": "suite/evoor-agent-nlp4lp/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoor-agent-nlp4lp/problem.json",
-          "sha256": "dadfe060e369fae18bb6577dd2b191c176c48f331b0193c80b6a5e1165a76bd7",
+          "sha256": "a068d1e423f9da64ea36abe2d2c8488482721e4543f465ac800e02a360644ca4",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoor-agent-nlp4lp/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoor-agent-nlp4lp/evaluator.py",
-          "sha256": "77cb8261db651e84b1be22866d0887a964df28de63129876d65e05df250ee570",
+          "sha256": "523e4ae635cf792c42591273a478628334dfc527aad5b1a69a91cc6ede225648",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -29996,26 +30047,31 @@
     {
       "task_id": "evoor-agent-resocratic",
       "status": "missing",
-      "metric": "optimization-model solution accuracy",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "resocratic",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "resocratic",
         "source": {
           "path": "suite/evoor-agent-resocratic/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoor-agent-resocratic/problem.json",
-          "sha256": "8bdea424e3933602911d93a4960a063ab2062408e281aa7c9d858e6351f4f16f",
+          "sha256": "f1f67644ee69923d156bad64f62e99f61a3ce75b85698f5a4a46ed228f9570aa",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoor-agent-resocratic/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoor-agent-resocratic/evaluator.py",
-          "sha256": "e6b2c1274b5392330dfd86f638dafa077c52469960746edd7dc6c70ff7c23482",
+          "sha256": "e4854275c9866afb0e5b793f357836ca73287d5231305c1c7a0190e969bff28d",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -31590,26 +31646,30 @@
     {
       "task_id": "evoprompting-activity-selector",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 1200
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-activity-selector/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-activity-selector/problem.json",
-          "sha256": "dd2c446ab3d63436de59054f7383d5ba00c9d36543784e5eb7514e44eaf96e1f",
+          "sha256": "f8a685f731e7710eaa6579e8baf82587663397c5a7047fed596ca6c5e9eaeb4f",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-activity-selector/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-activity-selector/evaluator.py",
-          "sha256": "098973db11ad55278a0b1f382e1cae9b5ea6fd0b452639615a5c007dc5839282",
+          "sha256": "8b456e0c42d529eebcefce7e981687d8f60165e56690f65a1dddc6435c34959a",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -31646,26 +31706,30 @@
     {
       "task_id": "evoprompting-bellman-ford",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 1500
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-bellman-ford/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-bellman-ford/problem.json",
-          "sha256": "dc02894632ec099b01132f5d82185629d3c36410f419ebb612759f45ab1f5e6c",
+          "sha256": "dad35c9cf0aefbf2a0422f82129a997bef919550a8ec16c9c9168fc7c7d55340",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-bellman-ford/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-bellman-ford/evaluator.py",
-          "sha256": "ecf031060a913cc223be3dff4d25a39dd729f5943ea5bf9a565703d26a1d78c7",
+          "sha256": "3fdd8ae7a06aee42b274cdd83458985dfbd6ab910e03f22174c6e7dd654b7eb8",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -31674,26 +31738,30 @@
     {
       "task_id": "evoprompting-bfs",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 1500
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-bfs/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-bfs/problem.json",
-          "sha256": "7414a0a9a6dc94f2e6dd41a7e5d701679496aed807ed4a02c33a73b82c7f1c43",
+          "sha256": "9c790148b0e89a6f6acbae3b034577dcdc87b1d3d128d39daf7917a3818c941a",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-bfs/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-bfs/evaluator.py",
-          "sha256": "f5221a8a54c6921e531c409f33a61a658c19ebe4842e866dd223c5ecd332f923",
+          "sha256": "879429524f53842e12e19fa6503034c25dc9b0e842a49211118762c4a19a1e31",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -31702,26 +31770,30 @@
     {
       "task_id": "evoprompting-binary-search",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 2000
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-binary-search/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-binary-search/problem.json",
-          "sha256": "4cc66539582b40539e2253e87501caef3ddd3683d2347d3dd9377ad850a2297d",
+          "sha256": "3d9e5b622c42d5eae1ef84839003dce0c744e97a8b28a20bfdd72dcdb87fa720",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-binary-search/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-binary-search/evaluator.py",
-          "sha256": "53ca85348c5d711a65edfcec9d06907d9118c1d7eada91937e9251ca5ad11e81",
+          "sha256": "f8c71c4c79b2e4d48d149d37d473577e681aaf06505b31a954a3dde3e67a67a3",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -31842,26 +31914,30 @@
     {
       "task_id": "evoprompting-dijkstra",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 800
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-dijkstra/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-dijkstra/problem.json",
-          "sha256": "9598688ad45fab1fd47a205bfb5ea44c266a32020751bb498ef136724ad31604",
+          "sha256": "21df9e34f2f573e75ceda5556e118b41e88519ba2d645edb1e1d2122829cfa01",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-dijkstra/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-dijkstra/evaluator.py",
-          "sha256": "1b3b671c5ea933a14ed9ef20d17c7e6670051f648f8e88d69610614986fe69d7",
+          "sha256": "24360992e687e2f63d044b0adecc0d6e159af547628114003a64098480d61d7f",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -31870,26 +31946,30 @@
     {
       "task_id": "evoprompting-find-maximum-subarray-kadane",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 1000
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-find-maximum-subarray-kadane/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-find-maximum-subarray-kadane/problem.json",
-          "sha256": "687ee3abeeca4ab6794dcab4eed64c14db7b030b3c1581bd550424a6f3f2a6b4",
+          "sha256": "72715e453bd2da119a3d30d69a9adf82a16466bc6dc1dfb004ae6a1b7c92fe2e",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-find-maximum-subarray-kadane/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-find-maximum-subarray-kadane/evaluator.py",
-          "sha256": "aab9f5f76fd20c1199ad711906c4f7eddf74e83fe9b7b227fd96cdcf8288beaf",
+          "sha256": "266993a182af21a4a6ca91d496cfc893eebef1128a75ee5bd45eeff725028da7",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -31898,26 +31978,30 @@
     {
       "task_id": "evoprompting-floyd-warshall",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 100
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-floyd-warshall/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-floyd-warshall/problem.json",
-          "sha256": "e5a90ff7a4594c274ebd9076096b1107379a3561f9af0a1b3ff7c390d6b88051",
+          "sha256": "f293b9eee6523d0f16e545d2355c45b33eed350943b486379f3f42ab59706c21",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-floyd-warshall/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-floyd-warshall/evaluator.py",
-          "sha256": "b862e37217479e74696cec3a05af945d0f1f417ceef0f2b6664b2ef2d74de1d6",
+          "sha256": "f4f1d5538552b359f27871a946844e8f9c31805b279bbf8bd3e785acecd2e9c7",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -31926,26 +32010,30 @@
     {
       "task_id": "evoprompting-graham-scan",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 150
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-graham-scan/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-graham-scan/problem.json",
-          "sha256": "15278d2d624f47d26aeac28a0ed6f82e79f100ee681da239919891e6ba760559",
+          "sha256": "b3a2d814dffad2bb9566b55a709c60d1c27b4acf2808ff98248c4c63c9708341",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-graham-scan/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-graham-scan/evaluator.py",
-          "sha256": "18eeadd28f9a2de66ccef275b657dba2c0053e927e74fe6a1dbd47b89ef262a4",
+          "sha256": "f51e64d32efac258894be5b0999c1b3ab154e3d82ceeb4205fb26860af168ad9",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -31982,26 +32070,30 @@
     {
       "task_id": "evoprompting-insertion-sort",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 900
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-insertion-sort/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-insertion-sort/problem.json",
-          "sha256": "16a940481ca02a62f52251e6ae04e4f0ec83ff628023dcea6e4cfb2f744bca01",
+          "sha256": "48bbf41b51690e7a2c6f8396eb493a2d83d35757934f33f364a5a46e58ad8f17",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-insertion-sort/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-insertion-sort/evaluator.py",
-          "sha256": "67085382e7b3e51a7b63a6fb93e3183ec0f61a0af35e6e00d6e6a3e6a4d241e6",
+          "sha256": "0e2c0c5ec226df5b96c15d6efaa7c8f8ed467f52df269f52aab3ae3eade96c7a",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -32066,26 +32158,30 @@
     {
       "task_id": "evoprompting-lcs-length",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 1500
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-lcs-length/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-lcs-length/problem.json",
-          "sha256": "e014bba2fae9898bbb91946450067cc58219356f7a1282aac4a51b5e524971ea",
+          "sha256": "7f72eda0967011456b878b202764afc43a6454ac73234f23925a6fdcdb0892c9",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-lcs-length/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-lcs-length/evaluator.py",
-          "sha256": "43f22d5b7fb0bff33f28188297435059b3f4a393dc53b436772d08dc531601cb",
+          "sha256": "22925beb278f03b712d925966750ed63ab733e8570f205c405c7a159f6798f53",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -32094,26 +32190,30 @@
     {
       "task_id": "evoprompting-matrix-chain-order",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 100
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-matrix-chain-order/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-matrix-chain-order/problem.json",
-          "sha256": "a7022c6328fd1b73749d32abe6890fa18b0c634679504ab80798f7cc9da9e90e",
+          "sha256": "74660258b41293093c2ce175806cf04e76b518e2de648961be2d00af3ecb64f7",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-matrix-chain-order/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-matrix-chain-order/evaluator.py",
-          "sha256": "6ed9f16d1acf54b14e9536862192099d401f76baebbf7047af652ed695d8dc86",
+          "sha256": "128c8aa8014264508dda8b1e52a1e5e3b96197550ed2412339454ee3e878e831",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -32217,26 +32317,30 @@
     {
       "task_id": "evoprompting-mst-kruskal",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 200
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-mst-kruskal/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-mst-kruskal/problem.json",
-          "sha256": "894c50ba5f1404d2dca597892171ea52546552fd40742c7fb582905c390c136d",
+          "sha256": "fbfeb778dab3fcfcf1ae73a1739d2e6416faff5279c5d8cd38b11098bc5b6ba0",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-mst-kruskal/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-mst-kruskal/evaluator.py",
-          "sha256": "cfb5340caa11c9e04d5938c311aa546420799d38107d4ea73d2e911403ed9272",
+          "sha256": "324f64c5ae09b44611574fc8c9dcf7036cf5a2a31624cbb76a98ebaeb7e06a8d",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -32245,26 +32349,30 @@
     {
       "task_id": "evoprompting-mst-prim",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 800
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-mst-prim/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-mst-prim/problem.json",
-          "sha256": "7cd4e744eb83e5ca03388b92fa1d279cb30a2893ebefd9f60230dbab4c3f24a6",
+          "sha256": "ef42826bac296dfc57badb426e1e14140e2ed5b0a61856b10d49aafb7fb20c32",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-mst-prim/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-mst-prim/evaluator.py",
-          "sha256": "bfc907d2d093c8e0a6a8d51f9ad5687aa8adbe850b83f40387fb606924a54a53",
+          "sha256": "d0a9a0fb23f4c8db2752c0b39fa6c2b4a5447c9dad32e1d806fa630f5d44f406",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -32385,26 +32493,30 @@
     {
       "task_id": "evoprompting-optimal-bst",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 100
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-optimal-bst/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-optimal-bst/problem.json",
-          "sha256": "a5c8ef13c3d61c631f1eeb77b6a9ff161bc222b0b560079b6c644dcd09f9606d",
+          "sha256": "18d38d03fc4dd73eec5c1f283918eb6a9209c4fd4187955fdb75db693ab693d4",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-optimal-bst/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-optimal-bst/evaluator.py",
-          "sha256": "c94db85ed8f62381dd24abe667e146948f0edf0e0c693b0a5cb5a6fc71bd5e54",
+          "sha256": "9baf0689c36b23c435d6ba25e3b25218dccce503bb01b3f35223f1c8a2119859",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -32469,26 +32581,30 @@
     {
       "task_id": "evoprompting-segments-intersect",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 2000
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-segments-intersect/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-segments-intersect/problem.json",
-          "sha256": "b0922435f15b04b604ce4822fa6bee7aea55a8219341a479d5dc3e5b689716f0",
+          "sha256": "762f690344e126b27ebac18bff565f6ce196c44d04638b8f320baf5709ccd050",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-segments-intersect/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-segments-intersect/evaluator.py",
-          "sha256": "3f913fe6cc2a751f0316aa4531c7f1f204171a1195edf4fce2dd7099dd41f5a8",
+          "sha256": "bf93dc078e2332ecdb1ded482e4d75c4c2e4e24043a03f2d44fba8e9605f4285",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -32525,26 +32641,30 @@
     {
       "task_id": "evoprompting-task-scheduling",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 1200
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-task-scheduling/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-task-scheduling/problem.json",
-          "sha256": "99642723cca866b06d8f37a1e9ac54848d5b67fbe01eb136f08fa2f619925d2c",
+          "sha256": "d3c4205e0492e47e75dd16100eb7fbc7657084b60c1dad338d3c919113b603eb",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-task-scheduling/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-task-scheduling/evaluator.py",
-          "sha256": "3aae773abd25491957a24bf80b5dbd27311c40fe1c1fa4051f4cab6bac39bb37",
+          "sha256": "49de9e7a224c4059069025d1b13127dad2e80e21ac86eaa24ed224a12c78fbd7",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -32553,26 +32673,30 @@
     {
       "task_id": "evoprompting-topological-sort",
       "status": "missing",
-      "metric": "OOD accuracy and parameter count",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "steps": 120
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/evoprompting-topological-sort/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-topological-sort/problem.json",
-          "sha256": "ff62ef791c2a468560ced0ebf3cb09918aa4d12d38590fe1f124f75e1f3fcf55",
+          "sha256": "75c7895411033a1248a748f76867affbf8c04ee2f537283f819e4bb3a2075cfc",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evoprompting-topological-sort/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evoprompting-topological-sort/evaluator.py",
-          "sha256": "3ed704fff495b9ba6d2aa2fc25cbd6d366898c9231acff1b5625659799c92156",
+          "sha256": "09d5c95e15b0c3416a6b3a071da7e5bbe32663ff1f4785d484d9fbf4ab3ea901",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -33327,26 +33451,30 @@
     {
       "task_id": "evox-telemetry-repair",
       "status": "missing",
-      "metric": "evaluator combined score",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated_verified",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 42
+        },
+        "seed": 42,
         "dataset": null,
         "source": {
           "path": "suite/evox-telemetry-repair/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evox-telemetry-repair/problem.json",
-          "sha256": "44a69e326c5ae0b145ec9b38e8f3c93ec9bdb93330db953610421de8fb3e434a",
+          "sha256": "c54c35bc2f05b292041604a3ab7de7c0c095b1ce5d66f616f3cbc18f14fd73bb",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/evox-telemetry-repair/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/evox-telemetry-repair/evaluator.py",
-          "sha256": "662ad52033cb3a63985dbe644c07aad9b2a6d47b77a1e8552eeb9657bdf93b32",
+          "sha256": "1fc650a3a533de43038ef6f8b6b925d5ddfb16c97e6f9e735a999d7526d53afb",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -35941,26 +36069,30 @@
     {
       "task_id": "gepa-ifbench",
       "status": "missing",
-      "metric": "task-specific score",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 0
+        },
+        "seed": 0,
         "dataset": null,
         "source": {
           "path": "suite/gepa-ifbench/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/gepa-ifbench/problem.json",
-          "sha256": "d88ea58639449844483682bf4876e547188099ac59babda14d579dbdf4911946",
+          "sha256": "74a650b776ac303dcb13a1c112225ac67d127c4a6c0badc394278fdffe24fcc6",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/gepa-ifbench/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/gepa-ifbench/evaluator.py",
-          "sha256": "252a141385a104965e1d9397d68d6a69d029624c89511f17d2aa7b670c20ba1f",
+          "sha256": "257fae2d098b36943d51287bba0948e2362d77f1ccc6bfe29434bbde53762e7b",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -36046,26 +36178,30 @@
     {
       "task_id": "gepa-pupa",
       "status": "missing",
-      "metric": "task-specific score",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 0
+        },
+        "seed": 0,
         "dataset": null,
         "source": {
           "path": "suite/gepa-pupa/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/gepa-pupa/problem.json",
-          "sha256": "a74f393e4c0476b5f39ba57ce3027d00660ccfb3beb6e32a5214b5e61340d004",
+          "sha256": "335cc3475e6bc43eafd265e4f509733c4cff70526be3dc996e1256bed6822400",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/gepa-pupa/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/gepa-pupa/evaluator.py",
-          "sha256": "bd5643cac4cb13504a74ce329b655edcf221f85bf0aaa3813e670cb2502243a6",
+          "sha256": "81d996a6d1974e521010c9557fd8b5fbf221c20357fd04240e63bb7c9736afd6",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -38204,26 +38340,30 @@
     {
       "task_id": "hsi-babaisai-breakstop",
       "status": "missing",
-      "metric": "episode progress / task success",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "split": "test"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/hsi-babaisai-breakstop/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-babaisai-breakstop/problem.json",
-          "sha256": "3ed233e3eb18d1f87121f639b3356648bd10fd8bf277909a85a6d51a501a718f",
+          "sha256": "96225b01064e03cb06014327d8aa6bcbc2dae237a2217bda898c9d385b5d30e3",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/hsi-babaisai-breakstop/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-babaisai-breakstop/evaluator.py",
-          "sha256": "4310a2f58d1a38d3e83c7224053219817c4599380e6b83e4c6eb75886a65d6b6",
+          "sha256": "d2f5aaecd66cced2629dda061928c60efe0042a09e1939b7d06832cb74ff9a84",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -38232,26 +38372,30 @@
     {
       "task_id": "hsi-babaisai-goto",
       "status": "missing",
-      "metric": "episode progress / task success",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "split": "test"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/hsi-babaisai-goto/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-babaisai-goto/problem.json",
-          "sha256": "e5853132c69d6a005f8693701edc3c12691699d5986e869157c30bfcdcd7c3c1",
+          "sha256": "0df115898973314e9a3441b646ef69fa5f61bd69111d8b14bc6189327ebdd316",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/hsi-babaisai-goto/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-babaisai-goto/evaluator.py",
-          "sha256": "b3f8b5defa7870562cb9d40fd4baafd3ad93fc2ec6b7aa78b1dc2b712c06781a",
+          "sha256": "572e397cffdd0252b4f885be3a00ca20fc74facf007dd832a04845bfdfdedf1a",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -38260,26 +38404,30 @@
     {
       "task_id": "hsi-babaisai-make",
       "status": "missing",
-      "metric": "episode progress / task success",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "split": "test"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/hsi-babaisai-make/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-babaisai-make/problem.json",
-          "sha256": "8a6e545fdf0bd5166d89fd637727c05227286897548d9467b82be7fae157e79c",
+          "sha256": "097567d99938664d9138522a66da7173c6793046ad66de8e6cdbe1765daf4ce0",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/hsi-babaisai-make/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-babaisai-make/evaluator.py",
-          "sha256": "fd46cdc69a650bc672e07efd01c38eef13aa04495b1a18bcb6c2b857cab21b61",
+          "sha256": "9355b1a052a1ce45bb66b9faf510bafd9b90de241157d89787e175910348a1b3",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -38288,26 +38436,30 @@
     {
       "task_id": "hsi-babyai",
       "status": "missing",
-      "metric": "episode progress / task success",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "split": "all"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/hsi-babyai/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-babyai/problem.json",
-          "sha256": "21e33521eed5d0e909535ae64ed0f62ca4dc27e7c8ea1cb5823b630ee5c71956",
+          "sha256": "8c073b1952b75062380b9723cb83ad6d79c02171360d221d697589305b4112ff",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/hsi-babyai/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-babyai/evaluator.py",
-          "sha256": "fc67668a97e9c49b2c55ca6d27f3b5b5295d2541a12f5fafb34cd3eb611f78fe",
+          "sha256": "36c788c733eff1c6391812af5a5ebed7db990dbd9b5e78c3675851d7acced73f",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -38316,26 +38468,30 @@
     {
       "task_id": "hsi-crafter",
       "status": "missing",
-      "metric": "episode progress / task success",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "split": "all"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/hsi-crafter/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-crafter/problem.json",
-          "sha256": "823c33470727ddeaa31a3cec9c8ab5a8b3ea62ad844ac8b0c54789b48a51a9be",
+          "sha256": "3253903a250aeadd6ca2ef82d809eef4becd8d55a8c3bfd94a466efceb661ef9",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/hsi-crafter/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-crafter/evaluator.py",
-          "sha256": "2680d14ce79d27a34bd68ed04e208a5541a6ffb83ce115e779784124aca2ac34",
+          "sha256": "512565c3cb92e306bfd5fb88dfd52f4b3f6da90c731471514e33a1cfd78a83f1",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -38344,26 +38500,30 @@
     {
       "task_id": "hsi-minihack",
       "status": "missing",
-      "metric": "episode progress / task success",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "split": "all"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/hsi-minihack/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-minihack/problem.json",
-          "sha256": "61ac1aad0372fc1c28f1355c7d34e0cf60dbd19c4f8088b871332403fed85f75",
+          "sha256": "8db4955cf31c38a83a258cf500e8d1b963f14af4c2fab733636cc208644284bf",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/hsi-minihack/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hsi-minihack/evaluator.py",
-          "sha256": "d925e0ee842216fae25bc7d4d9137d168a4273456f68bef4eef4285212ee8f68",
+          "sha256": "c06254baa3b99c2efd920e15fa282ea744ccf0c57c8bf883d4ecebf279e400cf",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -38466,26 +38626,31 @@
     {
       "task_id": "hyperagents-conference-paper-acceptance-prediction",
       "status": "missing",
-      "metric": "binary accuracy",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "paper_review",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "paper_review",
         "source": {
           "path": "suite/hyperagents-conference-paper-acceptance-prediction/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hyperagents-conference-paper-acceptance-prediction/problem.json",
-          "sha256": "3c7031cbbd39ca2ce6543a313c523ccba54a1cd20a84e393bc224be4423abb48",
+          "sha256": "df703f59c45ac5bd0fd16f4ab572185e845b82f3b5fa2450f7c1b8cbcccc9031",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/hyperagents-conference-paper-acceptance-prediction/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hyperagents-conference-paper-acceptance-prediction/evaluator.py",
-          "sha256": "2cb0b52f036de81771820e4c268f468d574e282e903d9a83e98964043a997853",
+          "sha256": "5640e1ab458e89a2d182da4f312b89f379c98cb7ec7e6e4e6a5b1198b5e4d0ad",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -38494,26 +38659,31 @@
     {
       "task_id": "hyperagents-imo-gradingbench",
       "status": "missing",
-      "metric": "agreement with expert grades",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "gradingbench",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "gradingbench",
         "source": {
           "path": "suite/hyperagents-imo-gradingbench/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hyperagents-imo-gradingbench/problem.json",
-          "sha256": "bc4420bea1cb32909098f6a2cb6d8cdfabf09c68e9320e3c4deb2013ad885baa",
+          "sha256": "451ec38cae1d6902b5f0e8417218fa83e5581871514ccd2daa00e6b0451c5395",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/hyperagents-imo-gradingbench/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hyperagents-imo-gradingbench/evaluator.py",
-          "sha256": "39d9c723d793feff825d1d956397b6cafdd049bebe955af4d52d298a4cab7507",
+          "sha256": "d440623ce253def8c66815b03c661f7145181119c668e6c19662abb1d4e2ea65",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -41178,26 +41348,30 @@
     {
       "task_id": "l-autoda-cifar-10-decision-based-adversarial-attack",
       "status": "missing",
-      "metric": "mean/median L2 adversarial perturbation versus query count",
+      "metric": "score",
       "direction": "minimize",
-      "protocol": "unsupported",
+      "protocol": "recreated_verified",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 0
+        },
+        "seed": 0,
         "dataset": null,
         "source": {
           "path": "suite/l-autoda-cifar-10-decision-based-adversarial-attack/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/l-autoda-cifar-10-decision-based-adversarial-attack/problem.json",
-          "sha256": "a92abf888c40156309951914bc7a16a8820ad9560e8bd749a112a21c027a0f64",
+          "sha256": "c882b41f34ffba98bbc458173586b47bb19bd412b7a9e490795201da31c21fe4",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/l-autoda-cifar-10-decision-based-adversarial-attack/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/l-autoda-cifar-10-decision-based-adversarial-attack/evaluator.py",
-          "sha256": "74ab38b29e4eb25ed52a050dcbf40f7bfe2f4f9e7cf4c663344f9b45329f6bab",
+          "sha256": "284d8a5f40ed525fbfc24c51b5349e2d8bb2a2511e673241d0c95edee8acf4d7",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -41206,9 +41380,9 @@
     {
       "task_id": "lasr-big-bench-llm-scaling-law-discovery",
       "status": "missing",
-      "metric": "exact symbolic recovery / MSE (symbolic regression); scaling-law predictive fit",
-      "direction": null,
-      "protocol": "unsupported",
+      "metric": "score",
+      "direction": "minimize",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -41218,14 +41392,16 @@
         "source": {
           "path": "suite/lasr-big-bench-llm-scaling-law-discovery/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/lasr-big-bench-llm-scaling-law-discovery/problem.json",
-          "sha256": "fce6f20c9378ccd0464b8c52e222b74eafa3f5e3ed4dc48dec0152e72de6991d",
+          "sha256": "d371958b7346ecd3c8546fe955e3c4bd326ea30417a1f88792fe768c30fc5a04",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/lasr-big-bench-llm-scaling-law-discovery/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/lasr-big-bench-llm-scaling-law-discovery/evaluator.py",
-          "sha256": "11164275dfa732e5d55094ffcc22ebfef3653e083826d5ca63c45e846d944ca0",
+          "sha256": "686cb9837f71bc6ddcb7d5f75ffef5fece1e0d656ce343fc04da2e9f6e129db7",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -41366,9 +41542,9 @@
     {
       "task_id": "limen-easy-pickup",
       "status": "missing",
-      "metric": "mean success rate across three seeds",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "original",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -41378,14 +41554,16 @@
         "source": {
           "path": "suite/limen-easy-pickup/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/limen-easy-pickup/problem.json",
-          "sha256": "b2f8edf5fa451f883d94643c651ed106ddd8c99361b2700fd6ba33abb0ceafa7",
+          "sha256": "df3b707fe02b5d39ab67320ab61291a44285b06c603a81200c3b7cc8cff56e8b",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/limen-easy-pickup/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/limen-easy-pickup/evaluator.py",
-          "sha256": "2086307f3b712a90c9b29b2a2034cd45af3714b518fdb93b90b78a7f6680afb7",
+          "sha256": "011c64da1b9d7d6192f02d9a328a878ed3d9812aab5bc632369a1bd3e9704a67",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -41422,9 +41600,9 @@
     {
       "task_id": "limen-hard-rule-chain",
       "status": "missing",
-      "metric": "mean success rate across three seeds",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "original",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -41434,14 +41612,16 @@
         "source": {
           "path": "suite/limen-hard-rule-chain/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/limen-hard-rule-chain/problem.json",
-          "sha256": "71e7b956e59f82e9bb4587bba485249e3efbca38c338965602b45ef24ae552d7",
+          "sha256": "f8b91da3e517c966b211f8bdc13bc6df7852b242c123cd703bef79313a8bbccd",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/limen-hard-rule-chain/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/limen-hard-rule-chain/evaluator.py",
-          "sha256": "fdd256c306d640ef38fe70d7e8f98dd1f69e515f41a07d89e8ce866f7feaeb02",
+          "sha256": "1e755b331ed5a84eafa0cf5a72cf6b8eca7dce3565c1533f2a217d69eb569a04",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -41450,9 +41630,9 @@
     {
       "task_id": "limen-medium-place-near",
       "status": "missing",
-      "metric": "mean success rate across three seeds",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "original",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -41462,14 +41642,16 @@
         "source": {
           "path": "suite/limen-medium-place-near/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/limen-medium-place-near/problem.json",
-          "sha256": "b0472ba9046cbc548356ee771a4f34ab77240b73ce7459cd94cd0caebf26c322",
+          "sha256": "fabe6e3935becc8846b1b9ad695eea0b5af2ed63ccfb4ff5c52fd94e582f40ac",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/limen-medium-place-near/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/limen-medium-place-near/evaluator.py",
-          "sha256": "811fb307f42f0c553ae66f068a2465362af47d7f57e299cbc9b0f31821d0c16d",
+          "sha256": "3cc592bd97226ea96eda1129f67e8a32aa6614923a91c557a4670b649ad781a2",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -48532,9 +48714,9 @@
     {
       "task_id": "lmx-gore-vidal-sentence-sentiment",
       "status": "missing",
-      "metric": "domain-specific fitness / QD score",
-      "direction": null,
-      "protocol": "unsupported",
+      "metric": "score",
+      "direction": "maximize",
+      "protocol": "recreated_verified",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -48544,14 +48726,16 @@
         "source": {
           "path": "suite/lmx-gore-vidal-sentence-sentiment/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/lmx-gore-vidal-sentence-sentiment/problem.json",
-          "sha256": "b7fe07f9abd293f844dbf122ac03227fd43835c93213c4872f75add7d8777cd8",
+          "sha256": "c7a250ab76ebb01068347fd6babb92ac7bd9340a77affd469cddf639b0a165a1",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/lmx-gore-vidal-sentence-sentiment/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/lmx-gore-vidal-sentence-sentiment/evaluator.py",
-          "sha256": "c02af5e326b5d1012c1b4d64a8b5ba4c28d1aa72bf368b2dd34973d3c666ac93",
+          "sha256": "0989d347bdeebb96ffb0c7f2040ae5888a7c5e0a58e02786819c50eb4154ba96",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -48560,9 +48744,9 @@
     {
       "task_id": "lmx-homer-simpson-sentence-sentiment",
       "status": "missing",
-      "metric": "domain-specific fitness / QD score",
-      "direction": null,
-      "protocol": "unsupported",
+      "metric": "score",
+      "direction": "maximize",
+      "protocol": "recreated_verified",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -48572,14 +48756,16 @@
         "source": {
           "path": "suite/lmx-homer-simpson-sentence-sentiment/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/lmx-homer-simpson-sentence-sentiment/problem.json",
-          "sha256": "3a526ca69734ba7d753a29428c418eda0b9d8fda774db7cee093a3c1605650f9",
+          "sha256": "9fa58f6db3d55483039b142e83620293311703517cc8cfa5964ca52791582c7c",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/lmx-homer-simpson-sentence-sentiment/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/lmx-homer-simpson-sentence-sentiment/evaluator.py",
-          "sha256": "c121ab592750cd953169193376199a2a389977d1b2bcb18c42b994cbf62e26ef",
+          "sha256": "fa50629b1275b1c23c9ade022e83b8dabca656ac0dcc08ec7ea4771173fc776c",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -48816,9 +49002,9 @@
     {
       "task_id": "lmx-woody-allen-sentence-sentiment",
       "status": "missing",
-      "metric": "domain-specific fitness / QD score",
-      "direction": null,
-      "protocol": "unsupported",
+      "metric": "score",
+      "direction": "maximize",
+      "protocol": "recreated_verified",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -48828,14 +49014,16 @@
         "source": {
           "path": "suite/lmx-woody-allen-sentence-sentiment/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/lmx-woody-allen-sentence-sentiment/problem.json",
-          "sha256": "d573495ae95ff445f09b36ff2c1c3c73c0f65e45445c27f8522520a87c9ee95e",
+          "sha256": "36acdd832c91014db4f95e38a1bd54320a4409d40b7f5f2c0476662db543d11b",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/lmx-woody-allen-sentence-sentiment/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/lmx-woody-allen-sentence-sentiment/evaluator.py",
-          "sha256": "c1a2d50f58dd7d860444c1a7355991e4ba893142a95d624738d285b866690d00",
+          "sha256": "f6b2c15b7e2c34c315bb48f1427723f690ad31c2f4c2486ec1e735cd6f27539e",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -48872,9 +49060,9 @@
     {
       "task_id": "loongflow-denoising-dirty-documents",
       "status": "missing",
-      "metric": "root mean squared error",
+      "metric": "score",
       "direction": "minimize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -48884,14 +49072,16 @@
         "source": {
           "path": "suite/loongflow-denoising-dirty-documents/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/loongflow-denoising-dirty-documents/problem.json",
-          "sha256": "2cda1985c58a1ccfd9739a19626cf05b4c54a142b66949a1b76ed84f26204d60",
+          "sha256": "657869557de0ac757124230b4401b8c2f21cd29cb9994a86c91b01d66caeef6b",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/loongflow-denoising-dirty-documents/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/loongflow-denoising-dirty-documents/evaluator.py",
-          "sha256": "2dbb264090c259710c4b922a3f018963d74ee5fe8debc1d6eebfaa619d61f5da",
+          "sha256": "617a14053b538b4c31e39a6b83ba599906b039249de9f488499a09a8c698e6f7",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -48984,9 +49174,9 @@
     {
       "task_id": "loongflow-histopathologic-cancer-detection",
       "status": "missing",
-      "metric": "ROC AUC",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -48996,14 +49186,16 @@
         "source": {
           "path": "suite/loongflow-histopathologic-cancer-detection/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/loongflow-histopathologic-cancer-detection/problem.json",
-          "sha256": "b13bf6e67b87d9559687d7626b6c195d63a606eff7636a809b50b450bcaed581",
+          "sha256": "e6d7e134dd01d95d24bf7a3399881a45941087ee42a94a8288ab30cfb23886b6",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/loongflow-histopathologic-cancer-detection/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/loongflow-histopathologic-cancer-detection/evaluator.py",
-          "sha256": "b704a5b80e04cdde81bfd57712a147b9e55dfe0b7ee4576777e163a12a4fba2b",
+          "sha256": "8e962fd9165758dba15b9847bfa818e2818d1984f76228e98376ba43a5468d8f",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -49012,9 +49204,9 @@
     {
       "task_id": "loongflow-nomad2018-predict-transparent-conductors",
       "status": "missing",
-      "metric": "mean columnwise root mean squared logarithmic error",
+      "metric": "score",
       "direction": "minimize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -49024,14 +49216,16 @@
         "source": {
           "path": "suite/loongflow-nomad2018-predict-transparent-conductors/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/loongflow-nomad2018-predict-transparent-conductors/problem.json",
-          "sha256": "788051910c72853cc18bd807969b97efb4e9124e87d5b8b27d978682741a23a8",
+          "sha256": "75dd401eee62d5a6000e6f5541946dd68a802f620cb36604246067007933a853",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/loongflow-nomad2018-predict-transparent-conductors/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/loongflow-nomad2018-predict-transparent-conductors/evaluator.py",
-          "sha256": "a9a1f6dd8bb28abded7f2f9a505e794d9921d9742eb0cc2f3f667203d8a98135",
+          "sha256": "dccc030064aed7dc4030407367f5450e4a0b930e641adb668bd6c5b1bbd13ae7",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -49124,9 +49318,9 @@
     {
       "task_id": "loongflow-stanford-covid-vaccine",
       "status": "missing",
-      "metric": "mean columnwise root mean squared error",
+      "metric": "score",
       "direction": "minimize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -49136,14 +49330,16 @@
         "source": {
           "path": "suite/loongflow-stanford-covid-vaccine/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/loongflow-stanford-covid-vaccine/problem.json",
-          "sha256": "c3ee0af126be8ffd0fb8713e6ddedfd968f35943e2d40172fa92a0e0bc2461cf",
+          "sha256": "e7f7fdd723e7843e05448ae144922aeaca81acefa975d5d19fdcf7ef455c62f3",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/loongflow-stanford-covid-vaccine/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/loongflow-stanford-covid-vaccine/evaluator.py",
-          "sha256": "82d4fb1db5afafc2a2c3d38afeb296f4dae882425c6be80f4101ee247c80ae58",
+          "sha256": "b0c842c68ca134cadef29e69195bd80e5fd027cb87feb42b1549bbf1e5875029",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -49208,9 +49404,9 @@
     {
       "task_id": "loongflow-us-patent-phrase-to-phrase-matching",
       "status": "missing",
-      "metric": "Pearson correlation",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -49220,14 +49416,16 @@
         "source": {
           "path": "suite/loongflow-us-patent-phrase-to-phrase-matching/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/loongflow-us-patent-phrase-to-phrase-matching/problem.json",
-          "sha256": "4fc4e2e2d0191224eca3cf8eec85922d45f9c1aea6f1aed83ddb27362f08567a",
+          "sha256": "cb5209359862107be508b4bca4fdfc6c5dc9cc2b875967530fd81426e5c8e338",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/loongflow-us-patent-phrase-to-phrase-matching/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/loongflow-us-patent-phrase-to-phrase-matching/evaluator.py",
-          "sha256": "c36e9e949c57195a35a72a432cdb57b49d8a853c87cb6ce2c799e5d392efebf2",
+          "sha256": "0b1af4c1bea87bc4af3eb55638ed9a148c2daa6b2ce59fc22af724b5dad6f4e0",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -49236,9 +49434,9 @@
     {
       "task_id": "magellan-llvm-function-inlining-for-binary-size",
       "status": "missing",
-      "metric": "binary size",
+      "metric": "score",
       "direction": "minimize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -49248,14 +49446,16 @@
         "source": {
           "path": "suite/magellan-llvm-function-inlining-for-binary-size/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/magellan-llvm-function-inlining-for-binary-size/problem.json",
-          "sha256": "d219b1276b1ea54dc61626440b69c852948146d6fe71952990d1005667c48577",
+          "sha256": "a1af171f052b27567033e2f83d646bf8a6a5c5f2bf69d6f6430665613c5a8b6b",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/magellan-llvm-function-inlining-for-binary-size/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/magellan-llvm-function-inlining-for-binary-size/evaluator.py",
-          "sha256": "3fcaaa1111f5b927d2006e79bd9b69c5953edc2a4a88c171022da1cd2f32aa22",
+          "sha256": "5ecd0c41e638bd2c83e28aecf719448481db7042f1c9fccf740bd10d244e6920",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -49320,9 +49520,9 @@
     {
       "task_id": "magellan-xla-auto-sharding-iopddl",
       "status": "missing",
-      "metric": "contest objective under memory constraints",
-      "direction": "minimize",
-      "protocol": "unsupported",
+      "metric": "score",
+      "direction": "maximize",
+      "protocol": "recreated_verified",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -49332,14 +49532,16 @@
         "source": {
           "path": "suite/magellan-xla-auto-sharding-iopddl/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/magellan-xla-auto-sharding-iopddl/problem.json",
-          "sha256": "4b4aae9463925952aa6534293a5ae232fdcc10e2c3e9f099008e3705930e7446",
+          "sha256": "d4bc73ae292a48c97fef2202ab2d579aaf75473890e25824e95e4a722b1caa8c",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/magellan-xla-auto-sharding-iopddl/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/magellan-xla-auto-sharding-iopddl/evaluator.py",
-          "sha256": "ac8044fa493dec08f66b92d8d54aacf03eaa89b5b43bd5a3b6274e535236dfa0",
+          "sha256": "2b188bf2427397089e02218976a2df8e2b822941cbd04ae1703089b456cf8f57",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -49348,9 +49550,9 @@
     {
       "task_id": "magellan-xla-enzyme-jax-e-graph-extraction",
       "status": "missing",
-      "metric": "total extracted program cost",
+      "metric": "score",
       "direction": "minimize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -49360,14 +49562,16 @@
         "source": {
           "path": "suite/magellan-xla-enzyme-jax-e-graph-extraction/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/magellan-xla-enzyme-jax-e-graph-extraction/problem.json",
-          "sha256": "f3c3d6c8801c84739b5eff884776e87b62d229bb42b6f0e3f5ac93832c36eb59",
+          "sha256": "a1ad08859f993256e88273060dad80cc1c70677ede563bb54cb61751d22ea668",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/magellan-xla-enzyme-jax-e-graph-extraction/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/magellan-xla-enzyme-jax-e-graph-extraction/evaluator.py",
-          "sha256": "672e9a4dc8d9d0db8eba7564a020bc07104ff73c89b6f88f600bc7270a99eb17",
+          "sha256": "034f61e08d305130a06b9aaf9a2013c01d96f99cbece1d0d3517275346dfc922",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -49453,26 +49657,31 @@
     {
       "task_id": "mce-finer",
       "status": "missing",
-      "metric": "pass@1 prediction accuracy",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "finer",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "finer",
         "source": {
           "path": "suite/mce-finer/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/mce-finer/problem.json",
-          "sha256": "ae1762a7d6d50d4a97a9140e1cc36afbbc458c13e6a97de9ff8f38ce29aac4d5",
+          "sha256": "d66c30963daa70daf53011229b60c7d46f1f71beda30a3dc599da56b39874a6c",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/mce-finer/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/mce-finer/evaluator.py",
-          "sha256": "7788766711b548c28ae788a95f25a94e30f42d26810fb08b205f5a10390409a6",
+          "sha256": "057638446df9be74104302b759d4ca7f957c7bdde80dc1a202b65a8c766abd92",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -49635,26 +49844,31 @@
     {
       "task_id": "mce-uspto-50k",
       "status": "missing",
-      "metric": "pass@1 exact-match accuracy",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "uspto",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "uspto",
         "source": {
           "path": "suite/mce-uspto-50k/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/mce-uspto-50k/problem.json",
-          "sha256": "80389b0a3b9ca1f98b6879ef577fc74f0297b60273ffeea53ec8cb6357498b81",
+          "sha256": "cc56d3cda1074048f4b5319a3e15c3a8f88b07df220eac9dd5e5ea12a3a393df",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/mce-uspto-50k/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/mce-uspto-50k/evaluator.py",
-          "sha256": "0cfa9da29e62b56c74b9fbcd5efdd486f4a12b5abb2e7b54a2955508cf459d98",
+          "sha256": "28411d63573b34a32758b2b25bd4948f4586ca4051467a41ad66870fda87fae7",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -49837,26 +50051,31 @@
     {
       "task_id": "meta-harness-arxivmath",
       "status": "missing",
-      "metric": "answer/proof accuracy",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "arxivmath",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "arxivmath",
         "source": {
           "path": "suite/meta-harness-arxivmath/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/meta-harness-arxivmath/problem.json",
-          "sha256": "bf1d22b4182bcd89cc3a669774eec62b1ca7ec4cb10b7426f80b272e93ba342f",
+          "sha256": "526cce999996a9e50808f9395ff1d6a44cd6f25ff87b07b9a5ccd258327f97ba",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/meta-harness-arxivmath/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/meta-harness-arxivmath/evaluator.py",
-          "sha256": "e09ce26d37b6beb0f5abef6a98a96cba78d9e9d9ba3d14ff13c038c655207548",
+          "sha256": "b2c3d49e9eb6b4799750bf863ccf190c9990c787cad295f7079825718bc42fa6",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -50173,26 +50392,30 @@
     {
       "task_id": "meta-harness-imo-proofbench",
       "status": "missing",
-      "metric": "answer/proof accuracy",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 0
+        },
+        "seed": 0,
         "dataset": null,
         "source": {
           "path": "suite/meta-harness-imo-proofbench/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/meta-harness-imo-proofbench/problem.json",
-          "sha256": "46dc3ba63d094a49059697b12479e285f1b24f859c51971937eee16dbbcc79d5",
+          "sha256": "c56b42418d49e0a8800f1a538a258b584bf5f5669ec6664e21d786a38573f825",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/meta-harness-imo-proofbench/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/meta-harness-imo-proofbench/evaluator.py",
-          "sha256": "e2e91a8136bd8f66c6092bb51d34ee1e2cb08ec40c580ce0eb65c2c1a1b41459",
+          "sha256": "b90a3ed1393fbd39d289fa29e34342399f8c52d9980caf2d6e26df7b74537cac",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -51080,26 +51303,31 @@
     {
       "task_id": "mind-evolution-natural-plan-meeting-planning",
       "status": "missing",
-      "metric": "success rate",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated_verified",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "meeting_planning",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "meeting_planning",
         "source": {
           "path": "suite/mind-evolution-natural-plan-meeting-planning/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/mind-evolution-natural-plan-meeting-planning/problem.json",
-          "sha256": "e5df8719503b136a087345f44eb027a38704f71345ab50163d70892b7ad73e96",
+          "sha256": "727aff8169fcce15cf174f1507293714c2d94678ebedd13014d66ec077828974",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/mind-evolution-natural-plan-meeting-planning/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/mind-evolution-natural-plan-meeting-planning/evaluator.py",
-          "sha256": "e599b6277cc52b855af3cdeecc76216afcec2c7262b418adbc494672ea456067",
+          "sha256": "1519eacecbc1b1efe728ab208d69ff02873a0253457c7f37ab754c064e8bdf9f",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -51213,26 +51441,31 @@
     {
       "task_id": "mind-evolution-travelplanner",
       "status": "missing",
-      "metric": "success rate",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated_verified",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "travelplanner",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "travelplanner",
         "source": {
           "path": "suite/mind-evolution-travelplanner/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/mind-evolution-travelplanner/problem.json",
-          "sha256": "6cd4238ce99ac04e88ae78a7dc3c152d6d378c2bb8a6a1a538532f6fb454bdc5",
+          "sha256": "749b79a803b520e9205f74e51c1b5b5faf08d0aff775178150d1f72d88e97603",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/mind-evolution-travelplanner/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/mind-evolution-travelplanner/evaluator.py",
-          "sha256": "9ae0cb6de9676998822cda36adc77f7194ed7d92b3c53eab4fd8074b8a3cee73",
+          "sha256": "8de0d7ce31c51f858bed0a03e1786e4fb0a59af443b9935a9c73b444ba3e2305",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -57755,26 +57988,30 @@
     {
       "task_id": "mipro-hover",
       "status": "missing",
-      "metric": "Recall@21",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
+        "parameters": {
+          "seed": 0
+        },
+        "seed": 0,
         "dataset": null,
         "source": {
           "path": "suite/mipro-hover/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/mipro-hover/problem.json",
-          "sha256": "86a2d13b7445268822c5bf1c0664a167647e75e91c5d1c5fdbb6bf8f06a33f0d",
+          "sha256": "fd02017cbe45020a82abefa9b54decb7f89fcd5a41f119ecd1a369e6b7a2afb3",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/mipro-hover/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/mipro-hover/evaluator.py",
-          "sha256": "42457d3cc648ecdc41b9762f6f9d2c59d644621702929117b8d2e2a8c41b5873",
+          "sha256": "e672fd5149bba58cb92e77bdc4406a89a6c343462e99afb2c0d88a7aae486597",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -58108,26 +58345,30 @@
     {
       "task_id": "pdr-balanced-academic-curriculum-csplib-30",
       "status": "missing",
-      "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "problem": "bacp"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/pdr-balanced-academic-curriculum-csplib-30/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-balanced-academic-curriculum-csplib-30/problem.json",
-          "sha256": "5746e7d185077725b6044f29318df7f05de5b09bd1dc9842175fc288494a992b",
+          "sha256": "9870dd7f8f86262b5573242a810de51bce6c4af20ee6e4ae482af1465a21c3c4",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/pdr-balanced-academic-curriculum-csplib-30/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-balanced-academic-curriculum-csplib-30/evaluator.py",
-          "sha256": "895a2fdf20a27dc017963d33e3ce37b8d87536e2670f8e8fab61e5d1f41989c3",
+          "sha256": "d5796bb77cf738a973c0b3cdcf8076149ac693fb1cdabc5a05118217fc164d67",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -58136,26 +58377,30 @@
     {
       "task_id": "pdr-balanced-incomplete-block-design-csplib-28",
       "status": "missing",
-      "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "problem": "bibd"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/pdr-balanced-incomplete-block-design-csplib-28/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-balanced-incomplete-block-design-csplib-28/problem.json",
-          "sha256": "b96fd328cd411351af2be1c3f33827a27dadcfb7b2ec90b13a43c075bc6e73ad",
+          "sha256": "b2994d3d475626738d62becc5c0559c83a7fe7462000966ffba7cd5cf4927dd4",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/pdr-balanced-incomplete-block-design-csplib-28/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-balanced-incomplete-block-design-csplib-28/evaluator.py",
-          "sha256": "522b33dc5a3152a82783d3ad63e9ee6ea0f7896584f53fc9d100c252bfc68b31",
+          "sha256": "43000a5d0df613b80fbda84ae3ab47ed9eefe4be5452ebacf7199567dd0a3350",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -58164,26 +58409,30 @@
     {
       "task_id": "pdr-car-sequencing-csplib-1",
       "status": "missing",
-      "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "problem": "car_sequencing"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/pdr-car-sequencing-csplib-1/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-car-sequencing-csplib-1/problem.json",
-          "sha256": "7b13282a880ee56e305f047b4dfba80dd89ea92df2de603916f43c1c3446c503",
+          "sha256": "0ce9b8fbc64e9cf64f2ce2bd7805c3b32e49af3e2feef84262faddce3f84c21c",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/pdr-car-sequencing-csplib-1/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-car-sequencing-csplib-1/evaluator.py",
-          "sha256": "4d8730112bfa529dbc1de1363f47d2ce3ad594117c0ba23666ee2d034e39b66f",
+          "sha256": "3175f1ac726eb09dcfce88bf21b1bc0011b8672cd300ab1c10ef400676694282",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -58192,26 +58441,30 @@
     {
       "task_id": "pdr-covering-arrays-csplib-45",
       "status": "missing",
-      "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "problem": "covering_array"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/pdr-covering-arrays-csplib-45/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-covering-arrays-csplib-45/problem.json",
-          "sha256": "d78a85983b2450e6ac239ff5020b672fa943571def1e3fdecca0c9c921f2e98a",
+          "sha256": "648b33a45d1f341359adf8e520f6407c45ea4505d67a84af8e2f2a4e25668b04",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/pdr-covering-arrays-csplib-45/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-covering-arrays-csplib-45/evaluator.py",
-          "sha256": "08b92395aa99e8e34f627e7f4e4169d3ca9aa4fcc9487ab436500ea362a6f025",
+          "sha256": "ed88ba541197577a276a508e6502a471dd987d46d9c183a157e08942302a20b4",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -58220,26 +58473,30 @@
     {
       "task_id": "pdr-error-correction-codes-csplib-36",
       "status": "missing",
-      "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "problem": "error_correcting_codes"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/pdr-error-correction-codes-csplib-36/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-error-correction-codes-csplib-36/problem.json",
-          "sha256": "7ee6133114fd4c91fbe28c4e87a032f6603a28cc6786ec89306bcfc436f2a6f3",
+          "sha256": "6004da153308c0b72b903ee158027c2d484b3b8a8878f7c3373274f2b2aae79d",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/pdr-error-correction-codes-csplib-36/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-error-correction-codes-csplib-36/evaluator.py",
-          "sha256": "4514fbeb518c935911ab36c5bf940534b4fe492fcb0f5064d6ff4d73c7fb5ee0",
+          "sha256": "fdd1c16b45ed7c004549e0c7651e10418581534b6c8bee85c1aba53f41a4292c",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -58248,26 +58505,30 @@
     {
       "task_id": "pdr-social-golfer-csplib-10",
       "status": "missing",
-      "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "problem": "social_golfers"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/pdr-social-golfer-csplib-10/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-social-golfer-csplib-10/problem.json",
-          "sha256": "a73d3ec8bef198bc916080c35258f80fb6504d996bf82a13d7c1f43514688747",
+          "sha256": "9ccb3b4e586cab9e01b212dba218849f5a9e6ba5f9c3eaf7b89570dc14d5e770",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/pdr-social-golfer-csplib-10/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-social-golfer-csplib-10/evaluator.py",
-          "sha256": "ffa3ea4668c01763fef4b7b9add1257a29d1b31815c12b29722c58672547cfea",
+          "sha256": "fdedf1ae85d426c9c9cbbafddb545164ae53e13423f6bafa794178ea96f8aea8",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -58276,26 +58537,30 @@
     {
       "task_id": "pdr-tail-assignment-csplib-115",
       "status": "missing",
-      "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "problem": "tail_assignment"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/pdr-tail-assignment-csplib-115/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-tail-assignment-csplib-115/problem.json",
-          "sha256": "d6241b905cad4a28d77f9e910d095f9ffb7172730c6cdde12598cef4a21b3e77",
+          "sha256": "aa28a75eeee80939b6c2e91cb921e9fce0868a9d595a7ce5ae9277e301b2a1ee",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/pdr-tail-assignment-csplib-115/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-tail-assignment-csplib-115/evaluator.py",
-          "sha256": "86671191274cdfbf0e6786c68825af8e5fa2cdf8b0639f4a380d75b63a384429",
+          "sha256": "bbc3dba20c07cf85bf8f644367fd0777b83de9020c60f7ef9bba33109335f502",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -58304,26 +58569,30 @@
     {
       "task_id": "pdr-vessel-loading-csplib-8",
       "status": "missing",
-      "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
+        "parameters": {
+          "problem": "vessel_loading"
+        },
         "seed": null,
         "dataset": null,
         "source": {
           "path": "suite/pdr-vessel-loading-csplib-8/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-vessel-loading-csplib-8/problem.json",
-          "sha256": "fb86a880554ae1fc64e38b57dc9368a535885dda073790a3f5fbea63bd7c27d1",
+          "sha256": "baea0d086be486afa54d633b06bae15fb17eb38c1dcea464508f256535af0495",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/pdr-vessel-loading-csplib-8/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-vessel-loading-csplib-8/evaluator.py",
-          "sha256": "ff95d0e6f9921b6c9ebdb1ad067d401fbadd6034f306f2a3be8fc181abaf7509",
+          "sha256": "c036db3cd72a35fff4a1d7bc4c5409f5fd8c62bca135914bb06ef374a3a01e6b",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -60006,26 +60275,32 @@
     {
       "task_id": "promptbreeder-addsub",
       "status": "missing",
-      "metric": "accuracy",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "addsub",
+          "split": "test",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "addsub",
         "source": {
           "path": "suite/promptbreeder-addsub/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/promptbreeder-addsub/problem.json",
-          "sha256": "bc56c7d817c8d2d975addfd36bd37961d2dd541136c10778f3af6abd1a2f66ac",
+          "sha256": "229bc35234ff82d6e9d5503e44e3526fb4f1ef978a68e633923e993cda050fda",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/promptbreeder-addsub/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/promptbreeder-addsub/evaluator.py",
-          "sha256": "7cdc6bd75ff1b412655e28c7b2ed8b0c4159a03dc8b9a3774e1329ee169bf495",
+          "sha256": "6406b2ed5fe300ca27ff185b78917fc7e22b3e534344c88506bb6705903a975a",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -61527,26 +61802,32 @@
     {
       "task_id": "promptbreeder-singleeq",
       "status": "missing",
-      "metric": "accuracy",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "singleeq",
+          "split": "test",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "singleeq",
         "source": {
           "path": "suite/promptbreeder-singleeq/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/promptbreeder-singleeq/problem.json",
-          "sha256": "abcbde443cb7f7e3074dbc855d9a3e8faebaa1102ae4c179fb986e85f335ad07",
+          "sha256": "c4ebdee0494568c0409dda9eed231df6ce05a0081d086563b93e7738b76087d2",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/promptbreeder-singleeq/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/promptbreeder-singleeq/evaluator.py",
-          "sha256": "6927074f9992e951c5ad5d8ffae83a49b5b497f2378f54421bcf4c70531ef05e",
+          "sha256": "88ebd78292e2376fa2613d77e3bf5a50c6ef7773f3b43aa2b83d3c0fc0ea5f02",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -62418,26 +62699,31 @@
     {
       "task_id": "protegi-jailbreak",
       "status": "missing",
-      "metric": "F1",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "jailbreak",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "jailbreak",
         "source": {
           "path": "suite/protegi-jailbreak/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/protegi-jailbreak/problem.json",
-          "sha256": "c690b64f4ba031beb3a8f397df5c1307bb1fb349c07bc81214eeedfdc288a386",
+          "sha256": "b11f9da59ffbcbbb8629014c221241e0f1fd2bab8bdfca3cf9bae82b27c805fc",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/protegi-jailbreak/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/protegi-jailbreak/evaluator.py",
-          "sha256": "d681d374cd786e75913c27da564ae966d316b998c79f1b9397303845127114c4",
+          "sha256": "d9a316cdb7c5a024594fae40205b1e1bf949a49de5f4ea45717296d9a3d45601",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -66591,26 +66877,31 @@
     {
       "task_id": "rqgm-code-review",
       "status": "missing",
-      "metric": "review classification accuracy",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "crave",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "crave",
         "source": {
           "path": "suite/rqgm-code-review/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/rqgm-code-review/problem.json",
-          "sha256": "7d3819d4a45e904aefe2244e577e4fac151e03324c50e26fd3147ada9c705f9c",
+          "sha256": "f5fc0991f960b1c5878e8436f7046d14157e24309024de7861dcfc4602f26dd0",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/rqgm-code-review/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/rqgm-code-review/evaluator.py",
-          "sha256": "f878ddac7d93d0e6602d258c0ec94ac0a9d1b69f1dd4d504f6f6acddfcefdb09",
+          "sha256": "2a4ee1334bc010048c4be3ce25e068001c8afc1d5f816022b40f0dc2e3107de3",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -105374,26 +105665,31 @@
     {
       "task_id": "sica-livecodebench",
       "status": "missing",
-      "metric": "benchmark score; time and API cost enter combined utility",
+      "metric": "score",
       "direction": "maximize",
-      "protocol": "unsupported",
+      "protocol": "recreated_verified",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
-        "parameters": {},
-        "seed": null,
-        "dataset": null,
+        "parameters": {
+          "benchmark": "livecodebench",
+          "seed": 0
+        },
+        "seed": 0,
+        "dataset": "livecodebench",
         "source": {
           "path": "suite/sica-livecodebench/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/sica-livecodebench/problem.json",
-          "sha256": "8b2e090658bb06dd9d25dd3bd35489cf1c4f0fcfc478c4514cc5810d25569d19",
+          "sha256": "4b3d5036b675c55001d4cae8d6fe3634309cd54f227f11b9280ccce329861d65",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/sica-livecodebench/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/sica-livecodebench/evaluator.py",
-          "sha256": "580e897f0eb6e5e7cb92df0fd70f378856d926aac6c0d18fdc50ef3454b4346e",
+          "sha256": "c37fd240a02409f4e53ffa8642724ab3c154d835c833707094002cdebf851c75",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -119720,9 +120016,9 @@
     {
       "task_id": "the-station-zapbench-neural-activity-prediction",
       "status": "missing",
-      "metric": "mean absolute error",
+      "metric": "score",
       "direction": "minimize",
-      "protocol": "unsupported",
+      "protocol": "recreated",
       "evaluation": {
         "case_count": null,
         "case_count_kind": "not_recorded",
@@ -119732,14 +120028,16 @@
         "source": {
           "path": "suite/the-station-zapbench-neural-activity-prediction/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/the-station-zapbench-neural-activity-prediction/problem.json",
-          "sha256": "5bcd18456bcb8440867ee2b8aab538837596163349f81b8a47ddaefd1f81f536",
+          "sha256": "306fcc7d65494e041afd3acae5f9d9b97a895a944f58c17b9576068335d3f072",
           "locator": "#/parameters"
         },
-        "notes": [],
+        "notes": [
+          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
+        ],
         "evaluator_source": {
           "path": "suite/the-station-zapbench-neural-activity-prediction/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/the-station-zapbench-neural-activity-prediction/evaluator.py",
-          "sha256": "06511cd611f856399bafbe4249e361a97a552fe338e50826aa4377eacb920c6d",
+          "sha256": "c1587793194c8efc3244184578656bf36911e352a05aa23a52e5dd392ea531fa",
           "locator": "evaluate / task metric definition"
         }
       },

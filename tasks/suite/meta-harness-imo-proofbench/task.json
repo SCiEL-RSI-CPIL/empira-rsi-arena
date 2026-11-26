@@ -7,7 +7,7 @@
     "meta-harness"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2603.28052",
@@ -18,6 +18,16 @@
       "url": "https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact/tree/57fefdb2ff84af3fd81b69d67814acbe69bd0743",
       "type": "repository",
       "locator": null
+    },
+    {
+      "url": "https://github.com/google-deepmind/superhuman/blob/c1ee02e03d4cdb2ab21cd01ac927d895f5287fc8/imobench/proofbench.csv",
+      "type": "benchmark",
+      "locator": "IMO-ProofBench: 60 problems with reference solutions and grading guidelines"
+    },
+    {
+      "url": "https://arxiv.org/abs/2511.01846",
+      "type": "paper",
+      "locator": "Appendix B.5 ProofAutoGrader prompt and 0/1/6/7 rubric (paraphrased)"
     }
   ],
   "requirements": {
@@ -29,7 +39,7 @@
     "notes": []
   },
   "evaluation": {
-    "metric": "answer/proof accuracy",
+    "metric": "score",
     "paper_metric": "answer/proof accuracy",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -73,8 +83,8 @@
       "Math retrieval harness not present in inspected Terminal-Bench artifact."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_proof",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -82,19 +92,16 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:IMO-ProofBench"
+        "network:openrouter",
+        "file:data/llm_bench/proofbench.json"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_api",
-      "unsupported_reason": "Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the IMO-ProofBench benchmark. The suite embeds neither model calls nor the benchmark data."
+      "timeout": 1800,
+      "validity_key": "valid"
     }
   },
-  "limitations": [
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-  ],
+  "limitations": [],
   "source_specification": {
     "name": "IMO-ProofBench",
     "slug": "imo-proofbench",
@@ -123,14 +130,13 @@
     "scientific_contribution": "benchmark",
     "science_tier": 3,
     "artifact": "agent",
-    "domain": "language",
-    "area": "language_and_agents",
+    "domain": "mathematics",
+    "area": "mathematics",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "unavailable"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

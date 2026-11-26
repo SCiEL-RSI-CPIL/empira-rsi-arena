@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 300
   max_retries: 2
 
 prompt:
   system_message: |
     BIG-Bench LLM scaling-law discovery
 
-    BIG-Bench LLM scaling-law discovery: optimize the candidate specified by the paper and evaluate against the named benchmark.
+    Write a Python scaling_law(X, params) formula with at most five free constants that predicts BIG-bench multiple-choice grades from model size, training steps, batch size, shots and decoding temperature; the evaluator fits the constants by least squares on 43,049 rows and scores the mean squared error on 10,763 held-out rows (lower is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: N_PARAMS = k (an int, 1 <= k <= 5) and scaling_law(X, params) -> float array of predicted multiple-choice grades (fraction of questions answered correctly, 0..1), one per row. X is a dict of equal-length float arrays: training_steps, batch_size (training batch size in tokens), total_params, non_embedding_params, flop_matched_params (FLOP-matched non-embedding parameters; differs from non_embedding_params only for sparse models), shots (number of in-context examples) and temperature (decoding temperature, 0 or 1); params is a float array of length N_PARAMS. Optional initial_params() -> N_PARAMS finite starting values (default all ones). The evaluator fits params on a fixed-seed 80 % training split (43,049 rows) by nonlinear least squares (Levenberg-Marquardt with a forward-difference Jacobian, from initial_params and 7 seeded perturbations p0 + N(0, 1) * (1 + |p0|), at most 400 residual evaluations each, best training MSE kept; residuals are clipped to +-1000 and non-finite predictions count as 1000) and scores the mean squared error of the fitted law on the other 10,763 rows (minimize). Limits on the source (against embedded lookup tables): at most 10 numeric literals other than integers in [-10, 10], at most 64 numeric literals in all, at most 1,000 characters of string literals outside docstrings and at most 20,000 characters. Fitting and prediction run in a sandbox without file access; scaling_law must return real numbers (not strings, booleans or complex values), and the held-out predictions are recomputed from the reported constants on the held-out rows in a fresh random order, so predictions that depend on a row's position rather than its inputs invalidate the candidate
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

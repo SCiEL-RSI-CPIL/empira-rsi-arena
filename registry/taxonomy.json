@@ -6160,6 +6160,479 @@
       "rationale": "The candidate is a materials property predictor scored on a held-out Matbench split and compared with the leaderboard. Reviewed source family matbench, collection open-problems-2026-11."
     },
     {
+      "id": "family-agent_bench_balrog",
+      "match": {
+        "families": [
+          "agent_bench_balrog"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "agent-workflow",
+      "rationale": "Shared evaluator family of 6 packages; for example: Write a Python act(instruction, observation, valid_actions, history, llm) agent that picks each next text action in BALROG's BabaIsAI rule-manipulation puzzles, using a budgeted OpenRouter model client; scored by the fraction of 6 seeded episodes (3 for each of the 2 tasks of HSI's BreakStop test split, at most 40 steps each) that are won (higher is better). Default for the source family agent_bench_balrog, area games; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-agent_bench_m3tool",
+      "match": {
+        "families": [
+          "agent_bench_m3tool"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "agent-workflow",
+      "rationale": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that solves M3ToolEval tasks by calling tools or answering in CodeAct's text-as-action format, using a budgeted OpenRouter model client; scored by the success rate over 20 fixed tasks (4 per domain), at most 10 turns each (higher is better). Default for the source family agent_bench_m3tool, area language_and_agents; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-agent_bench_textenv",
+      "match": {
+        "families": [
+          "agent_bench_textenv"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "agent-workflow",
+      "rationale": "Shared evaluator family of 3 packages; for example: Write a Python act(instruction, observation, valid_actions, history, llm) agent that issues one text command per step in ALFWorld household games, using a budgeted OpenRouter model client; scored by the success rate over 12 fixed games (2 per task type from the 134 out-of-distribution games), at most 49 actions each (higher is better). Default for the source family agent_bench_textenv, area language_and_agents; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-agent_bench_travel",
+      "match": {
+        "families": [
+          "agent_bench_travel"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "agent-workflow",
+      "rationale": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that gathers flights, lodging, restaurants and attractions with TravelPlanner's search tools and submits a JSON travel plan, using a budgeted OpenRouter model client; scored by the mean commonsense-constraint pass rate (of 8) on 10 hard validation queries, at most 30 actions each (higher is better). Default for the source family agent_bench_travel, area language_and_agents; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-bigbench_scaling_law",
+      "match": {
+        "families": [
+          "bigbench_scaling_law"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "symbolic-regression",
+      "rationale": "Write a Python scaling_law(X, params) formula with at most five free constants that predicts BIG-bench multiple-choice grades from model size, training steps, batch size, shots and decoding temperature; the evaluator fits the constants by least squares on 43,049 rows and scores the mean squared error on 10,763 held-out rows (lower is better). Default for the source family bigbench_scaling_law, area machine_learning; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-clrs_processor",
+      "match": {
+        "families": [
+          "clrs_processor"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "prediction-modeling",
+      "rationale": "Shared evaluator family of 17 packages; for example: Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Activity Selector algorithm of CLRS-30. Default for the source family clrs_processor, area machine_learning; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-csplib_reformulation_bacp",
+      "match": {
+        "families": [
+          "csplib_reformulation_bacp"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "constraint-modeling",
+      "rationale": "Balanced academic curriculum (CSPLib 30) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_bacp, area optimization; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-csplib_reformulation_bibd",
+      "match": {
+        "families": [
+          "csplib_reformulation_bibd"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "constraint-modeling",
+      "rationale": "Balanced incomplete block design (CSPLib 28) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_bibd, area optimization; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-csplib_reformulation_car_sequencing",
+      "match": {
+        "families": [
+          "csplib_reformulation_car_sequencing"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "constraint-modeling",
+      "rationale": "Car sequencing (CSPLib 1) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_car_sequencing, area optimization; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-csplib_reformulation_covering_array",
+      "match": {
+        "families": [
+          "csplib_reformulation_covering_array"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "constraint-modeling",
+      "rationale": "Covering arrays (CSPLib 45) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_covering_array, area optimization; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-csplib_reformulation_error_correcting_codes",
+      "match": {
+        "families": [
+          "csplib_reformulation_error_correcting_codes"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "constraint-modeling",
+      "rationale": "Error-correction codes (CSPLib 36) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_error_correcting_codes, area optimization; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-csplib_reformulation_social_golfers",
+      "match": {
+        "families": [
+          "csplib_reformulation_social_golfers"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "constraint-modeling",
+      "rationale": "Social golfer (CSPLib 10) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_social_golfers, area optimization; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-csplib_reformulation_tail_assignment",
+      "match": {
+        "families": [
+          "csplib_reformulation_tail_assignment"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "constraint-modeling",
+      "rationale": "Tail assignment (CSPLib 115) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_tail_assignment, area optimization; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-csplib_reformulation_vessel_loading",
+      "match": {
+        "families": [
+          "csplib_reformulation_vessel_loading"
+        ]
+      },
+      "domain_id": "operations-research",
+      "task_type_id": "constraint-modeling",
+      "rationale": "Vessel loading (CSPLib 8) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_vessel_loading, area optimization; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-egraph_extraction",
+      "match": {
+        "families": [
+          "egraph_extraction"
+        ]
+      },
+      "domain_id": "computer-systems",
+      "task_type_id": "systems-optimization",
+      "rationale": "XLA/Enzyme-JAX e-graph extraction task evaluated in Magellan: Autonomous Discovery of Novel Compiler Optimization Heuristics with AlphaEvolve. Default for the source family egraph_extraction, area systems_and_hardware; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-eob_benchmark_synthesis",
+      "match": {
+        "families": [
+          "eob_benchmark_synthesis"
+        ]
+      },
+      "domain_id": "mathematics",
+      "task_type_id": "benchmark-generation",
+      "rationale": "Write a Python objective(X) function defining a deterministic, vectorised minimisation problem on [-5, 5]^10; scored by sqrt(LSI x min(1, ADC / 0.5)), combining landscape-feature similarity to the 24 BBOB functions with the spread of mean results of ten local optimisers (10 runs of 5,000 evaluations each; higher is better). Default for the source family eob_benchmark_synthesis, area optimization; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-frontier_cs_polyomino",
+      "match": {
+        "families": [
+          "frontier_cs_polyomino"
+        ]
+      },
+      "domain_id": "mathematics",
+      "task_type_id": "mathematical-construction",
+      "rationale": "Provide a C++17 program (as the SOLUTION_CPP string) that chooses a W x H rectangle and places 100 to 10000 polyominoes, with optional rotation and reflection, on distinct cells inside it; scored by the official checker's mean of total cells / (W*H) x 100 over 70 Frontier-CS test cases, failed cases scoring 0 (higher is better). Default for the source family frontier_cs_polyomino, area optimization; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-iopddl_sharding",
+      "match": {
+        "families": [
+          "iopddl_sharding"
+        ]
+      },
+      "domain_id": "computer-systems",
+      "task_type_id": "systems-optimization",
+      "rationale": "XLA auto-sharding IOPDDL task evaluated in Magellan: Autonomous Discovery of Novel Compiler Optimization Heuristics with AlphaEvolve. Default for the source family iopddl_sharding, area systems_and_hardware; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-isaac_ballbalance_reward_design",
+      "match": {
+        "families": [
+          "isaac_ballbalance_reward_design"
+        ]
+      },
+      "domain_id": "robotics-control",
+      "task_type_id": "reward-design",
+      "rationale": "Write a Python reward(observation, action, next_observation, info) for a CPU MuJoCo analogue of IsaacGymEnvs BallBalance (ball thrown onto a tilting tray); a linear policy is trained under it by the cross-entropy method, and the score is the policy's mean episode length in steps before the ball drops, at most 500, over 50 held-out throws (higher is better). Default for the source family isaac_ballbalance_reward_design, area robotics_and_control; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-kaggle_jigsaw_toxic",
+      "match": {
+        "families": [
+          "kaggle_jigsaw_toxic"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "prediction-modeling",
+      "rationale": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 159,571 labelled Wikipedia comments of the Jigsaw toxic-comment competition and returns scores for six toxicity labels on its 63,978 scored test comments, within a 600 s wall-clock budget on 4 CPU threads without pretrained weights; scored by mean column-wise ROC AUC (higher is better). Default for the source family kaggle_jigsaw_toxic, area machine_learning; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-kaggle_noisyoffice_denoising",
+      "match": {
+        "families": [
+          "kaggle_noisyoffice_denoising"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "prediction-modeling",
+      "rationale": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 144 noisy/clean NoisyOffice document image pairs and returns a cleaned image (intensities on a 0-1 scale) for each of 72 noisy test images of an unseen text passage, within a 300 s wall-clock budget on 4 CPU threads; scored by pixel RMSE against the clean pages (lower is better). Default for the source family kaggle_noisyoffice_denoising, area machine_learning; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-kaggle_nomad2018_conductors",
+      "match": {
+        "families": [
+          "kaggle_nomad2018_conductors"
+        ]
+      },
+      "domain_id": "chemistry-materials",
+      "task_type_id": "prediction-modeling",
+      "rationale": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 2,700 (Al, Ga, In)2O3 materials given as DFT-relaxed structures and predicts formation energy per cation and band gap for 300 held-out materials, within a 300 s wall-clock budget on 4 CPU threads; scored by the mean of the two columns' RMSLE (lower is better). Default for the source family kaggle_nomad2018_conductors, area materials_science; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-kaggle_openvaccine_degradation",
+      "match": {
+        "families": [
+          "kaggle_openvaccine_degradation"
+        ]
+      },
+      "domain_id": "biology-health",
+      "task_type_id": "prediction-modeling",
+      "rationale": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 1,349 OpenVaccine RNA sequences with per-position degradation measurements and predicts reactivity, deg_Mg_pH10 and deg_Mg_50C at the first 68 positions of 240 test RNAs, within a 300 s wall-clock budget on 4 CPU threads; scored by MCRMSE (lower is better). Default for the source family kaggle_openvaccine_degradation, area biology; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-kaggle_patent_phrase_matching",
+      "match": {
+        "families": [
+          "kaggle_patent_phrase_matching"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "prediction-modeling",
+      "rationale": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 39,316 scored patent phrase pairs with their CPC context and predicts the similarity of 9,232 test pairs whose anchors never occur in training, within a 300 s wall-clock budget on 4 CPU threads without pretrained models; scored by Pearson correlation (higher is better). Default for the source family kaggle_patent_phrase_matching, area machine_learning; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-kaggle_pcam_histopathology",
+      "match": {
+        "families": [
+          "kaggle_pcam_histopathology"
+        ]
+      },
+      "domain_id": "biology-health",
+      "task_type_id": "prediction-modeling",
+      "rationale": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 45,819 labelled 48 x 48 PatchCamelyon lymph-node patch crops and returns a tumour probability in [0, 1] for each of 11,672 test crops from held-out whole-slide images, within a 600 s wall-clock budget on 4 CPU threads; scored by ROC AUC (higher is better). Default for the source family kaggle_pcam_histopathology, area biology; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-limen_xland_easy_pickup",
+      "match": {
+        "families": [
+          "limen_xland_easy_pickup"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "control-policy",
+      "rationale": "Write JAX get_observation(state) and compute_reward(state, action, next_state) for picking up the blue pyramid in a 9 x 9 XLand-MiniGrid room; LIMEN's evaluator trains PPO on them and scores the mean success rate within 80 steps over three 1M-step training seeds, or a 500K-step cascade run's rate if below 5 % (higher is better). Default for the source family limen_xland_easy_pickup, area machine_learning; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-limen_xland_hard_rule_chain",
+      "match": {
+        "families": [
+          "limen_xland_hard_rule_chain"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "control-policy",
+      "rationale": "Write JAX get_observation(state) and compute_reward(state, action, next_state) for a 13 x 13 four-room XLand-MiniGrid task (blue pyramid becomes a green ball; place it next to the yellow hex); LIMEN's evaluator trains PPO on them and scores the mean success rate within 400 steps over three 5M-step seeds, or a 3M-step cascade run's rate if below 1 % (higher is better). Default for the source family limen_xland_hard_rule_chain, area machine_learning; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-limen_xland_medium_place_near",
+      "match": {
+        "families": [
+          "limen_xland_medium_place_near"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "control-policy",
+      "rationale": "Write JAX get_observation(state) and compute_reward(state, action, next_state) for placing the yellow pyramid next to the green square in a 9 x 9 XLand-MiniGrid room; LIMEN's evaluator trains PPO on them and scores the mean success rate within 80 steps over three 2M-step training seeds, or a 1M-step cascade run's rate if below 2 % (higher is better). Default for the source family limen_xland_medium_place_near, area machine_learning; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-llm_bench_code",
+      "match": {
+        "families": [
+          "llm_bench_code"
+        ]
+      },
+      "domain_id": "software-engineering",
+      "task_type_id": "software-generation",
+      "rationale": "Shared evaluator family of 3 packages; for example: LeetCode-Contest task evaluated in CoCoEvo: Co-Evolution of Programs and Test Cases to Enhance Code Generation. Default for the source family llm_bench_code, area software_engineering; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-llm_bench_ifbench",
+      "match": {
+        "families": [
+          "llm_bench_ifbench"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "language-reasoning",
+      "rationale": "Write a Python solve(question, llm) agent that uses a budgeted OpenRouter model client to answer IFBench prompts, each carrying verifiable output constraints; scored by the mean fraction of instructions the IFBench checkers accept under GEPA's loose rule, on a fixed 30-prompt sample of the 294-prompt test set (higher is better). Default for the source family llm_bench_ifbench, area language_and_agents; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-llm_bench_lmx",
+      "match": {
+        "families": [
+          "llm_bench_lmx"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "language-reasoning",
+      "rationale": "Shared evaluator family of 3 packages; for example: Write a solve(question, llm) program that returns 1 to 300 one-line sentences rewriting the Gore Vidal quote 'Whenever a friend succeeds, a little something in me dies.' with positive sentiment; scored by QD score, the sum over 30 niches of MiniLM embedding distance to the quote of the best positive probability from a RoBERTa sentiment classifier (higher is better). Default for the source family llm_bench_lmx, area language_and_agents; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-llm_bench_plan",
+      "match": {
+        "families": [
+          "llm_bench_plan"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "agent-workflow",
+      "rationale": "Shared evaluator family of 2 packages; for example: Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to answer Natural Plan meeting-planning prompts (meet as many San Francisco friends as possible under availability and travel-time constraints); scored by success rate on a fixed 30-problem test sample, a plan succeeding when its simulated valid meetings match the golden plan's count (higher is better). Default for the source family llm_bench_plan, area language_and_agents; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-llm_bench_proof",
+      "match": {
+        "families": [
+          "llm_bench_proof"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "language-reasoning",
+      "rationale": "IMO-ProofBench task evaluated in Meta-Harness: End-to-End Optimization of Model Harnesses. Default for the source family llm_bench_proof, area mathematics; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-llm_bench_pupa",
+      "match": {
+        "families": [
+          "llm_bench_pupa"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "language-reasoning",
+      "rationale": "Write a Python solve(user_query, llm, untrusted_llm) program that answers private user requests with a trusted model and, optionally, an external untrusted model; a judge model scores each item as (quality + (1 - PII leakage to the untrusted model)) / 2, averaged over a fixed 20-item sample of GEPA's PUPA test split (higher is better). Default for the source family llm_bench_pupa, area language_and_agents; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-llm_bench_qa",
+      "match": {
+        "families": [
+          "llm_bench_qa"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "language-reasoning",
+      "rationale": "Shared evaluator family of 11 packages; for example: Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client and optionally local numpy/scipy code, returns the optimal objective value of an NLP4LP optimization word problem; scored by accuracy within 1e-3*max(1, |optimum|) on a fixed 30-problem sample of the 178 cleaned problems (higher is better). Default for the source family llm_bench_qa, area language_and_agents; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-llm_tools_autoda",
+      "match": {
+        "families": [
+          "llm_tools_autoda"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "prediction-modeling",
+      "rationale": "Write a Python draw_proposals(org_img, best_adv_img, std_normal_noise, hyperparams) function that proposes the next point of an L2 decision-based random-walk attack on a CIFAR-10 ResNet-18; scored by the mean L2 distance between 20 correctly classified test images and their adversarial examples after 2,500 queries per image (lower is better). Default for the source family llm_tools_autoda, area machine_learning; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-llm_tools_hover",
+      "match": {
+        "families": [
+          "llm_tools_hover"
+        ]
+      },
+      "domain_id": "machine-learning",
+      "task_type_id": "language-reasoning",
+      "rationale": "Write a Python solve(claim, search, llm) program that retrieves, with at most 3 BM25 searches and 24 documents over 5.2 million 2017 Wikipedia abstracts and a budgeted OpenRouter model, the three gold supporting documents of a HoVer claim; scored by the fraction of claims whose gold titles were all retrieved, on a fixed 30-claim sample (higher is better). Default for the source family llm_tools_hover, area language_and_agents; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-llm_tools_telemetry",
+      "match": {
+        "families": [
+          "llm_tools_telemetry"
+        ]
+      },
+      "domain_id": "computer-systems",
+      "task_type_id": "systems-optimization",
+      "rationale": "Write a Python run_repair(telemetry, topology) function that repairs noisy, dropped or scaled rx/tx counters of Abilene backbone interfaces and returns (original, repaired, confidence) triples for every interface; scored over 30 fixed perturbed snapshots by 0.75 x counter repair quality + 0.05 x status accuracy + 0.2 x confidence calibration (higher is better). Default for the source family llm_tools_telemetry, area systems_and_hardware; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-llvm_inlining_size",
+      "match": {
+        "families": [
+          "llvm_inlining_size"
+        ]
+      },
+      "domain_id": "computer-systems",
+      "task_type_id": "systems-optimization",
+      "rationale": "LLVM function inlining for binary size task evaluated in Magellan: Autonomous Discovery of Novel Compiler Optimization Heuristics with AlphaEvolve. Default for the source family llvm_inlining_size, area systems_and_hardware; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-polyglot_agent",
+      "match": {
+        "families": [
+          "polyglot_agent"
+        ]
+      },
+      "domain_id": "software-engineering",
+      "task_type_id": "software-generation",
+      "rationale": "Write solve(exercise, llm), a Python coding agent that may call a budgeted model client and returns new contents for the solution files of one Aider Polyglot (Exercism) exercise; the score is pass@1, the fraction of DGM's 10 first-stage exercises in C++, Go, Java, JavaScript, Python and Rust whose hidden unit tests then pass (higher is better). Default for the source family polyglot_agent, area software_engineering; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-pusht_heuristic_controller",
+      "match": {
+        "families": [
+          "pusht_heuristic_controller"
+        ]
+      },
+      "domain_id": "robotics-control",
+      "task_type_id": "control-policy",
+      "rationale": "Write a Python class Policy whose act(observation) returns the pushing disc's target position in gym-pusht's PushT-v0 from the state vector (agent position, T-block position and angle); scored by the fraction of 100 fixed episodes (reset seeds 0-99, at most 300 steps each) in which the block covers more than 95% of the goal region (higher is better). Default for the source family pusht_heuristic_controller, area robotics_and_control; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-sodarace_walker_design",
+      "match": {
+        "families": [
+          "sodarace_walker_design"
+        ]
+      },
+      "domain_id": "robotics-control",
+      "task_type_id": "control-policy",
+      "rationale": "Write a Python make_walker() that builds a valid Sodarace walker (point masses and oscillating springs) with the evaluator's walker_creator; scored by the absolute horizontal displacement of its centre of mass after 28 s of simulated time on flat ground in the vendored OpenELM Box2D simulator (higher is better). Default for the source family sodarace_walker_design, area games; the task-specific rules above classify its current packages."
+    },
+    {
+      "id": "family-station_zapbench_forecasting",
+      "match": {
+        "families": [
+          "station_zapbench_forecasting"
+        ]
+      },
+      "domain_id": "biology-health",
+      "task_type_id": "prediction-modeling",
+      "rationale": "Write the Station's JAX/Flax hooks (network, loss, optimizer, hyperparameters, batch size) for forecasting 32 steps of 71,721 zebrafish neurons from 4 context steps; the evaluator trains on ZAPBench's training split for at most 3 CPU epochs or 600 s (seed 42), keeps the best-validation parameters and scores the test MAE averaged over 9 test conditions (lower is better). Default for the source family station_zapbench_forecasting, area biology; the task-specific rules above classify its current packages."
+    },
+    {
       "id": "unknown-metadata",
       "match": {
         "fallback": true

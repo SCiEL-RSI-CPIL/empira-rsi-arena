@@ -22,7 +22,7 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 180
   max_retries: 2
 
 prompt:
@@ -31,7 +31,7 @@ prompt:
 
     XLA auto-sharding IOPDDL task evaluated in Magellan: Autonomous Discovery of Novel Compiler Optimization Heuristics with AlphaEvolve.
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(problem, time_limit_s) -> list with one strategy index per node, or [] for no solution. problem is the contest's JSON 'problem' object: name; nodes = {intervals: [start, end) per node, costs: per-strategy node costs, usages: per-strategy memory usages}; edges = {nodes: [u, v] pairs, costs: row-major |S_u| x |S_v| resharding cost tables}; usage_limit. The usages of the nodes whose interval contains t must sum to at most usage_limit for every t; forbidden choices cost 1e18. Score (maximize): mean contest points over the benchmarks, points = best submitted contest cost / candidate total cost, 0 for an infeasible, empty or late answer (later than time_limit_s + grace_s wall-clock seconds); a wrong-length or out-of-range answer is invalid
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

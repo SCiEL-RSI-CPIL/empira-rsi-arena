@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 1800
   max_retries: 2
 
 prompt:
   system_message: |
     CIFAR-10 decision-based adversarial attack
 
-    CIFAR-10 decision-based adversarial attack: optimize the candidate specified by the paper and evaluate against the named benchmark.
+    Write a Python draw_proposals(org_img, best_adv_img, std_normal_noise, hyperparams) function that proposes the next point of an L2 decision-based random-walk attack on a CIFAR-10 ResNet-18; scored by the mean L2 distance between 20 correctly classified test images and their adversarial examples after 2,500 queries per image (lower is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: draw_proposals(org_img, best_adv_img, std_normal_noise, hyperparams) -> x_new. org_img (the original image) and best_adv_img (the current adversarial example, misclassified by the target) are float32 numpy arrays of shape (3, 32, 32) with values in [0, 1]; std_normal_noise is a float64 array of the same shape of standard normal noise; hyperparams is a float64 array of shape (1,) holding the image's step size s (0.05 at the start; after every query p <- 0.95 p + 0.05 [proposal accepted] and s <- s * f(p) ** 0.1 with f(p) = 0.5 + 2p for p < 0.25 and 5/6 + 2p/3 otherwise). Return x_new, an array of shape (3, 32, 32); it is clipped to [0, 1], the target model (ResNet-18 on CIFAR-10) is queried once, and x_new replaces best_adv_img when it is misclassified and closer to org_img in L2. The function is called once per image per query; it may keep state across calls. Only numpy and the standard library are available (the program runs in a sandbox without file or network access). Score: mean L2 distance between the originals and the final adversarial examples after the task's query budget per image on its fixed set of correctly classified CIFAR-10 test images (pixel values in [0, 1]); lower is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

@@ -102,7 +102,7 @@ def test_identity_pins_the_fixed_no_entrypoint_base_and_preserves_original_preci
 def test_inventory_preserves_all_tasks_and_records_exact_resources_without_execution(tmp_path, group, count):
     tasks = get_catalog()["tasks"]
     default = preflight.inventory(tasks, ROOT / "tasks")
-    assert sum(r["status"] == "seed_check_pending" for r in default) == 1311
+    assert sum(r["status"] == "seed_check_pending" for r in default) == 1312
     assert all(r["status"] == "environment_preparation_pending" for r in default
                if r["task_id"] in jax.JAX_TASK_REQUIREMENTS)
     output = tmp_path.resolve() / group

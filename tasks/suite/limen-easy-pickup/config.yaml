@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 600
   max_retries: 2
 
 prompt:
   system_message: |
     Easy pickup
 
-    Pick up blue pyramid in 9x9 grid; 80-step horizon
+    Write JAX get_observation(state) and compute_reward(state, action, next_state) for picking up the blue pyramid in a 9 x 9 XLand-MiniGrid room; LIMEN's evaluator trains PPO on them and scores the mean success rate within 80 steps over three 1M-step training seeds, or a 500K-step cascade run's rate if below 5 % (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: get_observation(state) -> 1-D float array (length 1..512) and compute_reward(state, action, next_state) -> scalar float, both JAX-traceable (jit and vmap) functions of an XLand-MiniGrid 0.9.3 state: state.grid (H, W, 2) uint8 [tile id, colour id] indexed [row, col] (tiles: 0 empty, 1 floor, 2 wall, 3 ball, 4 square, 5 pyramid, 6 goal, 7 key, 8 locked door, 9 closed door, 10 open door, 11 hex, 12 star; colours: 1 red, 2 green, 3 blue, 4 purple, 5 yellow, 6 grey, 7 black (floor), 8 orange, 9 white, 10 brown, 11 pink), state.agent.position (2,) uint8 [row, col], state.agent.direction () uint8 (0 up, 1 right, 2 down, 3 left), state.agent.pocket (2,) uint8 [tile, colour] ([0, 0] = empty), state.step_num () and state.goal_encoding / state.rule_encoding; action is an int32 in 0..5 (forward, turn right, turn left, pick up, put down, toggle). compute_reward sees the true terminal state of an episode. As in LIMEN, the module may only import jax, jax.numpy (also jax.lax, jax.nn and math); in addition, attribute assignment, private or I/O attributes (load, save, config, debug, callbacks, experimental APIs), frame, code and traceback attributes (gi_frame, f_builtins, f_globals, co_code, tb_frame, ...), attributes named like system modules (os, sys, builtins, importlib, inspect, gc, ...), dunder names other than __name__, class patterns that read such attributes, and exec-like builtins are rejected, and an imported module may only be used as the base of an attribute access (jnp.where), not renamed or passed as a value. Task: pick up the blue pyramid in a 9 x 9 room (XLand-MiniGrid-R1-9x9) that also holds a red ball; the episode ends when the agent picks up the blue pyramid (training episodes last at most 243 steps). Score (maximize): LIMEN's own CascadeEvaluator from Lossfunk/LIMEN@cf0b44da, unchanged, with the task's configuration file: crash filter (syntax, required functions, import, dry run and jit on a real state, observation length <= 512), then PPO from scratch (8,192 parallel environments, 16-step rollouts, one epoch of 16 minibatches, Adam lr 0.001 linearly decayed, gamma 0.99, GAE 0.95, clip 0.2, entropy 0.01, GRU actor-critic with 256-unit observation encoder and 512-unit GRU; LIMEN runs total steps // 131,072 PPO updates) trained on the candidate's observations and rewards. A 500,000-step run (3 updates) with seed 42 must reach 5 % success, otherwise its success rate is the score; candidates that pass are trained with seeds 42, 43 and 44 for 1,000,000 steps (7 updates, 917,504 steps) each and the score is the mean final success rate. Success means the episode ends (goal reached) before the 80-step evaluation horizon; the per-seed rate is measured on 50 evaluation episodes. CPU only, at most four threads; deterministic for a fixed candidate on the same platform and software stack
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

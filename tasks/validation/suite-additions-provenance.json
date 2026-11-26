@@ -232,19 +232,19 @@
     },
     {
       "path": "catalog/tasks.csv",
-      "sha256": "c4adccc38f1f7f158d8dfb19f8307cbb3e82c9294d52dd7a99f935ae8d58c3d7",
+      "sha256": "1b1eb409d34d302884b35723dde14214011bc287ae40107792aed3c933c67376",
       "source_path": "catalog/tasks.csv",
       "source_sha256": "c217576b51306ca2c8313d7c7a00a978474c67e10085589efef796f588d87db6",
       "origin": "adapted",
-      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121; statements, labels or lock text corrected in the evaluator audit of 2026-11-24"
+      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121; statements, labels or lock text corrected in the evaluator audit of 2026-11-24; records of the 81 packages whose evaluators were ported from the source library on 2026-11-27 (validation/upgrade-port-report.json)"
     },
     {
       "path": "catalog/tasks.json",
-      "sha256": "1282ab3caff48cb6208856f84cbee011df721d114a25a39dce0d90b4e48dcb2a",
+      "sha256": "f1943705459c57f4a7e684914db6d0384575e5409009520f67c3ce1b3c5e9b53",
       "source_path": "catalog/tasks.json",
       "source_sha256": "448c918105cdf434369ef9eb08218d209c8f5325f6b85e7a184dce9852f75b68",
       "origin": "adapted",
-      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 1 reference value out of date; 1 reference value out of date (shared limitation sentence); 2 enforced limit of 1000 pairs not stated; 3 wrong lower bound for f(4); 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121; 5a number of chains; 5b number of numerically solved instances; 5c FTSE tabu-search value; 5e authors of the cited paper; 5f Füredi's lower bound; 5g block order in the contract; 5h authors of arXiv:2603.07088; extended afterwards with the 1,301 open-problems records (source id open-problems-2026-11), which are not part of this addition; contracts and limitations of the 18 finance and economics packages state the sandbox; statements, labels or lock text corrected in the evaluator audit of 2026-11-24"
+      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 1 reference value out of date; 1 reference value out of date (shared limitation sentence); 2 enforced limit of 1000 pairs not stated; 3 wrong lower bound for f(4); 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121; 5a number of chains; 5b number of numerically solved instances; 5c FTSE tabu-search value; 5e authors of the cited paper; 5f Füredi's lower bound; 5g block order in the contract; 5h authors of arXiv:2603.07088; extended afterwards with the 1,301 open-problems records (source id open-problems-2026-11), which are not part of this addition; contracts and limitations of the 18 finance and economics packages state the sandbox; statements, labels or lock text corrected in the evaluator audit of 2026-11-24; records of the 81 packages whose evaluators were ported from the source library on 2026-11-27 (validation/upgrade-port-report.json)"
     },
     {
       "path": "context/LABELS.txt",
@@ -1038,11 +1038,11 @@
     },
     {
       "path": "suite/index.json",
-      "sha256": "ebf912e4aada19181e676311af71a6aff92549bd6ebdc42ec5407e4c37d00d03",
+      "sha256": "6ceb6a5c70dec50065cd7310bc985ff8b28d03d9f16bfc76e86cb86e957a1233",
       "source_path": "suite/index.json",
       "source_sha256": "8995a1f90274a948139d7bf18ce568925395512d7eecc05ec7fb03b9c50a9d48",
       "origin": "adapted",
-      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121; extended afterwards with the 1,301 open-problems records (source id open-problems-2026-11), which are not part of this addition; statements, labels or lock text corrected in the evaluator audit of 2026-11-24"
+      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); statement corrected: 4a solved instance: optimum 7372; 4b solved instance: optimum 28; 4c solved instance: optimum 143; 4d solved instance: optimum 64; 4e solved instance: optimum 121; extended afterwards with the 1,301 open-problems records (source id open-problems-2026-11), which are not part of this addition; statements, labels or lock text corrected in the evaluator audit of 2026-11-24; records of the 81 packages whose evaluators were ported from the source library on 2026-11-27 (validation/upgrade-port-report.json)"
     },
     {
       "path": "suite/mcts-ahd-asp-constructive/README.txt",
@@ -15348,7 +15348,7 @@
     },
     {
       "path": "tests/test_candidate_isolation.py",
-      "sha256": "f0f90f5e3f74e06882801a73925c75723017b46f86982333b0c23b9d397f45af",
+      "sha256": "cbda8e3e7436e4f2217a87e95955d1715bc7ed451aa602b43c88e49f286ef933",
       "origin": "written for this addition",
       "note": "regression tests of the evaluator audit of 2026-11-24"
     },

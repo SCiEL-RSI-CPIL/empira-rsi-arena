@@ -2,17 +2,37 @@
   "schema_version": "1.0",
   "id": "evoprompting-find-maximum-subarray-kadane",
   "name": "Find Maximum Subarray Kadane",
-  "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Find Maximum Subarray Kadane algorithmic reasoning problem, including out-of-distribution sequence lengths.",
+  "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn Kadane's maximum-subarray algorithm of CLRS-30. The network is trained for 1000 steps on 16-node instances; the score is the mean accuracy of the predicted subarray start and end on 256 of the 1024 out-of-distribution 64-node test instances (higher is better).",
   "paper_ids": [
     "evoprompting"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2302.14838",
       "type": "paper",
       "locator": "Section 4.2 and Appendix Table 3"
+    },
+    {
+      "url": "https://github.com/google-deepmind/clrs",
+      "type": "repository",
+      "locator": "dm-clrs 2.0.3 (Apache-2.0): probe specs, encoders, decoders, Triplet-GMPNN processor, losses and evaluation ported to PyTorch; README links the CLRS-30 archive"
+    },
+    {
+      "url": "https://storage.googleapis.com/dm-clrs/CLRS30_v1.0.0.tar.gz",
+      "type": "benchmark",
+      "locator": "CLRS-30 v1.0.0 dataset (85,628,509 bytes, SHA-256 7743b2f1...): train, validation and test splits of every algorithm; no separate data licence stated"
+    },
+    {
+      "url": "https://arxiv.org/abs/2205.15659",
+      "type": "paper",
+      "locator": "CLRS benchmark: algorithms, probes, OOD protocol and metric (Velickovic et al., ICML 2022)"
+    },
+    {
+      "url": "https://arxiv.org/abs/2209.11142",
+      "type": "paper",
+      "locator": "Triplet-GMPNN processor and single-task training setup (Ibarz et al., LoG 2022)"
     }
   ],
   "requirements": {
@@ -24,7 +44,7 @@
     "notes": []
   },
   "evaluation": {
-    "metric": "OOD accuracy and parameter count",
+    "metric": "score",
     "paper_metric": "OOD accuracy and parameter count",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -46,8 +66,8 @@
       "Architecture search uses selected CLRS tasks and discovered models are evaluated on all 30 tasks. Parameter count is minimized."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -55,19 +75,17 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/find_maximum_subarray_kadane.npz"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "gpu",
-      "unsupported_reason": "Fitness is accelerator wall-clock or model training on GPU hardware (CLRS); it cannot be measured on a CPU-only suite."
+      "timeout": 1800,
+      "validity_key": "valid"
     }
   },
   "limitations": [
     "No official runnable repository was verified from the paper/project sources examined.",
     "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.",
     "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
   ],
   "source_specification": {
@@ -100,11 +118,10 @@
     "domain": "machine_learning",
     "area": "machine_learning",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "simulation",
     "reference": "none",
     "resources": [
-      "gpu",
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false

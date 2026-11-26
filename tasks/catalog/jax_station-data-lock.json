@@ -1,0 +1,262 @@
+{
+ "schema": "artask.data-lock/1",
+ "package": "jax_station",
+ "limen": {
+  "url": "https://codeload.github.com/Lossfunk/LIMEN/tar.gz/cf0b44da37f7e7ee038920c860a8cb00c610c9af",
+  "repository": "https://github.com/Lossfunk/LIMEN",
+  "commit": "cf0b44da37f7e7ee038920c860a8cb00c610c9af",
+  "license": "MIT",
+  "archive_note": "files are checked one by one; the GitHub tarball itself may be regenerated",
+  "files": {
+   "LICENSE": {
+    "sha256": "1682fe81bc5b1f1b26be3fbf221ef0088f6de523866143810b5846b738f1fc1e",
+    "bytes": 1065
+   },
+   "README.md": {
+    "sha256": "c40de4e174088442e417ac516766f7c0dff21c208b66d389040539a20274e3ba",
+    "bytes": 8481
+   },
+   "configs/brax_ant.yaml": {
+    "sha256": "4122a8944303ff78a0f59f7c00fd08067a3ddb7df835777790fa435f78bc7bf5",
+    "bytes": 2040
+   },
+   "configs/brax_humanoid.yaml": {
+    "sha256": "576e3c48b5adf148daa44bd6150278ada34c567e67c13eb3df0c2886c0138558",
+    "bytes": 2115
+   },
+   "configs/easy_pickup.yaml": {
+    "sha256": "0a2585ee71b8a91024df1d760add0181a6b14aa622591f7987ca50f9200f130a",
+    "bytes": 1480
+   },
+   "configs/go1_push_recovery.yaml": {
+    "sha256": "574d6543be35e34779a3b7bf302aacb48fe9d65c14ee790ea794703c3150d5c4",
+    "bytes": 1973
+   },
+   "configs/hard_rule_chain.yaml": {
+    "sha256": "453a72348aa95aba5ca9e276d6c54d5411c64e1f9978e14c7ba39596773eb490",
+    "bytes": 1488
+   },
+   "configs/medium_place_near.yaml": {
+    "sha256": "963e9c40d32a3023e7560a61b61b4d774d00836f944bde1f73dd59b85fb7ed1d",
+    "bytes": 1487
+   },
+   "configs/panda_pick_and_track.yaml": {
+    "sha256": "5284f89cf722ce6ad4f64b3e64a24da810ac55a1d1a7bbe3340d578098c9a875",
+    "bytes": 1949
+   },
+   "contexts/xminigrid.md": {
+    "sha256": "1dce2dad04ea6b844ec53960b937862afd999082e2dcf9127af0468814066086",
+    "bytes": 4048
+   },
+   "examples/evolved_interfaces/easy_pickup.py": {
+    "sha256": "a760dada44b75f9bb9bd186dfe4c8cb3fbeebbb341d113f1086f3a2ea6501462",
+    "bytes": 9506
+   },
+   "examples/evolved_interfaces/go1_push_recovery.py": {
+    "sha256": "d92a36f2e38de489a97b117ecb17fa6f89661a59aa6a8f5719b774735e049a8d",
+    "bytes": 9840
+   },
+   "examples/evolved_interfaces/hard_rule_chain.py": {
+    "sha256": "0eaafe13c0550abdb1122b2c3970621c2948241aa39a968b0ec68498e090a543",
+    "bytes": 18418
+   },
+   "examples/evolved_interfaces/medium_place_near.py": {
+    "sha256": "d261fb3b62c9fc4c010b0f867f8a16d74fa072c750f2d7434701e0c5d2546acb",
+    "bytes": 16161
+   },
+   "examples/evolved_interfaces/panda_pick_and_track.py": {
+    "sha256": "cc86bd45c42c36255f731d078f70609ed88394008a6df16d3d05363ba654c2b8",
+    "bytes": 9555
+   },
+   "limen/__init__.py": {
+    "sha256": "5b9a0175c3c078bf8c98f66612d96150dbd5f7f8fb39f647e7050c1cafa687ff",
+    "bytes": 568
+   },
+   "limen/adapters/__init__.py": {
+    "sha256": "8474c7ca98567930f21c54479de361e76f9b1bf9d08d441d3e54fcdfff4f3d0d",
+    "bytes": 1798
+   },
+   "limen/adapters/base.py": {
+    "sha256": "0590be105e6ed3316e3509480b798846ddbe31ee8f61d3b1c493a57f34c62134",
+    "bytes": 7619
+   },
+   "limen/adapters/brax.py": {
+    "sha256": "e6aba429f754617f60bc6fec60d117eeb94588ea1ca9a65244f28111f5523a7c",
+    "bytes": 4968
+   },
+   "limen/adapters/brax_wrapper.py": {
+    "sha256": "1f15393337cac19047a35ce0e84278c8c2fd411599e49c96561fdddea9a3ddc8",
+    "bytes": 2098
+   },
+   "limen/adapters/mujoco.py": {
+    "sha256": "81ae6f254fe7c6757b1c3a67409d3c8ea4fc27530144665d17b1a84d9932a132",
+    "bytes": 6376
+   },
+   "limen/adapters/xminigrid.py": {
+    "sha256": "0d952cd4a15099dea9b60c5e7587a00453bd8fed088b3f6f4d46033881d6f175",
+    "bytes": 6252
+   },
+   "limen/config.py": {
+    "sha256": "374e33eeaba3d234da76e32b613a8718c5b4fc290f73790fac027216c7a2e372",
+    "bytes": 7708
+   },
+   "limen/controller.py": {
+    "sha256": "2ebbbfe17125f23002e6917c7cad40c358b0423eddfcc3d376bee7ee58b6c1f6",
+    "bytes": 28823
+   },
+   "limen/crash_filter.py": {
+    "sha256": "ab4fd20fa7f04db48a048754566cefb6855b6822217d4702a88ab709e8d2fe4d",
+    "bytes": 5004
+   },
+   "limen/database.py": {
+    "sha256": "89ea85023c4671167bc184ee37d6e7955b34855b21540033cee817a5bec29f71",
+    "bytes": 28520
+   },
+   "limen/evaluator.py": {
+    "sha256": "afa19e180381b67ed2d10f1371dea8dae943171ff94e741984670a8ef22caecd",
+    "bytes": 14546
+   },
+   "limen/evolution_trace.py": {
+    "sha256": "6331385f339a7737db6adf5b5c78269a14e81d7e959fbe4339fb95a080489f22",
+    "bytes": 5902
+   },
+   "limen/interface.py": {
+    "sha256": "da1f4f8b0b211ab47ae802d8c9d9faf9fa49a7b384c3ab295fc51bb26d9a3c91",
+    "bytes": 5647
+   },
+   "limen/llm_client.py": {
+    "sha256": "4fa32f5afe01a2726e44e176a812fca57bceae7be5930da82557d9456c14a484",
+    "bytes": 11110
+   },
+   "limen/nn.py": {
+    "sha256": "b9931b62ff344ba5b5ee8c7c20824d60d8425198852066cfaa4c49b115b77061",
+    "bytes": 6617
+   },
+   "limen/pricing.py": {
+    "sha256": "8022c9309f5da8ea0fec494879960c7ec67f4eec6302562e27bedf1ead1f0289",
+    "bytes": 4089
+   },
+   "limen/prompts.py": {
+    "sha256": "35c27c0c07727216c64ddb43fc554059d8db3ee94e4194be092939c749cedb2c",
+    "bytes": 44224
+   },
+   "limen/tasks/__init__.py": {
+    "sha256": "d32bc9241f686b8b68c4fa624703fd950af463cc2e7e8a33dda272f629708c6a",
+    "bytes": 223
+   },
+   "limen/tasks/_go1_base.py": {
+    "sha256": "9cf5bc42b3320eadc1029cee4d2155b4e3f40cb7dcc191e5be266ebdb529118d",
+    "bytes": 9665
+   },
+   "limen/tasks/_panda_base.py": {
+    "sha256": "9b29d308f77070459ce19e9cc2a7e14daa9ac5654e562f5b970e34bd84b3bf1d",
+    "bytes": 9923
+   },
+   "limen/tasks/go1_push_recovery.py": {
+    "sha256": "1e7d22ef55ce87cacdf6a9ee7d692f14c36c62eb6b7309875b72707fb0c6f1ef",
+    "bytes": 1908
+   },
+   "limen/tasks/panda_pick_and_track.py": {
+    "sha256": "8d688205b8f3c5eb2e96eeb4d487200b82cc4f945a6f28ab0800e25e638126d0",
+    "bytes": 1743
+   },
+   "limen/train.py": {
+    "sha256": "3c95a1a5669a3e3aa2620a79773870e4fc3e640dce23cd91c24cd470ffda228e",
+    "bytes": 15283
+   },
+   "limen/train_brax.py": {
+    "sha256": "2a6850c95a636221d4a89e36b367db85386a9ef535d1b1ba09a9d92a51501bef",
+    "bytes": 10158
+   },
+   "limen/train_utils.py": {
+    "sha256": "b39b1d3d15299cc628e8d82c8a6d4ff44bd092357c05f583e58351cc5d3087a0",
+    "bytes": 5774
+   },
+   "pyproject.toml": {
+    "sha256": "cdce7a90ab952cba72f26326dcaaad78d17869849a215423239dec0b3db74938",
+    "bytes": 1211
+   },
+   "requirements.txt": {
+    "sha256": "1ef7c98099f3394bf68290c298a964fcdffb2d49d261beaa8fca6a13a43089ab",
+    "bytes": 285
+   },
+   "rulesets/easy_pickup.py": {
+    "sha256": "1bc168efdd9b96e85c7dfee1483c4b29efb1b2af7410bb907d14b9f8403827fa",
+    "bytes": 841
+   },
+   "rulesets/hard_rule_chain.py": {
+    "sha256": "8acfd48cc4aa7f8e07c796936ed62f8514f0e237094fd16060dfe3eaeeb06e97",
+    "bytes": 2114
+   },
+   "rulesets/medium_place_near.py": {
+    "sha256": "73cbaa252a418582abb4753592814d0883c91442e14ed9940391d011a0b69ae8",
+    "bytes": 1035
+   }
+  }
+ },
+ "zapbench_code": {
+  "repository": "https://github.com/google-research/zapbench",
+  "commit": "7347b3b21a3f332e281b774c945f1505dd966abf",
+  "license": "Apache-2.0",
+  "files": {
+   "zapbench/constants.py": {
+    "sha256": "433830cc9bc204ba8fb4ea2f671f39fcf1b54a81d7a4d3fc7afe1d478baa5ab7",
+    "bytes": 4228
+   },
+   "zapbench/data_utils.py": {
+    "sha256": "3bedc6a63c7e935434efa45ef0c13942e4ed73bf93bad639886fb233ebea0d8a",
+    "bytes": 8105
+   }
+  }
+ },
+ "zapbench": {
+  "url": "https://storage.googleapis.com/zapbench-release/volumes/20240930/traces/",
+  "license": "CC-BY-4.0",
+  "license_source": "https://storage.googleapis.com/zapbench-release/volumes/README.html",
+  "attribution": "ZAPBench (Lueckmann et al., 2025), Google Research and HHMI Janelia",
+  "zarr_json": {
+   "sha256": "2643b7b7438686514d91d1ed26cb00a37653cbb9c26a885a47510a60e462be2d",
+   "bytes": 275
+  },
+  "chunks": {
+   "count": 2256,
+   "bytes_each": 1048576,
+   "manifest_sha256": "bf9479e6df4b66aa46ff03b2f0bd25d27ec7b7a5954c6b9ee456de53fb5cba2e"
+  },
+  "array_sha256": "e4d6471c69b0b11b70ed7252998b57826f8e60179202a243d36dbc1ba34dba94",
+  "files": {
+   "trainval/train.npy": {
+    "sha256": "5b34c0e6fcf11cfabc8d4d87aa3ddde524c15002a6919b00b33b1baa67372363",
+    "bytes": 724669112
+   },
+   "trainval/train_conditions.npy": {
+    "sha256": "21635afe8fc811d269a9e8f5eefd26dc9e1c82f76e8c291db18668a26fa1de19",
+    "bytes": 5180
+   },
+   "trainval/val.npy": {
+    "sha256": "bb50cdbafd3c8f4ee05706e5ddeac2bbf11ed07cc11d4e2b684b7f88245f1e1a",
+    "bytes": 107438186
+   },
+   "trainval/val_conditions.npy": {
+    "sha256": "3c02014f3174c69573c7bae8921ec899163ae9ec5b0b41be3496b88396eef777",
+    "bytes": 877
+   },
+   "test/test.npy": {
+    "sha256": "263ba4bf6cab864a11aabf97ca9a000ac9d36373b03d8d7355f49b6ffb4e6cae",
+    "bytes": 537046976
+   },
+   "test/test_conditions.npy": {
+    "sha256": "3470f4080713cddbd4521027c112403c6eb7bf96367b103284b908caa9437905",
+    "bytes": 2000
+   }
+  },
+  "max_float16_rounding_error": 0.00048828125
+ },
+ "zapbench_reference": {
+  "url": "https://storage.googleapis.com/zapbench-release/dataframes/20250131/combined.json",
+  "license": "CC-BY-4.0 (bucket README)",
+  "use": "validation only (reference check); not used by the evaluator",
+  "sha256": "17c1a8a1d8e8dd1525bd57b6db3e3bd41ad3ea5c7a8eb3146f242a90ca0a33e3",
+  "bytes": 1307618
+ }
+}

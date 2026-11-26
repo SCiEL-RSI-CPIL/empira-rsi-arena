@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 1800
   max_retries: 2
 
 prompt:
   system_message: |
     PUPA
 
-    PUPA
+    Write a Python solve(user_query, llm, untrusted_llm) program that answers private user requests with a trusted model and, optionally, an external untrusted model; a judge model scores each item as (quality + (1 - PII leakage to the untrusted model)) / 2, averaged over a fixed 20-item sample of GEPA's PUPA test split (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(user_query: str, llm, untrusted_llm) -> str: the response to a private user request. `llm` is the trusted model (default qwen/qwen3-8b) and `untrusted_llm` an external model (default openai/gpt-4.1-mini); both are budgeted, cached OpenRouter clients and every prompt sent to `untrusted_llm` is recorded. A judge model (default openai/gpt-4.1-mini, as in GEPA) rates quality (is the response at least as good as the target response, asked in both orders) and PII leakage (share of the item's PII units found in what reached `untrusted_llm`). Item score: (quality + (1 - leakage)) / 2. Score: mean over a fixed seeded sample of GEPA's PUPA test split; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 480
   max_retries: 2
 
 prompt:
   system_message: |
     stanford-covid-vaccine
 
-    Predict RNA reactivity, deg_Mg_pH10 and deg_Mg_50C; score the mean of three RMSE values on rows selected by the answers keep mask.
+    Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 1,349 OpenVaccine RNA sequences with per-position degradation measurements and predicts reactivity, deg_Mg_pH10 and deg_Mg_50C at the first 68 positions of 240 test RNAs, within a 300 s wall-clock budget on 4 CPU threads; scored by MCRMSE (lower is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: fit_predict(train, test_inputs, time_budget_s) -> float array of shape (n_test, 68, 3): reactivity, deg_Mg_pH10 and deg_Mg_50C at the first seq_scored = 68 positions of each test RNA. train: pandas.DataFrame with the competition's train.json columns: index, id, sequence (107 nt), structure (dot-bracket), predicted_loop_type, signal_to_noise, SN_filter, seq_length, seq_scored, the five per-position target lists reactivity, deg_Mg_pH10, deg_pH10, deg_Mg_50C, deg_50C (68 values each) and their *_error lists; test_inputs: index, id, sequence, structure, predicted_loop_type, seq_length, seq_scored. time_budget_s = 300. fit_predict runs in a sandboxed child process: 4 CPU threads (thread settings of the numerical libraries, not an operating-system limit), no GPU, no network, no child processes, no pretrained weights or external data, reads limited to the Python installation and the task's public inputs, writes limited to a temporary working directory, memory limit 3.5 GB. time_budget_s wall-clock seconds start when the candidate's source starts executing in the child (imports and module-level code count); the process is killed 15 s after the budget (score: invalid). The evaluator holds the test labels and recomputes the metric; nothing the candidate reports is trusted. Score (minimize): MCRMSE, the mean over the three scored targets of the RMSE pooled over all scored positions (MLE-bench grade.py)
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

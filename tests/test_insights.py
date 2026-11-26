@@ -27,8 +27,8 @@ def test_every_package_occurs_once_in_each_complete_partition(inputs):
     for group, key in [("domains", "domain_id"), ("task_types", "task_type_id")]:
         rows = insights[group]
         assert sum(row["total"] for row in rows) == 2578
-        assert sum(row["executable"] for row in rows) == 2324
-        assert sum(row["unsupported"] for row in rows) == 254
+        assert sum(row["executable"] for row in rows) == 2405
+        assert sum(row["unsupported"] for row in rows) == 173
         assert sum(Decimal(str(row["percentage"])) for row in rows) == Decimal("100.0")
         for row in rows:
             assert row["total"] == row["executable"] + row["unsupported"]
@@ -36,11 +36,11 @@ def test_every_package_occurs_once_in_each_complete_partition(inputs):
             assert all(insights["task_annotations"][ident][key] == row["id"] for ident in row["representative_task_ids"])
 
 
-def test_all_446_source_families_have_documented_defaults(inputs):
+def test_all_489_source_families_have_documented_defaults(inputs):
     catalog, taxonomy = inputs
     families = {task["family"] for task in catalog["tasks"] if task["family"] is not None}
     defaults = {rule["match"]["families"][0] for rule in taxonomy["rules"] if rule["id"].startswith("family-")}
-    assert len(families) == 446
+    assert len(families) == 489
     assert defaults == families
 
 
@@ -122,10 +122,10 @@ def test_papers_and_supplements_are_separate_and_coverage_is_not_readiness(input
     assert len(source_ids - non_papers) == summary["corpus_paper_count"]
     coverage = {row["id"]: row for row in insights["coverage"]}
     assert coverage["runtime_verified"]["total"] == 0
-    assert coverage["original"]["total"] == 110
-    assert coverage["recreated"]["total"] == 929
-    assert coverage["recorded_contract"]["total"] == 2324
-    assert coverage["recreated_verified"]["total"] == 1285
+    assert coverage["original"]["total"] == 113
+    assert coverage["recreated"]["total"] == 996
+    assert coverage["recorded_contract"]["total"] == 2405
+    assert coverage["recreated_verified"]["total"] == 1296
     assert "not independently" in coverage["recreated_verified"]["description"]
     assert "editorial inference" in insights["methodology"]["classification_authority"]
     assert "not counts of unique scientific problems" in insights["methodology"]["unit"]

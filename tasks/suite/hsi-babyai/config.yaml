@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 3600
   max_retries: 2
 
 prompt:
   system_message: |
     BabyAI
 
-    BabyAI
+    Write a Python act(instruction, observation, valid_actions, history, llm) agent that picks each next text action in BALROG's BabyAI-Text games, using a budgeted OpenRouter model client; scored by the fraction of 10 seeded episodes (two for each of five BabyAI-MixedTrainLocal tasks) whose mission is completed within the level's step limit (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: BALROG BabyAI-Text, HSI's five BabyAI-MixedTrainLocal tasks (goto, pickup, open, putnext, pick_up_seq_go_to), 2 seeded episodes each (10 episodes), BALROG's step limit of each level (64 or 128 steps). Episode score: 1 when the mission is completed, else 0 (BALROG progression). Score: mean over the 10 episodes; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

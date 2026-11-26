@@ -1,7 +1,7 @@
 {
   "schema": "arena.insights/1",
-  "catalog_digest": "3a0ef0e52d685878715f28e205603c400a85fd1d255d2cc22da8e4e25a97ae5c",
-  "taxonomy_digest": "ad6f9723a8f788dfe66da0cacb9fde132709b3940cef1ad6a9a389af2fcbb730",
+  "catalog_digest": "88e125084c8456327457a7b3ac7bd39f9547418fb4604f96a4820b6c38e12db2",
+  "taxonomy_digest": "dd30bd2e96f73ce2cac96a2dd449421b7c3da957a6b2aa6344b25c685101f1f6",
   "sources": [
     {
       "id": "arena-tasks",
@@ -10,11 +10,11 @@
       "repository_url": "https://github.com/Doldrums/arena",
       "revision": "main",
       "manifest_path": "registry/task-library-manifest.json",
-      "manifest_sha256": "0b9422f47a7ed8c3ba96bcea926aa083ad13cb9bbdc96f6222d8e6541d5db0a4",
+      "manifest_sha256": "2eaad8b7f6f981e8189f8a012569a4d3690183ea3c4edc58b4a7c78a1c673ae7",
       "catalog_path": "catalog/tasks.json",
       "index_path": "suite/index.json",
-      "catalog_sha256": "1282ab3caff48cb6208856f84cbee011df721d114a25a39dce0d90b4e48dcb2a",
-      "index_sha256": "ebf912e4aada19181e676311af71a6aff92549bd6ebdc42ec5407e4c37d00d03"
+      "catalog_sha256": "f1943705459c57f4a7e684914db6d0384575e5409009520f67c3ce1b3c5e9b53",
+      "index_sha256": "6ceb6a5c70dec50065cd7310bc985ff8b28d03d9f16bfc76e86cb86e957a1233"
     }
   ],
   "denominator": {
@@ -23,12 +23,12 @@
   },
   "summary": {
     "task_count": 2578,
-    "executable_count": 2324,
-    "unsupported_count": 254,
+    "executable_count": 2405,
+    "unsupported_count": 173,
     "unique_paper_count": 132,
     "source_group_count": 132,
     "corpus_paper_count": 98,
-    "family_count": 446,
+    "family_count": 489,
     "unknown_domain_count": 7,
     "unknown_task_type_count": 3
   },
@@ -39,11 +39,11 @@
       "description": "Mathematical constructions, inequalities, generic optimizers and numerical algorithms.",
       "why_it_matters": "Candidate objects or algorithms can improve explicit bounds, feasibility, approximation error or search efficiency.",
       "total": 971,
-      "executable": 962,
-      "unsupported": 9,
+      "executable": 964,
+      "unsupported": 7,
       "paper_count": 31,
       "source_group_count": 48,
-      "family_count": 260,
+      "family_count": 262,
       "representative_task_ids": [
         "a2dept-root-finding-two-dimensional-systems",
         "alphaevolve-circle-packing-in-perimeter-4-rectangle",
@@ -57,11 +57,11 @@
       "description": "Routing, packing, scheduling, allocation and constraint models with an operational objective.",
       "why_it_matters": "These tasks study how to use limited space, time and resources under explicit constraints.",
       "total": 586,
-      "executable": 576,
-      "unsupported": 10,
+      "executable": 586,
+      "unsupported": 0,
       "paper_count": 18,
       "source_group_count": 21,
-      "family_count": 30,
+      "family_count": 39,
       "representative_task_ids": [
         "a2dept-capacitated-electric-vehicle-routing-with-time-windows",
         "a2dept-capacitated-facility-location",
@@ -75,11 +75,11 @@
       "description": "Learning algorithms, generic prediction, language benchmarks, retrieval and digital-agent behavior.",
       "why_it_matters": "Compare generalization, reasoning, learning procedures and retrieval quality across defined data and benchmark tasks.",
       "total": 333,
-      "executable": 226,
-      "unsupported": 107,
+      "executable": 278,
+      "unsupported": 55,
       "paper_count": 49,
       "source_group_count": 50,
-      "family_count": 13,
+      "family_count": 33,
       "representative_task_ids": [
         "adas-arc",
         "adas-asdiv",
@@ -93,15 +93,15 @@
       "description": "Program synthesis, code repair, repository tasks and verification workflows.",
       "why_it_matters": "Correctness and task completion expose whether generated software satisfies a program or repository contract.",
       "total": 37,
-      "executable": 23,
-      "unsupported": 14,
+      "executable": 28,
+      "unsupported": 9,
       "paper_count": 12,
       "source_group_count": 14,
-      "family_count": 11,
+      "family_count": 14,
       "representative_task_ids": [
-        "qdaif-humaneval-88-conditional-sorting",
-        "sciel-bench-kattis-alphabet",
-        "science-software-ci-prioritization-iofrol"
+        "cocoevo-leetcode-contest",
+        "dgm-aider-polyglot",
+        "qdaif-humaneval-88-conditional-sorting"
       ],
       "percentage": 1.4
     },
@@ -111,11 +111,11 @@
       "description": "Kernels, compilers, databases, datacenters, circuits and infrastructure optimization.",
       "why_it_matters": "Latency, throughput, resource use and hardware constraints connect candidate programs to computing efficiency.",
       "total": 145,
-      "executable": 105,
-      "unsupported": 40,
+      "executable": 109,
+      "unsupported": 36,
       "paper_count": 15,
       "source_group_count": 18,
-      "family_count": 14,
+      "family_count": 18,
       "representative_task_ids": [
         "accelopt-adamw-m10944-n2048-0",
         "avo-gqa-32-query-heads-4-kv-heads-causal-sequence-16384",
@@ -129,15 +129,15 @@
       "description": "Feedback controllers, embodied policies and rewards for locomotion or manipulation.",
       "why_it_matters": "Closed-loop behavior tests stability, task completion and control performance, often in simulation.",
       "total": 78,
-      "executable": 24,
-      "unsupported": 54,
+      "executable": 27,
+      "unsupported": 51,
       "paper_count": 13,
       "source_group_count": 13,
-      "family_count": 3,
+      "family_count": 6,
       "representative_task_ids": [
         "dga2d-feedback-control-cart-pole",
-        "eureka-ant",
-        "text2reward-button-press-v2"
+        "elm-sodarace-walker-program-evolution",
+        "enpire-gym-pusht-simulation"
       ],
       "percentage": 3.0
     },
@@ -165,11 +165,11 @@
       "description": "Reaction kinetics, chemical transformations, material properties and constitutive models.",
       "why_it_matters": "Infer stress–strain relationships, integrate chemical reaction dynamics and predict reaction outcomes or material properties.",
       "total": 65,
-      "executable": 63,
-      "unsupported": 2,
+      "executable": 65,
+      "unsupported": 0,
       "paper_count": 8,
       "source_group_count": 12,
-      "family_count": 28,
+      "family_count": 30,
       "representative_task_ids": [
         "coevo-stress-strain",
         "deliberate-evolution-lsr-synth-chemistry",
@@ -183,11 +183,11 @@
       "description": "Growth, biological sequences, cellular or neural data and biological or medical prediction targets.",
       "why_it_matters": "Fit growth and population models, analyze RNA and cellular data, and learn predictive relationships in biological imagery and neural activity.",
       "total": 33,
-      "executable": 22,
-      "unsupported": 11,
+      "executable": 25,
+      "unsupported": 8,
       "paper_count": 8,
       "source_group_count": 10,
-      "family_count": 22,
+      "family_count": 25,
       "representative_task_ids": [
         "coevo-e-coli-growth",
         "deliberate-evolution-lsr-synth-biology",
@@ -257,11 +257,11 @@
       "description": "Construct a discrete or continuous object under mathematical constraints.",
       "why_it_matters": "Feasibility and an explicit extremal objective make candidate configurations directly comparable.",
       "total": 1106,
-      "executable": 1105,
-      "unsupported": 1,
+      "executable": 1106,
+      "unsupported": 0,
       "paper_count": 14,
       "source_group_count": 38,
-      "family_count": 251,
+      "family_count": 252,
       "representative_task_ids": [
         "alphaevolve-circle-packing-in-perimeter-4-rectangle",
         "alphaevolve-circle-packing-in-unit-square",
@@ -311,15 +311,15 @@
       "description": "Recover an equation, scaling law or symbolic-regression procedure from data.",
       "why_it_matters": "Held-out error tests whether a compact functional expression predicts beyond the fitted examples.",
       "total": 36,
-      "executable": 35,
-      "unsupported": 1,
+      "executable": 36,
+      "unsupported": 0,
       "paper_count": 6,
       "source_group_count": 9,
-      "family_count": 8,
+      "family_count": 9,
       "representative_task_ids": [
         "coevo-e-coli-growth",
         "deliberate-evolution-lsr-synth-biology",
-        "lasr-feynman-equations-symbolic-regression"
+        "lasr-big-bench-llm-scaling-law-discovery"
       ],
       "percentage": 1.4
     },
@@ -347,15 +347,15 @@
       "description": "Fit, infer, train or design a predictive or generative model, representation or parameter estimate.",
       "why_it_matters": "Prediction error or task return evaluates learned behavior on the declared data or environment.",
       "total": 176,
-      "executable": 121,
-      "unsupported": 55,
+      "executable": 146,
+      "unsupported": 30,
       "paper_count": 9,
       "source_group_count": 25,
-      "family_count": 77,
+      "family_count": 86,
       "representative_task_ids": [
         "ael-harness-non-stationary-contextual-bandit",
         "eurekagent-gpumode-trimul-a100",
-        "llm-evolved-rl-algorithms-acrobot-v1"
+        "eurekagent-jigsaw-toxic-comment"
       ],
       "percentage": 6.8
     },
@@ -383,15 +383,15 @@
       "description": "Optimize prompts, scaffolds or outputs on language, reasoning or grid-inference benchmarks.",
       "why_it_matters": "Measure compositional reasoning, language understanding and constraint satisfaction on specified benchmark cases.",
       "total": 148,
-      "executable": 126,
-      "unsupported": 22,
+      "executable": 141,
+      "unsupported": 7,
       "paper_count": 30,
       "source_group_count": 31,
-      "family_count": 4,
+      "family_count": 10,
       "representative_task_ids": [
         "adas-arc",
         "adas-asdiv",
-        "lmx-stable-diffusion-excess-blue"
+        "gepa-ifbench"
       ],
       "percentage": 5.7
     },
@@ -401,15 +401,15 @@
       "description": "Design an agent workflow for tools, web environments, planning or digital tasks.",
       "why_it_matters": "End-to-end task completion tests how actions and tools are coordinated across a trajectory.",
       "total": 41,
-      "executable": 8,
-      "unsupported": 33,
+      "executable": 21,
+      "unsupported": 20,
       "paper_count": 9,
       "source_group_count": 9,
-      "family_count": 2,
+      "family_count": 7,
       "representative_task_ids": [
-        "hsi-textworld",
-        "mind-evolution-natural-plan-trip-planning",
-        "aevo-terminal-bench"
+        "agentsquare-alfworld",
+        "agentsquare-m3tooleval",
+        "agentsquare-travelplanner"
       ],
       "percentage": 1.6
     },
@@ -419,15 +419,15 @@
       "description": "Generate, repair, review or verify program code.",
       "why_it_matters": "Executable tests or repository task outcomes connect a proposed change to software behavior.",
       "total": 45,
-      "executable": 14,
-      "unsupported": 31,
+      "executable": 19,
+      "unsupported": 26,
       "paper_count": 11,
       "source_group_count": 13,
-      "family_count": 7,
+      "family_count": 10,
       "representative_task_ids": [
-        "qdaif-humaneval-88-conditional-sorting",
-        "sciel-bench-kattis-alphabet",
-        "science-software-fuzz-htmlparser"
+        "cocoevo-leetcode-contest",
+        "dgm-aider-polyglot",
+        "qdaif-humaneval-88-conditional-sorting"
       ],
       "percentage": 1.7
     },
@@ -437,11 +437,11 @@
       "description": "Improve kernel, compiler, infrastructure, hardware or program-performance decisions.",
       "why_it_matters": "Correctness plus cost or performance measurements test whether systems changes are useful.",
       "total": 123,
-      "executable": 102,
-      "unsupported": 21,
+      "executable": 106,
+      "unsupported": 17,
       "paper_count": 13,
       "source_group_count": 17,
-      "family_count": 13,
+      "family_count": 17,
       "representative_task_ids": [
         "accelopt-adamw-m10944-n2048-0",
         "avo-gqa-32-query-heads-4-kv-heads-causal-sequence-16384",
@@ -455,15 +455,15 @@
       "description": "Design a feedback controller, sequential decision rule or embodied action policy.",
       "why_it_matters": "Sequential outcomes test decisions under changing state and information constraints.",
       "total": 29,
-      "executable": 14,
-      "unsupported": 15,
+      "executable": 19,
+      "unsupported": 10,
       "paper_count": 6,
       "source_group_count": 11,
-      "family_count": 10,
+      "family_count": 15,
       "representative_task_ids": [
         "dga2d-feedback-control-cart-pole",
-        "science-earth-irrigation-policies",
-        "science-economics-consumption-saving"
+        "elm-sodarace-walker-program-evolution",
+        "enpire-gym-pusht-simulation"
       ],
       "percentage": 1.1
     },
@@ -473,15 +473,15 @@
       "description": "Design a reward for a learning controller or policy.",
       "why_it_matters": "The resulting trained behavior tests whether the reward induces the intended task behavior.",
       "total": 67,
-      "executable": 21,
-      "unsupported": 46,
+      "executable": 22,
+      "unsupported": 45,
       "paper_count": 7,
       "source_group_count": 7,
-      "family_count": 2,
+      "family_count": 3,
       "representative_task_ids": [
         "eureka-ant",
-        "text2reward-button-press-v2",
-        "dreureka-go1-walking-globe"
+        "eureka-ballbalance",
+        "text2reward-button-press-v2"
       ],
       "percentage": 2.6
     },
@@ -508,15 +508,15 @@
       "description": "Reformulate or solve explicit satisfiability, logic or mathematical-program constraints.",
       "why_it_matters": "Feasibility and solver efficiency expose the value of the model formulation or solver policy.",
       "total": 36,
-      "executable": 26,
-      "unsupported": 10,
+      "executable": 36,
+      "unsupported": 0,
       "paper_count": 4,
       "source_group_count": 4,
-      "family_count": 3,
+      "family_count": 12,
       "representative_task_ids": [
         "evoor-agent-bwor",
-        "funl2o-dc3-convex-qp",
-        "reference-sat"
+        "evoor-agent-nlp4lp",
+        "funl2o-dc3-convex-qp"
       ],
       "percentage": 1.4
     },
@@ -526,13 +526,14 @@
       "description": "Generate benchmark functions or embodied evaluation tasks.",
       "why_it_matters": "Produce controlled instances for probing evaluation coverage, difficulty and optimizer or policy robustness.",
       "total": 4,
-      "executable": 0,
-      "unsupported": 4,
+      "executable": 1,
+      "unsupported": 3,
       "paper_count": 2,
       "source_group_count": 2,
-      "family_count": 0,
+      "family_count": 1,
       "representative_task_ids": [
         "eob-eob-bbob-benchmark-synthesis",
+        "eob-eob-hpo-surrogate-benchmark-synthesis",
         "omni-epic-open-ended-embodied-task-generation"
       ],
       "percentage": 0.2
@@ -577,43 +578,43 @@
     {
       "id": "executable",
       "label": "Executable definitions",
-      "total": 2324,
-      "percentage": 90.1,
+      "total": 2405,
+      "percentage": 93.3,
       "description": "Packages with source-declared executable evaluators; environments and runtime are not verified by Arena."
     },
     {
       "id": "unsupported",
       "label": "Unsupported definitions",
-      "total": 254,
-      "percentage": 9.9,
+      "total": 173,
+      "percentage": 6.7,
       "description": "Catalogued packages whose source marks evaluation unsupported; they remain included in domain totals."
     },
     {
       "id": "original",
       "label": "Original protocol",
-      "total": 110,
-      "percentage": 4.3,
+      "total": 113,
+      "percentage": 4.4,
       "description": "Source labels the evaluator protocol original; this is not Arena conformance or runtime verification."
     },
     {
       "id": "recreated_verified",
       "label": "Source-declared verified reconstruction",
-      "total": 1285,
-      "percentage": 49.8,
+      "total": 1296,
+      "percentage": 50.3,
       "description": "Source labels these reconstructions verified. Arena has not independently rerun that verification."
     },
     {
       "id": "recreated",
       "label": "Recreated protocol",
-      "total": 929,
-      "percentage": 36.0,
+      "total": 996,
+      "percentage": 38.6,
       "description": "Recreated evaluators without the source's recreated_verified designation."
     },
     {
       "id": "recorded_contract",
       "label": "Recorded I/O contract",
-      "total": 2324,
-      "percentage": 90.1,
+      "total": 2405,
+      "percentage": 93.3,
       "description": "Non-null problem.json contract text; may point to evaluator documentation rather than a complete machine-readable signature."
     },
     {
@@ -1263,12 +1264,12 @@
       "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
       "evidence": {
         "task_name": "ALFWorld",
-        "description": "ALFWorld task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.",
-        "family": null,
+        "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that issues one text command per step in ALFWorld household games, using a budgeted OpenRouter model client; scored by the success rate over 12 fixed games (2 per task type from the 134 out-of-distribution games), at most 49 actions each (higher is better).",
+        "family": "agent_bench_textenv",
         "paper_ids": [
           "agentsquare"
         ],
-        "metric": "success rate"
+        "metric": "score"
       }
     },
     "agentsquare-m3tooleval": {
@@ -1278,12 +1279,12 @@
       "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
       "evidence": {
         "task_name": "M3ToolEval",
-        "description": "M3ToolEval task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.",
-        "family": null,
+        "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that solves M3ToolEval tasks by calling tools or answering in CodeAct's text-as-action format, using a budgeted OpenRouter model client; scored by the success rate over 20 fixed tasks (4 per domain), at most 10 turns each (higher is better).",
+        "family": "agent_bench_m3tool",
         "paper_ids": [
           "agentsquare"
         ],
-        "metric": "success rate"
+        "metric": "score"
       }
     },
     "agentsquare-pddl": {
@@ -1293,12 +1294,12 @@
       "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
       "evidence": {
         "task_name": "PDDL",
-        "description": "PDDL task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.",
-        "family": null,
+        "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that plays AgentBoard's PDDL games (gripper, blockworld, barman, tyreworld) with one text action per step, using a budgeted OpenRouter model client; scored by the mean progress rate (fraction of goal literals reached) over 12 fixed problems, at most 30 steps each (higher is better).",
+        "family": "agent_bench_textenv",
         "paper_ids": [
           "agentsquare"
         ],
-        "metric": "progress rate"
+        "metric": "score"
       }
     },
     "agentsquare-scienceworld": {
@@ -1308,12 +1309,12 @@
       "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
       "evidence": {
         "task_name": "ScienceWorld",
-        "description": "ScienceWorld task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.",
-        "family": null,
+        "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that issues one text command per step in ScienceWorld science tasks under AgentBoard's protocol, using a budgeted OpenRouter model client; scored by the mean progress rate (fraction of the variation's subgoal patterns matched) over 10 fixed task variations of AgentBoard's 90, at most 30 steps each (higher is better).",
+        "family": "agent_bench_textenv",
         "paper_ids": [
           "agentsquare"
         ],
-        "metric": "progress rate"
+        "metric": "score"
       }
     },
     "agentsquare-travelplanner": {
@@ -1323,12 +1324,12 @@
       "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
       "evidence": {
         "task_name": "TravelPlanner",
-        "description": "TravelPlanner task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.",
-        "family": null,
+        "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that gathers flights, lodging, restaurants and attractions with TravelPlanner's search tools and submits a JSON travel plan, using a budgeted OpenRouter model client; scored by the mean commonsense-constraint pass rate (of 8) on 10 hard validation queries, at most 30 actions each (higher is better).",
+        "family": "agent_bench_travel",
         "paper_ids": [
           "agentsquare"
         ],
-        "metric": "micro pass rate"
+        "metric": "score"
       }
     },
     "agentsquare-webshop": {
@@ -3035,11 +3036,11 @@
       "evidence": {
         "task_name": "LeetCode-Contest",
         "description": "LeetCode-Contest task evaluated in CoCoEvo: Co-Evolution of Programs and Test Cases to Enhance Code Generation.",
-        "family": null,
+        "family": "llm_bench_code",
         "paper_ids": [
           "cocoevo"
         ],
-        "metric": "pass@1"
+        "metric": "score"
       }
     },
     "codeevolve-salesforce-apex-program-optimization": {
@@ -3299,12 +3300,12 @@
       "rationale": "This package explicitly constructs a polyomino packing under a packing-score objective; unlike the opaque Frontier-CS suite labels, its geometric target is specified.",
       "evidence": {
         "task_name": "Frontier-CS Polyominoes packing",
-        "description": "Frontier-CS Polyominoes packing",
-        "family": null,
+        "description": "Provide a C++17 program (as the SOLUTION_CPP string) that chooses a W x H rectangle and places 100 to 10000 polyominoes, with optional rotation and reflection, on distinct cells inside it; scored by the official checker's mean of total cells / (W*H) x 100 over 70 Frontier-CS test cases, failed cases scoring 0 (higher is better).",
+        "family": "frontier_cs_polyomino",
         "paper_ids": [
           "coral"
         ],
-        "metric": "packing score"
+        "metric": "score"
       }
     },
     "coral-llm-sql": {
@@ -5942,14 +5943,14 @@
       "rationale": "The reviewed task names are code repair, coding, program verification or repository-editing benchmarks.",
       "evidence": {
         "task_name": "Aider Polyglot",
-        "description": "Aider Polyglot",
-        "family": null,
+        "description": "Write solve(exercise, llm), a Python coding agent that may call a budgeted model client and returns new contents for the solution files of one Aider Polyglot (Exercism) exercise; the score is pass@1, the fraction of DGM's 10 first-stage exercises in C++, Go, Java, JavaScript, Python and Rust whose hidden unit tests then pass (higher is better).",
+        "family": "polyglot_agent",
         "paper_ids": [
           "dgm",
           "gea",
           "hyperagents"
         ],
-        "metric": "pass@1 task success"
+        "metric": "score"
       }
     },
     "dnacode-gc-n10-d5": {
@@ -7984,12 +7985,12 @@
       "rationale": "The task name explicitly identifies code repair, code review, coding, file editing or HumanEval.",
       "evidence": {
         "task_name": "Single-step code bug repair",
-        "description": "Single-step code bug repair: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Repair mutated 4-Parity and Quadratic Python programs in one model editing step; evaluate whether the repaired program computes the target function correctly.",
+        "family": "llm_bench_code",
         "paper_ids": [
           "elm"
         ],
-        "metric": "horizontal distance / terrain return / repair accuracy respectively"
+        "metric": "score"
       }
     },
     "elm-sodarace-walker-program-evolution": {
@@ -7999,13 +8000,13 @@
       "rationale": "The task synthesizes a Sodarace walker program, a simulated embodied controller.",
       "evidence": {
         "task_name": "Sodarace walker program evolution",
-        "description": "Sodarace walker program evolution: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a Python make_walker() that builds a valid Sodarace walker (point masses and oscillating springs) with the evaluator's walker_creator; scored by the absolute horizontal displacement of its centre of mass after 28 s of simulated time on flat ground in the vendored OpenELM Box2D simulator (higher is better).",
+        "family": "sodarace_walker_design",
         "paper_ids": [
           "elm",
           "lmx"
         ],
-        "metric": "horizontal distance / terrain return / repair accuracy respectively"
+        "metric": "score"
       }
     },
     "elm-terrain-conditioned-sodarace-synthesis": {
@@ -8045,12 +8046,12 @@
       "rationale": "The named ENPIRE tasks improve embodied robot behavior in manipulation environments. The pinned papers/enpire.md identifies Robot Control and agentic robot policy self-improvement; this is not treated as a generic reward-design suite.",
       "evidence": {
         "task_name": "Gym-PushT simulation",
-        "description": "Gym-PushT simulation",
-        "family": null,
+        "description": "Write a Python class Policy whose act(observation) returns the pushing disc's target position in gym-pusht's PushT-v0 from the state vector (agent position, T-block position and angle); scored by the fraction of 100 fixed episodes (reset seeds 0-99, at most 300 steps each) in which the block covers more than 95% of the goal region (higher is better).",
+        "family": "pusht_heuristic_controller",
         "paper_ids": [
           "enpire"
         ],
-        "metric": "task success rate"
+        "metric": "score"
       }
     },
     "enpire-physical-push-t": {
@@ -8150,12 +8151,12 @@
       "rationale": "EoB generates optimizer benchmark functions or surrogates; the generator itself is not a solved UAV or HPO application.",
       "evidence": {
         "task_name": "EoB-BBOB benchmark synthesis",
-        "description": "EoB-BBOB benchmark synthesis",
-        "family": null,
+        "description": "Write a Python objective(X) function defining a deterministic, vectorised minimisation problem on [-5, 5]^10; scored by sqrt(LSI x min(1, ADC / 0.5)), combining landscape-feature similarity to the 24 BBOB functions with the spread of mean results of ten local optimisers (10 runs of 5,000 evaluations each; higher is better).",
+        "family": "eob_benchmark_synthesis",
         "paper_ids": [
           "eob"
         ],
-        "metric": "landscape similarity and algorithm distinction capability"
+        "metric": "score"
       }
     },
     "eob-eob-hpo-surrogate-benchmark-synthesis": {
@@ -8903,12 +8904,12 @@
       "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
       "evidence": {
         "task_name": "BallBalance",
-        "description": "BallBalance: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a Python reward(observation, action, next_observation, info) for a CPU MuJoCo analogue of IsaacGymEnvs BallBalance (ball thrown onto a tilting tray); a linear policy is trained under it by the cross-entropy method, and the score is the policy's mean episode length in steps before the ball drops, at most 500, over 50 held-out throws (higher is better).",
+        "family": "isaac_ballbalance_reward_design",
         "paper_ids": [
           "eureka"
         ],
-        "metric": "task-specific fitness and human-normalized score"
+        "metric": "score"
       }
     },
     "eureka-blockstack": {
@@ -9339,12 +9340,12 @@
       "rationale": "After explicit scientific-target exceptions, these reviewed tasks are generic image, text or tabular prediction datasets.",
       "evidence": {
         "task_name": "jigsaw-toxic-comment",
-        "description": "jigsaw-toxic-comment",
-        "family": null,
+        "description": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 159,571 labelled Wikipedia comments of the Jigsaw toxic-comment competition and returns scores for six toxicity labels on its 63,978 scored test comments, within a 600 s wall-clock budget on 4 CPU threads without pretrained weights; scored by mean column-wise ROC AUC (higher is better).",
+        "family": "kaggle_jigsaw_toxic",
         "paper_ids": [
           "eurekagent"
         ],
-        "metric": "competition score and medal threshold"
+        "metric": "score"
       }
     },
     "eurekagent-tabular-playground-may-2022": {
@@ -9699,12 +9700,12 @@
       "rationale": "The source names mathematical-program, constraint-reformulation or OR-modeling instances; the optimized artifact is a solver/model formulation.",
       "evidence": {
         "task_name": "NLP4LP",
-        "description": "NLP4LP",
-        "family": null,
+        "description": "Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client and optionally local numpy/scipy code, returns the optimal objective value of an NLP4LP optimization word problem; scored by accuracy within 1e-3*max(1, |optimum|) on a fixed 30-problem sample of the 178 cleaned problems (higher is better).",
+        "family": "llm_bench_qa",
         "paper_ids": [
           "evoor-agent"
         ],
-        "metric": "optimization-model solution accuracy"
+        "metric": "score"
       }
     },
     "evoor-agent-resocratic": {
@@ -9714,12 +9715,12 @@
       "rationale": "The source names mathematical-program, constraint-reformulation or OR-modeling instances; the optimized artifact is a solver/model formulation.",
       "evidence": {
         "task_name": "ReSocratic",
-        "description": "ReSocratic",
-        "family": null,
+        "description": "Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client and optionally local numpy/scipy code, returns a JSON object with every requested quantity of an OptiBench/ReSocratic optimization problem; scored by the fraction of a fixed 30-problem sample (of 403 cleaned problems) where all values are within max(1e-4, 1e-3*|gold|) (higher is better).",
+        "family": "llm_bench_qa",
         "paper_ids": [
           "evoor-agent"
         ],
-        "metric": "optimization-model solution accuracy"
+        "metric": "score"
       }
     },
     "evoprompt-ag-s-news": {
@@ -10030,12 +10031,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Activity Selector",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Activity Selector algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Activity Selector algorithm of CLRS-30. The network is trained for 1200 steps on 16-node instances; the score is the F1 of the predicted selected activities on the 32 out-of-distribution 64-node test instances (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-articulation-points": {
@@ -10060,12 +10061,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Bellman Ford",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Bellman Ford algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Bellman-Ford algorithm of CLRS-30. The network is trained for 1500 steps on 16-node graphs; the score is the accuracy of the predicted predecessor pointers on the 32 out-of-distribution 64-node test graphs (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-bfs": {
@@ -10075,12 +10076,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "BFS",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS BFS algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the breadth-first search (BFS) algorithm of CLRS-30. The network is trained for 1500 steps on 16-node graphs; the score is the accuracy of the predicted predecessor pointers on the 32 out-of-distribution 64-node test graphs (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-binary-search": {
@@ -10090,12 +10091,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Binary Search",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Binary Search algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Binary Search algorithm of CLRS-30. The network is trained for 2000 steps on 16-node instances; the score is the accuracy of the predicted returned index on the 2048 out-of-distribution 64-node test instances (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-bridges": {
@@ -10165,12 +10166,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Dijkstra",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Dijkstra algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn Dijkstra's shortest-path algorithm of CLRS-30. The network is trained for 800 steps on 16-node graphs; the score is the accuracy of the predicted predecessor pointers on the 32 out-of-distribution 64-node test graphs (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-find-maximum-subarray-kadane": {
@@ -10180,12 +10181,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Find Maximum Subarray Kadane",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Find Maximum Subarray Kadane algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn Kadane's maximum-subarray algorithm of CLRS-30. The network is trained for 1000 steps on 16-node instances; the score is the mean accuracy of the predicted subarray start and end on 256 of the 1024 out-of-distribution 64-node test instances (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-floyd-warshall": {
@@ -10195,12 +10196,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Floyd Warshall",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Floyd Warshall algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Floyd-Warshall all-pairs shortest-path algorithm of CLRS-30. The network is trained for 100 steps on 16-node graphs; the score is the accuracy of the predicted predecessor matrix on the 32 out-of-distribution 64-node test graphs (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-graham-scan": {
@@ -10210,12 +10211,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Graham Scan",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Graham Scan algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Graham scan convex-hull algorithm of CLRS-30. The network is trained for 150 steps on 16-point instances; the score is the F1 of the predicted convex-hull membership on the 32 out-of-distribution 64-point test instances (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-heapsort": {
@@ -10240,12 +10241,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Insertion Sort",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Insertion Sort algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Insertion Sort algorithm of CLRS-30. The network is trained for 900 steps on 16-node instances; the score is the accuracy of the predicted sorted-order predecessor pointers, decoded as a permutation, on the 32 out-of-distribution 64-node test instances (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-jarvis-march": {
@@ -10285,12 +10286,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "LCS Length",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS LCS Length algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the LCS-length dynamic program of CLRS-30. The network is trained for 1500 steps on 16-node instances; the score is the accuracy of the predicted back-pointer table on the 32 out-of-distribution 64-node test instances (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-matrix-chain-order": {
@@ -10300,12 +10301,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Matrix Chain Order",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Matrix Chain Order algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Matrix Chain Order dynamic program of CLRS-30. The network is trained for 100 steps on 16-node instances; the score is the accuracy of the predicted split-point table on the 32 out-of-distribution 64-node test instances (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-minimum": {
@@ -10345,12 +10346,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "MST Kruskal",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS MST Kruskal algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn Kruskal's minimum-spanning-tree algorithm of CLRS-30. The network is trained for 200 steps on 16-node graphs; the score is the F1 of the predicted tree edges on the 32 out-of-distribution 64-node test graphs (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-mst-prim": {
@@ -10360,12 +10361,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "MST Prim",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS MST Prim algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn Prim's minimum-spanning-tree algorithm of CLRS-30. The network is trained for 800 steps on 16-node graphs; the score is the accuracy of the predicted tree predecessor pointers on the 32 out-of-distribution 64-node test graphs (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-naive-string-matcher": {
@@ -10435,12 +10436,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Optimal BST",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Optimal BST algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Optimal BST dynamic program of CLRS-30. The network is trained for 100 steps on 17-node instances; the score is the accuracy of the predicted root table on the 32 out-of-distribution 65-node test instances (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-quickselect": {
@@ -10480,12 +10481,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Segments Intersect",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Segments Intersect algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Segments Intersect algorithm of CLRS-30. The network is trained for 2000 steps on 4-point instances (two segments); the score is the F1 of the predicted intersection flag on 2048 test instances of the same size (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-strongly-connected-components": {
@@ -10510,12 +10511,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Task Scheduling",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Task Scheduling algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Task Scheduling algorithm of CLRS-30. The network is trained for 1200 steps on 16-node instances; the score is the F1 of the predicted selected tasks on the 32 out-of-distribution 64-node test instances (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoprompting-topological-sort": {
@@ -10525,12 +10526,12 @@
       "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
       "evidence": {
         "task_name": "Topological Sort",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Topological Sort algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
+        "description": "Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Topological Sort algorithm of CLRS-30. The network is trained for 120 steps on 16-node graphs; the score is the mean accuracy of the predicted order pointers and first node on the 32 out-of-distribution 64-node test graphs (higher is better).",
+        "family": "clrs_processor",
         "paper_ids": [
           "evoprompting"
         ],
-        "metric": "OOD accuracy and parameter count"
+        "metric": "score"
       }
     },
     "evoskill-browsecomp-transfer": {
@@ -10761,13 +10762,13 @@
       "rationale": "The task explicitly names datacenter TCP congestion control or telemetry repair.",
       "evidence": {
         "task_name": "Telemetry repair",
-        "description": "Telemetry repair",
-        "family": null,
+        "description": "Write a Python run_repair(telemetry, topology) function that repairs noisy, dropped or scaled rx/tx counters of Abilene backbone interfaces and returns (original, repaired, confidence) triples for every interface; scored over 30 fixed perturbed snapshots by 0.75 x counter repair quality + 0.05 x status accuracy + 0.2 x confidence calibration (higher is better).",
+        "family": "llm_tools_telemetry",
         "paper_ids": [
           "evox",
           "adaevolve"
         ],
-        "metric": "evaluator combined score"
+        "metric": "score"
       }
     },
     "flowscout-toolbench-finance": {
@@ -11407,13 +11408,13 @@
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
       "evidence": {
         "task_name": "IFBench",
-        "description": "IFBench",
-        "family": null,
+        "description": "Write a Python solve(question, llm) agent that uses a budgeted OpenRouter model client to answer IFBench prompts, each carrying verifiable output constraints; scored by the mean fraction of instructions the IFBench checkers accept under GEPA's loose rule, on a fixed 30-prompt sample of the 294-prompt test set (higher is better).",
+        "family": "llm_bench_ifbench",
         "paper_ids": [
           "gepa",
           "pairwise-validator"
         ],
-        "metric": "task-specific score"
+        "metric": "score"
       }
     },
     "gepa-livebench-math": {
@@ -11439,13 +11440,13 @@
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
       "evidence": {
         "task_name": "PUPA",
-        "description": "PUPA",
-        "family": null,
+        "description": "Write a Python solve(user_query, llm, untrusted_llm) program that answers private user requests with a trusted model and, optionally, an external untrusted model; a judge model scores each item as (quality + (1 - PII leakage to the untrusted model)) / 2, averaged over a fixed 20-item sample of GEPA's PUPA test split (higher is better).",
+        "family": "llm_bench_pupa",
         "paper_ids": [
           "gepa",
           "pairwise-validator"
         ],
-        "metric": "task-specific score"
+        "metric": "score"
       }
     },
     "gset-maxcut-g1": {
@@ -12520,12 +12521,12 @@
       "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
       "evidence": {
         "task_name": "BabaIsAI BreakStop",
-        "description": "BabaIsAI BreakStop",
-        "family": null,
+        "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that picks each next text action in BALROG's BabaIsAI rule-manipulation puzzles, using a budgeted OpenRouter model client; scored by the fraction of 6 seeded episodes (3 for each of the 2 tasks of HSI's BreakStop test split, at most 40 steps each) that are won (higher is better).",
+        "family": "agent_bench_balrog",
         "paper_ids": [
           "hsi"
         ],
-        "metric": "episode progress / task success"
+        "metric": "score"
       }
     },
     "hsi-babaisai-goto": {
@@ -12535,12 +12536,12 @@
       "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
       "evidence": {
         "task_name": "BabaIsAI GoTo",
-        "description": "BabaIsAI GoTo",
-        "family": null,
+        "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that picks each next text action in BALROG's BabaIsAI rule-manipulation puzzles, using a budgeted OpenRouter model client; scored by the fraction of 9 seeded episodes (3 for each of the 3 tasks of HSI's GoTo test split, at most 40 steps each) that are won (higher is better).",
+        "family": "agent_bench_balrog",
         "paper_ids": [
           "hsi"
         ],
-        "metric": "episode progress / task success"
+        "metric": "score"
       }
     },
     "hsi-babaisai-make": {
@@ -12550,12 +12551,12 @@
       "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
       "evidence": {
         "task_name": "BabaIsAI Make",
-        "description": "BabaIsAI Make",
-        "family": null,
+        "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that picks each next text action in BALROG's BabaIsAI rule-manipulation puzzles, using a budgeted OpenRouter model client; scored by the fraction of 12 seeded episodes (3 for each of the 4 tasks of HSI's Make test split, at most 40 steps each) that are won (higher is better).",
+        "family": "agent_bench_balrog",
         "paper_ids": [
           "hsi"
         ],
-        "metric": "episode progress / task success"
+        "metric": "score"
       }
     },
     "hsi-babyai": {
@@ -12565,12 +12566,12 @@
       "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
       "evidence": {
         "task_name": "BabyAI",
-        "description": "BabyAI",
-        "family": null,
+        "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that picks each next text action in BALROG's BabyAI-Text games, using a budgeted OpenRouter model client; scored by the fraction of 10 seeded episodes (two for each of five BabyAI-MixedTrainLocal tasks) whose mission is completed within the level's step limit (higher is better).",
+        "family": "agent_bench_balrog",
         "paper_ids": [
           "hsi"
         ],
-        "metric": "episode progress / task success"
+        "metric": "score"
       }
     },
     "hsi-crafter": {
@@ -12580,12 +12581,12 @@
       "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
       "evidence": {
         "task_name": "Crafter",
-        "description": "Crafter",
-        "family": null,
+        "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that picks each next text action in BALROG's Crafter, using a budgeted OpenRouter model client; scored by the mean fraction of Crafter's 22 achievements unlocked in 2 seeded episodes of at most 100 steps (higher is better).",
+        "family": "agent_bench_balrog",
         "paper_ids": [
           "hsi"
         ],
-        "metric": "episode progress / task success"
+        "metric": "score"
       }
     },
     "hsi-minihack": {
@@ -12595,12 +12596,12 @@
       "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
       "evidence": {
         "task_name": "MiniHack",
-        "description": "MiniHack",
-        "family": null,
+        "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that picks each next text action in BALROG's MiniHack (language observation with the ASCII map), using a budgeted OpenRouter model client; scored by the fraction of HSI's eight MiniHack tasks (Boxoban, MazeWalk, Corridor, Quest) solved in one seeded episode each within 100 steps (higher is better).",
+        "family": "agent_bench_balrog",
         "paper_ids": [
           "hsi"
         ],
-        "metric": "episode progress / task success"
+        "metric": "score"
       }
     },
     "hsi-nle": {
@@ -12640,12 +12641,12 @@
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
       "evidence": {
         "task_name": "Conference paper acceptance prediction",
-        "description": "Conference paper acceptance prediction",
-        "family": null,
+        "description": "Write a Python solve(question, llm) agent that reads the full text of a machine-learning conference submission and answers accept or reject, using a budgeted OpenRouter model client; scored by accuracy against the observed decisions on a fixed 20-paper sample of a balanced 100-paper held-out test split (higher is better).",
+        "family": "llm_bench_qa",
         "paper_ids": [
           "hyperagents"
         ],
-        "metric": "binary accuracy"
+        "metric": "score"
       }
     },
     "hyperagents-imo-gradingbench": {
@@ -12655,12 +12656,12 @@
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
       "evidence": {
         "task_name": "IMO-GradingBench",
-        "description": "IMO-GradingBench",
-        "family": null,
+        "description": "Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client, grades a proposed proof of an IMO-level problem as correct, almost, partial or incorrect from the reference solution and grading guidelines; scored by exact-match accuracy against human grades on a fixed 30-item sample of a 100-item held-out IMO-GradingBench subset (higher is better).",
+        "family": "llm_bench_qa",
         "paper_ids": [
           "hyperagents"
         ],
-        "metric": "agreement with expert grades"
+        "metric": "score"
       }
     },
     "hyperagents-quadruped-torso-height-reward-design": {
@@ -13765,12 +13766,12 @@
       "rationale": "After explicit scientific-target exceptions, these reviewed tasks are generic image, text or tabular prediction datasets.",
       "evidence": {
         "task_name": "CIFAR-10 decision-based adversarial attack",
-        "description": "CIFAR-10 decision-based adversarial attack: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a Python draw_proposals(org_img, best_adv_img, std_normal_noise, hyperparams) function that proposes the next point of an L2 decision-based random-walk attack on a CIFAR-10 ResNet-18; scored by the mean L2 distance between 20 correctly classified test images and their adversarial examples after 2,500 queries per image (lower is better).",
+        "family": "llm_tools_autoda",
         "paper_ids": [
           "l-autoda"
         ],
-        "metric": "mean/median L2 adversarial perturbation versus query count"
+        "metric": "score"
       }
     },
     "lasr-big-bench-llm-scaling-law-discovery": {
@@ -13780,12 +13781,12 @@
       "rationale": "The target is an LLM scaling law, not a physical equation.",
       "evidence": {
         "task_name": "BIG-Bench LLM scaling-law discovery",
-        "description": "BIG-Bench LLM scaling-law discovery: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a Python scaling_law(X, params) formula with at most five free constants that predicts BIG-bench multiple-choice grades from model size, training steps, batch size, shots and decoding temperature; the evaluator fits the constants by least squares on 43,049 rows and scores the mean squared error on 10,763 held-out rows (lower is better).",
+        "family": "bigbench_scaling_law",
         "paper_ids": [
           "lasr"
         ],
-        "metric": "exact symbolic recovery / MSE (symbolic regression); scaling-law predictive fit"
+        "metric": "score"
       }
     },
     "lasr-feynman-equations-symbolic-regression": {
@@ -13825,12 +13826,12 @@
       "rationale": "The descriptions specify gridworld pickup/placement/subgoal behavior in XLand-MiniGrid; this is a learned digital action policy, not a physical robot experiment.",
       "evidence": {
         "task_name": "Easy pickup",
-        "description": "Pick up blue pyramid in 9x9 grid; 80-step horizon",
-        "family": null,
+        "description": "Write JAX get_observation(state) and compute_reward(state, action, next_state) for picking up the blue pyramid in a 9 x 9 XLand-MiniGrid room; LIMEN's evaluator trains PPO on them and scores the mean success rate within 80 steps over three 1M-step training seeds, or a 500K-step cascade run's rate if below 5 % (higher is better).",
+        "family": "limen_xland_easy_pickup",
         "paper_ids": [
           "limen"
         ],
-        "metric": "mean success rate across three seeds"
+        "metric": "score"
       }
     },
     "limen-go1-push-recovery": {
@@ -13855,12 +13856,12 @@
       "rationale": "The descriptions specify gridworld pickup/placement/subgoal behavior in XLand-MiniGrid; this is a learned digital action policy, not a physical robot experiment.",
       "evidence": {
         "task_name": "Hard rule-chain",
-        "description": "13x13 multiroom ordered subgoals; 400-step horizon",
-        "family": null,
+        "description": "Write JAX get_observation(state) and compute_reward(state, action, next_state) for a 13 x 13 four-room XLand-MiniGrid task (blue pyramid becomes a green ball; place it next to the yellow hex); LIMEN's evaluator trains PPO on them and scores the mean success rate within 400 steps over three 5M-step seeds, or a 3M-step cascade run's rate if below 1 % (higher is better).",
+        "family": "limen_xland_hard_rule_chain",
         "paper_ids": [
           "limen"
         ],
-        "metric": "mean success rate across three seeds"
+        "metric": "score"
       }
     },
     "limen-medium-place-near": {
@@ -13870,12 +13871,12 @@
       "rationale": "The descriptions specify gridworld pickup/placement/subgoal behavior in XLand-MiniGrid; this is a learned digital action policy, not a physical robot experiment.",
       "evidence": {
         "task_name": "Medium place-near",
-        "description": "Place yellow pyramid adjacent to green square in 9x9 grid",
-        "family": null,
+        "description": "Write JAX get_observation(state) and compute_reward(state, action, next_state) for placing the yellow pyramid next to the green square in a 9 x 9 XLand-MiniGrid room; LIMEN's evaluator trains PPO on them and scores the mean success rate within 80 steps over three 2M-step training seeds, or a 1M-step cascade run's rate if below 2 % (higher is better).",
+        "family": "limen_xland_medium_place_near",
         "paper_ids": [
           "limen"
         ],
-        "metric": "mean success rate across three seeds"
+        "metric": "score"
       }
     },
     "limen-panda-trajectory-tracking": {
@@ -15700,12 +15701,12 @@
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
       "evidence": {
         "task_name": "Gore Vidal sentence sentiment",
-        "description": "Gore Vidal sentence sentiment: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a solve(question, llm) program that returns 1 to 300 one-line sentences rewriting the Gore Vidal quote 'Whenever a friend succeeds, a little something in me dies.' with positive sentiment; scored by QD score, the sum over 30 niches of MiniLM embedding distance to the quote of the best positive probability from a RoBERTa sentiment classifier (higher is better).",
+        "family": "llm_bench_lmx",
         "paper_ids": [
           "lmx"
         ],
-        "metric": "domain-specific fitness / QD score"
+        "metric": "score"
       }
     },
     "lmx-homer-simpson-sentence-sentiment": {
@@ -15715,12 +15716,12 @@
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
       "evidence": {
         "task_name": "Homer Simpson sentence sentiment",
-        "description": "Homer Simpson sentence sentiment: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a solve(question, llm) program that returns 1 to 300 one-line sentences rewriting the Homer Simpson quote 'Kids, you tried your best and you failed miserably. The lesson is, never try.' with positive sentiment; scored by QD score, the sum over 30 embedding-distance niches of the best positive probability from a RoBERTa sentiment classifier (higher is better).",
+        "family": "llm_bench_lmx",
         "paper_ids": [
           "lmx"
         ],
-        "metric": "domain-specific fitness / QD score"
+        "metric": "score"
       }
     },
     "lmx-onemax-binary-strings": {
@@ -15805,12 +15806,12 @@
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
       "evidence": {
         "task_name": "Woody Allen sentence sentiment",
-        "description": "Woody Allen sentence sentiment: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a solve(question, llm) program that returns 1 to 300 one-line sentences rewriting the Woody Allen quote 'Life is divided into the horrible and the miserable.' with positive sentiment; scored by QD score, the sum over 30 niches of MiniLM embedding distance to the quote of the best positive probability from a RoBERTa sentiment classifier (higher is better).",
+        "family": "llm_bench_lmx",
         "paper_ids": [
           "lmx"
         ],
-        "metric": "domain-specific fitness / QD score"
+        "metric": "score"
       }
     },
     "loongflow-aerial-cactus-identification": {
@@ -15836,12 +15837,12 @@
       "rationale": "After explicit scientific-target exceptions, these reviewed tasks are generic image, text or tabular prediction datasets.",
       "evidence": {
         "task_name": "denoising-dirty-documents",
-        "description": "Predict clean document image pixel values and minimize RMSE against ground truth.",
-        "family": null,
+        "description": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 144 noisy/clean NoisyOffice document image pairs and returns a cleaned image (intensities on a 0-1 scale) for each of 72 noisy test images of an unseen text passage, within a 300 s wall-clock budget on 4 CPU threads; scored by pixel RMSE against the clean pages (lower is better).",
+        "family": "kaggle_noisyoffice_denoising",
         "paper_ids": [
           "loongflow"
         ],
-        "metric": "root mean squared error"
+        "metric": "score"
       }
     },
     "loongflow-detecting-insults-in-social-commentary": {
@@ -15896,13 +15897,13 @@
       "rationale": "The task name specifies biological imagery, disease, RNA, cellular integration or neural-activity prediction. This is a dataset/modeling application, not verified biological discovery.",
       "evidence": {
         "task_name": "histopathologic-cancer-detection",
-        "description": "Predict metastatic cancer presence in histopathology image patches.",
-        "family": null,
+        "description": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 45,819 labelled 48 x 48 PatchCamelyon lymph-node patch crops and returns a tumour probability in [0, 1] for each of 11,672 test crops from held-out whole-slide images, within a 600 s wall-clock budget on 4 CPU threads; scored by ROC AUC (higher is better).",
+        "family": "kaggle_pcam_histopathology",
         "paper_ids": [
           "loongflow",
           "eurekagent"
         ],
-        "metric": "ROC AUC"
+        "metric": "score"
       }
     },
     "loongflow-nomad2018-predict-transparent-conductors": {
@@ -15912,12 +15913,12 @@
       "rationale": "The named target is transparent-conductor material-property prediction.",
       "evidence": {
         "task_name": "nomad2018-predict-transparent-conductors",
-        "description": "Predict formation_energy_ev_natom and bandgap_energy_ev; average their RMSLE values.",
-        "family": null,
+        "description": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 2,700 (Al, Ga, In)2O3 materials given as DFT-relaxed structures and predicts formation energy per cation and band gap for 300 held-out materials, within a 300 s wall-clock budget on 4 CPU threads; scored by the mean of the two columns' RMSLE (lower is better).",
+        "family": "kaggle_nomad2018_conductors",
         "paper_ids": [
           "loongflow"
         ],
-        "metric": "mean columnwise root mean squared logarithmic error"
+        "metric": "score"
       }
     },
     "loongflow-plant-pathology-2020-fgvc7": {
@@ -15973,12 +15974,12 @@
       "rationale": "The task name specifies biological imagery, disease, RNA, cellular integration or neural-activity prediction. This is a dataset/modeling application, not verified biological discovery.",
       "evidence": {
         "task_name": "stanford-covid-vaccine",
-        "description": "Predict RNA reactivity, deg_Mg_pH10 and deg_Mg_50C; score the mean of three RMSE values on rows selected by the answers keep mask.",
-        "family": null,
+        "description": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 1,349 OpenVaccine RNA sequences with per-position degradation measurements and predicts reactivity, deg_Mg_pH10 and deg_Mg_50C at the first 68 positions of 240 test RNAs, within a 300 s wall-clock budget on 4 CPU threads; scored by MCRMSE (lower is better).",
+        "family": "kaggle_openvaccine_degradation",
         "paper_ids": [
           "loongflow"
         ],
-        "metric": "mean columnwise root mean squared error"
+        "metric": "score"
       }
     },
     "loongflow-tabular-playground-series-dec-2021": {
@@ -16018,12 +16019,12 @@
       "rationale": "After explicit scientific-target exceptions, these reviewed tasks are generic image, text or tabular prediction datasets.",
       "evidence": {
         "task_name": "us-patent-phrase-to-phrase-matching",
-        "description": "Predict semantic similarity scores for patent phrase pairs.",
-        "family": null,
+        "description": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 39,316 scored patent phrase pairs with their CPC context and predicts the similarity of 9,232 test pairs whose anchors never occur in training, within a 300 s wall-clock budget on 4 CPU threads without pretrained models; scored by Pearson correlation (higher is better).",
+        "family": "kaggle_patent_phrase_matching",
         "paper_ids": [
           "loongflow"
         ],
-        "metric": "Pearson correlation"
+        "metric": "score"
       }
     },
     "magellan-llvm-function-inlining-for-binary-size": {
@@ -16034,11 +16035,11 @@
       "evidence": {
         "task_name": "LLVM function inlining for binary size",
         "description": "LLVM function inlining for binary size task evaluated in Magellan: Autonomous Discovery of Novel Compiler Optimization Heuristics with AlphaEvolve.",
-        "family": null,
+        "family": "llvm_inlining_size",
         "paper_ids": [
           "magellan"
         ],
-        "metric": "binary size"
+        "metric": "score"
       }
     },
     "magellan-llvm-function-inlining-for-clang-runtime": {
@@ -16079,11 +16080,11 @@
       "evidence": {
         "task_name": "XLA auto-sharding IOPDDL",
         "description": "XLA auto-sharding IOPDDL task evaluated in Magellan: Autonomous Discovery of Novel Compiler Optimization Heuristics with AlphaEvolve.",
-        "family": null,
+        "family": "iopddl_sharding",
         "paper_ids": [
           "magellan"
         ],
-        "metric": "contest objective under memory constraints"
+        "metric": "score"
       }
     },
     "magellan-xla-enzyme-jax-e-graph-extraction": {
@@ -16094,11 +16095,11 @@
       "evidence": {
         "task_name": "XLA/Enzyme-JAX e-graph extraction",
         "description": "XLA/Enzyme-JAX e-graph extraction task evaluated in Magellan: Autonomous Discovery of Novel Compiler Optimization Heuristics with AlphaEvolve.",
-        "family": null,
+        "family": "egraph_extraction",
         "paper_ids": [
           "magellan"
         ],
-        "metric": "total extracted program cost"
+        "metric": "score"
       }
     },
     "mce-aegis2": {
@@ -16124,12 +16125,12 @@
       "evidence": {
         "task_name": "FiNER",
         "description": "FiNER task evaluated in Meta Context Engineering via Agentic Skill Evolution.",
-        "family": null,
+        "family": "llm_bench_qa",
         "paper_ids": [
           "mce",
           "meta-harness"
         ],
-        "metric": "pass@1 prediction accuracy"
+        "metric": "score"
       }
     },
     "mce-lawbench-criminal-charge-prediction": {
@@ -16172,12 +16173,12 @@
       "evidence": {
         "task_name": "USPTO-50k",
         "description": "USPTO-50k task evaluated in Meta Context Engineering via Agentic Skill Evolution.",
-        "family": null,
+        "family": "llm_bench_qa",
         "paper_ids": [
           "mce",
           "meta-harness"
         ],
-        "metric": "pass@1 exact-match accuracy"
+        "metric": "score"
       }
     },
     "mcts-ahd-asp-constructive": {
@@ -16233,11 +16234,11 @@
       "evidence": {
         "task_name": "ArXivMath",
         "description": "ArXivMath task evaluated in Meta-Harness: End-to-End Optimization of Model Harnesses.",
-        "family": null,
+        "family": "llm_bench_qa",
         "paper_ids": [
           "meta-harness"
         ],
-        "metric": "answer/proof accuracy"
+        "metric": "score"
       }
     },
     "meta-harness-banking77": {
@@ -16308,11 +16309,11 @@
       "evidence": {
         "task_name": "IMO-ProofBench",
         "description": "IMO-ProofBench task evaluated in Meta-Harness: End-to-End Optimization of Model Harnesses.",
-        "family": null,
+        "family": "llm_bench_proof",
         "paper_ids": [
           "meta-harness"
         ],
-        "metric": "answer/proof accuracy"
+        "metric": "score"
       }
     },
     "meta-harness-scicite": {
@@ -16592,12 +16593,12 @@
       "rationale": "The named package evaluates natural-language trip/meeting/travel planning.",
       "evidence": {
         "task_name": "Natural Plan Meeting Planning",
-        "description": "Natural Plan Meeting Planning: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to answer Natural Plan meeting-planning prompts (meet as many San Francisco friends as possible under availability and travel-time constraints); scored by success rate on a fixed 30-problem test sample, a plan succeeding when its simulated valid meetings match the golden plan's count (higher is better).",
+        "family": "llm_bench_plan",
         "paper_ids": [
           "mind-evolution"
         ],
-        "metric": "success rate"
+        "metric": "score"
       }
     },
     "mind-evolution-natural-plan-trip-planning": {
@@ -16637,12 +16638,12 @@
       "rationale": "The named package evaluates natural-language trip/meeting/travel planning.",
       "evidence": {
         "task_name": "TravelPlanner",
-        "description": "TravelPlanner: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to turn a TravelPlanner query and its reference information into a day-by-day JSON plan; scored by success rate on a fixed 20-query validation sample, a plan succeeding only if it passes all eight commonsense and all five hard constraints (higher is better).",
+        "family": "llm_bench_plan",
         "paper_ids": [
           "mind-evolution"
         ],
-        "metric": "success rate"
+        "metric": "score"
       }
     },
     "miplib-allcolor58": {
@@ -19866,14 +19867,14 @@
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
       "evidence": {
         "task_name": "HoVer",
-        "description": "HoVer: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a Python solve(claim, search, llm) program that retrieves, with at most 3 BM25 searches and 24 documents over 5.2 million 2017 Wikipedia abstracts and a budgeted OpenRouter model, the three gold supporting documents of a HoVer claim; scored by the fraction of claims whose gold titles were all retrieved, on a fixed 30-claim sample (higher is better).",
+        "family": "llm_tools_hover",
         "paper_ids": [
           "mipro",
           "gepa",
           "pairwise-validator"
         ],
-        "metric": "Recall@21"
+        "metric": "score"
       }
     },
     "mipro-iris": {
@@ -19959,11 +19960,11 @@
       "evidence": {
         "task_name": "Balanced academic curriculum (CSPLib 30)",
         "description": "Balanced academic curriculum (CSPLib 30) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": null,
+        "family": "csplib_reformulation_bacp",
         "paper_ids": [
           "pdr"
         ],
-        "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)"
+        "metric": "score"
       }
     },
     "pdr-balanced-incomplete-block-design-csplib-28": {
@@ -19974,11 +19975,11 @@
       "evidence": {
         "task_name": "Balanced incomplete block design (CSPLib 28)",
         "description": "Balanced incomplete block design (CSPLib 28) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": null,
+        "family": "csplib_reformulation_bibd",
         "paper_ids": [
           "pdr"
         ],
-        "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)"
+        "metric": "score"
       }
     },
     "pdr-car-sequencing-csplib-1": {
@@ -19989,11 +19990,11 @@
       "evidence": {
         "task_name": "Car sequencing (CSPLib 1)",
         "description": "Car sequencing (CSPLib 1) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": null,
+        "family": "csplib_reformulation_car_sequencing",
         "paper_ids": [
           "pdr"
         ],
-        "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)"
+        "metric": "score"
       }
     },
     "pdr-covering-arrays-csplib-45": {
@@ -20004,11 +20005,11 @@
       "evidence": {
         "task_name": "Covering arrays (CSPLib 45)",
         "description": "Covering arrays (CSPLib 45) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": null,
+        "family": "csplib_reformulation_covering_array",
         "paper_ids": [
           "pdr"
         ],
-        "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)"
+        "metric": "score"
       }
     },
     "pdr-error-correction-codes-csplib-36": {
@@ -20019,11 +20020,11 @@
       "evidence": {
         "task_name": "Error-correction codes (CSPLib 36)",
         "description": "Error-correction codes (CSPLib 36) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": null,
+        "family": "csplib_reformulation_error_correcting_codes",
         "paper_ids": [
           "pdr"
         ],
-        "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)"
+        "metric": "score"
       }
     },
     "pdr-social-golfer-csplib-10": {
@@ -20034,11 +20035,11 @@
       "evidence": {
         "task_name": "Social golfer (CSPLib 10)",
         "description": "Social golfer (CSPLib 10) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": null,
+        "family": "csplib_reformulation_social_golfers",
         "paper_ids": [
           "pdr"
         ],
-        "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)"
+        "metric": "score"
       }
     },
     "pdr-tail-assignment-csplib-115": {
@@ -20049,11 +20050,11 @@
       "evidence": {
         "task_name": "Tail assignment (CSPLib 115)",
         "description": "Tail assignment (CSPLib 115) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": null,
+        "family": "csplib_reformulation_tail_assignment",
         "paper_ids": [
           "pdr"
         ],
-        "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)"
+        "metric": "score"
       }
     },
     "pdr-vessel-loading-csplib-8": {
@@ -20064,11 +20065,11 @@
       "evidence": {
         "task_name": "Vessel loading (CSPLib 8)",
         "description": "Vessel loading (CSPLib 8) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": null,
+        "family": "csplib_reformulation_vessel_loading",
         "paper_ids": [
           "pdr"
         ],
-        "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)"
+        "metric": "score"
       }
     },
     "phaseevo-disambiguation-qa": {
@@ -20424,12 +20425,12 @@
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
       "evidence": {
         "task_name": "AddSub",
-        "description": "AddSub: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to solve AddSub problems; scored by accuracy on a fixed 30-problem sample of a deterministic test half, an answer counting when its final numeric literal matches the gold value within 1e-6 (higher is better).",
+        "family": "llm_bench_qa",
         "paper_ids": [
           "promptbreeder"
         ],
-        "metric": "accuracy"
+        "metric": "score"
       }
     },
     "promptbreeder-antonyms": {
@@ -20744,12 +20745,12 @@
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
       "evidence": {
         "task_name": "SingleEq",
-        "description": "SingleEq: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to solve SingleEq problems; scored by accuracy on a fixed 30-problem sample of a deterministic test half, an answer counting when its final numeric literal matches the gold value within 1e-6 (higher is better).",
+        "family": "llm_bench_qa",
         "paper_ids": [
           "promptbreeder"
         ],
-        "metric": "accuracy"
+        "metric": "score"
       }
     },
     "promptbreeder-singular-plural": {
@@ -20935,13 +20936,13 @@
       "rule_id": "unsupported-language-evaluation",
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
       "evidence": {
-        "task_name": "Jailbreak",
-        "description": "Jailbreak: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "task_name": "Jailbreak detection",
+        "description": "Write a classifier that decides whether a single English user message is a jailbreak attempt, scored with binary F1 on a fixed sample of the public jackhhao/jailbreak-classification data; a clearly labelled proxy of ProTeGi's unreleased multilingual jailbreak-detection set.",
+        "family": "llm_bench_qa",
         "paper_ids": [
           "protegi"
         ],
-        "metric": "F1"
+        "metric": "score"
       }
     },
     "protegi-liar": {
@@ -22261,11 +22262,11 @@
       "evidence": {
         "task_name": "Code review",
         "description": "Code review task evaluated in The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators.",
-        "family": null,
+        "family": "llm_bench_qa",
         "paper_ids": [
           "rqgm"
         ],
-        "metric": "review classification accuracy"
+        "metric": "score"
       }
     },
     "rqgm-olympiad-proof-grading": {
@@ -29785,12 +29786,12 @@
       "rationale": "The reviewed task names are code repair, coding, program verification or repository-editing benchmarks.",
       "evidence": {
         "task_name": "LiveCodeBench",
-        "description": "LiveCodeBench: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to produce a Python solution(*args) function for LiveCodeBench LeetCode problems; scored by the mean fraction of public and private tests passed on a fixed 20-problem sample, with 20 s per test and 60 s per problem (higher is better).",
+        "family": "llm_bench_code",
         "paper_ids": [
           "sica"
         ],
-        "metric": "benchmark score; time and API cost enter combined utility"
+        "metric": "score"
       }
     },
     "sica-swe-bench-verified": {
@@ -36134,12 +36135,12 @@
       "rationale": "The task name specifies biological imagery, disease, RNA, cellular integration or neural-activity prediction. This is a dataset/modeling application, not verified biological discovery.",
       "evidence": {
         "task_name": "ZAPBench neural activity prediction",
-        "description": "ZAPBench neural activity prediction: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
+        "description": "Write the Station's JAX/Flax hooks (network, loss, optimizer, hyperparameters, batch size) for forecasting 32 steps of 71,721 zebrafish neurons from 4 context steps; the evaluator trains on ZAPBench's training split for at most 3 CPU epochs or 600 s (seed 42), keeps the best-validation parameters and scores the test MAE averaged over 9 test conditions (lower is better).",
+        "family": "station_zapbench_forecasting",
         "paper_ids": [
           "the-station"
         ],
-        "metric": "mean absolute error"
+        "metric": "score"
       }
     },
     "thomson-n10": {

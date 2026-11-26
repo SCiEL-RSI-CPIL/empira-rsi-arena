@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 1800
   max_retries: 2
 
 prompt:
   system_message: |
     Single-step code bug repair
 
-    Single-step code bug repair: optimize the candidate specified by the paper and evaluate against the named benchmark.
+    Repair mutated 4-Parity and Quadratic Python programs in one model editing step; evaluate whether the repaired program computes the target function correctly.
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `question` shows one of ELM's seven buggy programs in ELM's prompt layout ('# A buggy implementation', the code, '# Fixed Bugs'), an attempt number and a request for the complete fixed implementation; `llm(...)` is a budgeted, cached OpenRouter chat client. The last ```python block of the reply (else the whole reply) is executed in a resource-limited child process: the repaired 4-Parity function must return the parity of all 16 inputs and the repaired Quadratic function must return a*x^2+b*x+c on 320 grid points. Score: the fraction of the 28 (program, attempt) pairs repaired in one step, an estimate of the single-step repair success probability; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

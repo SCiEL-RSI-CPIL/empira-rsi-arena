@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 1800
   max_retries: 2
 
 prompt:
   system_message: |
     LiveCodeBench
 
-    LiveCodeBench: optimize the candidate specified by the paper and evaluate against the named benchmark.
+    Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to produce a Python solution(*args) function for LiveCodeBench LeetCode problems; scored by the mean fraction of public and private tests passed on a fixed 20-problem sample, with 20 s per test and 60 s per problem (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `question` is a LiveCodeBench LeetCode problem in SICA's layout (title, difficulty, description, the required function `solution(*args)` and the public examples as calls); the last ```python block of the reply (else the whole reply) is executed. `llm(...)` is a budgeted, cached OpenRouter chat client. For every public and private test, `solution` is called in a fresh namespace of a resource-limited child process with the JSON-decoded input lines as arguments; a test passes when the plain-data result equals the expected output after tuples become lists, or when numbers (or lists of numbers) agree within 1e-6, as in SICA's test template. Limits: 20 s per test and 60 s per problem. Score: mean over a fixed 20-problem sample of the fraction of tests passed; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

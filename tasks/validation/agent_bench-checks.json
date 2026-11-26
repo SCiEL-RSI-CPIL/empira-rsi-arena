@@ -1,0 +1,333 @@
+{
+ "package": "agent_bench",
+ "date": "2026-10-10",
+ "worktree_branch": "wp/agent-benchmarks",
+ "environment": {
+  "evaluator_python": "3.12.14 (.cache/sciel-env; pandas 2.2.3, numpy 2.5.3, psutil 7.2.2)",
+  "pinned_runtime": ".cache/agent_bench-env, Python 3.11.15 (Homebrew): gym 0.23.0, gymnasium 0.29.1, balrog 0.1.0 (BALROG b7afe79), minigrid 2.3.1 (BartekCupial fork cf73dd1), baba 0.0.1 (baba-is-ai 40ae1b2), crafter 1.8.3, balrog-nle 0.9.0, minihack 0.1.6 (balrog-ai fork 3ecb6da), scienceworld 1.2.1, py4j 0.10.9.7, alfworld 0.4.2, textworld 1.7.0, fast-downward-textworld 20.6.4, nltk 3.9.1, scikit-image 0.24.0, numpy 1.26.4, setuptools 75.8.0",
+  "java": "OpenJDK 21.0.8 (Temurin), used by ScienceWorld",
+  "model": "google/gemini-2.5-flash via OpenRouter, temperature 0"
+ },
+ "unit_tests": "python -m unittest discover -s tests -t . -p 'test_agent_bench*.py': 25 tests OK (4 use the pinned runtime and are skipped without it)",
+ "build": "scripts/build_suite.py --only on the 11 task ids: 11 packages, protocol recreated; generated outputs reverted",
+ "llm_spend_usd_total": 1.044,
+ "llm_spend_note": "All OpenRouter spend of this package (verification runs, two seed revisions, probes); budget 2.00. The ScienceWorld reproducibility fix added 0.0002 (one uncached call).",
+ "tasks": {
+  "hsi-babyai": {
+   "seed_score": 0.7,
+   "valid": null,
+   "episodes": 10,
+   "successes": 7,
+   "elapsed_seconds_fresh": 135.1,
+   "elapsed_seconds_cached_replay": 1.62,
+   "llm_cost_usd_fresh_evaluation": 0.018107,
+   "llm_cost_usd_cached_replay": 0.0,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "act returns None",
+     "valid": false,
+     "error": "act must return a str action, got NoneType"
+    },
+    {
+     "candidate": "act(instruction, observation) wrong signature",
+     "valid": false,
+     "error": "act must accept (instruction, observation, valid_actions, history, llm)"
+    }
+   ],
+   "reference_check": "Scorer check: minigrid's BabyAIBot (privileged planner) driven through the adapter solves 10/10 of the evaluation episodes, each scored 1.0. Seeds are HSI's test-seed formula (unit test: seed of goto episode 0 = 1254509305).",
+   "verification_run_score": 0.7
+  },
+  "hsi-crafter": {
+   "seed_score": 0.136364,
+   "valid": null,
+   "episodes": 2,
+   "successes": 0,
+   "elapsed_seconds_fresh": "114-123 s in the two fresh runs",
+   "elapsed_seconds_cached_replay": 2.72,
+   "llm_cost_usd_fresh_evaluation": "0.042 and 0.048 in two fresh runs (episode 0 changed after a seed fix); the final trajectory replays from cache",
+   "llm_cost_usd_cached_replay": 0.0,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "act returns None",
+     "valid": false,
+     "error": "act must return a str action, got NoneType"
+    },
+    {
+     "candidate": "act(instruction, observation) wrong signature",
+     "valid": false,
+     "error": "act must accept (instruction, observation, valid_actions, history, llm)"
+    }
+   ],
+   "reference_check": "Reproducibility check: 2 episodes x 300 random actions in separate processes gave different observation digests without the ordered-set patch (3 runs, 3 different results) and identical digests with it (3 runs). Achievement scoring is BALROG's progression; the seed's episode 1 unlocked 5 achievements (score 0.227).",
+   "verification_run_score": 0.136364
+  },
+  "hsi-babaisai-goto": {
+   "seed_score": 0.333333,
+   "valid": null,
+   "episodes": 9,
+   "successes": 3,
+   "elapsed_seconds_fresh": 101.0,
+   "elapsed_seconds_cached_replay": 1.61,
+   "llm_cost_usd_fresh_evaluation": 0.039654,
+   "llm_cost_usd_cached_replay": 0.0,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "act returns None",
+     "valid": false,
+     "error": "act must return a str action, got NoneType"
+    },
+    {
+     "candidate": "act(instruction, observation) wrong signature",
+     "valid": false,
+     "error": "act must accept (instruction, observation, valid_actions, history, llm)"
+    }
+   ],
+   "reference_check": "Test split reproduced from HSI's split code: [two_room-goto_win-distr_obj, goto_win-distr_obj-irrelevant_rule, goto_win-distr_obj]. Success detection: the seed won 3 of 9 episodes (BALROG progression 1.0). HSI Table 2 initial harness 0.18 (different backbone).",
+   "verification_run_score": 0.333333
+  },
+  "hsi-babaisai-breakstop": {
+   "seed_score": 0.0,
+   "valid": null,
+   "episodes": 6,
+   "successes": 0,
+   "elapsed_seconds_fresh": 66.3,
+   "elapsed_seconds_cached_replay": 1.56,
+   "llm_cost_usd_fresh_evaluation": 0.034346,
+   "llm_cost_usd_cached_replay": 0.0,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "act returns None",
+     "valid": false,
+     "error": "act must return a str action, got NoneType"
+    },
+    {
+     "candidate": "act(instruction, observation) wrong signature",
+     "valid": false,
+     "error": "act must accept (instruction, observation, valid_actions, history, llm)"
+    }
+   ],
+   "reference_check": "Test split reproduced: [two_room-break_stop-goto_win-distr_obj-irrelevant_rule, two_room-break_stop-goto_win-distr_obj] (unit test). The seed solves none (HSI Table 2 initial harness 0.03); success detection is shared with the GoTo suite.",
+   "verification_run_score": 0.0
+  },
+  "hsi-babaisai-make": {
+   "seed_score": 0.0,
+   "valid": null,
+   "episodes": 12,
+   "successes": 0,
+   "elapsed_seconds_fresh": 108.7,
+   "elapsed_seconds_cached_replay": 2.11,
+   "llm_cost_usd_fresh_evaluation": 0.033557,
+   "llm_cost_usd_cached_replay": 0.0,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "act returns None",
+     "valid": false,
+     "error": "act must return a str action, got NoneType"
+    },
+    {
+     "candidate": "act(instruction, observation) wrong signature",
+     "valid": false,
+     "error": "act must accept (instruction, observation, valid_actions, history, llm)"
+    }
+   ],
+   "reference_check": "Test split reproduced: [make_win-distr_obj_rule, two_room-make_win-distr_obj, make_win-distr_obj-irrelevant_rule, make_win-distr_rule]. The seed solves none (HSI Table 2 initial harness 0.00).",
+   "verification_run_score": 0.0
+  },
+  "hsi-minihack": {
+   "seed_score": 0.125,
+   "valid": null,
+   "episodes": 8,
+   "successes": 1,
+   "elapsed_seconds_fresh": 240.3,
+   "elapsed_seconds_cached_replay": 5.53,
+   "llm_cost_usd_fresh_evaluation": 0.140965,
+   "llm_cost_usd_cached_replay": 0.0,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "act returns None",
+     "valid": false,
+     "error": "act must return a str action, got NoneType"
+    },
+    {
+     "candidate": "act(instruction, observation) wrong signature",
+     "valid": false,
+     "error": "act must accept (instruction, observation, valid_actions, history, llm)"
+    }
+   ],
+   "reference_check": "The pinned Python 3.11 runtime runs all eight MiniHack tasks (balrog-nle 0.9.0 wheel, BALROG's minihack fork, prepared Boxoban levels). Success detection: the seed solved Corridor-R3 (progression 1.0). No privileged solver was run.",
+   "verification_run_score": 0.125
+  },
+  "agentsquare-alfworld": {
+   "seed_score": 0.166667,
+   "valid": null,
+   "episodes": 12,
+   "successes": 2,
+   "elapsed_seconds_fresh": 424.1,
+   "elapsed_seconds_cached_replay": 31.44,
+   "llm_cost_usd_fresh_evaluation": 0.104397,
+   "llm_cost_usd_cached_replay": 0.0,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "act returns None",
+     "valid": false,
+     "error": "act must return a str action, got NoneType"
+    },
+    {
+     "candidate": "act(instruction, observation) wrong signature",
+     "valid": false,
+     "error": "act must accept (instruction, observation, valid_actions, history, llm)"
+    }
+   ],
+   "reference_check": "Game selection reproduces AgentSquare's and AgentBoard's 134 eval_out_of_distribution games exactly (task-type counts 24/18/31/23/21/17). Scorer check: each sampled game's expert walkthrough, played through the adapter (with the reply cleaning), wins 12/12.",
+   "verification_run_score": 0.166667
+  },
+  "agentsquare-scienceworld": {
+   "seed_score": 0.680238,
+   "valid": null,
+   "episodes": 10,
+   "successes": 3,
+   "elapsed_seconds_fresh": 184.8,
+   "elapsed_seconds_cached_replay": 42.12,
+   "llm_cost_usd_fresh_evaluation": 0.063902,
+   "llm_cost_usd_cached_replay": 0.0,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "act returns None",
+     "valid": false,
+     "error": "act must return a str action, got NoneType"
+    },
+    {
+     "candidate": "act(instruction, observation) wrong signature",
+     "valid": false,
+     "error": "act must accept (instruction, observation, valid_actions, history, llm)"
+    }
+   ],
+   "reference_check": "Scorer check: with the reproducible JVM setting the simulator's (now deterministic) gold action sequences reach progress 1.0 on 74 of the 90 labels and on 7 of the 10 sampled variations (default runs, where gold routes vary: 70 to 74 of 90; 1.1.3: 71; 1.2.3: 55); the rest are labels that name one of several valid objects or a step the gold route skips. Labels byte-identical to AgentBoard's data.tar.gz member (sha256 ed58212d...).",
+   "verification_run_score": 0.696905,
+   "seed_score_runs": {
+    "before_fix": [
+     0.6969,
+     0.6802
+    ],
+    "after_fix_evaluator_py_run_1": 0.680238,
+    "after_fix_evaluator_py_run_2": 0.680238,
+    "after_fix_run_py_evaluate": 0.680238
+   },
+   "reproducibility_check": {
+    "date": "2026-10-11",
+    "problem": "Default JVM: replaying each label's gold action sequence 3 times in one process gave different observations in 21 of 90 labels (33 differences only in line order, 25 in line content: container-content order and temperatures such as 166 vs 167 degrees Celsius).",
+    "fix": "The adapter starts the simulator's JVM with -XX:+UnlockExperimentalVMOptions -XX:hashCode=2 (via JAVA_TOOL_OPTIONS); observation text is not modified and the progress rate is computed as before.",
+    "result": "With the fix: 0 of 90 labels differ across 3 replays in one process; a second process reproduced all 90 gold sequences and all 90 replay traces exactly. Unit test test_scienceworld_replays_are_identical (label 21: 3 distinct traces in 4 replays without the setting, 1 with it).",
+    "evaluator_runs": "suite/agentsquare-scienceworld/evaluator.py on the seed, twice: 0.6802381 and 0.6802381 (identical per-episode results); run.py evaluate agentsquare-scienceworld: 0.6802381; empty candidate: valid false ('candidate must define act()')",
+    "llm_cost_usd": 0.000217
+   }
+  },
+  "agentsquare-pddl": {
+   "seed_score": 0.633333,
+   "valid": null,
+   "episodes": 12,
+   "successes": 6,
+   "elapsed_seconds_fresh": 239.3,
+   "elapsed_seconds_cached_replay": 2.8,
+   "llm_cost_usd_fresh_evaluation": 0.115679,
+   "llm_cost_usd_cached_replay": 0.0,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "act returns None",
+     "valid": false,
+     "error": "act must return a str action, got NoneType"
+    },
+    {
+     "candidate": "act(instruction, observation) wrong signature",
+     "valid": false,
+     "error": "act must accept (instruction, observation, valid_actions, history, llm)"
+    }
+   ],
+   "reference_check": "Scorer check: a hand-written plan for gripper problem 0 raises AgentBoard's progress rate 0 -> 0.25 -> 0.5 -> 0.75 -> 1.0 and reports success; the environment class is AgentBoard's own code.",
+   "verification_run_score": 0.633333
+  },
+  "agentsquare-m3tooleval": {
+   "seed_score": 0.4,
+   "valid": null,
+   "episodes": 20,
+   "successes": 8,
+   "elapsed_seconds_fresh": 299.9,
+   "elapsed_seconds_cached_replay": 0.8,
+   "llm_cost_usd_fresh_evaluation": 0.139801,
+   "llm_cost_usd_cached_replay": 0.0,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "act returns None",
+     "valid": false,
+     "error": "act must return a str action, got NoneType"
+    },
+    {
+     "candidate": "act(instruction, observation) wrong signature",
+     "valid": false,
+     "error": "act must accept (instruction, observation, valid_actions, history, llm)"
+    }
+   ],
+   "reference_check": "CodeAct's task package yields the 82 M3ToolEval tasks (dna 8, message 8, trade 17, travel 15, web 34); CodeAct's answer check accepts the expected output and rejects a wrong answer (unit test).",
+   "verification_run_score": 0.4
+  },
+  "agentsquare-travelplanner": {
+   "seed_score": 0.6375,
+   "valid": null,
+   "episodes": 10,
+   "successes": 0,
+   "elapsed_seconds_fresh": 37.3,
+   "elapsed_seconds_cached_replay": 1.41,
+   "llm_cost_usd_fresh_evaluation": 0.034265,
+   "llm_cost_usd_cached_replay": 0.0,
+   "invalid_candidate_checks": [
+    {
+     "candidate": "act returns None",
+     "valid": false,
+     "error": "act must return a str action, got NoneType"
+    },
+    {
+     "candidate": "act(instruction, observation) wrong signature",
+     "valid": false,
+     "error": "act must accept (instruction, observation, valid_actions, history, llm)"
+    }
+   ],
+   "reference_check": "Tool check: all 2,700 reference-information entries of the 180 validation queries (generated by TravelPlanner's original tools) are reproduced exactly (whitespace-normalised) by the ported tools on the prepared tables. The checker is the llm_bench port, which agrees with the official evaluation on 161 example plans. An all-'-' plan scores 0.625 (vacuous passes; documented).",
+   "verification_run_score": 0.6375
+  }
+ },
+ "withdraw": {
+  "agentsquare-webshop": {
+   "reason": "Blocked input: WebShop's product and goal files are distributed only through the Google Drive IDs in setup.sh (WebShop commit 64fa2a5), and all three files of the small setting (items_shuffle_1000, items_ins_v2_1000, items_human_ins) return HTTP 404 on 2026-10-10; AgentSquare's own runs use a remote WebShop server, which the network rule excludes. The remaining copies are AgentBoard's 1.4 GB data archive (the full 1.18-million-product files, not the 1000-product setting, and too large for a small local evaluator) and unofficial third-party mirrors of unverifiable provenance, so the task is not implemented.",
+   "evidence": [
+    "curl https://drive.google.com/uc?id=1EgHdxQ_YxqIQlvvq5iKlCrkEKR6-j0Ib&export=download -> 404 (items_shuffle_1000)",
+    "curl https://drive.google.com/uc?id=1IduG0xl544V_A_jv3tHXC0kyFi7PnyBu&export=download -> 404 (items_ins_v2_1000)",
+    "curl https://drive.google.com/uc?id=14Kb5SPBk_jfdLZ_CDBNitW98QLDlKR5O&export=download -> 404 (items_human_ins)",
+    "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/webshop/webshop_run.py: WEBSHOP_URL = http://101.6.69.111:3000",
+    "AgentBoard data.tar.gz (huggingface hkust-nlp/agentboard 0680548) lists data/webshop/data/items_shuffle.json and items_ins_v2.json (full setting, each > 50 MB)"
+   ]
+  }
+ },
+ "prepared_data": {
+  "location": "suite/_lib/data/agent_bench (git-ignored), built by scripts/prepare_agent_bench.py and verified against catalog/agent_bench-data-lock.json",
+  "size_mb": {
+   "minihack (Boxoban hard + medium/train levels)": 51,
+   "alfworld (134 game files + manifest)": 12,
+   "travel (flight subset)": 4.1,
+   "m3tooleval (CodeAct task package)": 0.1,
+   "agentboard (PDDL env + problems, labels, prompts, English punkt)": 9.0
+  },
+  "total_mb": 76,
+  "also_required": "suite/_lib/data/llm_bench travel tables and validation queries (scripts/prepare_llm_bench.py travelplanner_validation.json travel_accommodations.csv travel_restaurants.csv travel_attractions.csv travel_distance.csv travel_city_states.txt)",
+  "licences": {
+   "CodeAct M3ToolEval": "MIT",
+   "AgentBoard code (PDDL env)": "Apache-2.0",
+   "pddlgym": "MIT",
+   "AgentBoard labels": "GPL-2.0",
+   "nltk punkt_tab": "not stated",
+   "ALFWorld games": "MIT",
+   "Boxoban levels": "Apache-2.0",
+   "TravelPlanner database and queries": "CC-BY-4.0"
+  },
+  "verification": "python3 scripts/prepare_agent_bench.py re-derived and verified every component on 2026-10-10 (fresh verification without --update-lock)"
+ }
+}

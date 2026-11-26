@@ -2,12 +2,12 @@
   "schema_version": "1.0",
   "id": "agentsquare-scienceworld",
   "name": "ScienceWorld",
-  "description": "ScienceWorld task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.",
+  "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that issues one text command per step in ScienceWorld science tasks under AgentBoard's protocol, using a budgeted OpenRouter model client; scored by the mean progress rate (fraction of the variation's subgoal patterns matched) over 10 fixed task variations of AgentBoard's 90, at most 30 steps each (higher is better).",
   "paper_ids": [
     "agentsquare"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2410.06153",
@@ -18,6 +18,31 @@
       "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c",
       "type": "repository",
       "locator": "tasks/sciworld"
+    },
+    {
+      "url": "https://arxiv.org/abs/2410.06153",
+      "type": "paper",
+      "locator": "Section 4.1 and Appendix A.1 (tasks and metrics)"
+    },
+    {
+      "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/sciworld",
+      "type": "repository",
+      "locator": "AgentBoard-based ScienceWorld runner and run configuration"
+    },
+    {
+      "url": "https://github.com/hkust-nlp/AgentBoard/tree/bb7255e2daf1989069a186dad9e53f70680961db/agentboard/environment/scienceworld_env.py",
+      "type": "repository",
+      "locator": "subgoal progress rate (ported)"
+    },
+    {
+      "url": "https://huggingface.co/datasets/hkust-nlp/agentboard/tree/0680548ef773505788d3cced65640a0fd511242f",
+      "type": "benchmark",
+      "locator": "data.tar.gz: data/scienceworld/test.jsonl"
+    },
+    {
+      "url": "https://pypi.org/project/scienceworld/1.2.1/",
+      "type": "benchmark",
+      "locator": "ScienceWorld simulator (pinned version)"
     }
   ],
   "requirements": {
@@ -32,7 +57,7 @@
     ]
   },
   "evaluation": {
-    "metric": "progress rate",
+    "metric": "score",
     "paper_metric": "progress rate",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -76,8 +101,8 @@
     "setup_steps": [],
     "notes": [],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_textenv",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -85,18 +110,20 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:ScienceWorld"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python",
+        "file:data/agent_bench/agentboard/scienceworld-test.jsonl",
+        "file:data/agent_bench/agentboard/prompts/scienceworld_base.json",
+        "bin:java"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_agent_env",
-      "unsupported_reason": "Candidates are LLM agents scored inside the ScienceWorld environment (tools, web, games or code sandboxes); the environment and model access are external."
+      "timeout": 3600,
+      "validity_key": "valid"
     }
   },
   "limitations": [
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
+    "The 10 episodes are a fixed list of public benchmark items that every evaluation replays, and act may return actions without calling the model. A program that replays memorised answers or actions for these episodes is scored like an agent, so the score says nothing about other episodes of the benchmark."
   ],
   "source_specification": {
     "name": "ScienceWorld",
@@ -127,14 +154,13 @@
     "scientific_contribution": "benchmark",
     "science_tier": 3,
     "artifact": "agent",
-    "domain": "software_engineering",
-    "area": "software_engineering",
+    "domain": "language",
+    "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "simulator"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

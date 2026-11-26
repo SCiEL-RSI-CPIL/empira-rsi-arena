@@ -7,12 +7,17 @@
     "rqgm"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2606.26294",
       "type": "paper",
       "locator": "Section 4, Domains and ground-truth anchors; Appendix C"
+    },
+    {
+      "url": "https://huggingface.co/datasets/TuringEnterprises/CRAVE/tree/4d94975d6c9b70d7bcf611b15aadf3d89fe22870",
+      "type": "benchmark",
+      "locator": "test.parquet (134 items)"
     }
   ],
   "requirements": {
@@ -24,7 +29,7 @@
     "notes": []
   },
   "evaluation": {
-    "metric": "review classification accuracy",
+    "metric": "score",
     "paper_metric": "review classification accuracy",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -46,8 +51,8 @@
       "SWE-bench explicitly excluded by paper."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -55,20 +60,18 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:CRAVE"
+        "network:openrouter",
+        "file:data/llm_bench/crave_test.json"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_api",
-      "unsupported_reason": "Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the CRAVE benchmark. The suite embeds neither model calls nor the benchmark data."
+      "timeout": 900,
+      "validity_key": "valid"
     }
   },
   "limitations": [
     "arXiv HTML unavailable; full PDF retrieved and text extracted.",
     "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.",
     "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
   ],
   "source_specification": {
@@ -102,11 +105,10 @@
     "domain": "language",
     "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "unavailable"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

@@ -2,20 +2,22 @@
 
 **Paper:** HyperAgents (https://arxiv.org/pdf/2603.19461)\
 **Task id:** `hyperagents-conference-paper-acceptance-prediction`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-Conference paper acceptance prediction
+Write a Python solve(question, llm) agent that reads the full text of a machine-learning conference submission and answers accept or reject, using a budgeted OpenRouter model client; scored by accuracy against the observed decisions on a fixed 20-paper sample of a balanced 100-paper held-out test split (higher is better).
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. `question` holds the full text of a machine-learning conference submission (on average about 74,000 characters) and asks whether it was accepted or rejected. Answer rule (this suite's answer extraction; the comparison follows Hyperagents' report.py): the final answer (the text after the last 'Answer:' marker, else the last \boxed{...}, else the last non-empty line), lower-cased and stripped of punctuation and asterisks, must equal the observed decision, accept or reject. Score: accuracy on a fixed 20-paper sample of Hyperagents' balanced 100-paper held-out test split; higher is better
+
+Parameters: `{"benchmark": "paper_review", "samples": 20, "seed": 0}`
 
 ## Labels
 
-Scientific contribution: `engineering` (tier 3); artifact `model`, domain `machine_learning`, data `undistributed`, verification `none`, reference `none`, resources `unavailable`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `language`, data `public_benchmark`, verification `sampled`, reference `none`, resources `model_api`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -28,7 +30,16 @@ No qualifying paper whose main objective is this underlying scientific or real-w
 
 ## Evaluation protocol
 
-Not executable in this suite: Fitness requires the Conference paper acceptance prediction data and training pipeline, which are not redistributed with the suite.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Data: Hyperagents' paper-review dataset (facebookresearch/Hyperagents at commit 59a68f672dfb92c74aeb7e61535d776fb36e172d, domains/paper_review/dataset.csv, CC-BY-NC-SA-4.0): 711 public OpenReview submissions with their decisions, drawn by the Hyperagents authors from the APReS benchmark (Zhao et al., 2026). Only public OpenReview papers and decisions are used.
+- Split: Hyperagents' domains/paper_review/curate_subsets.py (pandas shuffles with random_state 42; balanced train, validation and test splits of 50 accepted and 50 rejected papers) reproduced here with pandas 2.2.3; the 100 test ids are fixed in llm_bench_sources.py. Hyperagents does not distribute the split files, so identity with its split is not verified. Each evaluation uses a fixed 20-paper sample (each paper is a long prompt).
+- Metric: Hyperagents' report.py accuracy (lower-cased exact match of the decision). Candidate: Hyperagents evolves the code of the task and meta agents (its initial agent scores 0 because it lacks output parsing); here a free-form solve(question, llm) program, default model google/gemini-2.5-flash at temperature 0.
+- Not verified: the paper's test accuracies (for example 0.710 for DGM-H) were not reproduced.
+- The paper evaluates this domain with GPT-4o at temperature 0. Hyperagents' report.py compares a prediction field produced by the agent and leaves empty predictions out of the accuracy; here every sampled paper counts and the answer extraction is this suite's. The local question adds an instruction and answer format around the paper text.
+- The candidate runs as trusted code in the evaluator's process, and the reference answers are stored in data/llm_bench of the task cache (ARENA_TASK_CACHE_DIR), so a candidate could read them; it can also replace the evaluator's scoring functions, raise the model client's budget attribute and read OPENROUTER_API_KEY from the environment, so the per-evaluation budget bounds an honest program only. Scores assume a candidate that does none of this.
+- Model-driven evaluation: the score is an estimate on a fixed seeded sample and depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0), the sample size (task parameter `samples`, overridden by ARTASK_LLM_SAMPLES) and the per-evaluation budget (ARTASK_LLM_BUDGET_USD, default 0.25). Responses are cached under llm-cache in the task cache (ARTASK_LLM_CACHE overrides) and shared by all candidates: a repeated call, also one at temperature > 0, returns the stored reply, and a cached reply costs nothing against the budget. `valid` is null because a sampled model score cannot certify a candidate.
+- The paper texts keep their venue headers: 38 of the 50 rejected test papers carry 'Under review as a conference paper at ICLR 2025' and 8 accepted ones 'Published as a conference paper at ICLR 2025'; the rule 'Under review header -> reject, else accept' is correct on 88 of the 100 test papers and on 18 of the 20 sampled ones. Hyperagents' dataset.csv has the same texts, so this is a property of the benchmark, not of the port.
 
 ## Run
 
@@ -40,13 +51,14 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `dataset:Conference paper acceptance prediction`
+- `py:numpy`
+- `env:OPENROUTER_API_KEY`
+- `network:openrouter`
+- `file:data/llm_bench/paper_review_test.json.gz`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2603.19461 (Section 4 and Appendix C)
 - repository: https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d (domains/paper_review)
-
-## Limitations
-
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.
+- benchmark: https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/paper_review/dataset.csv (711 public OpenReview papers with decisions)
+- repository: https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/paper_review/curate_subsets.py (balanced held-out 100-paper split)

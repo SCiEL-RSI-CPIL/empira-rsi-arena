@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 900
   max_retries: 2
 
 prompt:
   system_message: |
     TravelPlanner
 
-    TravelPlanner: optimize the candidate specified by the paper and evaluate against the named benchmark.
+    Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to turn a TravelPlanner query and its reference information into a day-by-day JSON plan; scored by success rate on a fixed 20-query validation sample, a plan succeeding only if it passes all eight commonsense and all five hard constraints (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `question` is a TravelPlanner query, the query's reference information (TravelPlanner's sole-planning input) and the required plan format; `llm(...)` is a budgeted, cached OpenRouter chat client. The JSON list that ends last in the reply must hold one record per day with the keys days, current_city, transportation, breakfast, attraction, lunch, dinner and accommodation. A query is solved when the plan passes all eight commonsense and all five hard constraints of TravelPlanner's evaluation (Final Pass Rate). Score: success rate on a fixed 20-query sample of the 180 validation queries; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

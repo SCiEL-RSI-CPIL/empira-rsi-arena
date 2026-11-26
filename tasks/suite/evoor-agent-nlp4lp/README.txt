@@ -2,22 +2,24 @@
 
 **Paper:** Co-evolving Agent Architectures and Interpretable Reasoning for Automated Optimization (https://arxiv.org/pdf/2604.17708)\
 **Task id:** `evoor-agent-nlp4lp`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-NLP4LP
+Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client and optionally local numpy/scipy code, returns the optimal objective value of an NLP4LP optimization word problem; scored by accuracy within 1e-3*max(1, |optimum|) on a fixed 30-problem sample of the 178 cleaned problems (higher is better).
 
 Benchmark named in the paper: NLP4LP. Paper metric: optimization-model solution accuracy.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client; the program may also run code locally (numpy and scipy, including scipy.optimize.milp and linprog, are available). `question` is an NLP4LP optimization word problem followed by a request for its optimal objective value. Answer rule: the last numeric literal of the final answer (the text after the last 'Answer:' marker, else the last \boxed{...}, else the last non-empty line) must satisfy |answer - optimum| <= 1e-3 * max(1, |optimum|). Score: accuracy on a fixed 30-problem sample of the 178 cleaned NLP4LP problems; higher is better
+
+Parameters: `{"benchmark": "nlp4lp", "samples": 30, "seed": 0}`
 
 ## Labels
 
-Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `language`, data `public_benchmark`, verification `none`, reference `none`, resources `model_api, unavailable`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `language`, data `public_benchmark`, verification `sampled`, reference `none`, resources `model_api`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -30,7 +32,15 @@ No qualifying paper whose main objective is this underlying scientific or real-w
 
 ## Evaluation protocol
 
-Not executable in this suite: Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the NLP4LP benchmark. The suite embeds neither model calls nor the benchmark data.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Data: the cleaned NLP4LP release of Xiao et al. ('A Survey of Optimization Modeling Meets LLMs', LLM4OR repository at commit 75962df5ddf531906fda76f8708c658114e63c0e), 178 problems, which is the cleaned count EvoOR-Agent reports in its Table I. The paper also describes further manual cross-verification and a unified-format conversion on top of that release; only the count is shown to match. Problem text is description.txt and the gold value is the objective in solution.json. EvoOR-Agent's own converted file is not part of its pinned release, so identity with the paper's evaluation file is not established.
+- Metric: EvoOR-Agent counts a prediction as correct when its relative error to the optimal objective is at most 1e-3. The local rule |answer - optimum| <= 1e-3 * max(1, |optimum|) coincides with it on the 172 problems whose optimum has magnitude at least 1 and is more lenient on the 6 problems with a zero optimum.
+- Candidate: EvoOR-Agent evolves AOE-style agent workflows that write and execute solver code, and reserves NLP4LP for out-of-distribution evaluation. Here the candidate is a free-form solve(question, llm) program that may generate and run code locally; the default model is google/gemini-2.5-flash at temperature 0, not the paper's models (for example DeepSeek-v3.2 or GPT-5).
+- Not verified: the paper's accuracies were not reproduced; each evaluation uses a fixed 30-problem sample, so scores are estimates and not comparable with the paper.
+- EvoOR-Agent uses NLP4LP only as a held-out out-of-distribution test set; here the search is scored directly on the fixed 30-problem sample, so local scores are in-sample.
+- The candidate runs as trusted code in the evaluator's process, and the reference answers are stored in data/llm_bench of the task cache (ARENA_TASK_CACHE_DIR), so a candidate could read them; it can also replace the evaluator's scoring functions, raise the model client's budget attribute and read OPENROUTER_API_KEY from the environment, so the per-evaluation budget bounds an honest program only. Scores assume a candidate that does none of this.
+- Model-driven evaluation: the score is an estimate on a fixed seeded sample and depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0), the sample size (task parameter `samples`, overridden by ARTASK_LLM_SAMPLES) and the per-evaluation budget (ARTASK_LLM_BUDGET_USD, default 0.25). Responses are cached under llm-cache in the task cache (ARTASK_LLM_CACHE overrides) and shared by all candidates: a repeated call, also one at temperature > 0, returns the stored reply, and a cached reply costs nothing against the budget. `valid` is null because a sampled model score cannot certify a candidate.
 
 ## Run
 
@@ -42,18 +52,22 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `service:llm_api`
+- `py:numpy`
 - `env:OPENROUTER_API_KEY`
-- `dataset:NLP4LP`
+- `network:openrouter`
+- `py:scipy`
+- `file:data/llm_bench/nlp4lp.json`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2604.17708 (Section IV and Table III)
 - repository: https://github.com/EvoNexusX/2026HuangEvoORAgent/tree/1a255eaade3b325706ab9b2ad1e20f2aafae0a06
+- benchmark: https://github.com/LLM4OR/LLM4OR/tree/75962df5ddf531906fda76f8708c658114e63c0e/static/clean_benchmarks/NL4LP (178 cleaned problems: description.txt and solution.json)
+- paper: https://arxiv.org/abs/2508.10047 (benchmark cleaning used by EvoOR-Agent (its reference [48]))
 
 ## Limitations
 
-- No official implementation repository link identified in the inspected source. Paper specification is recorded; runnable reproduction is not verified.
+- The inspected paper links no readable official repository; the official release was identified separately and is pinned (see below).
 - Paper-provided anonymous code URL https://anonymous.4open.science/r/pL8xY2mQ8rA5fC3vB7nK could not be read: web tool inaccessible; direct HTTPS connection reset. No downloadable artifact verified.
-- Official EvoOR-Agent release pinned; the LLM configuration is anonymized in the release and per-dataset selection is internal to evaluate.py.
+- Official EvoOR-Agent release pinned; the LLM configuration is anonymized in the release, and the release bundles the BWOR, IndustryOR, MAMO and NL4OPT data, selected inside evaluate.py (NLP4LP and ReSocratic are not included).
 - Execution interface inspected in pinned source. Full paper experiments have not been reproduced here.

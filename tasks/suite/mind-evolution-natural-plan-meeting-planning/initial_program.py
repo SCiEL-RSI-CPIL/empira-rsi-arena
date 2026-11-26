@@ -1,10 +1,6 @@
-"""Placeholder candidate: Natural Plan Meeting Planning.
-
-This task is not executable inside the suite (llm_api); a real candidate would be the artifact the paper evolves for 'Natural Plan Meeting Planning' (see README.md).
-"""
+"""Initial program for the suite task; SCiEL evolves the EVOLVE-BLOCK."""
 # EVOLVE-BLOCK-START
-
-
-def candidate():
-    raise NotImplementedError("mind-evolution-natural-plan-meeting-planning is documented but not executable in this suite")
+def solve(question, llm):
+    """Single-pass planning: the prompt already states the required plan format."""
+    return llm(question, max_tokens=8192)
 # EVOLVE-BLOCK-END

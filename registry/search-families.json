@@ -1,7 +1,7 @@
 {
   "schema": "arena.search-families/1",
-  "catalog_digest": "3a0ef0e52d685878715f28e205603c400a85fd1d255d2cc22da8e4e25a97ae5c",
-  "source_digest": "ed55b9365eda59d67e550bf5d7321135e2b3829f13bd61e8c01191591316173e",
+  "catalog_digest": "88e125084c8456327457a7b3ac7bd39f9547418fb4604f96a4820b6c38e12db2",
+  "source_digest": "2eb54510fd3bd42bfb747ffc8d706ca72c0e779d0cd51c40a7562f1c963008e4",
   "sources": [
     {
       "path": "catalog/papers.json",
@@ -27,8 +27,8 @@
     "unknown_family_source_count": 0,
     "unknown_family_task_count": 0,
     "cross_family_task_count": 26,
-    "executable_count": 2324,
-    "unsupported_count": 254
+    "executable_count": 2405,
+    "unsupported_count": 173
   },
   "groups": [
     {
@@ -252,8 +252,8 @@
       ],
       "task_count": 191,
       "total": 191,
-      "executable": 147,
-      "unsupported": 44,
+      "executable": 159,
+      "unsupported": 32,
       "addressed_task_ids": [
         "adaevolve-datacenter-tcp-congestion-control",
         "aevo-arc-agi-2",
@@ -599,8 +599,8 @@
       ],
       "task_count": 105,
       "total": 105,
-      "executable": 91,
-      "unsupported": 14,
+      "executable": 100,
+      "unsupported": 5,
       "addressed_task_ids": [
         "a2dept-capacitated-electric-vehicle-routing-with-time-windows",
         "a2dept-capacitated-facility-location",
@@ -806,8 +806,8 @@
       ],
       "task_count": 60,
       "total": 60,
-      "executable": 23,
-      "unsupported": 37,
+      "executable": 41,
+      "unsupported": 19,
       "addressed_task_ids": [
         "adas-arc",
         "adas-asdiv",
@@ -887,8 +887,8 @@
       "representative_task_ids": [
         "adas-arc",
         "adas-asdiv",
-        "hsi-textworld",
-        "hyperagents-quadruped-torso-height-reward-design"
+        "agentsquare-alfworld",
+        "agentsquare-m3tooleval"
       ]
     },
     {
@@ -988,8 +988,8 @@
       ],
       "task_count": 76,
       "total": 76,
-      "executable": 30,
-      "unsupported": 46,
+      "executable": 34,
+      "unsupported": 42,
       "addressed_task_ids": [
         "dreureka-go1-walking-globe",
         "dreureka-leap-hand-cube-rotation",
@@ -1071,9 +1071,9 @@
       "addressed_task_count": 76,
       "representative_task_ids": [
         "eureka-ant",
-        "llm-evolved-rl-algorithms-acrobot-v1",
-        "text2reward-button-press-v2",
-        "dreureka-go1-walking-globe"
+        "eureka-ballbalance",
+        "limen-easy-pickup",
+        "limen-hard-rule-chain"
       ]
     },
     {
@@ -1110,8 +1110,8 @@
       ],
       "task_count": 16,
       "total": 16,
-      "executable": 15,
-      "unsupported": 1,
+      "executable": 16,
+      "unsupported": 0,
       "addressed_task_ids": [
         "coevo-e-coli-growth",
         "coevo-oscillation-1",
@@ -1134,8 +1134,8 @@
       "representative_task_ids": [
         "coevo-e-coli-growth",
         "deliberate-evolution-lsr-synth-biology",
-        "lasr-feynman-equations-symbolic-regression",
-        "reference-symbolic-regression"
+        "lasr-big-bench-llm-scaling-law-discovery",
+        "lasr-feynman-equations-symbolic-regression"
       ]
     },
     {
@@ -1263,8 +1263,8 @@
       ],
       "task_count": 98,
       "total": 98,
-      "executable": 87,
-      "unsupported": 11,
+      "executable": 93,
+      "unsupported": 5,
       "addressed_task_ids": [
         "adas-arc",
         "adas-gpqa",
@@ -1375,9 +1375,9 @@
       "addressed_task_count": 105,
       "representative_task_ids": [
         "deevo-bbh-navigate",
-        "pairwise-validator-julia-prime-counting",
-        "algoevolve-numin-intraday-equity-trading",
-        "deevo-abcd"
+        "gepa-ifbench",
+        "gepa-pupa",
+        "mipro-hover"
       ]
     },
     {
@@ -1664,8 +1664,8 @@
       ],
       "task_count": 246,
       "total": 246,
-      "executable": 145,
-      "unsupported": 101,
+      "executable": 176,
+      "unsupported": 70,
       "addressed_task_ids": [
         "accelopt-adamw-m10944-n2048-0",
         "accelopt-add-rmsnorm-matmul-m4096-n2048-k1024-0",
@@ -1921,8 +1921,8 @@
       "representative_task_ids": [
         "accelopt-adamw-m10944-n2048-0",
         "ael-harness-non-stationary-contextual-bandit",
-        "evolcaf-ackley-2d",
-        "evoor-agent-bwor"
+        "cocoevo-leetcode-contest",
+        "elm-sodarace-walker-program-evolution"
       ]
     },
     {

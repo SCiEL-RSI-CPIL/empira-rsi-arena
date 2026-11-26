@@ -2,12 +2,12 @@
   "schema_version": "1.0",
   "id": "agentsquare-alfworld",
   "name": "ALFWorld",
-  "description": "ALFWorld task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.",
+  "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that issues one text command per step in ALFWorld household games, using a budgeted OpenRouter model client; scored by the success rate over 12 fixed games (2 per task type from the 134 out-of-distribution games), at most 49 actions each (higher is better).",
   "paper_ids": [
     "agentsquare"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2410.06153",
@@ -18,6 +18,26 @@
       "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c",
       "type": "repository",
       "locator": "tasks/alfworld/alfworld_run.py"
+    },
+    {
+      "url": "https://arxiv.org/abs/2410.06153",
+      "type": "paper",
+      "locator": "Section 4.1 and Appendix A.1 (tasks and metrics)"
+    },
+    {
+      "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/alfworld/alfworld_run.py",
+      "type": "repository",
+      "locator": "eval_out_of_distribution, 134 games, step loop"
+    },
+    {
+      "url": "https://github.com/alfworld/alfworld/releases/tag/0.4.2",
+      "type": "benchmark",
+      "locator": "json_2.1.3_tw-pddl.zip game files"
+    },
+    {
+      "url": "https://github.com/alfworld/alfworld/releases/tag/0.2.2",
+      "type": "benchmark",
+      "locator": "json_2.1.1_json.zip trajectories (game selection)"
     }
   ],
   "requirements": {
@@ -32,7 +52,7 @@
     ]
   },
   "evaluation": {
-    "metric": "success rate",
+    "metric": "score",
     "paper_metric": "success rate",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -76,8 +96,8 @@
     "setup_steps": [],
     "notes": [],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_textenv",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -85,18 +105,18 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:ALFWorld"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python",
+        "file:data/agent_bench/alfworld/games.json"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_agent_env",
-      "unsupported_reason": "Candidates are LLM agents scored inside the ALFWorld environment (tools, web, games or code sandboxes); the environment and model access are external."
+      "timeout": 3600,
+      "validity_key": "valid"
     }
   },
   "limitations": [
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
+    "The 12 episodes are a fixed list of public benchmark items that every evaluation replays, and act may return actions without calling the model. A program that replays memorised answers or actions for these episodes is scored like an agent, so the score says nothing about other episodes of the benchmark."
   ],
   "source_specification": {
     "name": "ALFWorld",
@@ -127,14 +147,13 @@
     "scientific_contribution": "benchmark",
     "science_tier": 3,
     "artifact": "agent",
-    "domain": "software_engineering",
-    "area": "software_engineering",
+    "domain": "language",
+    "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "simulator"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

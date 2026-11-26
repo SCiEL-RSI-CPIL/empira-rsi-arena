@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 180
   max_retries: 2
 
 prompt:
   system_message: |
     Telemetry repair
 
-    Telemetry repair
+    Write a Python run_repair(telemetry, topology) function that repairs noisy, dropped or scaled rx/tx counters of Abilene backbone interfaces and returns (original, repaired, confidence) triples for every interface; scored over 30 fixed perturbed snapshots by 0.75 x counter repair quality + 0.05 x status accuracy + 0.2 x confidence calibration (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: run_repair(telemetry: dict, topology: dict) -> dict. `telemetry` maps an interface id 'A_to_B' to {'interface_status': 'up' or 'down', 'rx_rate': float (Mbps received), 'tx_rate': float (Mbps sent), 'connected_to': the peer interface id 'B_to_A', 'local_router': 'A', 'remote_router': 'B'}; `topology` maps a router id to the list of its interface ids. The observed counters carry +-2% noise and one bug type per snapshot (counters dropped to 0 or scaled by 0.5-0.8 or 1.2-1.5, on single interfaces or on all interfaces of a router). Return, for EVERY interface id, a dict whose 'rx_rate' and 'tx_rate' are (original, repaired, confidence) triples with a finite repaired value and a confidence in [0, 1], and whose 'interface_status' is an (original, repaired, confidence) triple with a string status; other keys are ignored. Score: mean over 30 fixed perturbed Abilene snapshots of 0.75 x counter repair quality (1 - mean relative error, capped at 1 per counter, over counters whose true value is positive) + 0.05 x status accuracy + 0.2 x confidence calibration (confident good repairs and unconfident poor repairs score high); higher is better. A missing interface or malformed triple makes the candidate invalid
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

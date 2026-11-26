@@ -2,12 +2,12 @@
   "schema_version": "1.0",
   "id": "the-station-zapbench-neural-activity-prediction",
   "name": "ZAPBench neural activity prediction",
-  "description": "ZAPBench neural activity prediction: optimize the candidate specified by the paper and evaluate against the named benchmark.",
+  "description": "Write the Station's JAX/Flax hooks (network, loss, optimizer, hyperparameters, batch size) for forecasting 32 steps of 71,721 zebrafish neurons from 4 context steps; the evaluator trains on ZAPBench's training split for at most 3 CPU epochs or 600 s (seed 42), keeps the best-validation parameters and scores the test MAE averaged over 9 test conditions (lower is better).",
   "paper_ids": [
     "the-station"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2511.06309",
@@ -18,6 +18,21 @@
       "url": "https://github.com/dualverse-ai/station/tree/782088e561998bf357d95a838a0566a8229425d9",
       "type": "repository",
       "locator": "example/research_misc/zapbench"
+    },
+    {
+      "url": "https://storage.googleapis.com/zapbench-release/volumes/20240930/traces/",
+      "type": "benchmark",
+      "locator": "ZAPBench activity traces 240930 (zarr v3, float32 [7879, 71721], CC-BY-4.0), downloaded over HTTPS by scripts/prepare_jax_station.py --zapbench"
+    },
+    {
+      "url": "https://github.com/google-research/zapbench/tree/7347b3b21a3f332e281b774c945f1505dd966abf",
+      "type": "repository",
+      "locator": "zapbench/constants.py and data_utils.py (condition bounds, train/val/test/test_holdout splits; Apache-2.0)"
+    },
+    {
+      "url": "https://storage.googleapis.com/zapbench-release/dataframes/20250131/combined.json",
+      "type": "benchmark",
+      "locator": "published per-condition, per-step test MAE of the ZAPBench paper's methods (used for the reference check)"
     }
   ],
   "requirements": {
@@ -32,7 +47,7 @@
     ]
   },
   "evaluation": {
-    "metric": "mean absolute error",
+    "metric": "score",
     "paper_metric": "mean absolute error",
     "paper_direction": "minimize",
     "direction": "minimize",
@@ -68,8 +83,8 @@
       "Repository also contains later added tasks; these are not automatically attributed to this paper."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "station_zapbench_forecasting",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -77,18 +92,21 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "dataset:ZAPBench neural activity prediction",
-        "hardware:gpu"
+        "py:numpy",
+        "py:jax",
+        "py:flatbuffers",
+        "py:flax",
+        "py:optax",
+        "py:psutil",
+        "file:data/jax_station/zapbench/trainval/train.npy",
+        "file:data/jax_station/zapbench/test/test.npy"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "dataset",
-      "unsupported_reason": "The Station's research tasks need large scientific datasets (single-cell atlases, ZAPBench, RNA benchmarks) or RL training."
+      "timeout": 900,
+      "validity_key": "valid"
     }
   },
   "limitations": [
-    "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
+    "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed."
   ],
   "source_specification": {
     "name": "ZAPBench neural activity prediction",
@@ -119,15 +137,14 @@
   "labels": {
     "scientific_contribution": "discovery",
     "science_tier": 1,
-    "artifact": "program",
+    "artifact": "model",
     "domain": "natural_science",
     "area": "biology",
     "data": "real_measurements",
-    "verification": "none",
+    "verification": "simulation",
     "reference": "none",
     "resources": [
-      "gpu",
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false

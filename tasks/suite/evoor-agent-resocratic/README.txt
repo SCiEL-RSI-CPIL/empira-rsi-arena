@@ -2,22 +2,24 @@
 
 **Paper:** Co-evolving Agent Architectures and Interpretable Reasoning for Automated Optimization (https://arxiv.org/pdf/2604.17708)\
 **Task id:** `evoor-agent-resocratic`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-ReSocratic
+Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client and optionally local numpy/scipy code, returns a JSON object with every requested quantity of an OptiBench/ReSocratic optimization problem; scored by the fraction of a fixed 30-problem sample (of 403 cleaned problems) where all values are within max(1e-4, 1e-3*|gold|) (higher is better).
 
 Benchmark named in the paper: ReSocratic. Paper metric: optimization-model solution accuracy.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client; the program may also run code locally (numpy and scipy, including scipy.optimize.milp and linprog, are available). `question` is an OptiBench/ReSocratic optimization problem followed by the JSON list of quantity names to report. Answer rule: the reply must contain a JSON object (read from the final answer (the text after the last 'Answer:' marker, else the last \boxed{...}, else the last non-empty line), else the JSON object that ends last in the reply) mapping every requested name (case and whitespace insensitive) to a number; the problem scores 1 only if every value satisfies |value - gold| <= max(1e-4, 1e-3 * |gold|). Score: accuracy on a fixed 30-problem sample of the 403 cleaned problems; higher is better
+
+Parameters: `{"benchmark": "resocratic", "samples": 30, "seed": 0}`
 
 ## Labels
 
-Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `language`, data `public_benchmark`, verification `none`, reference `none`, resources `model_api, unavailable`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `language`, data `public_benchmark`, verification `sampled`, reference `none`, resources `model_api`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -30,7 +32,15 @@ No qualifying paper whose main objective is this underlying scientific or real-w
 
 ## Evaluation protocol
 
-Not executable in this suite: Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the ReSocratic benchmark. The suite embeds neither model calls nor the benchmark data.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Data: the cleaned OptiBench/ReSocratic test set of Xiao et al. (LLM4OR repository at commit 75962df5ddf531906fda76f8708c658114e63c0e, ReSocratic.jsonl), 403 problems, which is the cleaned count EvoOR-Agent reports in its Table I. The paper also describes further manual cleaning and a unified-format conversion on top of that release; only the count is shown to match. EvoOR-Agent's own converted file is not part of its pinned release.
+- Metric: OptiBench's per-problem criterion is used: every requested quantity (the objective and any requested decision variables) must match, here within max(1e-4, 1e-3 * |gold|), a tolerance that neither OptiBench (absolute tolerance below 1e-4) nor EvoOR-Agent (relative error at most 1e-3) uses. EvoOR-Agent reports objective-only accuracy (relative error at most 1e-3), but the cleaned file does not mark which requested quantity is the objective. The local criterion is therefore stricter on the 394 multi-quantity problems and can reject alternative optimal solutions whose decision variables differ from the reference.
+- Answer format: OptiBench asks for each quantity in a separate follow-up turn after running generated solver code; locally the candidate returns all quantities in one JSON object, and it may generate and run code itself (numpy and scipy are available).
+- Candidate and model: a free-form solve(question, llm) program replaces EvoOR-Agent's evolved AOE workflow; the default model is google/gemini-2.5-flash at temperature 0. Not verified: the paper's accuracies were not reproduced and a fixed 30-problem sample is evaluated.
+- EvoOR-Agent uses ReSocratic only as a held-out out-of-distribution test set; here the search is scored directly on the fixed 30-problem sample, so local scores are in-sample.
+- The candidate runs as trusted code in the evaluator's process, and the reference answers are stored in data/llm_bench of the task cache (ARENA_TASK_CACHE_DIR), so a candidate could read them; it can also replace the evaluator's scoring functions, raise the model client's budget attribute and read OPENROUTER_API_KEY from the environment, so the per-evaluation budget bounds an honest program only. Scores assume a candidate that does none of this.
+- Model-driven evaluation: the score is an estimate on a fixed seeded sample and depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0), the sample size (task parameter `samples`, overridden by ARTASK_LLM_SAMPLES) and the per-evaluation budget (ARTASK_LLM_BUDGET_USD, default 0.25). Responses are cached under llm-cache in the task cache (ARTASK_LLM_CACHE overrides) and shared by all candidates: a repeated call, also one at temperature > 0, returns the stored reply, and a cached reply costs nothing against the budget. `valid` is null because a sampled model score cannot certify a candidate.
 
 ## Run
 
@@ -42,18 +52,22 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `service:llm_api`
+- `py:numpy`
 - `env:OPENROUTER_API_KEY`
-- `dataset:ReSocratic`
+- `network:openrouter`
+- `py:scipy`
+- `file:data/llm_bench/resocratic.json`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2604.17708 (Section IV and Table III)
 - repository: https://github.com/EvoNexusX/2026HuangEvoORAgent/tree/1a255eaade3b325706ab9b2ad1e20f2aafae0a06
+- benchmark: https://github.com/LLM4OR/LLM4OR/tree/75962df5ddf531906fda76f8708c658114e63c0e/static/clean_benchmarks/ReSocratic.jsonl (403 cleaned OptiBench/ReSocratic problems)
+- repository: https://github.com/yangzhch6/ReSocratic/blob/27ff7ecb3c6a4955fdcb031f7bf3419c6f462d2e/gpt_baseline.py (OptiBench per-problem correctness over all requested quantities)
 
 ## Limitations
 
-- No official implementation repository link identified in the inspected source. Paper specification is recorded; runnable reproduction is not verified.
+- The inspected paper links no readable official repository; the official release was identified separately and is pinned (see below).
 - Paper-provided anonymous code URL https://anonymous.4open.science/r/pL8xY2mQ8rA5fC3vB7nK could not be read: web tool inaccessible; direct HTTPS connection reset. No downloadable artifact verified.
-- Official EvoOR-Agent release pinned; the LLM configuration is anonymized in the release and per-dataset selection is internal to evaluate.py.
+- Official EvoOR-Agent release pinned; the LLM configuration is anonymized in the release, and the release bundles the BWOR, IndustryOR, MAMO and NL4OPT data, selected inside evaluate.py (NLP4LP and ReSocratic are not included).
 - Execution interface inspected in pinned source. Full paper experiments have not been reproduced here.

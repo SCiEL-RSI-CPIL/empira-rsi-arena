@@ -2,22 +2,22 @@
 
 **Paper:** The Station: An Open-World Environment for AI-Driven Discovery (https://arxiv.org/pdf/2511.06309)\
 **Task id:** `the-station-zapbench-neural-activity-prediction`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** minimize\
 
 ## Task
 
-ZAPBench neural activity prediction: optimize the candidate specified by the paper and evaluate against the named benchmark.
+Write the Station's JAX/Flax hooks (network, loss, optimizer, hyperparameters, batch size) for forecasting 32 steps of 71,721 zebrafish neurons from 4 context steps; the evaluator trains on ZAPBench's training split for at most 3 CPU epochs or 600 s (seed 42), keeps the best-validation parameters and scores the test MAE averaged over 9 test conditions (lower is better).
 
 Benchmark named in the paper: ZAPBench neural activity prediction. Paper metric: mean absolute error.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+The Station's ZAPBench hooks, each optional (an omitted hook falls back to the Station's default: shared-neuron MLP, mean-absolute-error loss, Adam with learning rate 0.001, batch size 8): create_network(hparams) -> an object with init(rng_key, dummy_input) -> parameter pytree (dummy_input is float32 [1, 4, 71721]) and apply(params, x, training=False, mutable=None, rngs=None) -> float predictions [batch, 32, 71721] for x float32 [batch, 4, 71721]; optional attributes mutable (list of mutable Flax collections such as ['batch_stats']; apply then returns (predictions, updates) when called with mutable) and needs_rng (True to receive rngs={'dropout': key} in training); compute_loss(predictions, targets, params, x) -> scalar training loss; create_optimizer(learning_rate) -> optax.GradientTransformation (applied to params['params'] for Flax-style parameters, as in the Station); _define_hyperparameters() -> dict of plain JSON values (learning_rate is passed to create_optimizer); BATCH_SIZE int in 1..64. Data: ZAPBench 240930_traces (calcium activity of 71,721 neurons of a larval zebrafish, values about -0.25..1.5) with ZAPBench's condition-aware splits for a 4-step context: training windows (4 context + 32 target steps, stride 1, never crossing a condition) from the first 70 % of the 8 training conditions (4,772 windows), validation windows from the next 10 % (469 windows). Training: the Station's loop with one fixed seed (42; the candidate's BASE_SEED is ignored): shuffled epochs, the Station's train step, validation MAE after every epoch, early stopping with patience 20 and the best-validation parameters kept; reduced CPU budget of at most 3 epochs and 600 s of training wall time with 4 threads (training stops before an epoch that is predicted to exceed the cap); this budget and the seed bind the Station's loop, while the candidate's own code runs in the same child process with the training and validation arrays and is limited only by that process's 720 s wall-clock, CPU-time and 6,000 MB memory limits. Predictions are made one window at a time (apply on a single window with training=False, vmapped), exported with jax.export (host callbacks and foreign custom calls are rejected) and run on the test split by a separate process that never executes candidate code. Score (minimize): ZAPBench test MAE = mean over the 9 test conditions (the last 20 % of each training condition plus the held-out taxis condition, condition 3, from 252 steps after its start, as in ZAPBench's test_holdout split for a 4-step context) of the mean absolute error over all stride-1 test windows (1,557 in all), the 32 predicted steps and the 71,721 neurons
 
 ## Labels
 
-Scientific contribution: `discovery` (tier 1); artifact `program`, domain `natural_science`, data `real_measurements`, verification `none`, reference `none`, resources `gpu, unavailable`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `discovery` (tier 1); artifact `model`, domain `natural_science`, data `real_measurements`, verification `simulation`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -30,7 +30,15 @@ No qualifying paper whose main objective is this underlying scientific or real-w
 
 ## Evaluation protocol
 
-Not executable in this suite: The Station's research tasks need large scientific datasets (single-cell atlases, ZAPBench, RNA benchmarks) or RL training.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Reduced-budget CPU proxy (protocol recreated). Kept from the Station's ZAPBench task (dualverse-ai/station@782088e5, example/research_misc/zapbench, Apache-2.0): the candidate hooks (create_network returning init/apply with optional mutable and needs_rng, compute_loss, create_optimizer, _define_hyperparameters, BATCH_SIZE; an omitted hook falls back to a port of its defaults.py), the training loop of train_single.py (shuffled epochs, its train step, validation MAE after every epoch, early stopping with patience 20, best-validation parameters), ZAPBench's condition-aware splits for a 4-step context (process_data.py) and the test MAE. Changed: one seed (42) instead of three (BASE_SEED + 0, 1, 2; the candidate's BASE_SEED is ignored so that a seed cannot be chosen); at most 3 epochs and 600 s of training wall time on CPU with four threads (training stops before an epoch predicted to exceed the cap) instead of up to 120 epochs or 60 minutes on a 24 GB GPU; the complete() and test() hooks are ignored; Ray Tune search spaces are not accepted; BATCH_SIZE must lie in 1..64 and defaults to 8 (the value of the Station's task text and paper; its main.py falls back to 32). The default network follows defaults.py (hidden width 64), not the '4->128->32' of its baseline description.
+- Data: ZAPBench traces 240930 (gs://zapbench-release/volumes/20240930/traces, CC-BY-4.0) over HTTPS: 2,256 uncompressed 512 x 512 chunks checked against Google Cloud Storage MD5s; chunk manifest, full-array SHA-256 and prepared files in catalog/jax_station-data-lock.json. The split rules restate zapbench.data_utils at google-research/zapbench@7347b3b2 (the prepare script executes the pinned functions and compares): training 5,052 steps (4,772 windows), validation 749 steps (469 windows, the count the Station paper quotes), test 1,872 steps (1,557 windows: the last 20 % of the 8 training conditions plus the held-out taxis condition from 252 steps after its start). Training and validation arrays are stored as float16 (mean absolute rounding error 2.1e-05 against a mean absolute value of 0.118; at most 4.9e-04; the validation MAE of the mean-of-context predictor changes by +7.0e-09); the test array is float32, so the score uses the original values.
+- Isolation: training runs in a child process that can read only the training and validation arrays (audit hook; the test split is never sent to it). Its best parameters and the single-window predictor, exported with jax.export (parameters as inputs), are scored by a second child that never executes candidate Python code: the StableHLO module is checked for host callbacks, foreign custom calls and host communication (only LAPACK and sharding custom calls pass; jax.export itself refuses host callbacks), and the scoring process accepts only an exported predictor of one window ([1, 4, 71721] -> [1, 32, 71721]) and calls it once per test window, so a model cannot pool information across overlapping test windows. Validation MAE during training uses the same single-window predictor instead of the Station's batches of consecutive windows. The evaluator reads the candidate's source only (sandboxed.run); no statement of the candidate runs in the evaluator process.
+- Metric: the mean over the 9 test conditions of the MAE over all stride-1 windows, the 32 predicted steps and the 71,721 neurons, i.e. ZAPBench's per-condition, per-step MAE averaged over conditions and over steps 1-32 (the 'Average' of the Station paper's Fig. 8; the Station's eval.py prints per-condition values only at steps 1, 4, 8, 16 and 32). Reference check: a parameter-free candidate that repeats the mean of the 4 context steps scores 0.031859533 through the full evaluator, ZAPBench's published 'mean' baseline (combined.json, 146317468/3) being 0.031859533; all 288 published per-condition, per-step values are reproduced within 2.0e-08 (scripts/prepare_jax_station.py --reference). Unlike this score, the Station's search score (its Research Counter's primary score) is the validation MAE averaged over its 3 seeds, and the test sets stay inaccessible to its agents; the test MAE is computed only in the external evaluation of the best method (paper Section 3.3 and Appendix B). A search that selects candidates by this score therefore selects on the test split; the validation MAE of each evaluation is reported as best_val_mae.
+- Measured (Apple M4 Max shared with other jobs, four threads): the seed (the Station's shared-neuron MLP baseline, 2,656 parameters, batch 8) scores 0.02908 after 3 epochs (validation MAE by epoch 0.03371, 0.03125, 0.03061); three evaluations took 305-434 s wall (training child 1048-1247 CPU-seconds, 96-143 s per epoch at load averages 8-20, peak memory 3.4 GB; scoring child about 15 s); a 5-epoch run reached 0.02889. For scale on the same test split: mean of context 0.03186, last value 0.03470, per-neuron training mean 0.03371; published ZAPBench values with this metric at context 4 (3 seeds): linear 0.02924, TSMixer 0.02814, UNet 0.02676; the Station reports 0.02662 for LLM-TS and 0.02637 for its own method. Scores here are not comparable with these values: models train for at most 3 CPU epochs, so larger models are under-trained and fast learners are favoured.
+- Determinism: three evaluations of the seed gave identical validation curves and test MAEs. A candidate whose epochs take longer than about 190 s may stop at the 600 s cap; its number of epochs then depends on machine speed (reported as stopped_by = time_cap). Memory: the training child may use up to 6 GB (the seed peaks at 3.4 GB), above the suite's 4 GB guideline, because 71,721-neuron windows and the baseline's per-neuron activations need it. valid is null: the score is the held-out error of a trained model, not a certified quantity.
+- Reduced-budget CPU proxy of the Station's ZAPBench task: the Station's hooks, training loop, splits and test metric, but one seed and at most 3 CPU epochs (600 s of training) instead of three seeds and up to 120 epochs or 60 GPU-minutes.
 
 ## Run
 
@@ -42,15 +50,23 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `dataset:ZAPBench neural activity prediction`
-- `hardware:gpu`
+- `py:numpy`
+- `py:jax`
+- `py:flatbuffers`
+- `py:flax`
+- `py:optax`
+- `py:psutil`
+- `file:data/jax_station/zapbench/trainval/train.npy`
+- `file:data/jax_station/zapbench/test/test.npy`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2511.06309 (Sections 3.2–3.5 and Appendix B)
 - repository: https://github.com/dualverse-ai/station/tree/782088e561998bf357d95a838a0566a8229425d9 (example/research_misc/zapbench)
+- benchmark: https://storage.googleapis.com/zapbench-release/volumes/20240930/traces/ (ZAPBench activity traces 240930 (zarr v3, float32 [7879, 71721], CC-BY-4.0), downloaded over HTTPS by scripts/prepare_jax_station.py --zapbench)
+- repository: https://github.com/google-research/zapbench/tree/7347b3b21a3f332e281b774c945f1505dd966abf (zapbench/constants.py and data_utils.py (condition bounds, train/val/test/test_holdout splits; Apache-2.0))
+- benchmark: https://storage.googleapis.com/zapbench-release/dataframes/20250131/combined.json (published per-condition, per-step test MAE of the ZAPBench paper's methods (used for the reference check))
 
 ## Limitations
 
 - Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed.
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.

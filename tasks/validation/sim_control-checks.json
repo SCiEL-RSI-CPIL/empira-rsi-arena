@@ -1,0 +1,978 @@
+{
+ "package": "sim_control",
+ "date": "2026-10-11",
+ "branch": "wp/sim-control",
+ "llm_cost_usd": 0.0,
+ "environment": {
+  "platform": "macOS-15.8.1-arm64-arm-64bit",
+  "machine": "arm64",
+  "suite_env": {
+   "python": "3.12.14",
+   "numpy": "2.5.3",
+   "mujoco": "3.3.0",
+   "Box2D": "2.3.10",
+   "gymnasium": "1.3.0",
+   "psutil": "7.2.2"
+  },
+  "sim_control_env": {
+   "python": "3.12.14",
+   "gym-pusht": "0.1.6",
+   "pymunk": "6.11.1",
+   "gymnasium": "1.3.0",
+   "numpy": "2.5.3",
+   "shapely": "2.1.2",
+   "pygame": "2.6.1",
+   "opencv-python": "5.0.0.93"
+  }
+ },
+ "installs": [
+  "Created .cache/sim_control-env (venv of the suite's Python 3.12.14) with gym-pusht 0.1.6, pymunk 6.11.1, gymnasium 1.3.0, numpy 2.5.3, shapely 2.1.2 and their dependencies (opencv-python 5.0.0.93, pygame 2.6.1, scikit-image 0.26.0, scipy 1.18.1, ...); nothing was installed into the shared .cache/sciel-env (an install of gym-pusht there was refused by the permission system)."
+ ],
+ "tests": {
+  "command": "$PY -m unittest discover -s tests -t . -p \"test_sim_control*.py\"",
+  "result": "26 tests passed (8.3 s); the upstream OpenELM reproduction test ran because .cache/sim_control-raw holds the pinned checkout, and the Push-T tests ran with .cache/sim_control-env present",
+  "date": "2026-10-11",
+  "build": "python3 scripts/build_suite.py --only '^(enpire-gym-pusht-simulation|elm-sodarace-walker-program-evolution|eureka-ballbalance)$' --sciel ../SCiEL built the three packages (3 recreated); the generated evaluators were run on their seeds and on invalid candidates (see tasks); generated outputs were reverted afterwards"
+ },
+ "tasks": {
+  "enpire-gym-pusht-simulation": {
+   "family": "pusht_heuristic_controller",
+   "protocol": "recreated",
+   "seed": {
+    "valid": true,
+    "score": 0.6,
+    "error": null,
+    "elapsed_seconds": 29.32,
+    "process_wall_seconds": 29,
+    "exit_status": 0
+   },
+   "llm_cost_usd": 0.0,
+   "invalid_candidates": {
+    "pusht_nan": {
+     "valid": false,
+     "score": null,
+     "error": "policy failed on episode seed 0 (exception): act must return two finite numbers (x, y)",
+     "elapsed_seconds": 0.38443,
+     "process_wall_seconds": 1,
+     "exit_status": 1
+    },
+    "pusht_raises": {
+     "valid": false,
+     "score": null,
+     "error": "policy failed on episode seed 0 (exception): RuntimeError: controller crashed",
+     "elapsed_seconds": 0.377412,
+     "process_wall_seconds": 0,
+     "exit_status": 1
+    },
+    "pusht_file": {
+     "valid": false,
+     "score": null,
+     "error": "policy failed on episode seed 0 (exception): PermissionError: sandbox: file access denied ('/etc/hosts', mode 'r')",
+     "elapsed_seconds": 0.378194,
+     "process_wall_seconds": 1,
+     "exit_status": 1
+    }
+   },
+   "seed_details": {
+    "episodes": 100,
+    "successes": 60,
+    "mean_max_coverage": 0.6561,
+    "mean_steps": 217.6,
+    "simulator": {
+     "gym-pusht": "0.1.6",
+     "pymunk": "6.11.1",
+     "gymnasium": "1.3.0",
+     "numpy": "2.5.3"
+    }
+   },
+   "reference_check": {
+    "what": "gym-pusht 0.1.6 runs unchanged (simulator versions reported by the server); success is its own info['is_success']. An idle policy (target = own position) scores 0 on seeds 0-2 and a policy that keeps module state cannot carry it to the next episode (tests). Development of the seed controller used reset seeds 1000-1099 and 2000-2099, disjoint from the evaluation seeds 0-99.",
+    "seed_controller_on_development_seeds": {
+     "1000-1099": 0.67,
+     "2000-2099": 0.64
+    },
+    "direct_loop_agreement": "A plain in-process gym-pusht loop (no sandbox, no server) running the same seed controller on seeds 0-99 also gives 60/100 successes, so the isolation layer does not change outcomes.",
+    "pymunk_api": "pymunk 7.3.0's Space has on_collision and no add_collision_handler (wheel inspected); gym-pusht 0.1.6 pusht.py calls add_collision_handler (line 452), hence pymunk 6.11.1."
+   }
+  },
+  "elm-sodarace-walker-program-evolution": {
+   "family": "sodarace_walker_design",
+   "protocol": "recreated",
+   "seed": {
+    "valid": true,
+    "score": 0.7898643493652315,
+    "error": null,
+    "elapsed_seconds": 0.07082,
+    "process_wall_seconds": 0,
+    "exit_status": 0
+   },
+   "llm_cost_usd": 0.0,
+   "invalid_candidates": {
+    "soda_amplitude": {
+     "valid": false,
+     "score": null,
+     "error": "muscle amplitudes must be at most 10 (OpenELM validity rule)",
+     "elapsed_seconds": 0.09871,
+     "process_wall_seconds": 0,
+     "exit_status": 1
+    },
+    "soda_dict": {
+     "valid": false,
+     "score": null,
+     "error": "make_walker() failed (exception): make_walker() must return wc.get_walker(), got dict",
+     "elapsed_seconds": 0.093729,
+     "process_wall_seconds": 0,
+     "exit_status": 1
+    },
+    "soda_listdir": {
+     "valid": false,
+     "score": null,
+     "error": "make_walker() failed (exception): PermissionError: sandbox: directory listing denied ('/')",
+     "elapsed_seconds": 0.091984,
+     "process_wall_seconds": 0,
+     "exit_status": 1
+    }
+   },
+   "seed_details": {
+    "joints": 5,
+    "muscles": 8,
+    "signed_displacement": -0.789864,
+    "physics_steps": 1680,
+    "morphology": {
+     "width": 68.1818,
+     "height": 70.4,
+     "mass": 241.5865
+    }
+   },
+   "reference_check": {
+    "what": "Vendored simulator with upstream_muscle_order=True against OpenELM's own simulator.py/helpers.py (c844e149, run with a stub drawing framework) on OpenELM's seven seed walkers: maximum absolute node-position difference over 80 update_world(350) calls, and OpenELM's evaluate(1000) fitness from both. Also listed: the centre-of-mass displacement after 80 updates with OpenELM's muscle order and with the corrected (named) order used by the task.",
+    "result": "identical (0.0 position difference, equal OpenELM fitness) for all seven walkers",
+    "walkers": {
+     "square": {
+      "joints": 5,
+      "muscles": 8,
+      "valid": true,
+      "max_abs_position_difference_80_updates": 0.0,
+      "openelm_fitness_1000ms": [
+       81.8181828585538,
+       81.8181828585538
+      ],
+      "displacement_80_updates": {
+       "upstream_order": {
+        "dx": 0.0,
+        "steps": 1680,
+        "sec": 0.004,
+        "com_y": -52.93
+       },
+       "named_order": {
+        "dx": -0.7899,
+        "steps": 1680,
+        "sec": 0.006,
+        "com_y": -53.04
+       }
+      }
+     },
+     "radial": {
+      "joints": 9,
+      "muscles": 16,
+      "valid": true,
+      "max_abs_position_difference_80_updates": 0.0,
+      "openelm_fitness_1000ms": [
+       82.03086400139317,
+       82.03086400139317
+      ],
+      "displacement_80_updates": {
+       "upstream_order": {
+        "dx": 8.3475,
+        "steps": 1680,
+        "sec": 0.012,
+        "com_y": -57.96
+       },
+       "named_order": {
+        "dx": 8.417,
+        "steps": 1680,
+        "sec": 0.011,
+        "com_y": -57.67
+       }
+      }
+     },
+     "galloper": {
+      "joints": 31,
+      "muscles": 96,
+      "valid": false,
+      "max_abs_position_difference_80_updates": 0.0,
+      "openelm_fitness_1000ms": [
+       90.63995812155984,
+       90.63995812155984
+      ],
+      "displacement_80_updates": {
+       "upstream_order": {
+        "dx": -54.4766,
+        "steps": 1680,
+        "sec": 0.059,
+        "com_y": -68.89
+       },
+       "named_order": {
+        "dx": -15.8886,
+        "steps": 1680,
+        "sec": 0.077,
+        "com_y": -68.97
+       }
+      }
+     },
+     "runner": {
+      "joints": 40,
+      "muscles": 417,
+      "valid": false,
+      "max_abs_position_difference_80_updates": 0.0,
+      "openelm_fitness_1000ms": [
+       95.09508202292703,
+       95.09508202292703
+      ],
+      "displacement_80_updates": {
+       "upstream_order": {
+        "dx": 7.9742,
+        "steps": 1680,
+        "sec": 0.296,
+        "com_y": -38.63
+       },
+       "named_order": {
+        "dx": 7.614,
+        "steps": 1680,
+        "sec": 0.275,
+        "com_y": -38.1
+       }
+      }
+     },
+     "wheel": {
+      "joints": 9,
+      "muscles": 32,
+      "valid": true,
+      "max_abs_position_difference_80_updates": 0.0,
+      "openelm_fitness_1000ms": [
+       67.82866200348991,
+       67.82866200348991
+      ],
+      "displacement_80_updates": {
+       "upstream_order": {
+        "dx": 17.8734,
+        "steps": 1680,
+        "sec": 0.024,
+        "com_y": -81.05
+       },
+       "named_order": {
+        "dx": 9.269,
+        "steps": 1680,
+        "sec": 0.024,
+        "com_y": -80.37
+       }
+      }
+     },
+     "CPPN_fixed": {
+      "joints": 24,
+      "muscles": 96,
+      "valid": true,
+      "max_abs_position_difference_80_updates": 0.0,
+      "openelm_fitness_1000ms": [
+       78.14331956343219,
+       78.14331956343219
+      ],
+      "displacement_80_updates": {
+       "upstream_order": {
+        "dx": 1.2982,
+        "steps": 1680,
+        "sec": 0.171,
+        "com_y": -77.7
+       },
+       "named_order": {
+        "dx": 0.8924,
+        "steps": 1680,
+        "sec": 0.158,
+        "com_y": -77.72
+       }
+      }
+     },
+     "CPPN_mutable": {
+      "joints": 24,
+      "muscles": 96,
+      "valid": true,
+      "max_abs_position_difference_80_updates": 0.0,
+      "openelm_fitness_1000ms": [
+       78.25722260908648,
+       78.25722260908648
+      ],
+      "displacement_80_updates": {
+       "upstream_order": {
+        "dx": 21.1414,
+        "steps": 1680,
+        "sec": 0.048,
+        "com_y": -74.46
+       },
+       "named_order": {
+        "dx": 0.8924,
+        "steps": 1680,
+        "sec": 0.049,
+        "com_y": -77.72
+       }
+      }
+     }
+    },
+    "random_walker_probe": {
+     "walkers": 292,
+     "joints": "3-11",
+     "median_abs_displacement": 3.46,
+     "p90": 15.39,
+     "max": 40.85,
+     "order": "named"
+    }
+   }
+  },
+  "eureka-ballbalance": {
+   "family": "isaac_ballbalance_reward_design",
+   "protocol": "recreated",
+   "seed": {
+    "valid": true,
+    "score": 147.52,
+    "error": null,
+    "elapsed_seconds": 24.34,
+    "process_wall_seconds": 24,
+    "exit_status": 0
+   },
+   "llm_cost_usd": 0.0,
+   "invalid_candidates": {
+    "bb_inf": {
+     "valid": false,
+     "score": null,
+     "error": "reward evaluation failed (exception): reward returned a non-finite value",
+     "elapsed_seconds": 0.251649,
+     "process_wall_seconds": 0,
+     "exit_status": 1
+    },
+    "bb_keyerror": {
+     "valid": false,
+     "score": null,
+     "error": "reward evaluation failed (exception): KeyError: 'no_such_key'",
+     "elapsed_seconds": 0.259312,
+     "process_wall_seconds": 1,
+     "exit_status": 1
+    },
+    "bb_vector": {
+     "valid": false,
+     "score": null,
+     "error": "reward evaluation failed (exception): reward must return a real number, got ndarray",
+     "elapsed_seconds": 0.254719,
+     "process_wall_seconds": 0,
+     "exit_status": 1
+    }
+   },
+   "seed_details": {
+    "training": {
+     "iterations": 80,
+     "population": 24,
+     "elite": 4,
+     "train_seed": 0,
+     "last_generation": {
+      "generation": 79,
+      "mean_return": 138.979167,
+      "elite_training_fitness": 145.875,
+      "mean_length": 138.98
+     }
+    },
+    "eval_episodes": 50,
+    "simulation_cpu_seconds": 20.01
+   },
+   "noise_gate": {
+    "rule": "keep the task only if the human reward beats each trivial reward by at least 2 pooled seed standard deviations of the task fitness at the released budget (pooled sd = sqrt((sd_h^2 + sd_t^2) / 2), sample sd over training seeds)",
+    "released_budget": {
+     "iterations": 80,
+     "population": 24,
+     "elite": 4,
+     "episodes": 4,
+     "init_std": 0.1,
+     "min_std": 0.02,
+     "eval_seed": 2026,
+     "eval_episodes": 50
+    },
+    "path": "sim_control_eureka.score_source (sandboxed reward process, as the evaluator)",
+    "rewards": {
+     "zero": {
+      "train_seeds": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "values": [
+       77.98,
+       52.58,
+       41.0,
+       40.48,
+       117.3
+      ],
+      "mean": 65.868,
+      "sd": 32.525,
+      "seconds": [
+       20.5,
+       23.8,
+       12.6,
+       11.1,
+       20.7
+      ]
+     },
+     "alive": {
+      "train_seeds": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "values": [
+       147.52,
+       142.0,
+       147.5,
+       143.86,
+       149.1
+      ],
+      "mean": 145.996,
+      "sd": 2.9475,
+      "seconds": [
+       30.4,
+       32.0,
+       32.9,
+       29.1,
+       26.4
+      ]
+     },
+     "ballbalance_human": {
+      "train_seeds": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "values": [
+       366.74,
+       267.52,
+       295.06,
+       365.46,
+       493.42
+      ],
+      "mean": 357.64,
+      "sd": 87.4901,
+      "seconds": [
+       67.2,
+       49.6,
+       49.1,
+       79.3,
+       59.6
+      ]
+     }
+    },
+    "comparisons": {
+     "ballbalance_human vs zero": {
+      "difference": 291.772,
+      "pooled_sd": 66.0015,
+      "difference_in_pooled_sd": 4.421,
+      "passes_2_sd": true
+     },
+     "ballbalance_human vs alive": {
+      "difference": 211.644,
+      "pooled_sd": 61.8999,
+      "difference_in_pooled_sd": 3.419,
+      "passes_2_sd": true
+     }
+    },
+    "zero_action_policy_fitness": 227.76,
+    "development_runs": {
+     "note": "in-process rewards (bit-identical to the sandboxed path), training seeds 100-104, used to choose the budget before the gate",
+     "runs": [
+      {
+       "config": {
+        "iterations": 40,
+        "population": 24,
+        "episodes": 1
+       },
+       "train_seeds": [
+        100,
+        101,
+        102,
+        103,
+        104
+       ],
+       "human": {
+        "values": [
+         246.96,
+         426.68,
+         207.8,
+         200.1,
+         436.08
+        ],
+        "mean": 303.524,
+        "sd": 118.1076
+       },
+       "zero": {
+        "values": [
+         58.94,
+         96.62,
+         131.94,
+         47.52,
+         75.22
+        ],
+        "mean": 82.048,
+        "sd": 33.4452
+       },
+       "alive": {
+        "values": [
+         121.58,
+         136.82,
+         107.16,
+         141.58,
+         139.04
+        ],
+        "mean": 129.236,
+        "sd": 14.5943
+       }
+      },
+      {
+       "config": {
+        "iterations": 60,
+        "population": 32,
+        "episodes": 2
+       },
+       "train_seeds": [
+        100,
+        101,
+        102,
+        103,
+        104
+       ],
+       "human": {
+        "values": [
+         381.28,
+         436.5,
+         353.28,
+         398.54,
+         410.18
+        ],
+        "mean": 395.956,
+        "sd": 31.1827
+       },
+       "zero": {
+        "values": [
+         77.5,
+         61.38,
+         91.6,
+         47.46,
+         46.7
+        ],
+        "mean": 64.928,
+        "sd": 19.4899
+       },
+       "alive": {
+        "values": [
+         149.64,
+         366.98,
+         135.76,
+         143.74,
+         124.12
+        ],
+        "mean": 184.048,
+        "sd": 102.7082
+       }
+      },
+      {
+       "config": {
+        "iterations": 80,
+        "population": 24,
+        "episodes": 4
+       },
+       "train_seeds": [
+        100,
+        101,
+        102,
+        103,
+        104
+       ],
+       "human": {
+        "values": [
+         437.72,
+         477.68,
+         480.58,
+         470.64,
+         437.64
+        ],
+        "mean": 460.852,
+        "sd": 21.4597
+       },
+       "zero": {
+        "values": [
+         54.52,
+         94.36,
+         60.74,
+         42.62,
+         39.88
+        ],
+        "mean": 58.424,
+        "sd": 21.8269
+       },
+       "alive": {
+        "values": [
+         142.32,
+         151.88,
+         146.32,
+         152.5,
+         141.64
+        ],
+        "mean": 146.932,
+        "sd": 5.1268
+       }
+      }
+     ]
+    }
+   },
+   "reference_check": {
+    "what": "The candidate-format human reward equals a direct port of IsaacGymEnvs compute_bbot_reward on simulated states (12 decimal places); geometry, throw distribution and action integration follow ball_balance.py and BallBalance.yaml (tests/test_sim_control_eureka.py). Sandboxed and in-process training give bit-identical policies.",
+    "result": "passed",
+    "instabilities_in_zero_action_evaluation": 0
+   }
+  }
+ },
+ "withdraw": {
+  "eureka-quadcopter": {
+   "decision": "withdrawn: fails the noise gate (human against zero reward below 1 pooled seed standard deviation at every budget tried; formal gate at 200 x 48 x 2, the largest budget whose worst case fits the 900 s cap)",
+   "reason": "In the CPU MuJoCo port of IsaacGymEnvs Quadcopter (same MJCF, actions, resets and fitness, -mean distance to (0, 0, 1)), a CEM-trained linear policy does not learn to fly to the target within budgets that fit the 900 s timeout: Eureka's human reward does not separate from a zero reward (formal gate below: -1.438 +- 0.117 against -1.525 +- 0.108 over training seeds 0-4, 0.78 pooled seed standard deviations where 2 are required; it does beat the alive bonus by 3.16), and only 3 of 64 trained policies beat the policy that outputs zero actions (-1.283 on the same 50 evaluation episodes). Likely cause: thrusts are integrated from actions (thrust += 0.01 * 200 * action, clamped to [0, 2] N) but are not part of Isaac's 21-number observation, and in a simplified vertical model a static linear feedback on height and vertical speed cannot stabilise this integrator chain (smallest spectral radius 1.0 over a grid of gains, local analysis); Isaac trains an MLP policy (256-256-128 units) with PPO on 8,192 GPU environments for 3,000 iterations, which can learn nonlinear, switching control. Making the policy observe the thrusts or widening the CEM search did not help at 100 x 32 x 2; one seed of a 300 x 48 x 2 run (about 600 s) reached -0.60 while another stayed at -1.52, so even a budget at the cap would leave the score dominated by training-seed luck.",
+   "formal_gate": {
+    "budget": {
+     "iterations": 200,
+     "population": 48,
+     "episodes": 2,
+     "init_std": 0.5,
+     "eval_seed": 2026,
+     "eval_episodes": 50
+    },
+    "path": "sim_control_eureka.score_source (sandboxed reward process)",
+    "rewards": {
+     "zero": {
+      "train_seeds": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "values": [
+       -1.4715,
+       -1.3787,
+       -1.6647,
+       -1.5315,
+       -1.579
+      ],
+      "mean": -1.5251,
+      "sd": 0.1081,
+      "seconds": [
+       84.0,
+       80.6,
+       86.4,
+       98.6,
+       74.0
+      ]
+     },
+     "quadcopter_human": {
+      "train_seeds": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "values": [
+       -1.3984,
+       -1.448,
+       -1.6041,
+       -1.2796,
+       -1.4584
+      ],
+      "mean": -1.4377,
+      "sd": 0.117,
+      "seconds": [
+       240.5,
+       168.1,
+       227.6,
+       253.2,
+       226.2
+      ]
+     },
+     "alive": {
+      "train_seeds": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "values": [
+       -1.9221,
+       -1.8574,
+       -1.7969,
+       -1.6135,
+       -1.8603
+      ],
+      "mean": -1.81,
+      "sd": 0.1185,
+      "seconds": [
+       199.7,
+       208.2,
+       269.3,
+       311.7,
+       283.4
+      ]
+     }
+    },
+    "comparisons": {
+     "quadcopter_human vs zero": {
+      "difference": 0.0874,
+      "pooled_sd": 0.1126,
+      "difference_in_pooled_sd": 0.776,
+      "passes_2_sd": false
+     },
+     "quadcopter_human vs alive": {
+      "difference": 0.3723,
+      "pooled_sd": 0.1178,
+      "difference_in_pooled_sd": 3.162,
+      "passes_2_sd": true
+     }
+    }
+   },
+   "zero_action_policy_fitness": -1.283,
+   "trained_policies_better_than_zero_action": {
+    "trained_policies": 64,
+    "better": 3,
+    "which": [
+     [
+      "quadcopter_human",
+      -1.28
+     ],
+     [
+      "zero",
+      -1.27
+     ],
+     [
+      "human",
+      -0.603
+     ]
+    ]
+   },
+   "development_runs": {
+    "note": "in-process rewards, training seeds 100-104 (or 100-103 / 100-101 where listed)",
+    "runs": [
+     {
+      "config": {
+       "iterations": 60,
+       "population": 32,
+       "episodes": 1,
+       "init_std": 0.1
+      },
+      "train_seeds": [
+       100,
+       101,
+       102,
+       103,
+       104
+      ],
+      "human": {
+       "values": [
+        -1.489,
+        -1.595,
+        -1.53,
+        -1.419,
+        -1.524
+       ],
+       "mean": -1.5114,
+       "sd": 0.0643
+      },
+      "zero": {
+       "values": [
+        -1.472,
+        -1.698,
+        -1.385,
+        -1.27,
+        -1.42
+       ],
+       "mean": -1.449,
+       "sd": 0.1577
+      },
+      "alive": {
+       "values": [
+        -1.758,
+        -1.73,
+        -1.685,
+        -1.838,
+        -1.807
+       ],
+       "mean": -1.7636,
+       "sd": 0.0607
+      }
+     },
+     {
+      "config": {
+       "iterations": 100,
+       "population": 32,
+       "episodes": 2,
+       "init_std": 0.1
+      },
+      "train_seeds": [
+       100,
+       101,
+       102,
+       103,
+       104
+      ],
+      "human": {
+       "values": [
+        -1.634,
+        -1.518,
+        -1.637,
+        -1.407,
+        -1.567
+       ],
+       "mean": -1.5526,
+       "sd": 0.0953
+      },
+      "zero": {
+       "values": [
+        -1.594,
+        -1.371,
+        -1.711,
+        -1.407,
+        -1.413
+       ],
+       "mean": -1.4992,
+       "sd": 0.1468
+      },
+      "alive": {
+       "values": [
+        -1.777,
+        -1.736,
+        -1.633,
+        -1.722,
+        -1.698
+       ],
+       "mean": -1.7132,
+       "sd": 0.0532
+      }
+     },
+     {
+      "config": {
+       "iterations": 100,
+       "population": 32,
+       "episodes": 2,
+       "init_std": 0.1,
+       "variant": "policy also observes the 4 rotor thrusts"
+      },
+      "train_seeds": [
+       100,
+       101,
+       102,
+       103
+      ],
+      "human": {
+       "values": [
+        -1.582,
+        -1.642,
+        -1.358,
+        -1.509
+       ],
+       "mean": -1.5228,
+       "sd": 0.1226
+      },
+      "zero": {
+       "values": [
+        -1.556,
+        -1.33,
+        -1.591,
+        -1.377
+       ],
+       "mean": -1.4635,
+       "sd": 0.1293
+      }
+     },
+     {
+      "config": {
+       "iterations": 100,
+       "population": 32,
+       "episodes": 2,
+       "init_std": 0.5
+      },
+      "train_seeds": [
+       100,
+       101,
+       102,
+       103
+      ],
+      "human": {
+       "values": [
+        -1.303,
+        -1.49,
+        -1.396,
+        -1.573
+       ],
+       "mean": -1.4405,
+       "sd": 0.1168
+      },
+      "zero": {
+       "values": [
+        -1.683,
+        -1.391,
+        -1.697,
+        -1.457
+       ],
+       "mean": -1.557,
+       "sd": 0.156
+      }
+     },
+     {
+      "config": {
+       "iterations": 300,
+       "population": 48,
+       "episodes": 2,
+       "init_std": 0.5
+      },
+      "train_seeds": [
+       100,
+       101
+      ],
+      "human": {
+       "values": [
+        -0.6028,
+        -1.5203
+       ],
+       "mean": -1.0615,
+       "sd": 0.6488
+      },
+      "zero": {
+       "values": [
+        -1.3604
+       ],
+       "train_seeds": [
+        100
+       ]
+      },
+      "seconds": {
+       "human": [
+        604.8,
+        332.7
+       ],
+       "zero": [
+        109.4
+       ]
+      }
+     }
+    ]
+   },
+   "code_kept": "sim_control_eureka_envs.QuadEnv and the reference rewards stay in the package (unit-tested) so that the port can be revisited with a stronger trainer; no family or upgrade is registered for the task."
+  }
+ }
+}

@@ -1,0 +1,1008 @@
+{
+ "schema": "artask.validation/1",
+ "package": "metaopt",
+ "date": "2026-10-10",
+ "environment": {
+  "python": "3.12.14",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "torch": "2.14.0",
+  "machine": "Apple M4 Max (arm64), macOS; evaluators run single-threaded (OMP_NUM_THREADS=1)",
+  "interpreter": ".cache/sciel-env (shared suite environment); no packages installed"
+ },
+ "tests": {
+  "command": "python -m unittest discover -s tests -t . -p 'test_metaopt*.py'",
+  "result": "20 tests, OK (about 13 s)",
+  "files": [
+   "tests/test_metaopt_lasr.py",
+   "tests/test_metaopt_eob.py"
+  ],
+  "repository_test_note": "tests/test_documented_changes.py fails until the two evaluator upgrades are recorded in validation/prize-expansion/documented-changes.json by the integration audit (expected for any new catalog/upgrades file)"
+ },
+ "build": {
+  "command": "python3 scripts/build_suite.py --sciel ../SCiEL --only '^(lasr-big-bench-llm-scaling-law-discovery|eob-eob-bbob-benchmark-synthesis)$'",
+  "result": "exit 0; both tasks built with protocol recreated (families bigbench_scaling_law, eob_benchmark_synthesis); generated outputs reverted afterwards"
+ },
+ "tasks": {
+  "lasr-big-bench-llm-scaling-law-discovery": {
+   "family": "bigbench_scaling_law",
+   "protocol": "recreated",
+   "seed": {
+    "score": 0.036325285015997785,
+    "combined_score": -0.036325285015997785,
+    "valid": true,
+    "error": null,
+    "elapsed_seconds": 0.454312,
+    "command": "python suite/lasr-big-bench-llm-scaling-law-discovery/evaluator.py suite/lasr-big-bench-llm-scaling-law-discovery/initial_program.py"
+   },
+   "invalid_candidates": {
+    "lookup_table": {
+     "valid": false,
+     "score": null,
+     "error": "candidate source exceeds the numeric_literals limit (203 > 64)"
+    },
+    "reads_data": {
+     "valid": false,
+     "score": null,
+     "error": "scaling_law failed in the sandbox (exception): PermissionError: sandbox: file access denied ('../../_lib/data/metaopt/bigbench_mcg.csv.gz', mode 'r') PermissionError: sandbox: file access denied ('../../_lib/data/metaopt/bigbench_mcg.csv.gz', mode 'r')"
+    },
+    "too_many": {
+     "valid": false,
+     "score": null,
+     "error": "N_PARAMS must be an integer between 1 and 5"
+    },
+    "wrong_shape": {
+     "valid": false,
+     "score": null,
+     "error": "scaling_law failed in the sandbox (exception): ValueError: scaling_law returned shape (5,), expected (43049,) ValueError: scaling_law returned shape (5,), expected (43049,)"
+    }
+   },
+   "data": {
+    "source": "google/BIG-bench@092b196c1f8f14a54bbc62f24759d43bde46dd3b, 9,085 results/scores_*.json (Apache-2.0)",
+    "rows": 53812,
+    "train": 43049,
+    "test": 10763,
+    "filter": "preferred_score == multiple_choice_grade (58,033 entries) minus 4,221 entries of models without a decoding temperature (PaLM 3,793, Gopher 372, T5-LM/T0/T0+/T0++ 14 each)",
+    "lock": "catalog/metaopt-data-lock.json; prepare_metaopt.py re-run reproduced the tree digest and the CSV SHA-256"
+   },
+   "reference_checks": [
+    {
+     "what": "row count of the rebuilt multiple-choice subset vs LaSR's stated 53,812",
+     "result": "53812 rows (exact match); split 43049/10763 equals the paper's counts"
+    },
+    {
+     "what": "held-out MSE of reference laws fitted by the task's own evaluator",
+     "result": {
+      "constant (score = E)": 0.03641884056462468,
+      "LaSR Eq. 4: A / (steps / B) ** shots + E": 0.03624520246810313,
+      "Chinchilla-form: A / (steps * batch) ** a + B / params ** b + E": 0.03535286189877007,
+      "modified Chinchilla: A / (steps * batch) ** (a * shots) + B / params ** b + E": 0.03534490317701464,
+      "log-linear: E + a log10(non-embedding params) + c shots + d temperature": 0.03544520969002391,
+      "seed program": 0.036325285015997785
+     }
+    },
+    {
+     "what": "ceiling: per-(model, shots, temperature) training means on the held-out rows",
+     "result": 0.03519108380550941
+    },
+    {
+     "what": "LaSR Eq. 5 with the paper's constants, no refit",
+     "result": 0.0367157395975978
+    },
+    {
+     "what": "grade variance (all rows)",
+     "result": 0.036269346828314154
+    },
+    {
+     "what": "paper Table 4 (not reproduced)",
+     "result": {
+      "Eq. 4": 0.03598,
+      "Chinchilla": 0.0361,
+      "modified Chinchilla": 0.03598,
+      "constant": 0.09324
+     }
+    },
+    {
+     "what": "NumPy Levenberg-Marquardt vs scipy.optimize.least_squares on a nonlinear synthetic law",
+     "result": "unit test tests/test_metaopt_lasr.py::test_levenberg_marquardt_matches_scipy passes (LM training MSE <= SciPy's best of three starts)"
+    }
+   ],
+   "llm_cost_usd": 0.0
+  },
+  "eob-eob-bbob-benchmark-synthesis": {
+   "family": "eob_benchmark_synthesis",
+   "protocol": "recreated",
+   "seed": {
+    "score": 0.3563839148241768,
+    "combined_score": 0.3563839148241768,
+    "valid": null,
+    "error": null,
+    "elapsed_seconds": 7.297763,
+    "command": "python suite/eob-eob-bbob-benchmark-synthesis/evaluator.py suite/eob-eob-bbob-benchmark-synthesis/initial_program.py",
+    "lsi": 0.32566156522383355,
+    "adc": 0.1950022789120202
+   },
+   "invalid_candidates": {
+    "missing": {
+     "valid": false,
+     "score": null,
+     "error": "candidate must define objective(X)"
+    },
+    "nan": {
+     "valid": false,
+     "score": null,
+     "error": "objective(X) returned a non-finite value"
+    },
+    "shape": {
+     "valid": false,
+     "score": null,
+     "error": "objective(X) must return shape (500,), got ()"
+    }
+   },
+   "reference_checks": [
+    {
+     "what": "LSI of unseen BBOB instances (instance 9; anchors use instances 1-5)",
+     "result": {
+      "matched_own_function": "20 of 24",
+      "lsi_range": [
+       0.3035162232958963,
+       0.744962262139735
+      ],
+      "per_function": {
+       "1": {
+        "lsi": 0.672105862498755,
+        "nearest": 1,
+        "distance": 2.0083076109292426
+       },
+       "2": {
+        "lsi": 0.3477608660988653,
+        "nearest": 4,
+        "distance": 7.720766347370006
+       },
+       "3": {
+        "lsi": 0.44364339396822583,
+        "nearest": 3,
+        "distance": 5.162421916537114
+       },
+       "4": {
+        "lsi": 0.5670794151870181,
+        "nearest": 4,
+        "distance": 3.1426688398772944
+       },
+       "5": {
+        "lsi": 0.4440564464155291,
+        "nearest": 5,
+        "distance": 5.153790794300488
+       },
+       "6": {
+        "lsi": 0.49020517716927936,
+        "nearest": 6,
+        "distance": 4.281064714964457
+       },
+       "7": {
+        "lsi": 0.5418528495653591,
+        "nearest": 7,
+        "distance": 3.4806302787763266
+       },
+       "8": {
+        "lsi": 0.6970638437477635,
+        "nearest": 3,
+        "distance": 1.7890102124994731
+       },
+       "9": {
+        "lsi": 0.744962262139735,
+        "nearest": 9,
+        "distance": 1.4093032075289302
+       },
+       "10": {
+        "lsi": 0.5021730690631832,
+        "nearest": 10,
+        "distance": 4.080930836665517
+       },
+       "11": {
+        "lsi": 0.4194697511293237,
+        "nearest": 11,
+        "distance": 5.6971607195370115
+       },
+       "12": {
+        "lsi": 0.5657768446343692,
+        "nearest": 12,
+        "distance": 3.1593815341850875
+       },
+       "13": {
+        "lsi": 0.48634550221947637,
+        "nearest": 6,
+        "distance": 4.347708890500459
+       },
+       "14": {
+        "lsi": 0.33816440203622355,
+        "nearest": 7,
+        "distance": 8.056687158299164
+       },
+       "15": {
+        "lsi": 0.4805285777288282,
+        "nearest": 15,
+        "distance": 4.450171064749907
+       },
+       "16": {
+        "lsi": 0.49756206172003364,
+        "nearest": 16,
+        "distance": 4.156898610963977
+       },
+       "17": {
+        "lsi": 0.5609522497876805,
+        "nearest": 17,
+        "distance": 3.221959875982457
+       },
+       "18": {
+        "lsi": 0.3035162232958963,
+        "nearest": 18,
+        "distance": 9.446335389960609
+       },
+       "19": {
+        "lsi": 0.5388199852004856,
+        "nearest": 19,
+        "distance": 3.5233926911123414
+       },
+       "20": {
+        "lsi": 0.5204673198925847,
+        "nearest": 20,
+        "distance": 3.7927918586532345
+       },
+       "21": {
+        "lsi": 0.5547543492763656,
+        "nearest": 21,
+        "distance": 3.3039482467726473
+       },
+       "22": {
+        "lsi": 0.5318062216220284,
+        "nearest": 22,
+        "distance": 3.624152718955767
+       },
+       "23": {
+        "lsi": 0.5896989285714744,
+        "nearest": 23,
+        "distance": 2.8642213533500485
+       },
+       "24": {
+        "lsi": 0.6276321684216443,
+        "nearest": 24,
+        "distance": 2.4423124700791528
+       }
+      }
+     }
+    },
+    {
+     "what": "LSI of other functions",
+     "result": {
+      "shifted sphere (optimum at 1)": 0.34289510607014456,
+      "shifted Rastrigin (seed)": 0.32579145645530944,
+      "oscillating noise-like": 0.40050216243282705,
+      "product of sines": 0.23079837018710864
+     }
+    },
+    {
+     "what": "full scores of reference functions",
+     "result": {
+      "seed program": {
+       "score": 0.3563960623356579,
+       "lsi": 0.325683766254007,
+       "adc": 0.1950022789120202,
+       "nearest": 24,
+       "pool_mean_best": {
+        "de_rand1_bin": 41.966507920434836,
+        "jde": 12.773960025204742,
+        "jade": 16.52812474236133,
+        "lshade": 11.8695348544028,
+        "pso_gbest": 11.481480685503433,
+        "pso_ring": 16.28599242379871,
+        "clpso": 32.25365579389041,
+        "dms_pso": 16.35992026352138,
+        "cma_es": 14.4268836349478,
+        "sep_cma_es": 14.426885654619245
+       },
+       "seconds": 7.43
+      },
+      "shifted sphere (optimum at 1)": {
+       "score": 0.3127872493186525,
+       "lsi": 0.34289510607014456,
+       "adc": 0.14266150435567168,
+       "nearest": 24,
+       "pool_mean_best": {
+        "de_rand1_bin": 0.0014533372818475326,
+        "jde": 0.0008859011081569302,
+        "jade": 1.8447320181235842e-05,
+        "lshade": 0.00013523006427941964,
+        "pso_gbest": 1.0566388562363985e-06,
+        "pso_ring": 0.0009717794137262739,
+        "clpso": 1.7678269821838657,
+        "dms_pso": 2.71512979489439e-05,
+        "cma_es": 1.2411469096584925e-27,
+        "sep_cma_es": 7.395570986446985e-33
+       },
+       "seconds": 1.56
+      },
+      "Schwefel-type": {
+       "score": 0.3016319615602697,
+       "lsi": 0.2818798740106762,
+       "adc": 0.16138406573725458,
+       "nearest": 16,
+       "pool_mean_best": {
+        "de_rand1_bin": 3626.565430889799,
+        "jde": 3579.976076441964,
+        "jade": 3572.42937742606,
+        "lshade": 3582.318165104172,
+        "pso_gbest": 3650.9118737535005,
+        "pso_ring": 3623.784083587526,
+        "clpso": 3615.2087464189017,
+        "dms_pso": 3613.347084226721,
+        "cma_es": 3672.721462601307,
+        "sep_cma_es": 3665.7567629907016
+       },
+       "seconds": 1.61
+      },
+      "rounded sphere (plateaus)": {
+       "score": 0.4802965071048222,
+       "lsi": 0.640790929825257,
+       "adc": 0.18,
+       "nearest": 1,
+       "pool_mean_best": {
+        "de_rand1_bin": 0.0,
+        "jde": 0.0,
+        "jade": 0.0,
+        "lshade": 0.0,
+        "pso_gbest": 0.0,
+        "pso_ring": 0.0,
+        "clpso": 1.2,
+        "dms_pso": 0.0,
+        "cma_es": 0.0,
+        "sep_cma_es": 0.0
+       },
+       "seconds": 1.57
+      }
+     }
+    },
+    {
+     "what": "CMA-ES vs sep-CMA-ES best values after 5,000 evaluations (3 seeds)",
+     "result": {
+      "rotated ellipsoid / cma_es": [
+       2.2265227559029856e-16,
+       3.2356531001476435e-15,
+       1.9540306793212717e-18
+      ],
+      "rotated ellipsoid / sep_cma_es": [
+       37.947655872830204,
+       94.08905961802269,
+       35.415170117952336
+      ],
+      "separable ellipsoid / cma_es": [
+       2.529461080488212e-14,
+       1.9969007361557897e-16,
+       2.0148566780616033e-16
+      ],
+      "separable ellipsoid / sep_cma_es": [
+       0.0,
+       0.0,
+       1.2069274752406702e-30
+      ]
+     }
+    },
+    {
+     "what": "anchor computation",
+     "result": {
+      "seconds": 6.08,
+      "sigma2": 4.116558256554031
+     }
+    },
+    {
+     "what": "comparison with the paper's LSI/ADC values",
+     "result": "not possible: NeurELA and the paper's optimiser pool are not available locally"
+    }
+   ],
+   "llm_cost_usd": 0.0
+  }
+ },
+ "ready_noise_gate": {
+  "summary": {
+   "dedqn": {
+    "epochs": 100,
+    "rewards": {
+     "hand": {
+      "F_by_seed": {
+       "1": 0.7930282406247569,
+       "2": 0.8735887906696597,
+       "3": 0.776003149102604,
+       "4": 0.8568711738813515,
+       "5": 0.823150744413258
+      },
+      "mean": 0.824528419738326,
+      "sd": 0.041236618754556434,
+      "train_seconds": [
+       106.5,
+       109.0,
+       107.6,
+       102.8,
+       108.2
+      ]
+     },
+     "random": {
+      "F_by_seed": {
+       "1": 0.8347319883404767,
+       "2": 0.8347319883404767,
+       "3": 0.8366134453929454,
+       "4": 0.8347319883404767,
+       "5": 0.8370509067246729
+      },
+      "mean": 0.8355720634278097,
+      "sd": 0.0011606713952557405,
+      "train_seconds": [
+       107.0,
+       109.3,
+       107.0,
+       102.7,
+       106.9
+      ]
+     },
+     "zero": {
+      "F_by_seed": {
+       "1": 0.8347733638165338,
+       "2": 0.8697630930112434,
+       "3": 0.8567537406308828,
+       "4": 0.8953947532089257,
+       "5": 0.897497237323079
+      },
+      "mean": 0.8708364375981329,
+      "sd": 0.026523238964461213,
+      "train_seconds": [
+       106.4,
+       109.5,
+       107.5,
+       102.6,
+       107.1
+      ]
+     }
+    },
+    "tests": {
+     "zero": {
+      "difference_hand_minus_other": -0.04630801785980687,
+      "pooled_sd": 0.03466944570853815,
+      "ratio_to_pooled_sd": 1.335701131454849,
+      "exceeds_2sd": false
+     },
+     "random": {
+      "difference_hand_minus_other": -0.011043643689483629,
+      "pooled_sd": 0.029170240694896574,
+      "ratio_to_pooled_sd": 0.378592820161945,
+      "exceeds_2sd": false
+     }
+    },
+    "complete": true,
+    "gate_passed": false
+   },
+   "gleet": {
+    "epochs": 50,
+    "rewards": {
+     "hand": {
+      "F_by_seed": {
+       "1": 0.028437669339346903,
+       "2": 0.04074016872391376,
+       "3": 0.0394755447902378,
+       "4": 0.03617777195063471,
+       "5": 0.04456128458924484
+      },
+      "mean": 0.03787848787867561,
+      "sd": 0.006070853920042696,
+      "train_seconds": [
+       483.8,
+       524.0,
+       424.3,
+       423.1,
+       426.3
+      ]
+     },
+     "random": {
+      "F_by_seed": {
+       "1": 0.04854199825879018,
+       "2": 0.04157380647838577,
+       "3": 0.046031581223990536,
+       "4": 0.03678780746071676,
+       "5": 0.03702786652815494
+      },
+      "mean": 0.04199261199000764,
+      "sd": 0.005270716713988153,
+      "train_seconds": [
+       497.7,
+       428.1,
+       423.1,
+       405.7,
+       386.3
+      ]
+     },
+     "zero": {
+      "F_by_seed": {
+       "1": 0.042068220561071214,
+       "2": 0.03301654755782876,
+       "3": 0.04750503410702174,
+       "4": 0.030267600008235016,
+       "5": 0.03622550286593201
+      },
+      "mean": 0.037816581020017746,
+      "sd": 0.006973190217772021,
+      "train_seconds": [
+       497.3,
+       459.9,
+       421.8,
+       402.9,
+       417.3
+      ]
+     }
+    },
+    "tests": {
+     "zero": {
+      "difference_hand_minus_other": 6.190685865786055e-05,
+      "pooled_sd": 0.006537608474500793,
+      "ratio_to_pooled_sd": 0.00946934324674249,
+      "exceeds_2sd": false
+     },
+     "random": {
+      "difference_hand_minus_other": -0.004114124111332031,
+      "pooled_sd": 0.005684880033809502,
+      "ratio_to_pooled_sd": 0.723695854066266,
+      "exceeds_2sd": false
+     }
+    },
+    "complete": true,
+    "gate_passed": false
+   },
+   "rldas": {
+    "epochs": 100,
+    "rewards": {
+     "hand": {
+      "F_by_seed": {
+       "1": 0.05094231380696586,
+       "2": 0.05326516471405701,
+       "3": 0.049076684720916086,
+       "4": 0.052169155822313656,
+       "5": 0.048507442597604755
+      },
+      "mean": 0.05079215233237148,
+      "sd": 0.002012287567535114,
+      "train_seconds": [
+       153.5,
+       152.4,
+       154.1,
+       161.9,
+       165.0
+      ]
+     },
+     "random": {
+      "F_by_seed": {
+       "1": 0.04753705958696889,
+       "2": 0.049747401571411366,
+       "3": 0.05094803120472769,
+       "4": 0.053259735673988756,
+       "5": 0.05231209139362683
+      },
+      "mean": 0.0507608638861447,
+      "sd": 0.0022419700388256088,
+      "train_seconds": [
+       156.7,
+       148.2,
+       155.0,
+       162.0,
+       181.6
+      ]
+     },
+     "zero": {
+      "F_by_seed": {
+       "1": 0.052895502502852035,
+       "2": 0.05083406181237621,
+       "3": 0.04850051706413937,
+       "4": 0.0513721640770346,
+       "5": 0.04888600335799341
+      },
+      "mean": 0.05049764976287913,
+      "sd": 0.001817525052513846,
+      "train_seconds": [
+       153.4,
+       149.7,
+       152.5,
+       160.4,
+       182.1
+      ]
+     }
+    },
+    "tests": {
+     "zero": {
+      "difference_hand_minus_other": 0.00029450256949235115,
+      "pooled_sd": 0.001917380839970485,
+      "ratio_to_pooled_sd": 0.15359628267532105,
+      "exceeds_2sd": false
+     },
+     "random": {
+      "difference_hand_minus_other": 3.1288446226775124e-05,
+      "pooled_sd": 0.0021302266205087297,
+      "ratio_to_pooled_sd": 0.014687848666215137,
+      "exceeds_2sd": false
+     }
+    },
+    "complete": true,
+    "gate_passed": false
+   },
+   "rlepso": {
+    "epochs": 100,
+    "rewards": {
+     "hand": {
+      "F_by_seed": {
+       "1": 0.047490563602781574,
+       "2": 0.05509828209551121,
+       "3": 0.046650508643715075,
+       "4": 0.052330343265737544,
+       "5": 0.046059071708024875
+      },
+      "mean": 0.049525753863154054,
+      "sd": 0.003979500981593483,
+      "train_seconds": [
+       326.2,
+       323.2,
+       307.0,
+       301.0,
+       281.4
+      ]
+     },
+     "random": {
+      "F_by_seed": {
+       "1": 0.05298041807830154,
+       "2": 0.053190585561433724,
+       "3": 0.05432290930037065,
+       "4": 0.05121511870898904,
+       "5": 0.05368742899381457
+      },
+      "mean": 0.0530792921285819,
+      "sd": 0.0011633699928606323,
+      "train_seconds": [
+       329.6,
+       302.8,
+       294.1,
+       288.9,
+       291.2
+      ]
+     },
+     "zero": {
+      "F_by_seed": {
+       "1": 0.04745056613892078,
+       "2": 0.056686439484144285,
+       "3": 0.05291922934463322,
+       "4": 0.05408606383570986,
+       "5": 0.047494948599166475
+      },
+      "mean": 0.05172744948051492,
+      "sd": 0.004116454105336482,
+      "train_seconds": [
+       328.1,
+       306.3,
+       307.5,
+       289.0,
+       285.2
+      ]
+     }
+    },
+    "tests": {
+     "zero": {
+      "difference_hand_minus_other": -0.0022016956173608673,
+      "pooled_sd": 0.004048556685032647,
+      "ratio_to_pooled_sd": 0.5438223516791671,
+      "exceeds_2sd": false
+     },
+     "random": {
+      "difference_hand_minus_other": -0.0035535382654278483,
+      "pooled_sd": 0.002931710917091933,
+      "ratio_to_pooled_sd": 1.212103909942365,
+      "exceeds_2sd": false
+     }
+    },
+    "complete": true,
+    "gate_passed": false
+   }
+  },
+  "upstream": "github.com/MetaEvo/MetaBox branch v2.0.0 at commit 5565a281ce4e03efc1f6a41230507d5b66637ace (BSD-3-Clause); only src/rl/{basic_agent,dqn,ppo,utils}.py, src/environment/{basic_environment.py,parallelenv/*}, src/environment/optimizer/{learnable,dedqn,rlepso,rldas,gleet}_optimizer.py, src/environment/problem/{basic_problem.py,SOO/COCO_BBOB/bbob_numpy.py} and src/baseline/metabbo/{dedqn,rlepso,rldas,gleet,networks}.py were used, with empty package __init__ files, parallelenv/worker/__init__.py reduced to the dummy worker, and gym/GPUtil/ray replaced by minimal stubs. Nothing from MetaBox is vendored into the repository.",
+  "patch_check": {
+   "episode_return_on_F1": {
+    "dedqn/hand": 87.17500000000001,
+    "dedqn/zero": 0.0,
+    "dedqn/random": 2.0075923544094616,
+    "rlepso/hand": 53.0,
+    "rlepso/zero": 0.0,
+    "rlepso/random": 0.10390525891340774,
+    "rldas/hand": 0.9999999998051873,
+    "rldas/zero": 0.0,
+    "rldas/random": -2.818993631497995,
+    "gleet/hand": 99.99999998047227,
+    "gleet/zero": 0.0,
+    "gleet/random": 0.10390525891340774
+   },
+   "expectation": "zero arm returns exactly 0; random arm returns a sum of uniform[-1, 1] draws; hand arm returns the agent's own reward sum"
+  },
+  "driver_source": "\"\"\"Noise gate for READY reward design, run on pinned upstream MetaBox code (BSD-3).\n\nTrains one MetaBox agent (DEDQN, RLEPSO, RLDAS or GLEET) on the 8 'difficult'\ntraining functions of bbob-10D with either its handcrafted reward, a zero reward\nor an i.i.d. uniform[-1, 1] reward, then tests it on the 16 held-out functions\nand reports READY's Eq. 2 score (mean over functions of the median over runs of\nfinal / initial best cost; costs are already relative to the optimum).\n\nusage: python -I ready_gate_upstream.py MBX_ROOT AGENT REWARD SEED EPOCHS TEST_RUNS OUT_JSON\n\"\"\"\nimport copy\nimport json\nimport os\nimport sys\nimport tempfile\nimport time\nimport types\n\nmbx = os.path.abspath(sys.argv[1])\nsys.path.insert(0, os.path.join(mbx, \"stubs\"))\nsys.path.insert(0, mbx)\nos.environ.setdefault(\"OMP_NUM_THREADS\", \"1\")\n\nimport numpy as np  # noqa: E402\nimport torch  # noqa: E402\n\ntorch.set_num_threads(1)\n\nfrom src.environment.basic_environment import PBO_Env  # noqa: E402\nfrom src.environment.problem.SOO.COCO_BBOB import bbob_numpy as B  # noqa: E402\n\nAGENT, REWARD, SEED, EPOCHS, TEST_RUNS, OUT = sys.argv[2], sys.argv[3], int(sys.argv[4]), int(sys.argv[5]), int(sys.argv[6]), sys.argv[7]\nTRAIN_IDS = [1, 2, 3, 5, 15, 16, 17, 21]\n\n\ndef datasets(dim=10, ub=5.0, instance_seed=3849):\n    np.random.seed(instance_seed)\n    torch.manual_seed(instance_seed)\n    train, test = [], []\n    for fid in range(1, 25):\n        shift = 0.8 * (np.random.random(dim) * (2 * ub) - ub)\n        H = B.rotate_gen(dim)\n        bias = np.random.randint(1, 26) * 100\n        inst = getattr(B, f\"F{fid}\")(dim=dim, shift=shift, rotate=H, bias=bias, lb=-ub, ub=ub)\n        (train if fid in TRAIN_IDS else test).append(inst)\n    return train, test\n\n\ndef make(agent_name, workdir):\n    cfg = types.SimpleNamespace(device=\"cpu\", agent_save_dir=workdir + \"/\", train_name=\"gate\", maxFEs=20000, n_logpoint=50,\n                                full_meta_data=False, no_tb=True, end_mode=\"epoch\", save_interval=10 ** 9, max_learning_step=1.5e6,\n                                train_problem=\"bbob-10D\", test_problem=\"bbob-10D\", max_epoch=EPOCHS, dim=10, seed=SEED)\n    cfg.log_interval = cfg.maxFEs // cfg.n_logpoint\n    if agent_name == \"dedqn\":\n        from src.baseline.metabbo.dedqn import DEDQN as A\n        from src.environment.optimizer.dedqn_optimizer import DEDQN_Optimizer as O\n    elif agent_name == \"rlepso\":\n        from src.baseline.metabbo.rlepso import RLEPSO as A\n        from src.environment.optimizer.rlepso_optimizer import RLEPSO_Optimizer as O\n    elif agent_name == \"rldas\":\n        from src.baseline.metabbo.rldas import RLDAS as A\n        from src.environment.optimizer.rldas_optimizer import RLDAS_Optimizer as O\n    elif agent_name == \"gleet\":\n        from src.baseline.metabbo.gleet import GLEET as A\n        from src.environment.optimizer.gleet_optimizer import GLEET_Optimizer as O\n    else:\n        raise SystemExit(\"unknown agent\")\n    return A, O, cfg\n\n\ndef patch_reward(O, mode, seed):\n    if mode == \"hand\":\n        return\n    original = O.update\n    rng = np.random.RandomState(10_000 + seed)\n\n    def update(self, action, problem):\n        out = list(original(self, action, problem))\n        out[1] = 0.0 if mode == \"zero\" else float(rng.uniform(-1.0, 1.0))\n        return tuple(out)\n\n    O.update = update\n\n\ndef main():\n    started = time.time()\n    workdir = tempfile.mkdtemp(prefix=\"gate-\")\n    A, O, cfg = make(AGENT, workdir)\n    patch_reward(O, REWARD, SEED)\n    train, test = datasets()\n    torch.manual_seed(SEED)\n    np.random.seed(SEED)\n    agent = A(cfg)\n    optimizer = O(cfg)\n    order = np.arange(len(train))\n    for epoch in range(EPOCHS):\n        order = np.random.permutation(len(train))\n        for pid, idx in enumerate(order):\n            seeds = [int(epoch * 100 + 5 * pid + SEED)]\n            env = [PBO_Env(copy.deepcopy(train[idx]), copy.deepcopy(optimizer))]\n            agent.train_episode(envs=env, seeds=seeds, para_mode=\"dummy\")\n    train_seconds = time.time() - started\n    per_function = {}\n    for problem in test:\n        ratios = []\n        for run in range(1, TEST_RUNS + 1):\n            torch.manual_seed(run)\n            np.random.seed(run)\n            env = PBO_Env(copy.deepcopy(problem), copy.deepcopy(optimizer))\n            res = agent.rollout_episode(env, run, {})\n            cost = np.asarray(res[\"cost\"], dtype=float)\n            ratios.append(float(cost[-1] / cost[0]) if cost[0] > 0 else 0.0)\n        per_function[str(problem)] = {\"median_ratio\": float(np.median(ratios)), \"ratios\": ratios}\n    score = float(np.mean([v[\"median_ratio\"] for v in per_function.values()]))\n    out = {\"agent\": AGENT, \"reward\": REWARD, \"seed\": SEED, \"epochs\": EPOCHS, \"test_runs\": TEST_RUNS, \"F\": score,\n           \"per_function\": per_function, \"train_seconds\": train_seconds, \"total_seconds\": time.time() - started,\n           \"learning_steps\": int(getattr(agent, \"learning_time\", -1))}\n    with open(OUT, \"w\") as f:\n        json.dump(out, f, indent=1)\n    print(json.dumps({k: out[k] for k in (\"agent\", \"reward\", \"seed\", \"F\", \"train_seconds\", \"total_seconds\", \"learning_steps\")}))\n\n\nmain()\n",
+  "stubs": {
+   "gym.py": "class Env:\n    def __init__(self, *a, **k):\n        pass\nclass Wrapper(Env):\n    pass\n",
+   "GPUtil.py": "def getGPUs():\n    return []\n",
+   "ray.py": "def remote(*a, **k):\n    def deco(x):\n        return x\n    return deco if not (len(a) == 1 and callable(a[0])) else a[0]\ndef is_initialized():\n    return False\ndef init(*a, **k):\n    pass\ndef get(x):\n    return x\n"
+  },
+  "runner": "a local job runner (not part of the repository) started the driver below once per (agent, reward arm, training seed): 4 agents x 3 arms x 5 seeds = 60 single-threaded runs, at most 4 at a time, about 4.4 CPU-hours in total (2026-10-10, Apple M4 Max)"
+ },
+ "withdraw": {
+  "ready-dedqn-operator-selection": {
+   "decision": "withdraw",
+   "reason": "READY noise gate failed: with the handcrafted reward the trained DEDQN agent's held-out score (READY Eq. 2, lower is better) was 0.8245 (seed sd 0.0412), with a zero reward 0.8708 (sd 0.0265) and with an i.i.d. uniform[-1, 1] reward 0.8356 (sd 0.0012) over 5 training seeds; the handcrafted reward differs from zero by 1.34 and from random by 0.38 pooled seed standard deviations, below the required 2. A reward-design evaluator on this pipeline would mostly rank reward functions by training-seed noise. In MetaBox v2's DEDQN each decision evaluates one trial vector but counts 200 evaluations (the trial is counted as a full population, and the 100-point population is re-evaluated for the state features), so a 20,000-evaluation episode makes 99 decisions on 99 trial vectors (10,199 real evaluations) and final costs stay close to the initial ones.",
+   "evidence": {
+    "protocol": "Pinned upstream MetaBox code (github.com/MetaEvo/MetaBox, branch v2.0.0 at commit 5565a281ce4e03efc1f6a41230507d5b66637ace, BSD-3-Clause) run unmodified except that the reward returned by the optimizer's update() was replaced by 0 or by uniform[-1, 1] draws (seeded) for the zero and random arms; gym/GPUtil/ray imports stubbed, single-process 'dummy' environments, CPU, one thread per run. Training: bbob-10D 'difficult' split (train F1, F2, F3, F5, F15, F16, F17, F21; MetaBox instance seed 3849), maxFEs 20,000, 100 epochs x 8 functions, MetaBox trainer seeding (epoch*100 + 5*problem + seed). Test: the 16 held-out functions (F4, F6-F14, F18-F20, F22-F24, the functions of READY's Table 1), 5 runs each with seeds 1-5, Eq. 2 = mean over functions of the median over runs of final/initial best cost. Training seeds 1-5 per reward arm.",
+    "per_seed": {
+     "hand": {
+      "1": 0.7930282406247569,
+      "2": 0.8735887906696597,
+      "3": 0.776003149102604,
+      "4": 0.8568711738813515,
+      "5": 0.823150744413258
+     },
+     "random": {
+      "1": 0.8347319883404767,
+      "2": 0.8347319883404767,
+      "3": 0.8366134453929454,
+      "4": 0.8347319883404767,
+      "5": 0.8370509067246729
+     },
+     "zero": {
+      "1": 0.8347733638165338,
+      "2": 0.8697630930112434,
+      "3": 0.8567537406308828,
+      "4": 0.8953947532089257,
+      "5": 0.897497237323079
+     }
+    },
+    "train_seconds": {
+     "hand": [
+      106.5,
+      109.0,
+      107.6,
+      102.8,
+      108.2
+     ],
+     "random": [
+      107.0,
+      109.3,
+      107.0,
+      102.7,
+      106.9
+     ],
+     "zero": [
+      106.4,
+      109.5,
+      107.5,
+      102.6,
+      107.1
+     ]
+    },
+    "tests": {
+     "zero": {
+      "difference_hand_minus_other": -0.04630801785980687,
+      "pooled_sd": 0.03466944570853815,
+      "ratio_to_pooled_sd": 1.335701131454849,
+      "exceeds_2sd": false
+     },
+     "random": {
+      "difference_hand_minus_other": -0.011043643689483629,
+      "pooled_sd": 0.029170240694896574,
+      "ratio_to_pooled_sd": 0.378592820161945,
+      "exceeds_2sd": false
+     }
+    },
+    "criterion": "pass iff |mean(hand) - mean(zero)| > 2 x pooled sd and |mean(hand) - mean(random)| > 2 x pooled sd (sample sd, ddof 1, pooled over the two arms)"
+   }
+  },
+  "ready-rlepso-parameter-control": {
+   "decision": "withdraw",
+   "reason": "READY noise gate failed: with the handcrafted reward the trained RLEPSO agent's held-out score (READY Eq. 2, lower is better) was 0.0495 (seed sd 0.0040), with a zero reward 0.0517 (sd 0.0041) and with an i.i.d. uniform[-1, 1] reward 0.0531 (sd 0.0012) over 5 training seeds; the handcrafted reward differs from zero by 0.54 and from random by 1.21 pooled seed standard deviations, below the required 2. A reward-design evaluator on this pipeline would mostly rank reward functions by training-seed noise. RLEPSO's PPO state is the single feature evaluations/maxFEs (199 decisions per episode, 35-dimensional continuous action, learning rate 1e-5), so the policy can only learn a schedule of PSO coefficients over time.",
+   "evidence": {
+    "protocol": "Pinned upstream MetaBox code (github.com/MetaEvo/MetaBox, branch v2.0.0 at commit 5565a281ce4e03efc1f6a41230507d5b66637ace, BSD-3-Clause) run unmodified except that the reward returned by the optimizer's update() was replaced by 0 or by uniform[-1, 1] draws (seeded) for the zero and random arms; gym/GPUtil/ray imports stubbed, single-process 'dummy' environments, CPU, one thread per run. Training: bbob-10D 'difficult' split (train F1, F2, F3, F5, F15, F16, F17, F21; MetaBox instance seed 3849), maxFEs 20,000, 100 epochs x 8 functions, MetaBox trainer seeding (epoch*100 + 5*problem + seed). Test: the 16 held-out functions (F4, F6-F14, F18-F20, F22-F24, the functions of READY's Table 1), 5 runs each with seeds 1-5, Eq. 2 = mean over functions of the median over runs of final/initial best cost. Training seeds 1-5 per reward arm.",
+    "per_seed": {
+     "hand": {
+      "1": 0.047490563602781574,
+      "2": 0.05509828209551121,
+      "3": 0.046650508643715075,
+      "4": 0.052330343265737544,
+      "5": 0.046059071708024875
+     },
+     "random": {
+      "1": 0.05298041807830154,
+      "2": 0.053190585561433724,
+      "3": 0.05432290930037065,
+      "4": 0.05121511870898904,
+      "5": 0.05368742899381457
+     },
+     "zero": {
+      "1": 0.04745056613892078,
+      "2": 0.056686439484144285,
+      "3": 0.05291922934463322,
+      "4": 0.05408606383570986,
+      "5": 0.047494948599166475
+     }
+    },
+    "train_seconds": {
+     "hand": [
+      326.2,
+      323.2,
+      307.0,
+      301.0,
+      281.4
+     ],
+     "random": [
+      329.6,
+      302.8,
+      294.1,
+      288.9,
+      291.2
+     ],
+     "zero": [
+      328.1,
+      306.3,
+      307.5,
+      289.0,
+      285.2
+     ]
+    },
+    "tests": {
+     "zero": {
+      "difference_hand_minus_other": -0.0022016956173608673,
+      "pooled_sd": 0.004048556685032647,
+      "ratio_to_pooled_sd": 0.5438223516791671,
+      "exceeds_2sd": false
+     },
+     "random": {
+      "difference_hand_minus_other": -0.0035535382654278483,
+      "pooled_sd": 0.002931710917091933,
+      "ratio_to_pooled_sd": 1.212103909942365,
+      "exceeds_2sd": false
+     }
+    },
+    "criterion": "pass iff |mean(hand) - mean(zero)| > 2 x pooled sd and |mean(hand) - mean(random)| > 2 x pooled sd (sample sd, ddof 1, pooled over the two arms)"
+   }
+  },
+  "ready-rldas-algorithm-selection": {
+   "decision": "withdraw",
+   "reason": "READY noise gate failed: with the handcrafted reward the trained RLDAS agent's held-out score (READY Eq. 2, lower is better) was 0.0508 (seed sd 0.0020), with a zero reward 0.0505 (sd 0.0018) and with an i.i.d. uniform[-1, 1] reward 0.0508 (sd 0.0022) over 5 training seeds; the handcrafted reward differs from zero by 0.15 and from random by 0.01 pooled seed standard deviations, below the required 2. A reward-design evaluator on this pipeline would mostly rank reward functions by training-seed noise. RL-DAS decides every 2,500 evaluations, i.e. 8 decisions per 20,000-evaluation episode, so each episode yields 8 rewards (the weakest reward signal of the four agents, as the triage anticipated).",
+   "evidence": {
+    "protocol": "Pinned upstream MetaBox code (github.com/MetaEvo/MetaBox, branch v2.0.0 at commit 5565a281ce4e03efc1f6a41230507d5b66637ace, BSD-3-Clause) run unmodified except that the reward returned by the optimizer's update() was replaced by 0 or by uniform[-1, 1] draws (seeded) for the zero and random arms; gym/GPUtil/ray imports stubbed, single-process 'dummy' environments, CPU, one thread per run. Training: bbob-10D 'difficult' split (train F1, F2, F3, F5, F15, F16, F17, F21; MetaBox instance seed 3849), maxFEs 20,000, 100 epochs x 8 functions, MetaBox trainer seeding (epoch*100 + 5*problem + seed). Test: the 16 held-out functions (F4, F6-F14, F18-F20, F22-F24, the functions of READY's Table 1), 5 runs each with seeds 1-5, Eq. 2 = mean over functions of the median over runs of final/initial best cost. Training seeds 1-5 per reward arm.",
+    "per_seed": {
+     "hand": {
+      "1": 0.05094231380696586,
+      "2": 0.05326516471405701,
+      "3": 0.049076684720916086,
+      "4": 0.052169155822313656,
+      "5": 0.048507442597604755
+     },
+     "random": {
+      "1": 0.04753705958696889,
+      "2": 0.049747401571411366,
+      "3": 0.05094803120472769,
+      "4": 0.053259735673988756,
+      "5": 0.05231209139362683
+     },
+     "zero": {
+      "1": 0.052895502502852035,
+      "2": 0.05083406181237621,
+      "3": 0.04850051706413937,
+      "4": 0.0513721640770346,
+      "5": 0.04888600335799341
+     }
+    },
+    "train_seconds": {
+     "hand": [
+      153.5,
+      152.4,
+      154.1,
+      161.9,
+      165.0
+     ],
+     "random": [
+      156.7,
+      148.2,
+      155.0,
+      162.0,
+      181.6
+     ],
+     "zero": [
+      153.4,
+      149.7,
+      152.5,
+      160.4,
+      182.1
+     ]
+    },
+    "tests": {
+     "zero": {
+      "difference_hand_minus_other": 0.00029450256949235115,
+      "pooled_sd": 0.001917380839970485,
+      "ratio_to_pooled_sd": 0.15359628267532105,
+      "exceeds_2sd": false
+     },
+     "random": {
+      "difference_hand_minus_other": 3.1288446226775124e-05,
+      "pooled_sd": 0.0021302266205087297,
+      "ratio_to_pooled_sd": 0.014687848666215137,
+      "exceeds_2sd": false
+     }
+    },
+    "criterion": "pass iff |mean(hand) - mean(zero)| > 2 x pooled sd and |mean(hand) - mean(random)| > 2 x pooled sd (sample sd, ddof 1, pooled over the two arms)"
+   }
+  },
+  "ready-gleet-reward-transfer": {
+   "decision": "withdraw",
+   "reason": "READY noise gate failed: with the handcrafted reward the trained GLEET agent's held-out score (READY Eq. 2, lower is better) was 0.0379 (seed sd 0.0061), with a zero reward 0.0378 (sd 0.0070) and with an i.i.d. uniform[-1, 1] reward 0.0420 (sd 0.0053) over 5 training seeds; the handcrafted reward differs from zero by 0.01 and from random by 0.72 pooled seed standard deviations, below the required 2. A reward-design evaluator on this pipeline would mostly rank reward functions by training-seed noise. GLEET (MetaBox v2, PPO with an attention encoder, 100 particles, 199 decisions per episode) was trained for 50 epochs (half of MetaBox's default 100) as the triage's reduced-budget reward-design proxy; READY itself only transferred a reward to GLEET zero-shot.",
+   "evidence": {
+    "protocol": "Pinned upstream MetaBox code (github.com/MetaEvo/MetaBox, branch v2.0.0 at commit 5565a281ce4e03efc1f6a41230507d5b66637ace, BSD-3-Clause) run unmodified except that the reward returned by the optimizer's update() was replaced by 0 or by uniform[-1, 1] draws (seeded) for the zero and random arms; gym/GPUtil/ray imports stubbed, single-process 'dummy' environments, CPU, one thread per run. Training: bbob-10D 'difficult' split (train F1, F2, F3, F5, F15, F16, F17, F21; MetaBox instance seed 3849), maxFEs 20,000, 50 epochs x 8 functions, MetaBox trainer seeding (epoch*100 + 5*problem + seed). Test: the 16 held-out functions (F4, F6-F14, F18-F20, F22-F24, the functions of READY's Table 1), 5 runs each with seeds 1-5, Eq. 2 = mean over functions of the median over runs of final/initial best cost. Training seeds 1-5 per reward arm.",
+    "per_seed": {
+     "hand": {
+      "1": 0.028437669339346903,
+      "2": 0.04074016872391376,
+      "3": 0.0394755447902378,
+      "4": 0.03617777195063471,
+      "5": 0.04456128458924484
+     },
+     "random": {
+      "1": 0.04854199825879018,
+      "2": 0.04157380647838577,
+      "3": 0.046031581223990536,
+      "4": 0.03678780746071676,
+      "5": 0.03702786652815494
+     },
+     "zero": {
+      "1": 0.042068220561071214,
+      "2": 0.03301654755782876,
+      "3": 0.04750503410702174,
+      "4": 0.030267600008235016,
+      "5": 0.03622550286593201
+     }
+    },
+    "train_seconds": {
+     "hand": [
+      483.8,
+      524.0,
+      424.3,
+      423.1,
+      426.3
+     ],
+     "random": [
+      497.7,
+      428.1,
+      423.1,
+      405.7,
+      386.3
+     ],
+     "zero": [
+      497.3,
+      459.9,
+      421.8,
+      402.9,
+      417.3
+     ]
+    },
+    "tests": {
+     "zero": {
+      "difference_hand_minus_other": 6.190685865786055e-05,
+      "pooled_sd": 0.006537608474500793,
+      "ratio_to_pooled_sd": 0.00946934324674249,
+      "exceeds_2sd": false
+     },
+     "random": {
+      "difference_hand_minus_other": -0.004114124111332031,
+      "pooled_sd": 0.005684880033809502,
+      "ratio_to_pooled_sd": 0.723695854066266,
+      "exceeds_2sd": false
+     }
+    },
+    "criterion": "pass iff |mean(hand) - mean(zero)| > 2 x pooled sd and |mean(hand) - mean(random)| > 2 x pooled sd (sample sd, ddof 1, pooled over the two arms)"
+   }
+  }
+ }
+}

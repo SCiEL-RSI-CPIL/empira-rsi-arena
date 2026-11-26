@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 1800
   max_retries: 2
 
 prompt:
   system_message: |
     M3ToolEval
 
-    M3ToolEval task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.
+    Write a Python act(instruction, observation, valid_actions, history, llm) agent that solves M3ToolEval tasks by calling tools or answering in CodeAct's text-as-action format, using a budgeted OpenRouter model client; scored by the success rate over 20 fixed tasks (4 per domain), at most 10 turns each (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: M3ToolEval (CodeAct) in text-as-action mode: `instruction` is CodeAct's task prompt with the tool list, each reply is one assistant turn ('Action: tool, arg, ... End Action' or 'Answer: ...'), `observation` the tool result or feedback; a fixed sample of 4 tasks per domain (20 episodes), at most 10 turns. Episode score: 1 when solved, else 0. Score: success rate over the 20 episodes; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

@@ -7,12 +7,17 @@
     "magellan"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2601.21096",
       "type": "paper",
       "locator": "Sections 3.1-3.3"
+    },
+    {
+      "url": "https://www.sqlite.org/2026/sqlite-amalgamation-3530400.zip",
+      "type": "archive",
+      "locator": "SQLite 3.53.4 amalgamation: the program whose sqlite3 shell is built to measure text size"
     }
   ],
   "requirements": {
@@ -24,7 +29,7 @@
     "notes": []
   },
   "evaluation": {
-    "metric": "binary size",
+    "metric": "score",
     "paper_metric": "binary size",
     "paper_direction": "minimize",
     "direction": "minimize",
@@ -43,11 +48,11 @@
     "framework_setup_instructions": [],
     "setup_steps": [],
     "notes": [
-      "Search workloads and/or private contest test instances are not public. LLVM/contest specification links are dependencies, not a released Magellan implementation."
+      "Magellan's LLVM experiments use Google's internal search application, and its XLA e-graphs and cost model are not released; the IOPDDL contest benchmarks, including the 20 withheld during the contest, are public in github.com/google/iopddl. LLVM/contest specification links are dependencies, not a released Magellan implementation."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llvm_inlining_size",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -55,17 +60,19 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "toolchain:LLVM function inlining for binary size"
+        "py:numpy",
+        "bin:opt",
+        "bin:llc",
+        "bin:llvm-size",
+        "file:data/or_csp/sqlite/sqlite-amalgamation-3530400.zip",
+        "bin:clang"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "toolchain",
-      "unsupported_reason": "Evaluation depends on an external toolchain (LLVM function inlining for binary size) that is not bundled."
+      "timeout": 300,
+      "validity_key": "valid"
     }
   },
   "limitations": [
     "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.",
     "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
   ],
   "source_specification": {
@@ -81,7 +88,7 @@
     "upstream_path": null,
     "requirements": [],
     "execution_notes": [
-      "Search workloads and/or private contest test instances are not public. LLVM/contest specification links are dependencies, not a released Magellan implementation."
+      "Magellan's LLVM experiments use Google's internal search application, and its XLA e-graphs and cost model are not released; the IOPDDL contest benchmarks, including the 20 withheld during the contest, are public in github.com/google/iopddl. LLVM/contest specification links are dependencies, not a released Magellan implementation."
     ],
     "setup_commands": [],
     "run_commands": []
@@ -99,10 +106,10 @@
     "domain": "systems",
     "area": "systems_and_hardware",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "simulation",
     "reference": "none",
     "resources": [
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false

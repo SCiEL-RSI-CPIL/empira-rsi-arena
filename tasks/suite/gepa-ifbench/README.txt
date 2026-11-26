@@ -3,22 +3,24 @@
 **Paper:** GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning (https://arxiv.org/pdf/2507.19457)\
 **Paper:** Reward-Free Evolving Agents via Pairwise Validator (https://arxiv.org/pdf/2607.14408)\
 **Task id:** `gepa-ifbench`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-IFBench
+Write a Python solve(question, llm) agent that uses a budgeted OpenRouter model client to answer IFBench prompts, each carrying verifiable output constraints; scored by the mean fraction of instructions the IFBench checkers accept under GEPA's loose rule, on a fixed 30-prompt sample of the 294-prompt test set (higher is better).
 
 Benchmark named in the paper: IFBench. Paper metric: task-specific score.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+solve(question: str, llm) -> str. `question` is an IFBench prompt (a user request with one or more verifiable output constraints); the returned text is the response that the IFBench instruction checkers verify. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. Score: mean over a fixed seeded sample of prompts of the fraction of instructions followed under GEPA's loose rule (the response, or the response without its first and/or last line and/or without asterisks, passes the checker); higher is better
+
+Parameters: `{"samples": 30, "seed": 0}`
 
 ## Labels
 
-Scientific contribution: `benchmark` (tier 3); artifact `prompt`, domain `language`, data `public_benchmark`, verification `none`, reference `none`, resources `model_api, unavailable`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `benchmark` (tier 3); artifact `prompt`, domain `language`, data `public_benchmark`, verification `sampled`, reference `none`, resources `model_api`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -29,15 +31,25 @@ Evidence status: **unreviewed**.
 
 No qualifying paper whose main objective is this underlying scientific or real-world problem has been established in the evidence registry. A task's use in an agent/framework evaluation is insufficient. This label describes the available evidence, not proof that the task has no scientific value.
 
-## Also evaluated by
+## Related paper and local records
 
-The same problem (same evaluator and parameters) appears in these papers; their records were merged into this task and their pinned upstream routes remain reachable with `run.py evaluate gepa-ifbench --route upstream --paper <paper>`.
+These records are grouped under this local package. Sharing a local evaluator does not establish identical paper experiments, datasets or candidate contracts. Configured upstream routes remain reachable with `run.py evaluate gepa-ifbench --route upstream --paper <paper>`; local reference aliases retain their recorded native interfaces.
 
 - Pairwise Validator: IFBench (`pairwise-validator-ifbench`; IFBench)
 
 ## Evaluation protocol
 
-Not executable in this suite: Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the IFBench benchmark. The suite embeds neither model calls nor the benchmark data.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Data: the 294-prompt IFBench test set as shipped in the GEPA artifact (gepa-ai/gepa-artifact at commit cbefbc1aa0f43dd39874ec4bf42211365dbda42e, gepa_artifact/benchmarks/IFBench/data/IFBench_test.jsonl); each evaluation uses a fixed 30-prompt sample. GEPA reports results on the full test set.
+- Metric: GEPA's IFBench metric (ifbench_metric.py): the fraction of a prompt's instructions followed, where an instruction counts when any of eight variants of the response (original, without asterisks, without the first and/or last line) passes the checker. The checkers are the pinned IFBench files of the GEPA artifact, copied byte for byte and run unchanged. Local deviation: a checker that raises on a variant counts that variant as not followed (GEPA's metric would raise); the number of such errors is reported as checker_errors.
+- Offline scoring: the upstream checkers download NLTK resources and the spaCy model at import time. The evaluator disables both downloads, loads punkt_tab, stopwords and averaged_perceptron_tagger_eng from hash-locked nltk_data zips (nltk/nltk_data commit 550b6625bcef1f2abff2ff770a5a0d272c9c6b2a; SHA-256 equal to NLTK's own index) and uses the installed en_core_web_sm package (3.8.0 in the verified environment) for the person-name checker.
+- Candidate: GEPA optimizes the prompts of a two-stage DSPy program (answer, then rewrite to satisfy the constraints) for Qwen3-8B or GPT-4.1-mini. Here the candidate is a free-form solve(question, llm) program; the default model is google/gemini-2.5-flash at temperature 0.
+- Not verified: GEPA's reported scores were not reproduced; a fixed 30-prompt sample is evaluated.
+- The candidate receives none of GEPA's IF-RLVR train/validation data, and the scored items come from the test set GEPA keeps hidden from its optimiser, so local scores are in-sample. Each model call's output is capped at 8,192 tokens (GEPA allows a 16,384-token context window).
+- The merged Pairwise Validator route (Section 5.1, Table 2 and Appendix C Table 8) evaluates IFBench with GEPA as the engine under its own protocol: 30-item test and validation pools from its own partition, 200 GEPA iterations, Qwen3-8B/32B, Gemma-4 and gpt-oss-20b agents, and accuracy at the best-validation checkpoint; its scores are not comparable with GEPA's or with this task's.
+- The candidate runs as trusted code in the evaluator's process, and the reference answers are stored in data/llm_bench of the task cache (ARENA_TASK_CACHE_DIR), so a candidate could read them; it can also replace the evaluator's scoring functions, raise the model client's budget attribute and read OPENROUTER_API_KEY from the environment, so the per-evaluation budget bounds an honest program only. Scores assume a candidate that does none of this.
+- Model-driven evaluation: the score is an estimate on a fixed seeded sample and depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0), the sample size (task parameter `samples`, overridden by ARTASK_LLM_SAMPLES) and the per-evaluation budget (ARTASK_LLM_BUDGET_USD, default 0.25). Responses are cached under llm-cache in the task cache (ARTASK_LLM_CACHE overrides) and shared by all candidates: a repeated call, also one at temperature > 0, returns the stored reply, and a cached reply costs nothing against the budget. `valid` is null because a sampled model score cannot certify a candidate.
 
 ## Run
 
@@ -49,15 +61,30 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `service:llm_api`
+- `py:numpy`
 - `env:OPENROUTER_API_KEY`
-- `dataset:IFBench`
+- `network:openrouter`
+- `py:nltk`
+- `py:spacy`
+- `py:en_core_web_sm`
+- `py:emoji`
+- `py:syllapy`
+- `py:langdetect`
+- `py:immutabledict`
+- `file:data/llm_bench/ifbench_test.json`
+- `file:data/llm_bench/ifbench_checkers/instructions_registry.py`
+- `file:data/llm_bench/nltk_data/tokenizers/punkt_tab.zip`
+- `file:data/llm_bench/nltk_data/corpora/stopwords.zip`
+- `file:data/llm_bench/nltk_data/taggers/averaged_perceptron_tagger_eng.zip`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2507.19457 (Section 4 evaluation and benchmark appendix)
 - repository: https://github.com/gepa-ai/gepa-artifact/tree/cbefbc1aa0f43dd39874ec4bf42211365dbda42e (gepa_artifact/benchmarks/IFBench)
-- paper: https://arxiv.org/pdf/2607.14408 (Section 5, Table 1 task inventory)
+- paper: https://arxiv.org/pdf/2607.14408 (Section 5.1 (Tasks), Table 2 and Appendix C (Table 8))
+- benchmark: https://github.com/gepa-ai/gepa-artifact/tree/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/IFBench/data/IFBench_test.jsonl (294 test prompts)
+- repository: https://github.com/gepa-ai/gepa-artifact/tree/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/IFBench/ifbench_metric.py (loose fraction-of-instructions metric; checkers in utils_ifbench/)
+- archive: https://github.com/nltk/nltk_data/tree/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages (punkt_tab, stopwords, averaged_perceptron_tagger_eng zips)
 
 ## Limitations
 

@@ -2,12 +2,12 @@
   "schema_version": "1.0",
   "id": "loongflow-nomad2018-predict-transparent-conductors",
   "name": "nomad2018-predict-transparent-conductors",
-  "description": "Predict formation_energy_ev_natom and bandgap_energy_ev; average their RMSLE values.",
+  "description": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 2,700 (Al, Ga, In)2O3 materials given as DFT-relaxed structures and predicts formation energy per cation and band gap for 300 held-out materials, within a 300 s wall-clock budget on 4 CPU threads; scored by the mean of the two columns' RMSLE (lower is better).",
   "paper_ids": [
     "loongflow"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2512.24077",
@@ -18,6 +18,26 @@
       "url": "https://github.com/baidu-baige/LoongFlow/tree/945c78bc1554f8281aac40320b3599bd68d528d7",
       "type": "repository",
       "locator": "agents/ml_agent/examples/mlebench/eval_program.py"
+    },
+    {
+      "url": "https://huggingface.co/datasets/colabfit/NMD-18/tree/113a5d43829c7b3b9f86b5235d970e481f45d1da",
+      "type": "archive",
+      "locator": "NMD-18 (CC0): 3,000 sesquioxides with DFT-relaxed geometries, formation energy per atom and band gap"
+    },
+    {
+      "url": "https://www.nature.com/articles/s41524-019-0239-3",
+      "type": "paper",
+      "locator": "Sutton et al. 2019: competition dataset, Vegard's-law input geometries, relaxed-geometry comparison (Table 2)"
+    },
+    {
+      "url": "https://github.com/openai/mle-bench/tree/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/nomad2018-predict-transparent-conductors",
+      "type": "repository",
+      "locator": "grade.py (mean of the RMSLEs of formation_energy_ev_natom and bandgap_energy_ev)"
+    },
+    {
+      "url": "https://www.kaggle.com/c/nomad2018-predict-transparent-conductors",
+      "type": "benchmark",
+      "locator": "competition definition"
     }
   ],
   "requirements": {
@@ -33,7 +53,7 @@
     ]
   },
   "evaluation": {
-    "metric": "mean columnwise root mean squared logarithmic error",
+    "metric": "score",
     "paper_metric": "mean columnwise root mean squared logarithmic error",
     "paper_direction": "minimize",
     "direction": "minimize",
@@ -81,8 +101,8 @@
       "Pinned official grader pairs rows by order and does not verify ID alignment; submissions must preserve answer row ordering."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "kaggle_nomad2018_conductors",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -90,19 +110,19 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "dataset:MLE-bench",
-        "hardware:gpu"
+        "py:numpy",
+        "py:sklearn",
+        "py:pandas",
+        "py:psutil",
+        "file:data/kaggle/nomad/public/train.jsonl",
+        "file:data/kaggle/nomad/public/test.jsonl",
+        "file:data/kaggle/nomad/private/test_labels.csv"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "dataset",
-      "unsupported_reason": "MLE-bench competitions require the Kaggle data and model training; neither is redistributed."
+      "timeout": 480,
+      "validity_key": "valid"
     }
   },
-  "limitations": [
-    "Direct CPU checks found upstream square seed rejected by strict overlap test and rectangle seed incompatible with its evaluator. Original Autocorrelation II and Erdos overlap seeds passed; a new simple square grid fixture passed. These are integration checks, not reproduced paper results.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-  ],
+  "limitations": [],
   "source_specification": {
     "name": "nomad2018-predict-transparent-conductors",
     "slug": "nomad2018-predict-transparent-conductors",
@@ -143,14 +163,13 @@
     "scientific_contribution": "engineering",
     "science_tier": 3,
     "artifact": "model",
-    "domain": "machine_learning",
-    "area": "machine_learning",
-    "data": "undistributed",
-    "verification": "none",
+    "domain": "natural_science",
+    "area": "materials_science",
+    "data": "public_benchmark",
+    "verification": "simulation",
     "reference": "none",
     "resources": [
-      "gpu",
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false

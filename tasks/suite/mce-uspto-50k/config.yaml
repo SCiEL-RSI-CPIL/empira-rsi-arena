@@ -22,7 +22,7 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 900
   max_retries: 2
 
 prompt:
@@ -31,7 +31,7 @@ prompt:
 
     USPTO-50k task evaluated in Meta Context Engineering via Agentic Skill Evolution.
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. `question` gives the reaction type and the product SMILES (MCE's USPTO-50k format) and asks for the reactants as '.'-separated SMILES. Answer rule (MCE's USPTO check): the '.'-separated components of the final answer (the text after the last 'Answer:' marker, else the last \boxed{...}, else the last non-empty line), stripped and lower-cased, must equal the gold reactant set exactly; there is no SMILES canonicalisation. Score: accuracy on a fixed 30-item sample of MCE's 100-item USPTO-50k test sample; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

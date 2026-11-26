@@ -7,12 +7,22 @@
     "magellan"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2601.21096",
       "type": "paper",
       "locator": "Sections 3.1-3.3"
+    },
+    {
+      "url": "https://github.com/google/iopddl/tree/8a61c4359c5a330a04c8ef1780402cc254d28f29",
+      "type": "benchmark",
+      "locator": "IOPDDL contest problem format, public benchmarks A, G, M, S, Y and the reference cost evaluator"
+    },
+    {
+      "url": "https://github.com/asplos-contest/2025/tree/06267509624cea22b98cd50427aaae6d01e3b6c8",
+      "type": "benchmark",
+      "locator": "ASPLOS 2025 contest final results used for the best-team reference costs"
     }
   ],
   "requirements": {
@@ -24,10 +34,10 @@
     "notes": []
   },
   "evaluation": {
-    "metric": "contest objective under memory constraints",
+    "metric": "score",
     "paper_metric": "contest objective under memory constraints",
     "paper_direction": "minimize",
-    "direction": "minimize",
+    "direction": "maximize",
     "benchmark": "XLA auto-sharding IOPDDL",
     "protocol": "specified_only",
     "source_locator": "Sections 3.1-3.3"
@@ -43,11 +53,11 @@
     "framework_setup_instructions": [],
     "setup_steps": [],
     "notes": [
-      "Search workloads and/or private contest test instances are not public. LLVM/contest specification links are dependencies, not a released Magellan implementation."
+      "Magellan's LLVM experiments use Google's internal search application, and its XLA e-graphs and cost model are not released; the IOPDDL contest benchmarks, including the 20 withheld during the contest, are public in github.com/google/iopddl. LLVM/contest specification links are dependencies, not a released Magellan implementation."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "iopddl_sharding",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -55,17 +65,19 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "toolchain:XLA auto-sharding IOPDDL"
+        "py:numpy",
+        "file:data/or_csp/iopddl/asplos-2025-iopddl-A.json.gz",
+        "file:data/or_csp/iopddl/asplos-2025-iopddl-G.json.gz",
+        "file:data/or_csp/iopddl/asplos-2025-iopddl-M.json.gz",
+        "file:data/or_csp/iopddl/asplos-2025-iopddl-S.json.gz",
+        "file:data/or_csp/iopddl/asplos-2025-iopddl-Y.json.gz"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "toolchain",
-      "unsupported_reason": "Evaluation depends on an external toolchain (XLA auto-sharding IOPDDL) that is not bundled."
+      "timeout": 180,
+      "validity_key": "valid"
     }
   },
   "limitations": [
     "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.",
     "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
   ],
   "source_specification": {
@@ -81,7 +93,7 @@
     "upstream_path": null,
     "requirements": [],
     "execution_notes": [
-      "Search workloads and/or private contest test instances are not public. LLVM/contest specification links are dependencies, not a released Magellan implementation."
+      "Magellan's LLVM experiments use Google's internal search application, and its XLA e-graphs and cost model are not released; the IOPDDL contest benchmarks, including the 20 withheld during the contest, are public in github.com/google/iopddl. LLVM/contest specification links are dependencies, not a released Magellan implementation."
     ],
     "setup_commands": [],
     "run_commands": []
@@ -99,10 +111,10 @@
     "domain": "systems",
     "area": "systems_and_hardware",
     "data": "public_benchmark",
-    "verification": "none",
-    "reference": "none",
+    "verification": "exact",
+    "reference": "published_value",
     "resources": [
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false

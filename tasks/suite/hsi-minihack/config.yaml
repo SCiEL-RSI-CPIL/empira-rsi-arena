@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 3600
   max_retries: 2
 
 prompt:
   system_message: |
     MiniHack
 
-    MiniHack
+    Write a Python act(instruction, observation, valid_actions, history, llm) agent that picks each next text action in BALROG's MiniHack (language observation with the ASCII map), using a budgeted OpenRouter model client; scored by the fraction of HSI's eight MiniHack tasks (Boxoban, MazeWalk, Corridor, Quest) solved in one seeded episode each within 100 steps (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: BALROG MiniHack (language observation with the ASCII map, BALROG's hybrid mode), HSI's eight tasks (Boxoban Hard and Medium, MazeWalk 9x9 and 15x15, Corridor-R3, CorridorBattle-Dark, Quest Easy and Medium), one seeded episode each within MiniHack's 100-step limit. Episode score: 1 when the task is solved, else 0 (BALROG progression). Score: mean over the 8 episodes; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

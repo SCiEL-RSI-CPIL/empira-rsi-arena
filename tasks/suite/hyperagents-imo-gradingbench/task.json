@@ -2,12 +2,12 @@
   "schema_version": "1.0",
   "id": "hyperagents-imo-gradingbench",
   "name": "IMO-GradingBench",
-  "description": "IMO-GradingBench",
+  "description": "Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client, grades a proposed proof of an IMO-level problem as correct, almost, partial or incorrect from the reference solution and grading guidelines; scored by exact-match accuracy against human grades on a fixed 30-item sample of a 100-item held-out IMO-GradingBench subset (higher is better).",
   "paper_ids": [
     "hyperagents"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2603.19461",
@@ -18,6 +18,16 @@
       "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d",
       "type": "repository",
       "locator": "domains/imo"
+    },
+    {
+      "url": "https://github.com/google-deepmind/superhuman/blob/c1ee02e03d4cdb2ab21cd01ac927d895f5287fc8/imobench/gradingbench.csv",
+      "type": "benchmark",
+      "locator": "IMO-GradingBench (1,000 human-graded proofs)"
+    },
+    {
+      "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/imo/curate_subsets.py",
+      "type": "repository",
+      "locator": "held-out 100-item subset procedure"
     }
   ],
   "requirements": {
@@ -32,7 +42,7 @@
     ]
   },
   "evaluation": {
-    "metric": "agreement with expert grades",
+    "metric": "score",
     "paper_metric": "agreement with expert grades",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -62,8 +72,8 @@
       "Paper task identified; evaluator invocation not yet verified."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -71,19 +81,16 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:IMO-GradingBench"
+        "network:openrouter",
+        "file:data/llm_bench/gradingbench_test.json"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_agent_env",
-      "unsupported_reason": "Candidates are LLM agents scored inside the IMO-GradingBench environment (tools, web, games or code sandboxes); the environment and model access are external."
+      "timeout": 900,
+      "validity_key": "valid"
     }
   },
-  "limitations": [
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-  ],
+  "limitations": [],
   "source_specification": {
     "name": "IMO-GradingBench",
     "slug": "imo-gradingbench",
@@ -113,14 +120,13 @@
     "scientific_contribution": "benchmark",
     "science_tier": 3,
     "artifact": "agent",
-    "domain": "software_engineering",
-    "area": "software_engineering",
+    "domain": "language",
+    "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "simulator"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

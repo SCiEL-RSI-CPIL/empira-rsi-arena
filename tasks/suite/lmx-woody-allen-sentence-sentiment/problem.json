@@ -1,25 +1,38 @@
 {
-  "protocol": "unsupported",
-  "family": null,
+  "protocol": "recreated_verified",
+  "family": "llm_bench_lmx",
   "direction": "maximize",
-  "contract": null,
-  "parameters": {},
+  "contract": "solve(question: str, llm) -> list[str]: an archive of 1 to 300 one-line sentences of 5 to 400 characters, each valid Unicode text (no unpaired surrogates) and at most 512 tokens for the sentiment classifier's tokenizer (400 characters of CJK text or of some emoji are more). `question` is the target quote; `llm(...)` is an optional budgeted OpenRouter client (it needs OPENROUTER_API_KEY only when called). Each sentence's fitness is the 'positive' probability of cardiffnlp/twitter-roberta-base-sentiment-latest and its niche is the Euclidean distance between its all-MiniLM-L6-v2 embedding and the quote's, clipped to [0, 1.25] and cut into 30 equal bins. Score: QD score, the sum over occupied niches of the best fitness (at most 30); higher is better",
+  "parameters": {
+    "quote": "Life is divided into the horrible and the miserable.",
+    "niches": 30,
+    "max_distance": 1.25,
+    "max_sentences": 300
+  },
   "requires": [
-    "service:llm_api",
-    "env:OPENROUTER_API_KEY",
-    "dataset:Woody Allen sentence sentiment"
+    "py:numpy",
+    "py:torch",
+    "py:transformers",
+    "py:sentence_transformers",
+    "model:cardiffnlp/twitter-roberta-base-sentiment-latest@3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+    "model:sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
   ],
-  "timeout": 30,
-  "notes": [],
-  "unsupported_category": "llm_api",
-  "unsupported_reason": "Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the Woody Allen sentence sentiment benchmark. The suite embeds neither model calls nor the benchmark data.",
-  "protocol_description": "Not executable in this suite: Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the Woody Allen sentence sentiment benchmark. The suite embeds neither model calls nor the benchmark data.",
+  "timeout": 600,
+  "notes": [
+    "Source: LMX (Meyerson et al.), Section 4.3 'Modifying Sentence Sentiment', and scripts/lmx_sentiment_demo.ipynb of jal278/lmx at commit b8fec5dd16451cf7afb6e02ac621b71d5bdfee7f (MIT). The target is the Woody Allen quote (negative_quotes[2] of the notebook): change its sentiment to positive while staying close to it.",
+    "Fitness and niches follow the notebook's mapelites_sentiment_fitness and map_elites1d: positive-class probability of cardiffnlp/twitter-roberta-base-sentiment-latest (revision 3216a57f), Euclidean distance between all-MiniLM-L6-v2 embeddings (revision 1110a243) clipped to [0, 1.25] and cut into 30 bins, QD score = sum of the best fitness per occupied bin. The paper's text describes the span as 0 to 1.5; the pinned notebook code (1.25) is followed.",
+    "Reference check (scripts/check_lmx_reference.py, receipt validation/lmx-reference-check.json): for the 49 sentences of the paper's printed Pareto fronts (Tables 3-5), the pinned models reproduce the printed positivity for 48 (largest difference 0.0017) and, for 43 (largest difference 0.019), the printed distance read as the Euclidean distance clipped at 1.25 and divided by 1.25 (inferred from the notebook's niche axis; the paper's text describes a 0-1.5 span); notebook-style calls (transformers sentiment pipeline with top_k=3, SentenceTransformer.encode) agree with the local functions within 6e-8. The paper gives no model revisions.",
+    "Candidate: the paper runs MAP-Elites with LMX crossover (Pythia-1.4B, 2,500 evaluations) and reports the final QD score; here the candidate returns its archive directly (up to 300 one-line sentences), so the outer program search plays the role of LMX. Candidates may call the optional OpenRouter client. Not verified: the paper's QD-score curves were not reproduced.",
+    "The optional generator defaults to google/gemini-2.5-flash, not the paper's Pythia-1.4B, and there is no fitness-evaluation budget comparable to the paper's 2,500 evaluations (the candidate may call the local scoring models itself within the timeout). The paper seeds every run with LMX offspring of all three quotes; the local candidate receives only the target quote.",
+    "The two scoring models run locally on the CPU from pinned revisions fetched by `python scripts/prepare_llm_bench.py --models` (about 600 MB, SHA-256 checked); scoring is deterministic for a fixed archive."
+  ],
+  "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
   "id": "lmx-woody-allen-sentence-sentiment",
   "name": "Woody Allen sentence sentiment",
   "paper_ids": [
     "lmx"
   ],
-  "description": "Woody Allen sentence sentiment: optimize the candidate specified by the paper and evaluate against the named benchmark.",
+  "description": "Write a solve(question, llm) program that returns 1 to 300 one-line sentences rewriting the Woody Allen quote 'Life is divided into the horrible and the miserable.' with positive sentiment; scored by QD score, the sum over 30 niches of MiniLM embedding distance to the quote of the best positive probability from a RoBERTa sentiment classifier (higher is better).",
   "benchmark": "Woody Allen sentence sentiment",
   "paper_metric": "domain-specific fitness / QD score",
   "paper_direction": null,
@@ -27,17 +40,31 @@
     {
       "url": "https://arxiv.org/pdf/2302.12170",
       "type": "paper",
-      "locator": "Sections 4.1–4.5"
+      "locator": "Section 4.3 and Appendix C.1 (Figure 16, Table 5)"
     },
     {
       "url": "https://github.com/jal278/lmx/tree/b8fec5dd16451cf7afb6e02ac621b71d5bdfee7f",
       "type": "repository",
       "locator": "scripts/lmx_sentiment_demo.ipynb"
+    },
+    {
+      "url": "https://github.com/jal278/lmx/blob/b8fec5dd16451cf7afb6e02ac621b71d5bdfee7f/scripts/lmx_sentiment_demo.ipynb",
+      "type": "repository",
+      "locator": "mapelites_sentiment_fitness and map_elites1d"
+    },
+    {
+      "url": "https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest/tree/3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+      "type": "repository",
+      "locator": "sentiment classifier (fitness)"
+    },
+    {
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/tree/1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "type": "repository",
+      "locator": "sentence embedder (niche distance)"
     }
   ],
   "limitations": [
-    "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
+    "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed."
   ],
   "evaluator": "evaluator.py",
   "initial_program": "initial_program.py",
@@ -54,11 +81,10 @@
     "artifact": "prompt",
     "domain": "language",
     "area": "language_and_agents",
-    "data": "public_benchmark",
-    "verification": "none",
+    "data": "none",
+    "verification": "simulation",
     "reference": "none",
     "resources": [
-      "model_api",
       "unavailable"
     ],
     "cost": "not_run",

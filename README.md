@@ -29,18 +29,18 @@ Researchers can inspect the problems a system works on, follow changes to its co
 
 ## Release snapshot — v0.1.0
 
-As of **20 November 2026**, the collection contains **2,578 task packages** across **446 task families** and **11 research domains**, drawing on a **98-paper research corpus** and supplementary scientific collections.
+As of **27 November 2026**, the collection contains **2,578 task packages** across **489 task families** and **11 research domains**, drawing on a **98-paper research corpus** and supplementary scientific collections.
 
-Our contribution is turning research problems into task packages with a shared evaluation interface. Of the **2,324 packages with executable evaluator definitions**, **95.27% use evaluators implemented or adapted in the task library**; **4.73% reuse upstream evaluators**.
+Our contribution is turning research problems into task packages with a shared evaluation interface. Of the **2,405 packages with executable evaluator definitions**, **95.30% use evaluators implemented or adapted in the task library**; **4.70% reuse upstream evaluators**.
 
 | How evaluation is provided | Task packages | Share of the full catalog |
 | --- | ---: | ---: |
-| Implemented or adapted in the task library | **2,214** | **85.88%** |
-| Reused from upstream implementations | 110 | 4.27% |
-| Research tasks awaiting evaluation integration | 254 | 9.85% |
+| Implemented or adapted in the task library | **2,292** | **88.91%** |
+| Reused from upstream implementations | 113 | 4.38% |
+| Research tasks awaiting evaluation integration | 173 | 6.71% |
 | **Total** | **2,578** | **100.00%** |
 
-Evaluator definitions cover **90.15%** of the catalog. **1,285** adapted definitions are recorded as verified reconstructions. Recorded numeric seed baselines are available for **963 packages (37.35%)**; **100 (3.88%)** include published numeric references.
+Evaluator definitions cover **93.29%** of the catalog. **1,296** adapted definitions are recorded as verified reconstructions. Recorded numeric seed baselines are available for **963 packages (37.35%)**; **100 (3.88%)** include published numeric references.
 
 Counts refer to task packages, including distinct parameter settings and protocols. The split describes evaluator implementation; validation and runtime requirements are recorded separately for each task.
 

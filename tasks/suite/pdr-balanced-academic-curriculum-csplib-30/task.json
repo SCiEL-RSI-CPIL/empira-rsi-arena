@@ -7,12 +7,17 @@
     "pdr"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2607.28268",
       "type": "paper",
-      "locator": "Section 5, Experimental setup"
+      "locator": "Section 5 (Experiments: problem list, Configurations, Instances and Measures) and Appendices A-B"
+    },
+    {
+      "url": "https://www.csplib.org/Problems/prob030/",
+      "type": "benchmark",
+      "locator": "CSPLib problem 30 (balanced academic curriculum): specification and reference model translated by the local baseline"
     }
   ],
   "requirements": {
@@ -28,13 +33,13 @@
     ]
   },
   "evaluation": {
-    "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
+    "metric": "score",
     "paper_metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
     "paper_direction": "maximize",
     "direction": "maximize",
     "benchmark": "CSPLib / AutoIG",
     "protocol": "specified_only",
-    "source_locator": "Section 5, Experimental setup"
+    "source_locator": "Section 5 (Experiments: problem list, Configurations, Instances and Measures) and Appendices A-B"
   },
   "execution": {
     "repository": null,
@@ -50,8 +55,8 @@
       "Paper says code and detailed results will be made publicly available; no release URL supplied."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "csplib_reformulation_bacp",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -59,17 +64,16 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "toolchain:CSPLib / AutoIG"
+        "py:numpy",
+        "py:cpmpy",
+        "py:ortools"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "toolchain",
-      "unsupported_reason": "Evaluation depends on an external toolchain (CSPLib / AutoIG) that is not bundled."
+      "timeout": 240,
+      "validity_key": "valid"
     }
   },
   "limitations": [
     "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.",
     "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
   ],
   "source_specification": {
@@ -81,7 +85,7 @@
     "metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
     "direction": "maximize",
     "source_url": "https://arxiv.org/pdf/2607.28268",
-    "source_locator": "Section 5, Experimental setup",
+    "source_locator": "Section 5 (Experiments: problem list, Configurations, Instances and Measures) and Appendices A-B",
     "upstream_path": null,
     "requirements": [
       "CPMpy",
@@ -106,11 +110,11 @@
     "artifact": "program",
     "domain": "combinatorial_optimisation",
     "area": "optimization",
-    "data": "public_benchmark",
-    "verification": "none",
+    "data": "synthetic",
+    "verification": "simulation",
     "reference": "none",
     "resources": [
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false

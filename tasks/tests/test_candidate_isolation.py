@@ -13,7 +13,7 @@ sys.path[:0] = [str(ROOT / "suite/_lib")]
 from autoresearch_suite import runtime, sandboxed
 
 # Library modules that run candidate code in a child process, and the wrappers that use them.
-SANDBOX = re.compile(r"software_sandbox|chem_sandbox|earth_sandbox|bio_physics_common|finance_sandbox|run_sandboxed")
+SANDBOX = re.compile(r"software_sandbox|chem_sandbox|earth_sandbox|bio_physics_common|finance_sandbox|run_sandboxed|clrs_sandbox|kaggle_sandbox")
 LIBRARY = ROOT / "suite/_lib/autoresearch_suite"
 SANDBOXED = {path.stem for path in LIBRARY.glob("*.py") if SANDBOX.search(path.read_text())}
 NASH = "science-economics-maximum-nash-welfare"

@@ -1318,15 +1318,17 @@
     },
     {
       "id": "agentsquare-alfworld",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_textenv",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:ALFWorld"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python",
+        "file:data/agent_bench/alfworld/games.json"
       ],
-      "timeout": 30,
+      "timeout": 3600,
       "paper_ids": [
         "agentsquare"
       ],
@@ -1334,14 +1336,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "language",
+        "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -1349,15 +1350,16 @@
     },
     {
       "id": "agentsquare-m3tooleval",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_m3tool",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:M3ToolEval"
+        "network:openrouter",
+        "file:data/agent_bench/m3tooleval/tasks/base.py"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "agentsquare"
       ],
@@ -1365,14 +1367,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "language",
+        "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -1380,15 +1381,18 @@
     },
     {
       "id": "agentsquare-pddl",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_textenv",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:PDDL"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python",
+        "file:data/agent_bench/agentboard/pddl_env/pddl_env.py",
+        "file:data/agent_bench/agentboard/pddl-test.jsonl"
       ],
-      "timeout": 30,
+      "timeout": 3600,
       "paper_ids": [
         "agentsquare"
       ],
@@ -1396,14 +1400,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "language",
+        "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -1411,15 +1414,19 @@
     },
     {
       "id": "agentsquare-scienceworld",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_textenv",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:ScienceWorld"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python",
+        "file:data/agent_bench/agentboard/scienceworld-test.jsonl",
+        "file:data/agent_bench/agentboard/prompts/scienceworld_base.json",
+        "bin:java"
       ],
-      "timeout": 30,
+      "timeout": 3600,
       "paper_ids": [
         "agentsquare"
       ],
@@ -1427,14 +1434,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "language",
+        "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -1442,15 +1448,23 @@
     },
     {
       "id": "agentsquare-travelplanner",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_travel",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:TravelPlanner"
+        "network:openrouter",
+        "py:pandas",
+        "file:data/agent_bench/travel/flights.csv",
+        "file:data/llm_bench/travelplanner_validation.json",
+        "file:data/llm_bench/travel_accommodations.csv",
+        "file:data/llm_bench/travel_restaurants.csv",
+        "file:data/llm_bench/travel_attractions.csv",
+        "file:data/llm_bench/travel_distance.csv",
+        "file:data/llm_bench/travel_city_states.txt"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "agentsquare"
       ],
@@ -1458,14 +1472,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "language",
+        "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -4808,15 +4821,17 @@
     },
     {
       "id": "cocoevo-leetcode-contest",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_bench_code",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:80 weekly/biweekly contest problems"
+        "network:openrouter",
+        "py:sortedcontainers",
+        "file:data/llm_bench/leetcode_contest.json"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "cocoevo"
       ],
@@ -4824,14 +4839,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "language",
-        "area": "language_and_agents",
+        "domain": "software_engineering",
+        "area": "software_engineering",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -5307,14 +5321,18 @@
     },
     {
       "id": "coral-frontier-cs-polyominoes-packing",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "frontier_cs_polyomino",
       "direction": "maximize",
       "requires": [
-        "toolchain:Frontier-CS judge",
-        "docker"
+        "py:numpy",
+        "bin:g++",
+        "file:data/or_csp/frontier_cs_0/chk.cc",
+        "file:data/or_csp/frontier_cs_0/testlib.h",
+        "file:data/or_csp/frontier_cs_0/1.in",
+        "file:data/or_csp/frontier_cs_0/70.in"
       ],
-      "timeout": 30,
+      "timeout": 300,
       "paper_ids": [
         "coral"
       ],
@@ -5325,11 +5343,10 @@
         "domain": "combinatorial_optimisation",
         "area": "optimization",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "exact",
         "reference": "none",
         "resources": [
-          "docker",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -10831,15 +10848,18 @@
     },
     {
       "id": "dgm-aider-polyglot",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "polyglot_agent",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
+        "docker",
         "env:OPENROUTER_API_KEY",
-        "environment:Aider Polyglot"
+        "network:openrouter",
+        "file:data/polyglot/manifest.json",
+        "file:data/polyglot/subsets/small.json"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "dgm",
         "gea",
@@ -10852,11 +10872,11 @@
         "domain": "software_engineering",
         "area": "software_engineering",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "docker",
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -15433,30 +15453,30 @@
     },
     {
       "id": "elm-single-step-code-bug-repair",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_code",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:Single-step code bug repair"
+        "network:openrouter",
+        "py:sortedcontainers"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "elm"
       ],
       "labels": {
         "scientific_contribution": "benchmark",
         "science_tier": 3,
-        "artifact": "prompt",
-        "domain": "language",
-        "area": "language_and_agents",
+        "artifact": "agent",
+        "domain": "software_engineering",
+        "area": "software_engineering",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -15464,13 +15484,14 @@
     },
     {
       "id": "elm-sodarace-walker-program-evolution",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "sodarace_walker_design",
       "direction": "maximize",
       "requires": [
-        "environment:Sodarace"
+        "py:numpy",
+        "py:Box2D"
       ],
-      "timeout": 30,
+      "timeout": 120,
       "paper_ids": [
         "elm",
         "lmx"
@@ -15482,10 +15503,10 @@
         "domain": "games",
         "area": "games",
         "data": "simulator",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "simulator"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -15549,13 +15570,14 @@
     },
     {
       "id": "enpire-gym-pusht-simulation",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "pusht_heuristic_controller",
       "direction": "maximize",
       "requires": [
-        "hardware:Gym-PushT simulation"
+        "py:numpy",
+        "file:../../.cache/sim_control-env/bin/python"
       ],
-      "timeout": 30,
+      "timeout": 600,
       "paper_ids": [
         "enpire"
       ],
@@ -15565,11 +15587,11 @@
         "artifact": "policy",
         "domain": "robotics",
         "area": "robotics_and_control",
-        "data": "real_measurements",
-        "verification": "none",
+        "data": "simulator",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -15745,13 +15767,13 @@
     },
     {
       "id": "eob-eob-bbob-benchmark-synthesis",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "eob_benchmark_synthesis",
       "direction": "maximize",
       "requires": [
-        "dataset:COCO-BBOB / MetaBox"
+        "py:numpy"
       ],
-      "timeout": 30,
+      "timeout": 300,
       "paper_ids": [
         "eob"
       ],
@@ -15761,11 +15783,11 @@
         "artifact": "program",
         "domain": "continuous_optimisation",
         "area": "optimization",
-        "data": "undistributed",
-        "verification": "none",
+        "data": "synthetic",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -17377,13 +17399,14 @@
     },
     {
       "id": "eureka-ballbalance",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "isaac_ballbalance_reward_design",
       "direction": "maximize",
       "requires": [
-        "environment:Isaac Gym"
+        "py:numpy",
+        "py:mujoco"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "eureka"
       ],
@@ -17394,10 +17417,10 @@
         "domain": "robotics",
         "area": "robotics_and_control",
         "data": "simulator",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "simulator"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -18204,14 +18227,19 @@
     },
     {
       "id": "eurekagent-jigsaw-toxic-comment",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "kaggle_jigsaw_toxic",
       "direction": "maximize",
       "requires": [
-        "dataset:MLE-bench",
-        "hardware:gpu"
+        "py:numpy",
+        "py:sklearn",
+        "py:pandas",
+        "py:psutil",
+        "file:data/kaggle/jigsaw/public/train.csv",
+        "file:data/kaggle/jigsaw/public/test.csv",
+        "file:data/kaggle/jigsaw/private/test_labels.csv"
       ],
-      "timeout": 30,
+      "timeout": 780,
       "paper_ids": [
         "eurekagent"
       ],
@@ -18221,12 +18249,11 @@
         "artifact": "model",
         "domain": "machine_learning",
         "area": "machine_learning",
-        "data": "undistributed",
-        "verification": "none",
+        "data": "public_benchmark",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -18912,15 +18939,17 @@
     },
     {
       "id": "evoor-agent-nlp4lp",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:NLP4LP"
+        "network:openrouter",
+        "file:data/llm_bench/nlp4lp.json",
+        "py:scipy"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "evoor-agent"
       ],
@@ -18931,11 +18960,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -18943,15 +18971,17 @@
     },
     {
       "id": "evoor-agent-resocratic",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:ReSocratic"
+        "network:openrouter",
+        "file:data/llm_bench/resocratic.json",
+        "py:scipy"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "evoor-agent"
       ],
@@ -18962,11 +18992,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -19595,14 +19624,15 @@
     },
     {
       "id": "evoprompting-activity-selector",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/activity_selector.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -19613,11 +19643,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -19655,14 +19684,15 @@
     },
     {
       "id": "evoprompting-bellman-ford",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/bellman_ford.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -19673,11 +19703,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -19685,14 +19714,15 @@
     },
     {
       "id": "evoprompting-bfs",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/bfs.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -19703,11 +19733,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -19715,14 +19744,15 @@
     },
     {
       "id": "evoprompting-binary-search",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/binary_search.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -19733,11 +19763,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -19865,14 +19894,15 @@
     },
     {
       "id": "evoprompting-dijkstra",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/dijkstra.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -19883,11 +19913,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -19895,14 +19924,15 @@
     },
     {
       "id": "evoprompting-find-maximum-subarray-kadane",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/find_maximum_subarray_kadane.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -19913,11 +19943,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -19925,14 +19954,15 @@
     },
     {
       "id": "evoprompting-floyd-warshall",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/floyd_warshall.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -19943,11 +19973,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -19955,14 +19984,15 @@
     },
     {
       "id": "evoprompting-graham-scan",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/graham_scan.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -19973,11 +20003,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -20015,14 +20044,15 @@
     },
     {
       "id": "evoprompting-insertion-sort",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/insertion_sort.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -20033,11 +20063,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -20105,14 +20134,15 @@
     },
     {
       "id": "evoprompting-lcs-length",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/lcs_length.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -20123,11 +20153,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -20135,14 +20164,15 @@
     },
     {
       "id": "evoprompting-matrix-chain-order",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/matrix_chain_order.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -20153,11 +20183,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -20225,14 +20254,15 @@
     },
     {
       "id": "evoprompting-mst-kruskal",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/mst_kruskal.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -20243,11 +20273,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -20255,14 +20284,15 @@
     },
     {
       "id": "evoprompting-mst-prim",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/mst_prim.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -20273,11 +20303,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -20405,14 +20434,15 @@
     },
     {
       "id": "evoprompting-optimal-bst",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/optimal_bst.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -20423,11 +20453,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -20495,14 +20524,15 @@
     },
     {
       "id": "evoprompting-segments-intersect",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/segments_intersect.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -20513,11 +20543,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -20555,14 +20584,15 @@
     },
     {
       "id": "evoprompting-task-scheduling",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/task_scheduling.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -20573,11 +20603,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -20585,14 +20614,15 @@
     },
     {
       "id": "evoprompting-topological-sort",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "clrs_processor",
       "direction": "maximize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CLRS"
+        "py:numpy",
+        "py:torch",
+        "file:data/clrs/topological_sort.npz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "evoprompting"
       ],
@@ -20603,11 +20633,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -21049,13 +21078,15 @@
     },
     {
       "id": "evox-telemetry-repair",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_tools_telemetry",
       "direction": "maximize",
       "requires": [
-        "dataset:ADRS private task"
+        "py:numpy",
+        "py:psutil",
+        "file:data/llm_tools/telemetry/evaluation_data.csv"
       ],
-      "timeout": 30,
+      "timeout": 180,
       "paper_ids": [
         "evox",
         "adaevolve"
@@ -21063,14 +21094,14 @@
       "labels": {
         "scientific_contribution": "engineering",
         "science_tier": 3,
-        "artifact": "model",
-        "domain": "machine_learning",
-        "area": "machine_learning",
-        "data": "undistributed",
-        "verification": "none",
-        "reference": "none",
+        "artifact": "program",
+        "domain": "systems",
+        "area": "systems_and_hardware",
+        "data": "public_benchmark",
+        "verification": "exact",
+        "reference": "published_value",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -22325,15 +22356,27 @@
     },
     {
       "id": "gepa-ifbench",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_ifbench",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:IFBench"
+        "network:openrouter",
+        "py:nltk",
+        "py:spacy",
+        "py:en_core_web_sm",
+        "py:emoji",
+        "py:syllapy",
+        "py:langdetect",
+        "py:immutabledict",
+        "file:data/llm_bench/ifbench_test.json",
+        "file:data/llm_bench/ifbench_checkers/instructions_registry.py",
+        "file:data/llm_bench/nltk_data/tokenizers/punkt_tab.zip",
+        "file:data/llm_bench/nltk_data/corpora/stopwords.zip",
+        "file:data/llm_bench/nltk_data/taggers/averaged_perceptron_tagger_eng.zip"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "gepa",
         "pairwise-validator"
@@ -22345,11 +22388,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -22389,15 +22431,16 @@
     },
     {
       "id": "gepa-pupa",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_pupa",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:PUPA"
+        "network:openrouter",
+        "file:data/llm_bench/pupa_test.json"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "gepa",
         "pairwise-validator"
@@ -22405,15 +22448,14 @@
       "labels": {
         "scientific_contribution": "benchmark",
         "science_tier": 3,
-        "artifact": "prompt",
+        "artifact": "agent",
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -24977,15 +25019,16 @@
     },
     {
       "id": "hsi-babaisai-breakstop",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_balrog",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:BALROG"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python"
       ],
-      "timeout": 30,
+      "timeout": 3600,
       "paper_ids": [
         "hsi"
       ],
@@ -24993,14 +25036,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "games",
+        "area": "games",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -25008,15 +25050,16 @@
     },
     {
       "id": "hsi-babaisai-goto",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_balrog",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:BALROG"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python"
       ],
-      "timeout": 30,
+      "timeout": 3600,
       "paper_ids": [
         "hsi"
       ],
@@ -25024,14 +25067,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "games",
+        "area": "games",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -25039,15 +25081,16 @@
     },
     {
       "id": "hsi-babaisai-make",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_balrog",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:BALROG"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python"
       ],
-      "timeout": 30,
+      "timeout": 3600,
       "paper_ids": [
         "hsi"
       ],
@@ -25055,14 +25098,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "games",
+        "area": "games",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -25070,15 +25112,16 @@
     },
     {
       "id": "hsi-babyai",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_balrog",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:BALROG"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python"
       ],
-      "timeout": 30,
+      "timeout": 3600,
       "paper_ids": [
         "hsi"
       ],
@@ -25086,14 +25129,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "games",
+        "area": "games",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -25101,15 +25143,16 @@
     },
     {
       "id": "hsi-crafter",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_balrog",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:BALROG"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python"
       ],
-      "timeout": 30,
+      "timeout": 3600,
       "paper_ids": [
         "hsi"
       ],
@@ -25117,14 +25160,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "games",
+        "area": "games",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -25132,15 +25174,17 @@
     },
     {
       "id": "hsi-minihack",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_balrog",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:BALROG"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python",
+        "file:data/agent_bench/minihack/boxoban-levels-master/hard/000.txt"
       ],
-      "timeout": 30,
+      "timeout": 3600,
       "paper_ids": [
         "hsi"
       ],
@@ -25148,14 +25192,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "games",
+        "area": "games",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -25226,43 +25269,16 @@
     },
     {
       "id": "hyperagents-conference-paper-acceptance-prediction",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "direction": "maximize",
       "requires": [
-        "dataset:Conference paper acceptance prediction"
-      ],
-      "timeout": 30,
-      "paper_ids": [
-        "hyperagents"
-      ],
-      "labels": {
-        "scientific_contribution": "engineering",
-        "science_tier": 3,
-        "artifact": "model",
-        "domain": "machine_learning",
-        "area": "machine_learning",
-        "data": "undistributed",
-        "verification": "none",
-        "reference": "none",
-        "resources": [
-          "unavailable"
-        ],
-        "cost": "not_run",
-        "important_to_science": false
-      }
-    },
-    {
-      "id": "hyperagents-imo-gradingbench",
-      "protocol": "unsupported",
-      "family": null,
-      "direction": "maximize",
-      "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:IMO-GradingBench"
+        "network:openrouter",
+        "file:data/llm_bench/paper_review_test.json.gz"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "hyperagents"
       ],
@@ -25270,14 +25286,44 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "software_engineering",
-        "area": "software_engineering",
+        "domain": "language",
+        "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
+        ],
+        "cost": "not_run",
+        "important_to_science": false
+      }
+    },
+    {
+      "id": "hyperagents-imo-gradingbench",
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
+      "direction": "maximize",
+      "requires": [
+        "py:numpy",
+        "env:OPENROUTER_API_KEY",
+        "network:openrouter",
+        "file:data/llm_bench/gradingbench_test.json"
+      ],
+      "timeout": 900,
+      "paper_ids": [
+        "hyperagents"
+      ],
+      "labels": {
+        "scientific_contribution": "benchmark",
+        "science_tier": 3,
+        "artifact": "agent",
+        "domain": "language",
+        "area": "language_and_agents",
+        "data": "public_benchmark",
+        "verification": "sampled",
+        "reference": "none",
+        "resources": [
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -27780,14 +27826,18 @@
     },
     {
       "id": "l-autoda-cifar-10-decision-based-adversarial-attack",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_tools_autoda",
       "direction": "minimize",
       "requires": [
-        "hardware:gpu",
-        "dataset:CIFAR-10 decision-based adversarial attack"
+        "py:numpy",
+        "py:torch",
+        "py:psutil",
+        "file:data/llm_tools/autoda/resnet18_cifar10.bin",
+        "file:data/llm_tools/autoda/images.npy",
+        "file:data/llm_tools/autoda/attack_sets.json"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "l-autoda"
       ],
@@ -27798,11 +27848,10 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "public_benchmark",
-        "verification": "none",
-        "reference": "none",
+        "verification": "exact",
+        "reference": "published_value",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -27810,13 +27859,14 @@
     },
     {
       "id": "lasr-big-bench-llm-scaling-law-discovery",
-      "protocol": "unsupported",
-      "family": null,
-      "direction": "maximize",
+      "protocol": "recreated",
+      "family": "bigbench_scaling_law",
+      "direction": "minimize",
       "requires": [
-        "dataset:BIG-Bench"
+        "py:numpy",
+        "file:data/metaopt/bigbench_mcg.csv.gz"
       ],
-      "timeout": 30,
+      "timeout": 300,
       "paper_ids": [
         "lasr"
       ],
@@ -27827,13 +27877,13 @@
         "domain": "machine_learning",
         "area": "machine_learning",
         "data": "real_measurements",
-        "verification": "none",
+        "verification": "exact",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
-        "important_to_science": false
+        "important_to_science": true
       }
     },
     {
@@ -27896,13 +27946,22 @@
     },
     {
       "id": "limen-easy-pickup",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "original",
+      "family": "limen_xland_easy_pickup",
       "direction": "maximize",
       "requires": [
-        "environment:XLand-MiniGrid"
+        "py:numpy",
+        "py:jax",
+        "py:flax",
+        "py:distrax",
+        "py:xminigrid",
+        "py:openai",
+        "py:dacite",
+        "py:yaml",
+        "py:psutil",
+        "file:data/jax_station/limen-cf0b44da/limen/evaluator.py"
       ],
-      "timeout": 30,
+      "timeout": 600,
       "paper_ids": [
         "limen"
       ],
@@ -27910,13 +27969,13 @@
         "scientific_contribution": "engineering",
         "science_tier": 3,
         "artifact": "reward",
-        "domain": "robotics",
-        "area": "robotics_and_control",
+        "domain": "machine_learning",
+        "area": "machine_learning",
         "data": "simulator",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "simulator"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -27952,13 +28011,22 @@
     },
     {
       "id": "limen-hard-rule-chain",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "original",
+      "family": "limen_xland_hard_rule_chain",
       "direction": "maximize",
       "requires": [
-        "environment:XLand-MiniGrid"
+        "py:numpy",
+        "py:jax",
+        "py:flax",
+        "py:distrax",
+        "py:xminigrid",
+        "py:openai",
+        "py:dacite",
+        "py:yaml",
+        "py:psutil",
+        "file:data/jax_station/limen-cf0b44da/limen/evaluator.py"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "limen"
       ],
@@ -27966,13 +28034,13 @@
         "scientific_contribution": "engineering",
         "science_tier": 3,
         "artifact": "reward",
-        "domain": "robotics",
-        "area": "robotics_and_control",
+        "domain": "machine_learning",
+        "area": "machine_learning",
         "data": "simulator",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "simulator"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -27980,13 +28048,22 @@
     },
     {
       "id": "limen-medium-place-near",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "original",
+      "family": "limen_xland_medium_place_near",
       "direction": "maximize",
       "requires": [
-        "environment:XLand-MiniGrid"
+        "py:numpy",
+        "py:jax",
+        "py:flax",
+        "py:distrax",
+        "py:xminigrid",
+        "py:openai",
+        "py:dacite",
+        "py:yaml",
+        "py:psutil",
+        "file:data/jax_station/limen-cf0b44da/limen/evaluator.py"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "limen"
       ],
@@ -27994,13 +28071,13 @@
         "scientific_contribution": "engineering",
         "science_tier": 3,
         "artifact": "reward",
-        "domain": "robotics",
-        "area": "robotics_and_control",
+        "domain": "machine_learning",
+        "area": "machine_learning",
         "data": "simulator",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "simulator"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -31548,15 +31625,18 @@
     },
     {
       "id": "lmx-gore-vidal-sentence-sentiment",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_bench_lmx",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
-        "env:OPENROUTER_API_KEY",
-        "dataset:Gore Vidal sentence sentiment"
+        "py:numpy",
+        "py:torch",
+        "py:transformers",
+        "py:sentence_transformers",
+        "model:cardiffnlp/twitter-roberta-base-sentiment-latest@3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+        "model:sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
       ],
-      "timeout": 30,
+      "timeout": 600,
       "paper_ids": [
         "lmx"
       ],
@@ -31566,11 +31646,10 @@
         "artifact": "prompt",
         "domain": "language",
         "area": "language_and_agents",
-        "data": "public_benchmark",
-        "verification": "none",
+        "data": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "model_api",
           "unavailable"
         ],
         "cost": "not_run",
@@ -31579,15 +31658,18 @@
     },
     {
       "id": "lmx-homer-simpson-sentence-sentiment",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_bench_lmx",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
-        "env:OPENROUTER_API_KEY",
-        "dataset:Homer Simpson sentence sentiment"
+        "py:numpy",
+        "py:torch",
+        "py:transformers",
+        "py:sentence_transformers",
+        "model:cardiffnlp/twitter-roberta-base-sentiment-latest@3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+        "model:sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
       ],
-      "timeout": 30,
+      "timeout": 600,
       "paper_ids": [
         "lmx"
       ],
@@ -31597,11 +31679,10 @@
         "artifact": "prompt",
         "domain": "language",
         "area": "language_and_agents",
-        "data": "public_benchmark",
-        "verification": "none",
+        "data": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "model_api",
           "unavailable"
         ],
         "cost": "not_run",
@@ -31817,15 +31898,18 @@
     },
     {
       "id": "lmx-woody-allen-sentence-sentiment",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_bench_lmx",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
-        "env:OPENROUTER_API_KEY",
-        "dataset:Woody Allen sentence sentiment"
+        "py:numpy",
+        "py:torch",
+        "py:transformers",
+        "py:sentence_transformers",
+        "model:cardiffnlp/twitter-roberta-base-sentiment-latest@3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+        "model:sentence-transformers/all-MiniLM-L6-v2@1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
       ],
-      "timeout": 30,
+      "timeout": 600,
       "paper_ids": [
         "lmx"
       ],
@@ -31835,11 +31919,10 @@
         "artifact": "prompt",
         "domain": "language",
         "area": "language_and_agents",
-        "data": "public_benchmark",
-        "verification": "none",
+        "data": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "model_api",
           "unavailable"
         ],
         "cost": "not_run",
@@ -31879,14 +31962,19 @@
     },
     {
       "id": "loongflow-denoising-dirty-documents",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "kaggle_noisyoffice_denoising",
       "direction": "minimize",
       "requires": [
-        "dataset:MLE-bench",
-        "hardware:gpu"
+        "py:numpy",
+        "py:pandas",
+        "py:psutil",
+        "file:data/kaggle/noisyoffice/public/train_noisy.npz",
+        "file:data/kaggle/noisyoffice/public/train_clean.npz",
+        "file:data/kaggle/noisyoffice/public/test_noisy.npz",
+        "file:data/kaggle/noisyoffice/private/test_clean.npz"
       ],
-      "timeout": 30,
+      "timeout": 480,
       "paper_ids": [
         "loongflow"
       ],
@@ -31896,12 +31984,11 @@
         "artifact": "model",
         "domain": "machine_learning",
         "area": "machine_learning",
-        "data": "undistributed",
-        "verification": "none",
+        "data": "public_benchmark",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -31999,14 +32086,19 @@
     },
     {
       "id": "loongflow-histopathologic-cancer-detection",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "kaggle_pcam_histopathology",
       "direction": "maximize",
       "requires": [
-        "dataset:MLE-bench",
-        "hardware:gpu"
+        "py:numpy",
+        "py:sklearn",
+        "py:pandas",
+        "py:psutil",
+        "file:data/kaggle/pcam/public/train.npz",
+        "file:data/kaggle/pcam/public/test.npz",
+        "file:data/kaggle/pcam/private/test_labels.npz"
       ],
-      "timeout": 30,
+      "timeout": 780,
       "paper_ids": [
         "loongflow",
         "eurekagent"
@@ -32015,14 +32107,13 @@
         "scientific_contribution": "engineering",
         "science_tier": 3,
         "artifact": "model",
-        "domain": "machine_learning",
-        "area": "machine_learning",
-        "data": "undistributed",
-        "verification": "none",
+        "domain": "natural_science",
+        "area": "biology",
+        "data": "real_measurements",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -32030,14 +32121,19 @@
     },
     {
       "id": "loongflow-nomad2018-predict-transparent-conductors",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "kaggle_nomad2018_conductors",
       "direction": "minimize",
       "requires": [
-        "dataset:MLE-bench",
-        "hardware:gpu"
+        "py:numpy",
+        "py:sklearn",
+        "py:pandas",
+        "py:psutil",
+        "file:data/kaggle/nomad/public/train.jsonl",
+        "file:data/kaggle/nomad/public/test.jsonl",
+        "file:data/kaggle/nomad/private/test_labels.csv"
       ],
-      "timeout": 30,
+      "timeout": 480,
       "paper_ids": [
         "loongflow"
       ],
@@ -32045,14 +32141,13 @@
         "scientific_contribution": "engineering",
         "science_tier": 3,
         "artifact": "model",
-        "domain": "machine_learning",
-        "area": "machine_learning",
-        "data": "undistributed",
-        "verification": "none",
+        "domain": "natural_science",
+        "area": "materials_science",
+        "data": "public_benchmark",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -32151,14 +32246,19 @@
     },
     {
       "id": "loongflow-stanford-covid-vaccine",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "kaggle_openvaccine_degradation",
       "direction": "minimize",
       "requires": [
-        "dataset:MLE-bench",
-        "hardware:gpu"
+        "py:numpy",
+        "py:sklearn",
+        "py:pandas",
+        "py:psutil",
+        "file:data/kaggle/openvaccine/public/train.jsonl",
+        "file:data/kaggle/openvaccine/public/test.jsonl",
+        "file:data/kaggle/openvaccine/private/test_labels.npz"
       ],
-      "timeout": 30,
+      "timeout": 480,
       "paper_ids": [
         "loongflow"
       ],
@@ -32166,14 +32266,13 @@
         "scientific_contribution": "engineering",
         "science_tier": 3,
         "artifact": "model",
-        "domain": "machine_learning",
-        "area": "machine_learning",
-        "data": "undistributed",
-        "verification": "none",
+        "domain": "natural_science",
+        "area": "biology",
+        "data": "real_measurements",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -32241,14 +32340,20 @@
     },
     {
       "id": "loongflow-us-patent-phrase-to-phrase-matching",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "kaggle_patent_phrase_matching",
       "direction": "maximize",
       "requires": [
-        "dataset:MLE-bench",
-        "hardware:gpu"
+        "py:numpy",
+        "py:sklearn",
+        "py:pandas",
+        "py:scipy",
+        "py:psutil",
+        "file:data/kaggle/patent/public/train.csv",
+        "file:data/kaggle/patent/public/test.csv",
+        "file:data/kaggle/patent/private/test_labels.csv"
       ],
-      "timeout": 30,
+      "timeout": 480,
       "paper_ids": [
         "loongflow"
       ],
@@ -32258,12 +32363,11 @@
         "artifact": "model",
         "domain": "machine_learning",
         "area": "machine_learning",
-        "data": "undistributed",
-        "verification": "none",
+        "data": "public_benchmark",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -32271,13 +32375,18 @@
     },
     {
       "id": "magellan-llvm-function-inlining-for-binary-size",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llvm_inlining_size",
       "direction": "minimize",
       "requires": [
-        "toolchain:LLVM function inlining for binary size"
+        "py:numpy",
+        "bin:opt",
+        "bin:llc",
+        "bin:llvm-size",
+        "file:data/or_csp/sqlite/sqlite-amalgamation-3530400.zip",
+        "bin:clang"
       ],
-      "timeout": 30,
+      "timeout": 300,
       "paper_ids": [
         "magellan"
       ],
@@ -32288,10 +32397,10 @@
         "domain": "systems",
         "area": "systems_and_hardware",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -32355,13 +32464,18 @@
     },
     {
       "id": "magellan-xla-auto-sharding-iopddl",
-      "protocol": "unsupported",
-      "family": null,
-      "direction": "minimize",
+      "protocol": "recreated_verified",
+      "family": "iopddl_sharding",
+      "direction": "maximize",
       "requires": [
-        "toolchain:XLA auto-sharding IOPDDL"
+        "py:numpy",
+        "file:data/or_csp/iopddl/asplos-2025-iopddl-A.json.gz",
+        "file:data/or_csp/iopddl/asplos-2025-iopddl-G.json.gz",
+        "file:data/or_csp/iopddl/asplos-2025-iopddl-M.json.gz",
+        "file:data/or_csp/iopddl/asplos-2025-iopddl-S.json.gz",
+        "file:data/or_csp/iopddl/asplos-2025-iopddl-Y.json.gz"
       ],
-      "timeout": 30,
+      "timeout": 180,
       "paper_ids": [
         "magellan"
       ],
@@ -32372,10 +32486,10 @@
         "domain": "systems",
         "area": "systems_and_hardware",
         "data": "public_benchmark",
-        "verification": "none",
-        "reference": "none",
+        "verification": "exact",
+        "reference": "published_value",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -32383,13 +32497,18 @@
     },
     {
       "id": "magellan-xla-enzyme-jax-e-graph-extraction",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "egraph_extraction",
       "direction": "minimize",
       "requires": [
-        "toolchain:XLA/Enzyme-JAX e-graph extraction"
+        "py:numpy",
+        "file:data/or_csp/egraph/tensat-vgg.json.gz",
+        "file:data/or_csp/egraph/tensat-resnet50.json.gz",
+        "file:data/or_csp/egraph/tensat-bert.json.gz",
+        "file:data/or_csp/egraph/tensat-nasneta.json.gz",
+        "file:data/or_csp/egraph/tensat-nasrnn.json.gz"
       ],
-      "timeout": 30,
+      "timeout": 240,
       "paper_ids": [
         "magellan"
       ],
@@ -32400,10 +32519,10 @@
         "domain": "systems",
         "area": "systems_and_hardware",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "exact",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -32442,15 +32561,16 @@
     },
     {
       "id": "mce-finer",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:FiNER"
+        "network:openrouter",
+        "file:data/llm_bench/finer.json"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "mce",
         "meta-harness"
@@ -32462,11 +32582,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -32538,15 +32657,16 @@
     },
     {
       "id": "mce-uspto-50k",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:USPTO-50k"
+        "network:openrouter",
+        "file:data/llm_bench/uspto.json"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "mce",
         "meta-harness"
@@ -32558,11 +32678,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -32661,15 +32780,17 @@
     },
     {
       "id": "meta-harness-arxivmath",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:ArXivMath"
+        "network:openrouter",
+        "file:data/llm_bench/arxivmath.json",
+        "py:math_verify"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "meta-harness"
       ],
@@ -32680,11 +32801,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -32816,15 +32936,16 @@
     },
     {
       "id": "meta-harness-imo-proofbench",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_proof",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:IMO-ProofBench"
+        "network:openrouter",
+        "file:data/llm_bench/proofbench.json"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "meta-harness"
       ],
@@ -32832,14 +32953,13 @@
         "scientific_contribution": "benchmark",
         "science_tier": 3,
         "artifact": "agent",
-        "domain": "language",
-        "area": "language_and_agents",
+        "domain": "mathematics",
+        "area": "mathematics",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -33411,15 +33531,16 @@
     },
     {
       "id": "mind-evolution-natural-plan-meeting-planning",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_bench_plan",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:Natural Plan Meeting Planning"
+        "network:openrouter",
+        "file:data/llm_bench/meeting_planning_test.json"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "mind-evolution"
       ],
@@ -33430,11 +33551,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -33504,15 +33624,23 @@
     },
     {
       "id": "mind-evolution-travelplanner",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_bench_plan",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:TravelPlanner"
+        "network:openrouter",
+        "file:data/llm_bench/travelplanner_validation.json",
+        "file:data/llm_bench/travel_flights.csv",
+        "file:data/llm_bench/travel_accommodations.csv",
+        "file:data/llm_bench/travel_restaurants.csv",
+        "file:data/llm_bench/travel_attractions.csv",
+        "file:data/llm_bench/travel_distance.csv",
+        "file:data/llm_bench/travel_city_states.txt",
+        "py:pandas"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "mind-evolution"
       ],
@@ -33523,11 +33651,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -40831,15 +40958,20 @@
     },
     {
       "id": "mipro-hover",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_tools_hover",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:HoVer"
+        "network:openrouter",
+        "py:bm25s",
+        "py:Stemmer",
+        "py:psutil",
+        "file:data/llm_tools/hover/claims.json",
+        "file:data/llm_tools/hover/index"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "mipro",
         "gepa",
@@ -40848,15 +40980,14 @@
       "labels": {
         "scientific_contribution": "benchmark",
         "science_tier": 3,
-        "artifact": "prompt",
+        "artifact": "agent",
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -41013,13 +41144,15 @@
     },
     {
       "id": "pdr-balanced-academic-curriculum-csplib-30",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "csplib_reformulation_bacp",
       "direction": "maximize",
       "requires": [
-        "toolchain:CSPLib / AutoIG"
+        "py:numpy",
+        "py:cpmpy",
+        "py:ortools"
       ],
-      "timeout": 30,
+      "timeout": 240,
       "paper_ids": [
         "pdr"
       ],
@@ -41029,11 +41162,11 @@
         "artifact": "program",
         "domain": "combinatorial_optimisation",
         "area": "optimization",
-        "data": "public_benchmark",
-        "verification": "none",
+        "data": "synthetic",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -41041,13 +41174,15 @@
     },
     {
       "id": "pdr-balanced-incomplete-block-design-csplib-28",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "csplib_reformulation_bibd",
       "direction": "maximize",
       "requires": [
-        "toolchain:CSPLib / AutoIG"
+        "py:numpy",
+        "py:cpmpy",
+        "py:ortools"
       ],
-      "timeout": 30,
+      "timeout": 240,
       "paper_ids": [
         "pdr"
       ],
@@ -41057,11 +41192,11 @@
         "artifact": "program",
         "domain": "combinatorial_optimisation",
         "area": "optimization",
-        "data": "public_benchmark",
-        "verification": "none",
+        "data": "synthetic",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -41069,13 +41204,15 @@
     },
     {
       "id": "pdr-car-sequencing-csplib-1",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "csplib_reformulation_car_sequencing",
       "direction": "maximize",
       "requires": [
-        "toolchain:CSPLib / AutoIG"
+        "py:numpy",
+        "py:cpmpy",
+        "py:ortools"
       ],
-      "timeout": 30,
+      "timeout": 240,
       "paper_ids": [
         "pdr"
       ],
@@ -41085,11 +41222,11 @@
         "artifact": "program",
         "domain": "combinatorial_optimisation",
         "area": "optimization",
-        "data": "public_benchmark",
-        "verification": "none",
+        "data": "synthetic",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -41097,13 +41234,15 @@
     },
     {
       "id": "pdr-covering-arrays-csplib-45",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "csplib_reformulation_covering_array",
       "direction": "maximize",
       "requires": [
-        "toolchain:CSPLib / AutoIG"
+        "py:numpy",
+        "py:cpmpy",
+        "py:ortools"
       ],
-      "timeout": 30,
+      "timeout": 240,
       "paper_ids": [
         "pdr"
       ],
@@ -41113,11 +41252,11 @@
         "artifact": "program",
         "domain": "combinatorial_optimisation",
         "area": "optimization",
-        "data": "public_benchmark",
-        "verification": "none",
+        "data": "synthetic",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -41125,13 +41264,15 @@
     },
     {
       "id": "pdr-error-correction-codes-csplib-36",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "csplib_reformulation_error_correcting_codes",
       "direction": "maximize",
       "requires": [
-        "toolchain:CSPLib / AutoIG"
+        "py:numpy",
+        "py:cpmpy",
+        "py:ortools"
       ],
-      "timeout": 30,
+      "timeout": 240,
       "paper_ids": [
         "pdr"
       ],
@@ -41141,11 +41282,11 @@
         "artifact": "program",
         "domain": "combinatorial_optimisation",
         "area": "optimization",
-        "data": "public_benchmark",
-        "verification": "none",
+        "data": "synthetic",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -41153,13 +41294,15 @@
     },
     {
       "id": "pdr-social-golfer-csplib-10",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "csplib_reformulation_social_golfers",
       "direction": "maximize",
       "requires": [
-        "toolchain:CSPLib / AutoIG"
+        "py:numpy",
+        "py:cpmpy",
+        "py:ortools"
       ],
-      "timeout": 30,
+      "timeout": 240,
       "paper_ids": [
         "pdr"
       ],
@@ -41169,11 +41312,11 @@
         "artifact": "program",
         "domain": "combinatorial_optimisation",
         "area": "optimization",
-        "data": "public_benchmark",
-        "verification": "none",
+        "data": "synthetic",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -41181,13 +41324,15 @@
     },
     {
       "id": "pdr-tail-assignment-csplib-115",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "csplib_reformulation_tail_assignment",
       "direction": "maximize",
       "requires": [
-        "toolchain:CSPLib / AutoIG"
+        "py:numpy",
+        "py:cpmpy",
+        "py:ortools"
       ],
-      "timeout": 30,
+      "timeout": 240,
       "paper_ids": [
         "pdr"
       ],
@@ -41197,11 +41342,11 @@
         "artifact": "program",
         "domain": "combinatorial_optimisation",
         "area": "optimization",
-        "data": "public_benchmark",
-        "verification": "none",
+        "data": "synthetic",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -41209,13 +41354,15 @@
     },
     {
       "id": "pdr-vessel-loading-csplib-8",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "csplib_reformulation_vessel_loading",
       "direction": "maximize",
       "requires": [
-        "toolchain:CSPLib / AutoIG"
+        "py:numpy",
+        "py:cpmpy",
+        "py:ortools"
       ],
-      "timeout": 30,
+      "timeout": 240,
       "paper_ids": [
         "pdr"
       ],
@@ -41225,11 +41372,11 @@
         "artifact": "program",
         "domain": "combinatorial_optimisation",
         "area": "optimization",
-        "data": "public_benchmark",
-        "verification": "none",
+        "data": "synthetic",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -41935,15 +42082,16 @@
     },
     {
       "id": "promptbreeder-addsub",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:AddSub"
+        "network:openrouter",
+        "file:data/llm_bench/addsub.json"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "promptbreeder"
       ],
@@ -41954,11 +42102,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -42575,15 +42722,16 @@
     },
     {
       "id": "promptbreeder-singleeq",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:SingleEq"
+        "network:openrouter",
+        "file:data/llm_bench/singleeq.json"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "promptbreeder"
       ],
@@ -42594,11 +42742,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -42959,15 +43106,16 @@
     },
     {
       "id": "protegi-jailbreak",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:Jailbreak"
+        "network:openrouter",
+        "file:data/llm_bench/jailbreak.json"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "protegi"
       ],
@@ -42978,11 +43126,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -45706,15 +45853,16 @@
     },
     {
       "id": "rqgm-code-review",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:CRAVE"
+        "network:openrouter",
+        "file:data/llm_bench/crave_test.json"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "rqgm"
       ],
@@ -45725,11 +45873,10 @@
         "domain": "language",
         "area": "language_and_agents",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "unavailable"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -59874,15 +60021,17 @@
     },
     {
       "id": "sica-livecodebench",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_bench_code",
       "direction": "maximize",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:LiveCodeBench"
+        "network:openrouter",
+        "py:sortedcontainers",
+        "file:data/llm_bench/livecodebench_sica.json.gz"
       ],
-      "timeout": 30,
+      "timeout": 1800,
       "paper_ids": [
         "sica"
       ],
@@ -59893,11 +60042,10 @@
         "domain": "software_engineering",
         "area": "software_engineering",
         "data": "public_benchmark",
-        "verification": "none",
+        "verification": "sampled",
         "reference": "none",
         "resources": [
-          "model_api",
-          "simulator"
+          "model_api"
         ],
         "cost": "not_run",
         "important_to_science": false
@@ -74155,29 +74303,34 @@
     },
     {
       "id": "the-station-zapbench-neural-activity-prediction",
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "station_zapbench_forecasting",
       "direction": "minimize",
       "requires": [
-        "dataset:ZAPBench neural activity prediction",
-        "hardware:gpu"
+        "py:numpy",
+        "py:jax",
+        "py:flatbuffers",
+        "py:flax",
+        "py:optax",
+        "py:psutil",
+        "file:data/jax_station/zapbench/trainval/train.npy",
+        "file:data/jax_station/zapbench/test/test.npy"
       ],
-      "timeout": 30,
+      "timeout": 900,
       "paper_ids": [
         "the-station"
       ],
       "labels": {
         "scientific_contribution": "discovery",
         "science_tier": 1,
-        "artifact": "program",
+        "artifact": "model",
         "domain": "natural_science",
         "area": "biology",
         "data": "real_measurements",
-        "verification": "none",
+        "verification": "simulation",
         "reference": "none",
         "resources": [
-          "gpu",
-          "unavailable"
+          "cpu"
         ],
         "cost": "not_run",
         "important_to_science": false

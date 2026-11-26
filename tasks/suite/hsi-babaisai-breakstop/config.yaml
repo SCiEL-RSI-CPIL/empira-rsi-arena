@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 3600
   max_retries: 2
 
 prompt:
   system_message: |
     BabaIsAI BreakStop
 
-    BabaIsAI BreakStop
+    Write a Python act(instruction, observation, valid_actions, history, llm) agent that picks each next text action in BALROG's BabaIsAI rule-manipulation puzzles, using a budgeted OpenRouter model client; scored by the fraction of 6 seeded episodes (3 for each of the 2 tasks of HSI's BreakStop test split, at most 40 steps each) that are won (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: BALROG BabaIsAI, the 2 tasks of HSI's held-out test split of the breakstop suite (dev_ratio 0.8, split_seed 66), 3 seeded episodes per task (6 episodes), at most 40 steps each. Episode score: 1 when the level is won, else 0 (BALROG progression). Score: mean over the episodes; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

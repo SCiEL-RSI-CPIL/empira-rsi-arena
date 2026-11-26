@@ -1,0 +1,580 @@
+{
+  "schema_version": "1.0",
+  "checked_on": "2026-10-09",
+  "paper_text_sha256": "61731b3413902656d63ade470e2f6210611ac3976ee0c30fe6eedd5d1cca48b2",
+  "module_sha256": "c3b95ec55ffc2efbc6e36c555bd07662923a4e3574290e4fdeb6c0c93ece3465",
+  "models": {
+    "sentiment": {
+      "repo": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+      "revision": "3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+      "files": [
+        "config.json",
+        "merges.txt",
+        "vocab.json",
+        "special_tokens_map.json",
+        "pytorch_model.bin"
+      ],
+      "weights": {
+        "pytorch_model.bin": "4d24a3e32a88ed1c4e5b789fc6644e2e767500554e954b27dccf52a8e762cbae"
+      },
+      "license": "CC-BY-4.0"
+    },
+    "embedding": {
+      "repo": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "files": [
+        "modules.json",
+        "config_sentence_transformers.json",
+        "sentence_bert_config.json",
+        "config.json",
+        "model.safetensors",
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "vocab.txt",
+        "special_tokens_map.json",
+        "1_Pooling/config.json"
+      ],
+      "weights": {
+        "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db"
+      },
+      "license": "Apache-2.0"
+    }
+  },
+  "tolerances": {
+    "positivity": 0.0015,
+    "distance": 0.0055
+  },
+  "max_distance": 1.25,
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.14.0",
+    "transformers": "5.17.0",
+    "sentence_transformers": "6.1.0"
+  },
+  "scope": "Paper rows are LMX's printed Pareto fronts (Tables 3-5). Agreement shows that the pinned models reproduce the paper's printed positivity and distance for these sentences; it does not reproduce the paper's search or QD scores.",
+  "tables": {
+    "table_3": {
+      "task": "lmx-homer-simpson-sentence-sentiment",
+      "rows": 21,
+      "positivity_within_tolerance": 20,
+      "normalised_distance_within_tolerance": 19,
+      "max_positivity_difference": 0.001717,
+      "max_normalised_distance_difference": 0.019195,
+      "max_notebook_difference": 2.9802322387695312e-08,
+      "row_checks": [
+        {
+          "sentence_sha256": "2074138d33d541d16b36815d988c3c160aaa4d9d3ceb5224b5cb43ca166ae5cf",
+          "paper_distance": 0.0,
+          "local_distance": 0.0,
+          "local_normalised_distance": 0.0,
+          "paper_positivity": 0.021,
+          "local_positivity": 0.020767,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "db14efc149b31ccd8f14b99c592e9ef41a949c638676ad315ead36b107f536fc",
+          "paper_distance": 0.09,
+          "local_distance": 0.112903,
+          "local_normalised_distance": 0.090323,
+          "paper_positivity": 0.023,
+          "local_positivity": 0.022875,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "59d6d314ba50c2748f98bc7027e90e302a36857a0b7eb599d255ef6c0b0d5f27",
+          "paper_distance": 0.12,
+          "local_distance": 0.150004,
+          "local_normalised_distance": 0.120003,
+          "paper_positivity": 0.049,
+          "local_positivity": 0.048635,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "48da5caf67a2bff85b277589456ca5fe8447c7db31c9062eaaa6bc34309f3de7",
+          "paper_distance": 0.2,
+          "local_distance": 0.245869,
+          "local_normalised_distance": 0.196695,
+          "paper_positivity": 0.103,
+          "local_positivity": 0.10328,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "a6a0f3ea1067b52434e0e121172593cb5f7b524436956c035edfcca629cee31a",
+          "paper_distance": 0.21,
+          "local_distance": 0.266864,
+          "local_normalised_distance": 0.213491,
+          "paper_positivity": 0.157,
+          "local_positivity": 0.157201,
+          "notebook_positivity_difference": 1.4901161193847656e-08,
+          "notebook_distance_difference": 2.9802322387695312e-08
+        },
+        {
+          "sentence_sha256": "59b8d4c598eb531cb3b9d2f8f1b0a8332d61d1acba178971e73c589bf5ccfaa9",
+          "paper_distance": 0.25,
+          "local_distance": 0.309148,
+          "local_normalised_distance": 0.247318,
+          "paper_positivity": 0.158,
+          "local_positivity": 0.158309,
+          "notebook_positivity_difference": 1.4901161193847656e-08,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "41e668ae25c24b84243b1bf431b1d17f23bd0e5c6b6ddd2a5de41eca7e5fcc22",
+          "paper_distance": 0.28,
+          "local_distance": 0.353393,
+          "local_normalised_distance": 0.282714,
+          "paper_positivity": 0.886,
+          "local_positivity": 0.886274,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "e44cbdfee8c2af613e7198718a54c03d9b5c3114c8485285bb4351ae95e98f7f",
+          "paper_distance": 0.36,
+          "local_distance": 0.445334,
+          "local_normalised_distance": 0.356267,
+          "paper_positivity": 0.901,
+          "local_positivity": 0.90069,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "4fe1e41436768f27a084640bc0853266c3b206fdf68988f629a1f76e004f7669",
+          "paper_distance": 0.42,
+          "local_distance": 0.531066,
+          "local_normalised_distance": 0.424852,
+          "paper_positivity": 0.938,
+          "local_positivity": 0.937913,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "6f9e69ba651af4ee6513733efdd68eba09a6e56f0592057f2375db0916587ac0",
+          "paper_distance": 0.46,
+          "local_distance": 0.575648,
+          "local_normalised_distance": 0.460519,
+          "paper_positivity": 0.956,
+          "local_positivity": 0.95572,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "180966c1ec6664e925ce23574066d1efd4f9d1c7ef6142c9531f0736b3bfbc4a",
+          "paper_distance": 0.5,
+          "local_distance": 0.625924,
+          "local_normalised_distance": 0.500739,
+          "paper_positivity": 0.961,
+          "local_positivity": 0.960881,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "681a8e525f9d737b8f3dc02ba004317a5196ecf580f4b386254c48b6e3d30165",
+          "paper_distance": 0.56,
+          "local_distance": 0.700849,
+          "local_normalised_distance": 0.560679,
+          "paper_positivity": 0.964,
+          "local_positivity": 0.964449,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "43a2615dfdd992ee77a00a4d28a4978dc2a95352055f3271ff730f3bf4729df9",
+          "paper_distance": 0.61,
+          "local_distance": 0.775664,
+          "local_normalised_distance": 0.620532,
+          "paper_positivity": 0.983,
+          "local_positivity": 0.981283,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "b21ab29f11879f21db85f59a7043d94445cf071b64665144ac66adba16a7d4cb",
+          "paper_distance": 0.72,
+          "local_distance": 0.923993,
+          "local_normalised_distance": 0.739195,
+          "paper_positivity": 0.987,
+          "local_positivity": 0.986656,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "cca8e0a44abf1e627c2d6145ab790119b5b4323f9c78061f10c8d6251d8a6d0d",
+          "paper_distance": 0.79,
+          "local_distance": 0.987039,
+          "local_normalised_distance": 0.789632,
+          "paper_positivity": 0.989,
+          "local_positivity": 0.987843,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "904315fa6ac3013681e41618e33a5b4f666f1ddddc93c766f55ee740c53197f0",
+          "paper_distance": 0.83,
+          "local_distance": 1.041254,
+          "local_normalised_distance": 0.833003,
+          "paper_positivity": 0.989,
+          "local_positivity": 0.989457,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "58bfc2cf3bf1cd47afdae1d7fa93814d91afc44a1b3da72fc362308416342737",
+          "paper_distance": 0.86,
+          "local_distance": 1.081012,
+          "local_normalised_distance": 0.86481,
+          "paper_positivity": 0.99,
+          "local_positivity": 0.989934,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "26bf3f36433eb0ee3354d8297f8b2e1ab420cdfac637ca707f5e4ab14dd57c67",
+          "paper_distance": 0.89,
+          "local_distance": 1.113833,
+          "local_normalised_distance": 0.891066,
+          "paper_positivity": 0.991,
+          "local_positivity": 0.990856,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "1fb6a6a76f8f6bede87627e84639cb6e6de5399496cf37d61ab4237cdf622486",
+          "paper_distance": 0.93,
+          "local_distance": 1.16537,
+          "local_normalised_distance": 0.932296,
+          "paper_positivity": 0.991,
+          "local_positivity": 0.99088,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "1bbc5d7c32360cf2df718ba3bfc84eb82dad8f1fb03aab2a601cf38cfd2971c9",
+          "paper_distance": 0.95,
+          "local_distance": 1.189683,
+          "local_normalised_distance": 0.951747,
+          "paper_positivity": 0.991,
+          "local_positivity": 0.991335,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "f6f0d9de6fe9b5956bde9405835c62ac6fdd0212417b2331d349b612404c35f6",
+          "paper_distance": 1.0,
+          "local_distance": 1.277114,
+          "local_normalised_distance": 1.0,
+          "paper_positivity": 0.992,
+          "local_positivity": 0.992308,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        }
+      ]
+    },
+    "table_4": {
+      "task": "lmx-gore-vidal-sentence-sentiment",
+      "rows": 13,
+      "positivity_within_tolerance": 13,
+      "normalised_distance_within_tolerance": 11,
+      "max_positivity_difference": 0.000623,
+      "max_normalised_distance_difference": 0.013167,
+      "max_notebook_difference": 5.960464477539063e-08,
+      "row_checks": [
+        {
+          "sentence_sha256": "47800f0d702625cebac318a8e419553f3472a75f9ae8e9e8fcd38dc102a0fe20",
+          "paper_distance": 0.0,
+          "local_distance": 0.0,
+          "local_normalised_distance": 0.0,
+          "paper_positivity": 0.389,
+          "local_positivity": 0.388611,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "5d33bdb2c31cf069a6e80cdb8f474818baca4013f264ee376b2ed82c76a74593",
+          "paper_distance": 0.26,
+          "local_distance": 0.32281,
+          "local_normalised_distance": 0.258248,
+          "paper_positivity": 0.662,
+          "local_positivity": 0.661931,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "8fa3b0fb86aeb4d3daedfcd6c40003c0e63f285d1580d12c1dfb4cdb024589f4",
+          "paper_distance": 0.3,
+          "local_distance": 0.369675,
+          "local_normalised_distance": 0.29574,
+          "paper_positivity": 0.796,
+          "local_positivity": 0.795934,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "7b2ef731ff219a069a61f49d67a87e49bebcc8ff65e5f8282a9b288bf6f6e35a",
+          "paper_distance": 0.31,
+          "local_distance": 0.390038,
+          "local_normalised_distance": 0.31203,
+          "paper_positivity": 0.892,
+          "local_positivity": 0.892224,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "d386705fcd8b327658374c246a734ade5232b08b03c62d1f37328c1a76532e78",
+          "paper_distance": 0.4,
+          "local_distance": 0.501299,
+          "local_normalised_distance": 0.401039,
+          "paper_positivity": 0.948,
+          "local_positivity": 0.947946,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "bed003d0dfe528feef8ef88943d2a25f0c7b0f91ec65486ef4b9b8465fcced17",
+          "paper_distance": 0.52,
+          "local_distance": 0.647933,
+          "local_normalised_distance": 0.518347,
+          "paper_positivity": 0.949,
+          "local_positivity": 0.948879,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 5.960464477539063e-08
+        },
+        {
+          "sentence_sha256": "601eefba4b9d331deb8738295cef18d3384846b8e01d841d457812db3bcdd839",
+          "paper_distance": 0.56,
+          "local_distance": 0.703513,
+          "local_normalised_distance": 0.56281,
+          "paper_positivity": 0.977,
+          "local_positivity": 0.977069,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "08c6fb77c1a358cf38b5b87a1248ac6b59c5c5657406109cca84c132be780504",
+          "paper_distance": 0.59,
+          "local_distance": 0.741095,
+          "local_normalised_distance": 0.592876,
+          "paper_positivity": 0.985,
+          "local_positivity": 0.984595,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 5.960464477539063e-08
+        },
+        {
+          "sentence_sha256": "c07ea56fc9026f456f64448df917bd2a0c08fdb172f09d8ee7ced65ed399bc5d",
+          "paper_distance": 0.63,
+          "local_distance": 0.789279,
+          "local_normalised_distance": 0.631423,
+          "paper_positivity": 0.985,
+          "local_positivity": 0.985205,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 5.960464477539063e-08
+        },
+        {
+          "sentence_sha256": "45b2aa4192fd1a5d2d931397319fcd396fd3a5b955e30519ddcee7410dbe1d09",
+          "paper_distance": 0.66,
+          "local_distance": 0.827502,
+          "local_normalised_distance": 0.662002,
+          "paper_positivity": 0.986,
+          "local_positivity": 0.986172,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "c0d208a3f379e9c8ac9e6311461c89ae391cb7251490366b329b127945504e0c",
+          "paper_distance": 0.69,
+          "local_distance": 0.863617,
+          "local_normalised_distance": 0.690894,
+          "paper_positivity": 0.988,
+          "local_positivity": 0.987705,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "9d1195070b6cde5a58fbe6b299a199f07b8e9a2a81371ab367cfa507e9db1487",
+          "paper_distance": 0.82,
+          "local_distance": 1.041459,
+          "local_normalised_distance": 0.833167,
+          "paper_positivity": 0.99,
+          "local_positivity": 0.98955,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "f9bd43bddee4575a4b60f59731c00821c403bebba8dadf9bc95ffefc5a0560dc",
+          "paper_distance": 0.88,
+          "local_distance": 1.108095,
+          "local_normalised_distance": 0.886476,
+          "paper_positivity": 0.991,
+          "local_positivity": 0.991623,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        }
+      ]
+    },
+    "table_5": {
+      "task": "lmx-woody-allen-sentence-sentiment",
+      "rows": 15,
+      "positivity_within_tolerance": 15,
+      "normalised_distance_within_tolerance": 13,
+      "max_positivity_difference": 0.000467,
+      "max_normalised_distance_difference": 0.018755,
+      "max_notebook_difference": 5.960464477539063e-08,
+      "row_checks": [
+        {
+          "sentence_sha256": "9696431adecdd1c1459889f8de85b6af09ad1e250e3ecb4a60be5fe42c1abb5a",
+          "paper_distance": 0.0,
+          "local_distance": 0.0,
+          "local_normalised_distance": 0.0,
+          "paper_positivity": 0.013,
+          "local_positivity": 0.012751,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "2a9eb31138add50f23f7e9f22d989c9ae47f4c642bcb2033c2e9b333b57740d9",
+          "paper_distance": 0.2,
+          "local_distance": 0.244973,
+          "local_normalised_distance": 0.195978,
+          "paper_positivity": 0.347,
+          "local_positivity": 0.347077,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "3e4a0c1237f46200599f26d446b179fda859b045e76a3a798f70e2a802031119",
+          "paper_distance": 0.24,
+          "local_distance": 0.305419,
+          "local_normalised_distance": 0.244335,
+          "paper_positivity": 0.46,
+          "local_positivity": 0.459812,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "4933b1ead526ba881c7fba8713f6f94ce5c73aadcb58585902657f3b670529a7",
+          "paper_distance": 0.3,
+          "local_distance": 0.381068,
+          "local_normalised_distance": 0.304854,
+          "paper_positivity": 0.651,
+          "local_positivity": 0.650855,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "f73c8418529f851b63ac1856e602c50cbaa126555a466fb79d193ae260b9c7da",
+          "paper_distance": 0.34,
+          "local_distance": 0.428185,
+          "local_normalised_distance": 0.342548,
+          "paper_positivity": 0.704,
+          "local_positivity": 0.703967,
+          "notebook_positivity_difference": 5.960464477539063e-08,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "18253ab73f32dfc41f6b8c99e009c2c9c6947a36f0f0991f06de90be4350da0b",
+          "paper_distance": 0.41,
+          "local_distance": 0.508165,
+          "local_normalised_distance": 0.406532,
+          "paper_positivity": 0.751,
+          "local_positivity": 0.7506,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "d80ccfd1e48b1b38ff12e5ee3ef9a2ab6cf4b3e74a3cb05f68747b1758832b96",
+          "paper_distance": 0.46,
+          "local_distance": 0.57823,
+          "local_normalised_distance": 0.462584,
+          "paper_positivity": 0.789,
+          "local_positivity": 0.788902,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "90f919f84d878c62c091f3d143c07620ec0dc68857150d69871fb443b5d764db",
+          "paper_distance": 0.49,
+          "local_distance": 0.616701,
+          "local_normalised_distance": 0.493361,
+          "paper_positivity": 0.893,
+          "local_positivity": 0.892624,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "924acdda6038e477a616f7c209f727d43f7501ed5d53e530fcd72309a8cb8ea5",
+          "paper_distance": 0.51,
+          "local_distance": 0.640294,
+          "local_normalised_distance": 0.512235,
+          "paper_positivity": 0.902,
+          "local_positivity": 0.90193,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "de5af455c62c54784b6a36326782a178382e0ca548ea0e111a84fce2a762d060",
+          "paper_distance": 0.53,
+          "local_distance": 0.66821,
+          "local_normalised_distance": 0.534568,
+          "paper_positivity": 0.91,
+          "local_positivity": 0.910215,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 5.960464477539063e-08
+        },
+        {
+          "sentence_sha256": "f10655ef90f8ba671fe0aee0ffb23fc9aecf3491127eb3d0a4bec3ea751c9486",
+          "paper_distance": 0.73,
+          "local_distance": 0.912338,
+          "local_normalised_distance": 0.729871,
+          "paper_positivity": 0.97,
+          "local_positivity": 0.969931,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "65ce7145f433eb2fc8b5966dbe844af0fc300618368bb7d4b26871c3814a29b0",
+          "paper_distance": 0.79,
+          "local_distance": 0.976391,
+          "local_normalised_distance": 0.781112,
+          "paper_positivity": 0.987,
+          "local_positivity": 0.986946,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 5.960464477539063e-08
+        },
+        {
+          "sentence_sha256": "9520130fead50135c56f3ec0a566f9aa5146492d6590f7a58ee81ddf8949e615",
+          "paper_distance": 0.83,
+          "local_distance": 1.036347,
+          "local_normalised_distance": 0.829078,
+          "paper_positivity": 0.988,
+          "local_positivity": 0.988467,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "d82380562f70cf108a530922f2f74feed9f2d6ab0b83e66a0b722d774c5951a6",
+          "paper_distance": 0.84,
+          "local_distance": 1.043451,
+          "local_normalised_distance": 0.834761,
+          "paper_positivity": 0.99,
+          "local_positivity": 0.990184,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        },
+        {
+          "sentence_sha256": "e40666c80b717d2cde6fbd629b5799629aa16c2c099c550931014e52d13aed35",
+          "paper_distance": 0.92,
+          "local_distance": 1.173443,
+          "local_normalised_distance": 0.938755,
+          "paper_positivity": 0.991,
+          "local_positivity": 0.991182,
+          "notebook_positivity_difference": 0.0,
+          "notebook_distance_difference": 0.0
+        }
+      ]
+    }
+  }
+}

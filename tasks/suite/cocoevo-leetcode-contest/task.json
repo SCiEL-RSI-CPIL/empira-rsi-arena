@@ -7,7 +7,7 @@
     "cocoevo"
   ],
   "kind": "upstream",
-  "status": "requires_setup",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2502.10802",
@@ -18,6 +18,16 @@
       "url": "https://github.com/lbaf23/llm-cocoevo/tree/504355b568b2a0cbd4054783c80bac9c76a4de6d",
       "type": "repository",
       "locator": null
+    },
+    {
+      "url": "https://huggingface.co/datasets/lbaf23/LeetCode-Contest/tree/05db6cfbad9648c312e0aff99144e21aa5781514",
+      "type": "benchmark",
+      "locator": "test.jsonl (80 problems, 51,552 tests)"
+    },
+    {
+      "url": "https://github.com/lbaf23/llm-cocoevo/tree/504355b568b2a0cbd4054783c80bac9c76a4de6d/code_evaluator",
+      "type": "repository",
+      "locator": "assert-based pass@1 evaluation"
     }
   ],
   "requirements": {
@@ -29,7 +39,7 @@
     "notes": []
   },
   "evaluation": {
-    "metric": "pass@1",
+    "metric": "score",
     "paper_metric": "pass@1",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -86,8 +96,8 @@
       "Source pinned on 2026-09-19; see docs/TASKS.md."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_bench_code",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -95,18 +105,21 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:80 weekly/biweekly contest problems"
+        "network:openrouter",
+        "py:sortedcontainers",
+        "file:data/llm_bench/leetcode_contest.json"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_api",
-      "unsupported_reason": "Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the 80 weekly/biweekly contest problems benchmark. The suite embeds neither model calls nor the benchmark data."
+      "timeout": 1800,
+      "validity_key": "valid"
+    },
+    "label_spec": {
+      "reference": "none"
     }
   },
   "limitations": [
-    "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
+    "The inspected paper does not link a runnable official implementation; the official release was identified separately and is pinned (see below).",
     "Official CoCoEvo release pinned; program/test co-evolution needs a code model endpoint and the separately downloaded contest/real-world datasets.",
     "Execution interface inspected in pinned source. Full paper experiments have not been reproduced here."
   ],
@@ -167,14 +180,13 @@
     "scientific_contribution": "benchmark",
     "science_tier": 3,
     "artifact": "agent",
-    "domain": "language",
-    "area": "language_and_agents",
+    "domain": "software_engineering",
+    "area": "software_engineering",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "unavailable"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

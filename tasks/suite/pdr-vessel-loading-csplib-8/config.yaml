@@ -22,7 +22,7 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 240
   max_retries: 2
 
 prompt:
@@ -31,7 +31,7 @@ prompt:
 
     Vessel loading (CSPLib 8) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.
 
-    Candidate interface: see evaluator.py
+    Candidate interface: build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys deck_width, deck_length, n_containers, n_classes, width[i], length[i], container_class[i], separation[c1][c2] (minimum gap between containers of those classes along either axis, 0 = may touch); containers may be rotated by 90 degrees; extractor() -> {'west', 'east', 'north', 'south': lists of n_containers integer edge coordinates}. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on a fixed set of generated satisfiable instances = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

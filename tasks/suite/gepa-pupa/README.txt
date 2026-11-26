@@ -3,22 +3,24 @@
 **Paper:** GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning (https://arxiv.org/pdf/2507.19457)\
 **Paper:** Reward-Free Evolving Agents via Pairwise Validator (https://arxiv.org/pdf/2607.14408)\
 **Task id:** `gepa-pupa`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-PUPA
+Write a Python solve(user_query, llm, untrusted_llm) program that answers private user requests with a trusted model and, optionally, an external untrusted model; a judge model scores each item as (quality + (1 - PII leakage to the untrusted model)) / 2, averaged over a fixed 20-item sample of GEPA's PUPA test split (higher is better).
 
 Benchmark named in the paper: PUPA. Paper metric: task-specific score.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+solve(user_query: str, llm, untrusted_llm) -> str: the response to a private user request. `llm` is the trusted model (default qwen/qwen3-8b) and `untrusted_llm` an external model (default openai/gpt-4.1-mini); both are budgeted, cached OpenRouter clients and every prompt sent to `untrusted_llm` is recorded. A judge model (default openai/gpt-4.1-mini, as in GEPA) rates quality (is the response at least as good as the target response, asked in both orders) and PII leakage (share of the item's PII units found in what reached `untrusted_llm`). Item score: (quality + (1 - leakage)) / 2. Score: mean over a fixed seeded sample of GEPA's PUPA test split; higher is better
+
+Parameters: `{"samples": 20, "seed": 0, "model": "qwen/qwen3-8b", "untrusted_model": "openai/gpt-4.1-mini", "judge_model": "openai/gpt-4.1-mini"}`
 
 ## Labels
 
-Scientific contribution: `benchmark` (tier 3); artifact `prompt`, domain `language`, data `public_benchmark`, verification `none`, reference `none`, resources `model_api, unavailable`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `language`, data `public_benchmark`, verification `sampled`, reference `none`, resources `model_api`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -29,15 +31,25 @@ Evidence status: **unreviewed**.
 
 No qualifying paper whose main objective is this underlying scientific or real-world problem has been established in the evidence registry. A task's use in an agent/framework evaluation is insufficient. This label describes the available evidence, not proof that the task has no scientific value.
 
-## Also evaluated by
+## Related paper and local records
 
-The same problem (same evaluator and parameters) appears in these papers; their records were merged into this task and their pinned upstream routes remain reachable with `run.py evaluate gepa-pupa --route upstream --paper <paper>`.
+These records are grouped under this local package. Sharing a local evaluator does not establish identical paper experiments, datasets or candidate contracts. Configured upstream routes remain reachable with `run.py evaluate gepa-pupa --route upstream --paper <paper>`; local reference aliases retain their recorded native interfaces.
 
 - Pairwise Validator: PUPA (`pairwise-validator-pupa`; PUPA)
 
 ## Evaluation protocol
 
-Not executable in this suite: Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the PUPA benchmark. The suite embeds neither model calls nor the benchmark data.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Data: PUPA (Columbia-NLP/PUPA at revision 9981b49b6ced0033988a224b6712895ebf119294, MIT), configuration pupa_new; GEPA's test split is rows 222 to 442 (221 items). The candidate sees only the user query; the dataset's redacted_query field is withheld. Each evaluation uses a fixed 20-item sample.
+- Metric: GEPA's compute_overall_score (papillon_utils.py): quality is GPT-4.1-mini's verdict that the response is at least as good as the target response, asked with the responses in both orders and accepted when the first verdict is yes or both verdicts agree; leakage is the judged number of PII units in what reached the untrusted model divided by the number of units; score = (quality + 1 - leakage) / 2. The judge prompts are paraphrases of GEPA's DSPy signatures (asked for a final 'Judgment:' or 'Count:' line instead of DSPy's structured fields), the PII units are deduplicated and sorted for a stable prompt, an unparsable leakage count counts as full leakage, and leakage is judged on everything the candidate sent to the untrusted client rather than on a single reported request.
+- Models: the GEPA paper instantiates each system once per model with every module relying on that model (Qwen3 8B at temperature 0.6, top-p 0.95, top-k 20, or GPT-4.1 Mini at temperature 1.0) and names no separate untrusted model or judge; GEPA's released code (papillon_utils.py) uses GPT-4.1-mini as the untrusted model and the judge; this task defaults to Qwen3-8B (trusted, asked to answer without thinking) and GPT-4.1-mini (untrusted and judge) through OpenRouter, all at temperature 0. Candidate: a free-form solve(user_query, llm, untrusted_llm) program instead of GEPA's optimized prompts for the two-module DSPy program.
+- Judge-based score: the judge is itself a model, so scores are estimates and `valid` is null. Not verified: GEPA's reported PUPA scores were not reproduced.
+- Leakage is 0 when a candidate never calls untrusted_llm, so a candidate that answers with the trusted model alone gets full privacy credit and is judged on quality only; in GEPA's fixed PAPILLON pipeline the untrusted call always happens.
+- GEPA's 111/111 train/validation splits are not supplied, and the scored items come from the 221-item test split GEPA holds out from optimisation, so local scores are in-sample. The merged Pairwise Validator route (Section 5.1, Table 2 and Appendix C Table 8) runs PUPA with GEPA as the engine under its own protocol (30-item test pool from its own partition, |V| = 30, 125 iterations, five open-weight agents, accuracy); its scores are not comparable with GEPA's or with this task's.
+- The candidate runs as trusted code in the evaluator's process, and the reference answers are stored in data/llm_bench of the task cache (ARENA_TASK_CACHE_DIR), so a candidate could read them; it can also replace the evaluator's scoring functions, raise the model client's budget attribute and read OPENROUTER_API_KEY from the environment, so the per-evaluation budget bounds an honest program only. Scores assume a candidate that does none of this.
+- Model-judged evaluation: quality and leakage are rated by a judge model (ARTASK_LLM_JUDGE_MODEL, default openai/gpt-4.1-mini, GEPA's judge) on a fixed seeded sample; trusted model ARTASK_LLM_MODEL (task default qwen/qwen3-8b), untrusted model ARTASK_LLM_UNTRUSTED_MODEL (default openai/gpt-4.1-mini). Responses are cached under llm-cache in the task cache (ARTASK_LLM_CACHE overrides) and shared by all candidates: a repeated call, also one at temperature > 0, returns the stored reply, and a cached reply costs nothing against the budget; `valid` is null.
+- A judge reply without a readable 'Judgment: yes|no' line is neither a yes nor half of an agreement: an item whose verdicts cannot be read gets quality 0 (details report unread_verdicts); a leakage count that cannot be read counts as full leakage. GEPA's DSPy judge returns typed booleans, so the case does not arise there. A candidate that never calls untrusted_llm and returns an empty response still scores 0.5 per item.
 
 ## Run
 
@@ -49,15 +61,18 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `service:llm_api`
+- `py:numpy`
 - `env:OPENROUTER_API_KEY`
-- `dataset:PUPA`
+- `network:openrouter`
+- `file:data/llm_bench/pupa_test.json`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2507.19457 (Section 4 evaluation and benchmark appendix)
 - repository: https://github.com/gepa-ai/gepa-artifact/tree/cbefbc1aa0f43dd39874ec4bf42211365dbda42e (gepa_artifact/benchmarks/papillon)
-- paper: https://arxiv.org/pdf/2607.14408 (Section 5, Table 1 task inventory)
+- paper: https://arxiv.org/pdf/2607.14408 (Section 5.1 (Tasks), Table 2 and Appendix C (Table 8))
+- benchmark: https://huggingface.co/datasets/Columbia-NLP/PUPA/tree/9981b49b6ced0033988a224b6712895ebf119294 (PUPA_New.csv (pupa_new), rows 222-442 = GEPA's 221-item test split)
+- repository: https://github.com/gepa-ai/gepa-artifact/tree/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/papillon (papillon_data.py split, papillon_program.py pipeline, papillon_utils.py judge metric)
 
 ## Limitations
 

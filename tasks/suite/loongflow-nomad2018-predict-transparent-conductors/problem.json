@@ -1,24 +1,39 @@
 {
-  "protocol": "unsupported",
-  "family": null,
+  "protocol": "recreated",
+  "family": "kaggle_nomad2018_conductors",
   "direction": "minimize",
-  "contract": null,
-  "parameters": {},
+  "contract": "fit_predict(train, test_inputs, time_budget_s) -> float array of shape (n_test, 2): formation energy (eV per cation, the competition's formation_energy_ev_natom) and band gap (eV) of each test material. train: pandas.DataFrame, one row per (Al_x Ga_y In_z)2 O3 crystal: id, spacegroup, number_of_total_atoms, percent_atom_al/ga/in (cation fractions), lattice_vector_1/2/3_ang (lengths), lattice_angle_alpha/beta/gamma_degree, lattice_vectors (3 x 3 list, Angstrom, rows are the cell vectors), elements (list of symbols), positions (list of Cartesian [x, y, z] in Angstrom), formation_energy_ev_natom and bandgap_energy_ev; test_inputs: the same columns without the two targets. Geometries are DFT-relaxed structures. time_budget_s = 300. fit_predict runs in a sandboxed child process: 4 CPU threads (thread settings of the numerical libraries, not an operating-system limit), no GPU, no network, no child processes, no pretrained weights or external data, reads limited to the Python installation and the task's public inputs, writes limited to a temporary working directory, memory limit 3.5 GB. time_budget_s wall-clock seconds start when the candidate's source starts executing in the child (imports and module-level code count); the process is killed 15 s after the budget (score: invalid). The evaluator holds the test labels and recomputes the metric; nothing the candidate reports is trusted. Score (minimize): mean of the root mean squared logarithmic errors of the two columns (MLE-bench grade.py; values scikit-learn's RMSLE rejects, i.e. <= -1, are invalid)",
+  "parameters": {
+    "budget_s": 300,
+    "memory_mb": 3500
+  },
   "requires": [
-    "dataset:MLE-bench",
-    "hardware:gpu"
+    "py:numpy",
+    "py:sklearn",
+    "py:pandas",
+    "py:psutil",
+    "file:data/kaggle/nomad/public/train.jsonl",
+    "file:data/kaggle/nomad/public/test.jsonl",
+    "file:data/kaggle/nomad/private/test_labels.csv"
   ],
-  "timeout": 30,
-  "notes": [],
-  "unsupported_category": "dataset",
-  "unsupported_reason": "MLE-bench competitions require the Kaggle data and model training; neither is redistributed.",
-  "protocol_description": "Not executable in this suite: MLE-bench competitions require the Kaggle data and model training; neither is redistributed.",
+  "timeout": 480,
+  "notes": [
+    "Analogue with relaxed input geometries. Data: ColabFit's NMD-18 (CC0), the 3,000 materials of the competition (2,400 training and 600 test materials) with their DFT targets. Its geometries are the DFT-relaxed structures: all 3,000 are identical (cell, species order and positions to 1e-5 Angstrom) to nmd18r.xyz of the curated NMD-18 release on qmml.org, and only 5 have a cell within 1e-3 Angstrom of nmd18u.xyz, which that release's readme names as the competition dataset (Vegard's-law geometries). nmd18u reproduces the competition's training and test tables (cell lengths, angles, cation fractions, space groups) to their 4-decimal rounding for all 3,000 materials, checked against the competition tables in the authors' GitHub repository csutton7/nomad_2018_kaggle_dataset (MLE-bench's prepare.py run on its train.csv reproduces the MD5 checksums MLE-bench records for its prepared train.csv, test.csv and answers, so these are the competition tables). qmml.org and that repository state no licence and were used only for these checks.",
+    "The competition gave Vegard's-law starting structures as inputs while its targets belong to the relaxed structures; here the relaxed structures are the inputs. This makes the task easier: on the same materials and split, the seed model scores 0.0655 with the relaxed inputs and 0.0772 with the competition's Vegard's-law geometries (Sutton et al. 2019 report that switching the top three competition models to relaxed geometries changes their test MAEs by 1-2 meV/cation for formation energy and 1-14 meV for band gap). Scores are therefore not comparable with Kaggle or MLE-bench values, and medal thresholds do not apply. The table columns (cation fractions, cell lengths and angles) are recomputed from the relaxed cells with the code that reproduces the competition tables from the Vegard's-law cells; relaxed cell lengths differ from the competition's by 0.10 Angstrom on average.",
+    "Targets in competition units: ColabFit stores formation energy per atom; the competition's formation_energy_ev_natom is 5/2 of it (per cation of the M2O3 cell), which reproduces the competition's training and test values for all 3,000 materials to 6e-17 eV; band gaps are identical.",
+    "Split: ColabFit does not keep the competition ids or order, so MLE-bench's split (90/10 of the 2,400 competition training materials, random_state 0) cannot be replayed; a seeded 90/10 split of all 3,000 materials (ordered by ColabFit configuration id, numpy RandomState(0) permutation) gives 2,700 training and 300 test materials, re-numbered from 1 as MLE-bench does. Every candidate is scored on these 300 test materials and that score is the search signal (the evaluator holds back no validation split); LoongFlow's released MLE-bench evaluator (agents/ml_agent/examples/mlebench/eval_program.py at 945c78bc) instead scores candidates on their out-of-fold predictions for the training data and grades the test submission only in a debug mode. The paper states no budget, hardware or split for its MLE-bench runs.",
+    "Metric: mean over the two targets of scikit-learn's root_mean_squared_log_error, as in MLE-bench's grade.py; a prediction scikit-learn rejects (<= -1 in the installed version 1.9) makes the candidate invalid.",
+    "Compute: CPU, 4 threads, sandboxed child process without network or pretrained models, 3.5 GB, killed 15 s after a 300 s budget. Label isolation as in the other kaggle tasks (the evaluator never imports the candidate; its source runs only in the child, which on Linux with unprivileged user namespaces runs in its own user, mount, PID, network and IPC namespaces where data/kaggle and kaggle-raw of the task cache are empty except this task's public directory and every file system but the working directory and /dev/shm is read-only, on macOS under sandbox-exec, and elsewhere only under an audit hook that native code can bypass; the result field os_sandbox names what was in force). The budget is wall-clock time, so scores depend on the machine's speed and load.",
+    "Seed (gradient-boosted trees on the table columns, volume per atom and the space group) scores 0.0655 in about 4 s.",
+    "ColabFit NMD-18 (CC0): the 3,000 competition materials with relaxed geometries."
+  ],
+  "protocol_description": "Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.",
   "id": "loongflow-nomad2018-predict-transparent-conductors",
   "name": "nomad2018-predict-transparent-conductors",
   "paper_ids": [
     "loongflow"
   ],
-  "description": "Predict formation_energy_ev_natom and bandgap_energy_ev; average their RMSLE values.",
+  "description": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 2,700 (Al, Ga, In)2O3 materials given as DFT-relaxed structures and predicts formation energy per cation and band gap for 300 held-out materials, within a 300 s wall-clock budget on 4 CPU threads; scored by the mean of the two columns' RMSLE (lower is better).",
   "benchmark": "MLE-bench",
   "paper_metric": "mean columnwise root mean squared logarithmic error",
   "paper_direction": "minimize",
@@ -32,12 +47,29 @@
       "url": "https://github.com/baidu-baige/LoongFlow/tree/945c78bc1554f8281aac40320b3599bd68d528d7",
       "type": "repository",
       "locator": "agents/ml_agent/examples/mlebench/eval_program.py"
+    },
+    {
+      "url": "https://huggingface.co/datasets/colabfit/NMD-18/tree/113a5d43829c7b3b9f86b5235d970e481f45d1da",
+      "type": "archive",
+      "locator": "NMD-18 (CC0): 3,000 sesquioxides with DFT-relaxed geometries, formation energy per atom and band gap"
+    },
+    {
+      "url": "https://www.nature.com/articles/s41524-019-0239-3",
+      "type": "paper",
+      "locator": "Sutton et al. 2019: competition dataset, Vegard's-law input geometries, relaxed-geometry comparison (Table 2)"
+    },
+    {
+      "url": "https://github.com/openai/mle-bench/tree/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/nomad2018-predict-transparent-conductors",
+      "type": "repository",
+      "locator": "grade.py (mean of the RMSLEs of formation_energy_ev_natom and bandgap_energy_ev)"
+    },
+    {
+      "url": "https://www.kaggle.com/c/nomad2018-predict-transparent-conductors",
+      "type": "benchmark",
+      "locator": "competition definition"
     }
   ],
-  "limitations": [
-    "Direct CPU checks found upstream square seed rejected by strict overlap test and rectangle seed incompatible with its evaluator. Original Autocorrelation II and Erdos overlap seeds passed; a new simple square grid fixture passed. These are integration checks, not reproduced paper results.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-  ],
+  "limitations": [],
   "evaluator": "evaluator.py",
   "initial_program": "initial_program.py",
   "papers": [
@@ -51,14 +83,13 @@
     "scientific_contribution": "engineering",
     "science_tier": 3,
     "artifact": "model",
-    "domain": "machine_learning",
-    "area": "machine_learning",
-    "data": "undistributed",
-    "verification": "none",
+    "domain": "natural_science",
+    "area": "materials_science",
+    "data": "public_benchmark",
+    "verification": "simulation",
     "reference": "none",
     "resources": [
-      "gpu",
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false

@@ -2,22 +2,32 @@
   "schema_version": "1.0",
   "id": "sica-livecodebench",
   "name": "LiveCodeBench",
-  "description": "LiveCodeBench: optimize the candidate specified by the paper and evaluate against the named benchmark.",
+  "description": "Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to produce a Python solution(*args) function for LiveCodeBench LeetCode problems; scored by the mean fraction of public and private tests passed on a fixed 20-problem sample, with 20 s per test and 60 s per problem (higher is better).",
   "paper_ids": [
     "sica"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2504.15228",
       "type": "paper",
-      "locator": "Sections 4 and 4.1"
+      "locator": "Section 4 and Table 1 (LiveCodeBench); utility defined in Section 3"
     },
     {
       "url": "https://github.com/MaximeRobeyns/self_improving_coding_agent/tree/ed8275dca4d3c5dbf77229964351fe9b424797dc",
       "type": "repository",
       "locator": "base_agent/src/benchmarks/livecodebench.py"
+    },
+    {
+      "url": "https://huggingface.co/datasets/livecodebench/code_generation_lite/tree/0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+      "type": "benchmark",
+      "locator": "release_v5 files test.jsonl to test5.jsonl (50 lines fetched)"
+    },
+    {
+      "url": "https://github.com/MaximeRobeyns/self_improving_coding_agent/blob/ed8275dca4d3c5dbf77229964351fe9b424797dc/base_agent/src/benchmarks/livecodebench.py",
+      "type": "repository",
+      "locator": "problem selection (seed 2) and functional test template"
     }
   ],
   "requirements": {
@@ -32,13 +42,13 @@
     ]
   },
   "evaluation": {
-    "metric": "benchmark score; time and API cost enter combined utility",
+    "metric": "score",
     "paper_metric": "benchmark score; time and API cost enter combined utility",
     "paper_direction": "maximize",
     "direction": "maximize",
     "benchmark": "LiveCodeBench",
     "protocol": "specified_only",
-    "source_locator": "Sections 4 and 4.1"
+    "source_locator": "Section 4 and Table 1 (LiveCodeBench); utility defined in Section 3"
   },
   "execution": {
     "repository": "https://github.com/MaximeRobeyns/self_improving_coding_agent",
@@ -78,8 +88,8 @@
       "Paper uses fixed random subsets of 50 SWE-bench and 50 LiveCodeBench instances. runner.py performs meta-improvement, not a standalone task evaluator."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_bench_code",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -87,19 +97,21 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:LiveCodeBench"
+        "network:openrouter",
+        "py:sortedcontainers",
+        "file:data/llm_bench/livecodebench_sica.json.gz"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_agent_env",
-      "unsupported_reason": "Candidates are LLM agents scored inside the LiveCodeBench environment (tools, web, games or code sandboxes); the environment and model access are external."
+      "timeout": 1800,
+      "validity_key": "valid"
+    },
+    "label_spec": {
+      "reference": "none"
     }
   },
   "limitations": [
-    "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
+    "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed."
   ],
   "source_specification": {
     "name": "LiveCodeBench",
@@ -110,7 +122,7 @@
     "metric": "benchmark score; time and API cost enter combined utility",
     "direction": "maximize",
     "source_url": "https://arxiv.org/pdf/2504.15228",
-    "source_locator": "Sections 4 and 4.1",
+    "source_locator": "Section 4 and Table 1 (LiveCodeBench); utility defined in Section 3",
     "upstream_path": "base_agent/src/benchmarks/livecodebench.py",
     "requirements": [
       "Model API credentials",
@@ -134,11 +146,10 @@
     "domain": "software_engineering",
     "area": "software_engineering",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "simulator"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

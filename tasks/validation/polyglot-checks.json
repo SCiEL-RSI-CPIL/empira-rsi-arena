@@ -1,0 +1,307 @@
+{
+  "package": "polyglot",
+  "date": "2026-10-11",
+  "worktree_branch": "wp/aider-polyglot",
+  "environment": {
+    "evaluator_python": "3.12.14 (.cache/sciel-env); standard library only for this package",
+    "docker": "colima 0.10.3 (vz, aarch64 VM with 4 CPUs, 8 GiB memory, 60 GiB disk), Docker client 29.3.1, engine 29.5.2; the host CLI has no buildx plugin, so the image is built with the classic builder (DOCKER_BUILDKIT=0)",
+    "model": "google/gemini-2.5-flash via OpenRouter, temperature 0 (client default)"
+  },
+  "image": {
+    "tag": "artask-polyglot:ef904cc3eaaa",
+    "id": "sha256:cd9762f61dfed4ac00ae41123d6996be36be8c7bd60fb5965edee139eea4efa5",
+    "architecture": "arm64",
+    "recipe_sha256": "ef904cc3eaaa070228e28d2b5ab26044f27668b36dfcd39e96d7e54b0bdbf7ad",
+    "size": "1.07 GB content (docker image inspect .Size 1066080412), 4.36 GB disk usage",
+    "base": "buildpack-deps:jammy@sha256:d4772f876f8647b56d4afc4989d526e4c4111fc39177d175c5a70d817c184858 (arm64)",
+    "build_command": "python scripts/prepare_polyglot.py --build-image  ->  DOCKER_BUILDKIT=0 docker build --label org.autoresearch-tasks.polyglot.recipe=ef904cc3eaaa070228e28d2b5ab26044f27668b36dfcd39e96d7e54b0bdbf7ad -t artask-polyglot:ef904cc3eaaa <context written by polyglot_image.write_context>",
+    "build_seconds": "about 5 minutes on this Mac (network needed once: Ubuntu and deadsnakes apt, go.dev, static.rust-lang.org, nodejs.org, npm, Maven Central, Gradle, crates.io)",
+    "toolchains": {
+      "go": "go1.21.5 linux/arm64",
+      "rust": "rustc 1.90.0, cargo 1.90.0",
+      "node": "v20.18.1 (npm 10.8.2), jest 29.7.0",
+      "java": "OpenJDK 21.0.12.1 (openjdk-21-jdk-headless 21.0.12.1+1-1~22.04.4), Gradle 8.7 via the exercises' wrapper",
+      "python": "3.11.17 (deadsnakes) with pytest 8.3.4",
+      "cpp": "g++ 11.4.0, CMake 3.22.1, libboost-date-time-dev 1.74, libtbb-dev 2021.5.0",
+      "npm_lock_sha256": "1351ab76b8a4fef8b32afa43b0359ffd85a6929d31e6ea849c0d02e53e68ebbd (/npm-install/package-lock.json)",
+      "warmed_caches": "Gradle 8.7 distribution and the Maven artifacts of every exercise (JUnit BOM 5.10.0, assertj 3.25.1, rxjava 2.2.12, org.json 20190722); 51 crate archives (every crate named in a Cargo.toml or .meta/Cargo-example.toml, pinned); Go standard-library build cache"
+    },
+    "run_flags": "docker run -i --rm --network none --cap-drop ALL --security-opt no-new-privileges --pids-limit 1024 --cpus 2 --memory 3g --memory-swap 3g; files arrive as a tar stream on standard input"
+  },
+  "unit_tests": "python -m unittest discover -s tests -t . -p 'test_polyglot*.py': 20 tests OK in 18.8 s (includes 6 reference and 6 stub container runs; the container tests skip without Docker and the image)",
+  "build": "python3 scripts/build_suite.py --only '^dgm-aider-polyglot$' --sciel ../SCiEL: 1 package, protocol recreated, family polyglot_agent, status ready, labels benchmark/agent/software_engineering/public_benchmark/sampled, resources docker+model_api; generated outputs reverted",
+  "integration_check": "On this source-only branch tests.test_documented_changes fails ('declared upgrades and evaluator_upgrade records must coincide') because catalog/tasks.json and validation/prize-expansion/documented-changes.json are generated at integration. Simulated locally and reverted: build_suite.py --only '^dgm-aider-polyglot$', then scripts/record_documented_changes.py records dgm-aider-polyglot as evaluator_upgrade (unsupported -> recreated; fields evaluation, execution, labels, limitations, sources, status) and tests.test_documented_changes passes (8 tests). tests.test_recreated_families, test_label_corrections and test_limitation_review pass on the branch (26 tests, 3 skipped).",
+  "prepared_data": {
+    "location": "suite/_lib/data/polyglot (git-ignored), written by scripts/prepare_polyglot.py and verified against catalog/polyglot-data-lock.json",
+    "size_mb": 23.1,
+    "exercises": 225,
+    "by_language": {
+      "cpp": 26,
+      "go": 39,
+      "java": 47,
+      "javascript": 49,
+      "python": 34,
+      "rust": 30
+    },
+    "sources": [
+      "Aider-AI/polyglot-benchmark at 7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f (codeload archive; extracted content identical to a git clone of that commit: 2357 files, content digest bc914387...)",
+      "jennyzzt/dgm at a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2: polyglot/subsets/small.json (10) and medium.json (50)"
+    ],
+    "licences": {
+      "exercises": "MIT (exercism/cpp, go, java, javascript, python, rust and exercism/problem-specifications, each checked through the GitHub licence API on 2026-10-11); the polyglot-benchmark repository has no LICENSE file and its README defers to Exercism's licences",
+      "DGM subset files": "Apache-2.0",
+      "Aider and DGM harnesses (read for the protocol; the short test-command lines follow Aider's benchmark.py, npm-test.sh and cpp-test.sh as repeated in DGM's polyglot/constants.py, and the image recipe is derived from Aider's benchmark/Dockerfile; credited in the module docstrings)": "Apache-2.0"
+    }
+  },
+  "tasks": {
+    "dgm-aider-polyglot": {
+      "family": "polyglot_agent",
+      "protocol": "recreated",
+      "valid": null,
+      "seed_score": 0.5,
+      "seed_score_note": "fresh evaluations of the seed with an empty model cache gave 0.5, 0.4 and 0.4 (model output varies between fresh runs even at temperature 0); a cached replay reproduces the recorded run exactly",
+      "seed_fresh_runs": {
+        "seed-small-1.json": {
+          "score": 0.5,
+          "resolved": 5,
+          "by_language": {
+            "cpp": "0/1",
+            "go": "2/2",
+            "java": "0/1",
+            "javascript": "0/2",
+            "python": "2/2",
+            "rust": "1/2"
+          },
+          "per_exercise": {
+            "go__dominoes": "resolved",
+            "cpp__all-your-base": "tests_failed",
+            "python__dominoes": "resolved",
+            "java__sgf-parsing": "tests_failed",
+            "javascript__robot-name": "tests_failed",
+            "rust__variable-length-quantity": "resolved",
+            "python__beer-song": "resolved",
+            "go__book-store": "resolved",
+            "javascript__bottle-song": "tests_failed",
+            "rust__bowling": "tests_failed"
+          },
+          "llm": {
+            "requests": 9,
+            "cached_responses": 1,
+            "cost_usd": 0.030417,
+            "prompt_tokens": 10825,
+            "completion_tokens": 10867
+          },
+          "seconds": 26.05
+        },
+        "seed-small-2.json": {
+          "score": 0.4,
+          "resolved": 4,
+          "by_language": {
+            "cpp": "0/1",
+            "go": "1/2",
+            "java": "0/1",
+            "javascript": "0/2",
+            "python": "2/2",
+            "rust": "1/2"
+          },
+          "per_exercise": {
+            "go__dominoes": "resolved",
+            "cpp__all-your-base": "tests_failed",
+            "python__dominoes": "resolved",
+            "java__sgf-parsing": "tests_failed",
+            "javascript__robot-name": "tests_failed",
+            "rust__variable-length-quantity": "resolved",
+            "python__beer-song": "resolved",
+            "go__book-store": "no_edit",
+            "javascript__bottle-song": "tests_failed",
+            "rust__bowling": "tests_failed"
+          },
+          "llm": {
+            "requests": 10,
+            "cached_responses": 0,
+            "cost_usd": 0.043521,
+            "prompt_tokens": 11472,
+            "completion_tokens": 16362
+          },
+          "seconds": 33.17
+        },
+        "seed-small-3.json": {
+          "score": 0.4,
+          "resolved": 4,
+          "by_language": {
+            "cpp": "0/1",
+            "go": "1/2",
+            "java": "0/1",
+            "javascript": "0/2",
+            "python": "2/2",
+            "rust": "1/2"
+          },
+          "per_exercise": {
+            "go__dominoes": "resolved",
+            "cpp__all-your-base": "tests_failed",
+            "python__dominoes": "resolved",
+            "java__sgf-parsing": "tests_failed",
+            "javascript__robot-name": "tests_failed",
+            "rust__variable-length-quantity": "resolved",
+            "python__beer-song": "resolved",
+            "go__book-store": "tests_failed",
+            "javascript__bottle-song": "tests_failed",
+            "rust__bowling": "tests_failed"
+          },
+          "llm": {
+            "requests": 10,
+            "cached_responses": 0,
+            "cost_usd": 0.025532,
+            "prompt_tokens": 11472,
+            "completion_tokens": 8835
+          },
+          "seconds": 16.15
+        }
+      },
+      "seed_cached_replay": {
+        "score": 0.5,
+        "resolved": 5,
+        "by_language": {
+          "cpp": "0/1",
+          "go": "2/2",
+          "java": "0/1",
+          "javascript": "0/2",
+          "python": "2/2",
+          "rust": "1/2"
+        },
+        "per_exercise": {
+          "go__dominoes": "resolved",
+          "cpp__all-your-base": "tests_failed",
+          "python__dominoes": "resolved",
+          "java__sgf-parsing": "tests_failed",
+          "javascript__robot-name": "tests_failed",
+          "rust__variable-length-quantity": "resolved",
+          "python__beer-song": "resolved",
+          "go__book-store": "resolved",
+          "javascript__bottle-song": "tests_failed",
+          "rust__bowling": "tests_failed"
+        },
+        "llm": {
+          "requests": 0,
+          "cached_responses": 10,
+          "cost_usd": 0.0,
+          "prompt_tokens": 0,
+          "completion_tokens": 0
+        },
+        "seconds": 4.56
+      },
+      "generated_package_seed_run": {
+        "command": "python suite/dgm-aider-polyglot/evaluator.py suite/dgm-aider-polyglot/initial_program.py (cached replay)",
+        "score": 0.5,
+        "valid": null,
+        "elapsed_seconds": 5.217536
+      },
+      "elapsed_seconds_fresh": [
+        26.05,
+        33.17,
+        16.15
+      ],
+      "elapsed_seconds_cached_replay": 4.56,
+      "llm_cost_usd_per_fresh_evaluation": [
+        0.030417,
+        0.043521,
+        0.025532
+      ],
+      "llm_cost_note": "seed-small-1 reused one cached reply (go__dominoes) from a one-exercise probe that cost 0.003152; a full fresh seed evaluation costs about 0.03 to 0.045 USD (10 calls, about 11k prompt and 9k to 16k completion tokens)",
+      "separation": {
+        "trivial_agent_returns_no_edits": 0.0,
+        "seed": "0.4 to 0.5",
+        "control_agent_hand_written_beer_song_only": 0.1
+      },
+      "invalid_candidate_checks": [
+        {
+          "candidate": "solve returns a list",
+          "valid": false,
+          "error": "solve must return a dict mapping solution file paths (str) to file contents (str), got list"
+        },
+        {
+          "candidate": "solve returns {'tests/cheat.txt': 'x'} (not a solution file)",
+          "valid": false,
+          "error": "solve returned 'tests/cheat.txt', which is not a solution file of go__dominoes (allowed: ['dominoes.go'])",
+          "via": "generated evaluator.py, exit status 1"
+        },
+        {
+          "candidate": "solve(exercise) without llm",
+          "valid": false,
+          "error": "solve must accept (exercise, llm)"
+        },
+        {
+          "candidate": "solve opens the prepared test file of python__beer-song",
+          "valid": null,
+          "score": 0.0,
+          "result": "every agent run crashes with 'PermissionError: sandbox: file access denied'; the evaluation completes with score 0"
+        }
+      ],
+      "reference_check": "Scorer check in the image: the Exercism reference solutions of all 225 exercises pass their hidden tests (exit status 0 and framework summary with at least one passed and no failed test; 225/225, 213.6 s with 3 parallel containers), and the unchanged stubs fail on 219/225. The 6 stubs that pass are refactoring or test-writing exercises: go__counter, go__ledger, go__markdown, java__ledger, java__tree-building, javascript__ledger; none is in the 10-exercise list, and an agent that changes nothing scores 0 there (DGM's empty-patch rule). No run had exit status 0 without a passing summary. Unit tests repeat the check for one exercise per language.",
+      "reference_check_test_seconds_by_language": {
+        "cpp": {
+          "exercises": 26,
+          "median_s": 5.87,
+          "max_s": 11.23
+        },
+        "go": {
+          "exercises": 39,
+          "median_s": 1.37,
+          "max_s": 1.72
+        },
+        "java": {
+          "exercises": 47,
+          "median_s": 6.68,
+          "max_s": 12.9
+        },
+        "javascript": {
+          "exercises": 49,
+          "median_s": 0.96,
+          "max_s": 3.42
+        },
+        "python": {
+          "exercises": 34,
+          "median_s": 0.24,
+          "max_s": 0.43
+        },
+        "rust": {
+          "exercises": 30,
+          "median_s": 0.7,
+          "max_s": 14.0
+        }
+      },
+      "held_out_seed_run": {
+        "score": 0.26,
+        "resolved": 13,
+        "by_language": {
+          "cpp": "2/4",
+          "go": "3/8",
+          "java": "0/11",
+          "javascript": "3/8",
+          "python": "4/10",
+          "rust": "1/9"
+        },
+        "llm": {
+          "requests": 49,
+          "cached_responses": 1,
+          "cost_usd": 0.131362,
+          "prompt_tokens": 42180,
+          "completion_tokens": 47483
+        },
+        "seconds": 64.21,
+        "subset": "medium (DGM's 50-exercise second stage)"
+      },
+      "dgm_protocol_verified": "DGM paper (arXiv 2505.22954) Sec. 4.2 and App. E.3 list the 10 exercises as the first stage that verifies basic coding ability; DGM_outer.py loads polyglot/subsets/small.json and medium.json and self_improve_step.run_harness_polyglot runs the medium list only when at least 40% of the small list is resolved",
+      "seed_cached_replay_after_memory_cap": {
+        "score": 0.5,
+        "llm_cost_usd": 0.0,
+        "seconds": 4.62,
+        "note": "the agent sandbox memory cap was lowered from 1024 MB to 512 MB after the fresh runs; a cached replay gives the same per-exercise outcomes"
+      }
+    }
+  },
+  "llm_spend_usd_total": 0.233984,
+  "llm_spend_note": "All OpenRouter spend of this package: a one-exercise probe (0.003152), three fresh seed evaluations on the 10-exercise list (0.030417, 0.043521, 0.025532) and one fresh seed evaluation on DGM's 50-exercise list (0.131362); replays and tests used cached replies or a fake client. Budget 2.00.",
+  "withdraw": {},
+  "related_records": "rqgm-polyglot-coding stays recorded as a duplicate of dgm-aider-polyglot (catalog/withdrawn.json), since this task is now implemented with the six toolchains. RQGM's Polyglot splits of 10/49/166 items add up to the 225 exercises and match the sizes of DGM's small list, the 49 medium exercises outside it and the remaining 166 (subset 'heldout' here); the exact split membership in RQGM was not checked."
+}

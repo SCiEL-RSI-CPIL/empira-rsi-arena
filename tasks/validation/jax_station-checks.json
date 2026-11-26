@@ -1,0 +1,1559 @@
+{
+ "schema": "artask.validation/1",
+ "package": "jax_station",
+ "date": "2026-10-11",
+ "environment": {
+  "python": "3.12.14",
+  "jax": "0.11.2",
+  "jaxlib": "0.11.2",
+  "flax": "0.12.10",
+  "optax": "0.2.8",
+  "distrax": "0.1.9",
+  "tfp_nightly": "0.26.0.dev20261010",
+  "chex": "0.1.92",
+  "xminigrid": "0.9.3",
+  "numpy": "2.5.3",
+  "machine": "Apple M4 Max (10 performance + 4 efficiency cores, arm64), macOS 15.8.1, shared with other jobs; load averages during the runs are recorded next to them",
+  "interpreter": ".cache/sciel-env (shared suite environment) with the new packages listed under installs",
+  "threads": "children run with NPROC=PJRT_NPROC=OMP_NUM_THREADS=MKL_NUM_THREADS=OPENBLAS_NUM_THREADS=VECLIB_MAXIMUM_THREADS=NUMEXPR_NUM_THREADS=4, JAX_PLATFORMS=cpu, PYTHONHASHSEED=0; XLA's CPU thread pools follow NPROC/PJRT_NPROC (a 2048 x 2048 matmul loop used 3.6 cores with NPROC=4 and 7.5 without)"
+ },
+ "installs": {
+  "target": ".cache/sciel-env; pip install --dry-run first: only new packages, no installed version changed; no separate environment was needed",
+  "packages": [
+   "xminigrid==0.9.3",
+   "flax==0.12.10",
+   "distrax==0.1.9",
+   "chex==0.1.92",
+   "tfp-nightly==0.26.0.dev20261010",
+   "orbax-checkpoint==0.12.7",
+   "tensorstore==0.1.85",
+   "treescope==0.1.10",
+   "msgpack==1.2.3",
+   "dm-tree==0.1.10",
+   "gast==0.7.0",
+   "decorator==5.3.1",
+   "toolz==1.2.0",
+   "imageio-ffmpeg==0.6.0",
+   "aiofiles==25.1.0",
+   "humanize==4.16.0",
+   "prometheus_client==0.26.0",
+   "simplejson==4.2.0",
+   "uvloop==0.23.0"
+  ],
+  "not_installed": "zapbench (its dependencies include TensorFlow and connectomics); the two functions needed are restated in jax_station_zapdata.py and checked against the pinned source"
+ },
+ "data": {
+  "limen": {
+   "url": "https://codeload.github.com/Lossfunk/LIMEN/tar.gz/cf0b44da37f7e7ee038920c860a8cb00c610c9af",
+   "repository": "https://github.com/Lossfunk/LIMEN",
+   "commit": "cf0b44da37f7e7ee038920c860a8cb00c610c9af",
+   "license": "MIT",
+   "files_checked": 46
+  },
+  "zapbench": {
+   "url": "https://storage.googleapis.com/zapbench-release/volumes/20240930/traces/",
+   "license": "CC-BY-4.0",
+   "license_source": "https://storage.googleapis.com/zapbench-release/volumes/README.html",
+   "zarr_json": {
+    "sha256": "2643b7b7438686514d91d1ed26cb00a37653cbb9c26a885a47510a60e462be2d",
+    "bytes": 275
+   },
+   "chunks": {
+    "count": 2256,
+    "bytes_each": 1048576,
+    "manifest_sha256": "bf9479e6df4b66aa46ff03b2f0bd25d27ec7b7a5954c6b9ee456de53fb5cba2e"
+   },
+   "array_sha256": "e4d6471c69b0b11b70ed7252998b57826f8e60179202a243d36dbc1ba34dba94",
+   "max_float16_rounding_error": 0.00048828125,
+   "download_bytes": 2365587456
+  },
+  "zapbench_code": {
+   "repository": "https://github.com/google-research/zapbench",
+   "commit": "7347b3b21a3f332e281b774c945f1505dd966abf",
+   "license": "Apache-2.0"
+  },
+  "zapbench_reference": {
+   "url": "https://storage.googleapis.com/zapbench-release/dataframes/20250131/combined.json",
+   "license": "CC-BY-4.0 (bucket README)",
+   "use": "validation only (reference check); not used by the evaluator",
+   "sha256": "17c1a8a1d8e8dd1525bd57b6db3e3bd41ad3ea5c7a8eb3146f242a90ca0a33e3",
+   "bytes": 1307618
+  },
+  "prepared_bytes": {
+   "trainval/train.npy": 724669112,
+   "trainval/train_conditions.npy": 5180,
+   "trainval/val.npy": 107438186,
+   "trainval/val_conditions.npy": 877,
+   "test/test.npy": 537046976,
+   "test/test_conditions.npy": 2000
+  },
+  "lock": "catalog/jax_station-data-lock.json; scripts/prepare_jax_station.py --check passes"
+ },
+ "tests": {
+  "command": "$PY -m unittest discover -s tests -t . -p 'test_jax_station*.py'",
+  "result": "22 tests, OK (2 skipped: full evaluations gated by ARTASK_JAX_STATION_FULL=1), about 11 s",
+  "full_command": "ARTASK_JAX_STATION_FULL=1 $PY -m unittest tests.test_jax_station_slow",
+  "full_result": "6 tests, OK, 226 s (published easy interface through the evaluator >= 0.9; seed one-epoch ZAPBench run)",
+  "files": [
+   "tests/test_jax_station.py",
+   "tests/test_jax_station_slow.py"
+  ],
+  "without_jax": "tests/test_jax_station.py needs only numpy (16 tests pass with the system python3); tests/test_jax_station_slow.py skips without jax/flax/xminigrid or the prepared data",
+  "repository_suite": {
+   "command": "$PY -m unittest discover -s tests -t .",
+   "result": "1259 tests: 7 failures, 5 errors, 82 skipped (219 s)",
+   "attribution": "test_doc_counts (2), test_paper_appendix (6) and test_science_relevance (lasr task) fail identically on a clean copy of the base commit 1c44688c; test_documented_changes (2) fails until the four new evaluator upgrades are recorded in validation/prize-expansion/documented-changes.json by the integration audit (as for any new catalog/upgrades file); test_receipts_hold_no_machine_paths also fails on the base commit (other receipts) and this receipt holds no machine paths"
+  }
+ },
+ "build": {
+  "command": "python3 scripts/build_suite.py --sciel <path to the SCiEL checkout> --only '^(limen-easy-pickup|limen-medium-place-near|limen-hard-rule-chain|the-station-zapbench-neural-activity-prediction)$'",
+  "result": "exit 0; protocols {original: 3, recreated: 1}; families limen_xland_easy_pickup, limen_xland_medium_place_near, limen_xland_hard_rule_chain, station_zapbench_forecasting; generated outputs (suite/<id>/*, suite/index.json, catalog/tasks.json, catalog/tasks.csv, catalog/index.html and a label refresh of suite/lasr-big-bench-llm-scaling-law-discovery/task.json) reverted afterwards",
+  "generated_evaluator_runs": "seed and invalid candidates run with the generated suite/<id>/evaluator.py on 2026-10-11 17:22-17:31 (load average 7-9); results under tasks.<id>.seed and tasks.<id>.invalid_candidates"
+ },
+ "tasks": {
+  "limen-easy-pickup": {
+   "family": "limen_xland_easy_pickup",
+   "protocol": "original",
+   "seed": {
+    "score": 0.21333333333333335,
+    "combined_score": 0.21333333333333335,
+    "valid": null,
+    "error": null,
+    "elapsed_seconds": 103.780009,
+    "stage": "full_train",
+    "seed_success_rates": [
+     0.16,
+     0.28,
+     0.2
+    ],
+    "runs": [
+     {
+      "seed": 42,
+      "total_timesteps": 500000,
+      "wall_seconds": 16.77,
+      "success_rate": 0.14,
+      "final_return": 0.38750001788139343,
+      "final_length": 193.6750030517578,
+      "training_time": 13.400275945663452,
+      "success_curve": [
+       0.45,
+       0.4875,
+       0.3875
+      ]
+     },
+     {
+      "seed": 42,
+      "total_timesteps": 1000000,
+      "wall_seconds": 28.19,
+      "success_rate": 0.16,
+      "final_return": 0.5625,
+      "final_length": 156.125,
+      "training_time": 26.891706705093384,
+      "success_curve": [
+       0.45,
+       0.375,
+       0.4875,
+       0.5375,
+       0.425,
+       0.575,
+       0.5625
+      ]
+     },
+     {
+      "seed": 43,
+      "total_timesteps": 1000000,
+      "wall_seconds": 28.01,
+      "success_rate": 0.28,
+      "final_return": 0.5375000238418579,
+      "final_length": 165.83750915527344,
+      "training_time": 26.715038061141968,
+      "success_curve": [
+       0.325,
+       0.45,
+       0.5,
+       0.4875,
+       0.4625,
+       0.4375,
+       0.5375
+      ]
+     },
+     {
+      "seed": 44,
+      "total_timesteps": 1000000,
+      "wall_seconds": 28.22,
+      "success_rate": 0.2,
+      "final_return": 0.5375000238418579,
+      "final_length": 175.02500915527344,
+      "training_time": 26.90384817123413,
+      "success_curve": [
+       0.425,
+       0.3375,
+       0.425,
+       0.4875,
+       0.475,
+       0.525,
+       0.5375
+      ]
+     }
+    ],
+    "child": {
+     "wall_seconds": 103.46,
+     "cpu_seconds": 322.5,
+     "peak_rss_mb": 2083.3,
+     "threads": 4
+    },
+    "evaluator_process_max_rss_mb": 2089.1,
+    "command": "$PY suite/limen-easy-pickup/evaluator.py suite/limen-easy-pickup/initial_program.py"
+   },
+   "runs": {
+    "easy_seed_1": {
+     "score": 0.21333333333333335,
+     "valid": null,
+     "stage": "full_train",
+     "seed_success_rates": [
+      0.16,
+      0.28,
+      0.2
+     ],
+     "seed_success_std": 0.06110100926607788,
+     "obs_dim": 171,
+     "runs": [
+      {
+       "seed": 42,
+       "total_timesteps": 500000,
+       "success_rate": 0.14,
+       "final_return": 0.38750001788139343,
+       "final_length": 193.6750030517578,
+       "wall_seconds": 31.33
+      },
+      {
+       "seed": 42,
+       "total_timesteps": 1000000,
+       "success_rate": 0.16,
+       "final_return": 0.5625,
+       "final_length": 156.125,
+       "wall_seconds": 64.07
+      },
+      {
+       "seed": 43,
+       "total_timesteps": 1000000,
+       "success_rate": 0.28,
+       "final_return": 0.5375000238418579,
+       "final_length": 165.83750915527344,
+       "wall_seconds": 58.94
+      },
+      {
+       "seed": 44,
+       "total_timesteps": 1000000,
+       "success_rate": 0.2,
+       "final_return": 0.5375000238418579,
+       "final_length": 175.02500915527344,
+       "wall_seconds": 61.72
+      }
+     ],
+     "child": {
+      "wall_seconds": 219.13,
+      "peak_rss_mb": 1674.4,
+      "threads": 4
+     },
+     "elapsed_seconds": 219.8
+    },
+    "easy_seed_2": {
+     "score": 0.21333333333333335,
+     "valid": null,
+     "stage": "full_train",
+     "seed_success_rates": [
+      0.16,
+      0.28,
+      0.2
+     ],
+     "seed_success_std": 0.06110100926607788,
+     "obs_dim": 171,
+     "runs": [
+      {
+       "seed": 42,
+       "total_timesteps": 500000,
+       "success_rate": 0.14,
+       "final_return": 0.38750001788139343,
+       "final_length": 193.6750030517578,
+       "wall_seconds": 20.76
+      },
+      {
+       "seed": 42,
+       "total_timesteps": 1000000,
+       "success_rate": 0.16,
+       "final_return": 0.5625,
+       "final_length": 156.125,
+       "wall_seconds": 39.31
+      },
+      {
+       "seed": 43,
+       "total_timesteps": 1000000,
+       "success_rate": 0.28,
+       "final_return": 0.5375000238418579,
+       "final_length": 165.83750915527344,
+       "wall_seconds": 54.34
+      },
+      {
+       "seed": 44,
+       "total_timesteps": 1000000,
+       "success_rate": 0.2,
+       "final_return": 0.5375000238418579,
+       "final_length": 175.02500915527344,
+       "wall_seconds": 47.82
+      }
+     ],
+     "child": {
+      "wall_seconds": 164.53,
+      "peak_rss_mb": 2235.1,
+      "threads": 4
+     },
+     "elapsed_seconds": 164.8
+    },
+    "easy_evolved_1": {
+     "score": 0.9933333333333333,
+     "valid": null,
+     "stage": "full_train",
+     "seed_success_rates": [
+      1.0,
+      0.98,
+      1.0
+     ],
+     "seed_success_std": 0.011547005383792525,
+     "obs_dim": 174,
+     "runs": [
+      {
+       "seed": 42,
+       "total_timesteps": 500000,
+       "success_rate": 0.26,
+       "final_return": 6.142559051513672,
+       "final_length": 146.4875030517578,
+       "wall_seconds": 35.93
+      },
+      {
+       "seed": 42,
+       "total_timesteps": 1000000,
+       "success_rate": 1.0,
+       "final_return": 9.9506254196167,
+       "final_length": 18.625,
+       "wall_seconds": 60.51
+      },
+      {
+       "seed": 43,
+       "total_timesteps": 1000000,
+       "success_rate": 0.98,
+       "final_return": 10.481562614440918,
+       "final_length": 18.6875,
+       "wall_seconds": 46.56
+      },
+      {
+       "seed": 44,
+       "total_timesteps": 1000000,
+       "success_rate": 1.0,
+       "final_return": 9.947000503540039,
+       "final_length": 16.850000381469727,
+       "wall_seconds": 40.69
+      }
+     ],
+     "child": {
+      "wall_seconds": 188.21,
+      "peak_rss_mb": 2170.8,
+      "threads": 4
+     },
+     "elapsed_seconds": 189.5
+    },
+    "easy_zero_reward": {
+     "score": 0.12666666666666668,
+     "valid": null,
+     "stage": "full_train",
+     "seed_success_rates": [
+      0.1,
+      0.14,
+      0.14
+     ],
+     "seed_success_std": 0.023094010767585035,
+     "obs_dim": 171,
+     "runs": [
+      {
+       "seed": 42,
+       "total_timesteps": 500000,
+       "success_rate": 0.14,
+       "final_return": 0.0,
+       "final_length": 199.27500915527344,
+       "wall_seconds": 16.71
+      },
+      {
+       "seed": 42,
+       "total_timesteps": 1000000,
+       "success_rate": 0.1,
+       "final_return": 0.0,
+       "final_length": 209.10000610351562,
+       "wall_seconds": 28.83
+      },
+      {
+       "seed": 43,
+       "total_timesteps": 1000000,
+       "success_rate": 0.14,
+       "final_return": 0.0,
+       "final_length": 224.3249969482422,
+       "wall_seconds": 29.13
+      },
+      {
+       "seed": 44,
+       "total_timesteps": 1000000,
+       "success_rate": 0.14,
+       "final_return": 0.0,
+       "final_length": 199.33750915527344,
+       "wall_seconds": 27.73
+      }
+     ],
+     "child": {
+      "wall_seconds": 104.52,
+      "cpu_seconds": 323.9,
+      "peak_rss_mb": 2042.1,
+      "threads": 4
+     },
+     "elapsed_seconds": 104.9
+    }
+   },
+   "reference_check": {
+    "what": "LIMEN's published evolved interface examples/evolved_interfaces/easy_pickup.py (header 'Success rate: 99%') through the evaluator",
+    "result": 0.9933333333333333,
+    "trivial_reward": {
+     "what": "constant-zero reward with the seed's observation",
+     "result": 0.12666666666666668
+    }
+   },
+   "llm_cost_usd": 0.0,
+   "invalid_candidates": {
+    "policy_violation (imports os)": {
+     "score": null,
+     "combined_score": -1.7976931348623157e+308,
+     "valid": false,
+     "error": "candidate violates the interface policy: line 1: import of os is not allowed (allowed: jax, jax.lax, jax.nn, jax.numpy, math); line 10: attribute system is not allowed; line 10: name os is not allowed",
+     "elapsed_seconds": 0.261432,
+     "stage": null,
+     "evaluator_process_max_rss_mb": 119.7
+    },
+    "two-dimensional observation (LIMEN crash filter)": {
+     "score": null,
+     "combined_score": -1.7976931348623157e+308,
+     "valid": false,
+     "error": "LIMEN crash filter rejected the candidate at stage 2: ValueError: get_observation must return a 1D array, got shape (9, 9, 2)",
+     "elapsed_seconds": 2.052321,
+     "stage": null,
+     "evaluator_process_max_rss_mb": 297.3
+    }
+   },
+   "timing": {
+    "single_seed_1M_steps_outside_evaluator": [
+     {
+      "seed": 42,
+      "success_rate": 0.98,
+      "final_return": 9.916437149047852,
+      "final_length": 17.962499618530273,
+      "train_wall_s_excl_final_eval": 43.7,
+      "seed_wall_s": 48.5,
+      "seed_cpu_s": 127.2
+     },
+     {
+      "task": "easy_pickup",
+      "prog": "easy_pickup.py",
+      "budget": "full",
+      "steps": 1000000,
+      "obs_dim": 174,
+      "total_wall_s": 51.5,
+      "total_cpu_s": 130.3,
+      "mean_success": 0.98,
+      "load": [
+       16.24072265625,
+       15.27978515625,
+       12.20068359375
+      ]
+     }
+    ]
+   }
+  },
+  "limen-medium-place-near": {
+   "family": "limen_xland_medium_place_near",
+   "protocol": "original",
+   "seed": {
+    "score": 0.0,
+    "combined_score": 0.0,
+    "valid": null,
+    "error": null,
+    "elapsed_seconds": 32.565384,
+    "stage": "short_train_rejected",
+    "seed_success_rates": [],
+    "runs": [
+     {
+      "seed": 42,
+      "total_timesteps": 1000000,
+      "wall_seconds": 30.07,
+      "success_rate": 0.0,
+      "final_return": 0.08749999850988388,
+      "final_length": 229.53750610351562,
+      "training_time": 26.80131697654724,
+      "success_curve": [
+       0.1625,
+       0.1,
+       0.0875,
+       0.0125,
+       0.1125,
+       0.0375,
+       0.0875
+      ]
+     }
+    ],
+    "child": {
+     "wall_seconds": 32.28,
+     "cpu_seconds": 95.8,
+     "peak_rss_mb": 1568.7,
+     "threads": 4
+    },
+    "evaluator_process_max_rss_mb": 1574.5,
+    "command": "$PY suite/limen-medium-place-near/evaluator.py suite/limen-medium-place-near/initial_program.py"
+   },
+   "runs": {
+    "medium_seed_v2": {
+     "score": 0.0,
+     "valid": null,
+     "stage": "short_train_rejected",
+     "seed_success_rates": [],
+     "seed_success_std": null,
+     "obs_dim": 171,
+     "runs": [
+      {
+       "seed": 42,
+       "total_timesteps": 1000000,
+       "success_rate": 0.0,
+       "final_return": 0.08749999850988388,
+       "final_length": 229.53750610351562,
+       "wall_seconds": 32.15
+      }
+     ],
+     "child": {
+      "wall_seconds": 34.46,
+      "cpu_seconds": 98.9,
+      "peak_rss_mb": 1589.2,
+      "threads": 4
+     },
+     "elapsed_seconds": 34.7
+    },
+    "medium_evolved_1": {
+     "score": 0.9199999999999999,
+     "valid": null,
+     "stage": "full_train",
+     "seed_success_rates": [
+      0.94,
+      0.92,
+      0.9
+     ],
+     "seed_success_std": 0.019999999999999962,
+     "obs_dim": 102,
+     "runs": [
+      {
+       "seed": 42,
+       "total_timesteps": 1000000,
+       "success_rate": 0.12,
+       "final_return": 13.67028522491455,
+       "final_length": 182.5,
+       "wall_seconds": 46.22
+      },
+      {
+       "seed": 42,
+       "total_timesteps": 2000000,
+       "success_rate": 0.94,
+       "final_return": 17.934446334838867,
+       "final_length": 49.400001525878906,
+       "wall_seconds": 71.75
+      },
+      {
+       "seed": 43,
+       "total_timesteps": 2000000,
+       "success_rate": 0.92,
+       "final_return": 17.603195190429688,
+       "final_length": 41.0625,
+       "wall_seconds": 63.59
+      },
+      {
+       "seed": 44,
+       "total_timesteps": 2000000,
+       "success_rate": 0.9,
+       "final_return": 18.452085494995117,
+       "final_length": 35.25,
+       "wall_seconds": 69.64
+      }
+     ],
+     "child": {
+      "wall_seconds": 255.36,
+      "peak_rss_mb": 2550.5,
+      "threads": 4
+     },
+     "elapsed_seconds": 255.8
+    },
+    "medium_evolved_2": {
+     "score": 0.9199999999999999,
+     "valid": null,
+     "stage": "full_train",
+     "seed_success_rates": [
+      0.94,
+      0.92,
+      0.9
+     ],
+     "seed_success_std": 0.019999999999999962,
+     "obs_dim": 102,
+     "runs": [
+      {
+       "seed": 42,
+       "total_timesteps": 1000000,
+       "success_rate": 0.12,
+       "final_return": 13.67028522491455,
+       "final_length": 182.5,
+       "wall_seconds": 36.53
+      },
+      {
+       "seed": 42,
+       "total_timesteps": 2000000,
+       "success_rate": 0.94,
+       "final_return": 17.934446334838867,
+       "final_length": 49.400001525878906,
+       "wall_seconds": 62.92
+      },
+      {
+       "seed": 43,
+       "total_timesteps": 2000000,
+       "success_rate": 0.92,
+       "final_return": 17.603195190429688,
+       "final_length": 41.0625,
+       "wall_seconds": 61.23
+      },
+      {
+       "seed": 44,
+       "total_timesteps": 2000000,
+       "success_rate": 0.9,
+       "final_return": 18.452085494995117,
+       "final_length": 35.25,
+       "wall_seconds": 61.53
+      }
+     ],
+     "child": {
+      "wall_seconds": 225.17,
+      "cpu_seconds": 694.1,
+      "peak_rss_mb": 2176.0,
+      "threads": 4
+     },
+     "elapsed_seconds": 225.6
+    }
+   },
+   "reference_check": {
+    "what": "LIMEN's published evolved interface examples/evolved_interfaces/medium_place_near.py (header 'Success rate: 97%')",
+    "result": 0.9199999999999999
+   },
+   "llm_cost_usd": 0.0,
+   "invalid_candidates": {
+    "note": "the invalid-candidate path is shared by the three LIMEN families; see limen-easy-pickup"
+   },
+   "timing": {
+    "single_seed_2M_steps_outside_evaluator": [
+     {
+      "seed": 42,
+      "success_rate": 0.92,
+      "final_return": 18.251529693603516,
+      "final_length": 48.125,
+      "train_wall_s_excl_final_eval": 98.9,
+      "seed_wall_s": 106.3,
+      "seed_cpu_s": 246.4
+     },
+     {
+      "task": "medium_place_near",
+      "prog": "medium_place_near.py",
+      "budget": "full",
+      "steps": 2000000,
+      "obs_dim": 102,
+      "total_wall_s": 109.2,
+      "total_cpu_s": 249.2,
+      "mean_success": 0.92,
+      "load": [
+       16.06396484375,
+       14.71044921875,
+       12.6552734375
+      ]
+     }
+    ]
+   }
+  },
+  "limen-hard-rule-chain": {
+   "family": "limen_xland_hard_rule_chain",
+   "protocol": "original",
+   "seed": {
+    "score": 0.0,
+    "combined_score": 0.0,
+    "valid": null,
+    "error": null,
+    "elapsed_seconds": 100.419676,
+    "stage": "short_train_rejected",
+    "seed_success_rates": [],
+    "runs": [
+     {
+      "seed": 42,
+      "total_timesteps": 3000000,
+      "wall_seconds": 97.73,
+      "success_rate": 0.0,
+      "final_return": 0.012500000186264515,
+      "final_length": 505.20001220703125,
+      "training_time": 94.00031113624573,
+      "success_curve": [
+       0.0125,
+       0.0125,
+       0.0125,
+       0.025,
+       0.0,
+       0.0375,
+       0.0125,
+       0.0,
+       0.0125,
+       0.0125,
+       0.025,
+       0.0,
+       0.0,
+       0.0,
+       0.0375,
+       0.0125,
+       0.0125,
+       0.025,
+       0.0,
+       0.0125,
+       0.0375,
+       0.0125
+      ]
+     }
+    ],
+    "child": {
+     "wall_seconds": 100.13,
+     "cpu_seconds": 309.9,
+     "peak_rss_mb": 1711.9,
+     "threads": 4
+    },
+    "evaluator_process_max_rss_mb": 1711.9,
+    "command": "$PY suite/limen-hard-rule-chain/evaluator.py suite/limen-hard-rule-chain/initial_program.py"
+   },
+   "runs": {
+    "hard_seed_v2": {
+     "score": 0.0,
+     "valid": null,
+     "stage": "short_train_rejected",
+     "seed_success_rates": [],
+     "seed_success_std": null,
+     "obs_dim": 347,
+     "runs": [
+      {
+       "seed": 42,
+       "total_timesteps": 3000000,
+       "success_rate": 0.0,
+       "final_return": 0.012500000186264515,
+       "final_length": 505.20001220703125,
+       "wall_seconds": 100.42
+      }
+     ],
+     "child": {
+      "wall_seconds": 102.67,
+      "cpu_seconds": 311.3,
+      "peak_rss_mb": 1717.3,
+      "threads": 4
+     },
+     "elapsed_seconds": 102.9
+    },
+    "hard_evolved_1": {
+     "score": 0.7066666666666667,
+     "valid": null,
+     "stage": "full_train",
+     "seed_success_rates": [
+      0.74,
+      0.74,
+      0.64
+     ],
+     "seed_success_std": 0.05773502691896257,
+     "obs_dim": 147,
+     "runs": [
+      {
+       "seed": 42,
+       "total_timesteps": 3000000,
+       "success_rate": 0.48,
+       "final_return": 12.321578979492188,
+       "final_length": 337.13751220703125,
+       "wall_seconds": 108.1
+      },
+      {
+       "seed": 42,
+       "total_timesteps": 5000000,
+       "success_rate": 0.74,
+       "final_return": 20.34370994567871,
+       "final_length": 206.8000030517578,
+       "wall_seconds": 173.44
+      },
+      {
+       "seed": 43,
+       "total_timesteps": 5000000,
+       "success_rate": 0.74,
+       "final_return": 22.541990280151367,
+       "final_length": 216.7375030517578,
+       "wall_seconds": 178.67
+      },
+      {
+       "seed": 44,
+       "total_timesteps": 5000000,
+       "success_rate": 0.64,
+       "final_return": 22.954242706298828,
+       "final_length": 174.2624969482422,
+       "wall_seconds": 181.03
+      }
+     ],
+     "child": {
+      "wall_seconds": 644.47,
+      "peak_rss_mb": 2794.8,
+      "threads": 4
+     },
+     "elapsed_seconds": 644.8
+    },
+    "hard_evolved_2": {
+     "score": 0.7066666666666667,
+     "valid": null,
+     "stage": "full_train",
+     "seed_success_rates": [
+      0.74,
+      0.74,
+      0.64
+     ],
+     "seed_success_std": 0.05773502691896257,
+     "obs_dim": 147,
+     "runs": [
+      {
+       "seed": 42,
+       "total_timesteps": 3000000,
+       "success_rate": 0.48,
+       "final_return": 12.321578979492188,
+       "final_length": 337.13751220703125,
+       "wall_seconds": 97.87
+      },
+      {
+       "seed": 42,
+       "total_timesteps": 5000000,
+       "success_rate": 0.74,
+       "final_return": 20.34370994567871,
+       "final_length": 206.8000030517578,
+       "wall_seconds": 162.86
+      },
+      {
+       "seed": 43,
+       "total_timesteps": 5000000,
+       "success_rate": 0.74,
+       "final_return": 22.541990280151367,
+       "final_length": 216.7375030517578,
+       "wall_seconds": 162.92
+      },
+      {
+       "seed": 44,
+       "total_timesteps": 5000000,
+       "success_rate": 0.64,
+       "final_return": 22.954242706298828,
+       "final_length": 174.2624969482422,
+       "wall_seconds": 162.71
+      }
+     ],
+     "child": {
+      "wall_seconds": 588.98,
+      "cpu_seconds": 1830.9,
+      "peak_rss_mb": 2413.3,
+      "threads": 4
+     },
+     "elapsed_seconds": 589.2
+    },
+    "hard_evolved_3": {
+     "score": 0.7066666666666667,
+     "valid": null,
+     "stage": "full_train",
+     "seed_success_rates": [
+      0.74,
+      0.74,
+      0.64
+     ],
+     "seed_success_std": 0.05773502691896257,
+     "obs_dim": 147,
+     "runs": [
+      {
+       "seed": 42,
+       "total_timesteps": 3000000,
+       "success_rate": 0.48,
+       "final_return": 12.321578979492188,
+       "final_length": 337.13751220703125,
+       "wall_seconds": 107.38
+      },
+      {
+       "seed": 42,
+       "total_timesteps": 5000000,
+       "success_rate": 0.74,
+       "final_return": 20.34370994567871,
+       "final_length": 206.8000030517578,
+       "wall_seconds": 182.61
+      },
+      {
+       "seed": 43,
+       "total_timesteps": 5000000,
+       "success_rate": 0.74,
+       "final_return": 22.541990280151367,
+       "final_length": 216.7375030517578,
+       "wall_seconds": 175.76
+      },
+      {
+       "seed": 44,
+       "total_timesteps": 5000000,
+       "success_rate": 0.64,
+       "final_return": 22.954242706298828,
+       "final_length": 174.2624969482422,
+       "wall_seconds": 170.3
+      }
+     ],
+     "child": {
+      "wall_seconds": 639.33,
+      "cpu_seconds": 1936.2,
+      "peak_rss_mb": 2115.7,
+      "threads": 4
+     },
+     "elapsed_seconds": 639.7
+    }
+   },
+   "reference_check": {
+    "what": "LIMEN's published evolved interface examples/evolved_interfaces/hard_rule_chain.py (header 'Success rate: 76%')",
+    "result": 0.7066666666666667
+   },
+   "llm_cost_usd": 0.0,
+   "invalid_candidates": {
+    "note": "the invalid-candidate path is shared by the three LIMEN families; see limen-easy-pickup"
+   },
+   "timing": {
+    "single_seed_5M_steps_outside_evaluator": [
+     {
+      "seed": 42,
+      "success_rate": 0.7,
+      "final_return": 21.182302474975586,
+      "final_length": 215.6750030517578,
+      "train_wall_s_excl_final_eval": 251.3,
+      "seed_wall_s": 261.6,
+      "seed_cpu_s": 658.7
+     },
+     {
+      "task": "hard_rule_chain",
+      "prog": "hard_rule_chain.py",
+      "budget": "full",
+      "steps": 5000000,
+      "obs_dim": 147,
+      "total_wall_s": 264.7,
+      "total_cpu_s": 662.0,
+      "mean_success": 0.7,
+      "load": [
+       18.05078125,
+       15.96435546875,
+       13.7041015625
+      ]
+     }
+    ],
+    "note": "one 5M-step seed of the published interface at load average about 18 (2026-10-10 21:00)"
+   }
+  },
+  "the-station-zapbench-neural-activity-prediction": {
+   "family": "station_zapbench_forecasting",
+   "protocol": "recreated",
+   "seed": {
+    "score": 0.029075788330567662,
+    "combined_score": -0.029075788330567662,
+    "valid": null,
+    "error": null,
+    "elapsed_seconds": 304.84014,
+    "stage": null,
+    "best_epoch": 3,
+    "epochs": 3,
+    "stopped_by": "max_epochs",
+    "history": [
+     {
+      "epoch": 1,
+      "train_loss": 0.07502796252256562,
+      "val_mae": 0.03371281515094626,
+      "seconds": 96.37
+     },
+     {
+      "epoch": 2,
+      "train_loss": 0.031359944155617575,
+      "val_mae": 0.03125435155033208,
+      "seconds": 97.38
+     },
+     {
+      "epoch": 3,
+      "train_loss": 0.030338384395143893,
+      "val_mae": 0.03061282000072215,
+      "seconds": 97.75
+     }
+    ],
+    "best_val_mae": 0.03061282000072215,
+    "test_step_mae": {
+     "1": 0.02019533408234268,
+     "4": 0.02346815062506916,
+     "8": 0.026560852844683416,
+     "16": 0.030266696944248286,
+     "32": 0.03272384949972145
+    },
+    "test_condition_mae": {
+     "0": 0.03276864201440736,
+     "1": 0.02562662141335691,
+     "2": 0.02816266668495055,
+     "4": 0.03638358205907899,
+     "5": 0.023339810500030103,
+     "6": 0.025702865343931434,
+     "7": 0.036940171475884506,
+     "8": 0.023300550553000305,
+     "3": 0.029457184930468863
+    },
+    "train_child": {
+     "wall_seconds": 292.85,
+     "cpu_seconds": 1048.3,
+     "peak_rss_mb": 3437.7,
+     "threads": 4
+    },
+    "score_child": {
+     "wall_seconds": 11.6,
+     "cpu_seconds": 24.3,
+     "peak_rss_mb": 1403.2,
+     "threads": 4
+    },
+    "evaluator_process_max_rss_mb": 3437.7,
+    "command": "$PY suite/the-station-zapbench-neural-activity-prediction/evaluator.py suite/the-station-zapbench-neural-activity-prediction/initial_program.py"
+   },
+   "runs": {
+    "seed_a": {
+     "score": 0.029075788330567662,
+     "valid": null,
+     "best_epoch": 3,
+     "epochs": 3,
+     "stopped_by": "max_epochs",
+     "history": [
+      {
+       "epoch": 1,
+       "train_loss": 0.07502796252256562,
+       "val_mae": 0.03371281515094626,
+       "seconds": 132.31
+      },
+      {
+       "epoch": 2,
+       "train_loss": 0.031359944155617575,
+       "val_mae": 0.03125435155033208,
+       "seconds": 141.98
+      },
+      {
+       "epoch": 3,
+       "train_loss": 0.030338384395143893,
+       "val_mae": 0.03061282000072215,
+       "seconds": 142.72
+      }
+     ],
+     "best_val_mae": 0.03061282000072215,
+     "test_step_mae": {
+      "1": 0.02019533408234268,
+      "4": 0.02346815062506916,
+      "8": 0.026560852844683416,
+      "16": 0.030266696944248286,
+      "32": 0.03272384949972145
+     },
+     "test_condition_mae": {
+      "0": 0.03276864201440736,
+      "1": 0.02562662141335691,
+      "2": 0.02816266668495055,
+      "4": 0.03638358205907899,
+      "5": 0.023339810500030103,
+      "6": 0.025702865343931434,
+      "7": 0.036940171475884506,
+      "8": 0.023300550553000305,
+      "3": 0.029457184930468863
+     },
+     "test_pooled_mae": 0.029208351352166966,
+     "test_train_conditions_mae": 0.029028113755580016,
+     "test_holdout_mae": 0.029457184930468863,
+     "parameters": 2656,
+     "batch_size": 8,
+     "training_seconds": 417.0,
+     "train_child": {
+      "wall_seconds": 418.57,
+      "cpu_seconds": 1247.2,
+      "peak_rss_mb": 3319.2,
+      "threads": 4
+     },
+     "score_child": {
+      "wall_seconds": 14.85,
+      "cpu_seconds": 27.7,
+      "peak_rss_mb": 1406.6,
+      "threads": 4
+     },
+     "elapsed_seconds": 433.8
+    },
+    "seed_b": {
+     "score": 0.029075788330567662,
+     "valid": null,
+     "best_epoch": 3,
+     "epochs": 3,
+     "stopped_by": "max_epochs",
+     "history": [
+      {
+       "epoch": 1,
+       "train_loss": 0.07502796252256562,
+       "val_mae": 0.03371281515094626,
+       "seconds": 135.69
+      },
+      {
+       "epoch": 2,
+       "train_loss": 0.031359944155617575,
+       "val_mae": 0.03125435155033208,
+       "seconds": 109.71
+      },
+      {
+       "epoch": 3,
+       "train_loss": 0.030338384395143893,
+       "val_mae": 0.03061282000072215,
+       "seconds": 107.39
+      }
+     ],
+     "best_val_mae": 0.03061282000072215,
+     "test_step_mae": {
+      "1": 0.02019533408234268,
+      "4": 0.02346815062506916,
+      "8": 0.026560852844683416,
+      "16": 0.030266696944248286,
+      "32": 0.03272384949972145
+     },
+     "test_condition_mae": {
+      "0": 0.03276864201440736,
+      "1": 0.02562662141335691,
+      "2": 0.02816266668495055,
+      "4": 0.03638358205907899,
+      "5": 0.023339810500030103,
+      "6": 0.025702865343931434,
+      "7": 0.036940171475884506,
+      "8": 0.023300550553000305,
+      "3": 0.029457184930468863
+     },
+     "test_pooled_mae": 0.029208351352166966,
+     "test_train_conditions_mae": 0.029028113755580016,
+     "test_holdout_mae": 0.029457184930468863,
+     "parameters": 2656,
+     "batch_size": 8,
+     "training_seconds": 352.8,
+     "train_child": {
+      "wall_seconds": 354.63,
+      "cpu_seconds": 1181.5,
+      "peak_rss_mb": 3385.9,
+      "threads": 4
+     },
+     "score_child": {
+      "wall_seconds": 11.54,
+      "cpu_seconds": 24.1,
+      "peak_rss_mb": 1399.4,
+      "threads": 4
+     },
+     "elapsed_seconds": 366.8
+    },
+    "seed_5_epochs": {
+     "score": 0.02888816650575712,
+     "valid": null,
+     "best_epoch": 5,
+     "epochs": 5,
+     "stopped_by": "max_epochs",
+     "history": [
+      {
+       "epoch": 1,
+       "train_loss": 0.07502796252256562,
+       "val_mae": 0.03371281515094626,
+       "seconds": 116.16
+      },
+      {
+       "epoch": 2,
+       "train_loss": 0.031359944155617575,
+       "val_mae": 0.03125435155033208,
+       "seconds": 119.95
+      },
+      {
+       "epoch": 3,
+       "train_loss": 0.030338384395143893,
+       "val_mae": 0.03061282000072215,
+       "seconds": 123.28
+      },
+      {
+       "epoch": 4,
+       "train_loss": 0.03025645168008317,
+       "val_mae": 0.031179997162842286,
+       "seconds": 110.25
+      },
+      {
+       "epoch": 5,
+       "train_loss": 0.030246120682563413,
+       "val_mae": 0.03047312493720745,
+       "seconds": 128.52
+      }
+     ],
+     "best_val_mae": 0.03047312493720745,
+     "test_step_mae": {
+      "1": 0.02000344096017633,
+      "4": 0.02351158670042986,
+      "8": 0.026480313509662883,
+      "16": 0.02994307529681616,
+      "32": 0.032446053807497814
+     },
+     "test_condition_mae": {
+      "0": 0.03277243140777279,
+      "1": 0.025179544937344495,
+      "2": 0.028171260174216457,
+      "4": 0.036243505161785525,
+      "5": 0.023113020928496646,
+      "6": 0.02511495773527069,
+      "7": 0.037159547986186675,
+      "8": 0.022871388821139264,
+      "3": 0.029367841399601503
+     },
+     "test_pooled_mae": 0.028989355600809473,
+     "test_train_conditions_mae": 0.02882820714402657,
+     "test_holdout_mae": 0.029367841399601503,
+     "parameters": 2656,
+     "batch_size": 8,
+     "training_seconds": 598.2,
+     "train_child": {
+      "wall_seconds": 599.56,
+      "cpu_seconds": 1984.5,
+      "peak_rss_mb": 3451.1,
+      "threads": 4
+     },
+     "score_child": {
+      "wall_seconds": 14.11,
+      "cpu_seconds": 25.1,
+      "peak_rss_mb": 1394.7,
+      "threads": 4
+     },
+     "elapsed_seconds": 614.0
+    },
+    "context_mean": {
+     "score": 0.03185953321220259,
+     "valid": null,
+     "best_epoch": 1,
+     "epochs": 3,
+     "stopped_by": "max_epochs",
+     "history": [
+      {
+       "epoch": 1,
+       "train_loss": 0.03319728913306691,
+       "val_mae": 0.03345031511384212,
+       "seconds": 14.2
+      },
+      {
+       "epoch": 2,
+       "train_loss": 0.03320236960847174,
+       "val_mae": 0.03345031511384212,
+       "seconds": 14.6
+      },
+      {
+       "epoch": 3,
+       "train_loss": 0.033194774705635845,
+       "val_mae": 0.03345031511384212,
+       "seconds": 13.92
+      }
+     ],
+     "best_val_mae": 0.03345031511384212,
+     "test_step_mae": {
+      "1": 0.02034400902776939,
+      "4": 0.024222344621469147,
+      "8": 0.02790086311906348,
+      "16": 0.03289733598254815,
+      "32": 0.03775355637254379
+     },
+     "test_condition_mae": {
+      "0": 0.037134983308857734,
+      "1": 0.02596010551231034,
+      "2": 0.03226789086200492,
+      "4": 0.04201885245584515,
+      "5": 0.02494630385757056,
+      "6": 0.025284355326852033,
+      "7": 0.04295640979053595,
+      "8": 0.023284307044102857,
+      "3": 0.03288259075174379
+     },
+     "test_pooled_mae": 0.031885045795665055,
+     "test_train_conditions_mae": 0.03173165101975994,
+     "test_holdout_mae": 0.03288259075174379,
+     "parameters": 0,
+     "batch_size": 8,
+     "training_seconds": 42.7,
+     "train_child": {
+      "wall_seconds": 43.38,
+      "cpu_seconds": 63.6,
+      "peak_rss_mb": 1676.8,
+      "threads": 4
+     },
+     "score_child": {
+      "wall_seconds": 6.72,
+      "cpu_seconds": 6.8,
+      "peak_rss_mb": 1094.5,
+      "threads": 4
+     },
+     "elapsed_seconds": 50.3
+    },
+    "last_value": {
+     "score": 0.03469616621200808,
+     "valid": null,
+     "best_epoch": 1,
+     "epochs": 3,
+     "stopped_by": "max_epochs",
+     "history": [
+      {
+       "epoch": 1,
+       "train_loss": 0.03596857571085194,
+       "val_mae": 0.03625839321283541,
+       "seconds": 15.42
+      },
+      {
+       "epoch": 2,
+       "train_loss": 0.03597417975490417,
+       "val_mae": 0.03625839321283541,
+       "seconds": 14.78
+      },
+      {
+       "epoch": 3,
+       "train_loss": 0.03596631835341154,
+       "val_mae": 0.03625839321283541,
+       "seconds": 13.01
+      }
+     ],
+     "best_val_mae": 0.03625839321283541,
+     "test_step_mae": {
+      "1": 0.022886187095753914,
+      "4": 0.026761830742353467,
+      "8": 0.030513182457107966,
+      "16": 0.03558585548044514,
+      "32": 0.04094331601817605
+     },
+     "test_condition_mae": {
+      "0": 0.0392987277964736,
+      "1": 0.02947033856832669,
+      "2": 0.03501669903267847,
+      "4": 0.04371162939577816,
+      "5": 0.028061628053771315,
+      "6": 0.028796271614499012,
+      "7": 0.04512455361486631,
+      "8": 0.026937651428215626,
+      "3": 0.03584799640346352
+     },
+     "test_pooled_mae": 0.03476482075486824,
+     "test_train_conditions_mae": 0.03455218743807614,
+     "test_holdout_mae": 0.03584799640346352,
+     "parameters": 0,
+     "batch_size": 8,
+     "training_seconds": 43.2,
+     "train_child": {
+      "wall_seconds": 43.9,
+      "cpu_seconds": 65.0,
+      "peak_rss_mb": 1700.0,
+      "threads": 4
+     },
+     "score_child": {
+      "wall_seconds": 7.47,
+      "cpu_seconds": 7.6,
+      "peak_rss_mb": 1093.4,
+      "threads": 4
+     },
+     "elapsed_seconds": 51.6
+    }
+   },
+   "invalid_candidates": {
+    "predicts 16 steps (generated evaluator)": {
+     "score": null,
+     "combined_score": -1.7976931348623157e+308,
+     "valid": false,
+     "error": "training failed: TypeError: sub got incompatible shapes for broadcasting: (8, 16, 71721), (8, 32, 71721).",
+     "elapsed_seconds": 0.974324,
+     "stage": null,
+     "evaluator_process_max_rss_mb": 546.6
+    },
+    "create_network not callable (generated evaluator)": {
+     "score": null,
+     "combined_score": -1.7976931348623157e+308,
+     "valid": false,
+     "error": "create_network must be a function",
+     "elapsed_seconds": 0.000442,
+     "stage": null,
+     "evaluator_process_max_rss_mb": 27.6
+    },
+    "host callback without vmap rule": {
+     "valid": false,
+     "score": null,
+     "error": "training failed: NotImplementedError: vmap is only supported for the pure_callback primitive when vmap_method is one of 'sequential', 'sequential_unrolled', 'expand_dims', 'broadcast_all', or 'legacy_vectorized'. Got vmap_method=None.",
+     "elapsed_seconds": 23.9
+    },
+    "vmappable host callback (export refused)": {
+     "valid": false,
+     "score": null,
+     "error": "training failed: the predictor cannot be exported for scoring: NotImplementedError: serialization of host_callbacks is not yet implemented",
+     "elapsed_seconds": 78.5
+    },
+    "reads the test split at module level": "rejected in the training child (tests/test_jax_station_slow.py)"
+   },
+   "reference_checks": [
+    {
+     "what": "ZAPBench's published 'mean' baseline (combined.json, method mean, context 4, 9 conditions x 32 steps) reproduced on the prepared test split (scripts/prepare_jax_station.py --reference)",
+     "result": {
+      "rows_compared": 288,
+      "max_abs_diff": 2.009341297515288e-08,
+      "max_rel_diff": 5.67787651197884e-07,
+      "local_condition_averaged_mae": 0.03185953321220259,
+      "published_condition_averaged_mae": 0.031859533156597224,
+      "published_xid": [
+       "146317468/3"
+      ],
+      "windows": {
+       "gain": 98,
+       "dots": 323,
+       "flash": 99,
+       "turning": 231,
+       "position": 86,
+       "open loop": 165,
+       "rotation": 99,
+       "dark": 88,
+       "taxis": 368
+      }
+     }
+    },
+    {
+     "what": "parameter-free mean-of-context candidate through the full evaluator",
+     "result": 0.03185953321220259,
+     "published": 0.031859533156597224
+    },
+    {
+     "what": "trivial predictors on validation and test (condition-averaged and pooled MAE)",
+     "result": {
+      "context_mean": {
+       "val": {
+        "condition_avg": 0.03409644537415466,
+        "pooled": 0.03345031511384212
+       },
+       "test": {
+        "condition_avg": 0.03185953321220259,
+        "pooled": 0.031885045795665055
+       }
+      },
+      "last_value": {
+       "val": {
+        "condition_avg": 0.036806570799106424,
+        "pooled": 0.036258393212835416
+       },
+       "test": {
+        "condition_avg": 0.03469616621200808,
+        "pooled": 0.03476482075486824
+       }
+      },
+      "zeros": {
+       "val": {
+        "condition_avg": 0.11652750304264571,
+        "pooled": 0.11816809351329842
+       },
+       "test": {
+        "condition_avg": 0.11176515858192733,
+        "pooled": 0.11288923052281113
+       }
+      },
+      "train_neuron_mean": {
+       "val": {
+        "condition_avg": 0.03448599513852705,
+        "pooled": 0.03363221769499412
+       },
+       "test": {
+        "condition_avg": 0.03370700793729466,
+        "pooled": 0.033287405705175604
+       }
+      }
+     }
+    },
+    {
+     "what": "float16 storage of the training and validation splits",
+     "result": {
+      "val": {
+       "max_abs_rounding": 0.00048828125,
+       "mean_abs_rounding": 2.0365657353552843e-05,
+       "mean_abs_value": 0.11661333876865228,
+       "context_mean_mae_float16": 0.03345031511384212,
+       "context_mean_mae_float32": 0.03345030815507086,
+       "mae_difference": 6.958771260612284e-09
+      },
+      "train": {
+       "max_abs_rounding": 0.00048828125,
+       "mean_abs_rounding": 2.0567774978798997e-05,
+       "mean_abs_value": 0.11763180255275897,
+       "context_mean_mae_float16": 0.033197795937444034,
+       "context_mean_mae_float32": 0.03319779024339277,
+       "mae_difference": 5.694051265214828e-09
+      }
+     }
+    }
+   ],
+   "llm_cost_usd": 0.0
+  }
+ },
+ "determinism": {
+  "limen": "identical per-run results in repeated evaluations: easy seed (3 runs, one through the generated evaluator), hard published interface (3 runs), medium published interface (2 runs); see tasks.<id>.runs",
+  "limen_environment_dependence": {
+   "what": "500,000-step run of the published easy interface, seed 42",
+   "VECLIB_MAXIMUM_THREADS=4 (evaluator)": 6.142559051513672,
+   "VECLIB_MAXIMUM_THREADS unset": 6.14880895614624,
+   "note": "final return of the run. With VECLIB_MAXIMUM_THREADS=4 set, adding the MKL, OpenBLAS and NumExpr thread variables, TF_CPP_MIN_LOG_LEVEL and LANG does not change it; without it, TF_CPP_MIN_LOG_LEVEL and LANG do not either; PYTHONHASHSEED (0 or 1), the audit hook, LIMEN's crash filter and the candidate loading path (file or code string) do not change results. Per-seed success of the full 1M-step run with seed 42: 1.00 in the evaluator, 0.98 with VECLIB_MAXIMUM_THREADS unset",
+   "repeat_in_one_process": [
+    {
+     "seed": 42,
+     "success_rate": 0.98,
+     "final_return": 9.916437149047852,
+     "final_length": 17.962499618530273,
+     "train_wall_s_excl_final_eval": 45.4,
+     "seed_wall_s": 49.9,
+     "seed_cpu_s": 116.3
+    },
+    {
+     "seed": 42,
+     "success_rate": 0.98,
+     "final_return": 9.916437149047852,
+     "final_length": 17.962499618530273,
+     "train_wall_s_excl_final_eval": 37.8,
+     "seed_wall_s": 39.9,
+     "seed_cpu_s": 107.0
+    },
+    {
+     "seed": 43,
+     "success_rate": 0.98,
+     "final_return": 10.583999633789062,
+     "final_length": 18.200000762939453,
+     "train_wall_s_excl_final_eval": 42.0,
+     "seed_wall_s": 44.0,
+     "seed_cpu_s": 109.5
+    },
+    {
+     "task": "easy_pickup",
+     "prog": "easy_pickup.py",
+     "budget": "full",
+     "steps": 1000000,
+     "obs_dim": 174,
+     "total_wall_s": 136.9,
+     "total_cpu_s": 335.6,
+     "mean_success": 0.98,
+     "load": [
+      14.076171875,
+      7.42236328125,
+      4.5478515625
+     ]
+    }
+   ]
+  },
+  "zapbench": "two evaluations of the seed: identical validation curves, test MAE and per-condition MAE"
+ },
+ "withdraw": {},
+ "llm_cost_usd": 0.0
+}

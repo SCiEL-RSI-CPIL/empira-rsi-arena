@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 300
   max_retries: 2
 
 prompt:
   system_message: |
     Frontier-CS Polyominoes packing
 
-    Frontier-CS Polyominoes packing
+    Provide a C++17 program (as the SOLUTION_CPP string) that chooses a W x H rectangle and places 100 to 10000 polyominoes, with optional rotation and reflection, on distinct cells inside it; scored by the official checker's mean of total cells / (W*H) x 100 over 70 Frontier-CS test cases, failed cases scoring 0 (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: SOLUTION_CPP: str, the source of a complete C++17 program compiled with GNU g++ -O2 -pipe -std=gnu++17 (bits/stdc++.h available) and run once per test case with 2 s CPU, 4 s wall-clock and 256 MiB memory. Input (stdin): n (100..10000) polyominoes; for each, k (1..10) and k lines 'x y' of 4-connected cells in a local frame (coordinates may be negative, holes allowed). Output (stdout): 'W H', then one line 'X Y R F' per polyomino in input order: each cell (x, y) is reflected across the y-axis if F = 1 ((x, y) -> (-x, y)), then rotated R times by 90 degrees clockwise ((x, y) -> (y, -x)), then translated by (X, Y); all transformed cells must be distinct and inside [0, W) x [0, H). The checker scores a case by total cells / (W * H). Score (maximize): mean over the 70 Frontier-CS test cases of the official checker's ratio x 100; a case with a rejected output, a runtime error or an exceeded limit scores 0, and a compilation error makes the candidate invalid
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

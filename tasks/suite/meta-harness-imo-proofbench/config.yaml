@@ -22,7 +22,7 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 1800
   max_retries: 2
 
 prompt:
@@ -31,7 +31,7 @@ prompt:
 
     IMO-ProofBench task evaluated in Meta-Harness: End-to-End Optimization of Model Harnesses.
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str: a complete proof for an IMO-ProofBench problem (`question` is the problem statement and a request for a rigorous proof). `llm(...)` is a budgeted, cached OpenRouter chat client. A judge model grades the proof against the reference solution and the problem's grading guidelines on IMO-Bench's 0/1/6/7-point scale (first <points>N out of 7</points> block of its reply; unparsable grades count as 0). Score: mean points / 7 over a fixed seeded sample of the 60 problems; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

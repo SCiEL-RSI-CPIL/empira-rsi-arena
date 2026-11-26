@@ -4,22 +4,24 @@
 **Paper:** Group-Evolving Agents: Open-Ended Self-Improvement via Experience Sharing (https://arxiv.org/pdf/2602.04837)\
 **Paper:** HyperAgents (https://arxiv.org/pdf/2603.19461)\
 **Task id:** `dgm-aider-polyglot`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-Aider Polyglot
+Write solve(exercise, llm), a Python coding agent that may call a budgeted model client and returns new contents for the solution files of one Aider Polyglot (Exercism) exercise; the score is pass@1, the fraction of DGM's 10 first-stage exercises in C++, Go, Java, JavaScript, Python and Rust whose hidden unit tests then pass (higher is better).
 
 Benchmark named in the paper: Aider Polyglot. Paper metric: pass@1 task success.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+solve(exercise: dict, llm) -> dict[str, str]: a coding agent for one Exercism exercise of the Aider Polyglot benchmark. `exercise` has `id` ('<language>__<slug>'), `language` (cpp, go, java, javascript, python or rust), `instructions` (the exercise text), `files` (the editable solution stub files, path -> content) and `context` (read-only build files, path -> content). `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client (max_tokens defaults to 1024 and is capped at 8192; the evaluation's budget is split equally across the exercises, and an exhausted budget or a rejected request raises an exception inside solve). Return the complete new content of the solution files you change (keys must be paths of exercise['files'], at most 200,000 characters per file); files you omit keep their stub content. solve runs once per exercise in a sandboxed child process without file, process or network access and never sees the tests or their results; afterwards the exercise's hidden unit tests run once in a network-less container with the language's toolchain. Returning anything but such a dict invalidates the evaluation. Score: pass@1, the fraction of the task's fixed exercise list whose tests all pass (an exercise whose agent crashes, times out or changes nothing scores 0); higher is better
+
+Parameters: `{"subset": "small", "budget_usd": 0.5, "agent_seconds": 300, "test_seconds": 180, "agent_workers": 4, "test_workers": 2}`
 
 ## Labels
 
-Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `software_engineering`, data `public_benchmark`, verification `none`, reference `none`, resources `model_api, simulator`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `software_engineering`, data `public_benchmark`, verification `sampled`, reference `none`, resources `docker, model_api`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -30,16 +32,28 @@ Evidence status: **unreviewed**.
 
 No qualifying paper whose main objective is this underlying scientific or real-world problem has been established in the evidence registry. A task's use in an agent/framework evaluation is insufficient. This label describes the available evidence, not proof that the task has no scientific value.
 
-## Also evaluated by
+## Related paper and local records
 
-The same problem (same evaluator and parameters) appears in these papers; their records were merged into this task and their pinned upstream routes remain reachable with `run.py evaluate dgm-aider-polyglot --route upstream --paper <paper>`.
+These records are grouped under this local package. Sharing a local evaluator does not establish identical paper experiments, datasets or candidate contracts. Configured upstream routes remain reachable with `run.py evaluate dgm-aider-polyglot --route upstream --paper <paper>`; local reference aliases retain their recorded native interfaces.
 
 - GEA: Aider Polyglot (`gea-aider-polyglot`)
 - HyperAgents: Aider Polyglot (`hyperagents-aider-polyglot`)
 
 ## Evaluation protocol
 
-Not executable in this suite: Candidates are LLM agents scored inside the Aider Polyglot environment (tools, web, games or code sandboxes); the environment and model access are external.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Exercises: DGM's first evaluation stage, the 10 exercises of polyglot/subsets/small.json (jennyzzt/dgm at commit a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2; 2 Go, 2 Python, 2 JavaScript, 2 Rust, 1 C++, 1 Java), with which DGM checks basic coding ability before its 50-exercise second stage (DGM_outer.py and self_improve_step.py: the second stage runs when at least 40% are solved; the paper lists the same 10 exercises in Appendix E.3). The staged continuation is not part of this task; the parameter subset evaluates other lists, for example as a held-out check: 'medium' (DGM's 50, which include python__dominoes from the small list), 'heldout' (the 166 exercises in neither DGM list), 'all' (225) or a list of exercise ids. With 10 exercises the score moves in steps of 0.1 and is noisy.
+- Data: the Aider polyglot-benchmark (225 Exercism practice exercises in C++, Go, Java, JavaScript, Python and Rust) at commit 7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f, fetched and verified by scripts/prepare_polyglot.py against catalog/polyglot-data-lock.json. The exercises are MIT-licensed Exercism material (every track's LICENSE is MIT; the benchmark repository has no LICENSE file of its own) and are not redistributed here.
+- Model: the agent's client defaults to google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it); DGM evaluates its Polyglot agents with o3-mini at temperature 1.0, so absolute scores are not comparable with DGM's (14.2% to 30.7% on the full benchmark). DGM's numbers were not reproduced. Of the other cited papers, HyperAgents keeps DGM's Polyglot models and temperature (its DGM-H improves from 0.084 to 0.267 on the full benchmark), and GEA's coding (acting) module uses Claude Haiku 4.5 for its first 10 iterations and Claude Sonnet 4.5 for the last 10 (38.2% to 88.3% on Polyglot); neither paper's numbers were reproduced.
+- Agent interface: DGM's agents work inside the task container with a Bash tool and a file-editing tool, so they can browse the repository, compile and run their own code (but never the hidden tests). Here the agent is a Python function that receives the instructions, the solution stub files and the small build files of DGM's repository view (Java build.gradle, C++ CMakeLists.txt, JavaScript package.json, .eslintrc, .npmrc) as text and returns new file contents; it cannot execute code. Instructions are .docs/introduction.md, instructions.md and instructions.append.md in Aider's order (DGM joins all .docs files in directory order). As in the agent view of both harnesses, test files, test data and helper ('editor') files such as Java SgfNode.java are not shown (DGM resets the agent's repository to a commit without them, although its container also keeps a full copy of the exercise outside that repository), and only the solution files listed in the exercise's .meta/config.json can be changed (DGM likewise keeps only those files before testing).
+- Tests: one run per exercise after the agent has finished (pass@1, as in DGM; Aider's leaderboard reports pass@2 with one round of test feedback), with the commands of Aider's benchmark harness (Aider-AI/aider benchmark/benchmark.py at f5a512ba656ab109356f6ab53aaf039423c1d189), DGM's pytest flags -rA --tb=long, Aider's limit of 180 s per run (DGM: 120 s) and Aider's removal of @Disabled from the Java tests, so every Java test runs; DGM's harness does not remove @Disabled, so there only the first test of each Java test class runs. An exercise counts as solved when the test command exits with status 0, as in both harnesses, and, as an extra guard against solutions that end the test process early, the framework's own summary reports at least one passed and no failed test. As in DGM, an agent that changes nothing is not tested and scores 0 on that exercise.
+- Toolchains: tests run in a local arm64 Docker image built on this Mac (colima) by `python scripts/prepare_polyglot.py --build-image` from a recipe derived from Aider's benchmark Dockerfile, which DGM's polyglot/dockerfiles.py reuses (buildpack-deps:jammy, CMake, OpenJDK 21, Python 3.11, Go 1.21.5, Node.js 20 with the Exercism test packages). Differences: pinned versions (base image digest, Rust 1.90.0, Node.js 20.18.1, jest 29.7.0, pytest 8.3.4), Boost reduced to the headers plus date_time (the only compiled Boost library an exercise links), no conda and no Aider, and the Gradle 8.7, Maven, crates.io and Go build caches of the whole benchmark filled at build time so that every test run uses --network none. A solution that adds a crate outside that cache to Cargo.toml therefore fails to build offline. Each run gets a fresh container (no mounted host directory, no capabilities, 2 CPUs, 3 GB memory, 1024 processes).
+- Verification (validation/polyglot-checks.json): in this image the Exercism reference solutions of all 225 exercises pass their tests (with the extra summary guard), and the unchanged stubs fail on 219; the 6 stubs that pass are refactoring or test-writing exercises (Go counter, ledger and markdown, Java ledger and tree-building, JavaScript ledger), none of them in the 10-exercise list.
+- Budget and limits: the per-evaluation model budget (default USD 0.50, ARTASK_LLM_BUDGET_USD overrides it) is split equally across the exercises; an exhausted budget raises an error inside solve. Each agent run has 300 s of wall-clock time (DGM: 600 s, including tool calls), 120 s of CPU time and 512 MB of memory; a crash or timeout scores 0 on that exercise. Agents run four at a time and tests two at a time; the outcome does not depend on this.
+- Isolation: solve runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation, so the prepared tests and reference solutions are out of its reach; its model calls are forwarded to the evaluator. The summary guard is defence in depth for honest program search, not a security boundary: solution code that prints a fake summary and then exits with status 0 would still be counted as solved.
+- Overfitting: the 10 exercises are public and fixed, so a search can memorise them (for example by hard-coding solutions keyed on the instructions); claims should be backed by a held-out evaluation, preferably subset 'heldout' (disjoint from both DGM lists; the seed scores 0.26 on DGM's 'medium' list, validation/polyglot-checks.json). DGM itself diagnoses failures with the hidden tests during self-improvement, which a search method may imitate with the evaluator's per-exercise details.
+- Model-driven agent evaluation: the score is pass@1 on a small fixed list of exercises, so it is a coarse, noisy estimate that depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0) and on the per-evaluation model budget (task parameter budget_usd, overridden by ARTASK_LLM_BUDGET_USD, split equally across the exercises). The agent runs in a resource-limited child process (one per exercise) that receives only the exercise text, the stub files and read-only build files and a model client; it cannot read the prepared tests or reference solutions. The hidden tests run afterwards in the local image built by `python scripts/prepare_polyglot.py --build-image` (Docker, --network none). Responses are cached in llm-cache under the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks). ARTASK_POLYGLOT_EXERCISES truncates the exercise list for quick checks. `valid` is null because a sampled model score cannot certify a candidate.
 
 ## Run
 
@@ -51,9 +65,12 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `service:llm_api`
+- `py:numpy`
+- `docker`
 - `env:OPENROUTER_API_KEY`
-- `environment:Aider Polyglot`
+- `network:openrouter`
+- `file:data/polyglot/manifest.json`
+- `file:data/polyglot/subsets/small.json`
 
 ## Sources
 
@@ -63,7 +80,6 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 - repository: https://github.com/UCSB-AI/GEA/tree/d185edffd1f9fbd2297f4de8c6c9f94547448b6d
 - paper: https://arxiv.org/pdf/2603.19461 (Section 4 and Appendix C)
 - repository: https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d (domains/polyglot)
-
-## Limitations
-
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.
+- benchmark: https://github.com/Aider-AI/polyglot-benchmark/tree/7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f (225 Exercism practice exercises with stubs, tests and reference solutions)
+- repository: https://github.com/jennyzzt/dgm/blob/a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2/polyglot/subsets/small.json (the 10-exercise first evaluation stage (with polyglot/harness.py and polyglot/constants.py: agent input, empty-patch rule, test commands))
+- repository: https://github.com/Aider-AI/aider/blob/f5a512ba656ab109356f6ab53aaf039423c1d189/benchmark/benchmark.py (run_test_real and run_unit_tests: instructions, test commands, @Disabled removal, 180 s limit; benchmark/Dockerfile for the toolchains)

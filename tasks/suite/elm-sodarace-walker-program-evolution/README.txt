@@ -3,22 +3,24 @@
 **Paper:** Evolution through Large Models (https://arxiv.org/pdf/2206.08896)\
 **Paper:** Language Model Crossover: Variation through Few-Shot Prompting (https://arxiv.org/pdf/2302.12170)\
 **Task id:** `elm-sodarace-walker-program-evolution`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-Sodarace walker program evolution: optimize the candidate specified by the paper and evaluate against the named benchmark.
+Write a Python make_walker() that builds a valid Sodarace walker (point masses and oscillating springs) with the evaluator's walker_creator; scored by the absolute horizontal displacement of its centre of mass after 28 s of simulated time on flat ground in the vendored OpenELM Box2D simulator (higher is better).
 
-Benchmark named in the paper: Sodarace walker program evolution. Paper metric: horizontal distance / terrain return / repair accuracy respectively.
+Benchmark named in the paper: Sodarace walker program evolution. Paper metric: horizontal displacement of the simulated walker.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+make_walker() -> the Walker returned by wc.get_walker(), built with ELM's walker_creator interface: wc = walker_creator(); j = wc.add_joint(x, y) adds a point mass and returns its position (scaled by 0.22, y flipped); wc.add_muscle(j0, j1, amplitude=0.0, phase=0.0) adds a spring between two joints returned by add_joint. walker_creator and Walker are predefined by the evaluator (do not import them; candidate definitions are replaced). make_walker() runs once in a sandboxed process (30 s CPU, no file or network access). Validity: OpenELM's rules (amplitude at most 10, at most 10 springs per joint, joints at least 0.003 apart after scaling) plus at most 100 joints and 500 springs, all joints within a 30 x 30 box of scaled units, |phase| at most 1000 and finite numbers. The walker is dropped onto flat ground in the vendored OpenELM/iesor-physics Box2D simulator and run for 80 calls of update_world(350), i.e. 1,680 steps of 1/60 s (28 s); a spring with amplitude a >= -0.6 oscillates between its joints with length L0 + 0.15 (a + 1) cos(3 t + 2 pi phase) (t in simulated seconds, lengths in simulator units; one scaled unit is about 31 simulator units), a spring with a < -0.6 is rigid. Score: absolute horizontal displacement of the walker's centre of mass in simulator units (maximize)
+
+Parameters: `{"updates": 80, "update_ms": 350, "cpu_seconds": 30}`
 
 ## Labels
 
-Scientific contribution: `engineering` (tier 3); artifact `program`, domain `games`, data `simulator`, verification `none`, reference `none`, resources `simulator`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `engineering` (tier 3); artifact `program`, domain `games`, data `simulator`, verification `simulation`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -29,15 +31,22 @@ Evidence status: **unreviewed**.
 
 No qualifying paper whose main objective is this underlying scientific or real-world problem has been established in the evidence registry. A task's use in an agent/framework evaluation is insufficient. This label describes the available evidence, not proof that the task has no scientific value.
 
-## Also evaluated by
+## Related paper and local records
 
-The same problem (same evaluator and parameters) appears in these papers; their records were merged into this task and their pinned upstream routes remain reachable with `run.py evaluate elm-sodarace-walker-program-evolution --route upstream --paper <paper>`.
+These records are grouped under this local package. Sharing a local evaluator does not establish identical paper experiments, datasets or candidate contracts. Configured upstream routes remain reachable with `run.py evaluate elm-sodarace-walker-program-evolution --route upstream --paper <paper>`; local reference aliases retain their recorded native interfaces.
 
 - LMX: Sodarace walker program evolution (`lmx-sodarace-walker-program-evolution`; Sodarace walker program evolution, Sodarace walker program evolution)
 
 ## Evaluation protocol
 
-Not executable in this suite: Sodarace walkers are simulated with the Sodaracer Box2D environment.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Simulator: OpenELM's Sodarace simulator (CarperAI/OpenELM@c844e149e3f59fef546e0bc55f4e12e0f192feb9, src/openelm/environments/sodaracer: simulator.py, helpers.py, walker/walk_creator.py; MIT, licence header kept), itself a Python translation of OptimusLime/iesor-physics (Box2D), is vendored in sim_control_sodarace_sim.py without its drawing framework and JSON export; Box2D 2.3.10 from the suite environment. With OpenELM's muscle order enabled, the port reproduced the upstream code exactly on OpenELM's seven seed walkers (square, radial, galloper, runner, wheel, CPPN fixed and mutable): identical node positions over 80 updates and identical OpenELM fitness values (validation/sim_control-checks.json; tests/test_sim_control_sodarace.py repeats the comparison when the upstream checkout is present).
+- Correction of an upstream slip: OpenELM constructs Muscle(id, joint, amplitude, phase) positionally while its dataclass declares (id, joint, phase, amplitude), so upstream springs oscillate with the walker's phase value as amplitude and its amplitude as phase (the C++ iesor-physics code that OpenELM translates passes the two in the same swapped order but also overwrites the phase with the amplitude while loading, so there every spring keeps its amplitude and all springs share one phase; it also scales the rest length multiplicatively, (1 + amplitude * cos) * L0, where OpenELM adds amplitude * cos to L0). This evaluator assigns them by name, as the ELM paper describes springs (an amplitude and a phase), which also keeps OpenELM's cap on amplitudes effective. Walkers with oscillating springs therefore move differently than in OpenELM; OpenELM's additive spring-length rule is kept (L0 + 0.3 * (a + 1) / 2 * cos(3 t + 2 pi * phase), rigid bone for a < -0.6). Because that rule gives every spring with a >= -0.6 an oscillation amplitude of 0.15 (a + 1), the springs the ELM paper calls distance muscles (added without amplitude; its square seed calls only the other prongs 'active') oscillate here with amplitude 0.15, whereas in OpenELM a spring whose phase value is 0 does not oscillate; the ELM paper does not say whether its distance springs move.
+- Fitness: the ELM paper measures how far the walker's centre of mass moves along the x-axis in a fixed time but does not state the time. OpenELM's default (1000 ms, i.e. two update_world(350) calls = 0.7 s of simulated time, less than one 2.1 s muscle period and mostly the initial fall) returns abs(min_x + offsetX), which is not a displacement. The LMX paper, the task's second source, ran Sodarace in OpenELM's implementation and measured fitness as the horizontal distance travelled after 1 second of simulation time (its Section 4.5 and Appendix E); it does not say whether that is OpenELM's 1000 ms evaluate value. This task scores the absolute x displacement of the mass-weighted mean node position after 80 update_world(350) calls (1,680 Box2D steps of 1/60 s = 28 s, about 13 muscle periods; the walker first falls about 190 units onto the ground). The duration is a local choice; Box2D's translation limit (2 units per step) keeps every walker's centre of mass above the 7,000-unit ground within it.
+- Interface and validity: candidates use ELM's walker_creator (add_joint, add_muscle, get_walker), injected by the evaluator; make_walker() runs once in a sandboxed child (30 s CPU, no file or network access) and only the joint and spring lists are returned. OpenELM's Walker.validate rules are re-checked independently (amplitude at most 10, applied to every spring whatever its type label; at most 10 springs per joint; joints at least 0.003 apart), plus local caps (at most 100 joints and 500 springs, all joints within a 30 x 30 box of scaled units, |phase| at most 1000, finite values). A run in which a node passes through the ground or a position becomes non-finite is rejected. The walker_creator is OpenELM's version, which differs from the programs printed in the ELM paper (Figures 6 and 7, Appendices B, F and G): there add_muscle takes a boolean third argument before amplitude and phase, joint coordinates appear unscaled (OpenELM scales them by 0.22 and flips y), the square seed's springs given amplitudes 5, 10 and 2 appear with amplitude 2.12, and some programs use amplitudes up to 30 (the Appendix F.2 galloper, the Appendix G.2 hopper). The paper's programs therefore do not run unchanged here, its amplitude limit is not stated, and OpenELM's galloper and runner seeds fail the amplitude rule of 10 (validation/sim_control-checks.json).
+- Not reproduced: ELM's MAP-Elites search with diff models, the invention pipeline and its terrains, LMX's quality-diversity score; the simulator used by the ELM authors is not public. Seed: ELM's hand-designed square walker, which scores 0.79 simulator units; in a local probe, 292 random valid walkers with 3-11 joints moved a median 3.5 and at most 40.9 units.
+- OpenELM's Box2D Sodarace simulator (MIT, CarperAI/OpenELM@c844e149) is vendored in sim_control_sodarace_sim.py with its amplitude/phase assignment corrected; fitness is the ELM paper's centre-of-mass displacement, not OpenELM's own fitness value.
 
 ## Run
 
@@ -49,17 +58,19 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `environment:Sodarace`
+- `py:numpy`
+- `py:Box2D`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2206.08896 (Sections 4–7 and Appendix A)
 - paper: https://arxiv.org/pdf/2302.12170 (Sections 4.1–4.5)
 - repository: https://github.com/jal278/lmx/tree/b8fec5dd16451cf7afb6e02ac621b71d5bdfee7f (scripts/sodaracers.py)
+- repository: https://github.com/CarperAI/OpenELM/tree/c844e149e3f59fef546e0bc55f4e12e0f192feb9/src/openelm/environments/sodaracer (simulator.py, helpers.py and walker/walk_creator.py (MIT), vendored in sim_control_sodarace_sim.py; walker/*.py seed walkers used for the cross-check)
+- repository: https://github.com/OptimusLime/iesor-physics/tree/c8235cfee83ebe1534aab154d2e4636222e161e0 (Physics/IESoR/Simulation/iesorWorld.cpp and iesorWorld.h: the C++ simulator OpenELM translates (Muscle constructor, addMuscleJoint, updateWorld))
 
 ## Limitations
 
 - No official runnable repository was verified from the paper/project sources examined.
 - Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed.
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.
 - No publicly accessible, paper-linked implementation with a verified immutable revision was established.

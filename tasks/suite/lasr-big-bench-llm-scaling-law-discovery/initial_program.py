@@ -1,10 +1,16 @@
-"""Placeholder candidate: BIG-Bench LLM scaling-law discovery.
-
-This task is not executable inside the suite (dataset); a real candidate would be the artifact the paper evolves for 'BIG-Bench LLM scaling-law discovery' (see README.md).
-"""
+"""Initial program for the suite task; SCiEL evolves the EVOLVE-BLOCK."""
 # EVOLVE-BLOCK-START
+import numpy as np
+
+N_PARAMS = 2
 
 
-def candidate():
-    raise NotImplementedError("lasr-big-bench-llm-scaling-law-discovery is documented but not executable in this suite")
+def initial_params():
+    return [0.3, 0.01]
+
+
+def scaling_law(X, params):
+    """Grade linear in the log of training compute (training steps x tokens per batch)."""
+    E, a = params
+    return E + a * np.log10(X["training_steps"] * X["batch_size"])
 # EVOLVE-BLOCK-END

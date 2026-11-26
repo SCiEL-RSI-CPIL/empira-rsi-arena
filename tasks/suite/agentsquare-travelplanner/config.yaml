@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 1800
   max_retries: 2
 
 prompt:
   system_message: |
     TravelPlanner
 
-    TravelPlanner task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.
+    Write a Python act(instruction, observation, valid_actions, history, llm) agent that gathers flights, lodging, restaurants and attractions with TravelPlanner's search tools and submits a JSON travel plan, using a budgeted OpenRouter model client; scored by the mean commonsense-constraint pass rate (of 8) on 10 hard validation queries, at most 30 actions each (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: TravelPlanner in two-stage (tool-use) mode: each reply is one action Tool[arguments] with the tools FlightSearch, GoogleDistanceMatrix, AccommodationSearch, RestaurantSearch, AttractionSearch, CitySearch and NotebookWrite, and Finish[<JSON plan>] submits the plan (the JSON day-record format of the instruction); a fixed sample of 10 of the validation queries 151-180, at most 30 actions. Episode score: the commonsense-constraint micro pass rate of the submitted plan (passed commonsense constraints / 8; 0 without a plan; TravelPlanner's checks pass vacuously on absent entries, so a plan of '-' entries already scores 0.625). Score: mean over the 10 queries; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

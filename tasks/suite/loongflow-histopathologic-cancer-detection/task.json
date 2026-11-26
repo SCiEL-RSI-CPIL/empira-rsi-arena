@@ -2,13 +2,13 @@
   "schema_version": "1.0",
   "id": "loongflow-histopathologic-cancer-detection",
   "name": "histopathologic-cancer-detection",
-  "description": "Predict metastatic cancer presence in histopathology image patches.",
+  "description": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 45,819 labelled 48 x 48 PatchCamelyon lymph-node patch crops and returns a tumour probability in [0, 1] for each of 11,672 test crops from held-out whole-slide images, within a 600 s wall-clock budget on 4 CPU threads; scored by ROC AUC (higher is better).",
   "paper_ids": [
     "loongflow",
     "eurekagent"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2512.24077",
@@ -29,6 +29,26 @@
       "url": "https://github.com/THU-Team-Eureka/EurekAgent/tree/fb96df897dfb99797a77623aa0dd9ee178fe89d2",
       "type": "repository",
       "locator": null
+    },
+    {
+      "url": "https://zenodo.org/records/2546921",
+      "type": "archive",
+      "locator": "PatchCamelyon valid and test files: images, labels and slide metadata (data CC0 per github.com/basveeling/pcam; MIT per the Zenodo record)"
+    },
+    {
+      "url": "https://github.com/basveeling/pcam",
+      "type": "benchmark",
+      "locator": "README: labels refer to the central 32 x 32 pixel region; splits are slide-disjoint; data licence"
+    },
+    {
+      "url": "https://github.com/openai/mle-bench/tree/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/histopathologic-cancer-detection",
+      "type": "repository",
+      "locator": "grade.py (ROC AUC; utils.prepare_for_auroc_metric requires probabilities in [0, 1])"
+    },
+    {
+      "url": "https://www.kaggle.com/c/histopathologic-cancer-detection",
+      "type": "benchmark",
+      "locator": "competition definition: PCam without duplicate patches"
     }
   ],
   "requirements": {
@@ -44,7 +64,7 @@
     ]
   },
   "evaluation": {
-    "metric": "ROC AUC",
+    "metric": "score",
     "paper_metric": "ROC AUC",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -91,8 +111,8 @@
       "Exact metric verified against official MLE-bench grade.py at https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/histopathologic-cancer-detection/grade.py. This dependency revision was audited; LoongFlow paper did not pin this MLE-bench revision."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "kaggle_pcam_histopathology",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -100,19 +120,19 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "dataset:MLE-bench",
-        "hardware:gpu"
+        "py:numpy",
+        "py:sklearn",
+        "py:pandas",
+        "py:psutil",
+        "file:data/kaggle/pcam/public/train.npz",
+        "file:data/kaggle/pcam/public/test.npz",
+        "file:data/kaggle/pcam/private/test_labels.npz"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "dataset",
-      "unsupported_reason": "MLE-bench competitions require the Kaggle data and model training; neither is redistributed."
+      "timeout": 780,
+      "validity_key": "valid"
     }
   },
-  "limitations": [
-    "Direct CPU checks found upstream square seed rejected by strict overlap test and rectangle seed incompatible with its evaluator. Original Autocorrelation II and Erdos overlap seeds passed; a new simple square grid fixture passed. These are integration checks, not reproduced paper results.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-  ],
+  "limitations": [],
   "source_specification": {
     "name": "histopathologic-cancer-detection",
     "slug": "histopathologic-cancer-detection",
@@ -152,14 +172,13 @@
     "scientific_contribution": "engineering",
     "science_tier": 3,
     "artifact": "model",
-    "domain": "machine_learning",
-    "area": "machine_learning",
-    "data": "undistributed",
-    "verification": "none",
+    "domain": "natural_science",
+    "area": "biology",
+    "data": "real_measurements",
+    "verification": "simulation",
     "reference": "none",
     "resources": [
-      "gpu",
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false
