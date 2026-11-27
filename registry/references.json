@@ -8,19 +8,19 @@
     "repository_url": "https://github.com/Doldrums/arena",
     "revision": "main",
     "manifest_path": "registry/task-library-manifest.json",
-    "manifest_sha256": "3979386d048ebf282cee0a03d026dd9284f1ff59289583d933bf0fc72a5d1385",
+    "manifest_sha256": "a2ad416a41d24a2da6420eb5a135cc2b7eb6aced37ddf2f3c50f5a92c5d20ec7",
     "catalog_path": "catalog/tasks.json",
     "index_path": "suite/index.json",
-    "catalog_sha256": "0d871a7fbaf2d2ff093988ff72f7ebc6a739b6f7433327dbde78a5e01160c952",
-    "index_sha256": "a2b3d6fbd4097bc04d73a865718eba7e24d43ef2e94530c8d4c76db482ba9c7e"
+    "catalog_sha256": "5a11ec98c00bd571e64fbe438098c1a39e3b9585a745c079079550e7a28b274f",
+    "index_sha256": "b9bbd32771cb70279b51b4428ab1d13ce733e3514646705230134ec24c26218c"
   },
   "summary": {
-    "task_count": 2403,
+    "task_count": 2398,
     "tasks_with_references": 961,
     "tasks_with_published_reference": 100,
     "tasks_with_recorded_baseline": 961,
-    "tasks_without_numeric_reference": 1442,
-    "tasks_without_published_reference": 2303,
+    "tasks_without_numeric_reference": 1437,
+    "tasks_without_published_reference": 2298,
     "tasks_with_recorded_reproduction": 34,
     "arena_reproduced_references": 0,
     "valid_recorded_baselines": 892,
@@ -35,7 +35,7 @@
       "declared_generated_instances": 27,
       "declared_public_cases": 10,
       "named_initial_value_problem": 9,
-      "not_recorded": 2118,
+      "not_recorded": 2113,
       "test_id_rows": 4
     }
   },
@@ -35780,39 +35780,6 @@
       ]
     },
     {
-      "task_id": "hyperagents-conference-paper-acceptance-prediction",
-      "status": "missing",
-      "metric": "score",
-      "direction": "maximize",
-      "protocol": "recreated",
-      "evaluation": {
-        "case_count": null,
-        "case_count_kind": "not_recorded",
-        "parameters": {
-          "benchmark": "paper_review",
-          "seed": 0
-        },
-        "seed": 0,
-        "dataset": "paper_review",
-        "source": {
-          "path": "suite/hyperagents-conference-paper-acceptance-prediction/problem.json",
-          "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hyperagents-conference-paper-acceptance-prediction/problem.json",
-          "sha256": "df703f59c45ac5bd0fd16f4ab572185e845b82f3b5fa2450f7c1b8cbcccc9031",
-          "locator": "#/parameters"
-        },
-        "notes": [
-          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
-        ],
-        "evaluator_source": {
-          "path": "suite/hyperagents-conference-paper-acceptance-prediction/evaluator.py",
-          "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hyperagents-conference-paper-acceptance-prediction/evaluator.py",
-          "sha256": "5640e1ab458e89a2d182da4f312b89f379c98cb7ec7e6e4e6a5b1198b5e4d0ad",
-          "locator": "evaluate / task metric definition"
-        }
-      },
-      "anchors": []
-    },
-    {
       "task_id": "hyperagents-imo-gradingbench",
       "status": "missing",
       "metric": "score",
@@ -54199,7 +54166,7 @@
         "source": {
           "path": "suite/pdr-balanced-academic-curriculum-csplib-30/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-balanced-academic-curriculum-csplib-30/problem.json",
-          "sha256": "9870dd7f8f86262b5573242a810de51bce6c4af20ee6e4ae482af1465a21c3c4",
+          "sha256": "80c91fc633f247aca5a84d126b5e4e755680e7ac45b0fb77d497befa85290ca4",
           "locator": "#/parameters"
         },
         "notes": [
@@ -54208,39 +54175,7 @@
         "evaluator_source": {
           "path": "suite/pdr-balanced-academic-curriculum-csplib-30/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-balanced-academic-curriculum-csplib-30/evaluator.py",
-          "sha256": "d5796bb77cf738a973c0b3cdcf8076149ac693fb1cdabc5a05118217fc164d67",
-          "locator": "evaluate / task metric definition"
-        }
-      },
-      "anchors": []
-    },
-    {
-      "task_id": "pdr-balanced-incomplete-block-design-csplib-28",
-      "status": "missing",
-      "metric": "score",
-      "direction": "maximize",
-      "protocol": "recreated",
-      "evaluation": {
-        "case_count": null,
-        "case_count_kind": "not_recorded",
-        "parameters": {
-          "problem": "bibd"
-        },
-        "seed": null,
-        "dataset": null,
-        "source": {
-          "path": "suite/pdr-balanced-incomplete-block-design-csplib-28/problem.json",
-          "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-balanced-incomplete-block-design-csplib-28/problem.json",
-          "sha256": "b2994d3d475626738d62becc5c0559c83a7fe7462000966ffba7cd5cf4927dd4",
-          "locator": "#/parameters"
-        },
-        "notes": [
-          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
-        ],
-        "evaluator_source": {
-          "path": "suite/pdr-balanced-incomplete-block-design-csplib-28/evaluator.py",
-          "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-balanced-incomplete-block-design-csplib-28/evaluator.py",
-          "sha256": "43000a5d0df613b80fbda84ae3ab47ed9eefe4be5452ebacf7199567dd0a3350",
+          "sha256": "e2431ddd8df40d031cbfc0a9602ad0c2117197c0b00faebcd7bc57164239cd54",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -54263,7 +54198,7 @@
         "source": {
           "path": "suite/pdr-car-sequencing-csplib-1/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-car-sequencing-csplib-1/problem.json",
-          "sha256": "0ce9b8fbc64e9cf64f2ce2bd7805c3b32e49af3e2feef84262faddce3f84c21c",
+          "sha256": "8eff4b1214bef0ad490b7f7f67213780051828ddd9b50659ff90f774c9295174",
           "locator": "#/parameters"
         },
         "notes": [
@@ -54272,103 +54207,7 @@
         "evaluator_source": {
           "path": "suite/pdr-car-sequencing-csplib-1/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-car-sequencing-csplib-1/evaluator.py",
-          "sha256": "3175f1ac726eb09dcfce88bf21b1bc0011b8672cd300ab1c10ef400676694282",
-          "locator": "evaluate / task metric definition"
-        }
-      },
-      "anchors": []
-    },
-    {
-      "task_id": "pdr-covering-arrays-csplib-45",
-      "status": "missing",
-      "metric": "score",
-      "direction": "maximize",
-      "protocol": "recreated",
-      "evaluation": {
-        "case_count": null,
-        "case_count_kind": "not_recorded",
-        "parameters": {
-          "problem": "covering_array"
-        },
-        "seed": null,
-        "dataset": null,
-        "source": {
-          "path": "suite/pdr-covering-arrays-csplib-45/problem.json",
-          "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-covering-arrays-csplib-45/problem.json",
-          "sha256": "648b33a45d1f341359adf8e520f6407c45ea4505d67a84af8e2f2a4e25668b04",
-          "locator": "#/parameters"
-        },
-        "notes": [
-          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
-        ],
-        "evaluator_source": {
-          "path": "suite/pdr-covering-arrays-csplib-45/evaluator.py",
-          "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-covering-arrays-csplib-45/evaluator.py",
-          "sha256": "ed88ba541197577a276a508e6502a471dd987d46d9c183a157e08942302a20b4",
-          "locator": "evaluate / task metric definition"
-        }
-      },
-      "anchors": []
-    },
-    {
-      "task_id": "pdr-error-correction-codes-csplib-36",
-      "status": "missing",
-      "metric": "score",
-      "direction": "maximize",
-      "protocol": "recreated",
-      "evaluation": {
-        "case_count": null,
-        "case_count_kind": "not_recorded",
-        "parameters": {
-          "problem": "error_correcting_codes"
-        },
-        "seed": null,
-        "dataset": null,
-        "source": {
-          "path": "suite/pdr-error-correction-codes-csplib-36/problem.json",
-          "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-error-correction-codes-csplib-36/problem.json",
-          "sha256": "6004da153308c0b72b903ee158027c2d484b3b8a8878f7c3373274f2b2aae79d",
-          "locator": "#/parameters"
-        },
-        "notes": [
-          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
-        ],
-        "evaluator_source": {
-          "path": "suite/pdr-error-correction-codes-csplib-36/evaluator.py",
-          "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-error-correction-codes-csplib-36/evaluator.py",
-          "sha256": "fdd1c16b45ed7c004549e0c7651e10418581534b6c8bee85c1aba53f41a4292c",
-          "locator": "evaluate / task metric definition"
-        }
-      },
-      "anchors": []
-    },
-    {
-      "task_id": "pdr-social-golfer-csplib-10",
-      "status": "missing",
-      "metric": "score",
-      "direction": "maximize",
-      "protocol": "recreated",
-      "evaluation": {
-        "case_count": null,
-        "case_count_kind": "not_recorded",
-        "parameters": {
-          "problem": "social_golfers"
-        },
-        "seed": null,
-        "dataset": null,
-        "source": {
-          "path": "suite/pdr-social-golfer-csplib-10/problem.json",
-          "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-social-golfer-csplib-10/problem.json",
-          "sha256": "9ccb3b4e586cab9e01b212dba218849f5a9e6ba5f9c3eaf7b89570dc14d5e770",
-          "locator": "#/parameters"
-        },
-        "notes": [
-          "The pinned suite smoke row describes a different task family, protocol or direction and is not used as a baseline for this configuration."
-        ],
-        "evaluator_source": {
-          "path": "suite/pdr-social-golfer-csplib-10/evaluator.py",
-          "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-social-golfer-csplib-10/evaluator.py",
-          "sha256": "fdedf1ae85d426c9c9cbbafddb545164ae53e13423f6bafa794178ea96f8aea8",
+          "sha256": "7e33539baa4b00e84eab1cb1fdcad01ea0a8387ea8b7b4e0265b868537dc9e26",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -54391,7 +54230,7 @@
         "source": {
           "path": "suite/pdr-tail-assignment-csplib-115/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-tail-assignment-csplib-115/problem.json",
-          "sha256": "aa28a75eeee80939b6c2e91cb921e9fce0868a9d595a7ce5ae9277e301b2a1ee",
+          "sha256": "87736122ce85dc7e5b2571e90bb856ddbc8b4c0c07bf8b01bb4b869bf2197cc9",
           "locator": "#/parameters"
         },
         "notes": [
@@ -54400,7 +54239,7 @@
         "evaluator_source": {
           "path": "suite/pdr-tail-assignment-csplib-115/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-tail-assignment-csplib-115/evaluator.py",
-          "sha256": "bbc3dba20c07cf85bf8f644367fd0777b83de9020c60f7ef9bba33109335f502",
+          "sha256": "1f0648d402c4afd811b44dcabca69d13ddf420ed2957ab8fdb9f4d4dcfbf9f11",
           "locator": "evaluate / task metric definition"
         }
       },
@@ -54423,7 +54262,7 @@
         "source": {
           "path": "suite/pdr-vessel-loading-csplib-8/problem.json",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-vessel-loading-csplib-8/problem.json",
-          "sha256": "baea0d086be486afa54d633b06bae15fb17eb38c1dcea464508f256535af0495",
+          "sha256": "7b53ae1a0301e8b410602740697a01be55507490edb425afcc09d49f23e2c055",
           "locator": "#/parameters"
         },
         "notes": [
@@ -54432,7 +54271,7 @@
         "evaluator_source": {
           "path": "suite/pdr-vessel-loading-csplib-8/evaluator.py",
           "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-vessel-loading-csplib-8/evaluator.py",
-          "sha256": "c036db3cd72a35fff4a1d7bc4c5409f5fd8c62bca135914bb06ef374a3a01e6b",
+          "sha256": "80f515042b12ead7ecffa97acbbb26ec3bec76ee2454369a63c5805be388c5a4",
           "locator": "evaluate / task metric definition"
         }
       },

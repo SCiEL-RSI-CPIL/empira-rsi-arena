@@ -1888,10 +1888,12 @@
     "limitations": [],
     "task_ids": [
       "dgm-aider-polyglot",
-      "hyperagents-conference-paper-acceptance-prediction",
       "eureka-ant",
       "hyperagents-quadruped-torso-height-reward-design",
       "hyperagents-imo-gradingbench"
+    ],
+    "withdrawn_task_ids": [
+      "hyperagents-conference-paper-acceptance-prediction"
     ],
     "source_artifacts": []
   },
@@ -2474,10 +2476,12 @@
       "pdr-tail-assignment-csplib-115",
       "pdr-vessel-loading-csplib-8",
       "pdr-car-sequencing-csplib-1",
-      "pdr-error-correction-codes-csplib-36",
-      "pdr-covering-arrays-csplib-45",
-      "pdr-balanced-academic-curriculum-csplib-30",
+      "pdr-balanced-academic-curriculum-csplib-30"
+    ],
+    "withdrawn_task_ids": [
       "pdr-balanced-incomplete-block-design-csplib-28",
+      "pdr-covering-arrays-csplib-45",
+      "pdr-error-correction-codes-csplib-36",
       "pdr-social-golfer-csplib-10"
     ],
     "source_artifacts": []

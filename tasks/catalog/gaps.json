@@ -2638,27 +2638,6 @@
     }
   },
   {
-    "id": "hyperagents-conference-paper-acceptance-prediction",
-    "paper_ids": [
-      "hyperagents"
-    ],
-    "repository": "https://github.com/facebookresearch/Hyperagents",
-    "limitations": [
-      "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-    ],
-    "requirements": {
-      "python": "Upstream-defined",
-      "hardware": "See upstream requirements and task notes.",
-      "dependencies": [],
-      "environment_variables": [],
-      "datasets": null,
-      "notes": [
-        "Docker",
-        "LLM credentials"
-      ]
-    }
-  },
-  {
     "id": "hyperagents-quadruped-walk-forward-reward-design",
     "paper_ids": [
       "hyperagents"
@@ -3788,103 +3767,7 @@
     }
   },
   {
-    "id": "pdr-error-correction-codes-csplib-36",
-    "paper_ids": [
-      "pdr"
-    ],
-    "repository": null,
-    "limitations": [
-      "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-      "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.",
-      "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
-    ],
-    "requirements": {
-      "python": null,
-      "hardware": "See upstream requirements and task notes.",
-      "dependencies": [],
-      "environment_variables": [],
-      "datasets": null,
-      "notes": [
-        "CPMpy",
-        "OR-Tools",
-        "AutoIG instance pools"
-      ]
-    }
-  },
-  {
-    "id": "pdr-covering-arrays-csplib-45",
-    "paper_ids": [
-      "pdr"
-    ],
-    "repository": null,
-    "limitations": [
-      "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-      "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.",
-      "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
-    ],
-    "requirements": {
-      "python": null,
-      "hardware": "See upstream requirements and task notes.",
-      "dependencies": [],
-      "environment_variables": [],
-      "datasets": null,
-      "notes": [
-        "CPMpy",
-        "OR-Tools",
-        "AutoIG instance pools"
-      ]
-    }
-  },
-  {
     "id": "pdr-balanced-academic-curriculum-csplib-30",
-    "paper_ids": [
-      "pdr"
-    ],
-    "repository": null,
-    "limitations": [
-      "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-      "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.",
-      "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
-    ],
-    "requirements": {
-      "python": null,
-      "hardware": "See upstream requirements and task notes.",
-      "dependencies": [],
-      "environment_variables": [],
-      "datasets": null,
-      "notes": [
-        "CPMpy",
-        "OR-Tools",
-        "AutoIG instance pools"
-      ]
-    }
-  },
-  {
-    "id": "pdr-balanced-incomplete-block-design-csplib-28",
-    "paper_ids": [
-      "pdr"
-    ],
-    "repository": null,
-    "limitations": [
-      "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-      "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.",
-      "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
-    ],
-    "requirements": {
-      "python": null,
-      "hardware": "See upstream requirements and task notes.",
-      "dependencies": [],
-      "environment_variables": [],
-      "datasets": null,
-      "notes": [
-        "CPMpy",
-        "OR-Tools",
-        "AutoIG instance pools"
-      ]
-    }
-  },
-  {
-    "id": "pdr-social-golfer-csplib-10",
     "paper_ids": [
       "pdr"
     ],

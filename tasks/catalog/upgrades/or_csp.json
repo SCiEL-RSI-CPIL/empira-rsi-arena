@@ -20,14 +20,15 @@
         ],
         "cap_factor": 3.0,
         "cap_floor": 1.0,
-        "baseline_cap": 60.0
+        "baseline_cap": 60.0,
+        "held_out": {"band": [0.1, 6.0], "max_draws": 8}
       },
       "protocol": "recreated",
       "requires": ["py:cpmpy", "py:ortools"],
       "notes": [
         "Car sequencing instances use five options with the classic CSPLib capacities 1/2, 2/3, 1/3, 2/5 and 1/5; class option sets and demands are derived from a planted random sequence that respects every window (generator generate_car_sequencing, 12 random option sets plus the empty one, bias toward option-heavy classes).",
         "Instances: the paper draws AutoIG-generated pools (Spracklen et al. 2023), keeps satisfiable instances with baseline runtimes of 1-300 s and splits them 8/8/16 into training, validation and test sets; those pools are not released and are not reproduced. This task uses 8 locally generated satisfiable instances (generator arguments in the parameters; generators are deterministic SplitMix64 streams in or_csp_csplib.py), graded so that the baseline needs roughly 0.1-6 CPU seconds each on an Apple M-series CPU.",
-        "There is one fixed instance set and no validation/test split, so a candidate can overfit these instances (the paper selects the final model on validation instances and reports held-out test speedups). The paper does not include instance parameter values in its prompts; here they are published in the task parameters, README and evaluator, so the scored instances are fully known to the optimiser.",
+        "The scored instances are held out, as in the paper (which scores a held-out test split): every evaluation generates each instance from a fresh secret seed with the sizes given in the parameters, and keeps a draw only when the baseline solves it within 0.1-6 CPU seconds, the band the published seeds were picked from (parameter held_out; at most 8 draws per instance, an instance with no draw in the band is excluded). The published seeds show what the instances look like and are not scored. The drawn seeds are reported in the result's per_instance rows, so any evaluation can be rebuilt. Because the instances change, scores vary more between evaluations than on a fixed set, and the baseline draws add up to about a minute to an evaluation.",
         "Runtime measure: CPU seconds of build_model + CPMpy 0.10.1 transformation to OR-Tools + CP-SAT Solve (OR-Tools 9.14.6206, one search worker, random seed 42, in a separate clean process) + extractor. The paper reports solving time (time to first solution) without saying whether it is wall-clock or CPU time or whether model construction and the CPMpy transformation count (CPMpy 0.10.1 and CP-SAT with one search worker, up to eight concurrent single-core runs on an Intel Core i7-12700, Section 5; seed 42, Appendix A; a 300 s per-instance limit, Appendix B), so counting build and transformation time here may itself differ from the paper. CP-SAT's deterministic time is not used: it excludes presolve work (instances closed in presolve report 0) and its work units are not comparable across constraint types. CPU time has run-to-run noise of about 1% on an idle machine and more under load; scores are ratios measured on the same machine in the same evaluation.",
         "Score: sum of baseline seconds / sum of candidate seconds over the instances (the paper's per-run speedup T_S(B)/T_S(m) with PAR2); an instance not finished within its cap of max(cap_floor, cap_factor x baseline seconds) = max(1 s, 3 x baseline) counts 2 x cap. The paper uses a fixed 300 s per-instance limit and, during search, caps the total training evaluation at C_B = max(T_B, min(1.5 T_B, 900)) s (Section 5); no such cap is applied here. The per-instance geometric-mean speedup is reported in the details.",
         "Validity: the paper accepts an answer when fixing it into the baseline model leaves it satisfiable; here an independent checker of the CSPLib definition verifies every answer (equivalent when the baseline is correct). A wrong answer, a claim that an instance is infeasible, an objective, a model OR-Tools rejects, or an import outside cpmpy, numpy and a standard-library allowlist makes the candidate invalid (the import and dunder-attribute checks are guards, not a sandbox).",
@@ -51,76 +52,15 @@
         ],
         "cap_factor": 3.0,
         "cap_floor": 1.0,
-        "baseline_cap": 60.0
+        "baseline_cap": 60.0,
+        "held_out": {"band": [0.1, 6.0], "max_draws": 8}
       },
       "protocol": "recreated",
       "requires": ["py:cpmpy", "py:ortools"],
       "notes": [
         "Vessel loading instances come from planted guillotine layouts of the deck (each piece shrunk to a container); class separations are drawn at or below the gaps the planted layout achieves, and listed container orientations are randomised. The Essence model's constraints are kept, including the redundant distinct-corner constraint and 90-degree rotation.",
         "Instances: the paper draws AutoIG-generated pools (Spracklen et al. 2023), keeps satisfiable instances with baseline runtimes of 1-300 s and splits them 8/8/16 into training, validation and test sets; those pools are not released and are not reproduced. This task uses 8 locally generated satisfiable instances (generator arguments in the parameters; generators are deterministic SplitMix64 streams in or_csp_csplib.py), graded so that the baseline needs roughly 0.1-6 CPU seconds each on an Apple M-series CPU.",
-        "There is one fixed instance set and no validation/test split, so a candidate can overfit these instances (the paper selects the final model on validation instances and reports held-out test speedups). The paper does not include instance parameter values in its prompts; here they are published in the task parameters, README and evaluator, so the scored instances are fully known to the optimiser.",
-        "Runtime measure: CPU seconds of build_model + CPMpy 0.10.1 transformation to OR-Tools + CP-SAT Solve (OR-Tools 9.14.6206, one search worker, random seed 42, in a separate clean process) + extractor. The paper reports solving time (time to first solution) without saying whether it is wall-clock or CPU time or whether model construction and the CPMpy transformation count (CPMpy 0.10.1 and CP-SAT with one search worker, up to eight concurrent single-core runs on an Intel Core i7-12700, Section 5; seed 42, Appendix A; a 300 s per-instance limit, Appendix B), so counting build and transformation time here may itself differ from the paper. CP-SAT's deterministic time is not used: it excludes presolve work (instances closed in presolve report 0) and its work units are not comparable across constraint types. CPU time has run-to-run noise of about 1% on an idle machine and more under load; scores are ratios measured on the same machine in the same evaluation.",
-        "Score: sum of baseline seconds / sum of candidate seconds over the instances (the paper's per-run speedup T_S(B)/T_S(m) with PAR2); an instance not finished within its cap of max(cap_floor, cap_factor x baseline seconds) = max(1 s, 3 x baseline) counts 2 x cap. The paper uses a fixed 300 s per-instance limit and, during search, caps the total training evaluation at C_B = max(T_B, min(1.5 T_B, 900)) s (Section 5); no such cap is applied here. The per-instance geometric-mean speedup is reported in the details.",
-        "Validity: the paper accepts an answer when fixing it into the baseline model leaves it satisfiable; here an independent checker of the CSPLib definition verifies every answer (equivalent when the baseline is correct). A wrong answer, a claim that an instance is infeasible, an objective, a model OR-Tools rejects, or an import outside cpmpy, numpy and a standard-library allowlist makes the candidate invalid (the import and dunder-attribute checks are guards, not a sandbox).",
-        "Baseline: a local direct translation of the CSPLib Essence model (github.com/csplib/csplib, Problems/probNNN/models/*.essence); the paper's baseline models are not released. The baseline is remeasured in every evaluation, as in the paper."
-      ]
-    },
-    "pdr-social-golfer-csplib-10": {
-      "family": "csplib_reformulation_social_golfers",
-      "sources": [{"url": "https://www.csplib.org/Problems/prob010/", "type": "benchmark", "locator": "CSPLib problem 10 (social golfers): specification and reference model translated by the local baseline"}],
-      "params": {
-        "problem": "social_golfers",
-        "instances": [
-          {"weeks": 4, "groups": 4, "group_size": 4},
-          {"weeks": 5, "groups": 5, "group_size": 4},
-          {"weeks": 5, "groups": 5, "group_size": 5},
-          {"weeks": 7, "groups": 6, "group_size": 3},
-          {"weeks": 6, "groups": 8, "group_size": 4},
-          {"weeks": 6, "groups": 5, "group_size": 5},
-          {"weeks": 7, "groups": 5, "group_size": 3},
-          {"weeks": 7, "groups": 8, "group_size": 4}
-        ],
-        "cap_factor": 3.0,
-        "cap_floor": 1.0,
-        "baseline_cap": 60.0
-      },
-      "protocol": "recreated",
-      "requires": ["py:cpmpy", "py:ortools"],
-      "notes": [
-        "Social golfer instances are (weeks, groups, group size) triples known to be solvable and selected by baseline runtime; there is no randomness.",
-        "Instances: the paper draws AutoIG-generated pools (Spracklen et al. 2023), keeps satisfiable instances with baseline runtimes of 1-300 s and splits them 8/8/16 into training, validation and test sets; those pools are not released and are not reproduced. This task uses 8 locally generated satisfiable instances (instance parameters in the task parameters; these instances involve no random generation), graded so that the baseline needs roughly 0.1-6 CPU seconds each on an Apple M-series CPU.",
-        "There is one fixed instance set and no validation/test split, so a candidate can overfit these instances (the paper selects the final model on validation instances and reports held-out test speedups). The paper does not include instance parameter values in its prompts; here they are published in the task parameters, README and evaluator, so the scored instances are fully known to the optimiser.",
-        "Runtime measure: CPU seconds of build_model + CPMpy 0.10.1 transformation to OR-Tools + CP-SAT Solve (OR-Tools 9.14.6206, one search worker, random seed 42, in a separate clean process) + extractor. The paper reports solving time (time to first solution) without saying whether it is wall-clock or CPU time or whether model construction and the CPMpy transformation count (CPMpy 0.10.1 and CP-SAT with one search worker, up to eight concurrent single-core runs on an Intel Core i7-12700, Section 5; seed 42, Appendix A; a 300 s per-instance limit, Appendix B), so counting build and transformation time here may itself differ from the paper. CP-SAT's deterministic time is not used: it excludes presolve work (instances closed in presolve report 0) and its work units are not comparable across constraint types. CPU time has run-to-run noise of about 1% on an idle machine and more under load; scores are ratios measured on the same machine in the same evaluation.",
-        "Score: sum of baseline seconds / sum of candidate seconds over the instances (the paper's per-run speedup T_S(B)/T_S(m) with PAR2); an instance not finished within its cap of max(cap_floor, cap_factor x baseline seconds) = max(1 s, 3 x baseline) counts 2 x cap. The paper uses a fixed 300 s per-instance limit and, during search, caps the total training evaluation at C_B = max(T_B, min(1.5 T_B, 900)) s (Section 5); no such cap is applied here. The per-instance geometric-mean speedup is reported in the details.",
-        "Validity: the paper accepts an answer when fixing it into the baseline model leaves it satisfiable; here an independent checker of the CSPLib definition verifies every answer (equivalent when the baseline is correct). A wrong answer, a claim that an instance is infeasible, an objective, a model OR-Tools rejects, or an import outside cpmpy, numpy and a standard-library allowlist makes the candidate invalid (the import and dunder-attribute checks are guards, not a sandbox).",
-        "Baseline: a local direct translation of the CSPLib Essence model (github.com/csplib/csplib, Problems/probNNN/models/*.essence); the paper's baseline models are not released. The baseline is remeasured in every evaluation, as in the paper."
-      ]
-    },
-    "pdr-balanced-incomplete-block-design-csplib-28": {
-      "family": "csplib_reformulation_bibd",
-      "sources": [{"url": "https://www.csplib.org/Problems/prob028/", "type": "benchmark", "locator": "CSPLib problem 28 (balanced incomplete block design): specification and reference model translated by the local baseline"}],
-      "params": {
-        "problem": "bibd",
-        "instances": [
-          {"v": 8, "b": 56, "r": 21, "k": 3, "lam": 6},
-          {"v": 7, "b": 70, "r": 30, "k": 3, "lam": 10},
-          {"v": 12, "b": 44, "r": 11, "k": 3, "lam": 2},
-          {"v": 21, "b": 21, "r": 5, "k": 5, "lam": 1},
-          {"v": 16, "b": 24, "r": 9, "k": 6, "lam": 3},
-          {"v": 10, "b": 90, "r": 27, "k": 3, "lam": 6},
-          {"v": 19, "b": 19, "r": 9, "k": 9, "lam": 4},
-          {"v": 31, "b": 31, "r": 6, "k": 6, "lam": 1}
-        ],
-        "cap_factor": 3.0,
-        "cap_floor": 1.0,
-        "baseline_cap": 60.0
-      },
-      "protocol": "recreated",
-      "requires": ["py:cpmpy", "py:ortools"],
-      "notes": [
-        "BIBD instances are admissible (v, b, r, k, lambda) parameter sets of designs that exist, mixing square and wide designs (the paper notes very wide AutoIG instances such as 8 x 2744 that are not used here); there is no randomness.",
-        "Instances: the paper draws AutoIG-generated pools (Spracklen et al. 2023), keeps satisfiable instances with baseline runtimes of 1-300 s and splits them 8/8/16 into training, validation and test sets; those pools are not released and are not reproduced. This task uses 8 locally generated satisfiable instances (instance parameters in the task parameters; these instances involve no random generation), graded so that the baseline needs roughly 0.1-6 CPU seconds each on an Apple M-series CPU.",
-        "There is one fixed instance set and no validation/test split, so a candidate can overfit these instances (the paper selects the final model on validation instances and reports held-out test speedups). The paper does not include instance parameter values in its prompts; here they are published in the task parameters, README and evaluator, so the scored instances are fully known to the optimiser.",
+        "The scored instances are held out, as in the paper (which scores a held-out test split): every evaluation generates each instance from a fresh secret seed with the sizes given in the parameters, and keeps a draw only when the baseline solves it within 0.1-6 CPU seconds, the band the published seeds were picked from (parameter held_out; at most 8 draws per instance, an instance with no draw in the band is excluded). The published seeds show what the instances look like and are not scored. The drawn seeds are reported in the result's per_instance rows, so any evaluation can be rebuilt. Because the instances change, scores vary more between evaluations than on a fixed set, and the baseline draws add up to about a minute to an evaluation.",
         "Runtime measure: CPU seconds of build_model + CPMpy 0.10.1 transformation to OR-Tools + CP-SAT Solve (OR-Tools 9.14.6206, one search worker, random seed 42, in a separate clean process) + extractor. The paper reports solving time (time to first solution) without saying whether it is wall-clock or CPU time or whether model construction and the CPMpy transformation count (CPMpy 0.10.1 and CP-SAT with one search worker, up to eight concurrent single-core runs on an Intel Core i7-12700, Section 5; seed 42, Appendix A; a 300 s per-instance limit, Appendix B), so counting build and transformation time here may itself differ from the paper. CP-SAT's deterministic time is not used: it excludes presolve work (instances closed in presolve report 0) and its work units are not comparable across constraint types. CPU time has run-to-run noise of about 1% on an idle machine and more under load; scores are ratios measured on the same machine in the same evaluation.",
         "Score: sum of baseline seconds / sum of candidate seconds over the instances (the paper's per-run speedup T_S(B)/T_S(m) with PAR2); an instance not finished within its cap of max(cap_floor, cap_factor x baseline seconds) = max(1 s, 3 x baseline) counts 2 x cap. The paper uses a fixed 300 s per-instance limit and, during search, caps the total training evaluation at C_B = max(T_B, min(1.5 T_B, 900)) s (Section 5); no such cap is applied here. The per-instance geometric-mean speedup is reported in the details.",
         "Validity: the paper accepts an answer when fixing it into the baseline model leaves it satisfiable; here an independent checker of the CSPLib definition verifies every answer (equivalent when the baseline is correct). A wrong answer, a claim that an instance is infeasible, an objective, a model OR-Tools rejects, or an import outside cpmpy, numpy and a standard-library allowlist makes the candidate invalid (the import and dunder-attribute checks are guards, not a sandbox).",
@@ -144,80 +84,19 @@
         ],
         "cap_factor": 3.0,
         "cap_floor": 1.0,
-        "baseline_cap": 60.0
+        "baseline_cap": 60.0,
+        "held_out": {"band": [0.1, 6.0], "max_draws": 8}
       },
       "protocol": "recreated",
       "requires": ["py:cpmpy", "py:ortools"],
       "notes": [
         "BACP is the decision version of CSPLib 30 (per-period load and course-count bounds, as in the Essence model). Instances plant a balanced curriculum (longest-load-first), add random prerequisites consistent with it and set the bounds to the planted minimum and maximum; they are larger (100-280 courses) than the classic instances so that the baseline needs measurable time.",
         "Instances: the paper draws AutoIG-generated pools (Spracklen et al. 2023), keeps satisfiable instances with baseline runtimes of 1-300 s and splits them 8/8/16 into training, validation and test sets; those pools are not released and are not reproduced. This task uses 8 locally generated satisfiable instances (generator arguments in the parameters; generators are deterministic SplitMix64 streams in or_csp_csplib.py), graded so that the baseline needs roughly 0.1-6 CPU seconds each on an Apple M-series CPU.",
-        "There is one fixed instance set and no validation/test split, so a candidate can overfit these instances (the paper selects the final model on validation instances and reports held-out test speedups). The paper does not include instance parameter values in its prompts; here they are published in the task parameters, README and evaluator, so the scored instances are fully known to the optimiser.",
+        "The scored instances are held out, as in the paper (which scores a held-out test split): every evaluation generates each instance from a fresh secret seed with the sizes given in the parameters, and keeps a draw only when the baseline solves it within 0.1-6 CPU seconds, the band the published seeds were picked from (parameter held_out; at most 8 draws per instance, an instance with no draw in the band is excluded). The published seeds show what the instances look like and are not scored. The drawn seeds are reported in the result's per_instance rows, so any evaluation can be rebuilt. Because the instances change, scores vary more between evaluations than on a fixed set, and the baseline draws add up to about a minute to an evaluation.",
         "Runtime measure: CPU seconds of build_model + CPMpy 0.10.1 transformation to OR-Tools + CP-SAT Solve (OR-Tools 9.14.6206, one search worker, random seed 42, in a separate clean process) + extractor. The paper reports solving time (time to first solution) without saying whether it is wall-clock or CPU time or whether model construction and the CPMpy transformation count (CPMpy 0.10.1 and CP-SAT with one search worker, up to eight concurrent single-core runs on an Intel Core i7-12700, Section 5; seed 42, Appendix A; a 300 s per-instance limit, Appendix B), so counting build and transformation time here may itself differ from the paper. CP-SAT's deterministic time is not used: it excludes presolve work (instances closed in presolve report 0) and its work units are not comparable across constraint types. CPU time has run-to-run noise of about 1% on an idle machine and more under load; scores are ratios measured on the same machine in the same evaluation.",
         "Score: sum of baseline seconds / sum of candidate seconds over the instances (the paper's per-run speedup T_S(B)/T_S(m) with PAR2); an instance not finished within its cap of max(cap_floor, cap_factor x baseline seconds) = max(1 s, 3 x baseline) counts 2 x cap. The paper uses a fixed 300 s per-instance limit and, during search, caps the total training evaluation at C_B = max(T_B, min(1.5 T_B, 900)) s (Section 5); no such cap is applied here. The per-instance geometric-mean speedup is reported in the details.",
         "Validity: the paper accepts an answer when fixing it into the baseline model leaves it satisfiable; here an independent checker of the CSPLib definition verifies every answer (equivalent when the baseline is correct). A wrong answer, a claim that an instance is infeasible, an objective, a model OR-Tools rejects, or an import outside cpmpy, numpy and a standard-library allowlist makes the candidate invalid (the import and dunder-attribute checks are guards, not a sandbox).",
         "Baseline: a local direct translation of the CSPLib Essence model (github.com/csplib/csplib, Problems/probNNN/models/*.essence); the paper's baseline models are not released. The baseline is remeasured in every evaluation, as in the paper."
-      ]
-    },
-    "pdr-error-correction-codes-csplib-36": {
-      "family": "csplib_reformulation_error_correcting_codes",
-      "sources": [{"url": "https://www.csplib.org/Problems/prob036/", "type": "benchmark", "locator": "CSPLib problem 36 (error-correcting codes): specification and reference model translated by the local baseline"}],
-      "params": {
-        "problem": "error_correcting_codes",
-        "instances": [
-          {"alphabet_size": 2, "length": 8, "num_codewords": 16, "min_dist": 3, "distance": "hamming"},
-          {"alphabet_size": 3, "length": 5, "num_codewords": 12, "min_dist": 3, "distance": "hamming"},
-          {"alphabet_size": 4, "length": 5, "num_codewords": 10, "min_dist": 4, "distance": "lee"},
-          {"alphabet_size": 2, "length": 8, "num_codewords": 18, "min_dist": 3, "distance": "hamming"},
-          {"alphabet_size": 2, "length": 10, "num_codewords": 24, "min_dist": 4, "distance": "hamming"},
-          {"alphabet_size": 4, "length": 6, "num_codewords": 16, "min_dist": 4, "distance": "lee"},
-          {"alphabet_size": 3, "length": 6, "num_codewords": 20, "min_dist": 3, "distance": "hamming"},
-          {"alphabet_size": 4, "length": 7, "num_codewords": 20, "min_dist": 5, "distance": "lee"}
-        ],
-        "cap_factor": 3.0,
-        "cap_floor": 1.0,
-        "baseline_cap": 60.0
-      },
-      "protocol": "recreated",
-      "requires": ["py:cpmpy", "py:ortools"],
-      "notes": [
-        "Error-correcting code instances use the Lee distance over Z4 and the Hamming distance over alphabets of size 2 and 3, passed as a symbol distance table as in the Essence model; (length, codewords, minimum distance) triples were selected by baseline runtime and are satisfiable.",
-        "Instances: the paper draws AutoIG-generated pools (Spracklen et al. 2023), keeps satisfiable instances with baseline runtimes of 1-300 s and splits them 8/8/16 into training, validation and test sets; those pools are not released and are not reproduced. This task uses 8 locally generated satisfiable instances (instance parameters in the task parameters; these instances involve no random generation), graded so that the baseline needs roughly 0.1-6 CPU seconds each on an Apple M-series CPU.",
-        "There is one fixed instance set and no validation/test split, so a candidate can overfit these instances (the paper selects the final model on validation instances and reports held-out test speedups). The paper does not include instance parameter values in its prompts; here they are published in the task parameters, README and evaluator, so the scored instances are fully known to the optimiser.",
-        "Runtime measure: CPU seconds of build_model + CPMpy 0.10.1 transformation to OR-Tools + CP-SAT Solve (OR-Tools 9.14.6206, one search worker, random seed 42, in a separate clean process) + extractor. The paper reports solving time (time to first solution) without saying whether it is wall-clock or CPU time or whether model construction and the CPMpy transformation count (CPMpy 0.10.1 and CP-SAT with one search worker, up to eight concurrent single-core runs on an Intel Core i7-12700, Section 5; seed 42, Appendix A; a 300 s per-instance limit, Appendix B), so counting build and transformation time here may itself differ from the paper. CP-SAT's deterministic time is not used: it excludes presolve work (instances closed in presolve report 0) and its work units are not comparable across constraint types. CPU time has run-to-run noise of about 1% on an idle machine and more under load; scores are ratios measured on the same machine in the same evaluation.",
-        "Score: sum of baseline seconds / sum of candidate seconds over the instances (the paper's per-run speedup T_S(B)/T_S(m) with PAR2); an instance not finished within its cap of max(cap_floor, cap_factor x baseline seconds) = max(1 s, 3 x baseline) counts 2 x cap. The paper uses a fixed 300 s per-instance limit and, during search, caps the total training evaluation at C_B = max(T_B, min(1.5 T_B, 900)) s (Section 5); no such cap is applied here. The per-instance geometric-mean speedup is reported in the details.",
-        "Validity: the paper accepts an answer when fixing it into the baseline model leaves it satisfiable; here an independent checker of the CSPLib definition verifies every answer (equivalent when the baseline is correct). A wrong answer, a claim that an instance is infeasible, an objective, a model OR-Tools rejects, or an import outside cpmpy, numpy and a standard-library allowlist makes the candidate invalid (the import and dunder-attribute checks are guards, not a sandbox).",
-        "Baseline: a local direct translation of the CSPLib Essence model (github.com/csplib/csplib, Problems/probNNN/models/*.essence); the paper's baseline models are not released. The baseline is remeasured in every evaluation, as in the paper."
-      ]
-    },
-    "pdr-covering-arrays-csplib-45": {
-      "family": "csplib_reformulation_covering_array",
-      "sources": [{"url": "https://www.csplib.org/Problems/prob045/", "type": "benchmark", "locator": "CSPLib problem 45 (covering arrays): specification and reference model translated by the local baseline"}],
-      "params": {
-        "problem": "covering_array",
-        "instances": [
-          {"t": 2, "k": 6, "g": 3, "b": 12},
-          {"t": 3, "k": 6, "g": 2, "b": 12},
-          {"t": 2, "k": 7, "g": 3, "b": 12},
-          {"t": 2, "k": 5, "g": 4, "b": 16},
-          {"t": 3, "k": 8, "g": 2, "b": 12},
-          {"t": 3, "k": 9, "g": 2, "b": 12},
-          {"t": 3, "k": 10, "g": 2, "b": 12},
-          {"t": 2, "k": 6, "g": 4, "b": 19}
-        ],
-        "cap_factor": 3.0,
-        "cap_floor": 1.0,
-        "baseline_cap": 60.0
-      },
-      "protocol": "recreated",
-      "requires": ["py:cpmpy", "py:ortools"],
-      "notes": [
-        "Covering array instances are satisfiable (t, k, g, b) tuples selected by baseline runtime; the baseline uses the same direct coverage encoding as the covering-array baseline printed in the paper's appendix (without the Essence model's lexicographic symmetry breaking).",
-        "Instances: the paper draws AutoIG-generated pools (Spracklen et al. 2023), keeps satisfiable instances with baseline runtimes of 1-300 s and splits them 8/8/16 into training, validation and test sets; those pools are not released and are not reproduced. This task uses 8 locally generated satisfiable instances (instance parameters in the task parameters; these instances involve no random generation), graded so that the baseline needs roughly 0.1-6 CPU seconds each on an Apple M-series CPU.",
-        "There is one fixed instance set and no validation/test split, so a candidate can overfit these instances (the paper selects the final model on validation instances and reports held-out test speedups). The paper does not include instance parameter values in its prompts; here they are published in the task parameters, README and evaluator, so the scored instances are fully known to the optimiser.",
-        "Runtime measure: CPU seconds of build_model + CPMpy 0.10.1 transformation to OR-Tools + CP-SAT Solve (OR-Tools 9.14.6206, one search worker, random seed 42, in a separate clean process) + extractor. The paper reports solving time (time to first solution) without saying whether it is wall-clock or CPU time or whether model construction and the CPMpy transformation count (CPMpy 0.10.1 and CP-SAT with one search worker, up to eight concurrent single-core runs on an Intel Core i7-12700, Section 5; seed 42, Appendix A; a 300 s per-instance limit, Appendix B), so counting build and transformation time here may itself differ from the paper. CP-SAT's deterministic time is not used: it excludes presolve work (instances closed in presolve report 0) and its work units are not comparable across constraint types. CPU time has run-to-run noise of about 1% on an idle machine and more under load; scores are ratios measured on the same machine in the same evaluation.",
-        "Score: sum of baseline seconds / sum of candidate seconds over the instances (the paper's per-run speedup T_S(B)/T_S(m) with PAR2); an instance not finished within its cap of max(cap_floor, cap_factor x baseline seconds) = max(1 s, 3 x baseline) counts 2 x cap. The paper uses a fixed 300 s per-instance limit and, during search, caps the total training evaluation at C_B = max(T_B, min(1.5 T_B, 900)) s (Section 5); no such cap is applied here. The per-instance geometric-mean speedup is reported in the details.",
-        "Validity: the paper accepts an answer when fixing it into the baseline model leaves it satisfiable; here an independent checker of the CSPLib definition verifies every answer (equivalent when the baseline is correct). A wrong answer, a claim that an instance is infeasible, an objective, a model OR-Tools rejects, or an import outside cpmpy, numpy and a standard-library allowlist makes the candidate invalid (the import and dunder-attribute checks are guards, not a sandbox).",
-        "Baseline: the paper prints its initial covering-array baseline (Appendix D, Listing 7); the local baseline follows that listing (data keys t, k, g, b, the direct coverage encoding and the 'matrix' answer key) rather than the CSPLib Essence model. The baseline is remeasured in every evaluation, as in the paper."
       ]
     },
     "pdr-tail-assignment-csplib-115": {
@@ -237,14 +116,15 @@
         ],
         "cap_factor": 3.0,
         "cap_floor": 1.0,
-        "baseline_cap": 60.0
+        "baseline_cap": 60.0,
+        "held_out": {"band": [0.1, 6.0], "max_draws": 8}
       },
       "protocol": "recreated",
       "requires": ["py:cpmpy", "py:ortools"],
       "notes": [
         "Tail assignment instances plant one dated route per aircraft (legal connection: same airport and at least 30 minutes turn time); can_fly removes a random share of other aircraft's flights, maintenance flights are those landing at airport 0 and maint_freq is the loosest value the planted routes satisfy. Deviation from the Essence model: the carry-in is given as the set of flights that may start each route instead of a carry-in flight that must itself be covered. The baseline is the Essence model's positional route matrix, so its runtime is dominated by model size (CPMpy transformation) rather than search.",
         "Instances: the paper draws AutoIG-generated pools (Spracklen et al. 2023), keeps satisfiable instances with baseline runtimes of 1-300 s and splits them 8/8/16 into training, validation and test sets; those pools are not released and are not reproduced. This task uses 8 locally generated satisfiable instances (generator arguments in the parameters; generators are deterministic SplitMix64 streams in or_csp_csplib.py), graded so that the baseline needs roughly 0.1-6 CPU seconds each on an Apple M-series CPU.",
-        "There is one fixed instance set and no validation/test split, so a candidate can overfit these instances (the paper selects the final model on validation instances and reports held-out test speedups). The paper does not include instance parameter values in its prompts; here they are published in the task parameters, README and evaluator, so the scored instances are fully known to the optimiser.",
+        "The scored instances are held out, as in the paper (which scores a held-out test split): every evaluation generates each instance from a fresh secret seed with the sizes given in the parameters, and keeps a draw only when the baseline solves it within 0.1-6 CPU seconds, the band the published seeds were picked from (parameter held_out; at most 8 draws per instance, an instance with no draw in the band is excluded). The published seeds show what the instances look like and are not scored. The drawn seeds are reported in the result's per_instance rows, so any evaluation can be rebuilt. Because the instances change, scores vary more between evaluations than on a fixed set, and the baseline draws add up to about a minute to an evaluation.",
         "Runtime measure: CPU seconds of build_model + CPMpy 0.10.1 transformation to OR-Tools + CP-SAT Solve (OR-Tools 9.14.6206, one search worker, random seed 42, in a separate clean process) + extractor. The paper reports solving time (time to first solution) without saying whether it is wall-clock or CPU time or whether model construction and the CPMpy transformation count (CPMpy 0.10.1 and CP-SAT with one search worker, up to eight concurrent single-core runs on an Intel Core i7-12700, Section 5; seed 42, Appendix A; a 300 s per-instance limit, Appendix B), so counting build and transformation time here may itself differ from the paper. CP-SAT's deterministic time is not used: it excludes presolve work (instances closed in presolve report 0) and its work units are not comparable across constraint types. CPU time has run-to-run noise of about 1% on an idle machine and more under load; scores are ratios measured on the same machine in the same evaluation.",
         "Score: sum of baseline seconds / sum of candidate seconds over the instances (the paper's per-run speedup T_S(B)/T_S(m) with PAR2); an instance not finished within its cap of max(cap_floor, cap_factor x baseline seconds) = max(1 s, 3 x baseline) counts 2 x cap. The paper uses a fixed 300 s per-instance limit and, during search, caps the total training evaluation at C_B = max(T_B, min(1.5 T_B, 900)) s (Section 5); no such cap is applied here. The per-instance geometric-mean speedup is reported in the details.",
         "Validity: the paper accepts an answer when fixing it into the baseline model leaves it satisfiable; here an independent checker of the CSPLib definition verifies every answer (equivalent when the baseline is correct). A wrong answer, a claim that an instance is infeasible, an objective, a model OR-Tools rejects, or an import outside cpmpy, numpy and a standard-library allowlist makes the candidate invalid (the import and dunder-attribute checks are guards, not a sandbox).",

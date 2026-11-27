@@ -109,7 +109,7 @@ def test_inventory_preserves_all_tasks_and_records_exact_resources_without_execu
     assert preflight.main(["--tasks-root", str(ROOT / "tasks"), "--output", str(output),
                            "--image", jax.JAX_IMAGES[group], "--group", group]) == 0
     manifest = json.loads((output / "manifest.json").read_text())
-    assert len(manifest["tasks"]) == 2403 and manifest["model_calls"] == 0
+    assert len(manifest["tasks"]) == 2398 and manifest["model_calls"] == 0
     assert manifest["counts"]["seed_check_pending"] == count
     assert manifest["profile"] == jax.JAX_PROFILE
     assert manifest["prepared_environment"] == jax.jax_environment(jax.JAX_IMAGES[group], group)

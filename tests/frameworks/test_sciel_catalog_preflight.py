@@ -66,10 +66,10 @@ def test_every_catalog_record_remains_visible_and_cpu_candidates_are_manifest_bo
     task_library.verify_task_library(root, source)
     files = task_library.load_task_manifest(source)["files"]
     rows = preflight.inventory(catalog["tasks"], root)
-    assert len(rows) == len(catalog["tasks"]) == 2403
+    assert len(rows) == len(catalog["tasks"]) == 2398
     assert [row["task_id"] for row in rows] == [t["id"] for t in catalog["tasks"]]
     assert Counter(row["status"] for row in rows) == {
-        "seed_check_pending": 1310, "environment_preparation_pending": 1072,
+        "seed_check_pending": 1310, "environment_preparation_pending": 1067,
         "runtime_integration_pending": 21}
     assert all(row["status"] != "seed_verified" for row in rows)
     for row in rows:
@@ -80,10 +80,10 @@ def test_every_catalog_record_remains_visible_and_cpu_candidates_are_manifest_bo
                 assert hashlib.sha256((root / relative).read_bytes()).hexdigest() == files[relative]
     for group, eligible, deferred in (("base", 1240, 70), ("extended", 70, 1240)):
         selected = preflight.inventory(catalog["tasks"], root, group)
-        assert len(selected) == 2403
+        assert len(selected) == 2398
         assert Counter(row["status"] for row in selected) == {
             "seed_check_pending": eligible, "seed_check_deferred": deferred,
-            "environment_preparation_pending": 1072,
+            "environment_preparation_pending": 1067,
             "runtime_integration_pending": 21}
 
 
@@ -115,7 +115,7 @@ def test_default_inventory_never_evaluates_and_binds_the_verified_library(tmp_pa
     assert manifest["image"] == IMAGE
     assert manifest["task_source"]["kind"] == "bundled"
     assert manifest["finished_at"] >= manifest["created_at"]
-    assert sum(manifest["counts"].values()) == 2403
+    assert sum(manifest["counts"].values()) == 2398
     assert manifest["group"] == "all"
     assert manifest["counts"]["seed_check_pending"] == 1310
     assert not list(output.glob("*/receipt.json"))

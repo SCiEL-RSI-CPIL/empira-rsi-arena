@@ -1,7 +1,7 @@
 {
   "schema": "arena.insights/1",
-  "catalog_digest": "0c22f4b376157fd67fddcc4fe435ec8f8699bf8a43a490c3f31e9b8b3f0f4636",
-  "taxonomy_digest": "aa490a545b4cfe346763d2daac0f2e7bda77f70bdc1b4d800963c4ff92260971",
+  "catalog_digest": "9f90b40ec2379b7c3b15097cf8e33930950f6f88b0b67d8a056d12bd65286682",
+  "taxonomy_digest": "bfeec9b37f028a091c6794f9ad1f9388e20503815d94c7984c6b63aea14cd386",
   "sources": [
     {
       "id": "arena-tasks",
@@ -10,25 +10,25 @@
       "repository_url": "https://github.com/Doldrums/arena",
       "revision": "main",
       "manifest_path": "registry/task-library-manifest.json",
-      "manifest_sha256": "3979386d048ebf282cee0a03d026dd9284f1ff59289583d933bf0fc72a5d1385",
+      "manifest_sha256": "a2ad416a41d24a2da6420eb5a135cc2b7eb6aced37ddf2f3c50f5a92c5d20ec7",
       "catalog_path": "catalog/tasks.json",
       "index_path": "suite/index.json",
-      "catalog_sha256": "0d871a7fbaf2d2ff093988ff72f7ebc6a739b6f7433327dbde78a5e01160c952",
-      "index_sha256": "a2b3d6fbd4097bc04d73a865718eba7e24d43ef2e94530c8d4c76db482ba9c7e"
+      "catalog_sha256": "5a11ec98c00bd571e64fbe438098c1a39e3b9585a745c079079550e7a28b274f",
+      "index_sha256": "b9bbd32771cb70279b51b4428ab1d13ce733e3514646705230134ec24c26218c"
     }
   ],
   "denominator": {
     "unit": "task_package",
-    "task_count": 2403
+    "task_count": 2398
   },
   "summary": {
-    "task_count": 2403,
-    "executable_count": 2403,
+    "task_count": 2398,
+    "executable_count": 2398,
     "unsupported_count": 0,
     "unique_paper_count": 121,
     "source_group_count": 121,
     "corpus_paper_count": 87,
-    "family_count": 489,
+    "family_count": 485,
     "unknown_domain_count": 4,
     "unknown_task_type_count": 0
   },
@@ -49,33 +49,33 @@
         "alphaevolve-circle-packing-in-perimeter-4-rectangle",
         "alphaevolve-circle-packing-in-unit-square"
       ],
-      "percentage": 40.1
+      "percentage": 40.2
     },
     {
       "id": "operations-research",
       "label": "Operations research",
       "description": "Routing, packing, scheduling, allocation and constraint models with an operational objective.",
       "why_it_matters": "These tasks study how to use limited space, time and resources under explicit constraints.",
-      "total": 584,
-      "executable": 584,
+      "total": 580,
+      "executable": 580,
       "unsupported": 0,
       "paper_count": 18,
       "source_group_count": 21,
-      "family_count": 39,
+      "family_count": 35,
       "representative_task_ids": [
         "a2dept-capacitated-electric-vehicle-routing-with-time-windows",
         "a2dept-capacitated-facility-location",
         "a2dept-maximum-independent-set"
       ],
-      "percentage": 24.3
+      "percentage": 24.2
     },
     {
       "id": "machine-learning",
       "label": "Machine learning & language",
       "description": "Learning algorithms, generic prediction, language benchmarks, retrieval and digital-agent behavior.",
       "why_it_matters": "Compare generalization, reasoning, learning procedures and retrieval quality across defined data and benchmark tasks.",
-      "total": 278,
-      "executable": 278,
+      "total": 277,
+      "executable": 277,
       "unsupported": 0,
       "paper_count": 42,
       "source_group_count": 43,
@@ -265,7 +265,7 @@
         "alphaevolve-circle-packing-in-unit-square",
         "alphaevolve-erdos-minimum-overlap"
       ],
-      "percentage": 46.0
+      "percentage": 46.1
     },
     {
       "id": "combinatorial-optimization",
@@ -283,7 +283,7 @@
         "a2dept-capacitated-facility-location",
         "a2dept-maximum-independent-set"
       ],
-      "percentage": 24.0
+      "percentage": 24.1
     },
     {
       "id": "black-box-optimization",
@@ -380,8 +380,8 @@
       "label": "Language & reasoning",
       "description": "Optimize prompts, scaffolds or outputs on language, reasoning or grid-inference benchmarks.",
       "why_it_matters": "Measure compositional reasoning, language understanding and constraint satisfaction on specified benchmark cases.",
-      "total": 141,
-      "executable": 141,
+      "total": 140,
+      "executable": 140,
       "unsupported": 0,
       "paper_count": 27,
       "source_group_count": 28,
@@ -391,7 +391,7 @@
         "adas-asdiv",
         "gepa-ifbench"
       ],
-      "percentage": 5.9
+      "percentage": 5.8
     },
     {
       "id": "agent-workflow",
@@ -505,18 +505,18 @@
       "label": "Constraint modeling",
       "description": "Reformulate or solve explicit satisfiability, logic or mathematical-program constraints.",
       "why_it_matters": "Feasibility and solver efficiency expose the value of the model formulation or solver policy.",
-      "total": 34,
-      "executable": 34,
+      "total": 30,
+      "executable": 30,
       "unsupported": 0,
       "paper_count": 4,
       "source_group_count": 4,
-      "family_count": 12,
+      "family_count": 8,
       "representative_task_ids": [
         "evoor-agent-bwor",
         "evoor-agent-nlp4lp",
         "funl2o-dc3-convex-qp"
       ],
-      "percentage": 1.4
+      "percentage": 1.3
     },
     {
       "id": "benchmark-generation",
@@ -571,7 +571,7 @@
     {
       "id": "executable",
       "label": "Executable definitions",
-      "total": 2403,
+      "total": 2398,
       "percentage": 100.0,
       "description": "Packages with source-declared executable evaluators; environments and runtime are not verified by Arena."
     },
@@ -593,20 +593,20 @@
       "id": "recreated_verified",
       "label": "Source-declared verified reconstruction",
       "total": 1296,
-      "percentage": 53.9,
+      "percentage": 54.0,
       "description": "Source labels these reconstructions verified. Arena has not independently rerun that verification."
     },
     {
       "id": "recreated",
       "label": "Recreated protocol",
-      "total": 994,
-      "percentage": 41.4,
+      "total": 989,
+      "percentage": 41.2,
       "description": "Recreated evaluators without the source's recreated_verified designation."
     },
     {
       "id": "recorded_contract",
       "label": "Recorded I/O contract",
-      "total": 2403,
+      "total": 2398,
       "percentage": 100.0,
       "description": "Non-null problem.json contract text; may point to evaluator documentation rather than a complete machine-readable signature."
     },
@@ -11141,21 +11141,6 @@
         "metric": "score"
       }
     },
-    "hyperagents-conference-paper-acceptance-prediction": {
-      "domain_id": "machine-learning",
-      "task_type_id": "language-reasoning",
-      "rule_id": "unsupported-language-evaluation",
-      "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
-      "evidence": {
-        "task_name": "Conference paper acceptance prediction",
-        "description": "Write a Python solve(question, llm) agent that reads the full text of a machine-learning conference submission and answers accept or reject, using a budgeted OpenRouter model client; scored by accuracy against the observed decisions on a fixed 20-paper sample of a balanced 100-paper held-out test split (higher is better).",
-        "family": "llm_bench_qa",
-        "paper_ids": [
-          "hyperagents"
-        ],
-        "metric": "score"
-      }
-    },
     "hyperagents-imo-gradingbench": {
       "domain_id": "machine-learning",
       "task_type_id": "language-reasoning",
@@ -17767,21 +17752,6 @@
         "metric": "score"
       }
     },
-    "pdr-balanced-incomplete-block-design-csplib-28": {
-      "domain_id": "operations-research",
-      "task_type_id": "constraint-modeling",
-      "rule_id": "unsupported-constraint-models",
-      "rationale": "The source names mathematical-program, constraint-reformulation or OR-modeling instances; the optimized artifact is a solver/model formulation.",
-      "evidence": {
-        "task_name": "Balanced incomplete block design (CSPLib 28)",
-        "description": "Balanced incomplete block design (CSPLib 28) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": "csplib_reformulation_bibd",
-        "paper_ids": [
-          "pdr"
-        ],
-        "metric": "score"
-      }
-    },
     "pdr-car-sequencing-csplib-1": {
       "domain_id": "operations-research",
       "task_type_id": "constraint-modeling",
@@ -17791,51 +17761,6 @@
         "task_name": "Car sequencing (CSPLib 1)",
         "description": "Car sequencing (CSPLib 1) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
         "family": "csplib_reformulation_car_sequencing",
-        "paper_ids": [
-          "pdr"
-        ],
-        "metric": "score"
-      }
-    },
-    "pdr-covering-arrays-csplib-45": {
-      "domain_id": "operations-research",
-      "task_type_id": "constraint-modeling",
-      "rule_id": "unsupported-constraint-models",
-      "rationale": "The source names mathematical-program, constraint-reformulation or OR-modeling instances; the optimized artifact is a solver/model formulation.",
-      "evidence": {
-        "task_name": "Covering arrays (CSPLib 45)",
-        "description": "Covering arrays (CSPLib 45) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": "csplib_reformulation_covering_array",
-        "paper_ids": [
-          "pdr"
-        ],
-        "metric": "score"
-      }
-    },
-    "pdr-error-correction-codes-csplib-36": {
-      "domain_id": "operations-research",
-      "task_type_id": "constraint-modeling",
-      "rule_id": "unsupported-constraint-models",
-      "rationale": "The source names mathematical-program, constraint-reformulation or OR-modeling instances; the optimized artifact is a solver/model formulation.",
-      "evidence": {
-        "task_name": "Error-correction codes (CSPLib 36)",
-        "description": "Error-correction codes (CSPLib 36) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": "csplib_reformulation_error_correcting_codes",
-        "paper_ids": [
-          "pdr"
-        ],
-        "metric": "score"
-      }
-    },
-    "pdr-social-golfer-csplib-10": {
-      "domain_id": "operations-research",
-      "task_type_id": "constraint-modeling",
-      "rule_id": "unsupported-constraint-models",
-      "rationale": "The source names mathematical-program, constraint-reformulation or OR-modeling instances; the optimized artifact is a solver/model formulation.",
-      "evidence": {
-        "task_name": "Social golfer (CSPLib 10)",
-        "description": "Social golfer (CSPLib 10) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-        "family": "csplib_reformulation_social_golfers",
         "paper_ids": [
           "pdr"
         ],
@@ -37381,14 +37306,14 @@
     "unsupported-architecture-search": 1,
     "unsupported-benchmark-generation": 1,
     "unsupported-coding-tasks": 3,
-    "unsupported-constraint-models": 32,
+    "unsupported-constraint-models": 28,
     "unsupported-embodied-reward-suites": 11,
     "unsupported-enpire-robotics": 1,
     "unsupported-generic-ml-datasets": 5,
     "unsupported-hyperagent-robotics": 1,
     "unsupported-infrastructure": 1,
     "unsupported-kernel-and-compiler": 53,
-    "unsupported-language-evaluation": 30,
+    "unsupported-language-evaluation": 29,
     "unsupported-llm-scaling-law": 1,
     "unsupported-retrieval-corpora": 25,
     "unsupported-shinka-reasoning": 3,

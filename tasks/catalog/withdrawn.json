@@ -1766,6 +1766,25 @@
       ],
       "decided_on": "2026-10-10"
     },
+    "hyperagents-conference-paper-acceptance-prediction": {
+      "category": "no_signal",
+      "evidence": [
+        {
+          "url_or_file": "https://github.com/facebookresearch/Hyperagents/blob/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/paper_review/dataset.csv",
+          "locator": "paper_text of the 100 test ids in suite/_lib/autoresearch_suite/llm_bench_sources.py PAPER_REVIEW_TEST"
+        },
+        {
+          "url_or_file": "https://arxiv.org/abs/2603.19461",
+          "locator": "Hyperagents Section 5.1 (paper review test 0.710, static baseline 0.630) and Appendix C.2 (data)"
+        },
+        {
+          "url_or_file": "validation/upgrade-port-report.json",
+          "locator": "tasks.hyperagents-conference-paper-acceptance-prediction.findings (label_leak: header rule 0.88)"
+        }
+      ],
+      "decided_on": "2026-11-27",
+      "reason": "Leaked labels. The test split's accepted papers are camera-ready versions and its rejected papers anonymous submissions (Hyperagents' data: APReS decisions from ICLR 2024/2025 and NeurIPS 2023/2024), so the text gives the decision away without being read: an 'Under review as a conference paper at ICLR' header decides 88 of the 100 test papers, and with the headers removed an Acknowledgements section heading still decides 90 (17 of the 20 scored), above the best agent Hyperagents reports (0.710, AI-reviewer baseline 0.630). Removing every camera-ready cue (acknowledgements, funding, authors, checklists, code links) would rewrite the benchmark's texts and still not make the two versions alike."
+    },
     "limen-go1-push-recovery": {
       "category": "infeasible_compute",
       "reason": "Budgets far beyond a CPU evaluation: Go1 push recovery trains 30M steps x 3 seeds (plus a 6M cascade) with 4096 MJX environments, Panda tracking 15M x 3; network compute alone is >= 25 / >= 18 CPU-minutes before physics (estimates), and MJX on CPU is slower than MuJoCo C ('MJX-JAX can be 10x slower than MuJoCo'). LIMEN also calls make_data(..., nconmax=...), renamed in mujoco_playground 0.2.0, so the pinned code needs an old Playground; a MuJoCo-C proxy would change the candidate API.",
@@ -2491,6 +2510,66 @@
       ],
       "decided_on": "2026-10-10"
     },
+    "pdr-balanced-incomplete-block-design-csplib-28": {
+      "category": "no_signal",
+      "evidence": [
+        {
+          "url_or_file": "validation/upgrade-port-report.json",
+          "locator": "follow_ups.csp-iso.stored_answer_exploit and after.stored_answers (pdr-balanced-incomplete-block-design-csplib-28)"
+        },
+        {
+          "url_or_file": "https://arxiv.org/abs/2607.28268",
+          "locator": "PDR Section 5 (AutoIG instance pools split 8/8/16 into training, validation and held-out test sets)"
+        }
+      ],
+      "decided_on": "2026-11-27",
+      "reason": "Degenerate signal. A balanced incomplete block design instance is only a handful of integers, so a solution stored for it is valid in every evaluation: a model that returns or pins stored answers for the published instances is a correct, satisfiable model of them and no check on the answer can tell it from an honest reformulation (measured on the BIBD task: 1,327 with the answer returned by the extractor, 167 with the variables pinned to it, against about 1 for the baseline model; the other three have the same structure and were not measured). The paper avoids this with held-out instance pools that are not released; freshly drawn seeds, which fix the four seeded CSPLib tasks, do not apply here because these generators have no seed, and any pool of parameter sets small enough to publish can be stored too."
+    },
+    "pdr-covering-arrays-csplib-45": {
+      "category": "no_signal",
+      "evidence": [
+        {
+          "url_or_file": "validation/upgrade-port-report.json",
+          "locator": "follow_ups.csp-iso.stored_answer_exploit and after.stored_answers (pdr-balanced-incomplete-block-design-csplib-28)"
+        },
+        {
+          "url_or_file": "https://arxiv.org/abs/2607.28268",
+          "locator": "PDR Section 5 (AutoIG instance pools split 8/8/16 into training, validation and held-out test sets)"
+        }
+      ],
+      "decided_on": "2026-11-27",
+      "reason": "Degenerate signal. A covering array instance is only a handful of integers, so a solution stored for it is valid in every evaluation: a model that returns or pins stored answers for the published instances is a correct, satisfiable model of them and no check on the answer can tell it from an honest reformulation (measured on the BIBD task: 1,327 with the answer returned by the extractor, 167 with the variables pinned to it, against about 1 for the baseline model; the other three have the same structure and were not measured). The paper avoids this with held-out instance pools that are not released; freshly drawn seeds, which fix the four seeded CSPLib tasks, do not apply here because these generators have no seed, and any pool of parameter sets small enough to publish can be stored too."
+    },
+    "pdr-error-correction-codes-csplib-36": {
+      "category": "no_signal",
+      "evidence": [
+        {
+          "url_or_file": "validation/upgrade-port-report.json",
+          "locator": "follow_ups.csp-iso.stored_answer_exploit and after.stored_answers (pdr-balanced-incomplete-block-design-csplib-28)"
+        },
+        {
+          "url_or_file": "https://arxiv.org/abs/2607.28268",
+          "locator": "PDR Section 5 (AutoIG instance pools split 8/8/16 into training, validation and held-out test sets)"
+        }
+      ],
+      "decided_on": "2026-11-27",
+      "reason": "Degenerate signal. A error-correcting code instance is only a handful of integers, so a solution stored for it is valid in every evaluation: a model that returns or pins stored answers for the published instances is a correct, satisfiable model of them and no check on the answer can tell it from an honest reformulation (measured on the BIBD task: 1,327 with the answer returned by the extractor, 167 with the variables pinned to it, against about 1 for the baseline model; the other three have the same structure and were not measured). The paper avoids this with held-out instance pools that are not released; freshly drawn seeds, which fix the four seeded CSPLib tasks, do not apply here because these generators have no seed, and any pool of parameter sets small enough to publish can be stored too."
+    },
+    "pdr-social-golfer-csplib-10": {
+      "category": "no_signal",
+      "evidence": [
+        {
+          "url_or_file": "validation/upgrade-port-report.json",
+          "locator": "follow_ups.csp-iso.stored_answer_exploit and after.stored_answers (pdr-balanced-incomplete-block-design-csplib-28)"
+        },
+        {
+          "url_or_file": "https://arxiv.org/abs/2607.28268",
+          "locator": "PDR Section 5 (AutoIG instance pools split 8/8/16 into training, validation and held-out test sets)"
+        }
+      ],
+      "decided_on": "2026-11-27",
+      "reason": "Degenerate signal. A social golfer instance is only a handful of integers, so a solution stored for it is valid in every evaluation: a model that returns or pins stored answers for the published instances is a correct, satisfiable model of them and no check on the answer can tell it from an honest reformulation (measured on the BIBD task: 1,327 with the answer returned by the extractor, 167 with the variables pinned to it, against about 1 for the baseline model; the other three have the same structure and were not measured). The paper avoids this with held-out instance pools that are not released; freshly drawn seeds, which fix the four seeded CSPLib tasks, do not apply here because these generators have no seed, and any pool of parameter sets small enough to publish can be stored too."
+    },
     "polymath-axi-hardware-module-configuration": {
       "category": "proprietary_or_internal",
       "reason": "The industrial inputs (block diagram, ~100-page datasheet) and golden answers are private.",
@@ -2601,16 +2680,19 @@
       "decided_on": "2026-10-10"
     },
     "rqgm-paper-reviewing": {
-      "category": "duplicate",
-      "reason": "Duplicates, not losses: the only public route for each gives exactly the evaluator and parameters of an already implemented task, so merge them as related references: rqgm-olympiad-proof-grading -> hyperagents-imo-gradingbench; rqgm-paper-reviewing -> hyperagents-conference-paper-acceptance-prediction; rqgm-olympiad-proof-writing -> meta-harness-imo-proofbench; rqgm-polyglot-coding -> dgm-aider-polyglot (same Aider Polyglot test pass rate; RQGM's evolved evaluators are unpublished; recorded as a drop by llm_bench because it lacked the six toolchains, which the dgm-aider-polyglot plan provides in local containers; if that plan is not adopted, rqgm-polyglot-coding stays a plain withdrawal).",
-      "canonical": "hyperagents-conference-paper-acceptance-prediction",
+      "category": "no_signal",
       "evidence": [
         {
           "url_or_file": "validation/llm_bench-checks.json",
           "locator": "duplicates: same_as entries with reasons"
+        },
+        {
+          "url_or_file": "catalog/withdrawn.json",
+          "locator": "tasks.hyperagents-conference-paper-acceptance-prediction"
         }
       ],
-      "decided_on": "2026-10-10"
+      "decided_on": "2026-11-27",
+      "reason": "Withdrawn with hyperagents-conference-paper-acceptance-prediction, the task it duplicated (recorded on 2026-10-10 as a duplicate with that canonical task): its only public route is the same Hyperagents paper-review split, whose texts give the decision away."
     },
     "rqgm-paper-writing": {
       "category": "unreleased_data_or_code",

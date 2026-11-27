@@ -8,21 +8,21 @@
       "repository_url": "https://github.com/Doldrums/arena",
       "revision": "main",
       "manifest_path": "registry/task-library-manifest.json",
-      "manifest_sha256": "3979386d048ebf282cee0a03d026dd9284f1ff59289583d933bf0fc72a5d1385",
+      "manifest_sha256": "a2ad416a41d24a2da6420eb5a135cc2b7eb6aced37ddf2f3c50f5a92c5d20ec7",
       "catalog_path": "catalog/tasks.json",
       "index_path": "suite/index.json",
-      "catalog_sha256": "0d871a7fbaf2d2ff093988ff72f7ebc6a739b6f7433327dbde78a5e01160c952",
-      "index_sha256": "a2b3d6fbd4097bc04d73a865718eba7e24d43ef2e94530c8d4c76db482ba9c7e"
+      "catalog_sha256": "5a11ec98c00bd571e64fbe438098c1a39e3b9585a745c079079550e7a28b274f",
+      "index_sha256": "b9bbd32771cb70279b51b4428ab1d13ce733e3514646705230134ec24c26218c"
     }
   ],
   "summary": {
-    "task_count": 2403,
-    "executable_count": 2403,
+    "task_count": 2398,
+    "executable_count": 2398,
     "unsupported_count": 0,
     "protocol_counts": {
       "original": 113,
       "recreated_verified": 1296,
-      "recreated": 994,
+      "recreated": 989,
       "unsupported": 0
     },
     "runtime_readiness": "not_verified"
@@ -50897,73 +50897,6 @@
       }
     },
     {
-      "id": "hyperagents-conference-paper-acceptance-prediction",
-      "name": "Conference paper acceptance prediction",
-      "description": "Write a Python solve(question, llm) agent that reads the full text of a machine-learning conference submission and answers accept or reject, using a budgeted OpenRouter model client; scored by accuracy against the observed decisions on a fixed 20-paper sample of a balanced 100-paper held-out test split (higher is better).",
-      "family": "llm_bench_qa",
-      "protocol": "recreated",
-      "executable": true,
-      "declared_status": "ready",
-      "runtime_readiness": "not_verified",
-      "metric": "score",
-      "direction": "maximize",
-      "requirements": [
-        "env:OPENROUTER_API_KEY",
-        "file:data/llm_bench/paper_review_test.json.gz",
-        "network:openrouter",
-        "py:numpy"
-      ],
-      "paper_ids": [
-        "hyperagents"
-      ],
-      "source_id": "arena-tasks",
-      "unsupported_reason": null,
-      "unsupported_category": null,
-      "contract": "solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. `question` holds the full text of a machine-learning conference submission (on average about 74,000 characters) and asks whether it was accepted or rejected. Answer rule (this suite's answer extraction; the comparison follows Hyperagents' report.py): the final answer (the text after the last 'Answer:' marker, else the last \\boxed{...}, else the last non-empty line), lower-cased and stripped of punctuation and asterisks, must equal the observed decision, accept or reject. Score: accuracy on a fixed 20-paper sample of Hyperagents' balanced 100-paper held-out test split; higher is better",
-      "contract_source": {
-        "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/hyperagents-conference-paper-acceptance-prediction/problem.json",
-        "path": "suite/hyperagents-conference-paper-acceptance-prediction/problem.json",
-        "sha256": "df703f59c45ac5bd0fd16f4ab572185e845b82f3b5fa2450f7c1b8cbcccc9031"
-      },
-      "provenance": {
-        "kind": "specification",
-        "sources": [
-          {
-            "url": "https://arxiv.org/pdf/2603.19461",
-            "type": "paper",
-            "locator": "Section 4 and Appendix C"
-          },
-          {
-            "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d",
-            "type": "repository",
-            "locator": "domains/paper_review"
-          },
-          {
-            "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/paper_review/dataset.csv",
-            "type": "benchmark",
-            "locator": "711 public OpenReview papers with decisions"
-          },
-          {
-            "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/paper_review/curate_subsets.py",
-            "type": "repository",
-            "locator": "balanced held-out 100-paper split"
-          }
-        ],
-        "limitations": [],
-        "validation_level": "paper_inventory",
-        "upstream_reproduction": false,
-        "benchmark": null,
-        "paper_metric": "binary accuracy",
-        "paper_direction": "maximize",
-        "upstream_repository": {
-          "url": "https://github.com/facebookresearch/Hyperagents",
-          "commit": "59a68f672dfb92c74aeb7e61535d776fb36e172d"
-        },
-        "index_requirements": null,
-        "metadata_notes": []
-      }
-    },
-    {
       "id": "hyperagents-imo-gradingbench",
       "name": "IMO-GradingBench",
       "description": "Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client, grades a proposed proof of an IMO-level problem as correct, almost, partial or incorrect from the reference solution and grading guidelines; scored by exact-match accuracy against human grades on a fixed 30-item sample of a 100-item held-out IMO-GradingBench subset (higher is better).",
@@ -80942,11 +80875,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys n_courses, n_periods, course_load[c], prerequisites (list of [before, after] course pairs), load_per_period_lb/ub, courses_per_period_lb/ub; extractor() -> {'period': list of n_courses period indices}. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on a fixed set of generated satisfiable instances = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
+      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys n_courses, n_periods, course_load[c], prerequisites (list of [before, after] course pairs), load_per_period_lb/ub, courses_per_period_lb/ub; extractor() -> {'period': list of n_courses period indices}. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on held-out generated satisfiable instances (fresh secret seeds in every evaluation, sizes as in the parameters) = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-balanced-academic-curriculum-csplib-30/problem.json",
         "path": "suite/pdr-balanced-academic-curriculum-csplib-30/problem.json",
-        "sha256": "9870dd7f8f86262b5573242a810de51bce6c4af20ee6e4ae482af1465a21c3c4"
+        "sha256": "80c91fc633f247aca5a84d126b5e4e755680e7ac45b0fb77d497befa85290ca4"
       },
       "provenance": {
         "kind": "specification",
@@ -80960,62 +80893,6 @@
             "url": "https://www.csplib.org/Problems/prob030/",
             "type": "benchmark",
             "locator": "CSPLib problem 30 (balanced academic curriculum): specification and reference model translated by the local baseline"
-          }
-        ],
-        "limitations": [
-          "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-          "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
-        ],
-        "validation_level": "paper_inventory",
-        "upstream_reproduction": false,
-        "benchmark": "CSPLib / AutoIG",
-        "paper_metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
-        "paper_direction": "maximize",
-        "upstream_repository": null,
-        "index_requirements": null,
-        "metadata_notes": []
-      }
-    },
-    {
-      "id": "pdr-balanced-incomplete-block-design-csplib-28",
-      "name": "Balanced incomplete block design (CSPLib 28)",
-      "description": "Balanced incomplete block design (CSPLib 28) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-      "family": "csplib_reformulation_bibd",
-      "protocol": "recreated",
-      "executable": true,
-      "declared_status": "ready",
-      "runtime_readiness": "not_verified",
-      "metric": "score",
-      "direction": "maximize",
-      "requirements": [
-        "py:cpmpy",
-        "py:numpy",
-        "py:ortools"
-      ],
-      "paper_ids": [
-        "pdr"
-      ],
-      "source_id": "arena-tasks",
-      "unsupported_reason": null,
-      "unsupported_category": null,
-      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys v, b, r, k, lam; extractor() -> {'matrix': v x b 0/1 incidence matrix} with row sums r, column sums k and every pair of rows sharing exactly lam blocks. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on a fixed set of generated satisfiable instances = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
-      "contract_source": {
-        "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-balanced-incomplete-block-design-csplib-28/problem.json",
-        "path": "suite/pdr-balanced-incomplete-block-design-csplib-28/problem.json",
-        "sha256": "b2994d3d475626738d62becc5c0559c83a7fe7462000966ffba7cd5cf4927dd4"
-      },
-      "provenance": {
-        "kind": "specification",
-        "sources": [
-          {
-            "url": "https://arxiv.org/pdf/2607.28268",
-            "type": "paper",
-            "locator": "Section 5 (Experiments: problem list, Configurations, Instances and Measures) and Appendices A-B"
-          },
-          {
-            "url": "https://www.csplib.org/Problems/prob028/",
-            "type": "benchmark",
-            "locator": "CSPLib problem 28 (balanced incomplete block design): specification and reference model translated by the local baseline"
           }
         ],
         "limitations": [
@@ -81054,11 +80931,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys n_cars, n_classes, n_options, quantity[c] (cars of class c), maxcars[o] and blksize[o] (at most maxcars[o] cars needing option o in any blksize[o] consecutive slots), usage[c][o] in {0, 1}; extractor() -> {'sequence': list of n_cars class indices}. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on a fixed set of generated satisfiable instances = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
+      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys n_cars, n_classes, n_options, quantity[c] (cars of class c), maxcars[o] and blksize[o] (at most maxcars[o] cars needing option o in any blksize[o] consecutive slots), usage[c][o] in {0, 1}; extractor() -> {'sequence': list of n_cars class indices}. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on held-out generated satisfiable instances (fresh secret seeds in every evaluation, sizes as in the parameters) = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-car-sequencing-csplib-1/problem.json",
         "path": "suite/pdr-car-sequencing-csplib-1/problem.json",
-        "sha256": "0ce9b8fbc64e9cf64f2ce2bd7805c3b32e49af3e2feef84262faddce3f84c21c"
+        "sha256": "8eff4b1214bef0ad490b7f7f67213780051828ddd9b50659ff90f774c9295174"
       },
       "provenance": {
         "kind": "specification",
@@ -81072,174 +80949,6 @@
             "url": "https://www.csplib.org/Problems/prob001/",
             "type": "benchmark",
             "locator": "CSPLib problem 1 (car sequencing): specification and reference model translated by the local baseline"
-          }
-        ],
-        "limitations": [
-          "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-          "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
-        ],
-        "validation_level": "paper_inventory",
-        "upstream_reproduction": false,
-        "benchmark": "CSPLib / AutoIG",
-        "paper_metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
-        "paper_direction": "maximize",
-        "upstream_repository": null,
-        "index_requirements": null,
-        "metadata_notes": []
-      }
-    },
-    {
-      "id": "pdr-covering-arrays-csplib-45",
-      "name": "Covering arrays (CSPLib 45)",
-      "description": "Covering arrays (CSPLib 45) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-      "family": "csplib_reformulation_covering_array",
-      "protocol": "recreated",
-      "executable": true,
-      "declared_status": "ready",
-      "runtime_readiness": "not_verified",
-      "metric": "score",
-      "direction": "maximize",
-      "requirements": [
-        "py:cpmpy",
-        "py:numpy",
-        "py:ortools"
-      ],
-      "paper_ids": [
-        "pdr"
-      ],
-      "source_id": "arena-tasks",
-      "unsupported_reason": null,
-      "unsupported_category": null,
-      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys t, k, g, b; extractor() -> {'matrix': k x b matrix over 0..g-1} in which every t rows show all g**t value tuples. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on a fixed set of generated satisfiable instances = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
-      "contract_source": {
-        "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-covering-arrays-csplib-45/problem.json",
-        "path": "suite/pdr-covering-arrays-csplib-45/problem.json",
-        "sha256": "648b33a45d1f341359adf8e520f6407c45ea4505d67a84af8e2f2a4e25668b04"
-      },
-      "provenance": {
-        "kind": "specification",
-        "sources": [
-          {
-            "url": "https://arxiv.org/pdf/2607.28268",
-            "type": "paper",
-            "locator": "Section 5 (Experiments: problem list, Configurations, Instances and Measures) and Appendices A-B"
-          },
-          {
-            "url": "https://www.csplib.org/Problems/prob045/",
-            "type": "benchmark",
-            "locator": "CSPLib problem 45 (covering arrays): specification and reference model translated by the local baseline"
-          }
-        ],
-        "limitations": [
-          "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-          "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
-        ],
-        "validation_level": "paper_inventory",
-        "upstream_reproduction": false,
-        "benchmark": "CSPLib / AutoIG",
-        "paper_metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
-        "paper_direction": "maximize",
-        "upstream_repository": null,
-        "index_requirements": null,
-        "metadata_notes": []
-      }
-    },
-    {
-      "id": "pdr-error-correction-codes-csplib-36",
-      "name": "Error-correction codes (CSPLib 36)",
-      "description": "Error-correction codes (CSPLib 36) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-      "family": "csplib_reformulation_error_correcting_codes",
-      "protocol": "recreated",
-      "executable": true,
-      "declared_status": "ready",
-      "runtime_readiness": "not_verified",
-      "metric": "score",
-      "direction": "maximize",
-      "requirements": [
-        "py:cpmpy",
-        "py:numpy",
-        "py:ortools"
-      ],
-      "paper_ids": [
-        "pdr"
-      ],
-      "source_id": "arena-tasks",
-      "unsupported_reason": null,
-      "unsupported_category": null,
-      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys alphabet_size q, length, num_codewords, min_dist, dist (q x q symbol distance table: Lee or Hamming); extractor() -> {'codewords': num_codewords x length symbols}, distinct, pairwise summed distance >= min_dist. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on a fixed set of generated satisfiable instances = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
-      "contract_source": {
-        "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-error-correction-codes-csplib-36/problem.json",
-        "path": "suite/pdr-error-correction-codes-csplib-36/problem.json",
-        "sha256": "6004da153308c0b72b903ee158027c2d484b3b8a8878f7c3373274f2b2aae79d"
-      },
-      "provenance": {
-        "kind": "specification",
-        "sources": [
-          {
-            "url": "https://arxiv.org/pdf/2607.28268",
-            "type": "paper",
-            "locator": "Section 5 (Experiments: problem list, Configurations, Instances and Measures) and Appendices A-B"
-          },
-          {
-            "url": "https://www.csplib.org/Problems/prob036/",
-            "type": "benchmark",
-            "locator": "CSPLib problem 36 (error-correcting codes): specification and reference model translated by the local baseline"
-          }
-        ],
-        "limitations": [
-          "No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.",
-          "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
-        ],
-        "validation_level": "paper_inventory",
-        "upstream_reproduction": false,
-        "benchmark": "CSPLib / AutoIG",
-        "paper_metric": "geometric mean baseline-relative runtime speedup (PAR2 for timeout)",
-        "paper_direction": "maximize",
-        "upstream_repository": null,
-        "index_requirements": null,
-        "metadata_notes": []
-      }
-    },
-    {
-      "id": "pdr-social-golfer-csplib-10",
-      "name": "Social golfer (CSPLib 10)",
-      "description": "Social golfer (CSPLib 10) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency.",
-      "family": "csplib_reformulation_social_golfers",
-      "protocol": "recreated",
-      "executable": true,
-      "declared_status": "ready",
-      "runtime_readiness": "not_verified",
-      "metric": "score",
-      "direction": "maximize",
-      "requirements": [
-        "py:cpmpy",
-        "py:numpy",
-        "py:ortools"
-      ],
-      "paper_ids": [
-        "pdr"
-      ],
-      "source_id": "arena-tasks",
-      "unsupported_reason": null,
-      "unsupported_category": null,
-      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys weeks, groups, group_size (golfers = groups * group_size); extractor() -> {'schedule': weeks x golfers matrix of group indices}, every group of every week has group_size golfers and no pair of golfers meets twice. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on a fixed set of generated satisfiable instances = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
-      "contract_source": {
-        "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-social-golfer-csplib-10/problem.json",
-        "path": "suite/pdr-social-golfer-csplib-10/problem.json",
-        "sha256": "9ccb3b4e586cab9e01b212dba218849f5a9e6ba5f9c3eaf7b89570dc14d5e770"
-      },
-      "provenance": {
-        "kind": "specification",
-        "sources": [
-          {
-            "url": "https://arxiv.org/pdf/2607.28268",
-            "type": "paper",
-            "locator": "Section 5 (Experiments: problem list, Configurations, Instances and Measures) and Appendices A-B"
-          },
-          {
-            "url": "https://www.csplib.org/Problems/prob010/",
-            "type": "benchmark",
-            "locator": "CSPLib problem 10 (social golfers): specification and reference model translated by the local baseline"
           }
         ],
         "limitations": [
@@ -81278,11 +80987,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys n_flights, n_planes, maint_freq, network (list of [f, g]: flight g may follow f), can_fly[p], start[p] (flights that may begin aircraft p's route after its carry-in), maint (flights landing at a maintenance base); extractor() -> {'routes': one non-empty flight list per aircraft} covering every flight exactly once, with a maintenance flight in every maint_freq + 1 consecutive flights. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on a fixed set of generated satisfiable instances = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
+      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys n_flights, n_planes, maint_freq, network (list of [f, g]: flight g may follow f), can_fly[p], start[p] (flights that may begin aircraft p's route after its carry-in), maint (flights landing at a maintenance base); extractor() -> {'routes': one non-empty flight list per aircraft} covering every flight exactly once, with a maintenance flight in every maint_freq + 1 consecutive flights. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on held-out generated satisfiable instances (fresh secret seeds in every evaluation, sizes as in the parameters) = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-tail-assignment-csplib-115/problem.json",
         "path": "suite/pdr-tail-assignment-csplib-115/problem.json",
-        "sha256": "aa28a75eeee80939b6c2e91cb921e9fce0868a9d595a7ce5ae9277e301b2a1ee"
+        "sha256": "87736122ce85dc7e5b2571e90bb856ddbc8b4c0c07bf8b01bb4b869bf2197cc9"
       },
       "provenance": {
         "kind": "specification",
@@ -81334,11 +81043,11 @@
       "source_id": "arena-tasks",
       "unsupported_reason": null,
       "unsupported_category": null,
-      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys deck_width, deck_length, n_containers, n_classes, width[i], length[i], container_class[i], separation[c1][c2] (minimum gap between containers of those classes along either axis, 0 = may touch); containers may be rotated by 90 degrees; extractor() -> {'west', 'east', 'north', 'south': lists of n_containers integer edge coordinates}. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on a fixed set of generated satisfiable instances = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
+      "contract": "build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys deck_width, deck_length, n_containers, n_classes, width[i], length[i], container_class[i], separation[c1][c2] (minimum gap between containers of those classes along either axis, 0 = may touch); containers may be rotated by 90 degrees; extractor() -> {'west', 'east', 'north', 'south': lists of n_containers integer edge coordinates}. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on held-out generated satisfiable instances (fresh secret seeds in every evaluation, sizes as in the parameters) = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid",
       "contract_source": {
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/suite/pdr-vessel-loading-csplib-8/problem.json",
         "path": "suite/pdr-vessel-loading-csplib-8/problem.json",
-        "sha256": "baea0d086be486afa54d633b06bae15fb17eb38c1dcea464508f256535af0495"
+        "sha256": "7b53ae1a0301e8b410602740697a01be55507490edb425afcc09d49f23e2c055"
       },
       "provenance": {
         "kind": "specification",

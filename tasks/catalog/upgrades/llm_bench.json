@@ -425,39 +425,6 @@
         }
       ]
     },
-    "hyperagents-conference-paper-acceptance-prediction": {
-      "family": "llm_bench_qa",
-      "params": {
-        "benchmark": "paper_review",
-        "samples": 20,
-        "seed": 0
-      },
-      "protocol": "recreated",
-      "requires": [
-        "file:data/llm_bench/paper_review_test.json.gz"
-      ],
-      "contract": "solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. `question` holds the full text of a machine-learning conference submission (on average about 74,000 characters) and asks whether it was accepted or rejected. Answer rule (this suite's answer extraction; the comparison follows Hyperagents' report.py): the final answer (the text after the last 'Answer:' marker, else the last \\boxed{...}, else the last non-empty line), lower-cased and stripped of punctuation and asterisks, must equal the observed decision, accept or reject. Score: accuracy on a fixed 20-paper sample of Hyperagents' balanced 100-paper held-out test split; higher is better",
-      "notes": [
-        "Data: Hyperagents' paper-review dataset (facebookresearch/Hyperagents at commit 59a68f672dfb92c74aeb7e61535d776fb36e172d, domains/paper_review/dataset.csv, CC-BY-NC-SA-4.0): 711 public OpenReview submissions with their decisions, drawn by the Hyperagents authors from the APReS benchmark (Zhao et al., 2026). Only public OpenReview papers and decisions are used.",
-        "Split: Hyperagents' domains/paper_review/curate_subsets.py (pandas shuffles with random_state 42; balanced train, validation and test splits of 50 accepted and 50 rejected papers) reproduced here with pandas 2.2.3; the 100 test ids are fixed in llm_bench_sources.py. Hyperagents does not distribute the split files, so identity with its split is not verified. Each evaluation uses a fixed 20-paper sample (each paper is a long prompt).",
-        "Metric: Hyperagents' report.py accuracy (lower-cased exact match of the decision). Candidate: Hyperagents evolves the code of the task and meta agents (its initial agent scores 0 because it lacks output parsing); here a free-form solve(question, llm) program, default model google/gemini-2.5-flash at temperature 0.",
-        "Not verified: the paper's test accuracies (for example 0.710 for DGM-H) were not reproduced.",
-        "The paper evaluates this domain with GPT-4o at temperature 0. Hyperagents' report.py compares a prediction field produced by the agent and leaves empty predictions out of the accuracy; here every sampled paper counts and the answer extraction is this suite's. The local question adds an instruction and answer format around the paper text.",
-        "The candidate runs as trusted code in the evaluator's process, and the reference answers are stored under suite/_lib/data/llm_bench, so a candidate could read them; scores assume a candidate that does not."
-      ],
-      "sources": [
-        {
-          "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/paper_review/dataset.csv",
-          "type": "benchmark",
-          "locator": "711 public OpenReview papers with decisions"
-        },
-        {
-          "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/paper_review/curate_subsets.py",
-          "type": "repository",
-          "locator": "balanced held-out 100-paper split"
-        }
-      ]
-    },
     "meta-harness-arxivmath": {
       "family": "llm_bench_qa",
       "params": {

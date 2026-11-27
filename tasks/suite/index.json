@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "count": 2403,
+  "count": 2398,
   "tasks": [
     {
       "id": "a2dept-capacitated-electric-vehicle-routing-with-time-windows",
@@ -22395,37 +22395,6 @@
       }
     },
     {
-      "id": "hyperagents-conference-paper-acceptance-prediction",
-      "protocol": "recreated",
-      "family": "llm_bench_qa",
-      "direction": "maximize",
-      "requires": [
-        "py:numpy",
-        "env:OPENROUTER_API_KEY",
-        "network:openrouter",
-        "file:data/llm_bench/paper_review_test.json.gz"
-      ],
-      "timeout": 900,
-      "paper_ids": [
-        "hyperagents"
-      ],
-      "labels": {
-        "scientific_contribution": "benchmark",
-        "science_tier": 3,
-        "artifact": "agent",
-        "domain": "language",
-        "area": "language_and_agents",
-        "data": "public_benchmark",
-        "verification": "sampled",
-        "reference": "none",
-        "resources": [
-          "model_api"
-        ],
-        "cost": "not_run",
-        "important_to_science": false
-      }
-    },
-    {
       "id": "hyperagents-imo-gradingbench",
       "protocol": "recreated",
       "family": "llm_bench_qa",
@@ -36905,37 +36874,7 @@
         "py:cpmpy",
         "py:ortools"
       ],
-      "timeout": 240,
-      "paper_ids": [
-        "pdr"
-      ],
-      "labels": {
-        "scientific_contribution": "method",
-        "science_tier": 2,
-        "artifact": "program",
-        "domain": "combinatorial_optimisation",
-        "area": "optimization",
-        "data": "synthetic",
-        "verification": "simulation",
-        "reference": "none",
-        "resources": [
-          "cpu"
-        ],
-        "cost": "not_run",
-        "important_to_science": false
-      }
-    },
-    {
-      "id": "pdr-balanced-incomplete-block-design-csplib-28",
-      "protocol": "recreated",
-      "family": "csplib_reformulation_bibd",
-      "direction": "maximize",
-      "requires": [
-        "py:numpy",
-        "py:cpmpy",
-        "py:ortools"
-      ],
-      "timeout": 240,
+      "timeout": 600,
       "paper_ids": [
         "pdr"
       ],
@@ -36965,97 +36904,7 @@
         "py:cpmpy",
         "py:ortools"
       ],
-      "timeout": 240,
-      "paper_ids": [
-        "pdr"
-      ],
-      "labels": {
-        "scientific_contribution": "method",
-        "science_tier": 2,
-        "artifact": "program",
-        "domain": "combinatorial_optimisation",
-        "area": "optimization",
-        "data": "synthetic",
-        "verification": "simulation",
-        "reference": "none",
-        "resources": [
-          "cpu"
-        ],
-        "cost": "not_run",
-        "important_to_science": false
-      }
-    },
-    {
-      "id": "pdr-covering-arrays-csplib-45",
-      "protocol": "recreated",
-      "family": "csplib_reformulation_covering_array",
-      "direction": "maximize",
-      "requires": [
-        "py:numpy",
-        "py:cpmpy",
-        "py:ortools"
-      ],
-      "timeout": 240,
-      "paper_ids": [
-        "pdr"
-      ],
-      "labels": {
-        "scientific_contribution": "method",
-        "science_tier": 2,
-        "artifact": "program",
-        "domain": "combinatorial_optimisation",
-        "area": "optimization",
-        "data": "synthetic",
-        "verification": "simulation",
-        "reference": "none",
-        "resources": [
-          "cpu"
-        ],
-        "cost": "not_run",
-        "important_to_science": false
-      }
-    },
-    {
-      "id": "pdr-error-correction-codes-csplib-36",
-      "protocol": "recreated",
-      "family": "csplib_reformulation_error_correcting_codes",
-      "direction": "maximize",
-      "requires": [
-        "py:numpy",
-        "py:cpmpy",
-        "py:ortools"
-      ],
-      "timeout": 240,
-      "paper_ids": [
-        "pdr"
-      ],
-      "labels": {
-        "scientific_contribution": "method",
-        "science_tier": 2,
-        "artifact": "program",
-        "domain": "combinatorial_optimisation",
-        "area": "optimization",
-        "data": "synthetic",
-        "verification": "simulation",
-        "reference": "none",
-        "resources": [
-          "cpu"
-        ],
-        "cost": "not_run",
-        "important_to_science": false
-      }
-    },
-    {
-      "id": "pdr-social-golfer-csplib-10",
-      "protocol": "recreated",
-      "family": "csplib_reformulation_social_golfers",
-      "direction": "maximize",
-      "requires": [
-        "py:numpy",
-        "py:cpmpy",
-        "py:ortools"
-      ],
-      "timeout": 240,
+      "timeout": 600,
       "paper_ids": [
         "pdr"
       ],
@@ -37085,7 +36934,7 @@
         "py:cpmpy",
         "py:ortools"
       ],
-      "timeout": 240,
+      "timeout": 600,
       "paper_ids": [
         "pdr"
       ],
@@ -37115,7 +36964,7 @@
         "py:cpmpy",
         "py:ortools"
       ],
-      "timeout": 240,
+      "timeout": 600,
       "paper_ids": [
         "pdr"
       ],

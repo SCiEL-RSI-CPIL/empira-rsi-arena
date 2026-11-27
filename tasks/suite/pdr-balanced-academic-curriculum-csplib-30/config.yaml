@@ -22,7 +22,7 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 240
+  timeout: 600
   max_retries: 2
 
 prompt:

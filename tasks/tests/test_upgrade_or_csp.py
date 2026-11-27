@@ -39,9 +39,8 @@ try:
 except RuntimeError:
     COMPILER = None
 HAVE_FRONTIER = (F.DATA / "chk.cc").is_file() and len(list(F.DATA.glob("*.in"))) == 70
-CSPLIB_TASKS = ["pdr-balanced-academic-curriculum-csplib-30", "pdr-balanced-incomplete-block-design-csplib-28",
-                "pdr-car-sequencing-csplib-1", "pdr-covering-arrays-csplib-45", "pdr-error-correction-codes-csplib-36",
-                "pdr-social-golfer-csplib-10", "pdr-tail-assignment-csplib-115", "pdr-vessel-loading-csplib-8"]
+CSPLIB_TASKS = ["pdr-balanced-academic-curriculum-csplib-30", "pdr-car-sequencing-csplib-1",
+                "pdr-tail-assignment-csplib-115", "pdr-vessel-loading-csplib-8"]
 
 
 class Liar(int):
