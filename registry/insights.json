@@ -1,7 +1,7 @@
 {
   "schema": "arena.insights/1",
-  "catalog_digest": "88e125084c8456327457a7b3ac7bd39f9547418fb4604f96a4820b6c38e12db2",
-  "taxonomy_digest": "dd30bd2e96f73ce2cac96a2dd449421b7c3da957a6b2aa6344b25c685101f1f6",
+  "catalog_digest": "0c22f4b376157fd67fddcc4fe435ec8f8699bf8a43a490c3f31e9b8b3f0f4636",
+  "taxonomy_digest": "aa490a545b4cfe346763d2daac0f2e7bda77f70bdc1b4d800963c4ff92260971",
   "sources": [
     {
       "id": "arena-tasks",
@@ -10,27 +10,27 @@
       "repository_url": "https://github.com/Doldrums/arena",
       "revision": "main",
       "manifest_path": "registry/task-library-manifest.json",
-      "manifest_sha256": "2eaad8b7f6f981e8189f8a012569a4d3690183ea3c4edc58b4a7c78a1c673ae7",
+      "manifest_sha256": "3979386d048ebf282cee0a03d026dd9284f1ff59289583d933bf0fc72a5d1385",
       "catalog_path": "catalog/tasks.json",
       "index_path": "suite/index.json",
-      "catalog_sha256": "f1943705459c57f4a7e684914db6d0384575e5409009520f67c3ce1b3c5e9b53",
-      "index_sha256": "6ceb6a5c70dec50065cd7310bc985ff8b28d03d9f16bfc76e86cb86e957a1233"
+      "catalog_sha256": "0d871a7fbaf2d2ff093988ff72f7ebc6a739b6f7433327dbde78a5e01160c952",
+      "index_sha256": "a2b3d6fbd4097bc04d73a865718eba7e24d43ef2e94530c8d4c76db482ba9c7e"
     }
   ],
   "denominator": {
     "unit": "task_package",
-    "task_count": 2578
+    "task_count": 2403
   },
   "summary": {
-    "task_count": 2578,
-    "executable_count": 2405,
-    "unsupported_count": 173,
-    "unique_paper_count": 132,
-    "source_group_count": 132,
-    "corpus_paper_count": 98,
+    "task_count": 2403,
+    "executable_count": 2403,
+    "unsupported_count": 0,
+    "unique_paper_count": 121,
+    "source_group_count": 121,
+    "corpus_paper_count": 87,
     "family_count": 489,
-    "unknown_domain_count": 7,
-    "unknown_task_type_count": 3
+    "unknown_domain_count": 4,
+    "unknown_task_type_count": 0
   },
   "domains": [
     {
@@ -38,26 +38,26 @@
       "label": "Mathematics & optimization",
       "description": "Mathematical constructions, inequalities, generic optimizers and numerical algorithms.",
       "why_it_matters": "Candidate objects or algorithms can improve explicit bounds, feasibility, approximation error or search efficiency.",
-      "total": 971,
+      "total": 964,
       "executable": 964,
-      "unsupported": 7,
-      "paper_count": 31,
-      "source_group_count": 48,
+      "unsupported": 0,
+      "paper_count": 30,
+      "source_group_count": 47,
       "family_count": 262,
       "representative_task_ids": [
         "a2dept-root-finding-two-dimensional-systems",
         "alphaevolve-circle-packing-in-perimeter-4-rectangle",
         "alphaevolve-circle-packing-in-unit-square"
       ],
-      "percentage": 37.7
+      "percentage": 40.1
     },
     {
       "id": "operations-research",
       "label": "Operations research",
       "description": "Routing, packing, scheduling, allocation and constraint models with an operational objective.",
       "why_it_matters": "These tasks study how to use limited space, time and resources under explicit constraints.",
-      "total": 586,
-      "executable": 586,
+      "total": 584,
+      "executable": 584,
       "unsupported": 0,
       "paper_count": 18,
       "source_group_count": 21,
@@ -67,79 +67,79 @@
         "a2dept-capacitated-facility-location",
         "a2dept-maximum-independent-set"
       ],
-      "percentage": 22.7
+      "percentage": 24.3
     },
     {
       "id": "machine-learning",
       "label": "Machine learning & language",
       "description": "Learning algorithms, generic prediction, language benchmarks, retrieval and digital-agent behavior.",
       "why_it_matters": "Compare generalization, reasoning, learning procedures and retrieval quality across defined data and benchmark tasks.",
-      "total": 333,
+      "total": 278,
       "executable": 278,
-      "unsupported": 55,
-      "paper_count": 49,
-      "source_group_count": 50,
+      "unsupported": 0,
+      "paper_count": 42,
+      "source_group_count": 43,
       "family_count": 33,
       "representative_task_ids": [
         "adas-arc",
         "adas-asdiv",
         "ael-harness-non-stationary-contextual-bandit"
       ],
-      "percentage": 12.9
+      "percentage": 11.6
     },
     {
       "id": "software-engineering",
       "label": "Software engineering",
       "description": "Program synthesis, code repair, repository tasks and verification workflows.",
       "why_it_matters": "Correctness and task completion expose whether generated software satisfies a program or repository contract.",
-      "total": 37,
+      "total": 28,
       "executable": 28,
-      "unsupported": 9,
-      "paper_count": 12,
-      "source_group_count": 14,
+      "unsupported": 0,
+      "paper_count": 8,
+      "source_group_count": 10,
       "family_count": 14,
       "representative_task_ids": [
         "cocoevo-leetcode-contest",
         "dgm-aider-polyglot",
         "qdaif-humaneval-88-conditional-sorting"
       ],
-      "percentage": 1.4
+      "percentage": 1.2
     },
     {
       "id": "computer-systems",
       "label": "Computer systems & hardware",
       "description": "Kernels, compilers, databases, datacenters, circuits and infrastructure optimization.",
       "why_it_matters": "Latency, throughput, resource use and hardware constraints connect candidate programs to computing efficiency.",
-      "total": 145,
+      "total": 109,
       "executable": 109,
-      "unsupported": 36,
-      "paper_count": 15,
-      "source_group_count": 18,
+      "unsupported": 0,
+      "paper_count": 11,
+      "source_group_count": 14,
       "family_count": 18,
       "representative_task_ids": [
         "accelopt-adamw-m10944-n2048-0",
         "avo-gqa-32-query-heads-4-kv-heads-causal-sequence-16384",
         "coral-anthropic-performance-take-home"
       ],
-      "percentage": 5.6
+      "percentage": 4.5
     },
     {
       "id": "robotics-control",
       "label": "Robotics & control",
       "description": "Feedback controllers, embodied policies and rewards for locomotion or manipulation.",
       "why_it_matters": "Closed-loop behavior tests stability, task completion and control performance, often in simulation.",
-      "total": 78,
+      "total": 27,
       "executable": 27,
-      "unsupported": 51,
-      "paper_count": 13,
-      "source_group_count": 13,
+      "unsupported": 0,
+      "paper_count": 11,
+      "source_group_count": 11,
       "family_count": 6,
       "representative_task_ids": [
         "dga2d-feedback-control-cart-pole",
         "elm-sodarace-walker-program-evolution",
         "enpire-gym-pusht-simulation"
       ],
-      "percentage": 3.0
+      "percentage": 1.1
     },
     {
       "id": "physics",
@@ -157,7 +157,7 @@
         "coevo-oscillation-1",
         "deliberate-evolution-lsr-synth-physics"
       ],
-      "percentage": 10.3
+      "percentage": 11.0
     },
     {
       "id": "chemistry-materials",
@@ -175,16 +175,16 @@
         "deliberate-evolution-lsr-synth-chemistry",
         "dga2d-ode-solver-robertson"
       ],
-      "percentage": 2.5
+      "percentage": 2.7
     },
     {
       "id": "biology-health",
       "label": "Biology & health",
       "description": "Growth, biological sequences, cellular or neural data and biological or medical prediction targets.",
       "why_it_matters": "Fit growth and population models, analyze RNA and cellular data, and learn predictive relationships in biological imagery and neural activity.",
-      "total": 33,
+      "total": 25,
       "executable": 25,
-      "unsupported": 8,
+      "unsupported": 0,
       "paper_count": 8,
       "source_group_count": 10,
       "family_count": 25,
@@ -193,18 +193,18 @@
         "deliberate-evolution-lsr-synth-biology",
         "dga2d-ode-solver-lotka-volterra"
       ],
-      "percentage": 1.3
+      "percentage": 1.0
     },
     {
       "id": "earth-environment",
       "label": "Earth & environment",
       "description": "Earth-system and environmental models, observations, prediction and resource-control targets.",
       "why_it_matters": "Modeling environmental observations can test forecasting or process prediction under a defined dataset protocol.",
-      "total": 33,
+      "total": 31,
       "executable": 31,
-      "unsupported": 2,
-      "paper_count": 1,
-      "source_group_count": 5,
+      "unsupported": 0,
+      "paper_count": 0,
+      "source_group_count": 4,
       "family_count": 31,
       "representative_task_ids": [
         "science-climate-lorenz96-assimilation",
@@ -218,11 +218,11 @@
       "label": "Finance & economics",
       "description": "Economic decisions, allocation, mechanism design, structural models and financial policies.",
       "why_it_matters": "Study economic models and decision rules under explicit objectives, information limits and feasibility constraints.",
-      "total": 25,
+      "total": 23,
       "executable": 23,
-      "unsupported": 2,
-      "paper_count": 2,
-      "source_group_count": 4,
+      "unsupported": 0,
+      "paper_count": 0,
+      "source_group_count": 2,
       "family_count": 20,
       "representative_task_ids": [
         "science-economics-consumption-saving",
@@ -236,18 +236,16 @@
       "label": "Mixed / unclassified",
       "description": "The available metadata describes a mixed suite or does not identify one primary application domain.",
       "why_it_matters": "Keep mixed or underspecified packages visible while more detailed target and evaluation evidence is recorded.",
-      "total": 7,
+      "total": 4,
       "executable": 4,
-      "unsupported": 3,
-      "paper_count": 5,
-      "source_group_count": 5,
+      "unsupported": 0,
+      "paper_count": 2,
+      "source_group_count": 2,
       "family_count": 1,
       "representative_task_ids": [
-        "deliberate-evolution-lsr-transform",
-        "autorise-autorise-frontier",
-        "evox-frontier-cs"
+        "deliberate-evolution-lsr-transform"
       ],
-      "percentage": 0.3
+      "percentage": 0.2
     }
   ],
   "task_types": [
@@ -267,25 +265,25 @@
         "alphaevolve-circle-packing-in-unit-square",
         "alphaevolve-erdos-minimum-overlap"
       ],
-      "percentage": 42.9
+      "percentage": 46.0
     },
     {
       "id": "combinatorial-optimization",
       "label": "Combinatorial optimization",
       "description": "Design a constructive heuristic or search strategy for a discrete allocation problem.",
       "why_it_matters": "Solution quality and feasibility measure how a method navigates a constrained search space.",
-      "total": 580,
+      "total": 578,
       "executable": 578,
-      "unsupported": 2,
-      "paper_count": 18,
-      "source_group_count": 28,
+      "unsupported": 0,
+      "paper_count": 16,
+      "source_group_count": 26,
       "family_count": 48,
       "representative_task_ids": [
         "a2dept-capacitated-electric-vehicle-routing-with-time-windows",
         "a2dept-capacitated-facility-location",
         "a2dept-maximum-independent-set"
       ],
-      "percentage": 22.5
+      "percentage": 24.0
     },
     {
       "id": "black-box-optimization",
@@ -303,7 +301,7 @@
         "funbo-few-shot-ackley-2d-adaptation",
         "llamea-bo-bbob-f1"
       ],
-      "percentage": 2.9
+      "percentage": 3.1
     },
     {
       "id": "symbolic-regression",
@@ -321,7 +319,7 @@
         "deliberate-evolution-lsr-synth-biology",
         "lasr-big-bench-llm-scaling-law-discovery"
       ],
-      "percentage": 1.4
+      "percentage": 1.5
     },
     {
       "id": "numerical-solver",
@@ -346,117 +344,117 @@
       "label": "Prediction & model design",
       "description": "Fit, infer, train or design a predictive or generative model, representation or parameter estimate.",
       "why_it_matters": "Prediction error or task return evaluates learned behavior on the declared data or environment.",
-      "total": 176,
+      "total": 146,
       "executable": 146,
-      "unsupported": 30,
-      "paper_count": 9,
-      "source_group_count": 25,
+      "unsupported": 0,
+      "paper_count": 8,
+      "source_group_count": 24,
       "family_count": 86,
       "representative_task_ids": [
         "ael-harness-non-stationary-contextual-bandit",
         "eurekagent-gpumode-trimul-a100",
         "eurekagent-jigsaw-toxic-comment"
       ],
-      "percentage": 6.8
+      "percentage": 6.1
     },
     {
       "id": "hyperparameter-search",
       "label": "Hyperparameter search",
       "description": "Optimize training settings or model hyperparameters.",
       "why_it_matters": "A held-out objective tests the quality and cost of selecting a model configuration.",
-      "total": 53,
+      "total": 43,
       "executable": 43,
-      "unsupported": 10,
-      "paper_count": 5,
-      "source_group_count": 5,
+      "unsupported": 0,
+      "paper_count": 3,
+      "source_group_count": 3,
       "family_count": 3,
       "representative_task_ids": [
         "evoprompting-mnist-1d-architecture-search",
         "funbo-adaboost-hyperparameter-optimization",
         "llamea-bo-bayesmark-breast-adaboost"
       ],
-      "percentage": 2.1
+      "percentage": 1.8
     },
     {
       "id": "language-reasoning",
       "label": "Language & reasoning",
       "description": "Optimize prompts, scaffolds or outputs on language, reasoning or grid-inference benchmarks.",
       "why_it_matters": "Measure compositional reasoning, language understanding and constraint satisfaction on specified benchmark cases.",
-      "total": 148,
+      "total": 141,
       "executable": 141,
-      "unsupported": 7,
-      "paper_count": 30,
-      "source_group_count": 31,
+      "unsupported": 0,
+      "paper_count": 27,
+      "source_group_count": 28,
       "family_count": 10,
       "representative_task_ids": [
         "adas-arc",
         "adas-asdiv",
         "gepa-ifbench"
       ],
-      "percentage": 5.7
+      "percentage": 5.9
     },
     {
       "id": "agent-workflow",
       "label": "Agent workflow",
       "description": "Design an agent workflow for tools, web environments, planning or digital tasks.",
       "why_it_matters": "End-to-end task completion tests how actions and tools are coordinated across a trajectory.",
-      "total": 41,
+      "total": 21,
       "executable": 21,
-      "unsupported": 20,
-      "paper_count": 9,
-      "source_group_count": 9,
+      "unsupported": 0,
+      "paper_count": 4,
+      "source_group_count": 4,
       "family_count": 7,
       "representative_task_ids": [
         "agentsquare-alfworld",
         "agentsquare-m3tooleval",
         "agentsquare-travelplanner"
       ],
-      "percentage": 1.6
+      "percentage": 0.9
     },
     {
       "id": "software-generation",
       "label": "Software generation & repair",
       "description": "Generate, repair, review or verify program code.",
       "why_it_matters": "Executable tests or repository task outcomes connect a proposed change to software behavior.",
-      "total": 45,
+      "total": 19,
       "executable": 19,
-      "unsupported": 26,
-      "paper_count": 11,
-      "source_group_count": 13,
+      "unsupported": 0,
+      "paper_count": 8,
+      "source_group_count": 10,
       "family_count": 10,
       "representative_task_ids": [
         "cocoevo-leetcode-contest",
         "dgm-aider-polyglot",
         "qdaif-humaneval-88-conditional-sorting"
       ],
-      "percentage": 1.7
+      "percentage": 0.8
     },
     {
       "id": "systems-optimization",
       "label": "Systems optimization",
       "description": "Improve kernel, compiler, infrastructure, hardware or program-performance decisions.",
       "why_it_matters": "Correctness plus cost or performance measurements test whether systems changes are useful.",
-      "total": 123,
+      "total": 106,
       "executable": 106,
-      "unsupported": 17,
-      "paper_count": 13,
-      "source_group_count": 17,
+      "unsupported": 0,
+      "paper_count": 10,
+      "source_group_count": 14,
       "family_count": 17,
       "representative_task_ids": [
         "accelopt-adamw-m10944-n2048-0",
         "avo-gqa-32-query-heads-4-kv-heads-causal-sequence-16384",
         "coral-anthropic-performance-take-home"
       ],
-      "percentage": 4.8
+      "percentage": 4.4
     },
     {
       "id": "control-policy",
       "label": "Control policy",
       "description": "Design a feedback controller, sequential decision rule or embodied action policy.",
       "why_it_matters": "Sequential outcomes test decisions under changing state and information constraints.",
-      "total": 29,
+      "total": 19,
       "executable": 19,
-      "unsupported": 10,
+      "unsupported": 0,
       "paper_count": 6,
       "source_group_count": 11,
       "family_count": 15,
@@ -465,25 +463,25 @@
         "elm-sodarace-walker-program-evolution",
         "enpire-gym-pusht-simulation"
       ],
-      "percentage": 1.1
+      "percentage": 0.8
     },
     {
       "id": "reward-design",
       "label": "Reward design",
       "description": "Design a reward for a learning controller or policy.",
       "why_it_matters": "The resulting trained behavior tests whether the reward induces the intended task behavior.",
-      "total": 67,
+      "total": 22,
       "executable": 22,
-      "unsupported": 45,
-      "paper_count": 7,
-      "source_group_count": 7,
+      "unsupported": 0,
+      "paper_count": 6,
+      "source_group_count": 6,
       "family_count": 3,
       "representative_task_ids": [
         "eureka-ant",
         "eureka-ballbalance",
         "text2reward-button-press-v2"
       ],
-      "percentage": 2.6
+      "percentage": 0.9
     },
     {
       "id": "retrieval",
@@ -500,15 +498,15 @@
         "rankevolve-aops",
         "rankevolve-climate-fever"
       ],
-      "percentage": 1.1
+      "percentage": 1.2
     },
     {
       "id": "constraint-modeling",
       "label": "Constraint modeling",
       "description": "Reformulate or solve explicit satisfiability, logic or mathematical-program constraints.",
       "why_it_matters": "Feasibility and solver efficiency expose the value of the model formulation or solver policy.",
-      "total": 36,
-      "executable": 36,
+      "total": 34,
+      "executable": 34,
       "unsupported": 0,
       "paper_count": 4,
       "source_group_count": 4,
@@ -525,18 +523,16 @@
       "label": "Benchmark generation",
       "description": "Generate benchmark functions or embodied evaluation tasks.",
       "why_it_matters": "Produce controlled instances for probing evaluation coverage, difficulty and optimizer or policy robustness.",
-      "total": 4,
+      "total": 1,
       "executable": 1,
-      "unsupported": 3,
-      "paper_count": 2,
-      "source_group_count": 2,
+      "unsupported": 0,
+      "paper_count": 1,
+      "source_group_count": 1,
       "family_count": 1,
       "representative_task_ids": [
-        "eob-eob-bbob-benchmark-synthesis",
-        "eob-eob-hpo-surrogate-benchmark-synthesis",
-        "omni-epic-open-ended-embodied-task-generation"
+        "eob-eob-bbob-benchmark-synthesis"
       ],
-      "percentage": 0.2
+      "percentage": 0.0
     },
     {
       "id": "signal-processing",
@@ -554,67 +550,64 @@
         "science-biology-fmd-microscopy-denoising",
         "science-earth-temperature-homogenization"
       ],
-      "percentage": 0.1
+      "percentage": 0.2
     },
     {
       "id": "unknown",
       "label": "Unclassified task type",
       "description": "The catalog does not yet specify a clear candidate or evaluation operation.",
       "why_it_matters": "Expose gaps in the recorded optimization contract so future catalog curation can resolve them.",
-      "total": 3,
+      "total": 0,
       "executable": 0,
-      "unsupported": 3,
-      "paper_count": 3,
-      "source_group_count": 3,
+      "unsupported": 0,
+      "paper_count": 0,
+      "source_group_count": 0,
       "family_count": 0,
-      "representative_task_ids": [
-        "autorise-autorise-frontier",
-        "evox-frontier-cs"
-      ],
-      "percentage": 0.1
+      "representative_task_ids": [],
+      "percentage": 0.0
     }
   ],
   "coverage": [
     {
       "id": "executable",
       "label": "Executable definitions",
-      "total": 2405,
-      "percentage": 93.3,
+      "total": 2403,
+      "percentage": 100.0,
       "description": "Packages with source-declared executable evaluators; environments and runtime are not verified by Arena."
     },
     {
       "id": "unsupported",
       "label": "Unsupported definitions",
-      "total": 173,
-      "percentage": 6.7,
+      "total": 0,
+      "percentage": 0.0,
       "description": "Catalogued packages whose source marks evaluation unsupported; they remain included in domain totals."
     },
     {
       "id": "original",
       "label": "Original protocol",
       "total": 113,
-      "percentage": 4.4,
+      "percentage": 4.7,
       "description": "Source labels the evaluator protocol original; this is not Arena conformance or runtime verification."
     },
     {
       "id": "recreated_verified",
       "label": "Source-declared verified reconstruction",
       "total": 1296,
-      "percentage": 50.3,
+      "percentage": 53.9,
       "description": "Source labels these reconstructions verified. Arena has not independently rerun that verification."
     },
     {
       "id": "recreated",
       "label": "Recreated protocol",
-      "total": 996,
-      "percentage": 38.6,
+      "total": 994,
+      "percentage": 41.4,
       "description": "Recreated evaluators without the source's recreated_verified designation."
     },
     {
       "id": "recorded_contract",
       "label": "Recorded I/O contract",
-      "total": 2405,
-      "percentage": 93.3,
+      "total": 2403,
+      "percentage": 100.0,
       "description": "Non-null problem.json contract text; may point to evaluator documentation rather than a complete machine-readable signature."
     },
     {
@@ -930,21 +923,6 @@
         "metric": "score"
       }
     },
-    "adaevolve-datacenter-tcp-congestion-control": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-infrastructure",
-      "rationale": "The task explicitly names datacenter TCP congestion control or telemetry repair.",
-      "evidence": {
-        "task_name": "Datacenter TCP congestion control",
-        "description": "Datacenter TCP congestion control",
-        "family": null,
-        "paper_ids": [
-          "adaevolve"
-        ],
-        "metric": "throughput and queue latency"
-      }
-    },
     "adas-arc": {
       "domain_id": "machine-learning",
       "task_type_id": "language-reasoning",
@@ -1061,36 +1039,6 @@
         "metric": "score"
       }
     },
-    "ael-harness-20newsgroups-stream-classification": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-generic-ml-datasets",
-      "rationale": "After explicit scientific-target exceptions, these reviewed tasks are generic image, text or tabular prediction datasets.",
-      "evidence": {
-        "task_name": "20Newsgroups stream classification",
-        "description": "20Newsgroups stream classification",
-        "family": null,
-        "paper_ids": [
-          "ael-harness"
-        ],
-        "metric": "classification accuracy"
-      }
-    },
-    "ael-harness-d-full-portfolio-allocation": {
-      "domain_id": "finance-economics",
-      "task_type_id": "combinatorial-optimization",
-      "rule_id": "direct-financial-objectives",
-      "rationale": "The task directly names portfolio allocation or intraday equity trading, rather than financial question answering.",
-      "evidence": {
-        "task_name": "D-full portfolio allocation",
-        "description": "D-full portfolio allocation",
-        "family": null,
-        "paper_ids": [
-          "ael-harness"
-        ],
-        "metric": "Sharpe ratio (also Sortino, Calmar, maximum drawdown)"
-      }
-    },
     "ael-harness-non-stationary-contextual-bandit": {
       "domain_id": "machine-learning",
       "task_type_id": "prediction-modeling",
@@ -1104,21 +1052,6 @@
           "ael-harness"
         ],
         "metric": "score"
-      }
-    },
-    "ael-harness-support-ticket-routing": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-generic-ml-datasets",
-      "rationale": "After explicit scientific-target exceptions, these reviewed tasks are generic image, text or tabular prediction datasets.",
-      "evidence": {
-        "task_name": "Support-ticket routing",
-        "description": "Support-ticket routing",
-        "family": null,
-        "paper_ids": [
-          "ael-harness"
-        ],
-        "metric": "routing reward"
       }
     },
     "ael-traveling-salesman-constructive-heuristic": {
@@ -1159,21 +1092,6 @@
           "evox"
         ],
         "metric": "score"
-      }
-    },
-    "aevo-terminal-bench": {
-      "domain_id": "software-engineering",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-terminal-bench",
-      "rationale": "Terminal-Bench evaluates task completion through a terminal; no broader science domain is asserted.",
-      "evidence": {
-        "task_name": "Terminal-Bench",
-        "description": "Terminal-Bench",
-        "family": null,
-        "paper_ids": [
-          "aevo"
-        ],
-        "metric": "task success rate"
       }
     },
     "aflow-humaneval": {
@@ -1240,21 +1158,6 @@
           "agentic-optimization"
         ],
         "metric": "score"
-      }
-    },
-    "agentic-optimization-qwen3-1-7b-end-to-end-sglang-kernel-optimization": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "Qwen3-1.7B end-to-end SGLang kernel optimization",
-        "description": "Qwen3-1.7B end-to-end SGLang kernel optimization",
-        "family": null,
-        "paper_ids": [
-          "agentic-optimization"
-        ],
-        "metric": "serving latency score subject to output-quality hard gates"
       }
     },
     "agentsquare-alfworld": {
@@ -1332,66 +1235,6 @@
         "metric": "score"
       }
     },
-    "agentsquare-webshop": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "WebShop",
-        "description": "WebShop task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.",
-        "family": null,
-        "paper_ids": [
-          "agentsquare"
-        ],
-        "metric": "task score"
-      }
-    },
-    "ahe-terminal-bench-2": {
-      "domain_id": "software-engineering",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-software-agent-suites",
-      "rationale": "The reviewed task names are code repair, coding, program verification or repository-editing benchmarks.",
-      "evidence": {
-        "task_name": "Terminal-Bench 2",
-        "description": "Terminal-Bench 2",
-        "family": null,
-        "paper_ids": [
-          "ahe"
-        ],
-        "metric": "pass rate"
-      }
-    },
-    "algoevolve-numin-intraday-equity-trading": {
-      "domain_id": "finance-economics",
-      "task_type_id": "combinatorial-optimization",
-      "rule_id": "direct-financial-objectives",
-      "rationale": "The task directly names portfolio allocation or intraday equity trading, rather than financial question answering.",
-      "evidence": {
-        "task_name": "NUMIN intraday equity trading",
-        "description": "NUMIN intraday equity trading",
-        "family": null,
-        "paper_ids": [
-          "algoevolve"
-        ],
-        "metric": "risk-adjusted return and profitability"
-      }
-    },
-    "alphaevolve-borg-data-center-scheduling": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "Borg data-center scheduling",
-        "description": "Borg data-center scheduling task evaluated in AlphaEvolve: A coding agent for scientific and algorithmic discovery.",
-        "family": null,
-        "paper_ids": [
-          "alphaevolve"
-        ],
-        "metric": "stranded compute resources"
-      }
-    },
     "alphaevolve-circle-packing-in-perimeter-4-rectangle": {
       "domain_id": "mathematics",
       "task_type_id": "mathematical-construction",
@@ -1455,21 +1298,6 @@
         "metric": "score"
       }
     },
-    "alphaevolve-compiler-generated-flashattention-code-optimization": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "Compiler-generated FlashAttention code optimization",
-        "description": "Compiler-generated FlashAttention code optimization task evaluated in AlphaEvolve: A coding agent for scientific and algorithmic discovery.",
-        "family": null,
-        "paper_ids": [
-          "alphaevolve"
-        ],
-        "metric": "kernel runtime"
-      }
-    },
     "alphaevolve-erdos-minimum-overlap": {
       "domain_id": "mathematics",
       "task_type_id": "mathematical-construction",
@@ -1503,21 +1331,6 @@
           "eurekagent"
         ],
         "metric": "score"
-      }
-    },
-    "alphaevolve-gemini-matrix-multiplication-tiling": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "Gemini matrix multiplication tiling",
-        "description": "Gemini matrix multiplication tiling task evaluated in AlphaEvolve: A coding agent for scientific and algorithmic discovery.",
-        "family": null,
-        "paper_ids": [
-          "alphaevolve"
-        ],
-        "metric": "kernel runtime"
       }
     },
     "alphaevolve-heilbronn-convex-regions": {
@@ -2514,21 +2327,6 @@
         "metric": "score"
       }
     },
-    "alphaevolve-tpu-hardware-circuit-design": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "TPU hardware circuit design",
-        "description": "TPU hardware circuit design task evaluated in AlphaEvolve: A coding agent for scientific and algorithmic discovery.",
-        "family": null,
-        "paper_ids": [
-          "alphaevolve"
-        ],
-        "metric": "circuit area"
-      }
-    },
     "alphaevolve-uncertainty-inequality": {
       "domain_id": "mathematics",
       "task_type_id": "mathematical-construction",
@@ -2576,36 +2374,6 @@
           "codeevolve"
         ],
         "metric": "score"
-      }
-    },
-    "autorise-autorise-frontier": {
-      "domain_id": "unknown",
-      "task_type_id": "unknown",
-      "rule_id": "unknown-metadata",
-      "rationale": "Available metadata is an opaque or broad suite/task label, insufficient to establish one scientific domain and candidate operation.",
-      "evidence": {
-        "task_name": "AutoRISE-Frontier",
-        "description": "AutoRISE-Frontier",
-        "family": null,
-        "paper_ids": [
-          "autorise"
-        ],
-        "metric": "three-judge majority attack success rate"
-      }
-    },
-    "autorise-autorise-standard": {
-      "domain_id": "unknown",
-      "task_type_id": "unknown",
-      "rule_id": "unknown-metadata",
-      "rationale": "Available metadata is an opaque or broad suite/task label, insufficient to establish one scientific domain and candidate operation.",
-      "evidence": {
-        "task_name": "AutoRISE-Standard",
-        "description": "AutoRISE-Standard",
-        "family": null,
-        "paper_ids": [
-          "autorise"
-        ],
-        "metric": "three-judge majority attack success rate"
       }
     },
     "avo-gqa-32-query-heads-4-kv-heads-causal-sequence-16384": {
@@ -3013,21 +2781,6 @@
         "metric": "score"
       }
     },
-    "cocoevo-deveval-real-world-function-completion": {
-      "domain_id": "software-engineering",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-software-agent-suites",
-      "rationale": "The reviewed task names are code repair, coding, program verification or repository-editing benchmarks.",
-      "evidence": {
-        "task_name": "DevEval real-world function completion",
-        "description": "DevEval real-world function completion task evaluated in CoCoEvo: Co-Evolution of Programs and Test Cases to Enhance Code Generation.",
-        "family": null,
-        "paper_ids": [
-          "cocoevo"
-        ],
-        "metric": "pass@1"
-      }
-    },
     "cocoevo-leetcode-contest": {
       "domain_id": "software-engineering",
       "task_type_id": "software-generation",
@@ -3041,126 +2794,6 @@
           "cocoevo"
         ],
         "metric": "score"
-      }
-    },
-    "codeevolve-salesforce-apex-program-optimization": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "Apex program optimization",
-        "description": "Apex program optimization",
-        "family": null,
-        "paper_ids": [
-          "codeevolve-salesforce"
-        ],
-        "metric": "combined KPI and unit-test pass count"
-      }
-    },
-    "codeevolve-salesforce-apiname-constructor": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "ApiName constructor",
-        "description": "ApiName constructor",
-        "family": null,
-        "paper_ids": [
-          "codeevolve-salesforce"
-        ],
-        "metric": "baseline / optimized execution time"
-      }
-    },
-    "codeevolve-salesforce-batchimporter-serializerowinfo": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "BatchImporter.serializeRowInfo",
-        "description": "BatchImporter.serializeRowInfo",
-        "family": null,
-        "paper_ids": [
-          "codeevolve-salesforce"
-        ],
-        "metric": "baseline / optimized execution time"
-      }
-    },
-    "codeevolve-salesforce-composedapiname-equals": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "ComposedApiName.equals",
-        "description": "ComposedApiName.equals",
-        "family": null,
-        "paper_ids": [
-          "codeevolve-salesforce"
-        ],
-        "metric": "baseline / optimized execution time"
-      }
-    },
-    "codeevolve-salesforce-domainsuffixpair-hashcode": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "DomainSuffixPair.hashCode",
-        "description": "DomainSuffixPair.hashCode",
-        "family": null,
-        "paper_ids": [
-          "codeevolve-salesforce"
-        ],
-        "metric": "baseline / optimized execution time"
-      }
-    },
-    "codeevolve-salesforce-fieldidentifier-hashcode": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "FieldIdentifier.hashCode",
-        "description": "FieldIdentifier.hashCode",
-        "family": null,
-        "paper_ids": [
-          "codeevolve-salesforce"
-        ],
-        "metric": "baseline / optimized execution time"
-      }
-    },
-    "codeevolve-salesforce-getinstanceidmutations": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "getInstanceIdMutations",
-        "description": "getInstanceIdMutations",
-        "family": null,
-        "paper_ids": [
-          "codeevolve-salesforce"
-        ],
-        "metric": "baseline / optimized execution time"
-      }
-    },
-    "codeevolve-salesforce-hbaseconnectionregistryutil-filtermap": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "HBaseConnectionRegistryUtil.filterMap",
-        "description": "HBaseConnectionRegistryUtil.filterMap",
-        "family": null,
-        "paper_ids": [
-          "codeevolve-salesforce"
-        ],
-        "metric": "baseline / optimized execution time"
       }
     },
     "coevo-e-coli-growth": {
@@ -3226,21 +2859,6 @@
           "drsr"
         ],
         "metric": "score"
-      }
-    },
-    "constitutional-evolution-multi-agent-society-constitution-optimization": {
-      "domain_id": "machine-learning",
-      "task_type_id": "language-reasoning",
-      "rule_id": "unsupported-language-evaluation",
-      "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
-      "evidence": {
-        "task_name": "Multi-agent society constitution optimization",
-        "description": "Multi-agent society constitution optimization",
-        "family": null,
-        "paper_ids": [
-          "constitutional-evolution"
-        ],
-        "metric": "Societal Stability Score"
       }
     },
     "coral-anthropic-performance-take-home": {
@@ -5443,36 +5061,6 @@
           "open-problems-2026-11"
         ],
         "metric": "score"
-      }
-    },
-    "darwinian-evolver-vet-code-verification-prompt-evolution": {
-      "domain_id": "software-engineering",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-software-agent-suites",
-      "rationale": "The reviewed task names are code repair, coding, program verification or repository-editing benchmarks.",
-      "evidence": {
-        "task_name": "Vet code-verification prompt evolution",
-        "description": "Vet code-verification prompt evolution",
-        "family": null,
-        "paper_ids": [
-          "darwinian-evolver"
-        ],
-        "metric": "verification accuracy"
-      }
-    },
-    "deevo-abcd": {
-      "domain_id": "machine-learning",
-      "task_type_id": "language-reasoning",
-      "rule_id": "unsupported-language-evaluation",
-      "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
-      "evidence": {
-        "task_name": "ABCD",
-        "description": "ABCD task evaluated in Tournament of Prompts: Evolving LLM Instructions Through Structured Debates and Elo Ratings.",
-        "family": null,
-        "paper_ids": [
-          "deevo"
-        ],
-        "metric": "accuracy"
       }
     },
     "deevo-bbh-navigate": {
@@ -7903,36 +7491,6 @@
         "metric": "score"
       }
     },
-    "dreureka-go1-walking-globe": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Go1 walking globe",
-        "description": "Go1 walking globe: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "dreureka"
-        ],
-        "metric": "forward velocity/distance, cube rotations, or balance duration"
-      }
-    },
-    "dreureka-leap-hand-cube-rotation": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "LEAP Hand cube rotation",
-        "description": "LEAP Hand cube rotation: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "dreureka"
-        ],
-        "metric": "forward velocity/distance, cube rotations, or balance duration"
-      }
-    },
     "drsr-lsr-synth-crk0": {
       "domain_id": "unknown",
       "task_type_id": "symbolic-regression",
@@ -8009,36 +7567,6 @@
         "metric": "score"
       }
     },
-    "elm-terrain-conditioned-sodarace-synthesis": {
-      "domain_id": "robotics-control",
-      "task_type_id": "control-policy",
-      "rule_id": "unsupported-walker-synthesis",
-      "rationale": "The task synthesizes a Sodarace walker program, a simulated embodied controller.",
-      "evidence": {
-        "task_name": "Terrain-conditioned Sodarace synthesis",
-        "description": "Terrain-conditioned Sodarace synthesis: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "elm"
-        ],
-        "metric": "horizontal distance / terrain return / repair accuracy respectively"
-      }
-    },
-    "enpire-gpu-insertion": {
-      "domain_id": "robotics-control",
-      "task_type_id": "control-policy",
-      "rule_id": "unsupported-enpire-robotics",
-      "rationale": "The named ENPIRE tasks improve embodied robot behavior in manipulation environments. The pinned papers/enpire.md identifies Robot Control and agentic robot policy self-improvement; this is not treated as a generic reward-design suite.",
-      "evidence": {
-        "task_name": "GPU insertion",
-        "description": "GPU insertion",
-        "family": null,
-        "paper_ids": [
-          "enpire"
-        ],
-        "metric": "task success rate"
-      }
-    },
     "enpire-gym-pusht-simulation": {
       "domain_id": "robotics-control",
       "task_type_id": "control-policy",
@@ -8054,96 +7582,6 @@
         "metric": "score"
       }
     },
-    "enpire-physical-push-t": {
-      "domain_id": "robotics-control",
-      "task_type_id": "control-policy",
-      "rule_id": "unsupported-enpire-robotics",
-      "rationale": "The named ENPIRE tasks improve embodied robot behavior in manipulation environments. The pinned papers/enpire.md identifies Robot Control and agentic robot policy self-improvement; this is not treated as a generic reward-design suite.",
-      "evidence": {
-        "task_name": "Physical Push-T",
-        "description": "Physical Push-T",
-        "family": null,
-        "paper_ids": [
-          "enpire"
-        ],
-        "metric": "task success rate"
-      }
-    },
-    "enpire-physical-zip-tie-threading": {
-      "domain_id": "robotics-control",
-      "task_type_id": "control-policy",
-      "rule_id": "unsupported-enpire-robotics",
-      "rationale": "The named ENPIRE tasks improve embodied robot behavior in manipulation environments. The pinned papers/enpire.md identifies Robot Control and agentic robot policy self-improvement; this is not treated as a generic reward-design suite.",
-      "evidence": {
-        "task_name": "Physical zip-tie threading",
-        "description": "Physical zip-tie threading",
-        "family": null,
-        "paper_ids": [
-          "enpire"
-        ],
-        "metric": "task success rate"
-      }
-    },
-    "enpire-pin-insertion": {
-      "domain_id": "robotics-control",
-      "task_type_id": "control-policy",
-      "rule_id": "unsupported-enpire-robotics",
-      "rationale": "The named ENPIRE tasks improve embodied robot behavior in manipulation environments. The pinned papers/enpire.md identifies Robot Control and agentic robot policy self-improvement; this is not treated as a generic reward-design suite.",
-      "evidence": {
-        "task_name": "Pin insertion",
-        "description": "Pin insertion",
-        "family": null,
-        "paper_ids": [
-          "enpire"
-        ],
-        "metric": "task success rate"
-      }
-    },
-    "enpire-robocasa-simulation": {
-      "domain_id": "robotics-control",
-      "task_type_id": "control-policy",
-      "rule_id": "unsupported-enpire-robotics",
-      "rationale": "The named ENPIRE tasks improve embodied robot behavior in manipulation environments. The pinned papers/enpire.md identifies Robot Control and agentic robot policy self-improvement; this is not treated as a generic reward-design suite.",
-      "evidence": {
-        "task_name": "RoboCasa simulation",
-        "description": "RoboCasa simulation",
-        "family": null,
-        "paper_ids": [
-          "enpire"
-        ],
-        "metric": "task success rate"
-      }
-    },
-    "enpire-zip-tie-cutting": {
-      "domain_id": "robotics-control",
-      "task_type_id": "control-policy",
-      "rule_id": "unsupported-enpire-robotics",
-      "rationale": "The named ENPIRE tasks improve embodied robot behavior in manipulation environments. The pinned papers/enpire.md identifies Robot Control and agentic robot policy self-improvement; this is not treated as a generic reward-design suite.",
-      "evidence": {
-        "task_name": "Zip-tie cutting",
-        "description": "Zip-tie cutting",
-        "family": null,
-        "paper_ids": [
-          "enpire"
-        ],
-        "metric": "task success rate"
-      }
-    },
-    "enpire-zip-tie-insertion-reward-verification": {
-      "domain_id": "robotics-control",
-      "task_type_id": "control-policy",
-      "rule_id": "unsupported-enpire-robotics",
-      "rationale": "The named ENPIRE tasks improve embodied robot behavior in manipulation environments. The pinned papers/enpire.md identifies Robot Control and agentic robot policy self-improvement; this is not treated as a generic reward-design suite.",
-      "evidence": {
-        "task_name": "Zip-tie insertion reward verification",
-        "description": "Zip-tie insertion reward verification",
-        "family": null,
-        "paper_ids": [
-          "enpire"
-        ],
-        "metric": "task success rate"
-      }
-    },
     "eob-eob-bbob-benchmark-synthesis": {
       "domain_id": "mathematics",
       "task_type_id": "benchmark-generation",
@@ -8157,36 +7595,6 @@
           "eob"
         ],
         "metric": "score"
-      }
-    },
-    "eob-eob-hpo-surrogate-benchmark-synthesis": {
-      "domain_id": "mathematics",
-      "task_type_id": "benchmark-generation",
-      "rule_id": "unsupported-benchmark-generation",
-      "rationale": "EoB generates optimizer benchmark functions or surrogates; the generator itself is not a solved UAV or HPO application.",
-      "evidence": {
-        "task_name": "EoB-HPO surrogate benchmark synthesis",
-        "description": "EoB-HPO surrogate benchmark synthesis",
-        "family": null,
-        "paper_ids": [
-          "eob"
-        ],
-        "metric": "landscape similarity and algorithm distinction capability"
-      }
-    },
-    "eob-eob-uav-surrogate-benchmark-synthesis": {
-      "domain_id": "mathematics",
-      "task_type_id": "benchmark-generation",
-      "rule_id": "unsupported-benchmark-generation",
-      "rationale": "EoB generates optimizer benchmark functions or surrogates; the generator itself is not a solved UAV or HPO application.",
-      "evidence": {
-        "task_name": "EoB-UAV surrogate benchmark synthesis",
-        "description": "EoB-UAV surrogate benchmark synthesis",
-        "family": null,
-        "paper_ids": [
-          "eob"
-        ],
-        "metric": "landscape similarity and algorithm distinction capability"
       }
     },
     "eoh-online-bin-packing": {
@@ -8849,21 +8257,6 @@
         "metric": "score"
       }
     },
-    "eureka-allegrohand": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "AllegroHand",
-        "description": "AllegroHand: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
     "eureka-ant": {
       "domain_id": "robotics-control",
       "task_type_id": "reward-design",
@@ -8882,21 +8275,6 @@
         "metric": "score"
       }
     },
-    "eureka-anymal": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Anymal",
-        "description": "Anymal: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
     "eureka-ballbalance": {
       "domain_id": "robotics-control",
       "task_type_id": "reward-design",
@@ -8910,36 +8288,6 @@
           "eureka"
         ],
         "metric": "score"
-      }
-    },
-    "eureka-blockstack": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "BlockStack",
-        "description": "BlockStack: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-bottlecap": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "BottleCap",
-        "description": "BottleCap: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
       }
     },
     "eureka-cartpole": {
@@ -8957,141 +8305,6 @@
         "metric": "score"
       }
     },
-    "eureka-catchabreast": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "CatchAbreast",
-        "description": "CatchAbreast: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-catchover2underarm": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "CatchOver2Underarm",
-        "description": "CatchOver2Underarm: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-catchunderarm": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "CatchUnderarm",
-        "description": "CatchUnderarm: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-doorcloseinward": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "DoorCloseInward",
-        "description": "DoorCloseInward: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-doorcloseoutward": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "DoorCloseOutward",
-        "description": "DoorCloseOutward: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-dooropeninward": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "DoorOpenInward",
-        "description": "DoorOpenInward: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-dooropenoutward": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "DoorOpenOutward",
-        "description": "DoorOpenOutward: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-frankacabinet": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "FrankaCabinet",
-        "description": "FrankaCabinet: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-graspandplace": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "GraspAndPlace",
-        "description": "GraspAndPlace: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
     "eureka-humanoid": {
       "domain_id": "robotics-control",
       "task_type_id": "reward-design",
@@ -9106,216 +8319,6 @@
           "revolve"
         ],
         "metric": "score"
-      }
-    },
-    "eureka-kettle": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Kettle",
-        "description": "Kettle: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-liftunderarm": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "LiftUnderarm",
-        "description": "LiftUnderarm: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-over": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Over",
-        "description": "Over: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-pen": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Pen",
-        "description": "Pen: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-pushblock": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "PushBlock",
-        "description": "PushBlock: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-quadcopter": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Quadcopter",
-        "description": "Quadcopter: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-reorientation": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "ReOrientation",
-        "description": "ReOrientation: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-scissors": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Scissors",
-        "description": "Scissors: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-shadow-hand-pen-spinning": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Shadow Hand pen spinning",
-        "description": "Shadow Hand pen spinning: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "spinning success / angular displacement"
-      }
-    },
-    "eureka-shadowhand": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "ShadowHand",
-        "description": "ShadowHand: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-swingcup": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "SwingCup",
-        "description": "SwingCup: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-switch": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Switch",
-        "description": "Switch: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eureka-twocatchunderarm": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "TwoCatchUnderarm",
-        "description": "TwoCatchUnderarm: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "eureka"
-        ],
-        "metric": "task-specific fitness and human-normalized score"
-      }
-    },
-    "eurekagent-dog-breed-identification": {
-      "domain_id": "biology-health",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "biological-prediction-targets",
-      "rationale": "The task name specifies biological imagery, disease, RNA, cellular integration or neural-activity prediction. This is a dataset/modeling application, not verified biological discovery.",
-      "evidence": {
-        "task_name": "dog-breed-identification",
-        "description": "dog-breed-identification",
-        "family": null,
-        "paper_ids": [
-          "eurekagent"
-        ],
-        "metric": "competition score and medal threshold"
       }
     },
     "eurekagent-gpumode-trimul-a100": {
@@ -9348,51 +8351,6 @@
         "metric": "score"
       }
     },
-    "eurekagent-tabular-playground-may-2022": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-generic-ml-datasets",
-      "rationale": "After explicit scientific-target exceptions, these reviewed tasks are generic image, text or tabular prediction datasets.",
-      "evidence": {
-        "task_name": "tabular-playground-may-2022",
-        "description": "tabular-playground-may-2022",
-        "family": null,
-        "paper_ids": [
-          "eurekagent"
-        ],
-        "metric": "competition score and medal threshold"
-      }
-    },
-    "eurekagent-the-icml-2013-whale-redux": {
-      "domain_id": "biology-health",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "biological-prediction-targets",
-      "rationale": "The task name specifies biological imagery, disease, RNA, cellular integration or neural-activity prediction. This is a dataset/modeling application, not verified biological discovery.",
-      "evidence": {
-        "task_name": "the-icml-2013-whale-redux",
-        "description": "the-icml-2013-whale-redux",
-        "family": null,
-        "paper_ids": [
-          "eurekagent"
-        ],
-        "metric": "competition score and medal threshold"
-      }
-    },
-    "evoflow-alfworld": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "ALFWorld",
-        "description": "ALFWorld task evaluated in EvoFlow: Evolving Diverse Agentic Workflows On The Fly.",
-        "family": null,
-        "paper_ids": [
-          "evoflow"
-        ],
-        "metric": "benchmark success/solve rate or pass@1"
-      }
-    },
     "evolcaf-ackley-2d": {
       "domain_id": "mathematics",
       "task_type_id": "black-box-optimization",
@@ -9408,36 +8366,6 @@
         "metric": "score"
       }
     },
-    "evolcaf-cifar-10-hyperparameter-optimization": {
-      "domain_id": "machine-learning",
-      "task_type_id": "hyperparameter-search",
-      "rule_id": "image-hpo",
-      "rationale": "These named image benchmarks optimize model hyperparameters; benchmark theme is not treated as a separate scientific task.",
-      "evidence": {
-        "task_name": "CIFAR-10 hyperparameter optimization",
-        "description": "CIFAR-10 hyperparameter optimization: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "evolcaf"
-        ],
-        "metric": "validation accuracy under runtime budget"
-      }
-    },
-    "evolcaf-colorectal-histology-hyperparameter-optimization": {
-      "domain_id": "machine-learning",
-      "task_type_id": "hyperparameter-search",
-      "rule_id": "image-hpo",
-      "rationale": "These named image benchmarks optimize model hyperparameters; benchmark theme is not treated as a separate scientific task.",
-      "evidence": {
-        "task_name": "Colorectal-Histology hyperparameter optimization",
-        "description": "Colorectal-Histology hyperparameter optimization: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "evolcaf"
-        ],
-        "metric": "validation accuracy under runtime budget"
-      }
-    },
     "evolcaf-cosine8-8d": {
       "domain_id": "mathematics",
       "task_type_id": "black-box-optimization",
@@ -9451,21 +8379,6 @@
           "evolcaf"
         ],
         "metric": "score"
-      }
-    },
-    "evolcaf-fashion-mnist-hyperparameter-optimization": {
-      "domain_id": "machine-learning",
-      "task_type_id": "hyperparameter-search",
-      "rule_id": "image-hpo",
-      "rationale": "These named image benchmarks optimize model hyperparameters; benchmark theme is not treated as a separate scientific task.",
-      "evidence": {
-        "task_name": "Fashion-MNIST hyperparameter optimization",
-        "description": "Fashion-MNIST hyperparameter optimization: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "evolcaf"
-        ],
-        "metric": "validation accuracy under runtime budget"
       }
     },
     "evolcaf-griewank-2d": {
@@ -10039,21 +8952,6 @@
         "metric": "score"
       }
     },
-    "evoprompting-articulation-points": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "Articulation Points",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Articulation Points algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
-      }
-    },
     "evoprompting-bellman-ford": {
       "domain_id": "machine-learning",
       "task_type_id": "prediction-modeling",
@@ -10097,66 +8995,6 @@
           "evoprompting"
         ],
         "metric": "score"
-      }
-    },
-    "evoprompting-bridges": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "Bridges",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Bridges algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
-      }
-    },
-    "evoprompting-bubble-sort": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "Bubble Sort",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Bubble Sort algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
-      }
-    },
-    "evoprompting-dag-shortest-paths": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "DAG Shortest Paths",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS DAG Shortest Paths algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
-      }
-    },
-    "evoprompting-dfs": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "DFS",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS DFS algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
       }
     },
     "evoprompting-dijkstra": {
@@ -10219,21 +9057,6 @@
         "metric": "score"
       }
     },
-    "evoprompting-heapsort": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "Heapsort",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Heapsort algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
-      }
-    },
     "evoprompting-insertion-sort": {
       "domain_id": "machine-learning",
       "task_type_id": "prediction-modeling",
@@ -10247,36 +9070,6 @@
           "evoprompting"
         ],
         "metric": "score"
-      }
-    },
-    "evoprompting-jarvis-march": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "Jarvis March",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Jarvis March algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
-      }
-    },
-    "evoprompting-knuth-morris-pratt": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "Knuth-Morris-Pratt",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Knuth-Morris-Pratt algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
       }
     },
     "evoprompting-lcs-length": {
@@ -10307,21 +9100,6 @@
           "evoprompting"
         ],
         "metric": "score"
-      }
-    },
-    "evoprompting-minimum": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "Minimum",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Minimum algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
       }
     },
     "evoprompting-mnist-1d-architecture-search": {
@@ -10369,66 +9147,6 @@
         "metric": "score"
       }
     },
-    "evoprompting-naive-string-matcher": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "Naive String Matcher",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Naive String Matcher algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
-      }
-    },
-    "evoprompting-nats-bench-cifar-10": {
-      "domain_id": "machine-learning",
-      "task_type_id": "hyperparameter-search",
-      "rule_id": "unsupported-architecture-search",
-      "rationale": "The named benchmark concerns neural architecture or model-configuration search.",
-      "evidence": {
-        "task_name": "NATS-Bench CIFAR-10",
-        "description": "NATS-Bench CIFAR-10: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "validation/test accuracy"
-      }
-    },
-    "evoprompting-nats-bench-cifar-100": {
-      "domain_id": "machine-learning",
-      "task_type_id": "hyperparameter-search",
-      "rule_id": "unsupported-architecture-search",
-      "rationale": "The named benchmark concerns neural architecture or model-configuration search.",
-      "evidence": {
-        "task_name": "NATS-Bench CIFAR-100",
-        "description": "NATS-Bench CIFAR-100: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "validation/test accuracy"
-      }
-    },
-    "evoprompting-nats-bench-imagenet-16-120": {
-      "domain_id": "machine-learning",
-      "task_type_id": "hyperparameter-search",
-      "rule_id": "unsupported-architecture-search",
-      "rationale": "The named benchmark concerns neural architecture or model-configuration search.",
-      "evidence": {
-        "task_name": "NATS-Bench ImageNet-16-120",
-        "description": "NATS-Bench ImageNet-16-120: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "validation/test accuracy"
-      }
-    },
     "evoprompting-optimal-bst": {
       "domain_id": "machine-learning",
       "task_type_id": "prediction-modeling",
@@ -10444,36 +9162,6 @@
         "metric": "score"
       }
     },
-    "evoprompting-quickselect": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "Quickselect",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Quickselect algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
-      }
-    },
-    "evoprompting-quicksort": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "Quicksort",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Quicksort algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
-      }
-    },
     "evoprompting-segments-intersect": {
       "domain_id": "machine-learning",
       "task_type_id": "prediction-modeling",
@@ -10487,21 +9175,6 @@
           "evoprompting"
         ],
         "metric": "score"
-      }
-    },
-    "evoprompting-strongly-connected-components": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-algorithm-programs",
-      "rationale": "The catalog description explicitly evaluates a discovered graph-neural-network architecture on CLRS algorithmic reasoning, including out-of-distribution lengths; BFS/Dijkstra names do not mean ordinary code synthesis.",
-      "evidence": {
-        "task_name": "Strongly Connected Components",
-        "description": "Evaluate the discovered graph-neural-network architecture on the CLRS Strongly Connected Components algorithmic reasoning problem, including out-of-distribution sequence lengths.",
-        "family": null,
-        "paper_ids": [
-          "evoprompting"
-        ],
-        "metric": "OOD accuracy and parameter count"
       }
     },
     "evoprompting-task-scheduling": {
@@ -10532,51 +9205,6 @@
           "evoprompting"
         ],
         "metric": "score"
-      }
-    },
-    "evoskill-browsecomp-transfer": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "BrowseComp transfer",
-        "description": "BrowseComp transfer",
-        "family": null,
-        "paper_ids": [
-          "evoskill"
-        ],
-        "metric": "answer accuracy"
-      }
-    },
-    "evoskill-officeqa": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "OfficeQA",
-        "description": "OfficeQA",
-        "family": null,
-        "paper_ids": [
-          "evoskill"
-        ],
-        "metric": "answer accuracy"
-      }
-    },
-    "evoskill-sealqa": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "SealQA",
-        "description": "SealQA",
-        "family": null,
-        "paper_ids": [
-          "evoskill"
-        ],
-        "metric": "answer accuracy"
       }
     },
     "evox-ahc008-territory": {
@@ -10739,22 +9367,6 @@
         "metric": "score"
       }
     },
-    "evox-frontier-cs": {
-      "domain_id": "unknown",
-      "task_type_id": "unknown",
-      "rule_id": "unknown-metadata",
-      "rationale": "Available metadata is an opaque or broad suite/task label, insufficient to establish one scientific domain and candidate operation.",
-      "evidence": {
-        "task_name": "Frontier-CS",
-        "description": "Frontier-CS",
-        "family": null,
-        "paper_ids": [
-          "evox",
-          "adaevolve"
-        ],
-        "metric": "official benchmark score"
-      }
-    },
     "evox-telemetry-repair": {
       "domain_id": "computer-systems",
       "task_type_id": "systems-optimization",
@@ -10769,66 +9381,6 @@
           "adaevolve"
         ],
         "metric": "score"
-      }
-    },
-    "flowscout-toolbench-finance": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "ToolBench Finance",
-        "description": "ToolBench Finance",
-        "family": null,
-        "paper_ids": [
-          "flowscout"
-        ],
-        "metric": "task completion and execution success"
-      }
-    },
-    "flowscout-toolbench-sports": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "ToolBench Sports",
-        "description": "ToolBench Sports",
-        "family": null,
-        "paper_ids": [
-          "flowscout"
-        ],
-        "metric": "task completion and execution success"
-      }
-    },
-    "flowscout-toolbench-travel": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "ToolBench Travel",
-        "description": "ToolBench Travel",
-        "family": null,
-        "paper_ids": [
-          "flowscout"
-        ],
-        "metric": "task completion and execution success"
-      }
-    },
-    "flowscout-toolbench-weather": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "ToolBench Weather",
-        "description": "ToolBench Weather",
-        "family": null,
-        "paper_ids": [
-          "flowscout"
-        ],
-        "metric": "task completion and execution success"
       }
     },
     "funbo-adaboost-hyperparameter-optimization": {
@@ -11236,21 +9788,6 @@
         "metric": "score"
       }
     },
-    "funl2o-ipm-mpnn-lp-independent-set": {
-      "domain_id": "operations-research",
-      "task_type_id": "constraint-modeling",
-      "rule_id": "unsupported-constraint-models",
-      "rationale": "The source names mathematical-program, constraint-reformulation or OR-modeling instances; the optimized artifact is a solver/model formulation.",
-      "evidence": {
-        "task_name": "IPM-MPNN LP Independent set",
-        "description": "IPM-MPNN LP Independent set",
-        "family": "l2o",
-        "paper_ids": [
-          "funl2o"
-        ],
-        "metric": "score"
-      }
-    },
     "funl2o-ipm-mpnn-lp-set-cover": {
       "domain_id": "operations-research",
       "task_type_id": "constraint-modeling",
@@ -11259,21 +9796,6 @@
       "evidence": {
         "task_name": "IPM-MPNN LP Set cover",
         "description": "IPM-MPNN LP Set cover",
-        "family": "l2o",
-        "paper_ids": [
-          "funl2o"
-        ],
-        "metric": "score"
-      }
-    },
-    "funl2o-pdhg-net-pagerank-lp-warm-start": {
-      "domain_id": "operations-research",
-      "task_type_id": "constraint-modeling",
-      "rule_id": "unsupported-constraint-models",
-      "rationale": "The source names mathematical-program, constraint-reformulation or OR-modeling instances; the optimized artifact is a solver/model formulation.",
-      "evidence": {
-        "task_name": "PDHG-Net PageRank LP warm start",
-        "description": "PDHG-Net PageRank LP warm start",
         "family": "l2o",
         "paper_ids": [
           "funl2o"
@@ -12604,21 +11126,6 @@
         "metric": "score"
       }
     },
-    "hsi-nle": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "NLE",
-        "description": "NLE",
-        "family": null,
-        "paper_ids": [
-          "hsi"
-        ],
-        "metric": "episode progress / task success"
-      }
-    },
     "hsi-textworld": {
       "domain_id": "machine-learning",
       "task_type_id": "agent-workflow",
@@ -13834,21 +12341,6 @@
         "metric": "score"
       }
     },
-    "limen-go1-push-recovery": {
-      "domain_id": "robotics-control",
-      "task_type_id": "control-policy",
-      "rule_id": "unsupported-specific-robot-controls",
-      "rationale": "The task explicitly names Go1 push recovery or Panda trajectory tracking.",
-      "evidence": {
-        "task_name": "Go1 push recovery",
-        "description": "Survive 500 steps of lateral pushes and keep mean base displacement below 10 cm",
-        "family": null,
-        "paper_ids": [
-          "limen"
-        ],
-        "metric": "mean success rate across three seeds"
-      }
-    },
     "limen-hard-rule-chain": {
       "domain_id": "machine-learning",
       "task_type_id": "control-policy",
@@ -13877,21 +12369,6 @@
           "limen"
         ],
         "metric": "score"
-      }
-    },
-    "limen-panda-trajectory-tracking": {
-      "domain_id": "robotics-control",
-      "task_type_id": "control-policy",
-      "rule_id": "unsupported-specific-robot-controls",
-      "rationale": "The task explicitly names Go1 push recovery or Panda trajectory tracking.",
-      "evidence": {
-        "task_name": "Panda trajectory tracking",
-        "description": "Track 3D Lissajous path for 500 steps with mean error below 2 cm",
-        "family": null,
-        "paper_ids": [
-          "limen"
-        ],
-        "metric": "mean success rate across three seeds"
       }
     },
     "llamea-bo-bayesmark-breast-adaboost": {
@@ -15244,291 +13721,6 @@
         "metric": "score"
       }
     },
-    "llm-flowrepair-door-1": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "door_1",
-        "description": "door_1 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-door-2": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "door_2",
-        "description": "door_2 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-elevator-1": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "elevator_1",
-        "description": "elevator_1 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-elevator-10": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "elevator_10",
-        "description": "elevator_10 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-elevator-2": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "elevator_2",
-        "description": "elevator_2 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-elevator-3": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "elevator_3",
-        "description": "elevator_3 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-elevator-4": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "elevator_4",
-        "description": "elevator_4 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-elevator-5": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "elevator_5",
-        "description": "elevator_5 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-elevator-6": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "elevator_6",
-        "description": "elevator_6 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-elevator-7": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "elevator_7",
-        "description": "elevator_7 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-elevator-8": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "elevator_8",
-        "description": "elevator_8 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-elevator-9": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "elevator_9",
-        "description": "elevator_9 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-fridge-1": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "fridge_1",
-        "description": "fridge_1 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-fridge-2": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "fridge_2",
-        "description": "fridge_2 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-fridge-2a": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "fridge_2a",
-        "description": "fridge_2a task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-fridge-2b": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "fridge_2b",
-        "description": "fridge_2b task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-fridge-3": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "fridge_3",
-        "description": "fridge_3 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-pacemaker-1": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "pacemaker_1",
-        "description": "pacemaker_1 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
-    "llm-flowrepair-pacemaker-2": {
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-hybrid-model-repair",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation.",
-      "evidence": {
-        "task_name": "pacemaker_2",
-        "description": "pacemaker_2 task evaluated in Hype Meets Reality: Large Language Models as Mutators in Search-based Automated Program Repair of Simulink-Stateflow Models.",
-        "family": null,
-        "paper_ids": [
-          "llm-flowrepair"
-        ],
-        "metric": "plausible and valid patch counts across five runs"
-      }
-    },
     "llm-lex-kan-exp-sin-pi-x-y-2": {
       "domain_id": "mathematics",
       "task_type_id": "symbolic-regression",
@@ -15632,66 +13824,6 @@
           "llm-lex"
         ],
         "metric": "score"
-      }
-    },
-    "llmastool-cifar-10": {
-      "domain_id": "machine-learning",
-      "task_type_id": "hyperparameter-search",
-      "rule_id": "unsupported-architecture-search",
-      "rationale": "The named benchmark concerns neural architecture or model-configuration search.",
-      "evidence": {
-        "task_name": "CIFAR-10",
-        "description": "CIFAR-10 task evaluated in LLM as a Tool, Not an Agent: Code-Mined Tree Transformations for Neural Architecture Search.",
-        "family": null,
-        "paper_ids": [
-          "llmastool"
-        ],
-        "metric": "classification accuracy"
-      }
-    },
-    "llmastool-cifar-100": {
-      "domain_id": "machine-learning",
-      "task_type_id": "hyperparameter-search",
-      "rule_id": "unsupported-architecture-search",
-      "rationale": "The named benchmark concerns neural architecture or model-configuration search.",
-      "evidence": {
-        "task_name": "CIFAR-100",
-        "description": "CIFAR-100 task evaluated in LLM as a Tool, Not an Agent: Code-Mined Tree Transformations for Neural Architecture Search.",
-        "family": null,
-        "paper_ids": [
-          "llmastool"
-        ],
-        "metric": "classification accuracy"
-      }
-    },
-    "llmastool-imagenet-100": {
-      "domain_id": "machine-learning",
-      "task_type_id": "hyperparameter-search",
-      "rule_id": "unsupported-architecture-search",
-      "rationale": "The named benchmark concerns neural architecture or model-configuration search.",
-      "evidence": {
-        "task_name": "ImageNet-100",
-        "description": "ImageNet-100 task evaluated in LLM as a Tool, Not an Agent: Code-Mined Tree Transformations for Neural Architecture Search.",
-        "family": null,
-        "paper_ids": [
-          "llmastool"
-        ],
-        "metric": "classification accuracy"
-      }
-    },
-    "llmastool-imagenet16-120": {
-      "domain_id": "machine-learning",
-      "task_type_id": "hyperparameter-search",
-      "rule_id": "unsupported-architecture-search",
-      "rationale": "The named benchmark concerns neural architecture or model-configuration search.",
-      "evidence": {
-        "task_name": "ImageNet16-120",
-        "description": "ImageNet16-120 task evaluated in LLM as a Tool, Not an Agent: Code-Mined Tree Transformations for Neural Architecture Search.",
-        "family": null,
-        "paper_ids": [
-          "llmastool"
-        ],
-        "metric": "classification accuracy"
       }
     },
     "lmx-gore-vidal-sentence-sentiment": {
@@ -15814,22 +13946,6 @@
         "metric": "score"
       }
     },
-    "loongflow-aerial-cactus-identification": {
-      "domain_id": "biology-health",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "biological-prediction-targets",
-      "rationale": "The task name specifies biological imagery, disease, RNA, cellular integration or neural-activity prediction. This is a dataset/modeling application, not verified biological discovery.",
-      "evidence": {
-        "task_name": "aerial-cactus-identification",
-        "description": "Classify aerial images for cactus presence using predicted probabilities.",
-        "family": null,
-        "paper_ids": [
-          "loongflow",
-          "eurekagent"
-        ],
-        "metric": "ROC AUC"
-      }
-    },
     "loongflow-denoising-dirty-documents": {
       "domain_id": "machine-learning",
       "task_type_id": "prediction-modeling",
@@ -15843,51 +13959,6 @@
           "loongflow"
         ],
         "metric": "score"
-      }
-    },
-    "loongflow-detecting-insults-in-social-commentary": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-generic-ml-datasets",
-      "rationale": "After explicit scientific-target exceptions, these reviewed tasks are generic image, text or tabular prediction datasets.",
-      "evidence": {
-        "task_name": "detecting-insults-in-social-commentary",
-        "description": "Predict whether a text comment is insulting.",
-        "family": null,
-        "paper_ids": [
-          "loongflow"
-        ],
-        "metric": "ROC AUC"
-      }
-    },
-    "loongflow-dogs-vs-cats-redux-kernels-edition": {
-      "domain_id": "biology-health",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "biological-prediction-targets",
-      "rationale": "The task name specifies biological imagery, disease, RNA, cellular integration or neural-activity prediction. This is a dataset/modeling application, not verified biological discovery.",
-      "evidence": {
-        "task_name": "dogs-vs-cats-redux-kernels-edition",
-        "description": "Predict cat-versus-dog image probabilities and minimize binary cross entropy.",
-        "family": null,
-        "paper_ids": [
-          "loongflow"
-        ],
-        "metric": "binary log loss"
-      }
-    },
-    "loongflow-google-quest-challenge": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-generic-ml-datasets",
-      "rationale": "After explicit scientific-target exceptions, these reviewed tasks are generic image, text or tabular prediction datasets.",
-      "evidence": {
-        "task_name": "google-quest-challenge",
-        "description": "Predict question-and-answer quality labels; average Spearman correlations over the official CLASSES columns.",
-        "family": null,
-        "paper_ids": [
-          "loongflow"
-        ],
-        "metric": "mean columnwise Spearman correlation"
       }
     },
     "loongflow-histopathologic-cancer-detection": {
@@ -15921,52 +13992,6 @@
         "metric": "score"
       }
     },
-    "loongflow-plant-pathology-2020-fgvc7": {
-      "domain_id": "biology-health",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "biological-prediction-targets",
-      "rationale": "The task name specifies biological imagery, disease, RNA, cellular integration or neural-activity prediction. This is a dataset/modeling application, not verified biological discovery.",
-      "evidence": {
-        "task_name": "plant-pathology-2020-fgvc7",
-        "description": "Predict healthy, multiple_diseases, rust and scab probabilities from plant images; average four ROC AUC values.",
-        "family": null,
-        "paper_ids": [
-          "loongflow",
-          "eurekagent"
-        ],
-        "metric": "mean columnwise ROC AUC"
-      }
-    },
-    "loongflow-plant-pathology-2021-fgvc8": {
-      "domain_id": "biology-health",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "biological-prediction-targets",
-      "rationale": "The task name specifies biological imagery, disease, RNA, cellular integration or neural-activity prediction. This is a dataset/modeling application, not verified biological discovery.",
-      "evidence": {
-        "task_name": "plant-pathology-2021-fgvc8",
-        "description": "Predict space-delimited plant disease label sets and maximize micro-averaged multilabel F1.",
-        "family": null,
-        "paper_ids": [
-          "loongflow"
-        ],
-        "metric": "micro F1"
-      }
-    },
-    "loongflow-predict-volcanic-eruptions-ingv-oe": {
-      "domain_id": "earth-environment",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "environmental-prediction-targets",
-      "rationale": "The package explicitly targets volcanic-eruption prediction.",
-      "evidence": {
-        "task_name": "predict-volcanic-eruptions-ingv-oe",
-        "description": "Predict time to volcanic eruption from geophysical sensor recordings. The official grader rounds MAE to the nearest integer.",
-        "family": null,
-        "paper_ids": [
-          "loongflow"
-        ],
-        "metric": "rounded mean absolute error"
-      }
-    },
     "loongflow-stanford-covid-vaccine": {
       "domain_id": "biology-health",
       "task_type_id": "prediction-modeling",
@@ -15980,36 +14005,6 @@
           "loongflow"
         ],
         "metric": "score"
-      }
-    },
-    "loongflow-tabular-playground-series-dec-2021": {
-      "domain_id": "earth-environment",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "forest-cover-prediction",
-      "rationale": "The catalog description explicitly predicts forest Cover_Type labels from tabular environmental features.",
-      "evidence": {
-        "task_name": "tabular-playground-series-dec-2021",
-        "description": "Predict forest Cover_Type labels from tabular features.",
-        "family": null,
-        "paper_ids": [
-          "loongflow"
-        ],
-        "metric": "multiclass accuracy"
-      }
-    },
-    "loongflow-the-icml-2013-whale-challenge-right-whale-redux": {
-      "domain_id": "biology-health",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "biological-prediction-targets",
-      "rationale": "The task name specifies biological imagery, disease, RNA, cellular integration or neural-activity prediction. This is a dataset/modeling application, not verified biological discovery.",
-      "evidence": {
-        "task_name": "the-icml-2013-whale-challenge-right-whale-redux",
-        "description": "Detect right-whale calls in audio clips using probability predictions.",
-        "family": null,
-        "paper_ids": [
-          "loongflow"
-        ],
-        "metric": "ROC AUC"
       }
     },
     "loongflow-us-patent-phrase-to-phrase-matching": {
@@ -16040,36 +14035,6 @@
           "magellan"
         ],
         "metric": "score"
-      }
-    },
-    "magellan-llvm-function-inlining-for-clang-runtime": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "LLVM function inlining for clang runtime",
-        "description": "LLVM function inlining for clang runtime task evaluated in Magellan: Autonomous Discovery of Novel Compiler Optimization Heuristics with AlphaEvolve.",
-        "family": null,
-        "paper_ids": [
-          "magellan"
-        ],
-        "metric": "clang benchmark runtime"
-      }
-    },
-    "magellan-llvm-register-allocation": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "LLVM register allocation",
-        "description": "LLVM register allocation task evaluated in Magellan: Autonomous Discovery of Novel Compiler Optimization Heuristics with AlphaEvolve.",
-        "family": null,
-        "paper_ids": [
-          "magellan"
-        ],
-        "metric": "production workload performance"
       }
     },
     "magellan-xla-auto-sharding-iopddl": {
@@ -16346,21 +14311,6 @@
         "metric": "score"
       }
     },
-    "meta-harness-terminal-bench-2-0": {
-      "domain_id": "software-engineering",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-terminal-bench",
-      "rationale": "Terminal-Bench evaluates task completion through a terminal; no broader science domain is asserted.",
-      "evidence": {
-        "task_name": "Terminal-Bench 2.0",
-        "description": "Terminal-Bench 2.0 task evaluated in Meta-Harness: End-to-End Optimization of Model Harnesses.",
-        "family": null,
-        "paper_ids": [
-          "meta-harness"
-        ],
-        "metric": "task success rate"
-      }
-    },
     "meta-harness-tweeteval-hate": {
       "domain_id": "machine-learning",
       "task_type_id": "language-reasoning",
@@ -16466,126 +14416,6 @@
         "metric": "score"
       }
     },
-    "meta-ttl-tau2-bench-airline": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "tau2-bench Airline",
-        "description": "tau2-bench Airline task evaluated in Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies.",
-        "family": null,
-        "paper_ids": [
-          "meta-ttl"
-        ],
-        "metric": "W-AUC and task success rate"
-      }
-    },
-    "meta-ttl-tau2-bench-retail": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "tau2-bench Retail",
-        "description": "tau2-bench Retail task evaluated in Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies.",
-        "family": null,
-        "paper_ids": [
-          "meta-ttl"
-        ],
-        "metric": "W-AUC and task success rate"
-      }
-    },
-    "meta-ttl-tau2-bench-telecom": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "tau2-bench Telecom",
-        "description": "tau2-bench Telecom task evaluated in Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies.",
-        "family": null,
-        "paper_ids": [
-          "meta-ttl"
-        ],
-        "metric": "W-AUC and task success rate"
-      }
-    },
-    "meta-ttl-webarena-lite-gitlab": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "WebArena-Lite GitLab",
-        "description": "WebArena-Lite GitLab task evaluated in Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies.",
-        "family": null,
-        "paper_ids": [
-          "meta-ttl"
-        ],
-        "metric": "W-AUC and task success rate"
-      }
-    },
-    "meta-ttl-webarena-lite-map": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "WebArena-Lite Map",
-        "description": "WebArena-Lite Map task evaluated in Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies.",
-        "family": null,
-        "paper_ids": [
-          "meta-ttl"
-        ],
-        "metric": "W-AUC and task success rate"
-      }
-    },
-    "meta-ttl-webarena-lite-reddit": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "WebArena-Lite Reddit",
-        "description": "WebArena-Lite Reddit task evaluated in Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies.",
-        "family": null,
-        "paper_ids": [
-          "meta-ttl"
-        ],
-        "metric": "W-AUC and task success rate"
-      }
-    },
-    "meta-ttl-webarena-lite-shopping": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "WebArena-Lite Shopping",
-        "description": "WebArena-Lite Shopping task evaluated in Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies.",
-        "family": null,
-        "paper_ids": [
-          "meta-ttl"
-        ],
-        "metric": "W-AUC and task success rate"
-      }
-    },
-    "meta-ttl-webarena-lite-shopping-admin": {
-      "domain_id": "machine-learning",
-      "task_type_id": "agent-workflow",
-      "rule_id": "unsupported-web-and-tool-agents",
-      "rationale": "These reviewed task names describe tool use, web environments, text games or task planning; ScienceWorld/Weather labels do not establish a science-modeling objective.",
-      "evidence": {
-        "task_name": "WebArena-Lite Shopping Admin",
-        "description": "WebArena-Lite Shopping Admin task evaluated in Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies.",
-        "family": null,
-        "paper_ids": [
-          "meta-ttl"
-        ],
-        "metric": "W-AUC and task success rate"
-      }
-    },
     "mind-evolution-natural-plan-meeting-planning": {
       "domain_id": "machine-learning",
       "task_type_id": "agent-workflow",
@@ -16614,21 +14444,6 @@
           "mind-evolution"
         ],
         "metric": "score"
-      }
-    },
-    "mind-evolution-stegpoet": {
-      "domain_id": "machine-learning",
-      "task_type_id": "language-reasoning",
-      "rule_id": "unsupported-stegpoet",
-      "rationale": "StegPoet generates constrained text encoding a prescribed sequence.",
-      "evidence": {
-        "task_name": "StegPoet",
-        "description": "Produce poems that encode a prescribed secret word sequence under the StegPoet constraints.",
-        "family": null,
-        "paper_ids": [
-          "mind-evolution"
-        ],
-        "metric": "success rate"
       }
     },
     "mind-evolution-travelplanner": {
@@ -19922,21 +17737,6 @@
         "metric": "score"
       }
     },
-    "omni-epic-open-ended-embodied-task-generation": {
-      "domain_id": "robotics-control",
-      "task_type_id": "benchmark-generation",
-      "rule_id": "unsupported-embodied-generation",
-      "rationale": "The task generates embodied environments/tasks; it is not a fixed controller benchmark.",
-      "evidence": {
-        "task_name": "Open-ended embodied task generation",
-        "description": "Open-ended embodied task generation: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "omni-epic"
-        ],
-        "metric": "task diversity and learnability"
-      }
-    },
     "pairwise-validator-julia-prime-counting": {
       "domain_id": "computer-systems",
       "task_type_id": "systems-optimization",
@@ -20182,21 +17982,6 @@
           "evoprompt"
         ],
         "metric": "score"
-      }
-    },
-    "polymath-axi-hardware-module-configuration": {
-      "domain_id": "computer-systems",
-      "task_type_id": "systems-optimization",
-      "rule_id": "unsupported-kernel-and-compiler",
-      "rationale": "The reviewed source group names accelerator kernels, attention variants, compiler decisions or program performance; unsupported status is unchanged.",
-      "evidence": {
-        "task_name": "AXI hardware module configuration",
-        "description": "AXI hardware module configuration: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "polymath"
-        ],
-        "metric": "answer accuracy"
       }
     },
     "polymath-math-level-5": {
@@ -21922,81 +19707,6 @@
         "metric": "combined_score"
       }
     },
-    "ready-dedqn-operator-selection": {
-      "domain_id": "mathematics",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-optimization-rewards",
-      "rationale": "READY learns rewards or adaptation decisions for a black-box optimizer.",
-      "evidence": {
-        "task_name": "DEDQN operator selection",
-        "description": "DEDQN operator selection task evaluated in READY: Reward Discovery for Meta-Black-Box Optimization.",
-        "family": null,
-        "paper_ids": [
-          "ready"
-        ],
-        "metric": "BBOB final objective cost"
-      }
-    },
-    "ready-gleet-reward-transfer": {
-      "domain_id": "mathematics",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-optimization-rewards",
-      "rationale": "READY learns rewards or adaptation decisions for a black-box optimizer.",
-      "evidence": {
-        "task_name": "GLEET reward transfer",
-        "description": "GLEET reward transfer task evaluated in READY: Reward Discovery for Meta-Black-Box Optimization.",
-        "family": null,
-        "paper_ids": [
-          "ready"
-        ],
-        "metric": "BBOB final objective cost"
-      }
-    },
-    "ready-rldas-algorithm-selection": {
-      "domain_id": "mathematics",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-optimization-rewards",
-      "rationale": "READY learns rewards or adaptation decisions for a black-box optimizer.",
-      "evidence": {
-        "task_name": "RLDAS algorithm selection",
-        "description": "RLDAS algorithm selection task evaluated in READY: Reward Discovery for Meta-Black-Box Optimization.",
-        "family": null,
-        "paper_ids": [
-          "ready"
-        ],
-        "metric": "BBOB final objective cost"
-      }
-    },
-    "ready-rldeafl-reward-transfer": {
-      "domain_id": "mathematics",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-optimization-rewards",
-      "rationale": "READY learns rewards or adaptation decisions for a black-box optimizer.",
-      "evidence": {
-        "task_name": "RLDEAFL reward transfer",
-        "description": "RLDEAFL reward transfer task evaluated in READY: Reward Discovery for Meta-Black-Box Optimization.",
-        "family": null,
-        "paper_ids": [
-          "ready"
-        ],
-        "metric": "BBOB final objective cost"
-      }
-    },
-    "ready-rlepso-parameter-control": {
-      "domain_id": "mathematics",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-optimization-rewards",
-      "rationale": "READY learns rewards or adaptation decisions for a black-box optimizer.",
-      "evidence": {
-        "task_name": "RLEPSO parameter control",
-        "description": "RLEPSO parameter control task evaluated in READY: Reward Discovery for Meta-Black-Box Optimization.",
-        "family": null,
-        "paper_ids": [
-          "ready"
-        ],
-        "metric": "BBOB final objective cost"
-      }
-    },
     "redahd-0-1-knapsack": {
       "domain_id": "operations-research",
       "task_type_id": "combinatorial-optimization",
@@ -22239,21 +19949,6 @@
         "metric": "score"
       }
     },
-    "revolve-autonomous-driving": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Autonomous driving",
-        "description": "Autonomous driving: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "revolve"
-        ],
-        "metric": "human preference Elo and task fitness"
-      }
-    },
     "rqgm-code-review": {
       "domain_id": "software-engineering",
       "task_type_id": "software-generation",
@@ -22267,81 +19962,6 @@
           "rqgm"
         ],
         "metric": "score"
-      }
-    },
-    "rqgm-olympiad-proof-grading": {
-      "domain_id": "machine-learning",
-      "task_type_id": "language-reasoning",
-      "rule_id": "unsupported-language-evaluation",
-      "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
-      "evidence": {
-        "task_name": "Olympiad proof grading",
-        "description": "Olympiad proof grading task evaluated in The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators.",
-        "family": null,
-        "paper_ids": [
-          "rqgm"
-        ],
-        "metric": "grading accuracy"
-      }
-    },
-    "rqgm-olympiad-proof-writing": {
-      "domain_id": "machine-learning",
-      "task_type_id": "language-reasoning",
-      "rule_id": "unsupported-language-evaluation",
-      "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
-      "evidence": {
-        "task_name": "Olympiad proof writing",
-        "description": "Olympiad proof writing task evaluated in The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators.",
-        "family": null,
-        "paper_ids": [
-          "rqgm"
-        ],
-        "metric": "proof score and pass@7"
-      }
-    },
-    "rqgm-paper-reviewing": {
-      "domain_id": "machine-learning",
-      "task_type_id": "language-reasoning",
-      "rule_id": "unsupported-language-evaluation",
-      "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
-      "evidence": {
-        "task_name": "Paper reviewing",
-        "description": "Paper reviewing task evaluated in The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators.",
-        "family": null,
-        "paper_ids": [
-          "rqgm"
-        ],
-        "metric": "accept/reject classification accuracy"
-      }
-    },
-    "rqgm-paper-writing": {
-      "domain_id": "machine-learning",
-      "task_type_id": "language-reasoning",
-      "rule_id": "unsupported-language-evaluation",
-      "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling.",
-      "evidence": {
-        "task_name": "Paper writing",
-        "description": "Paper writing task evaluated in The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators.",
-        "family": null,
-        "paper_ids": [
-          "rqgm"
-        ],
-        "metric": "reviewer-panel acceptance rate"
-      }
-    },
-    "rqgm-polyglot-coding": {
-      "domain_id": "software-engineering",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-coding-tasks",
-      "rationale": "The task name explicitly identifies code repair, code review, coding, file editing or HumanEval.",
-      "evidence": {
-        "task_name": "Polyglot coding",
-        "description": "Polyglot coding task evaluated in The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators.",
-        "family": null,
-        "paper_ids": [
-          "rqgm"
-        ],
-        "metric": "test pass rate"
       }
     },
     "satlution-sat-competition-2024": {
@@ -29747,21 +27367,6 @@
         "metric": "score"
       }
     },
-    "shinkaevolve-mixture-of-experts-load-balancing-loss": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-moe-loss",
-      "rationale": "The candidate is a mixture-of-experts training/load-balancing loss.",
-      "evidence": {
-        "task_name": "Mixture-of-experts load balancing loss",
-        "description": "Mixture-of-experts load balancing loss: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "shinkaevolve"
-        ],
-        "metric": "perplexity; seven downstream benchmark accuracies; load imbalance"
-      }
-    },
     "sica-aime-2024": {
       "domain_id": "machine-learning",
       "task_type_id": "language-reasoning",
@@ -29792,54 +27397,6 @@
           "sica"
         ],
         "metric": "score"
-      }
-    },
-    "sica-swe-bench-verified": {
-      "domain_id": "software-engineering",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-software-agent-suites",
-      "rationale": "The reviewed task names are code repair, coding, program verification or repository-editing benchmarks.",
-      "evidence": {
-        "task_name": "SWE-bench Verified",
-        "description": "SWE-bench Verified: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "sica",
-          "ahe",
-          "dgm",
-          "gea"
-        ],
-        "metric": "benchmark score; time and API cost enter combined utility"
-      }
-    },
-    "sica-synthetic-file-editing": {
-      "domain_id": "software-engineering",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-software-agent-suites",
-      "rationale": "The reviewed task names are code repair, coding, program verification or repository-editing benchmarks.",
-      "evidence": {
-        "task_name": "Synthetic file editing",
-        "description": "Synthetic file editing: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "sica"
-        ],
-        "metric": "benchmark score; time and API cost enter combined utility"
-      }
-    },
-    "sica-synthetic-symbol-location": {
-      "domain_id": "software-engineering",
-      "task_type_id": "software-generation",
-      "rule_id": "unsupported-software-agent-suites",
-      "rationale": "The reviewed task names are code repair, coding, program verification or repository-editing benchmarks.",
-      "evidence": {
-        "task_name": "Synthetic symbol location",
-        "description": "Synthetic symbol location: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "sica"
-        ],
-        "metric": "benchmark score; time and API cost enter combined utility"
       }
     },
     "snake-in-the-box-10": {
@@ -35362,36 +32919,6 @@
         "metric": "score"
       }
     },
-    "stride-humanoid-sprinting-on-random-uniform-terrain": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Humanoid sprinting on random uniform terrain",
-        "description": "Humanoid sprinting on random uniform terrain: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "stride"
-        ],
-        "metric": "Max Success Score"
-      }
-    },
-    "stride-humanoid-sprinting-on-wave-terrain": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Humanoid sprinting on wave terrain",
-        "description": "Humanoid sprinting on wave terrain: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "stride"
-        ],
-        "metric": "Max Success Score"
-      }
-    },
     "tdc-admet-ames": {
       "domain_id": "chemistry-materials",
       "task_type_id": "prediction-modeling",
@@ -35902,126 +33429,6 @@
         "metric": "score"
       }
     },
-    "text2reward-liftcube-v0": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "LiftCube-v0",
-        "description": "LiftCube-v0: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "text2reward"
-        ],
-        "metric": "success rate"
-      }
-    },
-    "text2reward-opencabinetdoor-v1": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "OpenCabinetDoor-v1",
-        "description": "OpenCabinetDoor-v1: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "text2reward"
-        ],
-        "metric": "success rate"
-      }
-    },
-    "text2reward-opencabinetdrawer-v1": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "OpenCabinetDrawer-v1",
-        "description": "OpenCabinetDrawer-v1: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "text2reward"
-        ],
-        "metric": "success rate"
-      }
-    },
-    "text2reward-pickcube-v0": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "PickCube-v0",
-        "description": "PickCube-v0: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "text2reward"
-        ],
-        "metric": "success rate"
-      }
-    },
-    "text2reward-pushchair-v1": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "PushChair-v1",
-        "description": "PushChair-v1: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "text2reward"
-        ],
-        "metric": "success rate"
-      }
-    },
-    "text2reward-real-franka-panda-pick-cube": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Real Franka Panda Pick Cube",
-        "description": "Real Franka Panda Pick Cube: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "text2reward"
-        ],
-        "metric": "physical task success"
-      }
-    },
-    "text2reward-real-franka-panda-stack-cube": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "Real Franka Panda Stack Cube",
-        "description": "Real Franka Panda Stack Cube: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "text2reward"
-        ],
-        "metric": "physical task success"
-      }
-    },
-    "text2reward-stackcube-v0": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "StackCube-v0",
-        "description": "StackCube-v0: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "text2reward"
-        ],
-        "metric": "success rate"
-      }
-    },
     "text2reward-sweep-into-v2": {
       "domain_id": "robotics-control",
       "task_type_id": "reward-design",
@@ -36035,21 +33442,6 @@
           "text2reward"
         ],
         "metric": "score"
-      }
-    },
-    "text2reward-turnfaucet-v0": {
-      "domain_id": "robotics-control",
-      "task_type_id": "reward-design",
-      "rule_id": "unsupported-embodied-reward-suites",
-      "rationale": "The reviewed source tasks design rewards or reward/domain-randomization settings for named locomotion or manipulation environments.",
-      "evidence": {
-        "task_name": "TurnFaucet-v0",
-        "description": "TurnFaucet-v0: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "text2reward"
-        ],
-        "metric": "success rate"
       }
     },
     "text2reward-window-close-v2": {
@@ -36082,21 +33474,6 @@
         "metric": "score"
       }
     },
-    "the-station-rna-sequence-modeling": {
-      "domain_id": "biology-health",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "biological-prediction-targets",
-      "rationale": "The task name specifies biological imagery, disease, RNA, cellular integration or neural-activity prediction. This is a dataset/modeling application, not verified biological discovery.",
-      "evidence": {
-        "task_name": "RNA sequence modeling",
-        "description": "RNA sequence modeling: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "the-station"
-        ],
-        "metric": "mean validation metric over seven datasets"
-      }
-    },
     "the-station-single-cell-batch-integration": {
       "domain_id": "biology-health",
       "task_type_id": "prediction-modeling",
@@ -36111,21 +33488,6 @@
           "science-biology_expansion"
         ],
         "metric": "score"
-      }
-    },
-    "the-station-sokoban-model-free-reinforcement-learning": {
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rule_id": "unsupported-sokoban-rl",
-      "rationale": "The package learns a model-free reinforcement-learning policy in the Sokoban game.",
-      "evidence": {
-        "task_name": "Sokoban model-free reinforcement learning",
-        "description": "Sokoban model-free reinforcement learning: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-        "family": null,
-        "paper_ids": [
-          "the-station"
-        ],
-        "metric": "test solve rate"
       }
     },
     "the-station-zapbench-neural-activity-prediction": {
@@ -39550,10 +36912,8 @@
     "refresh": "Changing catalog or taxonomy requires rebuilding insights.json. Offline validation compares digests, every assignment and all aggregate totals before serving the Python API."
   },
   "rule_usage": {
-    "biological-prediction-targets": 13,
+    "biological-prediction-targets": 5,
     "chemical-transformation-targets": 1,
-    "direct-financial-objectives": 2,
-    "environmental-prediction-targets": 1,
     "family-admet": 22,
     "family-admissible-tuple": 1,
     "family-adrs-cloudcast": 1,
@@ -39990,10 +37350,8 @@
     "family-tsp-gls": 1,
     "family-uncertainty-hermite": 1,
     "family-uncertainty-laguerre": 1,
-    "forest-cover-prediction": 1,
     "frontier-polyomino-packing": 1,
     "growth-and-population": 1,
-    "image-hpo": 3,
     "limen-gridworld-policies": 3,
     "lsr-synthetic-biology": 1,
     "lsr-synthetic-chemistry": 1,
@@ -40019,33 +37377,24 @@
     "sciel-systems-benchmarks": 3,
     "signal-processing-packages": 1,
     "stress-strain-equations": 1,
-    "unknown-metadata": 3,
-    "unsupported-algorithm-programs": 30,
-    "unsupported-architecture-search": 8,
-    "unsupported-benchmark-generation": 3,
-    "unsupported-coding-tasks": 4,
-    "unsupported-constraint-models": 34,
-    "unsupported-embodied-generation": 1,
-    "unsupported-embodied-reward-suites": 51,
-    "unsupported-enpire-robotics": 8,
-    "unsupported-generic-ml-datasets": 10,
-    "unsupported-hybrid-model-repair": 19,
+    "unsupported-algorithm-programs": 17,
+    "unsupported-architecture-search": 1,
+    "unsupported-benchmark-generation": 1,
+    "unsupported-coding-tasks": 3,
+    "unsupported-constraint-models": 32,
+    "unsupported-embodied-reward-suites": 11,
+    "unsupported-enpire-robotics": 1,
+    "unsupported-generic-ml-datasets": 5,
     "unsupported-hyperagent-robotics": 1,
-    "unsupported-infrastructure": 2,
-    "unsupported-kernel-and-compiler": 69,
-    "unsupported-language-evaluation": 36,
+    "unsupported-infrastructure": 1,
+    "unsupported-kernel-and-compiler": 53,
+    "unsupported-language-evaluation": 30,
     "unsupported-llm-scaling-law": 1,
-    "unsupported-moe-loss": 1,
-    "unsupported-optimization-rewards": 5,
     "unsupported-retrieval-corpora": 25,
     "unsupported-shinka-reasoning": 3,
-    "unsupported-software-agent-suites": 9,
-    "unsupported-sokoban-rl": 1,
-    "unsupported-specific-robot-controls": 2,
-    "unsupported-stegpoet": 1,
+    "unsupported-software-agent-suites": 3,
     "unsupported-task-planning": 3,
-    "unsupported-terminal-bench": 2,
-    "unsupported-walker-synthesis": 2,
-    "unsupported-web-and-tool-agents": 36
+    "unsupported-walker-synthesis": 1,
+    "unsupported-web-and-tool-agents": 18
   }
 }

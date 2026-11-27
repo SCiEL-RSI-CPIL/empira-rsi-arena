@@ -96,14 +96,14 @@ def test_environment_lock_and_fixed_base_are_bound_without_runtime_success_claim
 def test_inventory_keeps_every_catalog_task_and_never_relabels_resource_probes_as_verified(tmp_path, group, count):
     tasks = get_catalog()["tasks"]
     default = preflight.inventory(tasks, ROOT / "tasks")
-    assert sum(r["status"] == "seed_check_pending" for r in default) == 1312
+    assert sum(r["status"] == "seed_check_pending" for r in default) == 1310
     assert all(r["status"] == "environment_preparation_pending" for r in default
                if r["task_id"] in torch.TORCH_TASK_REQUIREMENTS)
     output = tmp_path.resolve() / group
     assert preflight.main(["--tasks-root", str(ROOT / "tasks"), "--output", str(output),
                            "--image", torch.TORCH_IMAGE, "--group", group]) == 0
     manifest = json.loads((output / "manifest.json").read_text())
-    assert len(manifest["tasks"]) == 2578 and manifest["model_calls"] == 0
+    assert len(manifest["tasks"]) == 2403 and manifest["model_calls"] == 0
     assert manifest["counts"]["seed_check_pending"] == count
     assert "seed_verified" not in manifest["counts"]
     assert manifest["profile"] == torch.TORCH_PROFILE

@@ -40,11 +40,11 @@
     },
     {
       "path": "catalog/duplicates.json",
-      "sha256": "7a6ccf0fbb87dce5d915771452be5a0125ae2a570d7365f282b5288d300d98dd",
+      "sha256": "d3316dbde68d989de567ee79626d5d146b5de3294428cfd6c974fd5e7b019836",
       "source_path": "catalog/duplicates.json",
       "source_sha256": "893a8c1a07444195c510b644cb59c82b98f3437ccc4971fa75e4d57d3b407f28",
       "origin": "adapted",
-      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition)"
+      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); records of the 81 packages whose evaluators were ported from the source library on 2026-11-27 (validation/upgrade-port-report.json)"
     },
     {
       "path": "catalog/earth-data-lock.json",
@@ -72,11 +72,11 @@
     },
     {
       "path": "catalog/papers.json",
-      "sha256": "e42bbafc4747011b606f44bff4409a17c4d01767377c473b3720a10f1c72e1a3",
+      "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
       "source_path": "catalog/papers.json",
       "source_sha256": "dbcdb95a6447649fd8843c381e570778e7ee6444f37711870d110ab2b92c3dc3",
       "origin": "adapted",
-      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); extended afterwards with the 1,301 open-problems records (source id open-problems-2026-11), which are not part of this addition"
+      "note": "the target's own file with the added records merged in (the source file also holds packages that are not part of this addition); extended afterwards with the 1,301 open-problems records (source id open-problems-2026-11), which are not part of this addition; records of the 81 packages whose evaluators were ported from the source library on 2026-11-27 (validation/upgrade-port-report.json)"
     },
     {
       "path": "catalog/science/biology_research.json",
@@ -232,7 +232,7 @@
     },
     {
       "path": "catalog/tasks.csv",
-      "sha256": "1b1eb409d34d302884b35723dde14214011bc287ae40107792aed3c933c67376",
+      "sha256": "a40571fba542f72617d801985e05d1da4ac73b758a4329f6d4b9e9981bc20f6e",
       "source_path": "catalog/tasks.csv",
       "source_sha256": "c217576b51306ca2c8313d7c7a00a978474c67e10085589efef796f588d87db6",
       "origin": "adapted",
@@ -240,7 +240,7 @@
     },
     {
       "path": "catalog/tasks.json",
-      "sha256": "f1943705459c57f4a7e684914db6d0384575e5409009520f67c3ce1b3c5e9b53",
+      "sha256": "0d871a7fbaf2d2ff093988ff72f7ebc6a739b6f7433327dbde78a5e01160c952",
       "source_path": "catalog/tasks.json",
       "source_sha256": "448c918105cdf434369ef9eb08218d209c8f5325f6b85e7a184dce9852f75b68",
       "origin": "adapted",
@@ -1038,7 +1038,7 @@
     },
     {
       "path": "suite/index.json",
-      "sha256": "6ceb6a5c70dec50065cd7310bc985ff8b28d03d9f16bfc76e86cb86e957a1233",
+      "sha256": "a2b3d6fbd4097bc04d73a865718eba7e24d43ef2e94530c8d4c76db482ba9c7e",
       "source_path": "suite/index.json",
       "source_sha256": "8995a1f90274a948139d7bf18ce568925395512d7eecc05ec7fb03b9c50a9d48",
       "origin": "adapted",

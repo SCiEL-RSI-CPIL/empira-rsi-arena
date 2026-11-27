@@ -86,7 +86,11 @@ def validate_sources(data, catalog):
         for task in catalog["tasks"]:
             if task["id"] in declared:
                 _require(paper["id"] in task["paper_ids"], "Source paper/task association contradicts catalog")
-    _require(ids == {paper for task in catalog["tasks"] for paper in task["paper_ids"]}, "Captured paper IDs do not cover catalog source groups")
+    linked = {paper for task in catalog["tasks"] for paper in task["paper_ids"]}
+    _require(linked <= ids, "Captured paper IDs do not cover catalog source groups")
+    # A corpus paper whose every task was withdrawn stays in the corpus without tasks.
+    _require(all(not paper["declared_task_ids"] for paper in papers if paper["id"] not in linked),
+             "A captured paper without catalog tasks still declares tasks")
     return data
 
 

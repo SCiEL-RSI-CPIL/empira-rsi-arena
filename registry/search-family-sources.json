@@ -7,17 +7,17 @@
     "repository_url": "https://github.com/Doldrums/arena",
     "revision": "main",
     "manifest_path": "registry/task-library-manifest.json",
-    "manifest_sha256": "2eaad8b7f6f981e8189f8a012569a4d3690183ea3c4edc58b4a7c78a1c673ae7",
+    "manifest_sha256": "3979386d048ebf282cee0a03d026dd9284f1ff59289583d933bf0fc72a5d1385",
     "catalog_path": "catalog/tasks.json",
     "index_path": "suite/index.json",
-    "catalog_sha256": "f1943705459c57f4a7e684914db6d0384575e5409009520f67c3ce1b3c5e9b53",
-    "index_sha256": "6ceb6a5c70dec50065cd7310bc985ff8b28d03d9f16bfc76e86cb86e957a1233"
+    "catalog_sha256": "0d871a7fbaf2d2ff093988ff72f7ebc6a739b6f7433327dbde78a5e01160c952",
+    "index_sha256": "a2b3d6fbd4097bc04d73a865718eba7e24d43ef2e94530c8d4c76db482ba9c7e"
   },
   "files": [
     {
       "path": "catalog/papers.json",
       "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-      "sha256": "e42bbafc4747011b606f44bff4409a17c4d01767377c473b3720a10f1c72e1a3"
+      "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5"
     },
     {
       "path": "catalog/corpus.json",
@@ -95,7 +95,6 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-adaevolve",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "adaevolve-datacenter-tcp-congestion-control",
         "aevo-arc-agi-2",
         "alphaevolve-circle-packing-in-perimeter-4-rectangle",
         "alphaevolve-circle-packing-in-unit-square",
@@ -107,7 +106,6 @@
         "coral-llm-sql",
         "coral-model-placement-prism",
         "coral-transaction-scheduling",
-        "evox-frontier-cs",
         "evox-telemetry-repair",
         "sciel-math-signal-processing"
       ]
@@ -153,10 +151,7 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-ael-harness",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "ael-harness-20newsgroups-stream-classification",
-        "ael-harness-d-full-portfolio-allocation",
-        "ael-harness-non-stationary-contextual-bandit",
-        "ael-harness-support-ticket-routing"
+        "ael-harness-non-stationary-contextual-bandit"
       ]
     },
     {
@@ -169,7 +164,6 @@
       "source_kind": "corpus_paper",
       "declared_task_ids": [
         "aevo-arc-agi-2",
-        "aevo-terminal-bench",
         "alphaevolve-circle-packing-in-unit-square",
         "alphaevolve-second-autocorrelation-inequality",
         "coral-anthropic-performance-take-home"
@@ -202,7 +196,6 @@
       "source_kind": "corpus_paper",
       "declared_task_ids": [
         "agentic-optimization-decode-attention-kernel-optimization",
-        "agentic-optimization-qwen3-1-7b-end-to-end-sglang-kernel-optimization",
         "alphaevolve-circle-packing-in-unit-square"
       ]
     },
@@ -219,8 +212,7 @@
         "agentsquare-m3tooleval",
         "agentsquare-pddl",
         "agentsquare-scienceworld",
-        "agentsquare-travelplanner",
-        "agentsquare-webshop"
+        "agentsquare-travelplanner"
       ]
     },
     {
@@ -231,10 +223,7 @@
       "paper_url": "https://arxiv.org/pdf/2604.25850",
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-ahe",
       "source_kind": "corpus_paper",
-      "declared_task_ids": [
-        "ahe-terminal-bench-2",
-        "sica-swe-bench-verified"
-      ]
+      "declared_task_ids": []
     },
     {
       "id": "algoevolve",
@@ -244,9 +233,7 @@
       "paper_url": "https://arxiv.org/pdf/2606.26173",
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-algoevolve",
       "source_kind": "corpus_paper",
-      "declared_task_ids": [
-        "algoevolve-numin-intraday-equity-trading"
-      ]
+      "declared_task_ids": []
     },
     {
       "id": "alphaevolve",
@@ -257,14 +244,11 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-alphaevolve",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "alphaevolve-borg-data-center-scheduling",
         "alphaevolve-circle-packing-in-perimeter-4-rectangle",
         "alphaevolve-circle-packing-in-unit-square",
         "alphaevolve-circle-packing-in-unit-square-n-32",
-        "alphaevolve-compiler-generated-flashattention-code-optimization",
         "alphaevolve-erdos-minimum-overlap",
         "alphaevolve-first-autocorrelation-inequality",
-        "alphaevolve-gemini-matrix-multiplication-tiling",
         "alphaevolve-heilbronn-convex-regions",
         "alphaevolve-heilbronn-convex-regions-n-14",
         "alphaevolve-heilbronn-triangles",
@@ -330,7 +314,6 @@
         "alphaevolve-signed-autocorrelation-maximum-absolute-value-variant",
         "alphaevolve-sums-and-differences-of-finite-sets",
         "alphaevolve-third-autocorrelation-inequality",
-        "alphaevolve-tpu-hardware-circuit-design",
         "alphaevolve-uncertainty-inequality",
         "alphaevolve-unit-regular-hexagons-inside-a-regular-hexagon",
         "alphaevolve-unit-regular-hexagons-inside-a-regular-hexagon-n-12"
@@ -344,10 +327,7 @@
       "paper_url": "https://arxiv.org/pdf/2604.22871",
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-autorise",
       "source_kind": "corpus_paper",
-      "declared_task_ids": [
-        "autorise-autorise-frontier",
-        "autorise-autorise-standard"
-      ]
+      "declared_task_ids": []
     },
     {
       "id": "avo",
@@ -423,7 +403,6 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-cocoevo",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "cocoevo-deveval-real-world-function-completion",
         "cocoevo-leetcode-contest"
       ]
     },
@@ -458,16 +437,7 @@
       "paper_url": "https://arxiv.org/pdf/2605.04677",
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-codeevolve-salesforce",
       "source_kind": "corpus_paper",
-      "declared_task_ids": [
-        "codeevolve-salesforce-apex-program-optimization",
-        "codeevolve-salesforce-apiname-constructor",
-        "codeevolve-salesforce-batchimporter-serializerowinfo",
-        "codeevolve-salesforce-composedapiname-equals",
-        "codeevolve-salesforce-domainsuffixpair-hashcode",
-        "codeevolve-salesforce-fieldidentifier-hashcode",
-        "codeevolve-salesforce-getinstanceidmutations",
-        "codeevolve-salesforce-hbaseconnectionregistryutil-filtermap"
-      ]
+      "declared_task_ids": []
     },
     {
       "id": "coevo",
@@ -492,9 +462,7 @@
       "paper_url": "https://arxiv.org/pdf/2602.00755",
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-constitutional-evolution",
       "source_kind": "corpus_paper",
-      "declared_task_ids": [
-        "constitutional-evolution-multi-agent-society-constitution-optimization"
-      ]
+      "declared_task_ids": []
     },
     {
       "id": "coral",
@@ -529,8 +497,7 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-darwinian-evolver",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "adas-arc",
-        "darwinian-evolver-vet-code-verification-prompt-evolution"
+        "adas-arc"
       ]
     },
     {
@@ -542,7 +509,6 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-deevo",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "deevo-abcd",
         "deevo-bbh-navigate",
         "deevo-mt-bench-humanities",
         "deevo-mt-bench-roleplay",
@@ -612,8 +578,7 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-dgm",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "dgm-aider-polyglot",
-        "sica-swe-bench-verified"
+        "dgm-aider-polyglot"
       ]
     },
     {
@@ -625,8 +590,6 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-dreureka",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "dreureka-go1-walking-globe",
-        "dreureka-leap-hand-cube-rotation",
         "eureka-ant"
       ]
     },
@@ -658,8 +621,7 @@
       "source_kind": "corpus_paper",
       "declared_task_ids": [
         "elm-single-step-code-bug-repair",
-        "elm-sodarace-walker-program-evolution",
-        "elm-terrain-conditioned-sodarace-synthesis"
+        "elm-sodarace-walker-program-evolution"
       ]
     },
     {
@@ -671,14 +633,7 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-enpire",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "enpire-gpu-insertion",
-        "enpire-gym-pusht-simulation",
-        "enpire-physical-push-t",
-        "enpire-physical-zip-tie-threading",
-        "enpire-pin-insertion",
-        "enpire-robocasa-simulation",
-        "enpire-zip-tie-cutting",
-        "enpire-zip-tie-insertion-reward-verification"
+        "enpire-gym-pusht-simulation"
       ]
     },
     {
@@ -690,9 +645,7 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-eob",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "eob-eob-bbob-benchmark-synthesis",
-        "eob-eob-hpo-surrogate-benchmark-synthesis",
-        "eob-eob-uav-surrogate-benchmark-synthesis"
+        "eob-eob-bbob-benchmark-synthesis"
       ]
     },
     {
@@ -733,36 +686,10 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-eureka",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "eureka-allegrohand",
         "eureka-ant",
-        "eureka-anymal",
         "eureka-ballbalance",
-        "eureka-blockstack",
-        "eureka-bottlecap",
         "eureka-cartpole",
-        "eureka-catchabreast",
-        "eureka-catchover2underarm",
-        "eureka-catchunderarm",
-        "eureka-doorcloseinward",
-        "eureka-doorcloseoutward",
-        "eureka-dooropeninward",
-        "eureka-dooropenoutward",
-        "eureka-frankacabinet",
-        "eureka-graspandplace",
-        "eureka-humanoid",
-        "eureka-kettle",
-        "eureka-liftunderarm",
-        "eureka-over",
-        "eureka-pen",
-        "eureka-pushblock",
-        "eureka-quadcopter",
-        "eureka-reorientation",
-        "eureka-scissors",
-        "eureka-shadow-hand-pen-spinning",
-        "eureka-shadowhand",
-        "eureka-swingcup",
-        "eureka-switch",
-        "eureka-twocatchunderarm"
+        "eureka-humanoid"
       ]
     },
     {
@@ -777,14 +704,9 @@
         "alphaevolve-circle-packing-in-unit-square",
         "alphaevolve-erdos-minimum-overlap",
         "alphaevolve-first-autocorrelation-inequality",
-        "eurekagent-dog-breed-identification",
         "eurekagent-gpumode-trimul-a100",
         "eurekagent-jigsaw-toxic-comment",
-        "eurekagent-tabular-playground-may-2022",
-        "eurekagent-the-icml-2013-whale-redux",
-        "loongflow-aerial-cactus-identification",
-        "loongflow-histopathologic-cancer-detection",
-        "loongflow-plant-pathology-2020-fgvc7"
+        "loongflow-histopathologic-cancer-detection"
       ]
     },
     {
@@ -799,7 +721,6 @@
         "aflow-humaneval",
         "aflow-math",
         "aflow-mbpp",
-        "evoflow-alfworld",
         "promptbreeder-gsm8k",
         "promptbreeder-multiarith"
       ]
@@ -814,10 +735,7 @@
       "source_kind": "corpus_paper",
       "declared_task_ids": [
         "evolcaf-ackley-2d",
-        "evolcaf-cifar-10-hyperparameter-optimization",
-        "evolcaf-colorectal-histology-hyperparameter-optimization",
         "evolcaf-cosine8-8d",
-        "evolcaf-fashion-mnist-hyperparameter-optimization",
         "evolcaf-griewank-2d",
         "evolcaf-hartmann-3d",
         "evolcaf-hartmann-6d",
@@ -904,37 +822,21 @@
       "source_kind": "corpus_paper",
       "declared_task_ids": [
         "evoprompting-activity-selector",
-        "evoprompting-articulation-points",
         "evoprompting-bellman-ford",
         "evoprompting-bfs",
         "evoprompting-binary-search",
-        "evoprompting-bridges",
-        "evoprompting-bubble-sort",
-        "evoprompting-dag-shortest-paths",
-        "evoprompting-dfs",
         "evoprompting-dijkstra",
         "evoprompting-find-maximum-subarray-kadane",
         "evoprompting-floyd-warshall",
         "evoprompting-graham-scan",
-        "evoprompting-heapsort",
         "evoprompting-insertion-sort",
-        "evoprompting-jarvis-march",
-        "evoprompting-knuth-morris-pratt",
         "evoprompting-lcs-length",
         "evoprompting-matrix-chain-order",
-        "evoprompting-minimum",
         "evoprompting-mnist-1d-architecture-search",
         "evoprompting-mst-kruskal",
         "evoprompting-mst-prim",
-        "evoprompting-naive-string-matcher",
-        "evoprompting-nats-bench-cifar-10",
-        "evoprompting-nats-bench-cifar-100",
-        "evoprompting-nats-bench-imagenet-16-120",
         "evoprompting-optimal-bst",
-        "evoprompting-quickselect",
-        "evoprompting-quicksort",
         "evoprompting-segments-intersect",
-        "evoprompting-strongly-connected-components",
         "evoprompting-task-scheduling",
         "evoprompting-topological-sort"
       ]
@@ -947,11 +849,7 @@
       "paper_url": "https://arxiv.org/pdf/2603.02766",
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-evoskill",
       "source_kind": "corpus_paper",
-      "declared_task_ids": [
-        "evoskill-browsecomp-transfer",
-        "evoskill-officeqa",
-        "evoskill-sealqa"
-      ]
+      "declared_task_ids": []
     },
     {
       "id": "evox",
@@ -985,7 +883,6 @@
         "evox-ahc027-cleaning-route",
         "evox-ahc039-fishing-net",
         "evox-ahc046-skating-with-blocks",
-        "evox-frontier-cs",
         "evox-telemetry-repair",
         "sciel-math-signal-processing"
       ]
@@ -998,12 +895,7 @@
       "paper_url": "https://arxiv.org/pdf/2608.10039",
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-flowscout",
       "source_kind": "corpus_paper",
-      "declared_task_ids": [
-        "flowscout-toolbench-finance",
-        "flowscout-toolbench-sports",
-        "flowscout-toolbench-travel",
-        "flowscout-toolbench-weather"
-      ]
+      "declared_task_ids": []
     },
     {
       "id": "funbo",
@@ -1054,9 +946,7 @@
         "funl2o-fsnet-nonsmooth-nonconvex-socp",
         "funl2o-ipm-mpnn-lp-combinatorial-auction",
         "funl2o-ipm-mpnn-lp-gnnlp",
-        "funl2o-ipm-mpnn-lp-independent-set",
         "funl2o-ipm-mpnn-lp-set-cover",
-        "funl2o-pdhg-net-pagerank-lp-warm-start",
         "funl2o-predict-and-search-combinatorial-auctions",
         "funl2o-predict-and-search-minimum-vertex-cover"
       ]
@@ -1115,8 +1005,7 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-gea",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "dgm-aider-polyglot",
-        "sica-swe-bench-verified"
+        "dgm-aider-polyglot"
       ]
     },
     {
@@ -1165,7 +1054,6 @@
         "hsi-babyai",
         "hsi-crafter",
         "hsi-minihack",
-        "hsi-nle",
         "hsi-textworld"
       ]
     },
@@ -1255,10 +1143,8 @@
       "source_kind": "corpus_paper",
       "declared_task_ids": [
         "limen-easy-pickup",
-        "limen-go1-push-recovery",
         "limen-hard-rule-chain",
-        "limen-medium-place-near",
-        "limen-panda-trajectory-tracking"
+        "limen-medium-place-near"
       ]
     },
     {
@@ -1405,27 +1291,7 @@
       "paper_url": "https://arxiv.org/pdf/2608.19347",
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-llm-flowrepair",
       "source_kind": "corpus_paper",
-      "declared_task_ids": [
-        "llm-flowrepair-door-1",
-        "llm-flowrepair-door-2",
-        "llm-flowrepair-elevator-1",
-        "llm-flowrepair-elevator-10",
-        "llm-flowrepair-elevator-2",
-        "llm-flowrepair-elevator-3",
-        "llm-flowrepair-elevator-4",
-        "llm-flowrepair-elevator-5",
-        "llm-flowrepair-elevator-6",
-        "llm-flowrepair-elevator-7",
-        "llm-flowrepair-elevator-8",
-        "llm-flowrepair-elevator-9",
-        "llm-flowrepair-fridge-1",
-        "llm-flowrepair-fridge-2",
-        "llm-flowrepair-fridge-2a",
-        "llm-flowrepair-fridge-2b",
-        "llm-flowrepair-fridge-3",
-        "llm-flowrepair-pacemaker-1",
-        "llm-flowrepair-pacemaker-2"
-      ]
+      "declared_task_ids": []
     },
     {
       "id": "llm-lex",
@@ -1453,12 +1319,7 @@
       "paper_url": "https://arxiv.org/pdf/2604.16555",
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-llmastool",
       "source_kind": "corpus_paper",
-      "declared_task_ids": [
-        "llmastool-cifar-10",
-        "llmastool-cifar-100",
-        "llmastool-imagenet-100",
-        "llmastool-imagenet16-120"
-      ]
+      "declared_task_ids": []
     },
     {
       "id": "lmx",
@@ -1496,19 +1357,10 @@
         "alphaevolve-second-autocorrelation-inequality",
         "alphaevolve-uncertainty-inequality",
         "alphaevolve-unit-regular-hexagons-inside-a-regular-hexagon",
-        "loongflow-aerial-cactus-identification",
         "loongflow-denoising-dirty-documents",
-        "loongflow-detecting-insults-in-social-commentary",
-        "loongflow-dogs-vs-cats-redux-kernels-edition",
-        "loongflow-google-quest-challenge",
         "loongflow-histopathologic-cancer-detection",
         "loongflow-nomad2018-predict-transparent-conductors",
-        "loongflow-plant-pathology-2020-fgvc7",
-        "loongflow-plant-pathology-2021-fgvc8",
-        "loongflow-predict-volcanic-eruptions-ingv-oe",
         "loongflow-stanford-covid-vaccine",
-        "loongflow-tabular-playground-series-dec-2021",
-        "loongflow-the-icml-2013-whale-challenge-right-whale-redux",
         "loongflow-us-patent-phrase-to-phrase-matching"
       ]
     },
@@ -1522,8 +1374,6 @@
       "source_kind": "corpus_paper",
       "declared_task_ids": [
         "magellan-llvm-function-inlining-for-binary-size",
-        "magellan-llvm-function-inlining-for-clang-runtime",
-        "magellan-llvm-register-allocation",
         "magellan-xla-auto-sharding-iopddl",
         "magellan-xla-enzyme-jax-e-graph-extraction"
       ]
@@ -1601,7 +1451,6 @@
         "meta-harness-imo-proofbench",
         "meta-harness-scicite",
         "meta-harness-scitail",
-        "meta-harness-terminal-bench-2-0",
         "meta-harness-tweeteval-hate"
       ]
     },
@@ -1619,15 +1468,7 @@
         "meta-ttl-jericho-library",
         "meta-ttl-jericho-temple",
         "meta-ttl-jericho-zork-1",
-        "meta-ttl-jericho-zork-3",
-        "meta-ttl-tau2-bench-airline",
-        "meta-ttl-tau2-bench-retail",
-        "meta-ttl-tau2-bench-telecom",
-        "meta-ttl-webarena-lite-gitlab",
-        "meta-ttl-webarena-lite-map",
-        "meta-ttl-webarena-lite-reddit",
-        "meta-ttl-webarena-lite-shopping",
-        "meta-ttl-webarena-lite-shopping-admin"
+        "meta-ttl-jericho-zork-3"
       ]
     },
     {
@@ -1641,7 +1482,6 @@
       "declared_task_ids": [
         "mind-evolution-natural-plan-meeting-planning",
         "mind-evolution-natural-plan-trip-planning",
-        "mind-evolution-stegpoet",
         "mind-evolution-travelplanner"
       ]
     },
@@ -1670,9 +1510,7 @@
       "paper_url": "https://arxiv.org/pdf/2405.15568",
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-omni-epic",
       "source_kind": "corpus_paper",
-      "declared_task_ids": [
-        "omni-epic-open-ended-embodied-task-generation"
-      ]
+      "declared_task_ids": []
     },
     {
       "id": "open-problems-2026-11",
@@ -3085,7 +2923,6 @@
         "aflow-humaneval",
         "aflow-mbpp",
         "mipro-hotpotqa",
-        "polymath-axi-hardware-module-configuration",
         "polymath-math-level-5",
         "promptbreeder-gsm8k"
       ]
@@ -3236,13 +3073,7 @@
       "paper_url": "https://arxiv.org/pdf/2601.21847",
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-ready",
       "source_kind": "corpus_paper",
-      "declared_task_ids": [
-        "ready-dedqn-operator-selection",
-        "ready-gleet-reward-transfer",
-        "ready-rldas-algorithm-selection",
-        "ready-rldeafl-reward-transfer",
-        "ready-rlepso-parameter-control"
-      ]
+      "declared_task_ids": []
     },
     {
       "id": "redahd",
@@ -3296,8 +3127,7 @@
       "source_kind": "corpus_paper",
       "declared_task_ids": [
         "eureka-humanoid",
-        "revolve-adroit-hand-door-opening",
-        "revolve-autonomous-driving"
+        "revolve-adroit-hand-door-opening"
       ]
     },
     {
@@ -3309,12 +3139,7 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-rqgm",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "rqgm-code-review",
-        "rqgm-olympiad-proof-grading",
-        "rqgm-olympiad-proof-writing",
-        "rqgm-paper-reviewing",
-        "rqgm-paper-writing",
-        "rqgm-polyglot-coding"
+        "rqgm-code-review"
       ]
     },
     {
@@ -4206,7 +4031,6 @@
         "evox-ahc046-skating-with-blocks",
         "sepo-aime-25",
         "shinkaevolve-aime-2023-scaffold-transfer",
-        "shinkaevolve-mixture-of-experts-load-balancing-loss",
         "sica-aime-2024"
       ]
     },
@@ -4221,10 +4045,7 @@
       "declared_task_ids": [
         "adas-gpqa",
         "sica-aime-2024",
-        "sica-livecodebench",
-        "sica-swe-bench-verified",
-        "sica-synthetic-file-editing",
-        "sica-synthetic-symbol-location"
+        "sica-livecodebench"
       ]
     },
     {
@@ -4236,9 +4057,7 @@
       "corpus_url": "https://human-harness-corpus.small-pine-3af7.workers.dev/#row-stride",
       "source_kind": "corpus_paper",
       "declared_task_ids": [
-        "stride-humanoid-sprinting-on-flat-terrain",
-        "stride-humanoid-sprinting-on-random-uniform-terrain",
-        "stride-humanoid-sprinting-on-wave-terrain"
+        "stride-humanoid-sprinting-on-flat-terrain"
       ]
     },
     {
@@ -4263,16 +4082,7 @@
         "text2reward-hopper-back-flip",
         "text2reward-hopper-front-flip",
         "text2reward-hopper-move-forward",
-        "text2reward-liftcube-v0",
-        "text2reward-opencabinetdoor-v1",
-        "text2reward-opencabinetdrawer-v1",
-        "text2reward-pickcube-v0",
-        "text2reward-pushchair-v1",
-        "text2reward-real-franka-panda-pick-cube",
-        "text2reward-real-franka-panda-stack-cube",
-        "text2reward-stackcube-v0",
         "text2reward-sweep-into-v2",
-        "text2reward-turnfaucet-v0",
         "text2reward-window-close-v2",
         "text2reward-window-open-v2"
       ]
@@ -4288,9 +4098,7 @@
       "declared_task_ids": [
         "alphaevolve-circle-packing-in-unit-square",
         "alphaevolve-circle-packing-in-unit-square-n-32",
-        "the-station-rna-sequence-modeling",
         "the-station-single-cell-batch-integration",
-        "the-station-sokoban-model-free-reinforcement-learning",
         "the-station-zapbench-neural-activity-prediction"
       ]
     }

@@ -4,7 +4,7 @@
   "id": "arena-tasks",
   "kind": "task_collection",
   "manifest_path": "registry/task-library-manifest.json",
-  "manifest_sha256": "2eaad8b7f6f981e8189f8a012569a4d3690183ea3c4edc58b4a7c78a1c673ae7",
+  "manifest_sha256": "3979386d048ebf282cee0a03d026dd9284f1ff59289583d933bf0fc72a5d1385",
   "refresh": "reviewed_local_snapshot",
   "repository_url": "https://github.com/Doldrums/arena",
   "revision": "main",

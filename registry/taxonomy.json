@@ -210,17 +210,6 @@
       "rationale": "The descriptions specify gridworld pickup/placement/subgoal behavior in XLand-MiniGrid; this is a learned digital action policy, not a physical robot experiment."
     },
     {
-      "id": "forest-cover-prediction",
-      "match": {
-        "task_ids": [
-          "loongflow-tabular-playground-series-dec-2021"
-        ]
-      },
-      "domain_id": "earth-environment",
-      "task_type_id": "prediction-modeling",
-      "rationale": "The catalog description explicitly predicts forest Cover_Type labels from tabular environmental features."
-    },
-    {
       "id": "growth-and-population",
       "match": {
         "task_ids": [
@@ -352,17 +341,9 @@
       "id": "biological-prediction-targets",
       "match": {
         "task_ids": [
-          "eurekagent-dog-breed-identification",
-          "eurekagent-the-icml-2013-whale-redux",
-          "loongflow-aerial-cactus-identification",
-          "loongflow-dogs-vs-cats-redux-kernels-edition",
           "loongflow-histopathologic-cancer-detection",
-          "loongflow-plant-pathology-2020-fgvc7",
-          "loongflow-plant-pathology-2021-fgvc8",
           "loongflow-stanford-covid-vaccine",
-          "loongflow-the-icml-2013-whale-challenge-right-whale-redux",
           "mipro-heart-disease",
-          "the-station-rna-sequence-modeling",
           "the-station-single-cell-batch-integration",
           "the-station-zapbench-neural-activity-prediction"
         ]
@@ -392,42 +373,6 @@
       "domain_id": "chemistry-materials",
       "task_type_id": "language-reasoning",
       "rationale": "USPTO-50k is explicitly named as the chemical-reaction task. The package is a model/agent benchmark, not a laboratory synthesis protocol."
-    },
-    {
-      "id": "environmental-prediction-targets",
-      "match": {
-        "task_ids": [
-          "loongflow-predict-volcanic-eruptions-ingv-oe"
-        ]
-      },
-      "domain_id": "earth-environment",
-      "task_type_id": "prediction-modeling",
-      "rationale": "The package explicitly targets volcanic-eruption prediction."
-    },
-    {
-      "id": "image-hpo",
-      "match": {
-        "task_ids": [
-          "evolcaf-cifar-10-hyperparameter-optimization",
-          "evolcaf-colorectal-histology-hyperparameter-optimization",
-          "evolcaf-fashion-mnist-hyperparameter-optimization"
-        ]
-      },
-      "domain_id": "machine-learning",
-      "task_type_id": "hyperparameter-search",
-      "rationale": "These named image benchmarks optimize model hyperparameters; benchmark theme is not treated as a separate scientific task."
-    },
-    {
-      "id": "direct-financial-objectives",
-      "match": {
-        "task_ids": [
-          "ael-harness-d-full-portfolio-allocation",
-          "algoevolve-numin-intraday-equity-trading"
-        ]
-      },
-      "domain_id": "finance-economics",
-      "task_type_id": "combinatorial-optimization",
-      "rationale": "The task directly names portfolio allocation or intraday equity trading, rather than financial question answering."
     },
     {
       "id": "sciel-scaling-laws",
@@ -605,11 +550,6 @@
           "accelopt-swiglu-m4096-n3072-k1024-0",
           "accelopt-transpose-matmul-m4096-k2048-n10944-0",
           "agentic-optimization-decode-attention-kernel-optimization",
-          "agentic-optimization-qwen3-1-7b-end-to-end-sglang-kernel-optimization",
-          "alphaevolve-borg-data-center-scheduling",
-          "alphaevolve-compiler-generated-flashattention-code-optimization",
-          "alphaevolve-gemini-matrix-multiplication-tiling",
-          "alphaevolve-tpu-hardware-circuit-design",
           "avo-gqa-32-query-heads-4-kv-heads-causal-sequence-16384",
           "avo-gqa-32-query-heads-4-kv-heads-causal-sequence-32768",
           "avo-gqa-32-query-heads-4-kv-heads-causal-sequence-4096",
@@ -634,14 +574,6 @@
           "avo-mha-16-heads-non-causal-sequence-32768",
           "avo-mha-16-heads-non-causal-sequence-4096",
           "avo-mha-16-heads-non-causal-sequence-8192",
-          "codeevolve-salesforce-apex-program-optimization",
-          "codeevolve-salesforce-apiname-constructor",
-          "codeevolve-salesforce-batchimporter-serializerowinfo",
-          "codeevolve-salesforce-composedapiname-equals",
-          "codeevolve-salesforce-domainsuffixpair-hashcode",
-          "codeevolve-salesforce-fieldidentifier-hashcode",
-          "codeevolve-salesforce-getinstanceidmutations",
-          "codeevolve-salesforce-hbaseconnectionregistryutil-filtermap",
           "kernelpro-kernelbench-level-1-single-operators",
           "kernelpro-kernelbench-level-2-fused-operators",
           "kernelpro-kernelbench-level-3-architectures",
@@ -654,11 +586,8 @@
           "kernelpro-triton-inference-vec-matmul",
           "kernelpro-veomni-dw1-grouped-gemm-weight-gradient",
           "magellan-llvm-function-inlining-for-binary-size",
-          "magellan-llvm-function-inlining-for-clang-runtime",
-          "magellan-llvm-register-allocation",
           "magellan-xla-auto-sharding-iopddl",
-          "magellan-xla-enzyme-jax-e-graph-extraction",
-          "polymath-axi-hardware-module-configuration"
+          "magellan-xla-enzyme-jax-e-graph-extraction"
         ]
       },
       "domain_id": "computer-systems",
@@ -669,7 +598,6 @@
       "id": "unsupported-infrastructure",
       "match": {
         "task_ids": [
-          "adaevolve-datacenter-tcp-congestion-control",
           "evox-telemetry-repair"
         ]
       },
@@ -681,33 +609,14 @@
       "id": "unsupported-software-agent-suites",
       "match": {
         "task_ids": [
-          "ahe-terminal-bench-2",
-          "cocoevo-deveval-real-world-function-completion",
           "cocoevo-leetcode-contest",
-          "darwinian-evolver-vet-code-verification-prompt-evolution",
           "dgm-aider-polyglot",
-          "sica-livecodebench",
-          "sica-swe-bench-verified",
-          "sica-synthetic-file-editing",
-          "sica-synthetic-symbol-location"
+          "sica-livecodebench"
         ]
       },
       "domain_id": "software-engineering",
       "task_type_id": "software-generation",
       "rationale": "The reviewed task names are code repair, coding, program verification or repository-editing benchmarks."
-    },
-    {
-      "id": "unsupported-terminal-bench",
-      "match": {
-        "task_ids": [
-          "aevo-terminal-bench",
-          "ahe-terminal-bench-2",
-          "meta-harness-terminal-bench-2-0"
-        ]
-      },
-      "domain_id": "software-engineering",
-      "task_type_id": "agent-workflow",
-      "rationale": "Terminal-Bench evaluates task completion through a terminal; no broader science domain is asserted."
     },
     {
       "id": "unsupported-retrieval-corpora",
@@ -769,9 +678,7 @@
           "funl2o-fsnet-nonsmooth-nonconvex-socp",
           "funl2o-ipm-mpnn-lp-combinatorial-auction",
           "funl2o-ipm-mpnn-lp-gnnlp",
-          "funl2o-ipm-mpnn-lp-independent-set",
           "funl2o-ipm-mpnn-lp-set-cover",
-          "funl2o-pdhg-net-pagerank-lp-warm-start",
           "funl2o-predict-and-search-combinatorial-auctions",
           "funl2o-predict-and-search-minimum-vertex-cover",
           "pdr-balanced-academic-curriculum-csplib-30",
@@ -792,9 +699,7 @@
       "id": "unsupported-benchmark-generation",
       "match": {
         "task_ids": [
-          "eob-eob-bbob-benchmark-synthesis",
-          "eob-eob-hpo-surrogate-benchmark-synthesis",
-          "eob-eob-uav-surrogate-benchmark-synthesis"
+          "eob-eob-bbob-benchmark-synthesis"
         ]
       },
       "domain_id": "mathematics",
@@ -802,75 +707,20 @@
       "rationale": "EoB generates optimizer benchmark functions or surrogates; the generator itself is not a solved UAV or HPO application."
     },
     {
-      "id": "unsupported-optimization-rewards",
-      "match": {
-        "task_ids": [
-          "ready-dedqn-operator-selection",
-          "ready-gleet-reward-transfer",
-          "ready-rldas-algorithm-selection",
-          "ready-rldeafl-reward-transfer",
-          "ready-rlepso-parameter-control"
-        ]
-      },
-      "domain_id": "mathematics",
-      "task_type_id": "reward-design",
-      "rationale": "READY learns rewards or adaptation decisions for a black-box optimizer."
-    },
-    {
       "id": "unsupported-embodied-reward-suites",
       "match": {
         "task_ids": [
-          "dreureka-go1-walking-globe",
-          "dreureka-leap-hand-cube-rotation",
-          "eureka-allegrohand",
           "eureka-ant",
-          "eureka-anymal",
           "eureka-ballbalance",
-          "eureka-blockstack",
-          "eureka-bottlecap",
           "eureka-cartpole",
-          "eureka-catchabreast",
-          "eureka-catchover2underarm",
-          "eureka-catchunderarm",
-          "eureka-doorcloseinward",
-          "eureka-doorcloseoutward",
-          "eureka-dooropeninward",
-          "eureka-dooropenoutward",
-          "eureka-frankacabinet",
-          "eureka-graspandplace",
           "eureka-humanoid",
-          "eureka-kettle",
-          "eureka-liftunderarm",
-          "eureka-over",
-          "eureka-pen",
-          "eureka-pushblock",
-          "eureka-quadcopter",
-          "eureka-reorientation",
-          "eureka-scissors",
-          "eureka-shadow-hand-pen-spinning",
-          "eureka-shadowhand",
-          "eureka-swingcup",
-          "eureka-switch",
-          "eureka-twocatchunderarm",
           "revolve-adroit-hand-door-opening",
-          "revolve-autonomous-driving",
           "stride-humanoid-sprinting-on-flat-terrain",
-          "stride-humanoid-sprinting-on-random-uniform-terrain",
-          "stride-humanoid-sprinting-on-wave-terrain",
           "text2reward-ant-lie-down",
           "text2reward-ant-wave-leg",
           "text2reward-hopper-back-flip",
           "text2reward-hopper-front-flip",
-          "text2reward-hopper-move-forward",
-          "text2reward-liftcube-v0",
-          "text2reward-opencabinetdoor-v1",
-          "text2reward-opencabinetdrawer-v1",
-          "text2reward-pickcube-v0",
-          "text2reward-pushchair-v1",
-          "text2reward-real-franka-panda-pick-cube",
-          "text2reward-real-franka-panda-stack-cube",
-          "text2reward-stackcube-v0",
-          "text2reward-turnfaucet-v0"
+          "text2reward-hopper-move-forward"
         ]
       },
       "domain_id": "robotics-control",
@@ -881,14 +731,7 @@
       "id": "unsupported-enpire-robotics",
       "match": {
         "task_ids": [
-          "enpire-gpu-insertion",
-          "enpire-gym-pusht-simulation",
-          "enpire-physical-push-t",
-          "enpire-physical-zip-tie-threading",
-          "enpire-pin-insertion",
-          "enpire-robocasa-simulation",
-          "enpire-zip-tie-cutting",
-          "enpire-zip-tie-insertion-reward-verification"
+          "enpire-gym-pusht-simulation"
         ]
       },
       "domain_id": "robotics-control",
@@ -911,36 +754,12 @@
       "id": "unsupported-walker-synthesis",
       "match": {
         "task_ids": [
-          "elm-sodarace-walker-program-evolution",
-          "elm-terrain-conditioned-sodarace-synthesis"
+          "elm-sodarace-walker-program-evolution"
         ]
       },
       "domain_id": "robotics-control",
       "task_type_id": "control-policy",
       "rationale": "The task synthesizes a Sodarace walker program, a simulated embodied controller."
-    },
-    {
-      "id": "unsupported-specific-robot-controls",
-      "match": {
-        "task_ids": [
-          "limen-go1-push-recovery",
-          "limen-panda-trajectory-tracking"
-        ]
-      },
-      "domain_id": "robotics-control",
-      "task_type_id": "control-policy",
-      "rationale": "The task explicitly names Go1 push recovery or Panda trajectory tracking."
-    },
-    {
-      "id": "unsupported-embodied-generation",
-      "match": {
-        "task_ids": [
-          "omni-epic-open-ended-embodied-task-generation"
-        ]
-      },
-      "domain_id": "robotics-control",
-      "task_type_id": "benchmark-generation",
-      "rationale": "The task generates embodied environments/tasks; it is not a fixed controller benchmark."
     },
     {
       "id": "unsupported-web-and-tool-agents",
@@ -951,37 +770,19 @@
           "agentsquare-pddl",
           "agentsquare-scienceworld",
           "agentsquare-travelplanner",
-          "agentsquare-webshop",
-          "evoflow-alfworld",
-          "evoskill-browsecomp-transfer",
-          "evoskill-officeqa",
-          "evoskill-sealqa",
-          "flowscout-toolbench-finance",
-          "flowscout-toolbench-sports",
-          "flowscout-toolbench-travel",
-          "flowscout-toolbench-weather",
           "hsi-babaisai-breakstop",
           "hsi-babaisai-goto",
           "hsi-babaisai-make",
           "hsi-babyai",
           "hsi-crafter",
           "hsi-minihack",
-          "hsi-nle",
           "hsi-textworld",
           "meta-ttl-jericho-balances",
           "meta-ttl-jericho-detective",
           "meta-ttl-jericho-library",
           "meta-ttl-jericho-temple",
           "meta-ttl-jericho-zork-1",
-          "meta-ttl-jericho-zork-3",
-          "meta-ttl-tau2-bench-airline",
-          "meta-ttl-tau2-bench-retail",
-          "meta-ttl-tau2-bench-telecom",
-          "meta-ttl-webarena-lite-gitlab",
-          "meta-ttl-webarena-lite-map",
-          "meta-ttl-webarena-lite-reddit",
-          "meta-ttl-webarena-lite-shopping",
-          "meta-ttl-webarena-lite-shopping-admin"
+          "meta-ttl-jericho-zork-3"
         ]
       },
       "domain_id": "machine-learning",
@@ -1008,8 +809,7 @@
           "dgm-aider-polyglot",
           "elm-single-step-code-bug-repair",
           "qdaif-humaneval-88-conditional-sorting",
-          "rqgm-code-review",
-          "rqgm-polyglot-coding"
+          "rqgm-code-review"
         ]
       },
       "domain_id": "software-engineering",
@@ -1020,14 +820,7 @@
       "id": "unsupported-architecture-search",
       "match": {
         "task_ids": [
-          "evoprompting-mnist-1d-architecture-search",
-          "evoprompting-nats-bench-cifar-10",
-          "evoprompting-nats-bench-cifar-100",
-          "evoprompting-nats-bench-imagenet-16-120",
-          "llmastool-cifar-10",
-          "llmastool-cifar-100",
-          "llmastool-imagenet-100",
-          "llmastool-imagenet16-120"
+          "evoprompting-mnist-1d-architecture-search"
         ]
       },
       "domain_id": "machine-learning",
@@ -1039,37 +832,21 @@
       "match": {
         "task_ids": [
           "evoprompting-activity-selector",
-          "evoprompting-articulation-points",
           "evoprompting-bellman-ford",
           "evoprompting-bfs",
           "evoprompting-binary-search",
-          "evoprompting-bridges",
-          "evoprompting-bubble-sort",
-          "evoprompting-dag-shortest-paths",
-          "evoprompting-dfs",
           "evoprompting-dijkstra",
           "evoprompting-find-maximum-subarray-kadane",
           "evoprompting-floyd-warshall",
           "evoprompting-graham-scan",
-          "evoprompting-heapsort",
           "evoprompting-insertion-sort",
-          "evoprompting-jarvis-march",
-          "evoprompting-knuth-morris-pratt",
           "evoprompting-lcs-length",
           "evoprompting-matrix-chain-order",
-          "evoprompting-minimum",
           "evoprompting-mnist-1d-architecture-search",
           "evoprompting-mst-kruskal",
           "evoprompting-mst-prim",
-          "evoprompting-naive-string-matcher",
-          "evoprompting-nats-bench-cifar-10",
-          "evoprompting-nats-bench-cifar-100",
-          "evoprompting-nats-bench-imagenet-16-120",
           "evoprompting-optimal-bst",
-          "evoprompting-quickselect",
-          "evoprompting-quicksort",
           "evoprompting-segments-intersect",
-          "evoprompting-strongly-connected-components",
           "evoprompting-task-scheduling",
           "evoprompting-topological-sort"
         ]
@@ -1082,28 +859,13 @@
       "id": "unsupported-generic-ml-datasets",
       "match": {
         "task_ids": [
-          "ael-harness-20newsgroups-stream-classification",
-          "ael-harness-d-full-portfolio-allocation",
-          "ael-harness-support-ticket-routing",
-          "eurekagent-dog-breed-identification",
           "eurekagent-gpumode-trimul-a100",
           "eurekagent-jigsaw-toxic-comment",
-          "eurekagent-tabular-playground-may-2022",
-          "eurekagent-the-icml-2013-whale-redux",
           "l-autoda-cifar-10-decision-based-adversarial-attack",
-          "loongflow-aerial-cactus-identification",
           "loongflow-denoising-dirty-documents",
-          "loongflow-detecting-insults-in-social-commentary",
-          "loongflow-dogs-vs-cats-redux-kernels-edition",
-          "loongflow-google-quest-challenge",
           "loongflow-histopathologic-cancer-detection",
           "loongflow-nomad2018-predict-transparent-conductors",
-          "loongflow-plant-pathology-2020-fgvc7",
-          "loongflow-plant-pathology-2021-fgvc8",
-          "loongflow-predict-volcanic-eruptions-ingv-oe",
           "loongflow-stanford-covid-vaccine",
-          "loongflow-tabular-playground-series-dec-2021",
-          "loongflow-the-icml-2013-whale-challenge-right-whale-redux",
           "loongflow-us-patent-phrase-to-phrase-matching"
         ]
       },
@@ -1115,8 +877,6 @@
       "id": "unsupported-language-evaluation",
       "match": {
         "task_ids": [
-          "constitutional-evolution-multi-agent-society-constitution-optimization",
-          "deevo-abcd",
           "deevo-mt-bench-humanities",
           "deevo-mt-bench-roleplay",
           "deevo-mt-bench-writing",
@@ -1140,7 +900,6 @@
           "meta-harness-financial-phrasebank",
           "meta-harness-imo-answerbench",
           "meta-harness-imo-proofbench",
-          "meta-harness-terminal-bench-2-0",
           "mipro-heart-disease",
           "mipro-hover",
           "promptagent-biosses",
@@ -1155,28 +914,12 @@
           "qdaif-stories-ending",
           "qdaif-stories-genre",
           "qdaif-stories-genre-and-ending",
-          "rqgm-code-review",
-          "rqgm-olympiad-proof-grading",
-          "rqgm-olympiad-proof-writing",
-          "rqgm-paper-reviewing",
-          "rqgm-paper-writing",
-          "rqgm-polyglot-coding"
+          "rqgm-code-review"
         ]
       },
       "domain_id": "machine-learning",
       "task_type_id": "language-reasoning",
       "rationale": "The reviewed source tasks optimize language-model prompts, outputs, proof reasoning or text judgments. Domain words in the benchmark name are not evidence of scientific modeling."
-    },
-    {
-      "id": "unsupported-stegpoet",
-      "match": {
-        "task_ids": [
-          "mind-evolution-stegpoet"
-        ]
-      },
-      "domain_id": "machine-learning",
-      "task_type_id": "language-reasoning",
-      "rationale": "StegPoet generates constrained text encoding a prescribed sequence."
     },
     {
       "id": "unsupported-llm-scaling-law",
@@ -1201,57 +944,6 @@
       "domain_id": "machine-learning",
       "task_type_id": "language-reasoning",
       "rationale": "The named task designs/transfers an AIME reasoning scaffold, rather than constructing a mathematical extremal object."
-    },
-    {
-      "id": "unsupported-moe-loss",
-      "match": {
-        "task_ids": [
-          "shinkaevolve-mixture-of-experts-load-balancing-loss"
-        ]
-      },
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rationale": "The candidate is a mixture-of-experts training/load-balancing loss."
-    },
-    {
-      "id": "unsupported-sokoban-rl",
-      "match": {
-        "task_ids": [
-          "the-station-sokoban-model-free-reinforcement-learning"
-        ]
-      },
-      "domain_id": "machine-learning",
-      "task_type_id": "prediction-modeling",
-      "rationale": "The package learns a model-free reinforcement-learning policy in the Sokoban game."
-    },
-    {
-      "id": "unsupported-hybrid-model-repair",
-      "match": {
-        "task_ids": [
-          "llm-flowrepair-door-1",
-          "llm-flowrepair-door-2",
-          "llm-flowrepair-elevator-1",
-          "llm-flowrepair-elevator-10",
-          "llm-flowrepair-elevator-2",
-          "llm-flowrepair-elevator-3",
-          "llm-flowrepair-elevator-4",
-          "llm-flowrepair-elevator-5",
-          "llm-flowrepair-elevator-6",
-          "llm-flowrepair-elevator-7",
-          "llm-flowrepair-elevator-8",
-          "llm-flowrepair-elevator-9",
-          "llm-flowrepair-fridge-1",
-          "llm-flowrepair-fridge-2",
-          "llm-flowrepair-fridge-2a",
-          "llm-flowrepair-fridge-2b",
-          "llm-flowrepair-fridge-3",
-          "llm-flowrepair-pacemaker-1",
-          "llm-flowrepair-pacemaker-2"
-        ]
-      },
-      "domain_id": "computer-systems",
-      "task_type_id": "software-generation",
-      "rationale": "The source names control-logic/flow model repair cases (door, elevator, fridge, pacemaker); names alone do not establish clinical or physical validation."
     },
     {
       "id": "family-lmx_sd_prompt",

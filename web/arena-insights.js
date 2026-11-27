@@ -108,18 +108,48 @@ const FIELD_STORIES = {
   'chemistry-materials': {tone:'lilac', symbol:'bonds', question:'How do reactions and materials behave?', topics:'Reaction kinetics · materials · stress & strain', examples:['dga2d-ode-solver-robertson','coevo-stress-strain']},
   'biology-health': {tone:'green', symbol:'life', question:'How can we model living systems?', topics:'Growth · populations · biological data', examples:['coevo-e-coli-growth','dga2d-ode-solver-lotka-volterra']},
   mathematics: {tone:'blue', symbol:'construction', question:'Can a construction improve a bound?', topics:'Geometry · algebra · mathematical bounds', examples:['alphaevolve-circle-packing-in-unit-square','alphaevolve-matrix-multiplication-4-4-4']},
-  'earth-environment': {tone:'green', symbol:'earth', question:'What can environmental observations predict?', topics:'Volcanic sensors · forest-cover observations', examples:['loongflow-predict-volcanic-eruptions-ingv-oe','loongflow-tabular-playground-series-dec-2021']},
+  'earth-environment': {tone:'green', symbol:'earth', question:'What can environmental observations predict?', topics:'Atmospheric CO2 · storm tracks', examples:['science-earth-mauna-loa-co2-forecast','science-earth-hurricane-track-forecast']},
   'robotics-control': {tone:'lilac', symbol:'control', question:'Which feedback makes a system behave reliably?', topics:'Controllers · rewards · learned movement', examples:['dga2d-feedback-control-cart-pole','text2reward-button-press-v2']},
   'operations-research': {tone:'amber', symbol:'routes', question:'How should limited resources be allocated?', topics:'Routing · packing · scheduling', examples:['a2dept-capacitated-electric-vehicle-routing-with-time-windows','eoh-online-bin-packing']},
   'computer-systems': {tone:'blue', symbol:'systems', question:'Can the same workload use fewer resources?', topics:'Compute · placement · infrastructure', examples:['coral-expert-placement-load-balancing','coral-transaction-scheduling']},
   'machine-learning': {tone:'lilac', symbol:'intelligence', question:'What improves reasoning and generalization?', topics:'Learning · prompts · reasoning · retrieval', examples:['aevo-arc-agi-2','promptbreeder-gsm8k']},
   'software-engineering': {tone:'green', symbol:'software', question:'Does generated software meet its contract?', topics:'Program synthesis · behavior · correctness', examples:['sciel-bench-kattis-alphabet','sciel-bench-web-scraper-api-docs']},
-  'finance-economics': {tone:'blue', symbol:'decisions', question:'How do policies balance return and risk?', topics:'Allocation · trading policies · risk', examples:['ael-harness-d-full-portfolio-allocation','algoevolve-numin-intraday-equity-trading']},
-  unknown: {tone:'neutral', symbol:'mixed', question:'Which scientific target does this task define?', topics:'Mixed suites · open classification', examples:['deliberate-evolution-lsr-transform','evox-frontier-cs']},
+  'finance-economics': {tone:'blue', symbol:'decisions', question:'How do policies balance return and risk?', topics:'Portfolio allocation · market design', examples:['science-finance-portfolio-choice-ff20','science-economics-kidney-exchange']},
+  unknown: {tone:'neutral', symbol:'mixed', question:'Which scientific target does this task define?', topics:'Mixed suites · open classification', examples:['deliberate-evolution-lsr-transform','drsr-lsr-synth-crk0']},
 };
 // Editorial context for the exact task examples, checked against the primary sources below.
 // Historical references describe source results, not an Arena result or a claim of optimality.
 const TASK_CONTEXT = {
+  "science-earth-mauna-loa-co2-forecast": {
+    "summary": "Forecast the next twelve monthly means of atmospheric CO2 at Mauna Loa from the record up to each month and an ENSO index. The year-to-year rise of CO2 varies with El Nino, so the task tests whether a model captures that variation beyond the seasonal cycle and trend.",
+    "source_url": "https://doi.org/10.1038/nclimate3063",
+    "source_locator": "Betts et al. (2016): forecast of the annual Mauna Loa CO2 rise from emissions and ENSO; task data: NOAA GML monthly means and ERSSTv5",
+    "evidence_note": "The package fits on 1958-1999 and forecasts every month from 2000 to 2024 with data up to that month only, scored by root-mean-square error over 12 lead times. The cited paper motivates using ENSO for CO2-rise forecasts; the task is a local recreation, not the paper's operational forecast."
+  },
+  "science-earth-hurricane-track-forecast": {
+    "summary": "Forecast the centre positions of Atlantic hurricanes 12 to 120 hours ahead from their best track so far. Track error against the observed path is the standard verification measure, and the climatology-and-persistence model CLIPER5 marks the no-skill baseline.",
+    "source_url": "https://doi.org/10.1175/1520-0434(1998)013<1005:FDTCTF>2.0.CO;2",
+    "source_locator": "Aberson (1998): CLIPER5 five-day track baseline; task data: HURDAT2 release of 4 April 2025",
+    "evidence_note": "The package fits on the 1950-2014 Atlantic best track and scores held-out 2015-2024 storms by mean great-circle error over seven lead times, following the NHC verification convention. It is a statistical forecasting task, not an operational forecast."
+  },
+  "science-finance-portfolio-choice-ff20": {
+    "summary": "Choose each month's weights over 20 size and book-to-market portfolios and the market from the previous ten years of returns. The comparison with equal weighting (1/N) after trading costs asks whether an optimizing rule beats naive diversification out of sample.",
+    "source_url": "https://doi.org/10.1093/rfs/hhm075",
+    "source_locator": "DeMiguel, Garlappi and Uppal (2009), Sections 2-3 and Tables 2-5 (dataset 5, 120-month rolling windows)",
+    "evidence_note": "The package recomputes next-month returns net of 50 basis points of trading costs from 1973-07 to 2025-09 and scores the Sharpe ratio against 1/N, as in the paper's protocol. It is a historical backtest, not investment guidance."
+  },
+  "science-economics-kidney-exchange": {
+    "summary": "Choose two- and three-way exchanges among incompatible patient-donor pairs so that as many patients as possible receive a kidney. Each chosen cycle must respect every donor-patient compatibility, and the result is compared with the proven optimum of each pool.",
+    "source_url": "https://doi.org/10.1145/1250910.1250954",
+    "source_locator": "Abraham, Blum and Sandholm (2007): clearing with a cycle-length cap; PrefLib dataset 00036 at a pinned commit",
+    "evidence_note": "The package uses eight public PrefLib pools of 256 and 512 pairs generated with the Saidman et al. model and verifies every compatibility on the chosen cycles. Exchanges of length at most three follow Roth, Sonmez and Unver (2007)."
+  },
+  "drsr-lsr-synth-crk0": {
+    "summary": "Recover an equation from data of one LSR-Synth chemistry problem, as evaluated in the DrSR study of scientific equation discovery. The synthetic problems are built so that a familiar textbook formula alone does not fit the data.",
+    "source_url": "https://arxiv.org/pdf/2506.04282",
+    "source_locator": "DrSR, Section 4.1 and Appendix B",
+    "evidence_note": "DrSR evaluates its method on LSR-Synth problems taken from LLM-SRBench; this package is one of them. The domain is not one of the Arena's science domains, so it is listed under open classification."
+  },
   "coevo-oscillation-1": {
     "summary": "Recover an equation for the acceleration of a driven, damped oscillator from its position and velocity. An explicit formula helps connect observed motion to a physical model that researchers can inspect and analyze.",
     "source_url": "https://github.com/pgg3/CoEvo/blob/dcad65e9799961cf67cf29865ff41dda2902a808/CoEvo/src/coevo/tasks/oscillation_1.py",
@@ -167,18 +197,6 @@ const TASK_CONTEXT = {
     "source_url": "https://arxiv.org/pdf/2506.13131",
     "source_locator": "Section 3.1, printed pp. 9–10; Appendix A, Table 3; reference 95",
     "evidence_note": "Section 3.1 explicitly derives rank 49 by recursively applying Strassen; reference 95 dates it to 1969. AlphaEvolve's reported rank-48 construction uses complex arithmetic. The summary does not call rank 49 optimal or equate fewer scalar products with measured runtime gains."
-  },
-  "loongflow-predict-volcanic-eruptions-ingv-oe": {
-    "summary": "Estimate the time remaining before a volcanic eruption from ten-minute recordings of ten seismic sensors. Finding useful precursors in these signals supports research on eruption forecasting, where warning time matters as well as prediction accuracy.",
-    "source_url": "https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/predict-volcanic-eruptions-ingv-oe/description.md",
-    "source_locator": "Archived competition description, Overview and Dataset Description, lines 3–7 and 49–57",
-    "evidence_note": "MLE-bench preserves the INGV/Kaggle task description, target time_to_eruption, and ten-minute, ten-sensor recordings. Forecasting motivation is explicit in the competition description; no operational warning system or field reliability is claimed."
-  },
-  "loongflow-tabular-playground-series-dec-2021": {
-    "summary": "Predict forest-cover classes from synthetic data modeled on a real forest-cover benchmark. It provides a controlled setting for comparing how learning methods use terrain and soil features to distinguish vegetation classes.",
-    "source_url": "https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/tabular-playground-series-dec-2021/description.md",
-    "source_locator": "Archived competition description, lines 12, 16–19 and Dataset Description, lines 41–48",
-    "evidence_note": "The official competition text preserved by MLE-bench explicitly says the data were generated by a GAN trained on Forest Cover Type Prediction data, with relationships potentially differing from the original. Target Cover_Type and multiclass accuracy are recorded."
   },
   "dga2d-feedback-control-cart-pole": {
     "summary": "Design a feedback rule that moves a cart to keep an upright pole balanced. Maintaining stability over a long simulation while limiting tracking error and control effort studies a basic challenge shared by robots and other controlled machines.",
@@ -240,30 +258,12 @@ const TASK_CONTEXT = {
     "source_locator": "evaluate(), get_test_cases(), evaluate_extraction(); copied as suite/sciel-bench-web-scraper-api-docs/evaluator.py in pinned task snapshot",
     "evidence_note": "Read copied evaluator at task commit 995768fc462b8e327f90e6762846cc6ccb06cc2c. It uses three embedded HTML cases, expected function/parameter data, and parsing-exception counts; no claim of broad web coverage. Upstream URL currently returned 404."
   },
-  "ael-harness-d-full-portfolio-allocation": {
-    "summary": "Allocate weights across ten equities and cash using a sequence of historical market observations. The benchmark studies how memory, tool use and decision procedures affect portfolio returns and risk across changing market conditions.",
-    "source_url": "https://arxiv.org/pdf/2604.21725v2",
-    "source_locator": "Section 4.1; Appendix L, Tables 17–18; experiments/run_portfolio.py at c95f5f961667e7df4bdddf750b22332158951bf2",
-    "evidence_note": "Paper specifies ten equities plus cash, hourly observations and chronological train/validation/test episodes; runner allocates weights across tickers per bar. The summary describes a historical benchmark, without investment guidance or a future-performance claim."
-  },
-  "algoevolve-numin-intraday-equity-trading": {
-    "summary": "Produce buy, sell or hold decisions from five-minute equity data in a paper-trading simulator. Returns, volatility and drawdown expose how evolved programs behave across historical trading windows, including the effects of transaction costs.",
-    "source_url": "https://arxiv.org/pdf/2606.26173v1",
-    "source_locator": "Section 5.1 Market Environment and Feature Representation, pp.4–5; Section 5.2",
-    "evidence_note": "The source defines NUMIN as an anonymized multi-asset intraday paper-trading environment, with five-minute observations, buy/sell/hold outputs, fixed transaction/slippage cost and return/risk metrics. Section 5.1 is the actual setup locator in v1."
-  },
   "deliberate-evolution-lsr-transform": {
     "summary": "Recover mathematical expressions from data generated by transformed benchmark equations. Changing familiar equation forms makes this a test of symbolic-regression search designed to challenge formula recall while measuring how closely candidate expressions fit the data.",
     "source_url": "https://arxiv.org/pdf/2606.04360v1",
     "source_locator": "Appendix E.1 Benchmark Details, Table 6; Section 4, Table 1",
     "evidence_note": "Appendix E.1 defines the transform subset by changing existing equation representations; Table 6 names LSR-Transform and Table 1 evaluates normalized MSE. The purpose is framed as benchmark design, not proof that memorization is eliminated; conflicting total dataset counts are omitted."
   },
-  "evox-frontier-cs": {
-    "summary": "Generate executable solutions for a suite of 172 computer-science problems spanning algorithm design and systems optimization. This provides varied, task-specific feedback for studying program search where solution quality matters beyond whether code merely runs.",
-    "source_url": "https://arxiv.org/pdf/2602.20133v1",
-    "source_locator": "Section 4.4 Frontier-CS, Table 3",
-    "evidence_note": "AdaEvolve explicitly evaluates 172 Frontier-CS problems spanning algorithmic optimization and systems tasks via executable programs. The number describes this paper’s benchmark evaluation; no claim that every problem is historically open is made."
-  }
 };
 
 const FIELD_SYMBOLS = {

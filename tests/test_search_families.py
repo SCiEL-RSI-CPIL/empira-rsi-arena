@@ -24,16 +24,16 @@ def inputs():
 def test_source_declared_families_cover_catalog_once(inputs):
     catalog, _ = inputs
     data = get_search_families()
-    assert data["summary"] == {"task_count": 2578, "source_group_count": 132, "corpus_paper_count": 98,
+    assert data["summary"] == {"task_count": 2403, "source_group_count": 132, "corpus_paper_count": 98,
                                 "group_count": 10, "unknown_family_source_count": 0, "unknown_family_task_count": 0,
-                                "cross_family_task_count": 26, "executable_count": 2405, "unsupported_count": 173}
+                                "cross_family_task_count": 25, "executable_count": 2403, "unsupported_count": 0}
     members = [ident for group in data["groups"] for ident in group["task_ids"]]
-    assert len(members) == len(set(members)) == 2578
+    assert len(members) == len(set(members)) == 2403
     assert set(members) == {task["id"] for task in catalog["tasks"]}
     assert sum(group["paper_count"] for group in data["groups"]) == 98
     assert sum(group["source_group_count"] for group in data["groups"]) == 132
-    assert sum(group["executable"] for group in data["groups"]) == 2405
-    assert sum(group["unsupported"] for group in data["groups"]) == 173
+    assert sum(group["executable"] for group in data["groups"]) == 2403
+    assert sum(group["unsupported"] for group in data["groups"]) == 0
     assert {group["label"]: group["source_group_count"] for group in data["groups"]} == {
         "AlphaEvolve / OpenEvolve": 16, "FunSearch / EoH": 18, "DGM / ADAS": 16,
         "Eureka": 7, "LLM-SR": 4, "Promptbreeder / EvoPrompt": 13, "Other": 24, "SCiEL supplement": 1,
@@ -78,7 +78,7 @@ def test_unknown_source_label_is_preserved_not_guessed(inputs):
     assert data["summary"]["unknown_family_task_count"] > 0
     assert data["paper_annotations"]["alphaevolve"]["declared_family"] == "New unreviewed lineage"
     assert data["task_annotations"]["alphaevolve-circle-packing-in-unit-square"]["search_family_id"] == "unknown"
-    assert sum(group["task_count"] for group in data["groups"]) == 2578
+    assert sum(group["task_count"] for group in data["groups"]) == 2403
 
 
 @pytest.mark.parametrize("mutate", [

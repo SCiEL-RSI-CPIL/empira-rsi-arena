@@ -276,16 +276,11 @@ test('all 24 scientific examples explain the task and research value with safe p
         contexts.set(id, summary);
         if (task.executable) executableExamples++;
         else sourceOnlyExamples++;
-        if (['earth-environment', 'finance-economics'].includes(domain.id))
-          assert.equal(task.executable, false);
       }
     }
     assert.equal(contexts.size, 24);
-    assert.ok(executableExamples > 0);
-    assert.ok(
-      sourceOnlyExamples >= 4,
-      'Source-only Earth and Finance examples must remain visible',
-    );
+    assert.equal(executableExamples, 24);
+    assert.equal(sourceOnlyExamples, 0);
     const matrix = contexts.get('alphaevolve-matrix-multiplication-4-4-4');
     assert.match(matrix, /4[×x]4/);
     assert.match(matrix, /49/);
@@ -299,10 +294,10 @@ test('all 24 scientific examples explain the task and research value with safe p
           `${id} must not inherit matrix multiplication history`,
         );
     }
-    const forest = contexts.get('loongflow-tabular-playground-series-dec-2021');
-    assert.match(forest, /synthetic/i);
-    assert.match(forest, /generat(?:ed|ion)|modeled on/i);
-    assert.match(forest, /class(?:es|ification)/i);
+    const co2 = contexts.get('science-earth-mauna-loa-co2-forecast');
+    assert.match(co2, /Mauna Loa/);
+    assert.match(co2, /twelve monthly/i);
+    assert.match(co2, /ENSO|El Nino/);
     const packing = contexts.get('alphaevolve-circle-packing-in-unit-square');
     assert.match(packing, /26/);
     assert.match(packing, /lower bound/i);
