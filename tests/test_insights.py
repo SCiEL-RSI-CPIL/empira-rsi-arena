@@ -23,11 +23,11 @@ def test_every_package_occurs_once_in_each_complete_partition(inputs):
     catalog, _ = inputs
     insights = get_insights()
     assert set(insights["task_annotations"]) == {task["id"] for task in catalog["tasks"]}
-    assert insights["denominator"] == {"unit": "task_package", "task_count": 2403}
+    assert insights["denominator"] == {"unit": "task_package", "task_count": 2398}
     for group, key in [("domains", "domain_id"), ("task_types", "task_type_id")]:
         rows = insights[group]
-        assert sum(row["total"] for row in rows) == 2403
-        assert sum(row["executable"] for row in rows) == 2403
+        assert sum(row["total"] for row in rows) == 2398
+        assert sum(row["executable"] for row in rows) == 2398
         assert sum(row["unsupported"] for row in rows) == 0
         assert sum(Decimal(str(row["percentage"])) for row in rows) == Decimal("100.0")
         for row in rows:
@@ -36,11 +36,11 @@ def test_every_package_occurs_once_in_each_complete_partition(inputs):
             assert all(insights["task_annotations"][ident][key] == row["id"] for ident in row["representative_task_ids"])
 
 
-def test_all_489_source_families_have_documented_defaults(inputs):
+def test_all_485_source_families_have_documented_defaults(inputs):
     catalog, taxonomy = inputs
     families = {task["family"] for task in catalog["tasks"] if task["family"] is not None}
     defaults = {rule["match"]["families"][0] for rule in taxonomy["rules"] if rule["id"].startswith("family-")}
-    assert len(families) == 489
+    assert len(families) == 485
     assert defaults == families
 
 
@@ -123,8 +123,8 @@ def test_papers_and_supplements_are_separate_and_coverage_is_not_readiness(input
     coverage = {row["id"]: row for row in insights["coverage"]}
     assert coverage["runtime_verified"]["total"] == 0
     assert coverage["original"]["total"] == 113
-    assert coverage["recreated"]["total"] == 994
-    assert coverage["recorded_contract"]["total"] == 2403
+    assert coverage["recreated"]["total"] == 989
+    assert coverage["recorded_contract"]["total"] == 2398
     assert coverage["recreated_verified"]["total"] == 1296
     assert "not independently" in coverage["recreated_verified"]["description"]
     assert "editorial inference" in insights["methodology"]["classification_authority"]
@@ -183,7 +183,7 @@ def test_build_is_deterministic_and_api_values_are_detached(inputs):
     assert build_insights(catalog, taxonomy) == build_insights(deepcopy(catalog), deepcopy(taxonomy))
     first = get_insights()
     first["summary"]["task_count"] = 1
-    assert get_insights()["summary"]["task_count"] == 2403
+    assert get_insights()["summary"]["task_count"] == 2398
 
 
 def test_check_command_never_rewrites_and_rejects_stale_snapshot(tmp_path):

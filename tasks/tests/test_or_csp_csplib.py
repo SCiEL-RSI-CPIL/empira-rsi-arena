@@ -30,11 +30,7 @@ UPGRADES = json.loads((ROOT / "catalog" / "upgrades" / "or_csp.json").read_text(
 PINNED = {
     "pdr-car-sequencing-csplib-1": "66f9c8a806e4bce8",
     "pdr-vessel-loading-csplib-8": "2ac8a057de66c313",
-    "pdr-social-golfer-csplib-10": "2198370ab732d6e3",
-    "pdr-balanced-incomplete-block-design-csplib-28": "f1568bd0923fdc67",
     "pdr-balanced-academic-curriculum-csplib-30": "587c9e1becaf32a4",
-    "pdr-error-correction-codes-csplib-36": "877b3484a2644284",
-    "pdr-covering-arrays-csplib-45": "ac5ce290ca460c56",
     "pdr-tail-assignment-csplib-115": "51a9215389322b7d",
 }
 

@@ -213,19 +213,48 @@ def load_candidate(module):
     return source, Path(path).name
 
 
+def _held_out_instance(spec, held_out, generate, baseline_source, problem, worker, run_model):
+    """Draw instances of the published spec's size from fresh secret seeds until the baseline solves one in the band.
+
+    The published seeds only show the candidate what the scored instances look like: a model that stores their
+    answers would otherwise be scored as a speedup. Each evaluation scores new instances that nobody, the candidate
+    included, can know in advance; the seed drawn is reported afterwards so the instance can be rebuilt.
+    """
+    import secrets
+    low, high = (float(x) for x in held_out["band"])
+    rejected = 0
+    for _ in range(int(held_out["max_draws"])):
+        drawn = {**spec, "seed": secrets.randbits(62)}
+        data = generate(**drawn)
+        probe, answer = run_model(baseline_source, f"<baseline {problem}>", data, worker, high, is_candidate=False)
+        if probe["status"] == "SOLVED" and probe["runtime"] >= low:
+            return drawn, data, probe, answer, rejected
+        rejected += 1
+    return None, None, None, None, rejected
+
+
 def reformulation_score(module, problem, params, *, generate, check, baseline_source):
     """PAR2 speedup of the candidate over the baseline model: sum(baseline) / sum(candidate)."""
     from .or_csp_modelrun import run_model
     source, filename = load_candidate(module)
     cap_factor, cap_floor = float(params["cap_factor"]), float(params["cap_floor"])
     baseline_cap = float(params.get("baseline_cap", 60.0))
+    held_out = params.get("held_out")
     worker = SolverWorker()
     rows, excluded = [], []
     try:
         for spec in params["instances"]:
-            data = generate(**spec)
-            # The baseline is solved first because its runtime sets the candidate's cap; its answer is checked here.
-            base_probe, base_answer = run_model(baseline_source, f"<baseline {problem}>", data, worker, baseline_cap, is_candidate=False)
+            if held_out:
+                drawn, data, base_probe, base_answer, rejected = _held_out_instance(
+                    spec, held_out, generate, baseline_source, problem, worker, run_model)
+                if drawn is None:
+                    excluded.append({"instance": spec, "reason": f"no held-out draw in the baseline band after {rejected} draws"})
+                    continue
+                spec = {**drawn, "rejected_draws": rejected}
+            else:
+                data = generate(**spec)
+                # The baseline is solved first because its runtime sets the candidate's cap; its answer is checked here.
+                base_probe, base_answer = run_model(baseline_source, f"<baseline {problem}>", data, worker, baseline_cap, is_candidate=False)
             if base_probe["status"] != "SOLVED":
                 excluded.append({"instance": spec, "reason": "baseline did not solve within the baseline cap"})
                 continue
@@ -252,7 +281,7 @@ def reformulation_score(module, problem, params, *, generate, check, baseline_so
     total_base = sum(r["baseline_seconds"] for r in rows)
     total_cand = sum(r["candidate_seconds"] for r in rows)
     geo = math.exp(sum(math.log(r["baseline_seconds"] / r["candidate_seconds"]) for r in rows) / len(rows))
-    details = {"problem": problem, "instances_used": len(rows), "excluded": excluded,
+    details = {"problem": problem, "instances_used": len(rows), "excluded": excluded, "held_out": held_out or None,
                "baseline_total_seconds": round(total_base, 6), "candidate_total_seconds": round(total_cand, 6),
                "timeouts": sum(r["candidate_status"] == "TIMEOUT" for r in rows),
                "per_instance_geometric_mean_speedup": round(geo, 6), "per_instance": rows,

@@ -30,8 +30,8 @@ def catalog():
 
 def test_pinned_catalog_is_available_without_runtime_or_frameworks(catalog):
     assert catalog["summary"] == {
-        "task_count": 2403, "executable_count": 2403, "unsupported_count": 0,
-        "protocol_counts": {"original": 113, "recreated_verified": 1296, "recreated": 994, "unsupported": 0},
+        "task_count": 2398, "executable_count": 2398, "unsupported_count": 0,
+        "protocol_counts": {"original": 113, "recreated_verified": 1296, "recreated": 989, "unsupported": 0},
         "runtime_readiness": "not_verified"}
     assert catalog["sources"][0]["kind"] == "bundled"
     assert catalog["sources"][0]["id"] == "arena-tasks"
@@ -101,7 +101,7 @@ def test_missing_evaluator_cannot_claim_ready(catalog):
 def test_get_catalog_returns_detached_values():
     first = get_catalog()
     first["tasks"].clear()
-    assert len(get_catalog()["tasks"]) == 2403
+    assert len(get_catalog()["tasks"]) == 2398
 
 
 def test_input_output_contracts_are_bound_to_pinned_problem_files(catalog):

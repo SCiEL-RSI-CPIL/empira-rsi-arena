@@ -235,8 +235,8 @@ class DashboardServerTests(unittest.TestCase):
         view = json.loads(body)
         catalog = json.loads(self.get('/api/catalog')[2])
         ids = [ident for group in view['groups'] for ident in group['task_ids']]
-        self.assertEqual(len(ids), 2403)
-        self.assertEqual(len(set(ids)), 2403)
+        self.assertEqual(len(ids), 2398)
+        self.assertEqual(len(set(ids)), 2398)
         self.assertEqual(set(ids), {task['id'] for task in catalog['tasks']})
         self.assertEqual(view['summary']['corpus_paper_count'], 98)
         self.assertEqual(view['summary']['source_group_count'], 132)

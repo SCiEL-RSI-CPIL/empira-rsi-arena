@@ -1,12 +1,12 @@
 {
   "schema": "arena.search-families/1",
-  "catalog_digest": "0c22f4b376157fd67fddcc4fe435ec8f8699bf8a43a490c3f31e9b8b3f0f4636",
-  "source_digest": "4200204bafc559c13d2e3b1ad68e1c7c1f543ab5da0567d9bf7ae2abe27e9ded",
+  "catalog_digest": "9f90b40ec2379b7c3b15097cf8e33930950f6f88b0b67d8a056d12bd65286682",
+  "source_digest": "d49c3a79f066fe974c54ebbb387e6b38c350025d328c22b4e46ade55a177c556",
   "sources": [
     {
       "path": "catalog/papers.json",
       "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-      "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5"
+      "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b"
     },
     {
       "path": "catalog/corpus.json",
@@ -20,14 +20,14 @@
     }
   ],
   "summary": {
-    "task_count": 2403,
+    "task_count": 2398,
     "source_group_count": 132,
     "corpus_paper_count": 98,
     "group_count": 10,
     "unknown_family_source_count": 0,
     "unknown_family_task_count": 0,
     "cross_family_task_count": 25,
-    "executable_count": 2403,
+    "executable_count": 2398,
     "unsupported_count": 0
   },
   "groups": [
@@ -506,11 +506,7 @@
         "mcts-ahd-asp-constructive",
         "mcts-ahd-bo-caf",
         "pdr-balanced-academic-curriculum-csplib-30",
-        "pdr-balanced-incomplete-block-design-csplib-28",
         "pdr-car-sequencing-csplib-1",
-        "pdr-covering-arrays-csplib-45",
-        "pdr-error-correction-codes-csplib-36",
-        "pdr-social-golfer-csplib-10",
         "pdr-tail-assignment-csplib-115",
         "pdr-vessel-loading-csplib-8",
         "redahd-0-1-knapsack",
@@ -526,9 +522,9 @@
         "reevo-tsp-lehd-attention-reshaping",
         "reevo-tsp-pomo-attention-reshaping"
       ],
-      "task_count": 98,
-      "total": 98,
-      "executable": 98,
+      "task_count": 94,
+      "total": 94,
+      "executable": 94,
       "unsupported": 0,
       "addressed_task_ids": [
         "a2dept-capacitated-electric-vehicle-routing-with-time-windows",
@@ -610,11 +606,7 @@
         "mcts-ahd-asp-constructive",
         "mcts-ahd-bo-caf",
         "pdr-balanced-academic-curriculum-csplib-30",
-        "pdr-balanced-incomplete-block-design-csplib-28",
         "pdr-car-sequencing-csplib-1",
-        "pdr-covering-arrays-csplib-45",
-        "pdr-error-correction-codes-csplib-36",
-        "pdr-social-golfer-csplib-10",
         "pdr-tail-assignment-csplib-115",
         "pdr-vessel-loading-csplib-8",
         "redahd-0-1-knapsack",
@@ -630,7 +622,7 @@
         "reevo-tsp-lehd-attention-reshaping",
         "reevo-tsp-pomo-attention-reshaping"
       ],
-      "addressed_task_count": 98,
+      "addressed_task_count": 94,
       "representative_task_ids": [
         "a2dept-capacitated-electric-vehicle-routing-with-time-windows",
         "a2dept-capacitated-facility-location",
@@ -689,7 +681,6 @@
         "hsi-crafter",
         "hsi-minihack",
         "hsi-textworld",
-        "hyperagents-conference-paper-acceptance-prediction",
         "hyperagents-imo-gradingbench",
         "hyperagents-quadruped-torso-height-reward-design",
         "meta-harness-amazon-reviews-5-class",
@@ -707,9 +698,9 @@
         "sica-aime-2024",
         "sica-livecodebench"
       ],
-      "task_count": 41,
-      "total": 41,
-      "executable": 41,
+      "task_count": 40,
+      "total": 40,
+      "executable": 40,
       "unsupported": 0,
       "addressed_task_ids": [
         "adas-arc",
@@ -741,7 +732,6 @@
         "hsi-crafter",
         "hsi-minihack",
         "hsi-textworld",
-        "hyperagents-conference-paper-acceptance-prediction",
         "hyperagents-imo-gradingbench",
         "hyperagents-quadruped-torso-height-reward-design",
         "mce-finer",
@@ -767,7 +757,7 @@
         "sica-aime-2024",
         "sica-livecodebench"
       ],
-      "addressed_task_count": 54,
+      "addressed_task_count": 53,
       "representative_task_ids": [
         "adas-arc",
         "adas-asdiv",
@@ -13025,17 +13015,6 @@
       ],
       "rationale": "Placed once using the first catalog paper ID; all source-paper and family associations are retained. This placement is for display, not a scientific-priority claim."
     },
-    "hyperagents-conference-paper-acceptance-prediction": {
-      "search_family_id": "dgm-adas",
-      "primary_paper_id": "hyperagents",
-      "paper_ids": [
-        "hyperagents"
-      ],
-      "related_search_family_ids": [
-        "dgm-adas"
-      ],
-      "rationale": "Placed once using the first catalog paper ID; all source-paper and family associations are retained. This placement is for display, not a scientific-priority claim."
-    },
     "hyperagents-imo-gradingbench": {
       "search_family_id": "dgm-adas",
       "primary_paper_id": "hyperagents",
@@ -17892,51 +17871,7 @@
       ],
       "rationale": "Placed once using the first catalog paper ID; all source-paper and family associations are retained. This placement is for display, not a scientific-priority claim."
     },
-    "pdr-balanced-incomplete-block-design-csplib-28": {
-      "search_family_id": "funsearch-eoh",
-      "primary_paper_id": "pdr",
-      "paper_ids": [
-        "pdr"
-      ],
-      "related_search_family_ids": [
-        "funsearch-eoh"
-      ],
-      "rationale": "Placed once using the first catalog paper ID; all source-paper and family associations are retained. This placement is for display, not a scientific-priority claim."
-    },
     "pdr-car-sequencing-csplib-1": {
-      "search_family_id": "funsearch-eoh",
-      "primary_paper_id": "pdr",
-      "paper_ids": [
-        "pdr"
-      ],
-      "related_search_family_ids": [
-        "funsearch-eoh"
-      ],
-      "rationale": "Placed once using the first catalog paper ID; all source-paper and family associations are retained. This placement is for display, not a scientific-priority claim."
-    },
-    "pdr-covering-arrays-csplib-45": {
-      "search_family_id": "funsearch-eoh",
-      "primary_paper_id": "pdr",
-      "paper_ids": [
-        "pdr"
-      ],
-      "related_search_family_ids": [
-        "funsearch-eoh"
-      ],
-      "rationale": "Placed once using the first catalog paper ID; all source-paper and family associations are retained. This placement is for display, not a scientific-priority claim."
-    },
-    "pdr-error-correction-codes-csplib-36": {
-      "search_family_id": "funsearch-eoh",
-      "primary_paper_id": "pdr",
-      "paper_ids": [
-        "pdr"
-      ],
-      "related_search_family_ids": [
-        "funsearch-eoh"
-      ],
-      "rationale": "Placed once using the first catalog paper ID; all source-paper and family associations are retained. This placement is for display, not a scientific-priority claim."
-    },
-    "pdr-social-golfer-csplib-10": {
       "search_family_id": "funsearch-eoh",
       "primary_paper_id": "pdr",
       "paper_ids": [
@@ -31962,7 +31897,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=a2dept; field family"
       },
       "task_ids": [
@@ -32020,7 +31955,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=accelopt; field family"
       },
       "task_ids": [
@@ -32068,7 +32003,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=adaevolve; field family"
       },
       "task_ids": [
@@ -32114,7 +32049,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=adas; field family"
       },
       "task_ids": [
@@ -32152,7 +32087,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=ael; field family"
       },
       "task_ids": [
@@ -32174,7 +32109,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=ael-harness; field family"
       },
       "task_ids": [
@@ -32196,7 +32131,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=aevo; field family"
       },
       "task_ids": [
@@ -32224,7 +32159,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=aflow; field family"
       },
       "task_ids": [
@@ -32256,7 +32191,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=agentic-optimization; field family"
       },
       "task_ids": [
@@ -32280,7 +32215,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=agentsquare; field family"
       },
       "task_ids": [
@@ -32310,7 +32245,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=ahe; field family"
       },
       "task_ids": [],
@@ -32328,7 +32263,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=algoevolve; field family"
       },
       "task_ids": [],
@@ -32346,7 +32281,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=alphaevolve; field family"
       },
       "task_ids": [
@@ -32512,7 +32447,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=autorise; field family"
       },
       "task_ids": [],
@@ -32530,7 +32465,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=avo; field family"
       },
       "task_ids": [
@@ -32598,7 +32533,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=base; field family"
       },
       "task_ids": [
@@ -32624,7 +32559,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=cae; field family"
       },
       "task_ids": [
@@ -32654,7 +32589,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=cocoevo; field family"
       },
       "task_ids": [
@@ -32676,7 +32611,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=codeevolve; field family"
       },
       "task_ids": [
@@ -32720,7 +32655,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=codeevolve-salesforce; field family"
       },
       "task_ids": [],
@@ -32738,7 +32673,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=coevo; field family"
       },
       "task_ids": [
@@ -32769,7 +32704,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=constitutional-evolution; field family"
       },
       "task_ids": [],
@@ -32787,7 +32722,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=coral; field family"
       },
       "task_ids": [
@@ -32833,7 +32768,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=darwinian-evolver; field family"
       },
       "task_ids": [
@@ -32855,7 +32790,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=deevo; field family"
       },
       "task_ids": [
@@ -32883,7 +32818,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=deliberate-evolution; field family"
       },
       "task_ids": [
@@ -32915,7 +32850,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=dga2d; field family"
       },
       "task_ids": [
@@ -32987,7 +32922,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=dgm; field family"
       },
       "task_ids": [
@@ -33009,7 +32944,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=dreureka; field family"
       },
       "task_ids": [
@@ -33031,7 +32966,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=drsr; field family"
       },
       "task_ids": [
@@ -33068,7 +33003,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=elm; field family"
       },
       "task_ids": [
@@ -33092,7 +33027,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=enpire; field family"
       },
       "task_ids": [
@@ -33114,7 +33049,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=eob; field family"
       },
       "task_ids": [
@@ -33136,7 +33071,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=eoh; field family"
       },
       "task_ids": [
@@ -33164,7 +33099,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=eoh-s; field family"
       },
       "task_ids": [
@@ -33190,7 +33125,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=eureka; field family"
       },
       "task_ids": [
@@ -33218,7 +33153,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=eurekagent; field family"
       },
       "task_ids": [
@@ -33250,7 +33185,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=evoflow; field family"
       },
       "task_ids": [
@@ -33280,7 +33215,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=evolcaf; field family"
       },
       "task_ids": [
@@ -33324,7 +33259,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=evoor-agent; field family"
       },
       "task_ids": [
@@ -33358,7 +33293,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=evoprompt; field family"
       },
       "task_ids": [
@@ -33448,7 +33383,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=evoprompting; field family"
       },
       "task_ids": [
@@ -33504,7 +33439,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=evoskill; field family"
       },
       "task_ids": [],
@@ -33522,7 +33457,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=evox; field family"
       },
       "task_ids": [
@@ -33592,7 +33527,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=flowscout; field family"
       },
       "task_ids": [],
@@ -33610,7 +33545,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=funbo; field family"
       },
       "task_ids": [
@@ -33656,7 +33591,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=funl2o; field family"
       },
       "task_ids": [
@@ -33714,7 +33649,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=funsearch-re-implementation; field family"
       },
       "task_ids": [
@@ -33742,7 +33677,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=g-del-agent; field family"
       },
       "task_ids": [
@@ -33770,7 +33705,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=gaapo; field family"
       },
       "task_ids": [
@@ -33798,7 +33733,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=gea; field family"
       },
       "task_ids": [
@@ -33820,7 +33755,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=gepa; field family"
       },
       "task_ids": [
@@ -33852,7 +33787,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=hsevo; field family"
       },
       "task_ids": [
@@ -33878,7 +33813,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=hsi; field family"
       },
       "task_ids": [
@@ -33912,20 +33847,18 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=hyperagents; field family"
       },
       "task_ids": [
         "dgm-aider-polyglot",
         "eureka-ant",
-        "hyperagents-conference-paper-acceptance-prediction",
         "hyperagents-imo-gradingbench",
         "hyperagents-quadruped-torso-height-reward-design"
       ],
       "declared_task_ids": [
         "dgm-aider-polyglot",
         "eureka-ant",
-        "hyperagents-conference-paper-acceptance-prediction",
         "hyperagents-imo-gradingbench",
         "hyperagents-quadruped-torso-height-reward-design"
       ],
@@ -33942,7 +33875,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=kaggle-santa-2025; field family"
       },
       "task_ids": [
@@ -33964,7 +33897,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=kernelpro; field family"
       },
       "task_ids": [
@@ -34006,7 +33939,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=l-autoda; field family"
       },
       "task_ids": [
@@ -34028,7 +33961,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=lasr; field family"
       },
       "task_ids": [
@@ -34057,7 +33990,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=limen; field family"
       },
       "task_ids": [
@@ -34083,7 +34016,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=llamea-bo; field family"
       },
       "task_ids": [
@@ -34231,7 +34164,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=llamea-hpo; field family"
       },
       "task_ids": [
@@ -34257,7 +34190,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=llamea-mobo; field family"
       },
       "task_ids": [
@@ -34307,7 +34240,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=llm-evolved-rl-algorithms; field family"
       },
       "task_ids": [
@@ -34347,7 +34280,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=llm-flowrepair; field family"
       },
       "task_ids": [],
@@ -34365,7 +34298,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=llm-lex; field family"
       },
       "task_ids": [
@@ -34399,7 +34332,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=llmastool; field family"
       },
       "task_ids": [],
@@ -34417,7 +34350,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=lmx; field family"
       },
       "task_ids": [
@@ -34455,7 +34388,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=loongflow; field family"
       },
       "task_ids": [
@@ -34499,7 +34432,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=magellan; field family"
       },
       "task_ids": [
@@ -34525,7 +34458,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=mce; field family"
       },
       "task_ids": [
@@ -34555,7 +34488,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=mcts-ahd; field family"
       },
       "task_ids": [
@@ -34595,7 +34528,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=meoh; field family"
       },
       "task_ids": [
@@ -34619,7 +34552,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=meta-harness; field family"
       },
       "task_ids": [
@@ -34669,7 +34602,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=meta-ttl; field family"
       },
       "task_ids": [
@@ -34701,7 +34634,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=mind-evolution; field family"
       },
       "task_ids": [
@@ -34727,7 +34660,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=mipro; field family"
       },
       "task_ids": [
@@ -34759,7 +34692,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=omni-epic; field family"
       },
       "task_ids": [],
@@ -34777,7 +34710,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=open-problems-2026-11; field family"
       },
       "task_ids": [
@@ -37399,7 +37332,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=pairwise-validator; field family"
       },
       "task_ids": [
@@ -37439,26 +37372,18 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=pdr; field family"
       },
       "task_ids": [
         "pdr-balanced-academic-curriculum-csplib-30",
-        "pdr-balanced-incomplete-block-design-csplib-28",
         "pdr-car-sequencing-csplib-1",
-        "pdr-covering-arrays-csplib-45",
-        "pdr-error-correction-codes-csplib-36",
-        "pdr-social-golfer-csplib-10",
         "pdr-tail-assignment-csplib-115",
         "pdr-vessel-loading-csplib-8"
       ],
       "declared_task_ids": [
         "pdr-balanced-academic-curriculum-csplib-30",
-        "pdr-balanced-incomplete-block-design-csplib-28",
         "pdr-car-sequencing-csplib-1",
-        "pdr-covering-arrays-csplib-45",
-        "pdr-error-correction-codes-csplib-36",
-        "pdr-social-golfer-csplib-10",
         "pdr-tail-assignment-csplib-115",
         "pdr-vessel-loading-csplib-8"
       ],
@@ -37475,7 +37400,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=phaseevo; field family"
       },
       "task_ids": [
@@ -37565,7 +37490,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=polymath; field family"
       },
       "task_ids": [
@@ -37597,7 +37522,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=promptagent; field family"
       },
       "task_ids": [
@@ -37641,7 +37566,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=promptbreeder; field family"
       },
       "task_ids": [
@@ -37727,7 +37652,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=protegi; field family"
       },
       "task_ids": [
@@ -37755,7 +37680,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=qdaif; field family"
       },
       "task_ids": [
@@ -37787,7 +37712,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=rankevolve; field family"
       },
       "task_ids": [
@@ -37863,7 +37788,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=ready; field family"
       },
       "task_ids": [],
@@ -37881,7 +37806,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=redahd; field family"
       },
       "task_ids": [
@@ -37913,7 +37838,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=reevo; field family"
       },
       "task_ids": [
@@ -37961,7 +37886,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=revolve; field family"
       },
       "task_ids": [
@@ -37985,7 +37910,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=rqgm; field family"
       },
       "task_ids": [
@@ -38007,7 +37932,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=satlution; field family"
       },
       "task_ids": [
@@ -38032,7 +37957,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=sciel-supplement; field family"
       },
       "task_ids": [
@@ -38238,7 +38163,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-biology_expansion; field family"
       },
       "task_ids": [
@@ -38282,7 +38207,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-biology_research; field family"
       },
       "task_ids": [
@@ -38314,7 +38239,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-chemistry; field family"
       },
       "task_ids": [
@@ -38338,7 +38263,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-chemistry_research; field family"
       },
       "task_ids": [
@@ -38394,7 +38319,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-climate; field family"
       },
       "task_ids": [
@@ -38418,7 +38343,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-cosmology; field family"
       },
       "task_ids": [
@@ -38444,7 +38369,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-earth_data; field family"
       },
       "task_ids": [
@@ -38476,7 +38401,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-earth_expansion; field family"
       },
       "task_ids": [
@@ -38508,7 +38433,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-earth_research; field family"
       },
       "task_ids": [
@@ -38562,7 +38487,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-economics_expansion; field family"
       },
       "task_ids": [
@@ -38592,7 +38517,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-finance_expansion; field family"
       },
       "task_ids": [
@@ -38648,7 +38573,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-frontier_combinatorics; field family"
       },
       "task_ids": [
@@ -38698,7 +38623,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-frontier_physics; field family"
       },
       "task_ids": [
@@ -38738,7 +38663,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-materials_expansion; field family"
       },
       "task_ids": [
@@ -38782,7 +38707,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-particle; field family"
       },
       "task_ids": [
@@ -38806,7 +38731,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-physics_expansion; field family"
       },
       "task_ids": [
@@ -38854,7 +38779,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-physics_research; field family"
       },
       "task_ids": [
@@ -38888,7 +38813,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-prize; field family"
       },
       "task_ids": [
@@ -38914,7 +38839,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-prize_a; field family"
       },
       "task_ids": [
@@ -38994,7 +38919,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-prize_b; field family"
       },
       "task_ids": [
@@ -39074,7 +38999,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-prize_c; field family"
       },
       "task_ids": [
@@ -39152,7 +39077,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-prize_d; field family"
       },
       "task_ids": [
@@ -39194,7 +39119,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-prize_e; field family"
       },
       "task_ids": [
@@ -39250,7 +39175,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-prize_f; field family"
       },
       "task_ids": [
@@ -39314,7 +39239,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-prize_g; field family"
       },
       "task_ids": [
@@ -39354,7 +39279,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-prize_h; field family"
       },
       "task_ids": [
@@ -39438,7 +39363,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-prize_i; field family"
       },
       "task_ids": [
@@ -39494,7 +39419,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-quantum; field family"
       },
       "task_ids": [
@@ -39518,7 +39443,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-software_engineering; field family"
       },
       "task_ids": [
@@ -39584,7 +39509,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-tcs; field family"
       },
       "task_ids": [
@@ -39618,7 +39543,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=science-tcs_expansion; field family"
       },
       "task_ids": [
@@ -39646,7 +39571,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=sepo; field family"
       },
       "task_ids": [
@@ -39676,7 +39601,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=shinkaevolve; field family"
       },
       "task_ids": [
@@ -39724,7 +39649,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=sica; field family"
       },
       "task_ids": [
@@ -39750,7 +39675,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=stride; field family"
       },
       "task_ids": [
@@ -39772,7 +39697,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=text2reward; field family"
       },
       "task_ids": [
@@ -39824,7 +39749,7 @@
       "source": {
         "path": "catalog/papers.json",
         "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-        "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5",
+        "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b",
         "locator": "record id=the-station; field family"
       },
       "task_ids": [

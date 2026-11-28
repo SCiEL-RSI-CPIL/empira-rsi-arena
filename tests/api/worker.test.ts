@@ -66,7 +66,7 @@ test('Access verifies signature, issuer, audience and expiration', async () => {
 });
 test('catalog and participants are real registry snapshots, with no fake launch support', async () => {
   const catalog = await (await route(request('/api/catalog'), env)).json();
-  assert.equal(catalog.tasks.length, 2403);
+  assert.equal(catalog.tasks.length, 2398);
   const participants = await (await route(request('/api/participants'), env)).json();
   assert.equal(participants.participants.length, 99);
   assert.equal(participants.summary.research_work_count, 98);
@@ -102,12 +102,12 @@ test('search-family API partitions all packages and preserves secondary source l
   assert.equal(response.headers.get('Cache-Control'), 'private, no-store');
   const data = await response.json();
   assert.equal(data.schema, 'arena.search-families/1');
-  assert.equal(data.summary.task_count, 2403);
+  assert.equal(data.summary.task_count, 2398);
   assert.equal(data.summary.corpus_paper_count, 98);
   assert.equal(data.summary.source_group_count, 132);
   const taskIds = data.groups.flatMap((group: {task_ids: string[]}) => group.task_ids);
-  assert.equal(taskIds.length, 2403);
-  assert.equal(new Set(taskIds).size, 2403);
+  assert.equal(taskIds.length, 2398);
+  assert.equal(new Set(taskIds).size, 2398);
   assert.deepEqual(taskIds.sort(), catalog.tasks.map((task: {id: string}) => task.id).sort());
   assert.deepEqual(data.task_annotations['eoh-online-bin-packing'].related_search_family_ids, ['alphaevolve-openevolve', 'funsearch-eoh', 'other']);
   assert.equal(data.summary.group_count, 10);

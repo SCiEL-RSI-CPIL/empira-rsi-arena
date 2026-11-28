@@ -682,11 +682,7 @@
           "funl2o-predict-and-search-combinatorial-auctions",
           "funl2o-predict-and-search-minimum-vertex-cover",
           "pdr-balanced-academic-curriculum-csplib-30",
-          "pdr-balanced-incomplete-block-design-csplib-28",
           "pdr-car-sequencing-csplib-1",
-          "pdr-covering-arrays-csplib-45",
-          "pdr-error-correction-codes-csplib-36",
-          "pdr-social-golfer-csplib-10",
           "pdr-tail-assignment-csplib-115",
           "pdr-vessel-loading-csplib-8"
         ]
@@ -886,7 +882,6 @@
           "evoprompt-asset",
           "gepa-ifbench",
           "gepa-pupa",
-          "hyperagents-conference-paper-acceptance-prediction",
           "hyperagents-imo-gradingbench",
           "hyperagents-quadruped-torso-height-reward-design",
           "lmx-gore-vidal-sentence-sentiment",
@@ -5929,17 +5924,6 @@
       "rationale": "Balanced academic curriculum (CSPLib 30) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_bacp, area optimization; the task-specific rules above classify its current packages."
     },
     {
-      "id": "family-csplib_reformulation_bibd",
-      "match": {
-        "families": [
-          "csplib_reformulation_bibd"
-        ]
-      },
-      "domain_id": "operations-research",
-      "task_type_id": "constraint-modeling",
-      "rationale": "Balanced incomplete block design (CSPLib 28) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_bibd, area optimization; the task-specific rules above classify its current packages."
-    },
-    {
       "id": "family-csplib_reformulation_car_sequencing",
       "match": {
         "families": [
@@ -5949,39 +5933,6 @@
       "domain_id": "operations-research",
       "task_type_id": "constraint-modeling",
       "rationale": "Car sequencing (CSPLib 1) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_car_sequencing, area optimization; the task-specific rules above classify its current packages."
-    },
-    {
-      "id": "family-csplib_reformulation_covering_array",
-      "match": {
-        "families": [
-          "csplib_reformulation_covering_array"
-        ]
-      },
-      "domain_id": "operations-research",
-      "task_type_id": "constraint-modeling",
-      "rationale": "Covering arrays (CSPLib 45) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_covering_array, area optimization; the task-specific rules above classify its current packages."
-    },
-    {
-      "id": "family-csplib_reformulation_error_correcting_codes",
-      "match": {
-        "families": [
-          "csplib_reformulation_error_correcting_codes"
-        ]
-      },
-      "domain_id": "operations-research",
-      "task_type_id": "constraint-modeling",
-      "rationale": "Error-correction codes (CSPLib 36) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_error_correcting_codes, area optimization; the task-specific rules above classify its current packages."
-    },
-    {
-      "id": "family-csplib_reformulation_social_golfers",
-      "match": {
-        "families": [
-          "csplib_reformulation_social_golfers"
-        ]
-      },
-      "domain_id": "operations-research",
-      "task_type_id": "constraint-modeling",
-      "rationale": "Social golfer (CSPLib 10) task evaluated in LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency. Default for the source family csplib_reformulation_social_golfers, area optimization; the task-specific rules above classify its current packages."
     },
     {
       "id": "family-csplib_reformulation_tail_assignment",

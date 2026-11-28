@@ -29,19 +29,19 @@ Researchers can inspect the problems a system works on, follow changes to its co
 
 ## Release snapshot — v0.1.0
 
-As of **27 November 2026**, the collection contains **2,403 task packages** across **489 task families** and **11 research domains**, drawing on a **98-paper research corpus** and supplementary scientific collections.
+As of **27 November 2026**, the collection contains **2,398 task packages** across **485 task families** and **11 research domains**, drawing on a **98-paper research corpus** and supplementary scientific collections.
 
-Our contribution is turning research problems into task packages with a shared evaluation interface. All **2,403 packages have executable evaluator definitions**: **95.30% use evaluators implemented or adapted in the task library**; **4.70% reuse upstream evaluators**.
+Our contribution is turning research problems into task packages with a shared evaluation interface. All **2,398 packages have executable evaluator definitions**: **95.29% use evaluators implemented or adapted in the task library**; **4.71% reuse upstream evaluators**.
 
 | How evaluation is provided | Task packages | Share of the full catalog |
 | --- | ---: | ---: |
-| Implemented or adapted in the task library | **2,290** | **95.30%** |
-| Reused from upstream implementations | 113 | 4.70% |
-| **Total** | **2,403** | **100.00%** |
+| Implemented or adapted in the task library | **2,285** | **95.29%** |
+| Reused from upstream implementations | 113 | 4.71% |
+| **Total** | **2,398** | **100.00%** |
 
-Evaluator definitions cover **100%** of the catalog. **1,296** adapted definitions are recorded as verified reconstructions. Recorded numeric seed baselines are available for **961 packages (39.99%)**; **100 (4.16%)** include published numeric references.
+Evaluator definitions cover **100%** of the catalog. **1,296** adapted definitions are recorded as verified reconstructions. Recorded numeric seed baselines are available for **961 packages (40.08%)**; **100 (4.17%)** include published numeric references.
 
-Tasks that the source library withdrew because no faithful local evaluator can be built are not part of the collection; `tasks/catalog/withdrawn.json` records each with its reason and evidence. Counts refer to task packages, including distinct parameter settings and protocols. The split describes evaluator implementation; validation and runtime requirements are recorded separately for each task.
+Tasks withdrawn because no faithful local evaluator can be built (175 by the source library; here, 4 CSPLib tasks whose stored answers score as speedups and the Hyperagents paper-review task, whose texts give the decision away) are not part of the collection; `tasks/catalog/withdrawn.json` records each with its reason and evidence. Counts refer to task packages, including distinct parameter settings and protocols. The split describes evaluator implementation; validation and runtime requirements are recorded separately for each task.
 
 Release data: [task library](tasks/suite), [task catalog](registry/catalog.json), [research domains](registry/insights.json), [reference evidence](registry/references.json).
 

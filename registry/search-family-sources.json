@@ -7,17 +7,17 @@
     "repository_url": "https://github.com/Doldrums/arena",
     "revision": "main",
     "manifest_path": "registry/task-library-manifest.json",
-    "manifest_sha256": "3979386d048ebf282cee0a03d026dd9284f1ff59289583d933bf0fc72a5d1385",
+    "manifest_sha256": "a2ad416a41d24a2da6420eb5a135cc2b7eb6aced37ddf2f3c50f5a92c5d20ec7",
     "catalog_path": "catalog/tasks.json",
     "index_path": "suite/index.json",
-    "catalog_sha256": "0d871a7fbaf2d2ff093988ff72f7ebc6a739b6f7433327dbde78a5e01160c952",
-    "index_sha256": "a2b3d6fbd4097bc04d73a865718eba7e24d43ef2e94530c8d4c76db482ba9c7e"
+    "catalog_sha256": "5a11ec98c00bd571e64fbe438098c1a39e3b9585a745c079079550e7a28b274f",
+    "index_sha256": "b9bbd32771cb70279b51b4428ab1d13ce733e3514646705230134ec24c26218c"
   },
   "files": [
     {
       "path": "catalog/papers.json",
       "url": "https://github.com/Doldrums/arena/blob/main/tasks/catalog/papers.json",
-      "sha256": "27548b60f9c276bb7243ebb1be94447b120a5fad08d42f79a4728495397d04b5"
+      "sha256": "ace03dc2a9a10ec44066062c317d62c61e0c22bf33e0eced0a5e40372d630b4b"
     },
     {
       "path": "catalog/corpus.json",
@@ -1068,7 +1068,6 @@
       "declared_task_ids": [
         "dgm-aider-polyglot",
         "eureka-ant",
-        "hyperagents-conference-paper-acceptance-prediction",
         "hyperagents-imo-gradingbench",
         "hyperagents-quadruped-torso-height-reward-design"
       ]
@@ -2855,11 +2854,7 @@
       "source_kind": "corpus_paper",
       "declared_task_ids": [
         "pdr-balanced-academic-curriculum-csplib-30",
-        "pdr-balanced-incomplete-block-design-csplib-28",
         "pdr-car-sequencing-csplib-1",
-        "pdr-covering-arrays-csplib-45",
-        "pdr-error-correction-codes-csplib-36",
-        "pdr-social-golfer-csplib-10",
         "pdr-tail-assignment-csplib-115",
         "pdr-vessel-loading-csplib-8"
       ]

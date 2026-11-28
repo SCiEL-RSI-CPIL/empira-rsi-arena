@@ -68,7 +68,7 @@
         "py:cpmpy",
         "py:ortools"
       ],
-      "timeout": 240,
+      "timeout": 600,
       "validity_key": "valid"
     }
   },
