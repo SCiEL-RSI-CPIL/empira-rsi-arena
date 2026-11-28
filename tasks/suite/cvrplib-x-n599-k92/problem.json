@@ -1,0 +1,119 @@
+{
+  "id": "cvrplib-x-n599-k92",
+  "name": "CVRP X-n599-k92",
+  "description": "Route identical vehicles of capacity 487 from one depot to serve the 598 customers of the CVRPLIB X-set instance X-n599-k92. Every customer is visited exactly once, the total demand on a route may not exceed the capacity, and every route starts and ends at the depot. The number of routes is free (the k in the instance name does not limit it). Minimise the total cost: the sum over all routes of the Euclidean distances between consecutive stops, the legs from and to the depot included, each distance rounded to the nearest integer.",
+  "protocol": "recreated_verified",
+  "family": "cvrp",
+  "direction": "minimize",
+  "contract": "solve(inst) -> list of routes; a route is a list of customer ids from 1 to n in visiting order (the depot is node 0 and is not listed; empty routes are ignored). inst is a dict with n (number of customers), capacity, coords (array of shape (n + 1, 2), row 0 is the depot), demand (integer array of length n + 1, demand[0] = 0) and name. Score: the total cost, minimized.",
+  "parameters": {
+    "instance": "X-n599-k92",
+    "best_known": 108451
+  },
+  "requires": [
+    "py:numpy",
+    "file:data/arnew/cvrp/X-n599-k92.vrp"
+  ],
+  "timeout": 300,
+  "notes": [
+    "Best known solution 108451 (not proven optimal; CVRPLIB, checked 2026-11-11).",
+    "CVRPLIB X instance file X-n599-k92.vrp (galgos.inf.puc-rio.br/cvrplib, download/instance/id)",
+    "X-n599-k92 is an instance of the CVRPLIB X set with 598 customers and vehicle capacity 487, whose depot lies at (284, 167) of a grid with integer coordinates from 0 to 1000.",
+    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record."
+  ],
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "areas": [
+      "optimization"
+    ],
+    "important_to_science": true
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "CVRP X-n599-k92",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "minimize",
+  "sources": [
+    {
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/",
+      "type": "benchmark",
+      "locator": "X-n599-k92"
+    },
+    {
+      "url": "https://doi.org/10.1287/mnsc.6.1.80",
+      "type": "paper",
+      "locator": "The Truck Dispatching Problem"
+    },
+    {
+      "url": "https://doi.org/10.1016/j.cor.2021.105475",
+      "type": "paper",
+      "locator": "A POPMUSIC matheuristic for the capacitated vehicle routing problem"
+    },
+    {
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/instances",
+      "type": "benchmark",
+      "locator": "CVRPLIB instance table: X-n599-k92 (customers, vehicle capacity, best known solution, optimality column), the instance file and the set conventions (Euclidean distance rounded to the nearest integer, total distance as cost, number of routes free)."
+    },
+    {
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/index.php/en/updates/",
+      "type": "archive",
+      "locator": "CVRPLIB update log (7 pages, read in full): dated entries naming who reported each improved best known solution of X-n599-k92 and with which method."
+    },
+    {
+      "url": "https://doi.org/10.1016/j.ejor.2016.08.012",
+      "type": "paper",
+      "locator": "Uchoa, Pecin, Pessoa, Poggi, Vidal and Subramanian (2017), New benchmark instances for the Capacitated Vehicle Routing Problem (Crossref: European Journal of Operational Research, March 2017): the X instance set, its generator and attributes; a benchmark paper, so not counted as evidence."
+    }
+  ],
+  "limitations": [
+    "The BKS is the cost of the solution file published by CVRPLIB on 2026-11-11; check for newer values before claiming a record.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://galgos.inf.puc-rio.br/cvrplib/"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "The cited paper poses the capacitated vehicle routing problem that the evaluator scores exactly on the pinned CVRPLIB X instance; where CVRPLIB credits a best known solution to a method paper, an override adds that paper, and the instance-set paper stays under extra_sources.",
+    "scientific_problem": "Find a minimum-cost set of capacity-feasible vehicle routes from one depot that serves every customer of the CVRPLIB X instance X-n599-k92.",
+    "importance_rationale": "The capacitated vehicle routing problem is the core model of distribution logistics (delivery, collection and service fleets). It is NP-hard; the X instances of 100 to 1,000 customers were generated to cover the attributes that make it hard, and the 39 that CVRPLIB lists as not proven optimal are open, so a cheaper set of routes is a new best known solution of an open standard instance.",
+    "papers": [
+      {
+        "title": "The Truck Dispatching Problem",
+        "url": "https://doi.org/10.1287/mnsc.6.1.80",
+        "task_relation": "The task's objective is the capacitated vehicle routing cost (rounded Euclidean distances, free number of routes) on the fixed CVRPLIB instance X-n599-k92.",
+        "primary_goal": "Formulate and solve the routing of a fleet of capacitated trucks from a terminal to service stations, introducing the capacitated vehicle routing problem.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "A POPMUSIC matheuristic for the capacitated vehicle routing problem",
+        "url": "https://doi.org/10.1016/j.cor.2021.105475",
+        "task_relation": "The CVRPLIB update log of 2 Jul 2020 credits the current best known solution of X-n599-k92 to improved solutions by Eduardo Queiroga, Eduardo Uchoa and Ruslan Sadykov through a POPMUSIC heuristic using exact VRPSolver; the paper presents that method, and the task asks for a cost below it.",
+        "primary_goal": "Improve solutions of large capacitated vehicle routing instances with a POPMUSIC matheuristic whose subproblems are solved by an exact branch-cut-and-price solver.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  }
+}

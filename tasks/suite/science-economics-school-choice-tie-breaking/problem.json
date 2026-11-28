@@ -1,0 +1,114 @@
+{
+  "protocol": "recreated_verified",
+  "family": "science_economics_school_choice",
+  "direction": "maximize",
+  "contract": "assign_students(problem) -> array of S ints: the school of each student (-1 = unassigned). problem = {'students': S, 'schools': C, 'list_length': L, 'preferences': (S, L) school indices from most to least preferred, 'priorities': (S, C) ints (higher = higher priority, equal = tie; walk-zone tiers and siblings), 'capacities': (C,), 'lottery': (S,) the single tie-breaking order used by the DA-STB benchmark (lottery[0] wins all ties)}. Valid only if every student gets a school on her list or nothing, capacities hold, and the matching is weakly stable: no student prefers a school that has a free seat or admits someone of strictly lower priority there. Six fixed instances (150 to 300 students). Score: (total rank under DA-STB - total rank of the candidate) / (total rank under DA-STB - proven minimum total rank over weakly stable matchings), summed over instances; rank 1 is a first choice and unassigned counts L + 1 (maximize; the DA-STB seed scores 0 and the optimum 1). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
+  "parameters": {},
+  "requires": [
+    "py:numpy"
+  ],
+  "timeout": 300,
+  "notes": [
+    "Efficiency loss of single tie-breaking in school choice with coarse priorities (Erdil and Ergin 2008; Abdulkadiroglu, Pathak and Roth 2009) on synthetic NYC-style instances. Reference checks: the minimum total rank over weakly stable matchings was proven for every instance with an integer program (HiGHS, gap 0, at most 4.2 s), the program matches brute-force enumeration on small instances, and both DA-STB and the optimal matchings pass the evaluator's exact blocking-pair check. Truthful preferences are assumed: the score ignores incentives, and no strategy-proof mechanism improves on DA-STB in general."
+  ],
+  "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
+  "id": "science-economics-school-choice-tie-breaking",
+  "name": "Economics: Efficient school choice under coarse priorities",
+  "paper_ids": [
+    "science-finance_expansion"
+  ],
+  "description": "Assign students to schools when school priorities have many ties, improving on deferred acceptance with a single tie-breaking lottery (DA-STB) while keeping the matching weakly stable. The evaluator checks every student-school pair for blocking and scores the share of the possible reduction in total preference rank achieved on six synthetic markets.",
+  "benchmark": "Economics: Efficient school choice under coarse priorities",
+  "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+  "paper_direction": null,
+  "sources": [
+    {
+      "url": "https://doi.org/10.1257/000282803322157061",
+      "type": "paper",
+      "locator": "Abdulkadiroglu and Sonmez (2003): school choice as mechanism design; student-proposing deferred acceptance and stability with respect to school priorities."
+    },
+    {
+      "url": "https://doi.org/10.1257/aer.98.3.669",
+      "type": "paper",
+      "locator": "Erdil and Ergin (2008): tie-breaking makes DA inefficient under coarse priorities; stable improvement cycles reach student-optimal weakly stable matchings."
+    },
+    {
+      "url": "https://doi.org/10.1257/aer.99.5.1954",
+      "type": "paper",
+      "locator": "Abdulkadiroglu, Pathak and Roth (2009): single versus multiple tie-breaking and the efficiency-strategy-proofness trade-off in the redesigned NYC high-school match."
+    },
+    {
+      "url": "https://doi.org/10.1016/S0304-3975(01)00206-7",
+      "type": "paper",
+      "locator": "Manlove, Irving, Iwama, Miyazaki and Morita (2002): optimization over weakly stable matchings with ties is NP-hard in general (motivates the integer-programming reference)."
+    }
+  ],
+  "limitations": [
+    "Markets are synthetic (random homes and schools on a unit square, school quality, distance and taste shocks, nested walk zones and 5% siblings); they mimic coarse NYC-style priorities but are not real application data.",
+    "Preferences are taken as truthful: the score measures welfare given reported preferences, and mechanisms that exploit it can be manipulable; Abdulkadiroglu, Pathak and Roth show no strategy-proof mechanism dominates DA-STB.",
+    "Total rank with unassigned students counted as list length + 1 is one welfare criterion among several (for example rank profiles or the number assigned); the proven optimum depends on that choice.",
+    "Instances are small enough for exact optimization (150 to 300 students) and their optima are known, so a perfect score reproduces the integer-programming solution.",
+    "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "science-finance_expansion",
+      "title": "Finance and economics research: source-based research tasks",
+      "url": "https://doi.org/10.1093/rfs/hhm075"
+    }
+  ],
+  "state_of_the_art": {
+    "kind": "optimum",
+    "value": 1.0,
+    "statement": "The minimum total rank over weakly stable matchings is proven for every instance (total 2319 versus 2916 under DA-STB), so the best possible score is 1; the DA-STB seed scores 0.",
+    "sources": [
+      {
+        "title": "What's the Matter with Tie-Breaking? Improving Efficiency in School Choice",
+        "url": "https://doi.org/10.1257/aer.98.3.669"
+      }
+    ],
+    "as_of": "2026-10-07"
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Assign students to public schools when priorities are coarse, so that the assignment is stable with respect to priorities yet wastes as little student welfare as possible through arbitrary tie-breaking.",
+    "importance_rationale": "Cities such as New York and Boston assign tens of thousands of students each year with deferred acceptance and lottery tie-breaking; the efficiency lost to tie-breaking affects many students and motivated changes to real mechanisms.",
+    "papers": [
+      {
+        "title": "What's the Matter with Tie-Breaking? Improving Efficiency in School Choice",
+        "url": "https://doi.org/10.1257/aer.98.3.669",
+        "primary_goal": "Show that tie-breaking in deferred acceptance causes avoidable inefficiency and construct efficient weakly stable matchings.",
+        "task_relation": "The task scores how much of the inefficiency of DA-STB a candidate removes while keeping weak stability.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Strategy-proofness versus Efficiency in Matching with Indifferences: Redesigning the NYC High School Match",
+        "url": "https://doi.org/10.1257/aer.99.5.1954",
+        "primary_goal": "Quantify the efficiency cost of tie-breaking in the NYC high-school match and its trade-off with strategy-proofness.",
+        "task_relation": "The benchmark mechanism is DA with single tie-breaking, the mechanism studied for NYC.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both papers have efficient and stable school assignment under coarse priorities as their main research question.",
+    "reviewed_at": "2026-10-07",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "domain": "finance",
+    "area": "finance",
+    "data": "synthetic",
+    "verification": "exact",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  }
+}

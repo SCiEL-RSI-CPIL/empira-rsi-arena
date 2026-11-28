@@ -1,10 +1,8 @@
-"""Placeholder candidate: Homer Simpson sentence sentiment.
-
-This task is not executable inside the suite (llm_api); a real candidate would be the artifact the paper evolves for 'Homer Simpson sentence sentiment' (see README.md).
-"""
+"""Initial program for the suite task; SCiEL evolves the EVOLVE-BLOCK."""
 # EVOLVE-BLOCK-START
-
-
-def candidate():
-    raise NotImplementedError("lmx-homer-simpson-sentence-sentiment is documented but not executable in this suite")
+def solve(question, llm):
+    """Seed archive: the quote and a few hand-written variations; no model calls."""
+    quote = question.strip()
+    return [quote, quote.rstrip(".!") + ", and that makes me happy.", "I am glad for everyone who succeeds.",
+            "Life is full of joy and wonderful surprises.", "What a great day!"]
 # EVOLVE-BLOCK-END

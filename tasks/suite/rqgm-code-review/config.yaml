@@ -22,7 +22,7 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 900
   max_retries: 2
 
 prompt:
@@ -31,7 +31,7 @@ prompt:
 
     Code review task evaluated in The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators.
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. `question` gives a pull request (repository, title, description and the patch as a diff) and asks for the reviewer's verdict. Answer rule: the final answer (the text after the last 'Answer:' marker, else the last \boxed{...}, else the last non-empty line), upper-cased with every run of non-letters replaced by '_', must equal the gold verdict APPROVE or REQUEST_CHANGES. Score: accuracy on a fixed 30-item sample of CRAVE's 134-item test split; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

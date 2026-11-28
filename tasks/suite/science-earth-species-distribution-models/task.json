@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "id": "science-earth-species-distribution-models",
+  "name": "Earth science: species distribution models from presence-only records",
+  "description": "Fit species distribution models for 226 anonymised species in six regions from presence-only records, background points and environmental covariates, and score sites of independent presence-absence surveys whose outcomes are withheld. The score is the mean area under the ROC curve over species.",
+  "paper_ids": [
+    "science-earth_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1111/j.2006.0906-7590.04596.x",
+      "type": "paper",
+      "locator": "Elith et al. (2006): comparison of species distribution modelling methods fitted to presence-only data and evaluated with independent presence-absence data in the same six regions."
+    },
+    {
+      "url": "https://doi.org/10.17161/bi.v15i2.13384",
+      "type": "paper",
+      "locator": "Elith et al. (2020): description of the released benchmark data (226 species, presence-only training, background, presence-absence evaluation)."
+    },
+    {
+      "url": "https://doi.org/10.1002/ecm.1486",
+      "type": "paper",
+      "locator": "Valavi et al. (2022): benchmark of presence-only methods on these data with AUC as the main evaluation measure."
+    },
+    {
+      "url": "https://osf.io/kwc4v/",
+      "type": "archive",
+      "locator": "OSF project SDM_NCEAS (CC BY 4.0): train_po, train_bg, test_env and test_pa CSV files of the six regions; downloaded files match the SHA-256 hashes published by OSF."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Earth science: species distribution models from presence-only records",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "earth_research_species_distribution",
+    "science_family": "earth_research_species_distribution",
+    "parameters": {},
+    "interface": "predict_distributions(regions) -> dict {region: {species_id: float array (n_sites,)}} of habitat-suitability scores (any finite real numbers; only their ranking matters) at the presence-absence survey sites of each species' biological group. regions maps AWT, CAN, NSW, NZ, SA and SWI to dicts with covariates (list of k names), categorical (names of categorical covariates: CAN ontveg, NSW vegsys, NZ age and toxicats, SWI calc), coordinates (text naming the x/y system), presence {species_id: {'x': (n, k) covariate values, 'xy': (n, 2) coordinates}} of presence-only records, background {'x': (m, k), 'xy': (m, 2)} of random background points, and sites {group: {'x': (s, k), 'xy': (s, 2), 'species': [ids of the species evaluated at these sites]}}; NaN marks a missing covariate value. Presence-absence outcomes at the sites are never provided. The candidate runs in a separate sandboxed process (numpy, scipy, scikit-learn and pandas importable; no file, network or subprocess access; one thread) with 300 s of CPU time for fitting and all predictions together; seed any randomness so that results are deterministic. Score: mean over the 226 species of the area under the ROC curve (tied scores count one half) of the site scores against the observed presences and absences; higher is better. Missing species, wrong shapes or non-finite scores are invalid",
+    "label_spec": {
+      "area": "earth_and_environment",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "data": "real_measurements",
+      "verification": "simulation",
+      "reference": "none"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "additional_requires": [
+      "file:data/earth/sdm/nceas_226_species.json.gz"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "earth_research_species_distribution",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/earth/sdm/nceas_226_species.json.gz"
+      ],
+      "timeout": 600,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "AUC measures how well site scores rank surveyed presences above absences; it ignores calibration and prevalence, and survey absences include non-detections.",
+    "Site and record coordinates are provided, so spatial predictors are allowed; published comparisons mostly used environmental covariates only, so scores are not directly comparable with them.",
+    "No published value is embedded: the benchmark paper's tables could not be retrieved in this environment (the publisher's site refused the request), so the mean AUCs it reports were not checked.",
+    "The presence-absence outcomes are public on OSF; the sandbox keeps them away from the candidate process, but search feedback on these fixed sites can still overfit them.",
+    "A better score is a better species distribution modelling method on this benchmark, not an ecological discovery.",
+    "The candidate runs in a sandboxed child process that never receives the survey outcomes, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "validation": {
+    "level": "source_seed_executed",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-10-10",
+    "evidence": "validation/earth-checks.json",
+    "tests": "tests/test_earth_sdm.py"
+  },
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "as_of": "2026-10-10",
+    "statement": "No published value is embedded (see limitations). The seed, a per-covariate Gaussian presence/background density ratio without categorical covariates, scores a mean AUC of 0.709 (region means 0.48 for CAN to 0.78 for SA).",
+    "sources": [
+      {
+        "title": "Predictive performance of presence-only species distribution models: a benchmark study with reproducible code",
+        "url": "https://doi.org/10.1002/ecm.1486"
+      }
+    ]
+  },
+  "labels": {
+    "area": "earth_and_environment",
+    "domain": "natural_science",
+    "scientific_contribution": "method",
+    "artifact": "model",
+    "data": "real_measurements",
+    "verification": "simulation",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Predict where a species occurs from presence-only occurrence records and environmental covariates (species distribution modelling).",
+    "importance_rationale": "Species distribution models are the main tool for mapping biodiversity, planning conservation and projecting climate-change impacts on species; presence-only records are the commonest data, and how well methods predict independent surveys is a central methodological question in ecology.",
+    "papers": [
+      {
+        "title": "Novel methods improve prediction of species' distributions from occurrence data",
+        "url": "https://doi.org/10.1111/j.2006.0906-7590.04596.x",
+        "primary_goal": "Compare the predictive performance of species distribution modelling methods fitted to presence-only data, using independent presence-absence data from six regions.",
+        "task_relation": "The task uses the released version of the same benchmark (226 species, six regions) and the same kind of evaluation (AUC on independent presence-absence sites).",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Predictive performance of presence-only species distribution models: a benchmark study with reproducible code",
+        "url": "https://doi.org/10.1002/ecm.1486",
+        "primary_goal": "Benchmark presence-only species distribution modelling methods on the NCEAS data with reproducible code.",
+        "task_relation": "Same data and AUC evaluation; the task lets any method be evolved and allows coordinates as predictors.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both cited papers have predictive species distribution modelling from presence-only data as their main goal, the problem the local task scores; no reproduction of their numbers is claimed.",
+    "verification_basis": "Crossref metadata checked on 2026-10-10; OSF licence (CC BY 4.0) and file hashes checked; categorical covariates taken from the disdat package documentation; evaluator run on the pinned data.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

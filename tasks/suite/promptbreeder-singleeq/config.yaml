@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 900
   max_retries: 2
 
 prompt:
   system_message: |
     SingleEq
 
-    SingleEq: optimize the candidate specified by the paper and evaluate against the named benchmark.
+    Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to solve SingleEq problems; scored by accuracy on a fixed 30-problem sample of a deterministic test half, an answer counting when its final numeric literal matches the gold value within 1e-6 (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `question` is the benchmark problem text; `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. Answer rule: the evaluator takes the final answer (the text after the last 'Answer:' marker, else the last \boxed{...}, else the last non-empty line) and compares its last numeric literal (commas, $ and % ignored; a/b and \frac{a}{b} count as one literal) with the gold value; a match within 1e-6 (absolute or relative) scores 1, anything else 0. Score: accuracy on a fixed 30-problem sample of the deterministic SingleEq test half; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

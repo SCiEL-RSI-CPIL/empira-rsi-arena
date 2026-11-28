@@ -1,0 +1,51 @@
+{
+  "schema": "artask.data-lock/1",
+  "package": "frontier_combinatorics",
+  "prepare": "python3 scripts/prepare_frontier_combinatorics.py",
+  "raw_cache": "frontier_combinatorics-raw of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "directory": "data/frontier_combinatorics of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "sources": [
+    {
+      "name": "qapdata.tar.gz",
+      "cache_name": "qaplib/qapdata.tar.gz",
+      "url": "https://datashare.ed.ac.uk/bitstreams/7dc05fa0-a4dc-4530-9ce4-57b79ffffc4f/download",
+      "landing_page": "https://doi.org/10.7488/ds/3428",
+      "sha256": "c6bf0e277156d097df21124f53ca5a5d0fa5344481ee401e13acb67694e190b3",
+      "size_bytes": 426914,
+      "pinning": "file of a published DataShare deposit (archive dated 2009-12-29 inside); checked by SHA-256",
+      "license": "CC BY 4.0 (end-user licence of the Edinburgh DataShare deposit)",
+      "license_url": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "citation": "Burkard, R. E.; Cela, E.; Karisch, S. E.; Rendl, F.; Anjos, M.; Hahn, P. (2022). QAPLIB - A Quadratic Assignment Problem Library - Problem instances and solutions [dataset]. University of Edinburgh; Computational Optimization Research At Lehigh. https://doi.org/10.7488/ds/3428",
+      "retrieved": "2026-10-11"
+    }
+  ],
+  "files": [
+    {
+      "path": "tai256c.dat",
+      "source": "qapdata.tar.gz",
+      "member": "tai256c.dat",
+      "sha256": "e7d72083d49f4768e5a15a02ee33fde038a794e7407e5e485c3c110f1509fafd",
+      "size_bytes": 655886,
+      "license": "CC BY 4.0",
+      "task": "science-frontier-combinatorics-qap-tai256c"
+    },
+    {
+      "path": "tho150.dat",
+      "source": "qapdata.tar.gz",
+      "member": "tho150.dat",
+      "sha256": "40136bc14aa404f92e7928c386e93218cf64437bd9c15f95830222701728690f",
+      "size_bytes": 180310,
+      "license": "CC BY 4.0",
+      "task": "science-frontier-combinatorics-qap-tho150"
+    },
+    {
+      "path": "wil100.dat",
+      "source": "qapdata.tar.gz",
+      "member": "wil100.dat",
+      "sha256": "9477abe6459def2fc664ee49f612a592bba7b59c2a3027c4a0382d068c6aa4ca",
+      "size_bytes": 80208,
+      "license": "CC BY 4.0",
+      "task": "science-frontier-combinatorics-qap-wil100"
+    }
+  ]
+}

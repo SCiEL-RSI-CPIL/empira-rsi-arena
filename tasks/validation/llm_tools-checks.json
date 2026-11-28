@@ -1,0 +1,252 @@
+{
+ "schema": "artask.package-checks/1",
+ "package": "llm_tools",
+ "date": "2026-10-10",
+ "environment": {
+  "python": "3.12.14",
+  "platform": "macOS-15.8.1-arm64-arm-64bit",
+  "numpy": "2.5.3",
+  "torch": "2.14.0",
+  "bm25s": "0.2.12",
+  "PyStemmer": "2.2.0.3",
+  "psutil": "7.2.2",
+  "pandas_used_only_for_cross_checks": "2.2.3",
+  "threads": "OMP_NUM_THREADS=4, torch.set_num_threads(4)",
+  "interpreter": ".cache/sciel-env (shared); new installs: bm25s==0.2.12, PyStemmer==2.2.0.3"
+ },
+ "tasks": {
+  "evox-telemetry-repair": {
+   "family": "llm_tools_telemetry",
+   "protocol": "recreated_verified",
+   "seed_score": 0.05112111111111111,
+   "valid": true,
+   "elapsed_seconds": 0.05,
+   "invalid_candidate_checks": [
+    {
+     "program": "run_repair returning only rx_rate triples",
+     "valid": false,
+     "error": "ATLAM5_to_ATLAng.tx_rate must be an (original, repaired, confidence) triple"
+    }
+   ],
+   "reference_check": {
+    "compared": "original evaluate_legacy of UCB-ADRS/ADRS@259292f3 (run unchanged) versus this port on three fixed candidates",
+    "result": {
+     "seed": {
+      "original": 0.05112111111111114,
+      "port": 0.05112111111111111
+     },
+     "identity_echo": {
+      "original": 0.838462457356134,
+      "port": 0.8384624573561342
+     },
+     "peer_pair_heuristic": {
+      "original": 0.9433656309100666,
+      "port": 0.9433656309100669
+     }
+    },
+    "published_human_value": {
+     "value": 0.8222,
+     "source": "EvoX Table 3 / AdaEvolve Table 2",
+     "original_evaluator_with_reference_program": 0.8221843280666603,
+     "port_fixed_scenarios_in_process": 0.7993600702169033
+    }
+   },
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_llm_tools_telemetry.py"
+  },
+  "mipro-hover": {
+   "family": "llm_tools_hover",
+   "protocol": "recreated",
+   "seed_score": 0.7,
+   "seed_samples": 30,
+   "valid": null,
+   "elapsed_seconds": 157.572754,
+   "llm_cost_usd": 0.048247,
+   "llm_cost_note": "the 30-claim run reused 20 cached responses of the earlier 5-claim run (USD 0.010978), so a cold seed evaluation costs about USD 0.059",
+   "elapsed_note": "wall time of the 30-claim run with 100 uncached model calls; a fully cached replay takes about 5 s and returns the same score",
+   "seed_score_5_claims": {
+    "score": 0.6,
+    "mean_gold_recall": 0.866667,
+    "requests": 20,
+    "cost_usd": 0.010978,
+    "elapsed_seconds": 34.7
+   },
+   "invalid_candidate_checks": [
+    {
+     "program": "no_solve.py",
+     "result": "valid=false, 'candidate must define solve()'"
+    },
+    {
+     "program": "reader.py (reads claims.json)",
+     "result": "per-claim PermissionError from the sandbox, score 0.0"
+    }
+   ],
+   "reference_check": {
+    "compared": "gold supporting titles of the 300 test claims against corpus titles; GEPA split sizes",
+    "result": {
+     "gold_title_coverage": 1.0,
+     "documents": 5233330,
+     "three_document_claims": 6084,
+     "test_pool": 2433,
+     "val_pool": 2434,
+     "train_pool": 1217,
+     "test_sample": 300
+    },
+    "not_verified": "GEPA's and MIPRO's published HoVer scores were not reproduced; identity of the 300 test claims with GEPA's files was not checked"
+   },
+   "index": {
+    "documents": 5233330,
+    "gold_title_coverage": 1.0,
+    "build_minutes": 2.5,
+    "search_seconds": 0.045,
+    "load_seconds": 1.1
+   },
+   "unit_tests": "tests/test_llm_tools_hover.py"
+  },
+  "l-autoda-cifar-10-decision-based-adversarial-attack": {
+   "family": "llm_tools_autoda",
+   "protocol": "recreated_verified",
+   "seed_score": 5.120843248664869,
+   "seed_images": 20,
+   "seed_queries_per_image": 2500,
+   "valid": true,
+   "elapsed_seconds": 236.592401,
+   "elapsed_note": "wall time on the shared 14-core machine at a load average of about 15 (other agents running); 4 torch threads; peak RSS 520 MB",
+   "seed_details": {
+    "median_l2": 5.111647,
+    "initial_mean_l2": 13.849566,
+    "success_rate_l2_below_0.5": 0.1,
+    "accepted_proposals": 953,
+    "reverified_adversarial": 20
+   },
+   "invalid_candidate_checks": [
+    {
+     "program": "bad_shape",
+     "valid": false,
+     "error": "draw_proposals failed in the sandbox (exception): ValueError: draw_proposals returned shape (3, 8, 8), expected (3, 32, 32)"
+    },
+    {
+     "program": "bad_nan",
+     "valid": false,
+     "error": "draw_proposals returned a non-finite value at step 0"
+    }
+   ],
+   "reference_check": {
+    "model_test_accuracy": {
+     "computed": 0.9498,
+     "model_card": 0.9498,
+     "images": 10000
+    },
+    "evoattack_crosscheck": [
+     {
+      "images": 4,
+      "steps": 200,
+      "identical_final_examples": true,
+      "mean_l2": 6.127672113135317
+     },
+     {
+      "images": 8,
+      "steps": 1500,
+      "identical_final_examples": true,
+      "mean_l2": 5.046816600575498
+     }
+    ],
+    "evoattack_crosscheck_note": "Before the acceptance test used the repository's float32 norm, the 8 x 1500 run differed by at most 1.3e-06 per pixel (mean L2 5.0468134 vs 5.0468166); with it the outputs are byte-identical.",
+    "how": "checks/autoda/crosscheck_evoattack.py: the pinned EVOAttack_template.py run through foolbox 3.3.4 (installed in a private directory, not in the shared environment) with numpy.random.normal replaced by the evaluator's noise stream"
+   },
+   "llm_cost_usd": 0.0,
+   "unit_tests": "tests/test_llm_tools_autoda.py"
+  }
+ },
+ "withdraw": {
+  "sica-synthetic-file-editing": {
+   "reason": "Degenerate for program candidates. SICA's problem statement embeds the complete target file (FileEditProblem.statement contains <TARGET_CONTENT>), and the score is the diff similarity of the edited file to that target, so a program that receives the statement writes the target verbatim and scores 1.0 without any model call. In SICA the benchmark measures an LLM agent's editing efficiency through its utility U = 0.5 score + 0.25 (1 - min(1, cost/$10)) + 0.25 (1 - min(1, time/300 s)); at the suite's model prices the cost term is about 1 for every candidate and the time term depends on network latency and hardware, so it gives no stable signal. Hiding the statement from the program (model-only access) would turn it into a different, prompt-only task.",
+   "evidence": [
+    {
+     "url": "https://github.com/MaximeRobeyns/self_improving_coding_agent/blob/ed8275dca4d3c5dbf77229964351fe9b424797dc/base_agent/src/benchmarks/file_editing.py",
+     "locator": "FileEditProblem.from_file_edit (statement with <TARGET_CONTENT>), compute_diff_similarity"
+    },
+    {
+     "url": "https://arxiv.org/html/2504.15228",
+     "locator": "Eq. 1 (utility weights 0.5/0.25/0.25, $10 and 300 s normalisers); Table 1 (file editing 0.82 -> 0.91)"
+    }
+   ]
+  },
+  "sica-synthetic-symbol-location": {
+   "reason": "Saturated by a trivial program. A frozen recreation was built (12 of SICA's 14 repositories pinned before 2025-04-20, 342 import-determined instances, SICA's 0.4/0.4/0.2 path/line/column score with the name column fixed), but a 20-line seed that searches for definition lines and asks the model only when several match scores 1.0 on the 60-instance evaluation sample (60 exact, 8 model calls, USD 0.0026) and 0.963 on all 342 instances without any model help, so the task gives no optimisation signal. Without the well-definedness filter SICA's own construction pairs definitions with unrelated same-name uses and labels function and method columns 5 or 3 characters past the name, which makes scores label noise rather than capability (SICA reports 0.35 -> 0.40). The implementation is kept in commit 6e35bbbe of wp/llm-tools for reference.",
+   "evidence": [
+    {
+     "url": "https://github.com/MaximeRobeyns/self_improving_coding_agent/blob/ed8275dca4d3c5dbf77229964351fe9b424797dc/base_agent/src/benchmarks/symbol_location.py",
+     "locator": "SymbolVisitor._calculate_column (col_offset + len(type) + 1), _find_symbol_usage (any bare-name use), score_problem"
+    },
+    {
+     "file": "wp/llm-tools commit 6e35bbbe",
+     "locator": "suite/_lib/autoresearch_suite/llm_tools_sica.py, llm_tools_sica_gen.py; seed results in withdrawn_implementation_evidence"
+    }
+   ]
+  },
+  "flowscout-toolbench-finance": {
+   "reason": "Blocked on data. FlowScout's splits, historical records and workflows are unpublished (the paper's code link is the placeholder anonymous.4open.science/r/xxxx/), and the ToolBench answer trajectories that a replay proxy needs are no longer available from ToolBench's documented sources: on 2026-10-10 the README's Google Drive folder and its direct data.zip file id both return HTTP 404 and the Tsinghua Cloud link answers 'Link does not exist'. Only third-party Hugging Face re-uploads remain (for example nullwwg/toolbench-data, whose 1.76 GB data.zip lists 126,489 answer files, and the partial Adorg/ToolBench copy of an older release) with no published checksum to verify them against; the step that would have compared such a mirror with the official repository's data_example files was declined in this session, so per the package rules the input is treated as blocked. Faithful execution would additionally need live RapidAPI endpoints (StableToolBench's cache server falls back to them on a miss, per the triage).",
+   "evidence": [
+    {
+     "url": "https://github.com/OpenBMB/ToolBench/blob/d56fdd89faf8c91fa135090b212bb9057ee5cfc2/README.md",
+     "locator": "data.zip links: Google Drive folder 1TysbSWYpP8EioFu9xPJtpbJZMLLmwAmL and file 1XFjDxVZdUY7TXYF2yvzx3pJlS2fy78jk (HTTP 404 on 2026-10-10), Tsinghua Cloud c9e50625743b40bfbe10 ('Link does not exist')"
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.10039",
+     "locator": "Section IV-A (Table I splits 5:2:3, domains from ToolBench); code link placeholder"
+    }
+   ]
+  },
+  "flowscout-toolbench-sports": {
+   "reason": "Blocked on data; same reason as flowscout-toolbench-finance (one shared ToolBench replay design).",
+   "evidence": [
+    {
+     "see": "flowscout-toolbench-finance"
+    }
+   ]
+  },
+  "flowscout-toolbench-travel": {
+   "reason": "Blocked on data; same reason as flowscout-toolbench-finance (one shared ToolBench replay design).",
+   "evidence": [
+    {
+     "see": "flowscout-toolbench-finance"
+    }
+   ]
+  },
+  "flowscout-toolbench-weather": {
+   "reason": "Blocked on data; same reason as flowscout-toolbench-finance (one shared ToolBench replay design).",
+   "evidence": [
+    {
+     "see": "flowscout-toolbench-finance"
+    }
+   ]
+  }
+ },
+ "withdrawn_implementation_evidence": {
+  "sica-synthetic-symbol-location": {
+   "instances": 342,
+   "types": {
+    "function": 169,
+    "class": 154,
+    "variable": 19
+   },
+   "ambiguous_names": 31,
+   "seed_offline_all_342_without_model": {
+    "mean": 0.963157894736842,
+    "exact": 327,
+    "needs_model": 30
+   },
+   "seed_generated_evaluator_60_sample": {
+    "score": 1.0,
+    "exact": 60,
+    "requests": 8,
+    "cost_usd": 0.002594,
+    "elapsed_seconds": 10.9
+   }
+  }
+ },
+ "llm_spend_usd_total": 0.061819,
+ "llm_requests_total": 128,
+ "llm_spend_note": "All model calls of this package's verification runs (google/gemini-2.5-flash through OpenRouter), summed from the response cache."
+}

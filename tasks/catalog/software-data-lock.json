@@ -1,0 +1,805 @@
+{
+  "schema": "artask.data-lock/1",
+  "package": "software",
+  "reviewed_on": "2026-10-08",
+  "raw_cache": "software-raw of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "data_directory": "data/software of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "note": "Raw files are fetched from the pinned URLs and verified by SHA-256; derived files are byte-stable functions of them (suite/_lib/autoresearch_suite/software_*.py, function derive). Nothing listed here is redistributed by this repository.",
+  "sources": [
+    {
+      "id": "cit-icse15-benchmarks",
+      "publisher": "Yue Jia, Myra B. Cohen, Mark Harman, Justyna Petke (Zenodo record 581657)",
+      "description": "Combinatorial Interaction Testing (CIT) Benchmarks used in 'Learning Combinatorial Interaction Test Generation Strategies using Hyperheuristic Search' (ICSE 2015): CASA-format models and constraints of Apache, Bugzilla, GCC, SPIN-S, SPIN-V, TCAS, the IBM models of Segall et al. (ISSTA 2011) and synthetic models",
+      "url": "https://zenodo.org/api/records/581657/files/ICSE15_HHSA_Benchmarks.zip/content",
+      "landing_page": "https://zenodo.org/records/581657",
+      "zenodo_md5": "fbb4c3f75c400161c42fd549abe8424c",
+      "license": "CC-BY-4.0 (Zenodo record license)",
+      "sha256": "3dc1f239e1678f98c855c27f79f84b4f54ec808bfa76905d5603b5b7608f21c6",
+      "size": 234800
+    },
+    {
+      "id": "quixbugs",
+      "publisher": "Derrick Lin, James Koppel, Angela Chen, Armando Solar-Lezama (GitHub jkoppel/QuixBugs)",
+      "description": "QuixBugs benchmark at commit 4257f44b0ff1181dedaedee6a447e133219fcebf: 40 buggy Python programs with single-line bugs, reference fixes and JSON test cases (GitHub source archive of the commit)",
+      "url": "https://github.com/jkoppel/QuixBugs/archive/4257f44b0ff1181dedaedee6a447e133219fcebf.zip",
+      "landing_page": "https://github.com/jkoppel/QuixBugs/tree/4257f44b0ff1181dedaedee6a447e133219fcebf",
+      "license": "MIT (repository LICENSE, copyright James Koppel); legal_notes.txt records the Quixey Challenge author's permission",
+      "sha256": "0926648bc8bb4a027428785c5fbb8e36acae4555e4beec181934859d53298c62",
+      "size": 623489
+    },
+    {
+      "id": "coalesce-graphs",
+      "publisher": "Andrew W. Appel and Lal George, Optimal Coalescing Challenge (Princeton University)",
+      "description": "The 474 challenge inputs (interference graphs with weighted affinity pairs from the SML/NJ compiler after optimal spilling), posted August 2000; one file per instance in a tar archive",
+      "url": "https://www.cs.princeton.edu/~appel/coalesce/graph1/graphs.tar",
+      "landing_page": "https://www.cs.princeton.edu/~appel/coalesce/",
+      "license": "not stated (the challenge page states no licence; the files are fetched from the pinned URL and never redistributed)",
+      "sha256": "9e3f44bfdcd7b2a5ac84d204ea04bb238966f4abd19bf2e28c628567c55595f8",
+      "size": 15435264
+    },
+    {
+      "id": "coalesce-grund",
+      "publisher": "Daniel Grund and Sebastian Hack (solution set hosted on the challenge page)",
+      "description": "Integer-linear-programming solutions of all 474 instances with CPLEX logs and the challenge checker's cost output (.asl, .log, .chk); instances 139, 304 and 387 are marked feasible, not proven optimal",
+      "url": "https://www.cs.princeton.edu/~appel/coalesce/grund/grund_opt.tar.bz2",
+      "landing_page": "https://www.cs.princeton.edu/~appel/coalesce/grund",
+      "license": "not stated (never redistributed)",
+      "sha256": "7aea5c01a1459a15f4d39335c4bc58b8a928f01d091be25023335a0872b0a53e",
+      "size": 1960106
+    },
+    {
+      "id": "coalesce-greedy",
+      "publisher": "Andrew W. Appel and Lal George (solution set hosted on the challenge page)",
+      "description": "Solutions of the 474 instances by a greedy algorithm based on iterated register coalescing",
+      "url": "https://www.cs.princeton.edu/~appel/coalesce/greedy1/greedy.tar",
+      "landing_page": "https://www.cs.princeton.edu/~appel/coalesce/greedy1/",
+      "license": "not stated (never redistributed)",
+      "sha256": "1aeef23731de5af0673878ac452dba79532255bbac767984d3e008a1450306f5",
+      "size": 1260544
+    },
+    {
+      "id": "coalesce-optimistic",
+      "publisher": "Andrew W. Appel and Lal George (solution set hosted on the challenge page)",
+      "description": "Solutions of the 474 instances by a variant of the optimistic coalescing algorithm of Park and Moon",
+      "url": "https://www.cs.princeton.edu/~appel/coalesce/optimistic1/optimistic.tar",
+      "landing_page": "https://www.cs.princeton.edu/~appel/coalesce/optimistic1/",
+      "license": "not stated (never redistributed)",
+      "sha256": "e669a9ee1849998177a959c09a243a7bae49b8b5dc3071ebbe7ef92e630b1d4d",
+      "size": 1218048
+    },
+    {
+      "id": "atcs-paintcontrol",
+      "publisher": "Helge Spieker (repository HelgeS/atcs-data); data provided by ABB Robotics Norway",
+      "description": "ABB Paint Control CI test history used in Spieker et al., 'Reinforcement Learning for Automatic Test Case Prioritization and Selection in Continuous Integration' (ISSTA 2017): 89 test cases, 352 CI cycles, 25,594 verdicts (CSV, ';'-separated)",
+      "url": "https://bitbucket.org/HelgeS/atcs-data/raw/85bae8b6dd58ef7d49c4c15690ba628a5187d4f7/paintcontrol.csv",
+      "landing_page": "https://bitbucket.org/HelgeS/atcs-data/src/85bae8b6dd58ef7d49c4c15690ba628a5187d4f7/",
+      "license": "MIT (repository LICENSE, copyright 2017 Helge Spieker)",
+      "sha256": "cdf4c0c2bca580acaf7981f2608258cdf480ca821c88aa2eca6c2333c5c6b11a",
+      "size": 13631061
+    },
+    {
+      "id": "atcs-iofrol",
+      "publisher": "Helge Spieker (repository HelgeS/atcs-data); data provided by ABB Robotics Norway",
+      "description": "ABB IOF/ROL CI test history from the same repository: 1,941 test cases, 320 CI cycles, 30,319 verdicts according to the README (32,260 rows in the file)",
+      "url": "https://bitbucket.org/HelgeS/atcs-data/raw/85bae8b6dd58ef7d49c4c15690ba628a5187d4f7/iofrol.csv",
+      "landing_page": "https://bitbucket.org/HelgeS/atcs-data/src/85bae8b6dd58ef7d49c4c15690ba628a5187d4f7/",
+      "license": "MIT (repository LICENSE, copyright 2017 Helge Spieker)",
+      "sha256": "4efd94e87d4d3dca26970db5d4a5d7b0db75e5eb0c0cc1cc2807e5ad93a627b4",
+      "size": 2417700
+    },
+    {
+      "id": "cpython-3.12.14",
+      "publisher": "Python Software Foundation (python.org source release)",
+      "description": "CPython 3.12.14 source release (tag v3.12.14, commit 2abcf904b8dac8c999d2b3aac76681abb333798a); only pure-Python standard-library files are used: tomllib, re, html.parser and _markupbase (fuzzing targets) and textwrap, urllib.parse and fractions (mutation subjects)",
+      "url": "https://www.python.org/ftp/python/3.12.14/Python-3.12.14.tar.xz",
+      "landing_page": "https://www.python.org/downloads/release/python-31214/",
+      "license": "PSF-2.0 (Python Software Foundation License Version 2, LICENSE file of the release)",
+      "sha256": "5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a",
+      "size": 20820300
+    },
+    {
+      "id": "code2inv",
+      "publisher": "Xujie Si, Hanjun Dai, Mukund Raghothaman, Mayur Naik, Le Song (GitHub PL-ML/code2inv)",
+      "description": "Code2Inv repository at commit 336a7063ae0d6313a6993dfb897766d01d5ba41a (GitHub source archive); only benchmarks/C_instances is used: 133 C programs with one loop each (c/) and their SMT-LIB verification conditions (c_smt2/)",
+      "url": "https://github.com/PL-ML/code2inv/archive/336a7063ae0d6313a6993dfb897766d01d5ba41a.zip",
+      "landing_page": "https://github.com/PL-ML/code2inv/tree/336a7063ae0d6313a6993dfb897766d01d5ba41a/benchmarks",
+      "license": "not stated (no licence file or statement in the repository; fetched from the pinned URL and never redistributed)",
+      "sha256": "59e9a3f53db5c2d7deb9c884179a04f350659eb27141da8252bb5aab15c1a53e",
+      "size": 36322732
+    },
+    {
+      "id": "stoke-p01",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p01 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p01/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p01/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "5d2e273b6fb8351767b9a76a91378d97ae5649e3cad2e4cdc322e87c696362c9",
+      "size": 685
+    },
+    {
+      "id": "stoke-p02",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p02 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p02/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p02/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "308439aed5f1d812fb932994240d41bce02adaaf3c3d491fd3e7f275a02faa4a",
+      "size": 685
+    },
+    {
+      "id": "stoke-p03",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p03 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p03/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p03/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "c1135da135dededae2f413b6ac81310dff5dd8b5ad994ea44d08d7b58ee94fa9",
+      "size": 682
+    },
+    {
+      "id": "stoke-p04",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p04 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p04/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p04/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "c017f3a41d9544d7db19e94e01bbe9a56f994ae0c3efbc2949d63b069272d513",
+      "size": 685
+    },
+    {
+      "id": "stoke-p05",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p05 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p05/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p05/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "9d62d70c0dcbf6b495de832675370cc58e3d7ef0b39ecd9b29b65fe8e8c6d89e",
+      "size": 685
+    },
+    {
+      "id": "stoke-p06",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p06 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p06/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p06/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "9308062557de07c011c2b0ef08bda5688bcff27a74041ff85de70629ff87424f",
+      "size": 685
+    },
+    {
+      "id": "stoke-p07",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p07 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p07/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p07/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "4b4ee29b553a916412b85e4f34520ea110e0d8c714a68a86397c33763e493605",
+      "size": 705
+    },
+    {
+      "id": "stoke-p08",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p08 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p08/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p08/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "ca7ce2081e356b95ff9fe32062a26821a3ed176d20d3a187c4c51319263a5542",
+      "size": 705
+    },
+    {
+      "id": "stoke-p09",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p09 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p09/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p09/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "5753eab5fb7b7f8eddb3044a0c101bcd40483ea6ec2c66d0a885b0578e910b9a",
+      "size": 711
+    },
+    {
+      "id": "stoke-p10",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p10 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p10/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p10/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "0e773481e089e52de8c07f93ecd060a48fb1ae2cb35c9fa401a3fe4434ca72c4",
+      "size": 742
+    },
+    {
+      "id": "stoke-p11",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p11 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p11/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p11/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "1315799e384638fdb29596c3af52610e9ae249a9176660881a73a51b23137293",
+      "size": 738
+    },
+    {
+      "id": "stoke-p12",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p12 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p12/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p12/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "d9d822e88a941e03b1aab5433ddccf588fce89b7ef8fb6baff78707ffdc17433",
+      "size": 739
+    },
+    {
+      "id": "stoke-p13",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p13 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p13/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p13/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "5bf76630e5051eed1f8ae928125c299e75e0291825929eee0433395dfae879e0",
+      "size": 732
+    },
+    {
+      "id": "stoke-p14",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p14 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p14/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p14/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "90d81763e64583344a9975250a3c6acb44ab10f82903f5207ba4c5dc2aad6dd0",
+      "size": 743
+    },
+    {
+      "id": "stoke-p15",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p15 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p15/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p15/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "5093289e9b63062d149311ffec7e8a6f854f0cfb2fc24fc48159dce3d1ef2359",
+      "size": 743
+    },
+    {
+      "id": "stoke-p16",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p16 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p16/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p16/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "7797b7edaa292d31eb59ecdc194171982e1a3510bde6dece7106dd31f893ab07",
+      "size": 768
+    },
+    {
+      "id": "stoke-p17",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p17 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p17/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p17/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "0e17adca6d569569df6bf2651a5d9c65397dd52cfd2c2f7f6e53e60e65e3ace0",
+      "size": 732
+    },
+    {
+      "id": "stoke-p18",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p18 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p18/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p18/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "0bb9826d6561bb5c78d9df8cacbeb6ebeb4d696895383ad2a35172a42794dc6c",
+      "size": 793
+    },
+    {
+      "id": "stoke-p19",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p19 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p19/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p19/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "3bee6acfcb053fe81bd820b2a18e623fca3aed1e7ecc319b11cfcb573721109c",
+      "size": 802
+    },
+    {
+      "id": "stoke-p20",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p20 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p20/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p20/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "550d225774b593db6845a85d6a309d8ab20df3819b46c8ec69675eeeebb97542",
+      "size": 800
+    },
+    {
+      "id": "stoke-p21",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p21 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p21/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p21/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "14a85de9c37b00acf1eb427aef12d3d4d5b29d8b009596a8555b604f1afe0317",
+      "size": 864
+    },
+    {
+      "id": "stoke-p22",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p22 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p22/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p22/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "3a2c2f0043c520dd71c97a29009db3abb06cebdb29b311bdb892a4c1e3b88d44",
+      "size": 848
+    },
+    {
+      "id": "stoke-p23",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p23 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p23/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p23/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "bb3100b4a30d8cf8e7189ec37da424001b3e3fce19e6e02c2f7521b0bb578df4",
+      "size": 1051
+    },
+    {
+      "id": "stoke-p24",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p24 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p24/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p24/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "f95c3da8ac7d1eefd277d921f161c9140af53118a637831b352aaa300bb2e977",
+      "size": 930
+    },
+    {
+      "id": "stoke-p25",
+      "publisher": "Stanford University (STOKE repository StanfordPL/stoke)",
+      "description": "Hacker's Delight benchmark p25 of Gulwani et al. (PLDI 2011) as a straight-line C function (examples/hacker/p25/fxn.cc at commit 98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e)",
+      "url": "https://raw.githubusercontent.com/StanfordPL/stoke/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker/p25/fxn.cc",
+      "landing_page": "https://github.com/StanfordPL/stoke/tree/98d8a0f028f2daf2052bfe607dbc32ec8d55ba9e/examples/hacker",
+      "license": "Apache-2.0 (file header and repository LICENSE)",
+      "sha256": "e45bbf4dcc1165f749725dedaeecd287d38221597c0f016687e90315c124bdbe",
+      "size": 1076
+    },
+    {
+      "id": "loghub2k-Android",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k Android: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/Android/Android_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/Android/Android_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "d2d04c5140ddd1f5bd4b0e55bd8b2bcb567a88955fb36d0da5440b7a0b84215c",
+      "size": 445430
+    },
+    {
+      "id": "loghub2k-Apache",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k Apache: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/Apache/Apache_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/Apache/Apache_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "cf14ee33db62dd6c9ef2a8c53746a9805ab94fdafb12728067d18d1e706142a5",
+      "size": 256804
+    },
+    {
+      "id": "loghub2k-BGL",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k BGL: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/BGL/BGL_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/BGL/BGL_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "af25e46fa90396048e88cde40a0ffbe52232f72a6a3cf7f5c00ab6b2a1d49a85",
+      "size": 422628
+    },
+    {
+      "id": "loghub2k-HDFS",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k HDFS: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/HDFS/HDFS_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/HDFS/HDFS_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "3e81e0a895615122aef4d598e91bf8ce053ce7c47e4b4f9cabc45ab9c7dfa9a6",
+      "size": 391661
+    },
+    {
+      "id": "loghub2k-HPC",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k HPC: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/HPC/HPC_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/HPC/HPC_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "e4c944f1d8a9c76799f8b00d54afb4df7ce7a1233e0ccd7f6cd25c50c61f72bf",
+      "size": 215364
+    },
+    {
+      "id": "loghub2k-Hadoop",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k Hadoop: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/Hadoop/Hadoop_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/Hadoop/Hadoop_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "0d81d66a9ec7118dba9252c9ea59f746e6eff32f8fb75d9437694bbf1fd5ceb2",
+      "size": 517312
+    },
+    {
+      "id": "loghub2k-HealthApp",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k HealthApp: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/HealthApp/HealthApp_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/HealthApp/HealthApp_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "32a83f98f1dc647d7a61efc3a88f13fce3eecc7dcefc5fc3656b3dde65158269",
+      "size": 280969
+    },
+    {
+      "id": "loghub2k-Linux",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k Linux: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/Linux/Linux_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/Linux/Linux_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "6af96d60b2ecd872797cedc32b6d3795a3083d5ab0ca36198206fd4aae14cfca",
+      "size": 323148
+    },
+    {
+      "id": "loghub2k-Mac",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k Mac: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/Mac/Mac_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/Mac/Mac_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "6fde5422e311176f43b95fb4c05d42e63760e188e546592b43f3cf8a4c5f58b0",
+      "size": 493165
+    },
+    {
+      "id": "loghub2k-OpenSSH",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k OpenSSH: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/OpenSSH/OpenSSH_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/OpenSSH/OpenSSH_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "da0b79a11d4bb541b843320012cdd379ce47e4fb5bd64f62bfc33da61ebd515a",
+      "size": 355614
+    },
+    {
+      "id": "loghub2k-OpenStack",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k OpenStack: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/OpenStack/OpenStack_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/OpenStack/OpenStack_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "ef3c778835b091049b38619a965f87c26a82067d6d0e768b2fe57bd596069edf",
+      "size": 712478
+    },
+    {
+      "id": "loghub2k-Proxifier",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k Proxifier: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/Proxifier/Proxifier_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/Proxifier/Proxifier_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "ddfcaa5aee9d5ea48734aff0ca093b23b655f70e9b38532c983224b08759bb26",
+      "size": 333070
+    },
+    {
+      "id": "loghub2k-Spark",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k Spark: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/Spark/Spark_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/Spark/Spark_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "d749c9dcac5768a91393a5ab5a961d67b2e97d7683052ed9ff3d1f11d0c76172",
+      "size": 300649
+    },
+    {
+      "id": "loghub2k-Thunderbird",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k Thunderbird: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/Thunderbird/Thunderbird_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/Thunderbird/Thunderbird_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "bd8656ef6a18a25083a7fa22172136ab4d20c26acef2b152d7b6ed757159e659",
+      "size": 436610
+    },
+    {
+      "id": "loghub2k-Windows",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k Windows: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/Windows/Windows_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/Windows/Windows_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "16831e2f899a624565521b128d2793893f9ea9c3f1d194868efd28c6583fb245",
+      "size": 399747
+    },
+    {
+      "id": "loghub2k-Zookeeper",
+      "publisher": "LOGPAI (repository logpai/logparser); ground truth corrected by Khan, Shin, Bianculli and Briand (ICSE 2022)",
+      "description": "Loghub-2k Zookeeper: 2,000 log messages with corrected event ids and templates (data/loghub_2k_corrected/Zookeeper/Zookeeper_2k.log_structured_corrected.csv at commit d9d4180784cde9afef990eeeb458591011933f9b)",
+      "url": "https://raw.githubusercontent.com/logpai/logparser/d9d4180784cde9afef990eeeb458591011933f9b/data/loghub_2k_corrected/Zookeeper/Zookeeper_2k.log_structured_corrected.csv",
+      "landing_page": "https://github.com/logpai/logparser/tree/d9d4180784cde9afef990eeeb458591011933f9b/data",
+      "license": "Loghub licence: free for research or academic work; usage must refer to https://github.com/logpai/loghub and cite Zhu et al. (ISSRE 2023), and copies must carry the notice. Fetched from the pinned URL and not redistributed.",
+      "sha256": "099a7a6d941846f958fe5287ff14968d9fa874f09c7d133a0aae29200dc34d61",
+      "size": 369645
+    },
+    {
+      "id": "sygus-benchmarks",
+      "publisher": "SyGuS-Comp organisers (GitHub SyGuS-Org/benchmarks)",
+      "description": "Public SyGuS competition benchmarks at commit 13c8deb68a873635879c9a69bc78caebd340f646 (GitHub source archive); only lib/PBE_SLIA_Track/from_2018 is used: 27 string-transformation tasks that have a '-long' variant with more examples",
+      "url": "https://github.com/SyGuS-Org/benchmarks/archive/13c8deb68a873635879c9a69bc78caebd340f646.zip",
+      "landing_page": "https://github.com/SyGuS-Org/benchmarks/tree/13c8deb68a873635879c9a69bc78caebd340f646/lib/PBE_SLIA_Track/from_2018",
+      "license": "not stated (no licence file or statement in the repository; fetched from the pinned URL and never redistributed)",
+      "sha256": "cc189230f2e19b5a4b73f2e9464d1cea49516313b3124fc18a6510fb9185444e",
+      "size": 30724326
+    }
+  ],
+  "files": [
+    {
+      "path": "cit/apache-2way.json",
+      "family": "cit",
+      "derived_from": [
+        "cit-icse15-benchmarks"
+      ],
+      "sha256": "dc371878c39b885e5ef48048f5e469efca923c869f87cd35dd3d4ce66262a0e3",
+      "size": 905
+    },
+    {
+      "path": "cit/gcc-2way.json",
+      "family": "cit",
+      "derived_from": [
+        "cit-icse15-benchmarks"
+      ],
+      "sha256": "bc2944aa02e8d742f697a5aaab33b55e0051b602502c5e1399f881c8935caa39",
+      "size": 1996
+    },
+    {
+      "path": "cit/healthcare4-2way.json",
+      "family": "cit",
+      "derived_from": [
+        "cit-icse15-benchmarks"
+      ],
+      "sha256": "910d1f56e20f5bc5061c73b37244945ece40a9aca35647114240c75c4d92bd27",
+      "size": 1515
+    },
+    {
+      "path": "cit/spins-3way.json",
+      "family": "cit",
+      "derived_from": [
+        "cit-icse15-benchmarks"
+      ],
+      "sha256": "e8e0edb0d636aeed53d9f8d3378934823bcffbbcad7414024f783cb0da5f3a10",
+      "size": 757
+    },
+    {
+      "path": "cit/spinv-2way.json",
+      "family": "cit",
+      "derived_from": [
+        "cit-icse15-benchmarks"
+      ],
+      "sha256": "f549d75f3b95b7e4a4725243faf54487a815b6cd4ae79b99b5ab3446633a18ad",
+      "size": 23554
+    },
+    {
+      "path": "coalesce/large.json",
+      "family": "coalesce",
+      "derived_from": [
+        "coalesce-graphs",
+        "coalesce-grund",
+        "coalesce-greedy",
+        "coalesce-optimistic"
+      ],
+      "sha256": "9053be717344b0c8950de582bb15e5490151c0ae83371ebc5fb1769910b86eba",
+      "size": 6603809
+    },
+    {
+      "path": "coalesce/small.json",
+      "family": "coalesce",
+      "derived_from": [
+        "coalesce-graphs",
+        "coalesce-grund",
+        "coalesce-greedy",
+        "coalesce-optimistic"
+      ],
+      "sha256": "7f13ba50322c4bd3feb43d29827eb579209f601cf2180ecb0003b137c28cbb0c",
+      "size": 7558477
+    },
+    {
+      "path": "code2inv/invalid.json",
+      "family": "invariants",
+      "derived_from": [
+        "code2inv"
+      ],
+      "sha256": "30852742bba31b6d738012fb0684d4878451b36e1c97b87bda5a43f0ebab808f",
+      "size": 362
+    },
+    {
+      "path": "code2inv/problems.json",
+      "family": "invariants",
+      "derived_from": [
+        "code2inv"
+      ],
+      "sha256": "2749db5106ccfbf14304303663025825b33b4e3eb49563dc5167b15545d7193b",
+      "size": 329977
+    },
+    {
+      "path": "logparse/datasets.json",
+      "family": "logparse",
+      "derived_from": [
+        "loghub2k-Android",
+        "loghub2k-Apache",
+        "loghub2k-BGL",
+        "loghub2k-HDFS",
+        "loghub2k-HPC",
+        "loghub2k-Hadoop",
+        "loghub2k-HealthApp",
+        "loghub2k-Linux",
+        "loghub2k-Mac",
+        "loghub2k-OpenSSH",
+        "loghub2k-OpenStack",
+        "loghub2k-Proxifier",
+        "loghub2k-Spark",
+        "loghub2k-Thunderbird",
+        "loghub2k-Windows",
+        "loghub2k-Zookeeper"
+      ],
+      "sha256": "fed34c1da1acfc4568851bea9e0b4679b1b98679f615b5d92d62b50a07e94c80",
+      "size": 2545612
+    },
+    {
+      "path": "pbe/tasks.json",
+      "family": "pbe",
+      "derived_from": [
+        "sygus-benchmarks"
+      ],
+      "sha256": "ac74b13ade46ba8cf99c27213803badcd2ce94c74018dc18bf2f6602fa4da98c",
+      "size": 79368
+    },
+    {
+      "path": "pymod/fuzz-html.parser.json",
+      "family": "pymod",
+      "derived_from": [
+        "cpython-3.12.14"
+      ],
+      "sha256": "ef90fd53e63ecc426511e5aeae88252517635e3b19e570ea49aa9fff103e760e",
+      "size": 38377
+    },
+    {
+      "path": "pymod/fuzz-plistlib.json",
+      "family": "pymod",
+      "derived_from": [
+        "cpython-3.12.14"
+      ],
+      "sha256": "ba41cf5f9dede52c09b24d80948b0660c68d3b98731046a7ce90dc8c41b17a18",
+      "size": 29988
+    },
+    {
+      "path": "pymod/fuzz-re.json",
+      "family": "pymod",
+      "derived_from": [
+        "cpython-3.12.14"
+      ],
+      "sha256": "080871f71af3c9f73b928c2ba3929192c33a0855f07d4d9e345257219cf5da94",
+      "size": 99178
+    },
+    {
+      "path": "pymod/fuzz-tomllib.json",
+      "family": "pymod",
+      "derived_from": [
+        "cpython-3.12.14"
+      ],
+      "sha256": "98a4a0e0983db9a0a4c74f8ef0d5236bfbc7bd24b87de641380a3e2a8c6f7382",
+      "size": 28063
+    },
+    {
+      "path": "pymod/mutation-fractions.json",
+      "family": "pymod",
+      "derived_from": [
+        "cpython-3.12.14"
+      ],
+      "sha256": "eec15f6679239482b6126abeca9e269fcdc982749e8d39ff11f8da4af61d9732",
+      "size": 943122
+    },
+    {
+      "path": "pymod/mutation-statistics.json",
+      "family": "pymod",
+      "derived_from": [
+        "cpython-3.12.14"
+      ],
+      "sha256": "1917f4d179856252492fc5dafa82874ac5551d6de84699f1b6dd007a7f50f3f9",
+      "size": 848984
+    },
+    {
+      "path": "pymod/mutation-textwrap.json",
+      "family": "pymod",
+      "derived_from": [
+        "cpython-3.12.14"
+      ],
+      "sha256": "d6133c84a4a843b3f7fc33bdae78fee19e774193868b1db9eaf8fa2d9d4b53d6",
+      "size": 346333
+    },
+    {
+      "path": "pymod/mutation-urllib.parse.json",
+      "family": "pymod",
+      "derived_from": [
+        "cpython-3.12.14"
+      ],
+      "sha256": "d348bacc4641dfcbe3cbd0f488618a7adcc940ed81b5d43a7dbf33d9bb30a099",
+      "size": 510915
+    },
+    {
+      "path": "quixbugs/repair.json",
+      "family": "quixbugs",
+      "derived_from": [
+        "quixbugs"
+      ],
+      "sha256": "f6e85db0b8b7c5bfac1604be30bb500f31e776616066113990a7dda731955a4d",
+      "size": 149933
+    },
+    {
+      "path": "quixbugs/sbfl.json",
+      "family": "quixbugs",
+      "derived_from": [
+        "quixbugs"
+      ],
+      "sha256": "1e30d6db4f08051ae49def84a4e08c189b9d2d5b0c74d6ec70f1f52230459e31",
+      "size": 8667
+    },
+    {
+      "path": "sbfl/faults.json",
+      "family": "sbfl",
+      "derived_from": [
+        "cpython-3.12.14"
+      ],
+      "sha256": "9aa5d1973727376b79438e538f5b04450888ffa461afdb7a79a73edb699f445c",
+      "size": 641974
+    },
+    {
+      "path": "superopt/problems.json",
+      "family": "superopt",
+      "derived_from": [
+        "stoke-p01",
+        "stoke-p02",
+        "stoke-p03",
+        "stoke-p04",
+        "stoke-p05",
+        "stoke-p06",
+        "stoke-p07",
+        "stoke-p08",
+        "stoke-p09",
+        "stoke-p10",
+        "stoke-p11",
+        "stoke-p12",
+        "stoke-p13",
+        "stoke-p14",
+        "stoke-p15",
+        "stoke-p16",
+        "stoke-p17",
+        "stoke-p18",
+        "stoke-p19",
+        "stoke-p20",
+        "stoke-p21",
+        "stoke-p22",
+        "stoke-p23",
+        "stoke-p24",
+        "stoke-p25"
+      ],
+      "sha256": "42ac2a9602cac02284203c8593644f4b9f398b150dcbf3f09d10992b25e45daa",
+      "size": 5339
+    },
+    {
+      "path": "tcp/iofrol.json",
+      "family": "tcp",
+      "derived_from": [
+        "atcs-paintcontrol",
+        "atcs-iofrol"
+      ],
+      "sha256": "69775a84dbfedd7c8205707db8749b0d7864d3e058eee9bc1a243a0e60516df7",
+      "size": 563661
+    },
+    {
+      "path": "tcp/paintcontrol.json",
+      "family": "tcp",
+      "derived_from": [
+        "atcs-paintcontrol",
+        "atcs-iofrol"
+      ],
+      "sha256": "8a52eebbf4ca279127094f79b944d3f4ee42b77db3c61cab5dc61ec241861002",
+      "size": 467474
+    }
+  ]
+}

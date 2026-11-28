@@ -1,0 +1,127 @@
+{
+  "protocol": "recreated_verified",
+  "family": "physics_research_unitary_synthesis",
+  "direction": "minimize",
+  "contract": "synthesize(problem) -> list of gates. problem has keys name, qubits (2 or 3), cnot_budget and the target unitary as real and imaginary (nested lists of 2**qubits rows). A gate is ['u3', qubit, theta, phi, lam] for the standard single-qubit rotation or ['cx', control, target] for a CNOT; qubit 0 is the most significant bit of the basis index. At most cnot_budget CNOTs and 400 gates per circuit. synthesize is called once per target in a sandboxed subprocess with a 150 s CPU budget for all seven targets. Score (minimize): mean over the targets of the phase-insensitive distance 1 - |tr(target^dagger U)| / 2**qubits, where the evaluator rebuilds U from the gate list; 0 means exact synthesis of every target within its budget",
+  "parameters": {
+    "cpu_seconds": 150
+  },
+  "requires": [
+    "py:numpy",
+    "py:scipy"
+  ],
+  "timeout": 240,
+  "notes": [
+    "Targets and CNOT budgets are taken from the synthesis literature: one CNOT for CNOT, two for iSWAP, three for SWAP and for any two-qubit unitary, six for the Toffoli gate (proved optimal by Shende and Markov) and twenty for any three-qubit unitary (quantum Shannon decomposition). Each budget is known to be achievable, so a score of 0 exists; the task is to find such circuits numerically. The three generic unitaries are fixed matrix exponentials of Hermitian matrices defined in the evaluator (no random number generator), and the distance ignores a global phase."
+  ],
+  "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
+  "id": "science-physics-cnot-budgeted-unitary-synthesis",
+  "name": "Physics: exact quantum circuit synthesis within published CNOT budgets",
+  "paper_ids": [
+    "science-physics_research"
+  ],
+  "description": "Compile seven fixed two- and three-qubit unitaries (CNOT, iSWAP, SWAP, the Toffoli gate and three generic unitaries) into single-qubit rotations and CNOT gates without exceeding the CNOT counts known to suffice for each. The evaluator rebuilds every circuit's unitary exactly and scores the mean phase-insensitive distance to the targets.",
+  "benchmark": "Physics: exact quantum circuit synthesis within published CNOT budgets",
+  "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+  "paper_direction": null,
+  "sources": [
+    {
+      "url": "https://doi.org/10.1109/TCAD.2005.855930",
+      "type": "paper",
+      "locator": "Shende, Bullock and Markov (2006), Synthesis of quantum-logic circuits: quantum Shannon decomposition with twenty CNOTs for any three-qubit unitary and the lower bound of fourteen."
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevA.69.032315",
+      "type": "paper",
+      "locator": "Vatan and Williams (2004), Optimal quantum circuits for general two-qubit gates: three CNOTs suffice for every two-qubit unitary and SWAP needs three."
+    },
+    {
+      "url": "https://arxiv.org/abs/0803.2316",
+      "type": "paper",
+      "locator": "Shende and Markov (2009), On the CNOT-cost of TOFFOLI gates: six CNOTs are necessary and sufficient for the Toffoli gate."
+    }
+  ],
+  "limitations": [
+    "Each CNOT budget is known to be achievable, so the optimum score (0) is known; the task measures whether a synthesis procedure finds exact circuits numerically within a fixed CPU budget, not whether it beats a published bound.",
+    "The gate set is limited to U3 rotations and CNOTs on all-to-all connectivity; hardware topology, gate errors and compilation time are not modelled.",
+    "The two-qubit and three-qubit generic targets are three fixed matrices defined in the evaluator, so the score does not average over the unitary group.",
+    "Distances below about 1e-12 are at floating-point resolution and count as exact."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "science-physics_research",
+      "title": "Physics research: source-based research tasks",
+      "url": "https://doi.org/10.1002/3527603794.ch4"
+    }
+  ],
+  "state_of_the_art": {
+    "kind": "optimum",
+    "value": 0.0,
+    "as_of": "2026-10-10",
+    "statement": "Exact synthesis within every budget is known to be possible: three CNOTs for any two-qubit unitary (two for iSWAP, one for CNOT), six for the Toffoli gate and twenty for any three-qubit unitary, so the minimum score 0 is attainable.",
+    "sources": [
+      {
+        "title": "Synthesis of quantum-logic circuits",
+        "url": "https://doi.org/10.1109/TCAD.2005.855930"
+      },
+      {
+        "title": "Optimal quantum circuits for general two-qubit gates",
+        "url": "https://doi.org/10.1103/PhysRevA.69.032315"
+      },
+      {
+        "title": "On the CNOT-cost of TOFFOLI gates",
+        "url": "https://arxiv.org/abs/0803.2316"
+      }
+    ]
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Decompose a given unitary operation into single-qubit rotations and two-qubit CNOT gates using as few CNOTs as possible.",
+    "importance_rationale": "CNOT count is the dominant cost of running a quantum circuit on hardware; the optimal counts for two- and three-qubit unitaries are classical results of quantum circuit synthesis, and numerically finding circuits that attain them is what compilers must do.",
+    "papers": [
+      {
+        "title": "Synthesis of quantum-logic circuits",
+        "url": "https://doi.org/10.1109/TCAD.2005.855930",
+        "primary_goal": "Develop circuit-synthesis procedures for arbitrary unitaries with as few CNOT gates as possible, and prove bounds on the required number.",
+        "task_relation": "The task fixes the budgets this literature establishes and scores how close a candidate's circuits come to the targets.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Optimal quantum circuits for general two-qubit gates",
+        "url": "https://doi.org/10.1103/PhysRevA.69.032315",
+        "primary_goal": "Construct optimal CNOT-count circuits for arbitrary two-qubit unitaries.",
+        "task_relation": "Provides the two-qubit budgets (three CNOTs in general, fewer for special gates) used by the task.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "On the CNOT-cost of TOFFOLI gates",
+        "url": "https://arxiv.org/abs/0803.2316",
+        "primary_goal": "Determine the minimum number of CNOT gates needed to implement the Toffoli gate.",
+        "task_relation": "Provides the proven budget of six CNOTs for the Toffoli target.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "The cited papers' main goal is CNOT-efficient synthesis of unitaries, the problem the evaluator scores with an exact unitary distance.",
+    "verification_basis": "Crossref and arXiv metadata inspected; the circuit builder was verified against hand-written exact decompositions of CNOT and SWAP.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  },
+  "labels": {
+    "area": "quantum_information",
+    "domain": "natural_science",
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "medium",
+    "important_to_science": true
+  }
+}

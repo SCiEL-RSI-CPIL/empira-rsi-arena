@@ -1,0 +1,524 @@
+[
+  {
+    "id": "science-biology-hp-lattice-folding-2d",
+    "name": "Biology: HP lattice protein folding on the square lattice",
+    "description": "Fold the ten standard two-dimensional HP benchmark sequences (20 to 100 residues) into low-energy self-avoiding conformations on the square lattice. The evaluator checks self-avoidance, recomputes the hydrophobic contact energy of every conformation and scores the mean ratio to the lowest energies reported in the literature.",
+    "family": "biology_research_hp_square_lattice",
+    "parameters": {
+      "dimension": 2,
+      "cpu_seconds": 120
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1021/ma00200a030",
+        "type": "paper",
+        "locator": "Lau and Dill (1989) define the HP lattice model of protein folding whose minimum-energy conformations this task searches for."
+      },
+      {
+        "url": "https://doi.org/10.1063/1.2208607",
+        "type": "paper",
+        "locator": "Kou, Oh and Wong (2006), Tables IV and V: the nine widely used 2D benchmark sequences and the lowest energies reached by equi-energy sampling, genetic algorithms, evolutionary Monte Carlo, PERM, SISPER and human-guided search."
+      },
+      {
+        "url": "https://doi.org/10.1063/1.2736681",
+        "type": "paper",
+        "locator": "Zhang, Kou and Liu (2007), Tables II and III: the benchmark sequences longer than 50 residues and the fragment-regrowth energies used here as best-known values."
+      },
+      {
+        "url": "https://arxiv.org/abs/1207.3974",
+        "type": "paper",
+        "locator": "Wuest and Landau (2012), Table II: Wang-Landau sampling reaches the same putative ground-state energies for the long 2D chains (-42, -53, -48, -50)."
+      }
+    ],
+    "limitations": [
+      "The HP model is a coarse two-letter abstraction of a protein: its ground states are not real protein structures, and a better HP energy is a better solution of the stated lattice optimisation problem rather than a structural-biology result.",
+      "Best-known energies for these 2D sequences are the lowest values reported in the cited literature, not proven optima, except for the 25-residue chain, whose -8 equals the parity upper bound on contacts (H-H contacts join residues of opposite parity, and its four H residues at positions 6, 12, 18 and 24 have two free neighbour sites each); the evaluator cannot certify optimality, only recompute energies.",
+      "All ten sequences share one CPU budget inside the sandboxed subprocess, so the score depends on that budget and is not comparable with the multi-hour searches of the cited papers.",
+      "The published energies are embedded in the evaluator as reference values only; the candidate never receives them."
+    ],
+    "labels": {
+      "area": "biology",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "environment_variables": [],
+      "datasets": "None downloaded; the benchmark sequences are transcribed from the cited papers into the evaluator."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_bio_hp.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "requires": [],
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 1.0,
+      "as_of": "2026-10-10",
+      "statement": "A score of 1.0 means matching the lowest energies reported for all ten sequences: -9, -8, -14, -23, -21, -36, -42, -53, -48 and -50 for the 20-, 25-, 36-, 48-, 50-, 60-, 64-, 85- and two 100-residue chains. Fragment-regrowth Monte Carlo (FRESS) and Wang-Landau sampling reach every one of these values, each with searches far longer than this task's CPU budget.",
+      "sources": [
+        {
+          "title": "Biopolymer structure simulation and optimization via fragment regrowth Monte Carlo",
+          "url": "https://doi.org/10.1063/1.2736681"
+        },
+        {
+          "title": "Optimized Wang-Landau sampling of lattice polymers",
+          "url": "https://arxiv.org/abs/1207.3974"
+        }
+      ]
+    }
+  },
+  {
+    "id": "science-biology-hp-lattice-folding-3d",
+    "name": "Biology: HP lattice protein folding on the cubic lattice",
+    "description": "Fold the sixteen standard three-dimensional HP benchmark chains (the ten 48-residue sequences with proven ground states plus six longer chains of 64 to 136 residues) on the simple cubic lattice. The evaluator checks self-avoidance, recomputes every hydrophobic contact energy and scores the mean ratio to the published reference energies.",
+    "family": "biology_research_hp_cubic_lattice",
+    "parameters": {
+      "dimension": 3,
+      "cpu_seconds": 240
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1021/ma00200a030",
+        "type": "paper",
+        "locator": "Lau and Dill (1989) define the HP lattice model whose cubic-lattice ground states this task searches for."
+      },
+      {
+        "url": "https://doi.org/10.1073/pnas.92.1.325",
+        "type": "paper",
+        "locator": "Yue, Fiebig, Thomas, Chan, Shakhnovich and Dill (1995) introduce the ten 48-residue cubic-lattice sequences and determine their ground states by constraint-based hydrophobic-core construction."
+      },
+      {
+        "url": "https://arxiv.org/abs/cond-mat/0310707",
+        "type": "paper",
+        "locator": "Bachmann and Janke (2004), Table II: the ten 48-mer sequences in run-length notation with their ground-state energies (-32, -34, -34, -33, -32, -32, -32, -31, -34, -33) and degeneracies."
+      },
+      {
+        "url": "https://doi.org/10.1063/1.2736681",
+        "type": "paper",
+        "locator": "Zhang, Kou and Liu (2007), Tables II and IV: the longer 3D benchmark sequences and the lowest energies found for them (-56, -56, -72, -57, -75, -83)."
+      },
+      {
+        "url": "https://arxiv.org/abs/1207.3974",
+        "type": "paper",
+        "locator": "Wuest and Landau (2012), Table II: Wang-Landau sampling reaches -44, -56, -56, -72, -58, -75 and -83 on the long 3D chains, improving the 103-residue reference to -58."
+      }
+    ],
+    "limitations": [
+      "The HP model is a two-letter lattice abstraction: its ground states are not real protein structures, so a better energy is a better solution of a lattice optimisation problem, not a structural-biology finding.",
+      "The ten 48-mers have ground states established by exhaustive hydrophobic-core construction, and the energies of the 64- and 67-residue chains are reported as exact results of the same method (Hsu et al. 2003, citing Yue and Dill 1995); the references for the 88-, 103-, 124- and 136-residue chains are the lowest energies reported in the cited literature and can in principle be beaten.",
+      "All sixteen chains share one CPU budget in the sandboxed subprocess, so scores are budget-dependent and not comparable with the multi-hour or multi-day searches of the cited papers.",
+      "The reference energies are used only for scoring; the candidate never receives them."
+    ],
+    "labels": {
+      "area": "biology",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "environment_variables": [],
+      "datasets": "None downloaded; the benchmark sequences are transcribed from the cited papers into the evaluator."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_bio_hp.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "requires": [],
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 1.0,
+      "as_of": "2026-10-10",
+      "statement": "A score of 1.0 means matching the reference energy of every chain: -32, -34, -34, -33, -32, -32, -32, -31, -34 and -33 for the ten 48-mers (proven ground states), and -56, -56, -72, -58, -75 and -83 for the 64-, 67-, 88-, 103-, 124- and 136-residue chains. Fragment-regrowth Monte Carlo and Wang-Landau sampling reach all of these, the longest ones after hours to days of computation.",
+      "sources": [
+        {
+          "title": "Thermodynamics of lattice heteropolymers",
+          "url": "https://arxiv.org/abs/cond-mat/0310707"
+        },
+        {
+          "title": "Biopolymer structure simulation and optimization via fragment regrowth Monte Carlo",
+          "url": "https://doi.org/10.1063/1.2736681"
+        },
+        {
+          "title": "Optimized Wang-Landau sampling of lattice polymers",
+          "url": "https://arxiv.org/abs/1207.3974"
+        }
+      ]
+    }
+  },
+  {
+    "id": "science-biology-influenza-hospitalization-forecasting",
+    "name": "Biology: probabilistic forecasts of state influenza hospital admissions",
+    "description": "Issue weekly quantile forecasts of laboratory-confirmed influenza hospital admissions one to four weeks ahead for every US state through the held-out 2024-2025 season, seeing only the surveillance history up to each forecast week. The evaluator scores the quantiles with the weighted interval score used by the CDC FluSight hub.",
+    "family": "biology_research_influenza_hospitalizations",
+    "parameters": {
+      "season": "2024-2025",
+      "cpu_seconds": 180
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1038/s41467-024-50601-9",
+        "type": "paper",
+        "locator": "Mathis et al. (2024): evaluation of the FluSight collaborative forecasts of laboratory-confirmed influenza hospital admissions, the exact target, horizons and WIS metric used here."
+      },
+      {
+        "url": "https://doi.org/10.1073/pnas.1812594116",
+        "type": "paper",
+        "locator": "Reich et al. (2019): multiyear, multimodel assessment of seasonal influenza forecasting in the United States, establishing the forecasting problem and its evaluation."
+      },
+      {
+        "url": "https://doi.org/10.1371/journal.pcbi.1008618",
+        "type": "paper",
+        "locator": "Bracher, Ray, Gneiting and Reich (2021): definition of the weighted interval score for quantile-format epidemic forecasts, implemented independently in the evaluator."
+      },
+      {
+        "url": "https://github.com/cdcepi/FluSight-forecast-hub",
+        "type": "benchmark",
+        "locator": "FluSight forecast hub (MIT licence): target-data/target-hospital-admissions.csv provides the weekly state-level admission counts from CDC NHSN used for training and verification."
+      }
+    ],
+    "limitations": [
+      "Training history and verification both use the latest published snapshot, not the data vintages available in real time, so reporting revisions and backfill are not modelled and the task is easier than the live challenge.",
+      "Only the hospital-admission target, four horizons and the November-April window are scored; the hub's rate-change and seasonal targets are not.",
+      "The score is the mean weighted interval score in admissions, so it is dominated by populous states and is not comparable with the hub's relative-WIS leaderboard.",
+      "The held-out season is public, so search feedback on this fixed split can overfit it; a candidate should be frozen and tested on a later season before any claim of forecasting skill.",
+      "A better score is a better statistical forecaster on these seasons, not an epidemiological discovery."
+    ],
+    "labels": {
+      "area": "biology",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "data": "real_measurements",
+      "verification": "simulation",
+      "reference": "none"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "environment_variables": [],
+      "datasets": "Derived from the pinned FluSight target file by python3 scripts/prepare_bio_physics.py (hashes in catalog/bio_physics-data-lock.json)."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_bio_flu.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "requires": [
+      "file:data/bio_physics/flu/flusight_hospital_admissions.json.gz"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "as_of": "2026-10-10",
+      "statement": "No published value for this exact protocol (final-snapshot data, 52 state-level locations, mean absolute WIS). For context, the flat random-walk seed scores 172.6 mean WIS on the 2024-2025 season here, with 81.6 at one week and 255.7 at four weeks ahead.",
+      "sources": [
+        {
+          "title": "Evaluation of FluSight influenza forecasting in the 2021-22 and 2022-23 seasons",
+          "url": "https://doi.org/10.1038/s41467-024-50601-9"
+        }
+      ]
+    }
+  },
+  {
+    "id": "science-biology-balibase-protein-alignment",
+    "name": "Biology: protein multiple-alignment accuracy on BAliBASE reference alignments",
+    "description": "Align the unaligned protein sequences of 26 BAliBASE reference-1 test cases, spanning very divergent and medium-divergence families. The evaluator checks that each alignment is a valid gapped version of the input sequences and scores the sum-of-pairs agreement with the structure-based reference alignment on its annotated core blocks.",
+    "family": "biology_research_balibase_alignment",
+    "parameters": {
+      "cpu_seconds": 240
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1093/nar/27.13.2682",
+        "type": "paper",
+        "locator": "Thompson, Plewniak and Poch (1999): comparison of multiple alignment programs on reference alignments; defines the sum-of-pairs and total-column scores on core blocks implemented here."
+      },
+      {
+        "url": "https://doi.org/10.1002/prot.20527",
+        "type": "paper",
+        "locator": "Thompson, Koehl, Ripp and Poch (2005): BAliBASE 3.0, the structure-based reference alignments and core-block annotations used as ground truth."
+      },
+      {
+        "url": "https://doi.org/10.1093/nar/gkf436",
+        "type": "paper",
+        "locator": "Katoh et al. (2002), MAFFT: an alignment method whose main goal is accurate and fast multiple sequence alignment, the problem this task scores."
+      },
+      {
+        "url": "https://www.lbgi.fr/balibase/",
+        "type": "benchmark",
+        "locator": "BAliBASE download page; the archive BAliBASE_R1-5.tar.gz (reference sets RV11 and RV12 of this task) states no licence and is downloaded by the prepare script rather than redistributed."
+      }
+    ],
+    "limitations": [
+      "Only 26 of the 82 reference-1 cases are used (at most 10 sequences and 300 reference columns each, and at least 43 core-block columns; ten further cases within the size limits, each with fewer than 40 core-block columns, are not used) so that a CPU-only aligner finishes within the budget; averages are therefore not comparable with published whole-benchmark numbers.",
+      "SP and TC are an independent implementation of the published definitions restricted to core blocks; it scores the reference alignments at exactly 1.0 but is not byte-compatible with the bundled bali_score program.",
+      "Reference alignments are themselves structure-based estimates of homology, and core blocks cover only part of each alignment.",
+      "The references are public, so search feedback can overfit this fixed subset; a candidate aligner should be checked on held-out families before any claim of improved accuracy."
+    ],
+    "labels": {
+      "area": "biology",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "environment_variables": [],
+      "datasets": "Derived from the pinned BAliBASE 3.0 archive by python3 scripts/prepare_bio_physics.py (hashes in catalog/bio_physics-data-lock.json)."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_bio_align.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "requires": [
+      "file:data/bio_physics/align/balibase_rv11_rv12.json.gz"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "as_of": "2026-10-10",
+      "statement": "No published value for this 26-case subset and local scorer. For context, the progressive-alignment seed reaches mean SP 0.640 (0.400 on the very divergent RV11 cases, 0.816 on RV12) and mean TC 0.480; published aligners report substantially higher SP on the full reference-1 sets, so there is room to improve.",
+      "sources": [
+        {
+          "title": "A comprehensive comparison of multiple sequence alignment programs",
+          "url": "https://doi.org/10.1093/nar/27.13.2682"
+        }
+      ]
+    }
+  },
+  {
+    "id": "science-biology-rna-secondary-structure",
+    "name": "Biology: RNA secondary-structure prediction against Rfam consensus structures",
+    "description": "Predict the secondary structure of 90 non-coding RNA sequences from 47 Rfam families that have experimentally determined three-dimensional structures. The evaluator compares the predicted base pairs with the family's consensus pairing projected onto each sequence and scores the mean F1.",
+    "family": "biology_research_rna_structure",
+    "parameters": {
+      "cpu_seconds": 180
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1073/pnas.0401799101",
+        "type": "paper",
+        "locator": "Mathews et al. (2004): incorporating chemical modification constraints into a dynamic programming algorithm for RNA secondary structure prediction, the problem and accuracy measures used here."
+      },
+      {
+        "url": "https://doi.org/10.1186/1748-7188-6-26",
+        "type": "paper",
+        "locator": "Lorenz et al. (2011), ViennaRNA Package 2.0: the thermodynamic folding algorithms that define the state of practice for single-sequence prediction."
+      },
+      {
+        "url": "https://doi.org/10.1093/nar/gkaa1047",
+        "type": "archive",
+        "locator": "Rfam (CC0): seed alignments and consensus secondary structures; this task uses Rfam.3d.seed.gz of release 15.1, the families with three-dimensional structures."
+      }
+    ],
+    "limitations": [
+      "Reference structures are consensus structures from comparative sequence analysis projected onto individual sequences, not per-sequence experimental structures; pseudoknots, non-canonical pairs and pairs involving gapped columns are dropped.",
+      "Only canonical nested pairs with a span of at least four nucleotides are scored, and at most two sequences per family are used, so the set is small (90 sequences, 47 families).",
+      "Where ViennaRNA is installed (it is optional, not a requirement of the task) a candidate can call a thermodynamic folding engine; an improvement over that engine on this set is a method result on 47 families, not a general advance in RNA folding.",
+      "Families describing viral elements or CRISPR loci are excluded by name, so the set is biased towards riboswitches, ribozymes, small RNAs and spliceosomal RNAs.",
+      "The source is the file of the Rfam 15.1 release directory (https://ftp.ebi.ac.uk/pub/databases/Rfam/15.1/Rfam.3d.seed.gz), pinned by SHA-256; the derived file's hash pins the exact sequences and structures used."
+    ],
+    "labels": {
+      "area": "biology",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "environment_variables": [],
+      "datasets": "Derived from the pinned Rfam 3D seed alignments by python3 scripts/prepare_bio_physics.py (hashes in catalog/bio_physics-data-lock.json)."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_bio_rna.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "requires": [
+      "file:data/bio_physics/rna/rfam_consensus_structures.json.gz"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "as_of": "2026-10-10",
+      "statement": "No published value for this exact set. Measured during task construction: ViennaRNA 2.6.4 minimum-free-energy folding reaches mean F1 0.609, and the Nussinov-style seed 0.401.",
+      "sources": [
+        {
+          "title": "ViennaRNA Package 2.0",
+          "url": "https://doi.org/10.1186/1748-7188-6-26"
+        }
+      ]
+    }
+  },
+  {
+    "id": "science-biology-phylogeny-topology-recovery",
+    "name": "Biology: phylogenetic topology recovery from simulated sequences",
+    "description": "Reconstruct the unrooted tree topology of twenty simulated instances with 8 to 32 taxa and 250 to 2000 sites, generated inside the evaluator under the Jukes-Cantor model with hidden random topologies and branch lengths. The score is the mean normalized Robinson-Foulds distance to the generating trees.",
+    "family": "biology_research_phylogeny_topology",
+    "parameters": {
+      "cpu_seconds": 180
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1093/oxfordjournals.molbev.a040454",
+        "type": "paper",
+        "locator": "Saitou and Nei (1987): the neighbour-joining method for reconstructing phylogenetic trees, the problem this task scores and the basis of the seed program."
+      },
+      {
+        "url": "https://doi.org/10.2307/2413481",
+        "type": "paper",
+        "locator": "Huelsenbeck (1995), Performance of phylogenetic methods in simulation: evaluating tree-reconstruction accuracy on sequences simulated along known trees, the protocol followed here."
+      },
+      {
+        "url": "https://doi.org/10.1016/0025-5564(81)90043-2",
+        "type": "paper",
+        "locator": "Robinson and Foulds (1981): the split-based tree distance used as the score."
+      },
+      {
+        "url": "https://doi.org/10.1093/sysbio/syq010",
+        "type": "paper",
+        "locator": "Guindon et al. (2010), PhyML 3.0: maximum-likelihood tree search, the state of practice a candidate would have to match or beat."
+      }
+    ],
+    "limitations": [
+      "Sequences are simulated under Jukes-Cantor with no rate heterogeneity, no indels and no model misspecification, so the task measures reconstruction under an idealized model rather than on real data.",
+      "Instances, topologies and branch-length regimes are a local choice (20 instances, 8 to 32 taxa); results do not transfer automatically to empirical alignments.",
+      "Exact recovery is not guaranteed to be attainable from finite data, so the minimum achievable score is unknown and the seed's value is only a baseline.",
+      "Branch lengths of the returned tree are ignored: only the unrooted topology is scored.",
+      "The simulator, the instance parameters and the seeds are public constants of the evaluator and the sandbox allows numpy, so a candidate that re-implements the generator obtains the generating trees without any inference (such a program scores 0.0). Results are meaningful only for candidates that use the sequences alone, and a claimed method should be confirmed on instances drawn with new seeds."
+    ],
+    "labels": {
+      "area": "biology",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "data": "synthetic",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "environment_variables": [],
+      "datasets": "None downloaded; instances are generated deterministically inside the evaluator."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_bio_phylo.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "requires": [],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "as_of": "2026-10-10",
+      "statement": "No published value for this instance set. The neighbour-joining seed reaches mean normalized Robinson-Foulds 0.177 and recovers 5 of the 20 topologies exactly; maximum-likelihood search is expected to do better, which is the intended research content.",
+      "sources": [
+        {
+          "title": "Performance of phylogenetic methods in simulation",
+          "url": "https://doi.org/10.2307/2413481"
+        }
+      ]
+    }
+  }
+]

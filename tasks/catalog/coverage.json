@@ -1,15 +1,15 @@
 {
   "papers": 98,
-  "task_packages": 959,
-  "paper_task_packages": 788,
+  "task_packages": 1277,
+  "paper_task_packages": 789,
   "native_reference_packages": 2,
-  "native_paper_packages": 130,
+  "native_paper_packages": 447,
   "kinds": {
     "specification": 445,
-    "upstream": 382,
-    "native": 132
+    "upstream": 383,
+    "native": 449
   },
-  "direct_upstream_evaluators": 201,
+  "direct_upstream_evaluators": 202,
   "pinned_repositories": 69,
   "paper_coverage": [
     {
@@ -802,12 +802,138 @@
       "tasks": 4,
       "upstream": 0,
       "gaps": 0
+    },
+    {
+      "id": "science-prize",
+      "name": "Prize-listed mathematical problems supplement",
+      "tasks": 3,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-prize_d",
+      "name": "Problem-bank constructions: geometry and discrete structures supplement",
+      "tasks": 11,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-prize_b",
+      "name": "Problem-bank constructions: arithmetic and extremal sets supplement",
+      "tasks": 30,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-prize_c",
+      "name": "Problem-bank constructions: graphs and set systems supplement",
+      "tasks": 29,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-prize_a",
+      "name": "Problem-bank constructions: additive combinatorics supplement",
+      "tasks": 30,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-prize_e",
+      "name": "Problem-bank constructions: Ramsey theory and colourings supplement",
+      "tasks": 18,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-prize_f",
+      "name": "Problem-bank constructions: extremal graphs, hypergraphs and designs supplement",
+      "tasks": 22,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-prize_g",
+      "name": "Problem-bank constructions: discrete geometry and analysis supplement",
+      "tasks": 10,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-prize_h",
+      "name": "Problem-bank constructions: number theory and additive sets supplement",
+      "tasks": 32,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-prize_i",
+      "name": "Problem-bank constructions: hypergraphs, graph constructions and instance-solving methods supplement",
+      "tasks": 18,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-earth_research",
+      "name": "Earth and environmental science research supplement",
+      "tasks": 17,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-finance_expansion",
+      "name": "Finance and economics research supplement",
+      "tasks": 18,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-software_engineering",
+      "name": "Software engineering research supplement",
+      "tasks": 23,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-biology_research",
+      "name": "Biology research supplement",
+      "tasks": 6,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-physics_research",
+      "name": "Physics research supplement",
+      "tasks": 7,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-chemistry_research",
+      "name": "Molecular and materials design research supplement",
+      "tasks": 18,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-frontier_physics",
+      "name": "Open packing, covering and energy problems with published records supplement",
+      "tasks": 10,
+      "upstream": 0,
+      "gaps": 0
+    },
+    {
+      "id": "science-frontier_combinatorics",
+      "name": "Open combinatorial design, coding and assignment problems with published records supplement",
+      "tasks": 15,
+      "upstream": 0,
+      "gaps": 0
     }
   ],
-  "merged_duplicates": 254,
+  "merged_duplicates": 253,
   "pinned_archives": 1,
-  "source_collections": 113,
+  "source_collections": 131,
   "supplemental_task_packages": 93,
   "community_task_packages": 1,
-  "science_task_packages": 75
+  "science_task_packages": 392
 }

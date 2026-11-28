@@ -22,7 +22,7 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 1800
   max_retries: 2
 
 prompt:
@@ -31,7 +31,7 @@ prompt:
 
     LeetCode-Contest task evaluated in CoCoEvo: Co-Evolution of Programs and Test Cases to Enhance Code Generation.
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `question` is a LeetCode contest problem in CoCoEvo's format (function signature and statement with the examples removed) plus a request for the complete implementation; the last ```python block of the reply (else the whole reply) is executed. `llm(...)` is a budgeted, cached OpenRouter chat client. Each of the problem's tests calls the entry-point function in a fresh namespace of a resource-limited child process that sees only the call; the plain-data result must equal the expected value (Python == semantics). Score: pass@1, the fraction of a fixed 20-problem sample whose every test passes within 10 s of wall time per problem; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

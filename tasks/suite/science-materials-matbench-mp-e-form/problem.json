@@ -1,0 +1,114 @@
+{
+  "id": "science-materials-matbench-mp-e-form",
+  "name": "Matbench v0.1 mp_e_form",
+  "description": "Predict the formation energy of a crystal in eV per atom, as calculated by density functional theory from its crystal structure (Matbench v0.1 task mp_e_form, 132752 samples). The evaluation uses the five official folds: for every fold the candidate is called once, in a separate process, with the other four folds and their target values as training data, and must predict the held-out fold within 600 seconds.",
+  "protocol": "recreated",
+  "family": "matbench",
+  "direction": "minimize",
+  "contract": "fit_predict(train_inputs, train_targets, test_inputs, info) -> list of len(test_inputs) numbers. Every input is a dict with the keys lattice (the three lattice vectors in angstrom, a 3 x 3 list), species (the element symbol of every site) and frac_coords (the fractional coordinates of every site). info has task, input_type, target, unit, fold, n_train and n_test. Score: mean over the five folds of the held-out mean absolute error, minimized.",
+  "parameters": {
+    "task": "mp_e_form",
+    "classification": false,
+    "best_known": 0.017,
+    "wall": 600
+  },
+  "requires": [
+    "py:numpy",
+    "py:sklearn",
+    "file:data/arnew/matbench/mp_e_form.json"
+  ],
+  "timeout": 3600,
+  "notes": [
+    "Leaderboard best 0.017 MAE (coGN), snapshot of matbench.materialsproject.org read 2026-11-03, date unknown.",
+    "matbench_mp_e_form.json.gz from ml.materialsproject.org, folds from the official validation file",
+    "Predicts the DFT formation energy (eV/atom) of 132,752 Materials Project crystals from their structure, scored by mean absolute error over the five official folds.",
+    "Leaders are graph neural networks and tuned ensembles; the leaderboard snapshot has no date.",
+    "Regression MAE averaged over the five official folds.",
+    "This task has 106k-133k structures: featurising them is slow, so a candidate must be efficient; the seed uses a cheap feature set.",
+    "One evaluation of the starting program took 190 s in the run of 2026-11-11, more than the arena's default limit of 120 s: raise AR_EVAL_TIMEOUT for this task."
+  ],
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "model",
+    "domain": "natural_science",
+    "data": "public_benchmark",
+    "verification": "sampled",
+    "reference": "leaderboard",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "materials_science",
+    "secondary_area": "physics",
+    "areas": [
+      "materials_science",
+      "physics",
+      "machine_learning"
+    ],
+    "important_to_science": true
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "Matbench v0.1 mp_e_form",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "minimize",
+  "sources": [
+    {
+      "url": "https://matbench.materialsproject.org/",
+      "type": "benchmark",
+      "locator": "matbench_mp_e_form"
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevLett.120.145301",
+      "type": "paper",
+      "locator": "Crystal Graph Convolutional Neural Networks for an Accurate and Interpretable Prediction of Material Properties"
+    },
+    {
+      "url": "https://doi.org/10.1038/s41524-020-00406-3",
+      "type": "benchmark",
+      "locator": "Dunn et al. (2020), Benchmarking materials property prediction methods: the Matbench test set and Automatminer reference algorithm (npj Comput Mater): benchmark paper defining the tasks, the nested cross-validation and the metrics; Crossref title verified."
+    },
+    {
+      "url": "https://matbench.materialsproject.org/Benchmark%20Info/matbench_v0.1/",
+      "type": "benchmark",
+      "locator": "Task table of matbench_v0.1: matbench_mp_e_form: regression/structure, e_form (eV/atom), 132,752 samples.."
+    }
+  ],
+  "limitations": [
+    "Leaders are graph neural networks and tuned ensembles; the leaderboard snapshot has no date.",
+    "Regression MAE averaged over the five official folds.",
+    "This task has 106k-133k structures: featurising them is slow, so a candidate must be efficient; the seed uses a cheap feature set.",
+    "One evaluation of the starting program took 190 s in the run of 2026-11-11, more than the arena's default limit of 120 s: raise AR_EVAL_TIMEOUT for this task.",
+    "The record was found in a hashed snapshot of its source; it is not replayed. See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://matbench.materialsproject.org/"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "Each cited paper has the prediction of the task's materials property from composition or structure as its main objective; the Matbench paper is a benchmark paper and is listed under extra_sources only.",
+    "scientific_problem": "Predict the DFT formation energy per atom (eV/atom) of an inorganic crystal from its structure.",
+    "importance_rationale": "Formation energy measures thermodynamic stability and is the first filter for synthesisable compounds, while DFT calculation of every candidate is costly, so a learned predictor widens the space that can be screened.",
+    "papers": [
+      {
+        "title": "Crystal Graph Convolutional Neural Networks for an Accurate and Interpretable Prediction of Material Properties",
+        "url": "https://doi.org/10.1103/PhysRevLett.120.145301",
+        "task_relation": "The paper's targets include the DFT formation energy of Materials Project crystals; the task predicts it on the Matbench subset with free choice of model.",
+        "primary_goal": "Learn crystal properties directly from the atomic connections of a structure, with a graph neural network trained on Materials Project DFT data (eight properties).",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  }
+}

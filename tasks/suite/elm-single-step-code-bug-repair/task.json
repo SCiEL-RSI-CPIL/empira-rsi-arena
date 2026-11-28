@@ -2,17 +2,22 @@
   "schema_version": "1.0",
   "id": "elm-single-step-code-bug-repair",
   "name": "Single-step code bug repair",
-  "description": "Single-step code bug repair: optimize the candidate specified by the paper and evaluate against the named benchmark.",
+  "description": "Repair mutated 4-Parity and Quadratic Python programs in one model editing step; evaluate whether the repaired program computes the target function correctly.",
   "paper_ids": [
     "elm"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2206.08896",
       "type": "paper",
-      "locator": "Sections 4–7 and Appendix A"
+      "locator": "Section 3.1 (Mutation through Diff, Figures 1-2) and Appendix A"
+    },
+    {
+      "url": "https://arxiv.org/abs/2206.08896",
+      "type": "paper",
+      "locator": "Section 3.1 and Appendix A.1 (source code of 4-Parity and Quadratic and the bug procedure)"
     }
   ],
   "requirements": {
@@ -22,18 +27,18 @@
     "environment_variables": [],
     "datasets": "Single-step code bug repair",
     "notes": [
-      "Sodarace physics",
+      "Python execution of the 4-Parity and Quadratic functions",
       "LLM or diff-model checkpoints"
     ]
   },
   "evaluation": {
-    "metric": "horizontal distance / terrain return / repair accuracy respectively",
-    "paper_metric": "horizontal distance / terrain return / repair accuracy respectively",
+    "metric": "score",
+    "paper_metric": "single-step repair success probability",
     "paper_direction": "maximize",
     "direction": "maximize",
     "benchmark": "Single-step code bug repair",
     "protocol": "specified_only",
-    "source_locator": "Sections 4–7 and Appendix A"
+    "source_locator": "Section 3.1 (Mutation through Diff, Figures 1-2) and Appendix A"
   },
   "execution": {
     "repository": null,
@@ -49,8 +54,8 @@
       "Original models and full training pipeline are not linked as an official repository in the paper. OpenELM is a separate related implementation."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_code",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -58,35 +63,33 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:Single-step code bug repair"
+        "network:openrouter",
+        "py:sortedcontainers"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_api",
-      "unsupported_reason": "Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the Single-step code bug repair benchmark. The suite embeds neither model calls nor the benchmark data."
+      "timeout": 1800,
+      "validity_key": "valid"
     }
   },
   "limitations": [
     "No official runnable repository was verified from the paper/project sources examined.",
     "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.",
     "No publicly accessible, paper-linked implementation with a verified immutable revision was established."
   ],
   "source_specification": {
     "name": "Single-step code bug repair",
     "slug": "single-step-code-bug-repair",
-    "description": "Single-step code bug repair: optimize the candidate specified by the paper and evaluate against the named benchmark.",
+    "description": "Repair mutated 4-Parity and Quadratic Python programs in one model editing step; evaluate whether the repaired program computes the target function correctly.",
     "benchmark": "Single-step code bug repair",
     "dataset": "Single-step code bug repair",
-    "metric": "horizontal distance / terrain return / repair accuracy respectively",
+    "metric": "single-step repair success probability",
     "direction": "maximize",
     "source_url": "https://arxiv.org/pdf/2206.08896",
-    "source_locator": "Sections 4–7 and Appendix A",
+    "source_locator": "Section 3.1 (Mutation through Diff, Figures 1-2) and Appendix A",
     "upstream_path": null,
     "requirements": [
-      "Sodarace physics",
+      "Python execution of the 4-Parity and Quadratic functions",
       "LLM or diff-model checkpoints"
     ],
     "execution_notes": [
@@ -103,15 +106,14 @@
   "labels": {
     "scientific_contribution": "benchmark",
     "science_tier": 3,
-    "artifact": "prompt",
-    "domain": "language",
-    "area": "language_and_agents",
+    "artifact": "agent",
+    "domain": "software_engineering",
+    "area": "software_engineering",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "unavailable"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

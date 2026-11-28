@@ -1,0 +1,334 @@
+{
+  "schema": "artask.data-lock/1",
+  "package": "agent_bench",
+  "reviewed_on": "2026-10-10",
+  "raw_cache": "agent_bench-raw/pinned of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "data_directory": "data/agent_bench of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "note": "Raw files are fetched from pinned URLs and verified by SHA-256; derived files are byte-stable functions of them (scripts/prepare_agent_bench.py). Nothing listed here is redistributed by this repository.",
+  "sources": [
+    {
+      "id": "m3tooleval-tasks-__init__.py",
+      "component": "m3tooleval",
+      "url": "https://raw.githubusercontent.com/xingyaoww/code-act/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval/tasks/__init__.py",
+      "license": "MIT (xingyaoww/code-act repository LICENSE)",
+      "target": "m3tooleval/tasks/__init__.py",
+      "sha256": "b72bff9f3b00be4da11b96905efce5e0fc77e3a7a58b2be864888d8157c74c28",
+      "size": 196
+    },
+    {
+      "id": "m3tooleval-tasks-base.py",
+      "component": "m3tooleval",
+      "url": "https://raw.githubusercontent.com/xingyaoww/code-act/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval/tasks/base.py",
+      "license": "MIT (xingyaoww/code-act repository LICENSE)",
+      "target": "m3tooleval/tasks/base.py",
+      "sha256": "b39de50ba7183dbaae719bde546850e2fa472707b6a9d1a37102556247f9ce96",
+      "size": 10231
+    },
+    {
+      "id": "m3tooleval-tasks-impl-__init__.py",
+      "component": "m3tooleval",
+      "url": "https://raw.githubusercontent.com/xingyaoww/code-act/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval/tasks/impl/__init__.py",
+      "license": "MIT (xingyaoww/code-act repository LICENSE)",
+      "target": "m3tooleval/tasks/impl/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "id": "m3tooleval-tasks-impl-dna_sequencer.py",
+      "component": "m3tooleval",
+      "url": "https://raw.githubusercontent.com/xingyaoww/code-act/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval/tasks/impl/dna_sequencer.py",
+      "license": "MIT (xingyaoww/code-act repository LICENSE)",
+      "target": "m3tooleval/tasks/impl/dna_sequencer.py",
+      "sha256": "3b8821c69538b9327a513771b2be98b6cb13d115943d46fda1ebddff09d73252",
+      "size": 9292
+    },
+    {
+      "id": "m3tooleval-tasks-impl-message_decoder.py",
+      "component": "m3tooleval",
+      "url": "https://raw.githubusercontent.com/xingyaoww/code-act/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval/tasks/impl/message_decoder.py",
+      "license": "MIT (xingyaoww/code-act repository LICENSE)",
+      "target": "m3tooleval/tasks/impl/message_decoder.py",
+      "sha256": "d9ea97f8f966766794d94bbadf74d5cf793c95587c975f733b5998c3c22a602a",
+      "size": 8605
+    },
+    {
+      "id": "m3tooleval-tasks-impl-trade_calculator.py",
+      "component": "m3tooleval",
+      "url": "https://raw.githubusercontent.com/xingyaoww/code-act/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval/tasks/impl/trade_calculator.py",
+      "license": "MIT (xingyaoww/code-act repository LICENSE)",
+      "target": "m3tooleval/tasks/impl/trade_calculator.py",
+      "sha256": "1410a4861b0bc165324e8638b0bf258932c8959306386fca8470c95061766c9c",
+      "size": 22199
+    },
+    {
+      "id": "m3tooleval-tasks-impl-travel_itinerary_planning.py",
+      "component": "m3tooleval",
+      "url": "https://raw.githubusercontent.com/xingyaoww/code-act/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval/tasks/impl/travel_itinerary_planning.py",
+      "license": "MIT (xingyaoww/code-act repository LICENSE)",
+      "target": "m3tooleval/tasks/impl/travel_itinerary_planning.py",
+      "sha256": "8134c112d5cf134a9618fd6ff08b8836f499f06665004d1e76cd4767094e4092",
+      "size": 26037
+    },
+    {
+      "id": "m3tooleval-tasks-impl-web_browsing-__init__.py",
+      "component": "m3tooleval",
+      "url": "https://raw.githubusercontent.com/xingyaoww/code-act/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval/tasks/impl/web_browsing/__init__.py",
+      "license": "MIT (xingyaoww/code-act repository LICENSE)",
+      "target": "m3tooleval/tasks/impl/web_browsing/__init__.py",
+      "sha256": "044344d0881b266b8b3d7a9266d0849f19ea289f406b6bd4688e1d0b2663639d",
+      "size": 12679
+    },
+    {
+      "id": "m3tooleval-tasks-impl-web_browsing-metadata.json",
+      "component": "m3tooleval",
+      "url": "https://raw.githubusercontent.com/xingyaoww/code-act/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval/tasks/impl/web_browsing/metadata.json",
+      "license": "MIT (xingyaoww/code-act repository LICENSE)",
+      "target": "m3tooleval/tasks/impl/web_browsing/metadata.json",
+      "sha256": "c13f5bc779bf02e82e1c8597d723400b85749115e4a9a59f5e7af6c436449586",
+      "size": 5287
+    },
+    {
+      "id": "m3tooleval-tasks-impl-web_browsing-web_pages.jsonl",
+      "component": "m3tooleval",
+      "url": "https://raw.githubusercontent.com/xingyaoww/code-act/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval/tasks/impl/web_browsing/web_pages.jsonl",
+      "license": "MIT (xingyaoww/code-act repository LICENSE)",
+      "target": "m3tooleval/tasks/impl/web_browsing/web_pages.jsonl",
+      "sha256": "bc885a9be35c1611f7a41b7256c83017ee728124f6a99246b720b240f0f1806e",
+      "size": 12900
+    },
+    {
+      "id": "agentboard-repository",
+      "component": "agentboard",
+      "url": "https://github.com/hkust-nlp/AgentBoard/archive/bb7255e2daf1989069a186dad9e53f70680961db.zip",
+      "license": "Apache-2.0 (AgentBoard code, README 'Code License'); the vendored pddlgym is MIT (Tom Silver et al.)",
+      "description": "AgentBoard source archive at the pinned commit; the PDDL environment (pddl_env.py, vendored pddlgym with the gripper, blockworld, barman and tyreworld problems) and two VanillaAgent prompt files are extracted",
+      "extract": {
+        "agentboard/pddl_env/": {
+          "AgentBoard-bb7255e2daf1989069a186dad9e53f70680961db/agentboard/environment/pddl_env/": "agentboard/pddl_env/"
+        },
+        "agentboard/prompts/": {
+          "AgentBoard-bb7255e2daf1989069a186dad9e53f70680961db/agentboard/prompts/VanillaAgent/scienceworld_base.json": "agentboard/prompts/scienceworld_base.json",
+          "AgentBoard-bb7255e2daf1989069a186dad9e53f70680961db/agentboard/prompts/VanillaAgent/pddl_vanilla_prompt.json": "agentboard/prompts/pddl_vanilla_prompt.json"
+        }
+      },
+      "sha256": "99ef42df903b707f2c947ae71e852826f966733d4a24b9c75bfe3686fd6aa975",
+      "size": 17755780
+    },
+    {
+      "id": "agentboard-scienceworld-labels",
+      "component": "agentboard",
+      "url": "https://raw.githubusercontent.com/tsinghua-fib-lab/AgentSquare/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/sciworld/data/scienceworld/test.jsonl",
+      "license": "GPL-2.0 (AgentBoard dataset); not redistributed",
+      "target": "agentboard/scienceworld-test.jsonl",
+      "description": "AgentBoard ScienceWorld test split (90 task variations: rewritten goal, subgoal patterns, task name and variation). Fetched from the copy in the AgentSquare repository at the pinned commit, which is byte-identical (SHA-256 ed58212de963cd3c3479e87a25c5d91e2d2decd4bbc3a39bb75283892d186ce1) to data/scienceworld/test.jsonl inside AgentBoard's data.tar.gz (huggingface.co/datasets/hkust-nlp/agentboard revision 0680548ef773505788d3cced65640a0fd511242f, archive SHA-256 26c2516eb2e4d45cb982cda94c0f14c0a31ae657776f45ef59c4c0bf7243787d), checked on 2026-10-10; the dataset's separately published test.jsonl omits the task names and variations",
+      "sha256": "ed58212de963cd3c3479e87a25c5d91e2d2decd4bbc3a39bb75283892d186ce1",
+      "size": 58726
+    },
+    {
+      "id": "agentboard-pddl-labels",
+      "component": "agentboard",
+      "url": "https://huggingface.co/datasets/hkust-nlp/agentboard/resolve/0680548ef773505788d3cced65640a0fd511242f/data/pddl/test.jsonl",
+      "license": "GPL-2.0 (AgentBoard dataset card 'license: gpl-2.0'); not redistributed",
+      "target": "agentboard/pddl-test.jsonl",
+      "description": "AgentBoard PDDL test split: 60 problems (goal text, subgoals, difficulty)",
+      "sha256": "87c9fb210558db57dcb13183922718c5644ded26744a84938290c9e70722eaec",
+      "size": 20124
+    },
+    {
+      "id": "nltk-punkt-tab",
+      "component": "agentboard",
+      "url": "https://raw.githubusercontent.com/nltk/nltk_data/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages/tokenizers/punkt_tab.zip",
+      "license": "not stated (nltk_data package metadata names the author, Jan Strunk, but no licence); not redistributed",
+      "description": "Punkt sentence tokenizer tables (English part only) used by nltk.word_tokenize in AgentBoard's PDDL action parser",
+      "extract": {
+        "agentboard/nltk_data/": {
+          "punkt_tab/english/": "agentboard/nltk_data/tokenizers/punkt_tab/english/",
+          "punkt_tab/README": "agentboard/nltk_data/tokenizers/punkt_tab/README"
+        }
+      },
+      "sha256": "e57f64187974277726a3417ca6f181ec5403676c717672eef6a748a7b20e0106",
+      "size": 4319076
+    },
+    {
+      "id": "travelplanner-flights",
+      "component": "travel",
+      "url": "https://huggingface.co/spaces/osunlp/TravelPlannerLeaderboard/resolve/a57daf2e45155a5378dcf75ee9fe374e671ee048/database/flights/clean_Flights_2022.csv",
+      "license": "CC-BY-4.0 (TravelPlanner dataset and leaderboard-space database; evaluation code MIT). Not redistributed by this repository.",
+      "description": "TravelPlanner flight table (3.8 million flights); only the derived subset is kept",
+      "sha256": "8dafdb0e3f8b79ce599a1e612a772865295bc226b46e5fb278368f7255b11cee",
+      "size": 304807007
+    },
+    {
+      "id": "travelplanner-validation",
+      "component": "travel",
+      "url": "https://huggingface.co/datasets/osunlp/TravelPlanner/resolve/8736504ecfc31b7f8b7e40122873c337e83fff7c/validation.csv",
+      "license": "CC-BY-4.0 (TravelPlanner dataset and leaderboard-space database; evaluation code MIT). Not redistributed by this repository.",
+      "description": "TravelPlanner validation queries (used to choose the flight subset)",
+      "sha256": "0e54b26b13c0b6d50e8683765e930bffca949488c44634e530da899914d40e80",
+      "size": 4833771
+    },
+    {
+      "id": "travelplanner-city-states",
+      "component": "travel",
+      "url": "https://huggingface.co/spaces/osunlp/TravelPlannerLeaderboard/resolve/a57daf2e45155a5378dcf75ee9fe374e671ee048/database/background/citySet_with_states.txt",
+      "license": "CC-BY-4.0 (TravelPlanner dataset and leaderboard-space database; evaluation code MIT). Not redistributed by this repository.",
+      "description": "TravelPlanner city-to-state table",
+      "sha256": "a3d18b5c692857cd561cbb4ad8d221ac3eb6c47af7c787a3489e3ffa184ca4d6",
+      "size": 5921
+    },
+    {
+      "id": "boxoban-levels",
+      "component": "minihack",
+      "url": "https://github.com/google-deepmind/boxoban-levels/archive/78011d8c86ad423bfb2e1005012393b4c3c24409.zip",
+      "license": "Apache-2.0 (google-deepmind/boxoban-levels LICENSE)",
+      "description": "Boxoban levels at the pinned commit; the hard set and the medium training set used by MiniHack-Boxoban-Hard-v0 and -Medium-v0 are extracted",
+      "extract": {
+        "minihack/boxoban-levels-master/": {
+          "boxoban-levels-78011d8c86ad423bfb2e1005012393b4c3c24409/hard/": "minihack/boxoban-levels-master/hard/",
+          "boxoban-levels-78011d8c86ad423bfb2e1005012393b4c3c24409/medium/train/": "minihack/boxoban-levels-master/medium/train/"
+        }
+      },
+      "sha256": "e2ca9eb749442c62c1f3b598df43b03b1849b299914ec9f6f6d6bf8a8ed693ed",
+      "size": 34150996
+    },
+    {
+      "id": "alfworld-json",
+      "component": "alfworld",
+      "url": "https://github.com/alfworld/alfworld/releases/download/0.2.2/json_2.1.1_json.zip",
+      "license": "MIT (alfworld/alfworld LICENSE; trajectories derived from ALFRED, MIT)",
+      "description": "ALFWorld/ALFRED trajectory annotations (traj_data.json); used only to select the out-of-distribution evaluation games",
+      "sha256": "25171f16e20ad7b048c47275c45b0babf3aa1cbab29cec97387922350a9844bc",
+      "size": 72018818
+    },
+    {
+      "id": "alfworld-tw-pddl",
+      "component": "alfworld",
+      "url": "https://github.com/alfworld/alfworld/releases/download/0.4.2/json_2.1.3_tw-pddl.zip",
+      "license": "MIT (alfworld/alfworld LICENSE)",
+      "description": "ALFWorld TextWorld game files (game.tw-pddl) of release 0.4.2, the files alfworld-download installs",
+      "sha256": "5df77ea759f2211a4106082839ddbbb790f1ba4e7d097ed732cf453f72aa36cf",
+      "size": 36507267
+    }
+  ],
+  "files": [
+    {
+      "path": "m3tooleval/tasks/__init__.py",
+      "component": "m3tooleval",
+      "sha256": "b72bff9f3b00be4da11b96905efce5e0fc77e3a7a58b2be864888d8157c74c28",
+      "size": 196
+    },
+    {
+      "path": "m3tooleval/tasks/base.py",
+      "component": "m3tooleval",
+      "sha256": "b39de50ba7183dbaae719bde546850e2fa472707b6a9d1a37102556247f9ce96",
+      "size": 10231
+    },
+    {
+      "path": "m3tooleval/tasks/impl/__init__.py",
+      "component": "m3tooleval",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "m3tooleval/tasks/impl/dna_sequencer.py",
+      "component": "m3tooleval",
+      "sha256": "3b8821c69538b9327a513771b2be98b6cb13d115943d46fda1ebddff09d73252",
+      "size": 9292
+    },
+    {
+      "path": "m3tooleval/tasks/impl/message_decoder.py",
+      "component": "m3tooleval",
+      "sha256": "d9ea97f8f966766794d94bbadf74d5cf793c95587c975f733b5998c3c22a602a",
+      "size": 8605
+    },
+    {
+      "path": "m3tooleval/tasks/impl/trade_calculator.py",
+      "component": "m3tooleval",
+      "sha256": "1410a4861b0bc165324e8638b0bf258932c8959306386fca8470c95061766c9c",
+      "size": 22199
+    },
+    {
+      "path": "m3tooleval/tasks/impl/travel_itinerary_planning.py",
+      "component": "m3tooleval",
+      "sha256": "8134c112d5cf134a9618fd6ff08b8836f499f06665004d1e76cd4767094e4092",
+      "size": 26037
+    },
+    {
+      "path": "m3tooleval/tasks/impl/web_browsing/__init__.py",
+      "component": "m3tooleval",
+      "sha256": "044344d0881b266b8b3d7a9266d0849f19ea289f406b6bd4688e1d0b2663639d",
+      "size": 12679
+    },
+    {
+      "path": "m3tooleval/tasks/impl/web_browsing/metadata.json",
+      "component": "m3tooleval",
+      "sha256": "c13f5bc779bf02e82e1c8597d723400b85749115e4a9a59f5e7af6c436449586",
+      "size": 5287
+    },
+    {
+      "path": "m3tooleval/tasks/impl/web_browsing/web_pages.jsonl",
+      "component": "m3tooleval",
+      "sha256": "bc885a9be35c1611f7a41b7256c83017ee728124f6a99246b720b240f0f1806e",
+      "size": 12900
+    },
+    {
+      "path": "minihack/boxoban-levels-master/",
+      "component": "minihack",
+      "sha256": "a66722c1ef3444330bb035cd2ba030d520b27ab1246a6b243caf1e6d561ea48a",
+      "size": 52989904,
+      "files": 454
+    },
+    {
+      "path": "travel/flights.csv",
+      "component": "travel",
+      "sha256": "5f6daad53299112ff2e6ecfbd8df6c2f87b5d93f1cb31d2b999c32ebdf1a2406",
+      "size": 4143805
+    },
+    {
+      "path": "alfworld/games.json",
+      "component": "alfworld",
+      "sha256": "8f4f094f7f1cbd3572bb59e689a18b9edb4cac4c3871db6ac9c88439cce2e26d",
+      "size": 21076
+    },
+    {
+      "path": "alfworld/valid_unseen/",
+      "component": "alfworld",
+      "sha256": "0cd237b1a6277af5e4444521d8bbca2ae37ce7ec481665dacca880971bf5a989",
+      "size": 11890667,
+      "files": 134
+    },
+    {
+      "path": "agentboard/nltk_data/",
+      "component": "agentboard",
+      "sha256": "28e8df6a13e52e3fdb498afe30c63f02d9e1986787e7988138ecd0c0117db12d",
+      "size": 246331,
+      "files": 5
+    },
+    {
+      "path": "agentboard/pddl-test.jsonl",
+      "component": "agentboard",
+      "sha256": "87c9fb210558db57dcb13183922718c5644ded26744a84938290c9e70722eaec",
+      "size": 20124
+    },
+    {
+      "path": "agentboard/pddl_env/",
+      "component": "agentboard",
+      "sha256": "04b8988ab1b2271a872c19ad984237ef5ed6a91da865abc7ae916e6482b65634",
+      "size": 7178282,
+      "files": 730
+    },
+    {
+      "path": "agentboard/prompts/",
+      "component": "agentboard",
+      "sha256": "ca08990701628bf11b7e313caf95ed2679f89a5f53144f90f596181cfd6fb514",
+      "size": 27357,
+      "files": 2
+    },
+    {
+      "path": "agentboard/scienceworld-test.jsonl",
+      "component": "agentboard",
+      "sha256": "ed58212de963cd3c3479e87a25c5d91e2d2decd4bbc3a39bb75283892d186ce1",
+      "size": 58726
+    }
+  ]
+}

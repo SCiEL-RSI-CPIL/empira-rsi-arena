@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 900
   max_retries: 2
 
 prompt:
   system_message: |
     IMO-GradingBench
 
-    IMO-GradingBench
+    Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client, grades a proposed proof of an IMO-level problem as correct, almost, partial or incorrect from the reference solution and grading guidelines; scored by exact-match accuracy against human grades on a fixed 30-item sample of a 100-item held-out IMO-GradingBench subset (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. `question` gives an IMO-level problem, its reference solution, the grading guidelines and a proposed proof, and asks for one grade among correct, almost, partial and incorrect. Answer rule (this suite's answer extraction; the comparison follows Hyperagents' report.py): the final answer (the text after the last 'Answer:' marker, else the last \boxed{...}, else the last non-empty line), lower-cased and stripped of punctuation and asterisks, must equal the human grade. Score: accuracy on a fixed 30-item sample of Hyperagents' 100-item held-out IMO-GradingBench subset (normalized mean absolute error is reported alongside); higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

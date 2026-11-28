@@ -1,25 +1,36 @@
 {
-  "protocol": "unsupported",
-  "family": null,
+  "protocol": "recreated",
+  "family": "llm_bench_qa",
   "direction": "maximize",
-  "contract": null,
-  "parameters": {},
+  "contract": "solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. `question` gives an IMO-level problem, its reference solution, the grading guidelines and a proposed proof, and asks for one grade among correct, almost, partial and incorrect. Answer rule (this suite's answer extraction; the comparison follows Hyperagents' report.py): the final answer (the text after the last 'Answer:' marker, else the last \\boxed{...}, else the last non-empty line), lower-cased and stripped of punctuation and asterisks, must equal the human grade. Score: accuracy on a fixed 30-item sample of Hyperagents' 100-item held-out IMO-GradingBench subset (normalized mean absolute error is reported alongside); higher is better",
+  "parameters": {
+    "benchmark": "gradingbench",
+    "samples": 30,
+    "seed": 0
+  },
   "requires": [
-    "service:llm_api",
+    "py:numpy",
     "env:OPENROUTER_API_KEY",
-    "environment:IMO-GradingBench"
+    "network:openrouter",
+    "file:data/llm_bench/gradingbench_test.json"
   ],
-  "timeout": 30,
-  "notes": [],
-  "unsupported_category": "llm_agent_env",
-  "unsupported_reason": "Candidates are LLM agents scored inside the IMO-GradingBench environment (tools, web, games or code sandboxes); the environment and model access are external.",
-  "protocol_description": "Not executable in this suite: Candidates are LLM agents scored inside the IMO-GradingBench environment (tools, web, games or code sandboxes); the environment and model access are external.",
+  "timeout": 900,
+  "notes": [
+    "Data: IMO-GradingBench of IMO-Bench (google-deepmind/superhuman at commit c1ee02e03d4cdb2ab21cd01ac927d895f5287fc8, the commit Hyperagents' setup pins; CC-BY-4.0). The 100-item held-out subset follows Hyperagents' domains/imo/curate_subsets.py: rows with 0, 1, 6 or 7 points, a pandas shuffle and a 300-row sample (random_state 42), then stratified train/val/test splits of 100 (scikit-learn, random_state 42). The resulting ids (35 incorrect, 35 correct, 24 partial, 6 almost) were computed here with pandas 2.2.3 and scikit-learn 1.9.1 and are fixed in llm_bench_sources.py; Hyperagents does not distribute its subset files, so identity with its split is not verified.",
+    "Inputs: Hyperagents' imo_grading task input (problem, reference solution, grading guidelines and the student's proof). The question adds one instruction naming the four grades with paraphrased IMO-Bench definitions; Hyperagents' initial agent receives only the raw input fields.",
+    "Metric: Hyperagents' report.py accuracy (lower-cased exact match of the grade). The normalized mean absolute error over IMO-Bench points (correct 7, almost 6, partial 1, incorrect 0; 7 for unparsable answers) is reported as normalized_mae.",
+    "Candidate: Hyperagents evolves the code of a task agent and of the meta agent; here the candidate is a free-form solve(question, llm) program, default model google/gemini-2.5-flash at temperature 0. Not verified: the paper's grader accuracies were not reproduced; a fixed 30-item sample is evaluated.",
+    "The paper describes the grader output as a numeric grade in {0, 1, 6, 7}; following Hyperagents' code (whose ground truth is the text Reward column), this task requires the word label and scores a numeric grade as wrong. The paper evaluates with o4-mini at temperature 1.0.",
+    "The candidate runs as trusted code in the evaluator's process, and the reference answers are stored in data/llm_bench of the task cache (ARENA_TASK_CACHE_DIR), so a candidate could read them; it can also replace the evaluator's scoring functions, raise the model client's budget attribute and read OPENROUTER_API_KEY from the environment, so the per-evaluation budget bounds an honest program only. Scores assume a candidate that does none of this.",
+    "Model-driven evaluation: the score is an estimate on a fixed seeded sample and depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0), the sample size (task parameter `samples`, overridden by ARTASK_LLM_SAMPLES) and the per-evaluation budget (ARTASK_LLM_BUDGET_USD, default 0.25). Responses are cached under llm-cache in the task cache (ARTASK_LLM_CACHE overrides) and shared by all candidates: a repeated call, also one at temperature > 0, returns the stored reply, and a cached reply costs nothing against the budget. `valid` is null because a sampled model score cannot certify a candidate."
+  ],
+  "protocol_description": "Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.",
   "id": "hyperagents-imo-gradingbench",
   "name": "IMO-GradingBench",
   "paper_ids": [
     "hyperagents"
   ],
-  "description": "IMO-GradingBench",
+  "description": "Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client, grades a proposed proof of an IMO-level problem as correct, almost, partial or incorrect from the reference solution and grading guidelines; scored by exact-match accuracy against human grades on a fixed 30-item sample of a 100-item held-out IMO-GradingBench subset (higher is better).",
   "benchmark": null,
   "paper_metric": "agreement with expert grades",
   "paper_direction": "maximize",
@@ -33,11 +44,19 @@
       "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d",
       "type": "repository",
       "locator": "domains/imo"
+    },
+    {
+      "url": "https://github.com/google-deepmind/superhuman/blob/c1ee02e03d4cdb2ab21cd01ac927d895f5287fc8/imobench/gradingbench.csv",
+      "type": "benchmark",
+      "locator": "IMO-GradingBench (1,000 human-graded proofs)"
+    },
+    {
+      "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/imo/curate_subsets.py",
+      "type": "repository",
+      "locator": "held-out 100-item subset procedure"
     }
   ],
-  "limitations": [
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-  ],
+  "limitations": [],
   "evaluator": "evaluator.py",
   "initial_program": "initial_program.py",
   "papers": [
@@ -51,14 +70,13 @@
     "scientific_contribution": "benchmark",
     "science_tier": 3,
     "artifact": "agent",
-    "domain": "software_engineering",
-    "area": "software_engineering",
+    "domain": "language",
+    "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "simulator"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

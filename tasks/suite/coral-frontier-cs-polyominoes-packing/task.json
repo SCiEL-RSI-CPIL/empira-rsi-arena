@@ -2,12 +2,12 @@
   "schema_version": "1.0",
   "id": "coral-frontier-cs-polyominoes-packing",
   "name": "Frontier-CS Polyominoes packing",
-  "description": "Frontier-CS Polyominoes packing",
+  "description": "Provide a C++17 program (as the SOLUTION_CPP string) that chooses a W x H rectangle and places 100 to 10000 polyominoes, with optional rotation and reflection, on distinct cells inside it; scored by the official checker's mean of total cells / (W*H) x 100 over 70 Frontier-CS test cases, failed cases scoring 0 (higher is better).",
   "paper_ids": [
     "coral"
   ],
   "kind": "upstream",
-  "status": "requires_setup",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2604.01658",
@@ -18,6 +18,11 @@
       "url": "https://github.com/Human-Agent-Society/CORAL/tree/0123dfb939b35228cf2c1fde224cd0561e727408",
       "type": "repository",
       "locator": "examples/frontier_cs_algo/0"
+    },
+    {
+      "url": "https://github.com/FrontierCS/Frontier-CS/tree/e6ef46eb4848d99c3c88505d0084284b291bba76",
+      "type": "benchmark",
+      "locator": "algorithmic problem 0 (polyomino packing): statement, 70 official test inputs and the official checker"
     }
   ],
   "requirements": {
@@ -29,7 +34,7 @@
     "notes": []
   },
   "evaluation": {
-    "metric": "packing score",
+    "metric": "score",
     "paper_metric": "packing score",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -51,7 +56,7 @@
         ],
         "cwd": ".",
         "source_url": "https://github.com/Human-Agent-Society/CORAL/blob/0123dfb939b35228cf2c1fde224cd0561e727408/examples/frontier_cs_algo/0/task.yaml",
-        "notes": "Exact Polyominoes configuration: Frontier-CS problem0, C++17,70 cases,2s/256MB per case. Launches full Claude Code agent search; requires authenticated Claude Code, tmux, CORAL and Frontier-CS judging dependencies. Source-inspected, not executed."
+        "notes": "Exact Polyominoes configuration: Frontier-CS problem 0, C++17, 70 cases, 2 s/256 MB per case. Launches full Claude Code agent search; requires authenticated Claude Code, tmux, CORAL and Frontier-CS judging dependencies. Source-inspected, not executed."
       }
     ],
     "evaluator_adapter": null,
@@ -68,11 +73,11 @@
     ],
     "setup_steps": [],
     "notes": [
-      "Pinned task.yaml names Pack the Polyominoes (Reflections Allowed) and problem_id0, resolving the previous unknown selector."
+      "Pinned task.yaml names Pack the Polyominoes (Reflections Allowed) and problem_id 0, resolving the previous unknown selector."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "frontier_cs_polyomino",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -80,13 +85,18 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "toolchain:Frontier-CS judge",
-        "docker"
+        "py:numpy",
+        "bin:g++",
+        "file:data/or_csp/frontier_cs_0/chk.cc",
+        "file:data/or_csp/frontier_cs_0/testlib.h",
+        "file:data/or_csp/frontier_cs_0/1.in",
+        "file:data/or_csp/frontier_cs_0/70.in"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "toolchain",
-      "unsupported_reason": "Frontier-CS problems are judged by the Frontier-CS evaluation service (Docker judge and hidden tests), which is not bundled."
+      "timeout": 300,
+      "validity_key": "valid"
+    },
+    "label_spec": {
+      "reference": "none"
     }
   },
   "limitations": [
@@ -104,7 +114,7 @@
     "source_locator": "Section 4.1 stress tests",
     "upstream_path": "examples/frontier_cs_algo/0",
     "requirements": [],
-    "execution_notes": "Pinned task.yaml names Pack the Polyominoes (Reflections Allowed) and problem_id0, resolving the previous unknown selector.",
+    "execution_notes": "Pinned task.yaml names Pack the Polyominoes (Reflections Allowed) and problem_id 0, resolving the previous unknown selector.",
     "run_commands": [
       {
         "argv": [
@@ -115,7 +125,7 @@
         ],
         "cwd": ".",
         "source_url": "https://github.com/Human-Agent-Society/CORAL/blob/0123dfb939b35228cf2c1fde224cd0561e727408/examples/frontier_cs_algo/0/task.yaml",
-        "notes": "Exact Polyominoes configuration: Frontier-CS problem0, C++17,70 cases,2s/256MB per case. Launches full Claude Code agent search; requires authenticated Claude Code, tmux, CORAL and Frontier-CS judging dependencies. Source-inspected, not executed."
+        "notes": "Exact Polyominoes configuration: Frontier-CS problem 0, C++17, 70 cases, 2 s/256 MB per case. Launches full Claude Code agent search; requires authenticated Claude Code, tmux, CORAL and Frontier-CS judging dependencies. Source-inspected, not executed."
       }
     ],
     "setup_commands": [
@@ -136,11 +146,10 @@
     "domain": "combinatorial_optimisation",
     "area": "optimization",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "exact",
     "reference": "none",
     "resources": [
-      "docker",
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false

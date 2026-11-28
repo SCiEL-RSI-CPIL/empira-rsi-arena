@@ -7,7 +7,7 @@
     "meta-harness"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2603.28052",
@@ -18,6 +18,16 @@
       "url": "https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact/tree/57fefdb2ff84af3fd81b69d67814acbe69bd0743",
       "type": "repository",
       "locator": null
+    },
+    {
+      "url": "https://huggingface.co/datasets/MathArena/arxivmath-1225/tree/90c60aa1eadbb72168640169d82154b079cdeaac",
+      "type": "benchmark",
+      "locator": "ArXivMath December 2025 (17 problems)"
+    },
+    {
+      "url": "https://huggingface.co/datasets/MathArena/arxivmath-0126/tree/bac939ba603c93f905aa48072980ea681a2824cd",
+      "type": "benchmark",
+      "locator": "ArXivMath January 2026 (23 problems)"
     }
   ],
   "requirements": {
@@ -29,7 +39,7 @@
     "notes": []
   },
   "evaluation": {
-    "metric": "answer/proof accuracy",
+    "metric": "score",
     "paper_metric": "answer/proof accuracy",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -73,8 +83,8 @@
       "Math retrieval harness not present in inspected Terminal-Bench artifact."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -82,19 +92,17 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:ArXivMath"
+        "network:openrouter",
+        "file:data/llm_bench/arxivmath.json",
+        "py:math_verify"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_api",
-      "unsupported_reason": "Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the ArXivMath benchmark. The suite embeds neither model calls nor the benchmark data."
+      "timeout": 900,
+      "validity_key": "valid"
     }
   },
-  "limitations": [
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-  ],
+  "limitations": [],
   "source_specification": {
     "name": "ArXivMath",
     "slug": "arxivmath",
@@ -126,11 +134,10 @@
     "domain": "language",
     "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "unavailable"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

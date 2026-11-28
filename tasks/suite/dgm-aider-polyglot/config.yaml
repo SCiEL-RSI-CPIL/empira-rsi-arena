@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 1800
   max_retries: 2
 
 prompt:
   system_message: |
     Aider Polyglot
 
-    Aider Polyglot
+    Write solve(exercise, llm), a Python coding agent that may call a budgeted model client and returns new contents for the solution files of one Aider Polyglot (Exercism) exercise; the score is pass@1, the fraction of DGM's 10 first-stage exercises in C++, Go, Java, JavaScript, Python and Rust whose hidden unit tests then pass (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(exercise: dict, llm) -> dict[str, str]: a coding agent for one Exercism exercise of the Aider Polyglot benchmark. `exercise` has `id` ('<language>__<slug>'), `language` (cpp, go, java, javascript, python or rust), `instructions` (the exercise text), `files` (the editable solution stub files, path -> content) and `context` (read-only build files, path -> content). `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client (max_tokens defaults to 1024 and is capped at 8192; the evaluation's budget is split equally across the exercises, and an exhausted budget or a rejected request raises an exception inside solve). Return the complete new content of the solution files you change (keys must be paths of exercise['files'], at most 200,000 characters per file); files you omit keep their stub content. solve runs once per exercise in a sandboxed child process without file, process or network access and never sees the tests or their results; afterwards the exercise's hidden unit tests run once in a network-less container with the language's toolchain. Returning anything but such a dict invalidates the evaluation. Score: pass@1, the fraction of the task's fixed exercise list whose tests all pass (an exercise whose agent crashes, times out or changes nothing scores 0); higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

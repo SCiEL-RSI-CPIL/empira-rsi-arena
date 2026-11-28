@@ -1,0 +1,596 @@
+{
+ "schema": "artask.upgrades/1",
+ "package": "agent_bench",
+ "reviewed_on": "2026-10-10",
+ "tasks": {
+  "hsi-babyai": {
+   "family": "agent_bench_balrog",
+   "params": {
+    "adapter": "balrog",
+    "runtime": "pinned",
+    "suite": "babyai",
+    "split": "all",
+    "episodes_per_task": 2,
+    "base_seed": 42,
+    "max_steps": 128,
+    "budget_usd": 0.5
+   },
+   "protocol": "recreated",
+   "requires": [
+    "file:../../.cache/agent_bench-env/bin/python"
+   ],
+   "notes": [
+    "Episodes: HSI evaluates 10 episodes per task with 3 test repeats; here 2 episodes per task with HSI's deterministic test seeds (base seed 42, repeat 0). HSI's BabyAI config uses all tasks for development (no held-out task split). Every evaluation replays the same seeded episodes, so a search optimises on the scored episodes themselves; in HSI's in-distribution protocol every evaluation episode is generated from a newly sampled environment seed (its Section 4.1), so its test episodes are not the ones the harness was evolved on.",
+    "Environment: BALROG's own environment wrappers, instruction prompts, invalid-action handling (default action plus BALROG's feedback text) and progression statistics (balrog-ai/BALROG at commit b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5, MIT), run in the pinned Python 3.11 runtime .cache/agent_bench-env created by `python scripts/prepare_agent_bench.py --setup-environment` (gym 0.23.0 as BALROG pins it, BALROG's Minigrid fork, baba-is-ai, crafter 1.8.3, balrog-nle 0.9.0 and BALROG's minihack fork at pinned commits).",
+    "Protocol taken from HSI's BALROG evaluator (TailinZhou/hsi at commit 97a022b9a9c260c0498806fc9826ebf22e753ed9, src/benchmark/balrog/): the agent's reply is reduced to letters, spaces and colons before BALROG's validity check, the episode stops early when the last 12 valid actions form a strict period-2 or period-3 loop, and episode seeds are HSI's deterministic test seeds int(sha256(f'{base_seed}_{suite}/{task}_{episode}_0')[:8], 16). HSI's code was read to recover this protocol; the HSI repository has no LICENSE file, so none of its code is copied.",
+    "Candidate: HSI evolves a per-step harness (prompts, hooks, memory) behind BALROG's agent call; here the candidate is the per-step policy act(...) with the same inputs (instruction prompt, current observation, BALROG's action list, the episode history) and a model client. HSI's harness also receives a task context (last reward, Crafter achievements); here that information is only available through the observations and history. HSI's lower-confidence-bound selection, repeats and evolution loop belong to the search method and are not part of the evaluator. HSI also requires every task interaction to go through the frozen backbone (evolution 'cannot replace the model with external search procedures or non-LLM policies', its Section 4.1); here act() may choose actions without calling the model.",
+    "Model: the default client model is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it); the paper's backbone is DeepSeek-V4-Flash (deepseek-v4-flash-preview), run at task time with thinking disabled and temperature 0 (its Section 4.1 and Appendix B.1), whereas the local client sends no reasoning setting, so the provider's default applies; absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.",
+    "Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions."
+   ],
+   "contract": "act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: BALROG BabyAI-Text, HSI's five BabyAI-MixedTrainLocal tasks (goto, pickup, open, putnext, pick_up_seq_go_to), 2 seeded episodes each (10 episodes), BALROG's step limit of each level (64 or 128 steps). Episode score: 1 when the mission is completed, else 0 (BALROG progression). Score: mean over the 10 episodes; higher is better",
+   "sources": [
+    {
+     "url": "https://arxiv.org/abs/2608.08466",
+     "type": "paper",
+     "locator": "Sections 3.3.2 and 4.1; Table 1"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/benchmark_config_goal/balrog_babyai/config.yaml",
+     "type": "repository",
+     "locator": "episode counts, seeds, splits"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/src/benchmark/balrog/evaluator.py",
+     "type": "repository",
+     "locator": "episode loop: action cleaning, loop guard, seeds"
+    },
+    {
+     "url": "https://github.com/balrog-ai/BALROG/tree/b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5/balrog/environments",
+     "type": "repository",
+     "locator": "environment wrappers and instruction prompts (used unchanged)"
+    },
+    {
+     "url": "https://github.com/BartekCupial/Minigrid/tree/cf73dd148e51276bd675a37e3bfb0bf2b42329b2",
+     "type": "repository",
+     "locator": "BabyAI-MixedTrainLocal levels and text descriptions (BALROG's dependency)"
+    }
+   ]
+  },
+  "hsi-crafter": {
+   "family": "agent_bench_balrog",
+   "params": {
+    "adapter": "balrog",
+    "runtime": "pinned",
+    "suite": "crafter",
+    "split": "all",
+    "episodes_per_task": 2,
+    "base_seed": 42,
+    "max_steps": 100,
+    "budget_usd": 0.5
+   },
+   "protocol": "recreated",
+   "requires": [
+    "file:../../.cache/agent_bench-env/bin/python"
+   ],
+   "notes": [
+    "Step cap: HSI and BALROG play Crafter episodes of up to 2000 steps (HSI: 5 episodes x 3 repeats); here 2 episodes of at most 100 steps, so the task measures early-game progression only and scores are not comparable with 2000-step results. Every evaluation replays the same seeded episodes, so a search optimises on the scored episodes themselves; in HSI's in-distribution protocol every evaluation episode is generated from a newly sampled environment seed (its Section 4.1), so its test episodes are not the ones the harness was evolved on.",
+    "Reproducibility: Crafter keeps the creatures of each chunk in Python sets ordered by memory address and picks the creature to despawn by index, so the same seed and actions gave different episodes in separate processes (checked); the evaluator replaces these sets with insertion-ordered sets, which makes a seeded episode reproducible without changing spawn or despawn probabilities.",
+    "Environment: BALROG's own environment wrappers, instruction prompts, invalid-action handling (default action plus BALROG's feedback text) and progression statistics (balrog-ai/BALROG at commit b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5, MIT), run in the pinned Python 3.11 runtime .cache/agent_bench-env created by `python scripts/prepare_agent_bench.py --setup-environment` (gym 0.23.0 as BALROG pins it, BALROG's Minigrid fork, baba-is-ai, crafter 1.8.3, balrog-nle 0.9.0 and BALROG's minihack fork at pinned commits).",
+    "Protocol taken from HSI's BALROG evaluator (TailinZhou/hsi at commit 97a022b9a9c260c0498806fc9826ebf22e753ed9, src/benchmark/balrog/): the agent's reply is reduced to letters, spaces and colons before BALROG's validity check, the episode stops early when the last 12 valid actions form a strict period-2 or period-3 loop, and episode seeds are HSI's deterministic test seeds int(sha256(f'{base_seed}_{suite}/{task}_{episode}_0')[:8], 16). HSI's code was read to recover this protocol; the HSI repository has no LICENSE file, so none of its code is copied.",
+    "Candidate: HSI evolves a per-step harness (prompts, hooks, memory) behind BALROG's agent call; here the candidate is the per-step policy act(...) with the same inputs (instruction prompt, current observation, BALROG's action list, the episode history) and a model client. HSI's harness also receives a task context (last reward, Crafter achievements); here that information is only available through the observations and history. HSI's lower-confidence-bound selection, repeats and evolution loop belong to the search method and are not part of the evaluator. HSI also requires every task interaction to go through the frozen backbone (evolution 'cannot replace the model with external search procedures or non-LLM policies', its Section 4.1); here act() may choose actions without calling the model.",
+    "Model: the default client model is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it); the paper's backbone is DeepSeek-V4-Flash (deepseek-v4-flash-preview), run at task time with thinking disabled and temperature 0 (its Section 4.1 and Appendix B.1), whereas the local client sends no reasoning setting, so the provider's default applies; absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.",
+    "Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions."
+   ],
+   "contract": "act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: BALROG Crafter (precise locations as in HSI's config), 2 seeded episodes capped at 100 steps (early-game progression). Episode score: unlocked achievements / 22 (BALROG progression). Score: mean over the episodes; higher is better",
+   "sources": [
+    {
+     "url": "https://arxiv.org/abs/2608.08466",
+     "type": "paper",
+     "locator": "Sections 3.3.2 and 4.1; Table 1"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/benchmark_config_goal/balrog_crafter/config.yaml",
+     "type": "repository",
+     "locator": "episode counts, seeds, splits"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/src/benchmark/balrog/evaluator.py",
+     "type": "repository",
+     "locator": "episode loop: action cleaning, loop guard, seeds"
+    },
+    {
+     "url": "https://github.com/balrog-ai/BALROG/tree/b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5/balrog/environments",
+     "type": "repository",
+     "locator": "environment wrappers and instruction prompts (used unchanged)"
+    },
+    {
+     "url": "https://pypi.org/project/crafter/1.8.3/",
+     "type": "repository",
+     "locator": "Crafter environment (MIT)"
+    }
+   ]
+  },
+  "hsi-babaisai-goto": {
+   "family": "agent_bench_balrog",
+   "params": {
+    "adapter": "balrog",
+    "runtime": "pinned",
+    "suite": "babaisai_goto",
+    "split": "test",
+    "episodes_per_task": 3,
+    "base_seed": 42,
+    "max_steps": 40,
+    "budget_usd": 0.5
+   },
+   "protocol": "recreated",
+   "requires": [
+    "file:../../.cache/agent_bench-env/bin/python"
+   ],
+   "notes": [
+    "Episodes and steps: HSI's test protocol plays 5 episodes per test task within BALROG's 100-step limit; here 3 episodes per task (HSI's first three test seeds) and a 40-step cap to bound the model cost. The task list and the test split are reproduced exactly from HSI's task definitions and split code. Only the test-split tasks are scored, so a search optimises on HSI's held-out tasks directly and the score is not a held-out estimate; in HSI the test split 'remains inaccessible throughout the evolution process', which uses the development tasks (its Section 4.1).",
+    "Reference: HSI (Table 2) reports held-out test progress for its initial harness of 0.03 (BreakStop), 0.18 (GoTo) and 0.00 (Make) and for evolved harnesses of 0.98-1.00, 0.96-1.00 and 0.34-0.36 with DeepSeek-V4-Flash; these numbers were not reproduced here.",
+    "Environment: BALROG's own environment wrappers, instruction prompts, invalid-action handling (default action plus BALROG's feedback text) and progression statistics (balrog-ai/BALROG at commit b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5, MIT), run in the pinned Python 3.11 runtime .cache/agent_bench-env created by `python scripts/prepare_agent_bench.py --setup-environment` (gym 0.23.0 as BALROG pins it, BALROG's Minigrid fork, baba-is-ai, crafter 1.8.3, balrog-nle 0.9.0 and BALROG's minihack fork at pinned commits).",
+    "Protocol taken from HSI's BALROG evaluator (TailinZhou/hsi at commit 97a022b9a9c260c0498806fc9826ebf22e753ed9, src/benchmark/balrog/): the agent's reply is reduced to letters, spaces and colons before BALROG's validity check, the episode stops early when the last 12 valid actions form a strict period-2 or period-3 loop, and episode seeds are HSI's deterministic test seeds int(sha256(f'{base_seed}_{suite}/{task}_{episode}_0')[:8], 16). HSI's code was read to recover this protocol; the HSI repository has no LICENSE file, so none of its code is copied.",
+    "Candidate: HSI evolves a per-step harness (prompts, hooks, memory) behind BALROG's agent call; here the candidate is the per-step policy act(...) with the same inputs (instruction prompt, current observation, BALROG's action list, the episode history) and a model client. HSI's harness also receives a task context (last reward, Crafter achievements); here that information is only available through the observations and history. HSI's lower-confidence-bound selection, repeats and evolution loop belong to the search method and are not part of the evaluator. HSI also requires every task interaction to go through the frozen backbone (evolution 'cannot replace the model with external search procedures or non-LLM policies', its Section 4.1); here act() may choose actions without calling the model.",
+    "Model: the default client model is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it); the paper's backbone is DeepSeek-V4-Flash (deepseek-v4-flash-preview), run at task time with thinking disabled and temperature 0 (its Section 4.1 and Appendix B.1), whereas the local client sends no reasoning setting, so the provider's default applies; absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.",
+    "Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions."
+   ],
+   "contract": "act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: BALROG BabaIsAI, the 3 tasks of HSI's held-out test split of the goto suite (dev_ratio 0.8, split_seed 66), 3 seeded episodes per task (9 episodes), at most 40 steps each. Episode score: 1 when the level is won, else 0 (BALROG progression). Score: mean over the episodes; higher is better",
+   "sources": [
+    {
+     "url": "https://arxiv.org/abs/2608.08466",
+     "type": "paper",
+     "locator": "Sections 3.3.2 and 4.1; Table 1"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/benchmark_config_goal/balrog_babaisai_goto/config.yaml",
+     "type": "repository",
+     "locator": "episode counts, seeds, splits"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/src/benchmark/balrog/evaluator.py",
+     "type": "repository",
+     "locator": "episode loop: action cleaning, loop guard, seeds"
+    },
+    {
+     "url": "https://github.com/balrog-ai/BALROG/tree/b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5/balrog/environments",
+     "type": "repository",
+     "locator": "environment wrappers and instruction prompts (used unchanged)"
+    },
+    {
+     "url": "https://github.com/nacloos/baba-is-ai/tree/40ae1b29dbc67f2ecea06cc161ed5ca51719e5e3",
+     "type": "repository",
+     "locator": "BabaIsAI environment (MIT)"
+    }
+   ]
+  },
+  "hsi-babaisai-breakstop": {
+   "family": "agent_bench_balrog",
+   "params": {
+    "adapter": "balrog",
+    "runtime": "pinned",
+    "suite": "babaisai_breakstop",
+    "split": "test",
+    "episodes_per_task": 3,
+    "base_seed": 42,
+    "max_steps": 40,
+    "budget_usd": 0.5
+   },
+   "protocol": "recreated",
+   "requires": [
+    "file:../../.cache/agent_bench-env/bin/python"
+   ],
+   "notes": [
+    "Episodes and steps: HSI's test protocol plays 5 episodes per test task within BALROG's 100-step limit; here 3 episodes per task (HSI's first three test seeds) and a 40-step cap to bound the model cost. The task list and the test split are reproduced exactly from HSI's task definitions and split code. Only the test-split tasks are scored, so a search optimises on HSI's held-out tasks directly and the score is not a held-out estimate; in HSI the test split 'remains inaccessible throughout the evolution process', which uses the development tasks (its Section 4.1).",
+    "Reference: HSI (Table 2) reports held-out test progress for its initial harness of 0.03 (BreakStop), 0.18 (GoTo) and 0.00 (Make) and for evolved harnesses of 0.98-1.00, 0.96-1.00 and 0.34-0.36 with DeepSeek-V4-Flash; these numbers were not reproduced here.",
+    "Environment: BALROG's own environment wrappers, instruction prompts, invalid-action handling (default action plus BALROG's feedback text) and progression statistics (balrog-ai/BALROG at commit b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5, MIT), run in the pinned Python 3.11 runtime .cache/agent_bench-env created by `python scripts/prepare_agent_bench.py --setup-environment` (gym 0.23.0 as BALROG pins it, BALROG's Minigrid fork, baba-is-ai, crafter 1.8.3, balrog-nle 0.9.0 and BALROG's minihack fork at pinned commits).",
+    "Protocol taken from HSI's BALROG evaluator (TailinZhou/hsi at commit 97a022b9a9c260c0498806fc9826ebf22e753ed9, src/benchmark/balrog/): the agent's reply is reduced to letters, spaces and colons before BALROG's validity check, the episode stops early when the last 12 valid actions form a strict period-2 or period-3 loop, and episode seeds are HSI's deterministic test seeds int(sha256(f'{base_seed}_{suite}/{task}_{episode}_0')[:8], 16). HSI's code was read to recover this protocol; the HSI repository has no LICENSE file, so none of its code is copied.",
+    "Candidate: HSI evolves a per-step harness (prompts, hooks, memory) behind BALROG's agent call; here the candidate is the per-step policy act(...) with the same inputs (instruction prompt, current observation, BALROG's action list, the episode history) and a model client. HSI's harness also receives a task context (last reward, Crafter achievements); here that information is only available through the observations and history. HSI's lower-confidence-bound selection, repeats and evolution loop belong to the search method and are not part of the evaluator. HSI also requires every task interaction to go through the frozen backbone (evolution 'cannot replace the model with external search procedures or non-LLM policies', its Section 4.1); here act() may choose actions without calling the model.",
+    "Model: the default client model is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it); the paper's backbone is DeepSeek-V4-Flash (deepseek-v4-flash-preview), run at task time with thinking disabled and temperature 0 (its Section 4.1 and Appendix B.1), whereas the local client sends no reasoning setting, so the provider's default applies; absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.",
+    "Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions."
+   ],
+   "contract": "act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: BALROG BabaIsAI, the 2 tasks of HSI's held-out test split of the breakstop suite (dev_ratio 0.8, split_seed 66), 3 seeded episodes per task (6 episodes), at most 40 steps each. Episode score: 1 when the level is won, else 0 (BALROG progression). Score: mean over the episodes; higher is better",
+   "sources": [
+    {
+     "url": "https://arxiv.org/abs/2608.08466",
+     "type": "paper",
+     "locator": "Sections 3.3.2 and 4.1; Table 1"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/benchmark_config_goal/balrog_babaisai_breakstop/config.yaml",
+     "type": "repository",
+     "locator": "episode counts, seeds, splits"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/src/benchmark/balrog/evaluator.py",
+     "type": "repository",
+     "locator": "episode loop: action cleaning, loop guard, seeds"
+    },
+    {
+     "url": "https://github.com/balrog-ai/BALROG/tree/b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5/balrog/environments",
+     "type": "repository",
+     "locator": "environment wrappers and instruction prompts (used unchanged)"
+    },
+    {
+     "url": "https://github.com/nacloos/baba-is-ai/tree/40ae1b29dbc67f2ecea06cc161ed5ca51719e5e3",
+     "type": "repository",
+     "locator": "BabaIsAI environment (MIT)"
+    }
+   ]
+  },
+  "hsi-babaisai-make": {
+   "family": "agent_bench_balrog",
+   "params": {
+    "adapter": "balrog",
+    "runtime": "pinned",
+    "suite": "babaisai_make",
+    "split": "test",
+    "episodes_per_task": 3,
+    "base_seed": 42,
+    "max_steps": 40,
+    "budget_usd": 0.5
+   },
+   "protocol": "recreated",
+   "requires": [
+    "file:../../.cache/agent_bench-env/bin/python"
+   ],
+   "notes": [
+    "Episodes and steps: HSI's test protocol plays 5 episodes per test task within BALROG's 100-step limit; here 3 episodes per task (HSI's first three test seeds) and a 40-step cap to bound the model cost. The task list and the test split are reproduced exactly from HSI's task definitions and split code. Only the test-split tasks are scored, so a search optimises on HSI's held-out tasks directly and the score is not a held-out estimate; in HSI the test split 'remains inaccessible throughout the evolution process', which uses the development tasks (its Section 4.1).",
+    "Reference: HSI (Table 2) reports held-out test progress for its initial harness of 0.03 (BreakStop), 0.18 (GoTo) and 0.00 (Make) and for evolved harnesses of 0.98-1.00, 0.96-1.00 and 0.34-0.36 with DeepSeek-V4-Flash; these numbers were not reproduced here.",
+    "Environment: BALROG's own environment wrappers, instruction prompts, invalid-action handling (default action plus BALROG's feedback text) and progression statistics (balrog-ai/BALROG at commit b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5, MIT), run in the pinned Python 3.11 runtime .cache/agent_bench-env created by `python scripts/prepare_agent_bench.py --setup-environment` (gym 0.23.0 as BALROG pins it, BALROG's Minigrid fork, baba-is-ai, crafter 1.8.3, balrog-nle 0.9.0 and BALROG's minihack fork at pinned commits).",
+    "Protocol taken from HSI's BALROG evaluator (TailinZhou/hsi at commit 97a022b9a9c260c0498806fc9826ebf22e753ed9, src/benchmark/balrog/): the agent's reply is reduced to letters, spaces and colons before BALROG's validity check, the episode stops early when the last 12 valid actions form a strict period-2 or period-3 loop, and episode seeds are HSI's deterministic test seeds int(sha256(f'{base_seed}_{suite}/{task}_{episode}_0')[:8], 16). HSI's code was read to recover this protocol; the HSI repository has no LICENSE file, so none of its code is copied.",
+    "Candidate: HSI evolves a per-step harness (prompts, hooks, memory) behind BALROG's agent call; here the candidate is the per-step policy act(...) with the same inputs (instruction prompt, current observation, BALROG's action list, the episode history) and a model client. HSI's harness also receives a task context (last reward, Crafter achievements); here that information is only available through the observations and history. HSI's lower-confidence-bound selection, repeats and evolution loop belong to the search method and are not part of the evaluator. HSI also requires every task interaction to go through the frozen backbone (evolution 'cannot replace the model with external search procedures or non-LLM policies', its Section 4.1); here act() may choose actions without calling the model.",
+    "Model: the default client model is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it); the paper's backbone is DeepSeek-V4-Flash (deepseek-v4-flash-preview), run at task time with thinking disabled and temperature 0 (its Section 4.1 and Appendix B.1), whereas the local client sends no reasoning setting, so the provider's default applies; absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.",
+    "Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions."
+   ],
+   "contract": "act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: BALROG BabaIsAI, the 4 tasks of HSI's held-out test split of the make suite (dev_ratio 0.8, split_seed 66), 3 seeded episodes per task (12 episodes), at most 40 steps each. Episode score: 1 when the level is won, else 0 (BALROG progression). Score: mean over the episodes; higher is better",
+   "sources": [
+    {
+     "url": "https://arxiv.org/abs/2608.08466",
+     "type": "paper",
+     "locator": "Sections 3.3.2 and 4.1; Table 1"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/benchmark_config_goal/balrog_babaisai_make/config.yaml",
+     "type": "repository",
+     "locator": "episode counts, seeds, splits"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/src/benchmark/balrog/evaluator.py",
+     "type": "repository",
+     "locator": "episode loop: action cleaning, loop guard, seeds"
+    },
+    {
+     "url": "https://github.com/balrog-ai/BALROG/tree/b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5/balrog/environments",
+     "type": "repository",
+     "locator": "environment wrappers and instruction prompts (used unchanged)"
+    },
+    {
+     "url": "https://github.com/nacloos/baba-is-ai/tree/40ae1b29dbc67f2ecea06cc161ed5ca51719e5e3",
+     "type": "repository",
+     "locator": "BabaIsAI environment (MIT)"
+    }
+   ]
+  },
+  "hsi-minihack": {
+   "family": "agent_bench_balrog",
+   "params": {
+    "adapter": "balrog",
+    "runtime": "pinned",
+    "suite": "minihack",
+    "split": "all",
+    "episodes_per_task": 1,
+    "base_seed": 99,
+    "max_steps": 100,
+    "budget_usd": 1.0
+   },
+   "protocol": "recreated",
+   "requires": [
+    "file:../../.cache/agent_bench-env/bin/python",
+    "file:data/agent_bench/minihack/boxoban-levels-master/hard/000.txt"
+   ],
+   "notes": [
+    "Episodes: HSI plays 5 episodes per task with 3 test repeats (base seed 99); here 1 episode per task with HSI's first test seed. The signal is sparse: HSI reports 0.8% for its initial harness and 15.8% after evolution with its backbone. Every evaluation replays the same seeded episodes, so a search optimises on the scored episodes themselves; in HSI's in-distribution protocol every evaluation episode is generated from a newly sampled environment seed (its Section 4.1), so its test episodes are not the ones the harness was evolved on.",
+    "Data: Boxoban levels (google-deepmind/boxoban-levels at commit 78011d8c86ad423bfb2e1005012393b4c3c24409, Apache-2.0) are prepared by scripts/prepare_agent_bench.py minihack; the evaluator points MiniHack's level path at the prepared copy instead of its package directory.",
+    "Environment: BALROG's own environment wrappers, instruction prompts, invalid-action handling (default action plus BALROG's feedback text) and progression statistics (balrog-ai/BALROG at commit b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5, MIT), run in the pinned Python 3.11 runtime .cache/agent_bench-env created by `python scripts/prepare_agent_bench.py --setup-environment` (gym 0.23.0 as BALROG pins it, BALROG's Minigrid fork, baba-is-ai, crafter 1.8.3, balrog-nle 0.9.0 and BALROG's minihack fork at pinned commits).",
+    "Protocol taken from HSI's BALROG evaluator (TailinZhou/hsi at commit 97a022b9a9c260c0498806fc9826ebf22e753ed9, src/benchmark/balrog/): the agent's reply is reduced to letters, spaces and colons before BALROG's validity check, the episode stops early when the last 12 valid actions form a strict period-2 or period-3 loop, and episode seeds are HSI's deterministic test seeds int(sha256(f'{base_seed}_{suite}/{task}_{episode}_0')[:8], 16). HSI's code was read to recover this protocol; the HSI repository has no LICENSE file, so none of its code is copied.",
+    "Candidate: HSI evolves a per-step harness (prompts, hooks, memory) behind BALROG's agent call; here the candidate is the per-step policy act(...) with the same inputs (instruction prompt, current observation, BALROG's action list, the episode history) and a model client. HSI's harness also receives a task context (last reward, Crafter achievements); here that information is only available through the observations and history. HSI's lower-confidence-bound selection, repeats and evolution loop belong to the search method and are not part of the evaluator. HSI also requires every task interaction to go through the frozen backbone (evolution 'cannot replace the model with external search procedures or non-LLM policies', its Section 4.1); here act() may choose actions without calling the model.",
+    "Model: the default client model is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it); the paper's backbone is DeepSeek-V4-Flash (deepseek-v4-flash-preview), run at task time with thinking disabled and temperature 0 (its Section 4.1 and Appendix B.1), whereas the local client sends no reasoning setting, so the provider's default applies; absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.",
+    "Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions."
+   ],
+   "contract": "act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: BALROG MiniHack (language observation with the ASCII map, BALROG's hybrid mode), HSI's eight tasks (Boxoban Hard and Medium, MazeWalk 9x9 and 15x15, Corridor-R3, CorridorBattle-Dark, Quest Easy and Medium), one seeded episode each within MiniHack's 100-step limit. Episode score: 1 when the task is solved, else 0 (BALROG progression). Score: mean over the 8 episodes; higher is better",
+   "sources": [
+    {
+     "url": "https://arxiv.org/abs/2608.08466",
+     "type": "paper",
+     "locator": "Sections 3.3.2 and 4.1; Table 1"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/benchmark_config_goal/balrog_minihack/config.yaml",
+     "type": "repository",
+     "locator": "episode counts, seeds, splits"
+    },
+    {
+     "url": "https://github.com/TailinZhou/hsi/tree/97a022b9a9c260c0498806fc9826ebf22e753ed9/src/benchmark/balrog/evaluator.py",
+     "type": "repository",
+     "locator": "episode loop: action cleaning, loop guard, seeds"
+    },
+    {
+     "url": "https://github.com/balrog-ai/BALROG/tree/b7afe79e3e4265811cfa985ed7c95c4d1a11e3f5/balrog/environments",
+     "type": "repository",
+     "locator": "environment wrappers and instruction prompts (used unchanged)"
+    },
+    {
+     "url": "https://github.com/balrog-ai/minihack/tree/3ecb6da4eadcac7a4dbc5f8e801ccf636e34d7ec",
+     "type": "repository",
+     "locator": "MiniHack fork pinned by BALROG"
+    },
+    {
+     "url": "https://github.com/google-deepmind/boxoban-levels/tree/78011d8c86ad423bfb2e1005012393b4c3c24409",
+     "type": "benchmark",
+     "locator": "Boxoban hard and medium/train levels"
+    }
+   ]
+  },
+  "agentsquare-alfworld": {
+   "family": "agent_bench_textenv",
+   "params": {
+    "adapter": "alfworld",
+    "runtime": "pinned",
+    "per_type": 2,
+    "seed": 0,
+    "max_steps": 49,
+    "budget_usd": 0.5
+   },
+   "protocol": "recreated",
+   "requires": [
+    "file:../../.cache/agent_bench-env/bin/python",
+    "file:data/agent_bench/alfworld/games.json"
+   ],
+   "contract": "act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: ALFWorld text games (AlfredTWEnv's eval_out_of_distribution set, 134 games); a fixed sample of 2 games per task type (12 episodes), at most 49 actions each, no admissible-command list. Episode score: 1 when the game reports won, else 0. Score: success rate over the 12 episodes; higher is better",
+   "notes": [
+    "Environment: ALFWorld 0.4.2 with textworld[pddl] 1.7.0 (MIT) in the pinned Python 3.11 runtime .cache/agent_bench-env; game files from ALFWorld's releases (json_2.1.1_json.zip of 0.2.2 and json_2.1.3_tw-pddl.zip of 0.4.2) selected by AlfredTWEnv.collect_game_files's rules, which yields exactly the 134 out-of-distribution games of AgentSquare's runner and of AgentBoard's ALFWorld test list. Each game is played with ALFWorld's own wrappers (AlfredDemangler without randomisation, AlfredInfos).",
+    "Protocol from AgentSquare's tasks/alfworld/alfworld_run.py: the welcome banner is removed from the first observation, '>' and 'OK' are stripped from replies, a reply is cut at ', end' and its periods removed, 'think:' replies leave the game unchanged and are answered 'OK.', the admissible commands are not shown, and the loop runs range(1, 50), i.e. at most 49 actions. AgentSquare plays all 134 games; here a fixed sample of 2 games per task type (12) to bound the cost.",
+    "Instruction: AgentSquare conveys the command syntax through ReAct's few-shot examples, which belong to the agent; here the episode instruction lists ALFWorld's command templates instead (no examples).",
+    "Candidate: AgentSquare searches over agent module code (planning, reasoning, tool use, memory with a uniform interface) with module evolution, recombination and a performance predictor; those belong to the search method. Here the candidate is the agent program itself, act(...) called once per step; it may implement any modules internally. The AgentSquare repository has no licence, so its code is only read to recover the protocol; the environments come from the benchmarks' own releases.",
+    "Model: AgentSquare runs GPT-3.5-turbo-0125 and GPT-4o; the default client model here is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it), so absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.",
+    "Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions."
+   ],
+   "sources": [
+    {
+     "url": "https://arxiv.org/abs/2410.06153",
+     "type": "paper",
+     "locator": "Section 4.1 and Appendix A.1 (tasks and metrics)"
+    },
+    {
+     "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/alfworld/alfworld_run.py",
+     "type": "repository",
+     "locator": "eval_out_of_distribution, 134 games, step loop"
+    },
+    {
+     "url": "https://github.com/alfworld/alfworld/releases/tag/0.4.2",
+     "type": "benchmark",
+     "locator": "json_2.1.3_tw-pddl.zip game files"
+    },
+    {
+     "url": "https://github.com/alfworld/alfworld/releases/tag/0.2.2",
+     "type": "benchmark",
+     "locator": "json_2.1.1_json.zip trajectories (game selection)"
+    }
+   ]
+  },
+  "agentsquare-scienceworld": {
+   "family": "agent_bench_textenv",
+   "params": {
+    "adapter": "sciworld",
+    "runtime": "pinned",
+    "samples": 10,
+    "seed": 0,
+    "max_steps": 30,
+    "env_step_limit": 30,
+    "budget_usd": 0.5
+   },
+   "protocol": "recreated",
+   "requires": [
+    "file:../../.cache/agent_bench-env/bin/python",
+    "file:data/agent_bench/agentboard/scienceworld-test.jsonl",
+    "file:data/agent_bench/agentboard/prompts/scienceworld_base.json",
+    "bin:java"
+   ],
+   "contract": "act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: ScienceWorld through AgentBoard's protocol, a fixed sample of 10 of AgentBoard's 90 test task variations, at most 30 steps each; 'check valid actions' lists the action templates. Episode score: AgentBoard's progress rate (fraction of the variation's subgoal patterns matched in the observations so far). Score: mean progress rate over the 10 episodes; higher is better",
+   "notes": [
+    "Environment: scienceworld 1.2.1 (allenai/ScienceWorld, Apache-2.0; bundled simulator JAR, needs Java) in the pinned runtime, with a port of AgentBoard's environment/scienceworld_env.py and the episode setup of tasks/scienceworld.py (hkust-nlp/AgentBoard at commit bb7255e2daf1989069a186dad9e53f70680961db, code Apache-2.0): AgentBoard's simplifications, rewritten goal, first observation plus inventory, 'check valid actions', subgoal matching with re.search and success when every subgoal is matched.",
+    "Data: AgentBoard's ScienceWorld labels (GPL-2.0, 90 variations; AgentSquare's run script points to AgentBoard's run configuration, which uses this file with a 30-step limit; with a planning module, which AgentSquare's best SciWorld agent has (Voyager, its Table A.4), AgentSquare's runner instead allows up to 6 actions per planned subtask without the 30-step cap, whereas here every agent has at most 30 steps). The labels are fetched from the byte-identical copy in AgentSquare's repository (checked against data/scienceworld/test.jsonl inside AgentBoard's data.tar.gz on 2026-10-10); the separately published test.jsonl of the AgentBoard dataset lacks the task names and variations.",
+    "Sample: the paper does not state which or how many variations it evaluates. AgentSquare's runner scores every row of the label file its configuration names (AgentBoard's configuration names the 90-variation test.jsonl), but AgentSquare's repository also holds subsets of 30, 20 and 5 variations, and the task indices in its tasks/sciworld/error_log.txt fit the 30-variation sampled_tasks1.jsonl (23 of 26 logged task-index pairs) rather than test.jsonl, so whether the paper's numbers cover all 90 variations is not known. Here a fixed sample of 10 of the 90 (SHA-256 order of the label ids, seed 0).",
+    "Simulator version: AgentBoard pins no ScienceWorld version; 1.2.1 is the release that was current during AgentSquare's experiments (July to October 2024). Check: replaying the simulator's own gold action sequences matches every subgoal pattern of 74 of the 90 labels with 1.2.1 and the reproducible JVM setting below (70 to 74 in default runs, where the gold routes vary; 71 with 1.1.3, 55 with the latest 1.2.3); in most of the others the label names one of several valid objects (the find-* tasks) or a step the gold sequence skips, so those variations can be completed but not along every valid route.",
+    "Reproducibility (deviation): the simulator iterates hash-based collections keyed by Java identity hash codes, so replaying the same actions gave differently ordered room and container listings and slightly different temperatures (for example 166 versus 167 degrees Celsius) in 21 of the 90 labels; reordering the observation text alone would not remove the temperature differences. The evaluator therefore starts the simulator's JVM with -XX:+UnlockExperimentalVMOptions -XX:hashCode=2 (constant identity hash codes, so these collections iterate in insertion order). With this setting the gold sequences and all observations replayed identically for the 90 labels within and across processes. The agent sees the simulator's own text, and the progress rate is computed as before; the simulator dynamics follow one fixed processing order instead of a varying one.",
+    "Instruction: AgentBoard's command overview from prompts/VanillaAgent/scienceworld_base.json with the goal; its few-shot example belongs to the agent and is not included.",
+    "Candidate: AgentSquare searches over agent module code (planning, reasoning, tool use, memory with a uniform interface) with module evolution, recombination and a performance predictor; those belong to the search method. Here the candidate is the agent program itself, act(...) called once per step; it may implement any modules internally. The AgentSquare repository has no licence, so its code is only read to recover the protocol; the environments come from the benchmarks' own releases.",
+    "Model: AgentSquare runs GPT-3.5-turbo-0125 and GPT-4o; the default client model here is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it), so absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.",
+    "Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions."
+   ],
+   "sources": [
+    {
+     "url": "https://arxiv.org/abs/2410.06153",
+     "type": "paper",
+     "locator": "Section 4.1 and Appendix A.1 (tasks and metrics)"
+    },
+    {
+     "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/sciworld",
+     "type": "repository",
+     "locator": "AgentBoard-based ScienceWorld runner and run configuration"
+    },
+    {
+     "url": "https://github.com/hkust-nlp/AgentBoard/tree/bb7255e2daf1989069a186dad9e53f70680961db/agentboard/environment/scienceworld_env.py",
+     "type": "repository",
+     "locator": "subgoal progress rate (ported)"
+    },
+    {
+     "url": "https://huggingface.co/datasets/hkust-nlp/agentboard/tree/0680548ef773505788d3cced65640a0fd511242f",
+     "type": "benchmark",
+     "locator": "data.tar.gz: data/scienceworld/test.jsonl"
+    },
+    {
+     "url": "https://pypi.org/project/scienceworld/1.2.1/",
+     "type": "benchmark",
+     "locator": "ScienceWorld simulator (pinned version)"
+    }
+   ]
+  },
+  "agentsquare-pddl": {
+   "family": "agent_bench_textenv",
+   "params": {
+    "adapter": "pddl",
+    "runtime": "pinned",
+    "per_game": 3,
+    "seed": 0,
+    "max_steps": 30,
+    "budget_usd": 0.5
+   },
+   "protocol": "recreated",
+   "requires": [
+    "file:../../.cache/agent_bench-env/bin/python",
+    "file:data/agent_bench/agentboard/pddl_env/pddl_env.py",
+    "file:data/agent_bench/agentboard/pddl-test.jsonl"
+   ],
+   "contract": "act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: AgentBoard's PDDL games (gripper, blockworld, barman, tyreworld; 60 problems), a fixed sample of 3 problems per game (12 episodes), at most 30 steps each; 'check valid actions' lists the grounded actions. Episode score: AgentBoard's progress rate (largest fraction of goal literals satisfied so far). Score: mean progress rate over the 12 episodes; higher is better",
+   "notes": [
+    "Protocol: AgentSquare lists PDDL among its tasks but its repository contains only AgentBoard's PDDL environment code and no runner, so AgentBoard's own PDDL protocol (tasks/pddl.py: 60 problems, progress rate, the 30-step limit of AgentSquare's AgentBoard run configuration) is used.",
+    "Environment: AgentBoard's agentboard/environment/pddl_env/pddl_env.py with its vendored pddlgym (Apache-2.0 / MIT), fetched at the pinned commit and imported unchanged except for three shims: AgentBoard's registry and base class are replaced by trivial stand-ins, nltk.download is disabled (the punkt_tab tables are prepared offline; their licence is not stated) and pddlgym.make drops the disable_env_checker keyword that gym 0.23 does not accept.",
+    "Sample: AgentBoard evaluates all 60 problems; here 3 problems per game (12) in a fixed SHA-256 order (seed 0). The instruction is the game's domain description from prompts/VanillaAgent/pddl_vanilla_prompt.json plus the goal; its few-shot examples belong to the agent and are not included.",
+    "Candidate: AgentSquare searches over agent module code (planning, reasoning, tool use, memory with a uniform interface) with module evolution, recombination and a performance predictor; those belong to the search method. Here the candidate is the agent program itself, act(...) called once per step; it may implement any modules internally. The AgentSquare repository has no licence, so its code is only read to recover the protocol; the environments come from the benchmarks' own releases.",
+    "Model: AgentSquare runs GPT-3.5-turbo-0125 and GPT-4o; the default client model here is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it), so absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.",
+    "Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions."
+   ],
+   "sources": [
+    {
+     "url": "https://arxiv.org/abs/2410.06153",
+     "type": "paper",
+     "locator": "Section 4.1 and Appendix A.1 (tasks and metrics)"
+    },
+    {
+     "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/sciworld/agentboard/environment/pddl_env",
+     "type": "repository",
+     "locator": "PDDL environment code only (no runner)"
+    },
+    {
+     "url": "https://github.com/hkust-nlp/AgentBoard/tree/bb7255e2daf1989069a186dad9e53f70680961db/agentboard/tasks/pddl.py",
+     "type": "repository",
+     "locator": "episode protocol and progress rate"
+    },
+    {
+     "url": "https://github.com/hkust-nlp/AgentBoard/tree/bb7255e2daf1989069a186dad9e53f70680961db/agentboard/environment/pddl_env",
+     "type": "repository",
+     "locator": "PDDL environment and problems (used unchanged)"
+    },
+    {
+     "url": "https://huggingface.co/datasets/hkust-nlp/agentboard/tree/0680548ef773505788d3cced65640a0fd511242f",
+     "type": "benchmark",
+     "locator": "data/pddl/test.jsonl (difficulty labels)"
+    }
+   ]
+  },
+  "agentsquare-m3tooleval": {
+   "family": "agent_bench_m3tool",
+   "params": {
+    "adapter": "m3tool",
+    "per_domain": 4,
+    "seed": 0,
+    "max_steps": 10,
+    "budget_usd": 0.5
+   },
+   "protocol": "recreated",
+   "requires": [
+    "file:data/agent_bench/m3tooleval/tasks/base.py"
+   ],
+   "contract": "act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: M3ToolEval (CodeAct) in text-as-action mode: `instruction` is CodeAct's task prompt with the tool list, each reply is one assistant turn ('Action: tool, arg, ... End Action' or 'Answer: ...'), `observation` the tool result or feedback; a fixed sample of 4 tasks per domain (20 episodes), at most 10 turns. Episode score: 1 when solved, else 0. Score: success rate over the 20 episodes; higher is better",
+   "notes": [
+    "Environment: CodeAct's own M3ToolEval task package (xingyaoww/code-act at commit d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8, scripts/eval/m3tooleval, MIT), fetched by scripts/prepare_agent_bench.py and imported unchanged (its IPython-based REPL, needed only for the code-as-action mode, is stubbed out). Turns follow CodeAct's run_task: post-processing to the first Action/Answer block, CodeAct's parser, tool execution, the 'incorrect, try again' message after a wrong answer, success on a correct answer or (for single-tool tasks) a tool result equal to the expected output, 10-turn limit. AgentSquare's own runner also accepts a correct answer at any turn within 10 turns.",
+    "Action mode: text-as-action (CodeAct's default, the mode AgentSquare runs); the JSON and code modes are not offered.",
+    "Sample: AgentSquare evaluates all 82 tasks of the five domains; here a fixed sample of 4 tasks per domain (20) in SHA-256 order (seed 0).",
+    "Candidate: AgentSquare searches over agent module code (planning, reasoning, tool use, memory with a uniform interface) with module evolution, recombination and a performance predictor; those belong to the search method. Here the candidate is the agent program itself, act(...) called once per step; it may implement any modules internally. The AgentSquare repository has no licence, so its code is only read to recover the protocol; the environments come from the benchmarks' own releases.",
+    "Model: AgentSquare runs GPT-3.5-turbo-0125 and GPT-4o; the default client model here is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it), so absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.",
+    "Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions."
+   ],
+   "sources": [
+    {
+     "url": "https://arxiv.org/abs/2410.06153",
+     "type": "paper",
+     "locator": "Section 4.1 and Appendix A.1 (tasks and metrics)"
+    },
+    {
+     "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/m3tooleval/main.py",
+     "type": "repository",
+     "locator": "AgentSquare's M3ToolEval loop"
+    },
+    {
+     "url": "https://github.com/xingyaoww/code-act/tree/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval",
+     "type": "benchmark",
+     "locator": "tasks, tools, prompt, parser and answer check (used unchanged)"
+    }
+   ]
+  },
+  "agentsquare-travelplanner": {
+   "family": "agent_bench_travel",
+   "params": {
+    "adapter": "travel",
+    "first": 151,
+    "last": 180,
+    "samples": 10,
+    "seed": 0,
+    "max_steps": 30,
+    "budget_usd": 0.5
+   },
+   "protocol": "recreated",
+   "requires": [
+    "file:data/agent_bench/travel/flights.csv",
+    "file:data/llm_bench/travelplanner_validation.json",
+    "file:data/llm_bench/travel_accommodations.csv",
+    "file:data/llm_bench/travel_restaurants.csv",
+    "file:data/llm_bench/travel_attractions.csv",
+    "file:data/llm_bench/travel_distance.csv",
+    "file:data/llm_bench/travel_city_states.txt"
+   ],
+   "contract": "act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: TravelPlanner in two-stage (tool-use) mode: each reply is one action Tool[arguments] with the tools FlightSearch, GoogleDistanceMatrix, AccommodationSearch, RestaurantSearch, AttractionSearch, CitySearch and NotebookWrite, and Finish[<JSON plan>] submits the plan (the JSON day-record format of the instruction); a fixed sample of 10 of the validation queries 151-180, at most 30 actions. Episode score: the commonsense-constraint micro pass rate of the submitted plan (passed commonsense constraints / 8; 0 without a plan; TravelPlanner's checks pass vacuously on absent entries, so a plan of '-' entries already scores 0.625). Score: mean over the 10 queries; higher is better",
+   "notes": [
+    "Setting: AgentSquare's TravelPlanner task runs the two-stage mode (a ReAct agent gathers information with the search tools, a planner writes the plan) on validation queries 151-180 (all hard, 5 and 7 days) with at most 30 steps; here a fixed sample of 10 of these 30 queries (SHA-256 order, seed 0). This differs from the suite's Mind Evolution TravelPlanner task, which is sole-planning with the reference information given; the constraint checker and database loading are shared with it (llm_bench_travel_checks).",
+    "Metric: AgentSquare reports a 'micro pass rate' without saying which; the commonsense-constraint micro pass rate of TravelPlanner's evaluation is used (per plan: passed commonsense constraints / 8, 0 when no plan is delivered). The hard-constraint micro pass rate and the final pass are reported in the details. This choice is an assumption.",
+    "Tools: ports of TravelPlanner's tools/*/apis.py and the argument checks of agents/tool_agents.py (OSU-NLP-Group/TravelPlanner at commit e52c87f4ac348a3410c46dc3553c519db5ec5e23, MIT) on the benchmark database (CC-BY-4.0). The Planner tool, which in TravelPlanner calls a model on the notebook, is replaced by Finish[<JSON plan>]: the candidate writes the plan with its own model calls and returns TravelPlanner's JSON day records directly instead of text that GPT-4 converts to JSON. Invalid-city messages are shortened (TravelPlanner prints the whole city list).",
+    "Metric caveat: a plan whose entries are all '-' passes 5 of the 8 commonsense constraints (score 0.625), because TravelPlanner's checks pass vacuously on absent entries; the official micro pass rate has the same property. The details report the number of commonsense constraints passed, the hard-constraint counts and the final pass so that such plans can be recognised.",
+    "Check: for all 180 validation queries, each of the 2,700 reference-information entries (flights, accommodations, restaurants, attractions, self-driving and taxi distances), which TravelPlanner produced with its original tools, is reproduced exactly (whitespace-normalised) by the ported tools on the prepared tables.",
+    "Flight table: restricted to flights between the origin and the destination-state cities of each validation query on the query's dates (52,270 of 3.8 million flights, derived by scripts/prepare_agent_bench.py travel). A plan that passes the commonsense checks can only use such flights; FlightSearch on other routes or dates answers 'There is no flight', where the full table might list flights.",
+    "Data reuse: the accommodations, restaurants, attractions, distance and city tables and the validation queries are the files of the llm_bench package (scripts/prepare_llm_bench.py).",
+    "Candidate: AgentSquare searches over agent module code (planning, reasoning, tool use, memory with a uniform interface) with module evolution, recombination and a performance predictor; those belong to the search method. Here the candidate is the agent program itself, act(...) called once per step; it may implement any modules internally. The AgentSquare repository has no licence, so its code is only read to recover the protocol; the environments come from the benchmarks' own releases.",
+    "Model: AgentSquare runs GPT-3.5-turbo-0125 and GPT-4o; the default client model here is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it), so absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.",
+    "Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions."
+   ],
+   "sources": [
+    {
+     "url": "https://arxiv.org/abs/2410.06153",
+     "type": "paper",
+     "locator": "Section 4.1 and Appendix A.1 (tasks and metrics)"
+    },
+    {
+     "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/travelplanner",
+     "type": "repository",
+     "locator": "Two-stage mode.txt; agents/eval_main.py (queries 151-180, ReactAgent max_steps 30)"
+    },
+    {
+     "url": "https://github.com/OSU-NLP-Group/TravelPlanner/tree/e52c87f4ac348a3410c46dc3553c519db5ec5e23/tools",
+     "type": "repository",
+     "locator": "tool implementations (ported)"
+    },
+    {
+     "url": "https://huggingface.co/spaces/osunlp/TravelPlannerLeaderboard/tree/a57daf2e45155a5378dcf75ee9fe374e671ee048/database",
+     "type": "archive",
+     "locator": "benchmark database"
+    },
+    {
+     "url": "https://huggingface.co/datasets/osunlp/TravelPlanner/tree/8736504ecfc31b7f8b7e40122873c337e83fff7c",
+     "type": "benchmark",
+     "locator": "validation.csv"
+    }
+   ]
+  }
+ }
+}

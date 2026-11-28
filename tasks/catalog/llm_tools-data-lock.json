@@ -1,0 +1,86 @@
+{
+  "derived": {
+    "autoda/attack_sets.json": {
+      "sha256": "49f6294f278512a60eeb4b63b70e846dd8492ce9bf529ec89a64fb6c416144ff",
+      "size": 17819
+    },
+    "autoda/images.npy": {
+      "sha256": "41c2948a815fd29329aeeec4bd558e9fbea033483ce96088eefdfb2c6fc0527f",
+      "size": 663680
+    },
+    "autoda/resnet18_cifar10.bin": {
+      "sha256": "f656242526b567dbd46857276acbcfcb4ee74a7f8a7ae5e56557b7e8fa5d914a",
+      "size": 44774261
+    },
+    "hover/claims.json": {
+      "sha256": "d1257e79014be6e42297cd42b7ee136905843f5e53a10c538cca446c5ba204bc",
+      "size": 108842
+    },
+    "hover/index/bm25s/data.csc.index.npy": {
+      "sha256": "97a35ecdd3173e340ae092c274fae8c2f78e3488c07e508c533c3365e40a313f",
+      "size": 527289964
+    },
+    "hover/index/bm25s/indices.csc.index.npy": {
+      "sha256": "7445d08493c4d8096389f5dc5efd91352329e769c5270f1be4848c786eaf58ab",
+      "size": 527289964
+    },
+    "hover/index/bm25s/indptr.csc.index.npy": {
+      "sha256": "48235886cfe0fc30bc4e38bef590c0bb7120b180f53969de677bcf89067ba1fd",
+      "size": 10198552
+    },
+    "hover/index/bm25s/params.index.json": {
+      "sha256": "7d61f293719da341d547cc5b6c991d200b5b58aa7890dea8f3b6401fe5c14a3c",
+      "size": 225
+    },
+    "hover/index/bm25s/vocab.index.json": {
+      "sha256": "947b06f905e25c53904873d5e37e6a8ee6cea464f862b3be4db6b8f581176ea3",
+      "size": 49055707
+    },
+    "hover/index/doc_offsets.npy": {
+      "sha256": "7826bbb38664eb18a103c6b3ae3b5fe0536dd8c90b572d7534eb51f67da1c525",
+      "size": 41866768
+    },
+    "hover/index/docs.jsonl": {
+      "sha256": "55d9b89a1776ab56b7abf7699a9b5f3c3880cc319cddc5b7351c79fb9d89fdee",
+      "size": 1561686696
+    },
+    "telemetry/evaluation_data.csv": {
+      "sha256": "4fa7656d67d1d67d2149d6e7828b65f2a7b50a0f425daf2c2b99c0e047adc2b5",
+      "size": 787281
+    }
+  },
+  "package": "llm_tools",
+  "schema_version": "1.0",
+  "sources": {
+    "cifar10-binary": {
+      "license": "not stated (the CIFAR-10 page asks users to cite Krizhevsky, 'Learning Multiple Layers of Features from Tiny Images', 2009); downloaded at setup only and never redistributed.",
+      "sha256": "c4a38c50a1bc5f3a1c5537f2155ab9d68f9f25eb1ed8d9ddda3db29a59bca1dd",
+      "size": 170052171,
+      "url": "https://www.cs.toronto.edu/~kriz/cifar-10-binary.tar.gz"
+    },
+    "hover-train": {
+      "license": "CC-BY-SA-4.0 (HoVer data, Hugging Face dataset card hover-nlp/hover); repository code MIT. Not redistributed by this repository.",
+      "sha256": "1f1cd57abd616fa00c70bdc575ce77c16fc6cf1a6cffd5ff87c208030a336bb6",
+      "size": 9205582,
+      "url": "https://raw.githubusercontent.com/hover-nlp/hover/39b84697f196308f398a251a7aea9b82ae0f0562/data/hover/hover_train_release_v1.1.json"
+    },
+    "resnet18-cifar10": {
+      "license": "MIT (model card of edadaltocg/resnet18_cifar10). Not redistributed by this repository.",
+      "sha256": "f656242526b567dbd46857276acbcfcb4ee74a7f8a7ae5e56557b7e8fa5d914a",
+      "size": 44774261,
+      "url": "https://huggingface.co/edadaltocg/resnet18_cifar10/resolve/ccacbae365101b9bfa45e1f17f4acac30c2601b2/pytorch_model.bin"
+    },
+    "telemetry-evaluation-data": {
+      "license": "Apache-2.0 (UCB-ADRS/ADRS repository licence); the provenance licence of the underlying Abilene measurements is not stated. Not redistributed by this repository.",
+      "sha256": "4fa7656d67d1d67d2149d6e7828b65f2a7b50a0f425daf2c2b99c0e047adc2b5",
+      "size": 787281,
+      "url": "https://raw.githubusercontent.com/UCB-ADRS/ADRS/259292f3ad1924c03be684996dbd83e6891c3e39/openevolve/examples/ADRS/telemetry_repair/ref_data/evaluation_data.csv"
+    },
+    "wiki-abstracts-2017": {
+      "license": "not stated by the dspy/cache repository; the abstracts are Wikipedia text (CC BY-SA). Prepared locally, never committed or redistributed.",
+      "sha256": "744183e61af986bde9b25c880b59c1502618a8b673671e189cbc0ee684fceb42",
+      "size": 608448121,
+      "url": "https://huggingface.co/dspy/cache/resolve/ef6a5e72a98b47cef31574a400fea8fe149559a3/wiki.abstracts.2017.tar.gz"
+    }
+  }
+}

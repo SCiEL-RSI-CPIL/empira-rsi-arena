@@ -1,0 +1,227 @@
+{
+  "schema_version": "1.0",
+  "id": "dnacode-gc-n12-d7",
+  "name": "DNA code A4GC(12,7)",
+  "description": "Find as many DNA words of length 12 as possible, that is, strings over the letters A, C, G, T, such that all words have the same number of letters in {C, G} (that number is free) and any two different words differ in at least 7 positions.",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://rambutan.umassmed.edu/king/dnacodes.html",
+      "type": "benchmark",
+      "locator": "A4GC(12,7)"
+    },
+    {
+      "url": "https://github.com/owhs/DNA_GC_codes_2026",
+      "type": "repository",
+      "locator": "codes/GCRC_n12_d7.txt at commit e3b6ed8a4d1b: a reverse-complement code of 100 words whose union with its reverse complements is a constant-GC code of 200 words, replayed by the record validation"
+    },
+    {
+      "url": "https://doi.org/10.37236/1726",
+      "type": "paper",
+      "locator": "Bounds for DNA Codes with Constant GC-Content"
+    },
+    {
+      "url": "https://doi.org/10.1016/j.tcs.2004.11.004",
+      "type": "paper",
+      "locator": "Linear constructions for DNA codes"
+    },
+    {
+      "url": "https://doi.org/10.1109/TIT.2007.911167",
+      "type": "paper",
+      "locator": "Improved Lower Bounds for Constant GC-Content DNA Codes"
+    },
+    {
+      "url": "https://doi.org/10.1007/s10852-008-9087-8",
+      "type": "paper",
+      "locator": "Construction of Constant GC-Content DNA Codes via a Variable Neighbourhood Search Algorithm"
+    },
+    {
+      "url": "https://doi.org/10.1089/10665270152530818",
+      "type": "paper",
+      "locator": "Marathe, Condon and Corn (2001), On Combinatorial DNA Word Design: the Hamming and reverse-complement word design problem (Crossref title 'On Combinatorial DNA Word Design', J. Comput. Biol. 8)."
+    },
+    {
+      "url": "https://doi.org/10.1016/j.disc.2010.03.005",
+      "type": "paper",
+      "locator": "Smith, Aboluion, Montemanni and Perkins (2011), linear and nonlinear constructions of DNA codes with Hamming distance d and constant GC-content; source of the table entries marked x."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "No data files."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "DNA code A4GC(12,7)",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "dnacode",
+    "science_family": "dnacode",
+    "parameters": {
+      "n": 12,
+      "d": 7,
+      "rc": false,
+      "best_known": 200
+    },
+    "interface": "construct() -> list of distinct strings of length 12 over the capital letters A, C, G, T (at least one word and at most 20000; a longer list is invalid). Score: number of words, maximized.",
+    "label_spec": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value",
+      "area": "theoretical_computer_science",
+      "secondary_area": "biology",
+      "areas": [
+        "theoretical_computer_science",
+        "biology",
+        "mathematics"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "No data files."
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "dnacode",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy"
+      ],
+      "timeout": 600,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "The record is derived: a reverse-complement code of the 2026 repository (found by an automated search, not published in a paper) together with the reverse complements of its words is a constant-GC code twice its size, replayed word by word through this task's verifier. It was not found by a search for the plain constant-GC problem, so a direct search may well go further. The tables of Montemanni, Smith and Koul (2014) and the thesis of Aboluion (2011) show no larger value.",
+    "Only open entries with a bound of at most 2000 words in the table are tasks, so that the pairwise check stays cheap.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "family_tests_and_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
+    "upstream_reproduction": true,
+    "record_level": "record_reproduced",
+    "unsure": false,
+    "record_validation": {
+      "record": 200,
+      "checks": [
+        "the reverse-complement code codes/GCRC_n12_d7.txt of https://github.com/owhs/DNA_GC_codes_2026 (commit e3b6ed8a4d1b, 100 words, passes this verifier with the reverse-complement rule) together with the reverse complements of its words is a constant-GC code of 200 words with distance 7, replayed by this verifier",
+        "the table of Gaborit and King (pinned page, dated 23 June 2010) has 183"
+      ],
+      "sources": [
+        "data/dnacode/dnacodes.html",
+        "sources/dnacodes_2026/GCRC_n12_d7.txt"
+      ],
+      "notes": [
+        "derived from a reverse-complement code, not found by a search for the plain constant-GC problem: the union of C and rc(C) has 2|C| words because x = rc(y) is excluded by d(x, rc(y)) >= d",
+        "not proven optimal; the tables of Montemanni, Smith and Koul 2014 show no larger value and the thesis of Aboluion (2011) lists no larger value (compared 2026-11-18)"
+      ],
+      "validated": "2026-11-18"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "open_problem",
+    "science_tier": 1,
+    "artifact": "construction",
+    "domain": "mathematics",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "theoretical_computer_science",
+    "secondary_area": "biology",
+    "areas": [
+      "theoretical_computer_science",
+      "biology",
+      "mathematics"
+    ],
+    "important_to_science": true
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "The four papers have the size of DNA codes with constant GC-content and a minimum Hamming distance as their main objective and are the sources of the lower bounds in the Gaborit-King table that the task instance comes from; the evaluator checks exactly the code definition of King (2003).",
+    "scientific_problem": "Find a DNA code of length 12 (words over A, C, G, T with exactly floor(12/2) letters from C and G, pairwise Hamming distance at least 7) with as many words as possible.",
+    "importance_rationale": "Such word sets serve as barcodes, microarray probes and tags in DNA computing and storage, where words must not hybridise with each other; a constant GC-content gives similar melting temperatures and a large Hamming distance makes mismatched pairing unlikely. The maximum size is unknown for almost all parameters and the pinned table has been the reference for lower bounds since 2010, so a larger code is a new lower bound.",
+    "papers": [
+      {
+        "title": "Bounds for DNA Codes with Constant GC-Content",
+        "url": "https://doi.org/10.37236/1726",
+        "task_relation": "The paper defines the quantity the task maximises for length 12 and distance 7 (GC-content floor(12/2)); its lexicographic constructions and Johnson-type bounds underlie the table the task starts from. The task covers the plain constant-GC variant.",
+        "primary_goal": "Derive upper and lower bounds on the maximum size of DNA codes with constant GC-content and minimum Hamming distance, with and without the reverse-complement constraint, and construct larger codes than previously published.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Linear constructions for DNA codes",
+        "url": "https://doi.org/10.1016/j.tcs.2004.11.004",
+        "task_relation": "Its constructions give many entries of the table for length 12 and distance 7 (superscripts c, l and m on the pinned page); the task asks to beat the tabulated size. Covers the plain constant-GC variant.",
+        "primary_goal": "Construct DNA codes with constant GC-content from linear and related codes and tabulate the resulting lower bounds.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Improved Lower Bounds for Constant GC-Content DNA Codes",
+        "url": "https://doi.org/10.1109/TIT.2007.911167",
+        "task_relation": "Supplies table entries marked a, b and colon-optimal on the pinned page; the task asks for a larger code than the tabulated one for length 12, distance 7.",
+        "primary_goal": "Improve the lower bounds on the size of constant GC-content DNA codes, with and without the reverse-complement constraint, by stochastic local search, and prove some entries optimal by clique computations.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Construction of Constant GC-Content DNA Codes via a Variable Neighbourhood Search Algorithm",
+        "url": "https://doi.org/10.1007/s10852-008-9087-8",
+        "task_relation": "Supplies the many table entries marked v on the pinned page; the task asks for a larger code for length 12, distance 7.",
+        "primary_goal": "Construct large constant GC-content DNA codes with a variable neighbourhood search algorithm.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  },
+  "source_specification": {
+    "name": "DNA code A4GC(12,7)",
+    "slug": "dnacode-gc-n12-d7",
+    "description": "Find as many DNA words of length 12 as possible, that is, strings over the letters A, C, G, T, such that all words have the same number of letters in {C, G} (that number is free) and any two different words differ in at least 7 positions.",
+    "benchmark": "DNA code A4GC(12,7)",
+    "dataset": "No data files.",
+    "metric": "score",
+    "direction": "maximize",
+    "source_url": "https://rambutan.umassmed.edu/king/dnacodes.html",
+    "source_locator": "A4GC(12,7)",
+    "upstream_path": null,
+    "requirements": [
+      "py:numpy"
+    ],
+    "execution_notes": "No data files."
+  }
+}

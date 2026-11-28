@@ -1,0 +1,1463 @@
+[
+ {
+  "id": "science-earth-hurricane-track-forecast",
+  "name": "Earth science: Atlantic hurricane track forecasting from the best track",
+  "description": "Fit a statistical tropical-cyclone track model on the 1950-2014 Atlantic best track and forecast 12-120 h centre positions for every advisory-time record of the held-out 2015-2024 storms. The score is the mean great-circle track error over seven lead times.",
+  "family": "earth_research_tc_track",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1175/1520-0434(1998)013<1005:FDTCTF>2.0.CO;2",
+    "type": "paper",
+    "locator": "Aberson (1998): CLIPER5, the climatology-and-persistence five-day Atlantic track forecast used as the no-skill baseline."
+   },
+   {
+    "url": "https://doi.org/10.1175/MWR-D-12-00254.1",
+    "type": "paper",
+    "locator": "Landsea and Franklin (2013): HURDAT2 format, content and best-track uncertainty."
+   },
+   {
+    "url": "https://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2024-040425.txt",
+    "type": "archive",
+    "locator": "HURDAT2 Atlantic best track, release of 4 April 2025 (1851-2024); public domain; the 1950-2024 synoptic records are used."
+   },
+   {
+    "url": "https://www.nhc.noaa.gov/verification/pdfs/Verification_2024.pdf",
+    "type": "benchmark",
+    "locator": "NHC 2024 forecast verification report: Tables 2 and 4 give 2019-2023 mean official, CLIPER5 and Decay-SHIFOR5 errors by lead."
+   }
+  ],
+  "limitations": [
+   "Only best-track history is available to the candidate (position, intensity, pressure, stage and date); operational forecasts also use satellite and reconnaissance analyses and numerical weather prediction, so scores are not comparable with official NHC errors.",
+   "Inputs are the post-season best track rather than the real-time operational estimates; verification is at 6-hourly synoptic times only, and off-synoptic landfall records are dropped.",
+   "A better score is a better statistical track model on these seasons, not a scientific discovery.",
+   "The held-out observations are public, so search feedback on this fixed split can overfit it; freeze a candidate and test it on later or independent data before claiming a scientific improvement.",
+   "The candidate runs in a sandboxed child process that receives a storm's best track only up to the forecast time, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-08",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_cyclone.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/cyclones/hurdat2_atlantic_1950_2024.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-08",
+   "statement": "No published value exists for this exact protocol. For context, NHC reports 2019-2023 mean Atlantic official track errors of 23.9, 36.5, 49.3, 63.4, 93.4, 132.9 and 190.4 n mi at 12, 24, 36, 48, 72, 96 and 120 h (forecasts built with full numerical guidance) and CLIPER5 errors of 45.7, 97.1, 153.0, 205.4, 297.8, 372.7 and 439.1 n mi on a different (operational, homogeneous) sample.",
+   "sources": [
+    {
+     "title": "National Hurricane Center Forecast Verification Report, 2024 Hurricane Season (Table 2)",
+     "url": "https://www.nhc.noaa.gov/verification/pdfs/Verification_2024.pdf"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-hurricane-intensity-forecast",
+  "name": "Earth science: Atlantic hurricane intensity forecasting from the best track",
+  "description": "Fit a statistical tropical-cyclone intensity model on the 1950-2014 Atlantic best track and forecast the 12-120 h maximum sustained wind for every advisory-time record of the held-out 2015-2024 storms. The score is the mean absolute intensity error over seven lead times.",
+  "family": "earth_research_tc_intensity",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1175/1520-0434(2003)018<0080:SDTCIF>2.0.CO;2",
+    "type": "paper",
+    "locator": "Knaff et al. (2003): SHIFOR5, five-day statistical intensity forecasts from climatology and persistence."
+   },
+   {
+    "url": "https://doi.org/10.1175/MWR-D-12-00254.1",
+    "type": "paper",
+    "locator": "Landsea and Franklin (2013): HURDAT2 format, content and best-track uncertainty."
+   },
+   {
+    "url": "https://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2024-040425.txt",
+    "type": "archive",
+    "locator": "HURDAT2 Atlantic best track, release of 4 April 2025 (1851-2024); public domain; the 1950-2024 synoptic records are used."
+   },
+   {
+    "url": "https://www.nhc.noaa.gov/verification/pdfs/Verification_2024.pdf",
+    "type": "benchmark",
+    "locator": "NHC 2024 forecast verification report: Tables 2 and 4 give 2019-2023 mean official, CLIPER5 and Decay-SHIFOR5 errors by lead."
+   }
+  ],
+  "limitations": [
+   "Only best-track history is available (no sea-surface temperature, wind shear, land mask or forecast track), so rapid intensification and landfall decay can be anticipated only from history, date and position; official forecasts use far more information.",
+   "Best-track maximum winds are rounded to 5 kt and carry analysis uncertainty of roughly 10 kt or more for weaker systems (Landsea and Franklin 2013), which bounds achievable errors.",
+   "A better score is a better statistical intensity model on these seasons, not a scientific discovery.",
+   "The held-out observations are public, so search feedback on this fixed split can overfit it; freeze a candidate and test it on later or independent data before claiming a scientific improvement.",
+   "The candidate runs in a sandboxed child process that receives a storm's best track only up to the forecast time, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-08",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_cyclone.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/cyclones/hurdat2_atlantic_1950_2024.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-08",
+   "statement": "No published value exists for this exact protocol. For context, NHC reports 2019-2023 mean Atlantic official intensity errors of 5.0, 7.3, 8.5, 9.7, 10.9, 12.9 and 15.5 kt at 12, 24, 36, 48, 72, 96 and 120 h and Decay-SHIFOR5 errors of 6.6, 10.2, 13.1, 15.6, 18.6, 21.8 and 22.6 kt on a different (operational, homogeneous) sample.",
+   "sources": [
+    {
+     "title": "National Hurricane Center Forecast Verification Report, 2024 Hurricane Season (Table 4)",
+     "url": "https://www.nhc.noaa.gov/verification/pdfs/Verification_2024.pdf"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-enso-nino34-forecast",
+  "name": "Earth science: El Nino-Southern Oscillation forecasts of the Nino 3.4 index",
+  "description": "Fit a statistical ENSO forecast model on 1950-1999 ERSSTv5 sea-surface temperatures and, for every month from 2000 to 2024, forecast the monthly Nino 3.4 index for the next 12 months using only data up to that month. The score is the mean root-mean-square error over the 12 lead times.",
+  "family": "earth_research_enso",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1038/s41586-019-1559-7",
+    "type": "paper",
+    "locator": "Ham, Kim and Luo (2019): statistical (deep-learning) ENSO forecasts of the Nino 3.4 index at leads up to 18 months, verified by lead-dependent correlation skill against observed SST."
+   },
+   {
+    "url": "https://doi.org/10.1175/BAMS-D-11-00111.1",
+    "type": "paper",
+    "locator": "Barnston et al. (2012): skill of real-time dynamical and statistical Nino 3.4 predictions during 2002-2011, the operational context for statistical ENSO forecasting."
+   },
+   {
+    "url": "https://doi.org/10.1175/JCLI-D-16-0836.1",
+    "type": "paper",
+    "locator": "Huang et al. (2017): ERSSTv5, the 2-degree monthly SST reconstruction whose tropical Pacific values and Nino-box means the task uses."
+   },
+   {
+    "url": "https://downloads.psl.noaa.gov/Datasets/noaa.ersst.v5/sst.mnmean.nc",
+    "type": "archive",
+    "locator": "NOAA ERSSTv5 monthly means distributed by NOAA PSL (retrieved 2026-11-20; no constraints on use); months 1950-01 to 2025-12 are used."
+   }
+  ],
+  "limitations": [
+   "Inputs are sea-surface temperatures only (Nino indices and the 2-degree tropical Pacific field); operational forecasts also use subsurface ocean heat content, winds and coupled dynamical models, so scores are not comparable with published operational skill.",
+   "The Nino indices are computed locally as cosine-weighted means over ERSSTv5 cells centred in each box; they reproduce the familiar NOAA ONI peaks to about 0.1 deg C (checked for 1982/83, 1997/98, 2015/16 and 2023/24) but are not the official index files.",
+   "The 300 monthly origins are strongly autocorrelated (about 25 independent years and only a handful of strong events), so score differences of a few hundredths of a degree are not statistically meaningful.",
+   "ERSSTv5 is recomputed monthly by NOAA and every update revises recent years (NCEI rewrites its monthly files from January 2008 on; the update of November 2026 changed tropical Pacific cells in 52 months from December 2017, mostly one or two cells by 0.01 deg C, and left the Nino 3.4 series unchanged). The derived-file hash check then fails, so preparation needs an archived copy of the locked source file or a re-recorded lock, which changes inputs slightly.",
+   "A better score is a better statistical forecast model on these years, not a scientific discovery; the held-out observations are public, so search feedback on this fixed split can overfit it.",
+   "The candidate runs in a sandboxed child process that never receives verifying months, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json).",
+   "preparation_dependencies": [
+    "netCDF4"
+   ]
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_enso.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/enso/ersstv5_tropical_pacific_1950_2025.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-10",
+   "statement": "No published value exists for this exact protocol (SST-only statistical forecasts from 2000-2024 origins, verified on locally computed ERSSTv5 Nino 3.4). The evaluator reports internal references fitted on 1950-1999: monthly climatology (mean RMSE 0.847 deg C), anomaly persistence (0.900) and damped persistence (0.650, identical to the seed).",
+   "sources": [
+    {
+     "title": "Skill of Real-Time Seasonal ENSO Model Predictions during 2002-11: Is Our Capability Increasing?",
+     "url": "https://doi.org/10.1175/BAMS-D-11-00111.1"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-socal-earthquake-forecast",
+  "name": "Earth science: one-day earthquake forecasts for southern California",
+  "description": "Fit an earthquake occurrence model on the 1981-2015 southern California ComCat catalogue and, for every day of 2016-2024, forecast the expected number of magnitude 3.45 or larger earthquakes in each 0.1-degree cell using only events before that day. The score is the information gain per earthquake of the Poisson likelihood over a time-independent smoothed-seismicity reference.",
+  "family": "earth_research_socal_quakes",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1785/0120050067",
+    "type": "paper",
+    "locator": "Helmstetter, Kagan and Jackson (2006): one-day forecasts of southern California earthquakes on a 0.1-degree grid, comparing short-term (clustering) and time-independent models by likelihood."
+   },
+   {
+    "url": "https://doi.org/10.1080/01621459.1988.10478560",
+    "type": "paper",
+    "locator": "Ogata (1988): the epidemic-type aftershock sequence (ETAS) point-process model of earthquake occurrence."
+   },
+   {
+    "url": "https://doi.org/10.1785/0120090192",
+    "type": "paper",
+    "locator": "Zechar, Gerstenberger and Rhoades (2010): Poisson joint-likelihood tests of gridded earthquake forecasts used by CSEP; the task uses the joint log-likelihood and reports the N-test ratio."
+   },
+   {
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/",
+    "type": "archive",
+    "locator": "USGS ANSS Comprehensive Catalog (ComCat, doi:10.5066/F7MS3QZH), FDSN event service: earthquakes with magnitude >= 2.5 in 31-38 N, 122-113 W, 1981-2024 (public domain; retrieved 2026-11-20)."
+   }
+  ],
+  "limitations": [
+   "The test region is a 0.1-degree rectangle (32-37 N, 121-114 W) rather than the CSEP southern California polygon; it includes offshore and northern Baja California cells where the catalogue is less complete.",
+   "ComCat mixes magnitude types (mostly local and moment magnitudes) and is incomplete in the hours after large mainshocks; targets are the catalogue as distributed, not a homogenised or declustered catalogue.",
+   "Forecasts are issued once per day at 00:00 UTC and verified on daily cell counts; magnitudes and depths of target events are not scored (no magnitude or depth test).",
+   "The 2016-2024 period is dominated by the 2019 Ridgecrest sequence, so the score mostly reflects aftershock forecasting skill for one large sequence; the information gain is an estimate with substantial sampling uncertainty.",
+   "ComCat is a live catalogue; if past events are revised, the derived-file hash check fails and the data must be re-recorded, which changes scores slightly.",
+   "A better score is a better statistical forecast model on these years, not a scientific discovery; the held-out catalogue is public, so search feedback on this fixed split can overfit it.",
+   "The candidate runs in a sandboxed child process that never receives events after a forecast day starts, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_quakes.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/quakes/comcat_socal_m2.5_1981_2024.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-10",
+   "statement": "No published value exists for this exact protocol (region, period, M >= 3.45 targets and reference). For context, the seed (time-independent smoothing with a 0.1-degree kernel) gains 0.12 nats per earthquake over the reference and an untuned Omori-Utsu clustering model about 1.4 nats; Helmstetter et al. (2006) found short-term clustering models far more informative than time-independent ones for southern California daily forecasts.",
+   "sources": [
+    {
+     "title": "Comparison of Short-Term and Time-Independent Earthquake Forecast Models for Southern California",
+     "url": "https://doi.org/10.1785/0120050067"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-species-distribution-models",
+  "name": "Earth science: species distribution models from presence-only records",
+  "description": "Fit species distribution models for 226 anonymised species in six regions from presence-only records, background points and environmental covariates, and score sites of independent presence-absence surveys whose outcomes are withheld. The score is the mean area under the ROC curve over species.",
+  "family": "earth_research_species_distribution",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1111/j.2006.0906-7590.04596.x",
+    "type": "paper",
+    "locator": "Elith et al. (2006): comparison of species distribution modelling methods fitted to presence-only data and evaluated with independent presence-absence data in the same six regions."
+   },
+   {
+    "url": "https://doi.org/10.17161/bi.v15i2.13384",
+    "type": "paper",
+    "locator": "Elith et al. (2020): description of the released benchmark data (226 species, presence-only training, background, presence-absence evaluation)."
+   },
+   {
+    "url": "https://doi.org/10.1002/ecm.1486",
+    "type": "paper",
+    "locator": "Valavi et al. (2022): benchmark of presence-only methods on these data with AUC as the main evaluation measure."
+   },
+   {
+    "url": "https://osf.io/kwc4v/",
+    "type": "archive",
+    "locator": "OSF project SDM_NCEAS (CC BY 4.0): train_po, train_bg, test_env and test_pa CSV files of the six regions; downloaded files match the SHA-256 hashes published by OSF."
+   }
+  ],
+  "limitations": [
+   "AUC measures how well site scores rank surveyed presences above absences; it ignores calibration and prevalence, and survey absences include non-detections.",
+   "Site and record coordinates are provided, so spatial predictors are allowed; published comparisons mostly used environmental covariates only, so scores are not directly comparable with them.",
+   "No published value is embedded: the benchmark paper's tables could not be retrieved in this environment (the publisher's site refused the request), so the mean AUCs it reports were not checked.",
+   "The presence-absence outcomes are public on OSF; the sandbox keeps them away from the candidate process, but search feedback on these fixed sites can still overfit them.",
+   "A better score is a better species distribution modelling method on this benchmark, not an ecological discovery.",
+   "The candidate runs in a sandboxed child process that never receives the survey outcomes, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_sdm.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/sdm/nceas_226_species.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-10",
+   "statement": "No published value is embedded (see limitations). The seed, a per-covariate Gaussian presence/background density ratio without categorical covariates, scores a mean AUC of 0.709 (region means 0.48 for CAN to 0.78 for SA).",
+   "sources": [
+    {
+     "title": "Predictive performance of presence-only species distribution models: a benchmark study with reproducible code",
+     "url": "https://doi.org/10.1002/ecm.1486"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-two-stream-radiative-transfer",
+  "name": "Earth science: two-stream closures for solar radiative transfer",
+  "description": "Design the coefficients of a two-stream approximation for sunlight in a scattering and absorbing atmospheric layer as functions of single-scattering albedo, asymmetry parameter and solar zenith angle. The evaluator solves the two-stream equations for 12000 layers and scores the mean reflectance and transmittance error against an accurate 96-stream discrete-ordinate solution.",
+  "family": "earth_research_two_stream",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1175/1520-0469(1980)037<0630:TSATRT>2.0.CO;2",
+    "type": "paper",
+    "locator": "Meador and Weaver (1980): unified gamma1-gamma3 formulation of two-stream approximations, the coefficient tables of the Eddington and quadrature schemes, and their accuracy against exact solutions."
+   },
+   {
+    "url": "https://doi.org/10.1175/1520-0469(1976)033<2452:TDEAFR>2.0.CO;2",
+    "type": "paper",
+    "locator": "Joseph, Wiscombe and Weinman (1976): delta-Eddington approximation with forward fraction f = g^2 (the seed)."
+   },
+   {
+    "url": "https://doi.org/10.1175/1520-0469(1986)043<0784:CAOSMS>2.0.CO;2",
+    "type": "paper",
+    "locator": "King and Harshvardhan (1986): comparative accuracy of two-stream and related approximations against exact reflectance and transmittance over optical depth, albedo, asymmetry and solar angle."
+   },
+   {
+    "url": "https://doi.org/10.1364/AO.27.002502",
+    "type": "paper",
+    "locator": "Stamnes et al. (1988): the discrete-ordinate method with delta-M scaling and stable eigen-solution that the reference solver follows."
+   }
+  ],
+  "limitations": [
+   "Only a single homogeneous layer over a black surface with a Henyey-Greenstein phase function and unit beam irradiance is scored; multilayer atmospheres, surface reflection, real cloud or aerosol phase functions and thermal emission are not.",
+   "The 12000 layers come from a fixed random design (seed 20261010; 3000 triples of albedo, asymmetry and sun angle, each at four optical depths); the generator and its seed are in the evaluator's source, so a candidate can rebuild the design, but it gains only the four depths at which each triple is scored. A closure tuned to this design may be less accurate for other distributions of optical depth, albedo, asymmetry or sun angle.",
+   "The reference is a numerical solution (48 streams per hemisphere, delta-M), not an analytic one: it changes by about 1e-11 when the stream number is doubled and agreed with an independent Monte Carlo simulation to within its sampling error (about 6e-4) on the checked layers; conservative layers are computed with albedo 1 - 1e-10, and the stored fluxes are rounded to six decimals.",
+   "Coefficients may depend on albedo, asymmetry and sun angle but not on optical depth; closures that use extra information (for example tabulated corrections) are allowed, so a better score is a more accurate two-stream approximation, not necessarily a cheaper or more physical one.",
+   "The candidate runs in a sandboxed child process that never receives the reference fluxes, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "equation",
+   "data": "synthetic",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Reference fluxes computed locally by python3 scripts/prepare_earth.py (about 75 s; hash in catalog/earth-data-lock.json); no download."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_twostream.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/twostream/reference_flux_cases.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-11-24",
+   "statement": "No published value exists for this case distribution. Published closures evaluated by the task's evaluator: delta-PIFM 0.01904, delta-Eddington 0.01917 (the seed), Eddington 0.01945, PIFM 0.01948, delta-quadrature 0.02072, quadrature 0.02320 (mean |dR| + |dT|); delta-Eddington errors reach 0.40 for grazing sun on thin forward-scattering layers.",
+   "sources": [
+    {
+     "title": "Two-Stream Approximations to Radiative Transfer in Planetary Atmospheres: A Unified Description of Existing Methods and a New Improvement",
+     "url": "https://doi.org/10.1175/1520-0469(1980)037<0630:TSATRT>2.0.CO;2"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-global-temperature-emulation",
+  "name": "Earth science: predicting recent global warming from forcing and early observations",
+  "description": "Fit a model of annual global mean surface temperature on the 1850-1979 HadCRUT5 record, given radiative forcing histories and an ENSO index for 1750-2024, and predict the 1980-2024 anomalies without seeing any later temperature. The score is the root-mean-square error of the predicted anomalies.",
+  "family": "earth_research_gmst_emulation",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1029/2008GL034864",
+    "type": "paper",
+    "locator": "Lean and Rind (2008): multiple regression of observed global and regional temperature on anthropogenic, volcanic, solar and ENSO influences."
+   },
+   {
+    "url": "https://doi.org/10.1038/s41598-017-14828-5",
+    "type": "paper",
+    "locator": "Haustein et al. (2017): a simple impulse-response climate model fitted to observed temperature and forcing to attribute warming (Global Warming Index)."
+   },
+   {
+    "url": "https://doi.org/10.1038/ngeo1836",
+    "type": "paper",
+    "locator": "Otto et al. (2013): energy-budget estimates of transient and equilibrium climate response from observed warming and forcing."
+   },
+   {
+    "url": "https://doi.org/10.1029/2019JD032361",
+    "type": "paper",
+    "locator": "Morice et al. (2021): HadCRUT5, the global temperature analysis whose annual means and 95% ranges are the target."
+   },
+   {
+    "url": "https://doi.org/10.5194/essd-17-2641-2025",
+    "type": "paper",
+    "locator": "Forster et al. (2025): Indicators of Global Climate Change 2024, the effective radiative forcing time series 1750-2024 used as inputs."
+   },
+   {
+    "url": "https://www.metoffice.gov.uk/hadobs/hadcrut5/data/HadCRUT.5.0.2.0/analysis/diagnostics/HadCRUT.5.0.2.0.analysis.summary_series.global.annual.csv",
+    "type": "archive",
+    "locator": "HadCRUT5.0.2.0 global annual summary series (Open Government Licence; retrieved 2026-10-10); 1850-2024 used."
+   },
+   {
+    "url": "https://github.com/ClimateIndicator/forcing-timeseries/tree/852f4f7b0733fa4d573c145cdfaf556da5589231",
+    "type": "repository",
+    "locator": "Best-estimate ERF aggregates 1750-2024 (output/ERF_best_aggregates_1750-2024.csv, MIT licence) at a pinned commit."
+   }
+  ],
+  "limitations": [
+   "The forcing inputs are not independent of the target: the assessed aerosol forcing behind the AR6 and 2024 updates uses observational constraints that include the recent warming, so the held-out period leaks partly into the inputs.",
+   "Recent global temperatures are widely known; a candidate can encode remembered values or trends instead of inferring them from 1850-1979, so the score measures emulation skill only for candidates restricted to the training data. Freeze a candidate and test it on later years before any claim.",
+   "Only 45 annual values are scored and internal variability not explained by the ENSO index (roughly 0.1 deg C per year) limits the attainable error; HadCRUT5 itself has a 95% range of about 0.03-0.05 deg C in this period.",
+   "A better score is a better statistical or physical emulator of observed warming given these forcings, not by itself a new estimate of climate sensitivity.",
+   "HadCRUT5 is a live product; if past annual means are revised, the derived-file hash check fails and the data must be re-recorded.",
+   "The candidate runs in a sandboxed child process that never receives temperatures after 1979, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json).",
+   "preparation_dependencies": [
+    "netCDF4"
+   ]
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_gmst.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/gmst/hadcrut5_erf_enso_1850_2024.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-10",
+   "statement": "No published value exists for this split. Internal references fitted on 1850-1979: linear regression on total forcing (the seed) 0.464 deg C, a two-layer energy-balance model with illustrative, uncalibrated parameters (lambda 1.3, gamma 0.7 W m-2 K-1; heat capacities 8 and 100 W yr m-2 K-1) plus a fitted offset 0.163 deg C, and a Lean-Rind-style regression on smoothed anthropogenic, volcanic and solar forcing and ENSO 0.750 deg C.",
+   "sources": [
+    {
+     "title": "How natural and anthropogenic influences alter global and regional surface temperatures: 1889 to 2006",
+     "url": "https://doi.org/10.1029/2008GL034864"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-global-aftershock-forecast",
+  "name": "Earth science: probabilistic aftershock forecasts after large earthquakes worldwide",
+  "description": "Fit an aftershock forecasting model on 1990-2014 sequences from the global ComCat catalogue and, for every large shallow earthquake of 2015-2024, forecast the probability distribution of the number of magnitude 5 or larger aftershocks in the week after day 1 and the month after day 7, using only events before each forecast. The score is the mean logarithmic score of the observed counts.",
+  "family": "earth_research_aftershock_counts",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1126/science.243.4895.1173",
+    "type": "paper",
+    "locator": "Reasenberg and Jones (1989): aftershock probabilities from the Gutenberg-Richter and modified Omori laws (the model family of the seed and the reference)."
+   },
+   {
+    "url": "https://doi.org/10.1785/0120160073",
+    "type": "paper",
+    "locator": "Page et al. (2016): global aftershock forecasts with regional parameters, early-catalogue incompleteness and negative-binomial inter-sequence variability."
+   },
+   {
+    "url": "https://earthquake.usgs.gov/fdsnws/event/1/",
+    "type": "archive",
+    "locator": "USGS ANSS Comprehensive Catalog (ComCat, doi:10.5066/F7MS3QZH): earthquakes of magnitude >= 5 worldwide, 1980-2024 (public domain; retrieved 2026-10-10)."
+   }
+  ],
+  "limitations": [
+   "Mainshock selection (magnitude >= 6, depth <= 70 km, not inside the zone of an equal or larger event of the previous year) and the aftershock radius max(50, 2 * 10^(0.5 M - 1.8)) km are simple local rules, not the regionalised zones of operational forecasts; events of other sequences inside the radius are counted.",
+   "Global ComCat magnitudes mix types (mb, Ms, Mw) and the catalogue is incomplete in the first hours and days after large mainshocks, so counts of magnitude >= 5 events are those of the catalogue as distributed.",
+   "Counts are scored in 17 bins with the logarithmic score; probabilities below 1e-9 are not allowed, so one confident miss costs at most about 21 nats.",
+   "Forecasts of the two windows of one mainshock and of overlapping sequences are not independent; the 1443 test forecasts come from 723 mainshocks.",
+   "ComCat is a live catalogue; if past events are revised, the derived-file hash check fails and the data must be re-recorded, which changes scores slightly.",
+   "A better score is a better statistical aftershock forecasting model on these years, not a scientific discovery; the held-out catalogue is public, so search feedback on this fixed split can overfit it.",
+   "The candidate runs in a sandboxed child process that never receives events after a forecast start, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy.",
+   "Three training cases start in the last days of 2014 and their target windows end after 2015-01-01 (all three counts are zero), so the fit-time counts reflect up to 18 days of the test period; one of them overlaps by one day the 30-day test window of the same mainshock."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy",
+    "scipy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_aftershocks.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy",
+    "scipy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/aftershocks/comcat_global_m5_1980_2024.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-10",
+   "statement": "No published value exists for this protocol. The evaluator's reference, a Reasenberg-Jones negative-binomial model with one global parameter set fitted on the training cases (a = -1.9, p = 0.95, c = 0.05 d, b = 1, shape 0.2), scores -1.048; the seed, the same model with Poisson counts, scores -1.401.",
+   "sources": [
+    {
+     "title": "Three Ingredients for Improved Global Aftershock Forecasts: Tectonic Region, Time-Dependent Catalog Incompleteness, and Intersequence Variability",
+     "url": "https://doi.org/10.1785/0120160073"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-river-nitrate-loads",
+  "name": "Earth science: river nitrate loads from sparse samples",
+  "description": "Estimate daily nitrate concentrations in eight U.S. rivers from about 16 samples per year and continuous daily discharge, as in routine water-quality monitoring. The score is the error of the resulting monthly nitrate loads against loads computed from continuous in-situ nitrate sensors, which the candidate never sees.",
+  "family": "earth_research_river_nitrate",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1111/j.1752-1688.2010.00482.x",
+    "type": "paper",
+    "locator": "Hirsch, Moyer and Archfield (2010): weighted regressions on time, discharge and season (WRTDS) for river concentrations and fluxes from sparse samples; the evaluator's reference implements its weighting (half-windows 7 years, 2 log units, half a year; at least 100 samples)."
+   },
+   {
+    "url": "https://doi.org/10.1016/j.jhydrol.2016.08.059",
+    "type": "paper",
+    "locator": "Lee et al. (2016): evaluation of stream-load estimation methods against loads from densely sampled records."
+   },
+   {
+    "url": "https://doi.org/10.1111/1752-1688.12386",
+    "type": "paper",
+    "locator": "Pellerin et al. (2016): continuous in-situ nitrate sensor networks of the USGS, the source of the daily verification data."
+   },
+   {
+    "url": "https://waterservices.usgs.gov/nwis/dv/",
+    "type": "archive",
+    "locator": "USGS NWIS daily values of discharge (00060) and nitrate plus nitrite (99133) for eight sites, 2008 to water year 2025 (public domain; retrieved 2026-10-10); only approved, non-estimated sensor values are used as truth."
+   }
+  ],
+  "limitations": [
+   "The samples are drawn from the sensor record by a fixed random design rather than being real laboratory analyses, so they carry sensor rather than laboratory error and no sampling-time bias; real monitoring programmes differ.",
+   "Loads are computed only over days with approved sensor data in months with at least 25 such days, so winter gaps (sensors removed for ice) and storms missed by the sensors are not scored.",
+   "Sites are large Midwest and lower-Mississippi rivers with strong agricultural nitrate signals; the score says little about small streams or other regions.",
+   "NWIS daily values are live and provisional values are approved long after the measurements; each record therefore ends where its approved discharge ended when the lock was recorded on 2026-10-10 (2024-04-14 at Baton Rouge, 2025-09-30 at the other sites). If approved values are revised, the derived-file hash check fails and the data must be re-recorded.",
+   "The WRTDS reference is a local implementation following the published method (no edge adjustment); it was checked to recover an exact log-linear model but was not compared with the EGRET package, whose geospatial dependencies were not installed.",
+   "A better score is a better load-estimation method on these records, not a scientific discovery; the sensor data are public, so search feedback can overfit them.",
+   "The candidate runs in a sandboxed child process that never receives the unsampled sensor values, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_nitrate.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/nitrate/nwis_sensor_nitrate_8_sites.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-10",
+   "statement": "No published value exists for this protocol. The evaluator's WRTDS reference gives a mean absolute monthly load error of 24.8 percent (annual 10.4 percent, 70 site-years); the seed, a per-site log-linear regression on discharge, season and trend with smearing correction, gives 37.9 percent (annual 21.6 percent).",
+   "sources": [
+    {
+     "title": "Weighted Regressions on Time, Discharge, and Season (WRTDS), with an Application to Chesapeake Bay River Inputs",
+     "url": "https://doi.org/10.1111/j.1752-1688.2010.00482.x"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-snow-depth-to-swe",
+  "name": "Earth science: snow water equivalent from snow depth at unseen stations",
+  "description": "Convert daily snow depth to snow water equivalent at 48 held-out SNOTEL stations across the western United States and Alaska, after learning from 114 other stations with both measurements over water years 2006-2025. The score is the root-mean-square error of snow water equivalent on the held-out stations' snow days.",
+  "family": "earth_research_snow_depth_to_swe",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1175/2010JHM1202.1",
+    "type": "paper",
+    "locator": "Sturm et al. (2010): estimating snow water equivalent from snow depth with a density model in depth and day of year by snow class; the evaluator's reference uses this functional form with coefficients fitted on the training stations."
+   },
+   {
+    "url": "https://doi.org/10.5194/tc-13-1767-2019",
+    "type": "paper",
+    "locator": "Hill et al. (2019): converting snow depth to snow water equivalent using climatological variables, evaluated on independent stations."
+   },
+   {
+    "url": "https://wcc.sc.egov.usda.gov/awdbRestApi/services/v1/",
+    "type": "archive",
+    "locator": "USDA NRCS Air and Water Database REST API: SNOTEL daily SNWD, WTEQ and PREC for 162 stations, water years 2006-2025 (public domain; retrieved 2026-10-10)."
+   }
+  ],
+  "limitations": [
+   "Snow-pillow SWE and ultrasonic depth are point measurements with their own errors (pillow bridging, depth sensor noise, depth reported in whole inches); only values flagged valid are scored and implausible densities (outside 0.05-0.65) are excluded.",
+   "The hold-out is spatial (unseen stations) but the training stations cover the same years and weather, so performance in other years or at non-SNOTEL sites (lower elevations, shallow snow, forest openings) may differ.",
+   "Only station metadata and a precipitation normal are given as climate information; gridded climatologies used by published models are not, so scores are not comparable with them.",
+   "The Sturm-form reference is fitted on the training stations (its maximum-density parameter ends at the upper bound 1.0, so the fitted curve is nearly linear); published coefficients were not used because the paper could not be retrieved here.",
+   "SNOTEL data are revised by NRCS; if values change, the derived-file hash check fails and the data must be re-recorded.",
+   "A better score is a better depth-to-SWE conversion on this network, not a scientific discovery; the data are public, so search feedback can overfit them.",
+   "The candidate runs in a sandboxed child process that never receives the held-out stations' SWE, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy",
+    "scipy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_snow.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy",
+    "scipy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/snow/snotel_depth_swe_162_stations.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-10",
+   "statement": "No published value exists for this split. Internal references fitted on the training stations: Sturm-form density model 71.8 mm, constant median density 112.9 mm; the seed (bulk density linear in season day, log depth and elevation) scores 71.0 mm.",
+   "sources": [
+    {
+     "title": "Converting snow depth to snow water equivalent using climatological variables",
+     "url": "https://doi.org/10.5194/tc-13-1767-2019"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-great-lakes-wave-hindcast",
+  "name": "Earth science: Great Lakes wave height from buoy meteorology",
+  "description": "Learn how wind and other meteorology at seven NOAA buoys on Lakes Superior, Michigan, Huron and Erie generate waves from 2009-2018 records, then hindcast the hourly significant wave height for 2019-2024 from the buoys' meteorology alone. The score is the root-mean-square error of the hindcast wave heights.",
+  "family": "earth_research_great_lakes_waves",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1029/JC089iC03p03586",
+    "type": "paper",
+    "locator": "Schwab et al. (1984): a simple parametric numerical wave prediction model for Lake Erie driven by observed winds and verified against wave measurements."
+   },
+   {
+    "url": "https://doi.org/10.1175/1520-0485(1992)022<1389:RDITOG>2.0.CO;2",
+    "type": "paper",
+    "locator": "Kahma and Calkoen (1992): fetch-limited growth laws of wind-generated waves, the physics behind fetch- and duration-limited wave models."
+   },
+   {
+    "url": "https://doi.org/10.1098/rsta.1985.0054",
+    "type": "paper",
+    "locator": "Donelan, Hamilton and Hui (1985): wave growth and spectra measured in Lake Ontario."
+   },
+   {
+    "url": "https://www.ndbc.noaa.gov/data/historical/stdmet/",
+    "type": "archive",
+    "locator": "NOAA NDBC historical standard meteorological files of buoys 45001, 45002, 45003, 45005, 45006, 45007 and 45008, 2009-2024 (public domain; retrieved 2026-10-10)."
+   }
+  ],
+  "limitations": [
+   "Only point meteorology at the buoys is available, not the wind field over the lake, so fetch and duration effects must be inferred statistically; operational wave models use gridded winds and are not comparable.",
+   "Buoys are deployed only in the ice-free season and the hindcast uses each buoy's own record, so the score covers open-water months at these seven locations only.",
+   "Since 2019 the archive holds 10-minute records; the evaluator keeps, for every field, the valid value closest to each full hour, so some hourly values come from up to 30 minutes away.",
+   "A better score is a better statistical or physical wave hindcast at these buoys, not a scientific discovery; the held-out observations are public, so search feedback on this split can overfit it.",
+   "The candidate runs in a sandboxed child process that never receives 2019-2024 wave observations, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_waves.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/waves/ndbc_great_lakes_2009_2024.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-10",
+   "statement": "No published value exists for this protocol. The evaluator's reference (per buoy and 30-degree wind sector, least squares in the square of the 3-record mean wind speed) scores 0.219 m; the seed (per buoy, linear in the square of the concurrent wind speed) scores 0.285 m.",
+   "sources": [
+    {
+     "title": "Application of a simple numerical wave prediction model to Lake Erie",
+     "url": "https://doi.org/10.1029/JC089iC03p03586"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-hurricane-wind-radii-forecast",
+  "name": "Earth science: Atlantic hurricane wind-radii (storm size) forecasting",
+  "description": "Fit a model of tropical-cyclone size on the 2004-2014 Atlantic best track and forecast the radius of 34-kt winds in four quadrants 12-72 h ahead for every analysed time of the 2015-2024 storms, given the storm's history and its best-track track and intensity at the verifying times. The score is the mean absolute radius error.",
+  "family": "earth_research_tc_wind_radii",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1175/WAF1026.1",
+    "type": "paper",
+    "locator": "Knaff, Sampson and DeMaria (2007): climatology-and-persistence prediction of tropical-cyclone wind radii driven by the track and intensity forecast."
+   },
+   {
+    "url": "https://doi.org/10.1175/WAF-D-16-0168.1",
+    "type": "paper",
+    "locator": "Knaff et al. (2017): a global statistical-dynamical wind-radii forecast scheme."
+   },
+   {
+    "url": "https://doi.org/10.1175/MWR-D-12-00254.1",
+    "type": "paper",
+    "locator": "Landsea and Franklin (2013): HURDAT2 format, including the four-quadrant wind radii since 2004, and their analysis uncertainty."
+   },
+   {
+    "url": "https://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2024-040425.txt",
+    "type": "archive",
+    "locator": "HURDAT2 Atlantic best track, release of 4 April 2025 (public domain); the 2004-2024 synoptic records with wind radii are used."
+   }
+  ],
+  "limitations": [
+   "Best-track wind radii are post-season analyses with large uncertainty (often tens of percent for the 34-kt radii), which bounds the attainable error.",
+   "The verifying track, maximum wind and pressure are given (perfect prognosis); operational radii forecasts must use forecast track and intensity, so errors here are smaller than operational ones and not comparable with them.",
+   "Only 34-kt radii are scored, at 6-hourly synoptic times; 50- and 64-kt radii and the radius of maximum wind are available as history but not forecast.",
+   "A better score is a better statistical storm-size model on these seasons, not a scientific discovery; the held-out observations are public, so search feedback on this split can overfit it.",
+   "The candidate runs in a sandboxed child process that receives each case's information only when it is requested, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_radii.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/cyclones/hurdat2_atlantic_radii_2004_2024.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-10",
+   "statement": "No published value exists for this perfect-prognosis protocol. Internal references: persistence of the current radii (the seed) 32.19 n mi; least-squares regression per lead on current radii, intensity change, verifying intensity and latitude, fitted on 2004-2014, 27.88 n mi.",
+   "sources": [
+    {
+     "title": "Statistical Tropical Cyclone Wind Radii Prediction Using Climatology and Persistence",
+     "url": "https://doi.org/10.1175/WAF1026.1"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-temperature-homogenization",
+  "name": "Earth science: homogenisation of monthly temperature networks",
+  "description": "Remove non-climatic breaks, drifts and outliers from 40 synthetic networks of ten correlated 100-year monthly temperature records, as climate-data centres do before estimating trends. The score is the mean centred root-mean-square difference between the homogenised and the true annual means, which the generator knows exactly.",
+  "family": "earth_research_homogenization",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.5194/cp-8-89-2012",
+    "type": "paper",
+    "locator": "Venema et al. (2012): the HOME benchmark of homogenisation algorithms for monthly data (surrogate networks, inserted breaks, outliers, drifts and gaps; centred RMSE of annual means), whose design the generator follows."
+   },
+   {
+    "url": "https://doi.org/10.1029/2011JD016761",
+    "type": "paper",
+    "locator": "Williams, Menne and Thorne (2012): benchmarking pairwise homogenisation of U.S. surface temperatures with synthetic worlds."
+   },
+   {
+    "url": "https://doi.org/10.1002/joc.3370060607",
+    "type": "paper",
+    "locator": "Alexandersson (1986): the standard normal homogeneity test used by the seed."
+   }
+  ],
+  "limitations": [
+   "The networks are synthetic: an AR(1) regional signal with a random trend, AR(1) station noise and simple annual cycles, with inhomogeneities drawn from fixed distributions; real networks have more varied correlation structures, break statistics and metadata.",
+   "The generator and its seed are in the evaluator's source; a candidate that re-implements them could reproduce the truth, so results are only meaningful for candidates that use the observations alone.",
+   "No station metadata (documented relocations or instrument changes) are given, unlike in practical homogenisation.",
+   "A better score is a better homogenisation method on this benchmark, not a statement about real climate records.",
+   "The candidate runs in a sandboxed child process that never receives the true series, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "program",
+   "data": "synthetic",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Generated locally by python3 scripts/prepare_earth.py (fixed seed; hash in catalog/earth-data-lock.json); no download."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_homog.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/homogenisation/synthetic_networks.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-10",
+   "statement": "No published value exists for this generator. Unhomogenised data score 0.614 deg C (annual CRMSD) and the seed, SNHT binary segmentation of station-minus-neighbour-median series with outlier replacement, 0.254 deg C; the network-mean trend error falls only from 0.50 to 0.44 deg C per century.",
+   "sources": [
+    {
+     "title": "Benchmarking homogenization algorithms for monthly data",
+     "url": "https://doi.org/10.5194/cp-8-89-2012"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-mauna-loa-co2-forecast",
+  "name": "Earth science: monthly Mauna Loa CO2 forecasts",
+  "description": "Fit a forecast model of atmospheric CO2 on the Mauna Loa monthly record up to 1999, together with an ENSO index, and for every month from 2000 to 2024 forecast the next 12 monthly means using only data up to that month. The score is the mean root-mean-square error over the 12 lead times.",
+  "family": "earth_research_co2_forecast",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1038/nclimate3063",
+    "type": "paper",
+    "locator": "Betts et al. (2016): forecasting the annual rise of Mauna Loa CO2 from emissions and ENSO (the record 2015/16 rise)."
+   },
+   {
+    "url": "https://doi.org/10.1098/rstb.2017.0301",
+    "type": "paper",
+    "locator": "Betts et al. (2018): verification of that operational CO2-rise forecast."
+   },
+   {
+    "url": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+    "type": "archive",
+    "locator": "NOAA GML monthly mean CO2 at Mauna Loa (Scripps data before May 1974), March 1958 to December 2025; retrieved 2026-10-10; freely available under the GML data-use statement."
+   },
+   {
+    "url": "https://downloads.psl.noaa.gov/Datasets/noaa.ersst.v5/sst.mnmean.nc",
+    "type": "archive",
+    "locator": "NOAA ERSSTv5 monthly SST used for the relative Nino 3.4 input (no constraints on use)."
+   }
+  ],
+  "limitations": [
+   "Only the CO2 record and an ENSO index are given; operational forecasts also use fossil-fuel emission estimates, so scores are not comparable with them.",
+   "Monthly means carry weather-driven noise of a few tenths of a ppm, and December 2022 - July 2023 values come from Maunakea after the Mauna Loa eruption; differences of a few hundredths of a ppm between candidates are not meaningful.",
+   "The 300 origins overlap strongly, so the effective sample is about 25 annual growth anomalies.",
+   "The GML file is rewritten monthly and old values are revised (ten monthly means of 1974-2014 changed by 0.01 ppm between the files of October and November 2026), so preparation uses the Internet Archive capture of the retrieved file that the data lock names. The ENSO index comes from the live ERSSTv5 file; if its values up to 2024 are revised, the derived-file hash check fails and the data must be re-recorded.",
+   "A better score is a better statistical forecast on these years, not a scientific discovery; the record is public, so search feedback can overfit it.",
+   "The candidate runs in a sandboxed child process that never receives months after a forecast origin, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json).",
+   "preparation_dependencies": [
+    "netCDF4"
+   ]
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-10",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_co2.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/co2/mlo_monthly_1958_2025_relative_nino34.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-10",
+   "statement": "No published value exists for this protocol. The evaluator's reference, seasonal persistence plus the last 12-month increase, scores 0.708 ppm; the seed, a 10-year quadratic trend with two annual harmonics refitted at every origin, 0.699 ppm.",
+   "sources": [
+    {
+     "title": "El Nino and a record CO2 rise",
+     "url": "https://doi.org/10.1038/nclimate3063"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-arctic-sea-ice-drift",
+  "name": "Earth science: daily Arctic sea-ice drift from geostrophic winds",
+  "description": "Learn how Arctic sea ice drifts in response to the wind from 2000-2014 drifting-buoy tracks and reanalysis sea-level pressure, then predict the daily velocity of every buoy north of 70 N for each day of 2015-2024 from that day's geostrophic wind and the past buoy record. The score is the root-mean-square vector error of the predicted velocities.",
+  "family": "earth_research_sea_ice_drift",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1029/JC087iC08p05845",
+    "type": "paper",
+    "locator": "Thorndike and Colony (1982): sea-ice velocity as a linear response to the geostrophic wind (about 1 percent of the wind speed, a few degrees to the right) plus a mean current; the seed and reference use this model."
+   },
+   {
+    "url": "https://doi.org/10.1175/1520-0442(2002)015<2648:ROSITT>2.0.CO;2",
+    "type": "paper",
+    "locator": "Rigor, Wallace and Colony (2002): IABP buoy and pressure analyses of Arctic ice motion and its response to atmospheric circulation."
+   },
+   {
+    "url": "https://doi.org/10.1175/1520-0477(1996)077<0437:TNYRP>2.0.CO;2",
+    "type": "paper",
+    "locator": "Kalnay et al. (1996): the NCEP/NCAR reanalysis providing the daily-mean sea-level pressure."
+   },
+   {
+    "url": "https://iabp.apl.uw.edu/Data_Products/C/",
+    "type": "archive",
+    "locator": "IABP product C, interpolated Arctic buoy positions, 2000-2024 (no licence stated; not redistributed; retrieved 2026-10-11)."
+   },
+   {
+    "url": "https://downloads.psl.noaa.gov/Datasets/ncep.reanalysis.dailyavgs/surface/",
+    "type": "archive",
+    "locator": "NCEP/NCAR Reanalysis 1 daily-mean sea-level pressure, 2000-2024 (public domain)."
+   }
+  ],
+  "limitations": [
+   "The geostrophic wind is computed from 2.5-degree reanalysis pressure by a local plane fit and given for the forecast day itself (a perfect-prognosis forcing); surface winds, ice concentration, thickness and ocean currents are not provided.",
+   "Velocities are 24-hour displacements of interpolated buoy positions, so position noise and the interpolation of the product C add error; buoys include ones in the marginal ice zone and in summer, where the free-drift relation is weaker than in the central Arctic.",
+   "The number of buoys grows strongly after 2014, so the test years weight recent conditions and regions with dense deployments.",
+   "The IABP product states no licence; it is downloaded by the preparation script and not redistributed.",
+   "A better score is a better statistical model of ice drift on these buoys, not a scientific discovery; the held-out tracks are public, so search feedback can overfit them.",
+   "The candidate runs in a sandboxed child process that never receives positions after the start of a forecast day, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json).",
+   "preparation_dependencies": [
+    "netCDF4"
+   ]
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-11",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_icedrift.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/icedrift/iabp_buoys_ncep_geostrophic_2000_2024.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-11",
+   "statement": "No published value exists for this protocol. The Thorndike-Colony complex linear model fitted on 2000-2014 (factor 1.03 percent of the geostrophic wind, turned 4.2 degrees to the right; the seed) scores 10.98 cm/s and explains 39 percent of the 2015-2024 velocity variance; zero drift scores 14.10 cm/s. Thorndike and Colony (1982) report that the geostrophic wind explains more than 70 percent of daily ice-velocity variance in the central Arctic.",
+   "sources": [
+    {
+     "title": "Sea ice motion in response to geostrophic winds",
+     "url": "https://doi.org/10.1029/JC087iC08p05845"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-solar-irradiance-separation",
+  "name": "Earth science: diffuse solar irradiance from global irradiance at unseen stations",
+  "description": "Learn a separation model from 1-minute measurements of global, direct and diffuse solar irradiance at four NOAA SURFRAD stations and estimate the diffuse irradiance at three other stations from their global irradiance, solar geometry and meteorology on 48 days of 2022-2023. The score is the root-mean-square error of the estimated diffuse irradiance.",
+  "family": "earth_research_solar_separation",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1016/0038-092X(82)90302-4",
+    "type": "paper",
+    "locator": "Erbs, Klein and Duffie (1982): diffuse fraction as a function of the clearness index, the classic separation model."
+   },
+   {
+    "url": "https://doi.org/10.1016/j.renene.2009.07.018",
+    "type": "paper",
+    "locator": "Ridley, Boland and Lauret (2010): logistic separation model with multiple predictors (the seed is its single-predictor form)."
+   },
+   {
+    "url": "https://doi.org/10.1016/j.rser.2022.112195",
+    "type": "paper",
+    "locator": "Yang (2022): review and worldwide comparison of 1-minute separation models, the evaluation setting followed here."
+   },
+   {
+    "url": "https://doi.org/10.1175/1520-0477(2000)081<2341:SANSRB>2.3.CO;2",
+    "type": "paper",
+    "locator": "Augustine et al. (2000): the SURFRAD network and its measurements."
+   },
+   {
+    "url": "https://gml.noaa.gov/aftp/data/radiation/surfrad/",
+    "type": "archive",
+    "locator": "SURFRAD 1-minute daily files of seven stations, 48 days of 2022-2023 (public domain; retrieved 2026-10-11)."
+   }
+  ],
+  "limitations": [
+   "Only 48 sampled days per station (every 15th day of 2022 and 2023) are used, and the three test stations are mid-latitude continental U.S. sites; separation models behave differently in other climates.",
+   "The truth is the measured diffuse irradiance after quality control (flags, closure within 8 percent or 20 W m-2); measurement uncertainty of a few percent remains, and rejected minutes (often broken clouds or instrument issues) are not scored.",
+   "No clear-sky irradiance model or aerosol data are given; candidates must build any clear-sky reference themselves from the inputs.",
+   "A better score is a better separation model for these stations, not a scientific discovery; the data are public, so search feedback can overfit them.",
+   "The candidate runs in a sandboxed child process that never receives the test stations' direct or diffuse irradiance, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "model",
+   "data": "real_measurements",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Derived from pinned public sources by python3 scripts/prepare_earth.py (hashes in catalog/earth-data-lock.json)."
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-11",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_solar.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/solar/surfrad_1min_7_stations_48_days.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-11",
+   "statement": "No published value exists for this station split and day sample. Internal references fitted on the training stations: median diffuse fraction in clearness-index bins 75.8 W m-2; the seed (logistic diffuse fraction in the clearness index) 77.2 W m-2 (normalised RMSE 47 percent of the mean diffuse irradiance).",
+   "sources": [
+    {
+     "title": "Estimating 1-min beam and diffuse irradiance from the global irradiance: A review and an extensive worldwide comparison of latest separation models at 126 stations",
+     "url": "https://doi.org/10.1016/j.rser.2022.112195"
+    }
+   ]
+  }
+ },
+ {
+  "id": "science-earth-earthquake-b-value-completeness",
+  "name": "Earth science: Gutenberg-Richter b-value from incomplete earthquake catalogues",
+  "description": "Estimate the Gutenberg-Richter b-value and the magnitude of completeness of 600 synthetic earthquake catalogues whose small events are missed according to a realistic detection probability. The score is the mean absolute error of the estimated b-values against the generating values.",
+  "family": "earth_research_b_value",
+  "parameters": {},
+  "status": "ready",
+  "sources": [
+   {
+    "url": "https://doi.org/10.1785/0120040007",
+    "type": "paper",
+    "locator": "Woessner and Wiemer (2005): methods to estimate the magnitude of completeness and their effect on b-value estimates, compared on synthetic and real catalogues; the seed is their maximum-curvature method with the +0.2 correction."
+   },
+   {
+    "url": "https://doi.org/10.1111/j.1365-246X.1993.tb04663.x",
+    "type": "paper",
+    "locator": "Ogata and Katsura (1993): Gutenberg-Richter magnitudes thinned by a cumulative-normal detection rate, the generating model of the catalogues."
+   }
+  ],
+  "limitations": [
+   "The catalogues are synthetic: one stationary b-value and detection function per catalogue, no aftershock incompleteness, magnitude errors or mixed magnitude types; real catalogues are harder.",
+   "The generating model (Gutenberg-Richter times cumulative-normal detection) is stated in the contract, so a candidate can fit it exactly; the score then measures statistical efficiency on this model rather than robustness to model error.",
+   "The generator and its seed are in the evaluator's source; a candidate that re-implements them could reproduce the truth, so results are only meaningful for candidates that use the magnitudes alone.",
+   "A better score is a better estimator on this benchmark, not a seismological discovery.",
+   "The candidate runs in a sandboxed child process that never receives the generating parameters, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "labels": {
+   "area": "earth_and_environment",
+   "domain": "natural_science",
+   "scientific_contribution": "method",
+   "artifact": "program",
+   "data": "synthetic",
+   "verification": "simulation",
+   "reference": "none"
+  },
+  "requirements": {
+   "python": ">=3.10",
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "environment_variables": [],
+   "datasets": "Generated locally by python3 scripts/prepare_earth.py (fixed seed; hash in catalog/earth-data-lock.json); no download.",
+   "preparation_dependencies": [
+    "scipy"
+   ]
+  },
+  "validation": {
+   "level": "source_seed_executed",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-11",
+   "evidence": "validation/earth-checks.json",
+   "tests": "tests/test_earth_mc.py"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "requires": [
+   "file:data/earth/completeness/synthetic_catalogues.json.gz"
+  ],
+  "state_of_the_art": {
+   "kind": "none",
+   "value": null,
+   "as_of": "2026-10-11",
+   "statement": "No published value exists for this generator. The seed (maximum curvature + 0.2, Aki-Utsu estimator) has a b-value mean absolute error of 0.097 with a bias of -0.077; the Aki-Utsu estimator applied above the true 95 percent detection magnitude, which a candidate does not know, has 0.069.",
+   "sources": [
+    {
+     "title": "Assessing the Quality of Earthquake Catalogues: Estimating the Magnitude of Completeness and Its Uncertainty",
+     "url": "https://doi.org/10.1785/0120040007"
+    }
+   ]
+  }
+ }
+]

@@ -1,0 +1,53 @@
+{
+  "schema": "artask.data-lock/1",
+  "package": "polyglot",
+  "reviewed_on": "2026-10-11",
+  "raw_cache": "polyglot-raw/pinned of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "data_directory": "data/polyglot of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "note": "Raw files are fetched from pinned URLs. The benchmark archive is verified by the SHA-256 of its extracted content (sorted '<path> <sha256>' lines), because GitHub does not guarantee byte-stable archives; the archive's own SHA-256 is recorded for reference. Derived files are byte-stable functions of the sources (scripts/prepare_polyglot.py). Nothing listed here is redistributed by this repository.",
+  "sources": [
+    {
+      "id": "polyglot-benchmark",
+      "url": "https://codeload.github.com/Aider-AI/polyglot-benchmark/tar.gz/7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f",
+      "sha256": "331eb06fddbbc145e4a800b34c5afc2209b3664ce9a3267604fd9550b60bc68f",
+      "size": 6265518,
+      "content_sha256": "bc9143878d8a87727853037aeacd424db45083ddce9ca853a78f6cc89e9359a4",
+      "files": 2357,
+      "license": "MIT: every exercise comes from an Exercism language track (exercism/cpp, go, java, javascript, python, rust; each track's LICENSE is MIT) and the problem descriptions from exercism/problem-specifications (MIT). The polyglot-benchmark repository itself has no LICENSE file; its README states that the exercises are used in accordance with Exercism's open source licenses. Not redistributed by this repository.",
+      "target": "polyglot-raw/pinned/polyglot-benchmark-7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f.tar.gz"
+    },
+    {
+      "id": "dgm-subset-small",
+      "url": "https://raw.githubusercontent.com/jennyzzt/dgm/a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2/polyglot/subsets/small.json",
+      "sha256": "efb782a6260979f847c7cc5bb6af95f0bd1678aa7eb0cd075fdb663949efe2f9",
+      "size": 265,
+      "license": "Apache-2.0 (jennyzzt/dgm LICENSE). Not redistributed by this repository.",
+      "target": "data/polyglot/subsets/small.json"
+    },
+    {
+      "id": "dgm-subset-medium",
+      "url": "https://raw.githubusercontent.com/jennyzzt/dgm/a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2/polyglot/subsets/medium.json",
+      "sha256": "11d06ac550fb0b15a2f855091308beffd918770a0ed4c4a64df6623652b1e0f3",
+      "size": 1188,
+      "license": "Apache-2.0 (jennyzzt/dgm LICENSE). Not redistributed by this repository.",
+      "target": "data/polyglot/subsets/medium.json"
+    }
+  ],
+  "derived": {
+    "sha256": "14b26ac110e0aa87da8ea2558ed2145f18bc82417f70a5c9d142f19f9c8f5218",
+    "exercises": 225,
+    "by_language": {
+      "cpp": 26,
+      "go": 39,
+      "java": 47,
+      "javascript": 49,
+      "python": 34,
+      "rust": 30
+    },
+    "subsets": {
+      "small": 10,
+      "medium": 50
+    },
+    "size_bytes": 23136987
+  }
+}

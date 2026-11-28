@@ -1,0 +1,147 @@
+{
+  "schema_version": "1.0",
+  "id": "science-economics-maximum-nash-welfare",
+  "name": "Economics: Maximum Nash welfare allocation of indivisible goods",
+  "description": "Allocate indivisible goods among agents with additive Spliddit-style valuations to maximize Nash welfare, the geometric mean of the agents' utilities. The evaluator recomputes each allocation's Nash welfare and compares it with the proven optimum on eight fixed instances with 4 to 15 agents.",
+  "paper_ids": [
+    "science-finance_expansion"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1145/3355902",
+      "type": "paper",
+      "locator": "Caragiannis, Kurokawa, Moulin, Procaccia, Shah and Wang (2019): maximum Nash welfare is envy-free up to one good and Pareto optimal; integer-utility mixed-integer program used on Spliddit (point splits of 1000)."
+    },
+    {
+      "url": "https://doi.org/10.1137/15m1053682",
+      "type": "paper",
+      "locator": "Cole and Gkatzelis (2018): computing maximum Nash welfare with indivisible goods is hard to approximate; first constant-factor approximation."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "scipy"
+    ],
+    "environment_variables": [],
+    "datasets": "No data; eight instances generated from fixed legacy NumPy random streams and guarded by SHA-256."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Economics: Maximum Nash welfare allocation of indivisible goods",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_economics_nash_welfare",
+    "science_family": "science_economics_nash_welfare",
+    "parameters": {},
+    "interface": "allocate(values) -> list of m agent indices, the owner of each good. values is an (n, m) int array; row i holds agent i's additive values for the m indivisible goods and sums to 1000 (Spliddit-style point split). Eight fixed instances with (n, m) = (4, 16), (5, 20), (6, 24), (8, 32), (10, 40), (12, 48), (15, 60), (15, 60). Nash welfare is the geometric mean of the agents' utilities (0 if any agent gets nothing). Score: mean over instances of Nash welfare divided by the proven maximum Nash welfare (maximize; 1 is optimal); envy-freeness up to one good is reported per instance. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "finance",
+      "area": "finance",
+      "data": "synthetic",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "additional_requires": [],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_economics_nash_welfare",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "Instances are synthetic Spliddit-style point splits (common good quality times idiosyncratic taste), not data from Spliddit users.",
+    "Every instance's optimum is known (exact program solved in at most about 30 s), so a perfect score reproduces known optima; instance sizes are small enough for exact solution and do not test scalability.",
+    "Only Nash welfare is scored; envy-freeness up to one good is reported but not required, and strategic misreporting of values is ignored.",
+    "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/finance-checks.json",
+    "tests": "tests/test_finance_fairdiv.py"
+  },
+  "state_of_the_art": {
+    "kind": "optimum",
+    "value": 1.0,
+    "statement": "The maximum Nash welfare of every instance is proven by the exact integer-utility program of Caragiannis et al., so the best possible score is 1; all eight optimal allocations are envy-free up to one good. The round-robin seed scores 0.872.",
+    "sources": [
+      {
+        "title": "The Unreasonable Fairness of Maximum Nash Welfare",
+        "url": "https://doi.org/10.1145/3355902"
+      }
+    ],
+    "as_of": "2026-10-07"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "domain": "finance",
+    "area": "finance",
+    "data": "synthetic",
+    "verification": "exact",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Divide indivisible goods fairly and efficiently among agents with additive valuations by maximizing Nash welfare.",
+    "importance_rationale": "Maximum Nash welfare guarantees envy-freeness up to one good and Pareto optimality and is deployed for real divisions on Spliddit, but it is NP-hard to compute, so exact and approximate algorithms are an active research topic.",
+    "papers": [
+      {
+        "title": "The Unreasonable Fairness of Maximum Nash Welfare",
+        "url": "https://doi.org/10.1145/3355902",
+        "primary_goal": "Establish the fairness and efficiency guarantees of maximum Nash welfare allocations and compute them in practice.",
+        "task_relation": "The task scores allocations by Nash welfare against the optimum computed with the paper's integer program.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Approximating the Nash Social Welfare with Indivisible Items",
+        "url": "https://doi.org/10.1137/15m1053682",
+        "primary_goal": "Design approximation algorithms for maximizing Nash social welfare with indivisible items.",
+        "task_relation": "Candidate programs are algorithms for the same maximization problem.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both papers have fair division by maximum Nash welfare as their main research question.",
+    "reviewed_at": "2026-10-07",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

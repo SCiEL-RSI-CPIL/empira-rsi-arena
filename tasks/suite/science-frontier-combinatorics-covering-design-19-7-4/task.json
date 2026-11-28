@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "id": "science-frontier-combinatorics-covering-design-19-7-4",
+  "name": "Covering design C(19,7,4)",
+  "description": "Choose as few 7-element blocks of 19 points as possible so that every 4-element subset lies in some block. The best known covering has 151 blocks (La Jolla Covering Repository) and the repository's lower bound is 131, so the covering number C(19,7,4) is open.",
+  "paper_ids": [
+    "science-frontier_combinatorics"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.5281/zenodo.10779736",
+      "type": "benchmark",
+      "locator": "La Jolla Covering Repository (D. Gordon), Zenodo version 1.2 (2026-04-24, CC BY 4.0): coverdata.json entry C(19,7,4) lists size 151, lower bound 131 and the improvement history; covers.json holds the 151-block covering submitted by Marco Meoli on 2016-05-02."
+    },
+    {
+      "url": "https://doi.org/10.1002/jcd.3180030404",
+      "type": "paper",
+      "locator": "Gordon, Kuperberg and Patashnik (1995), New constructions for covering designs: covering numbers C(v,k,t), constructions and the tables the repository grew from."
+    },
+    {
+      "url": "https://coveringrepository.com",
+      "type": "benchmark",
+      "locator": "Successor repository that tracks improvements after the La Jolla freeze (March 2026); its latest-improvement listings showed no entry for these parameters on 2026-10-12."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Covering design C(19,7,4)",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_frontier_combinatorics_covering_design",
+    "science_family": "science_frontier_combinatorics_covering_design",
+    "parameters": {
+      "v": 19,
+      "k": 7,
+      "t": 4,
+      "published": 151
+    },
+    "interface": "construct(v, k, t) -> list of blocks; the evaluator passes this task's parameters v, k and t. Each block is a list of k distinct integers in 0..v-1 (a k-subset of the v points) and blocks must be distinct; at most C(v, t) blocks. Valid when every t-subset of {0, ..., v-1} lies in at least one block (checked exhaustively). Score: the number of blocks, minimized; it is an upper bound on the covering number C(v, k, t).",
+    "label_spec": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "area": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "additional_requires": [],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_frontier_combinatorics_covering_design",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy"
+      ],
+      "timeout": 120,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "The La Jolla repository was frozen in March 2026; later improvements are tracked at coveringrepository.com, whose latest-improvement listings were checked on 2026-10-12 without an entry for C(19,7,4), but whose full table could not be queried (HTTP 403), so a recent unlisted improvement cannot be excluded.",
+    "The lower bound 131 is the repository's; the evaluator reports the weaker Schoenheim bound for orientation only and does not certify optimality.",
+    "The greedy seed has 217 blocks.",
+    "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+    "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-10-12",
+    "evidence": "validation/frontier_combinatorics-checks.json",
+    "tests": "tests/test_science_frontier_combinatorics.py",
+    "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": 151,
+    "statement": "The best known (19,7,4) covering has 151 blocks, submitted by Marco Meoli on 2016-05-02 using his own search programs; earlier records were 187 (the repository's first entry, from the 1995 tables of Gordon, Kuperberg and Patashnik), then 171 and 168 (hill climbing and dynamic programming, 1997), 167 (D. Pree and R. Belic, 1997), 153 (J. de Heer, 2001) and 152 (C. Dai, B. Li and M. Toulouse, 2006). The repository's lower bound is 131, so C(19,7,4) is open.",
+    "sources": [
+      {
+        "title": "La Jolla Covering Repository (Zenodo dataset, version 1.2)",
+        "url": "https://doi.org/10.5281/zenodo.10779736",
+        "authors": "D. M. Gordon",
+        "year": 2026
+      },
+      {
+        "title": "New constructions for covering designs",
+        "url": "https://doi.org/10.1002/jcd.3180030404",
+        "authors": "D. M. Gordon, G. Kuperberg, O. Patashnik",
+        "year": 1995
+      }
+    ],
+    "comparability": "Same object and objective: blocks of size 7 on 19 points covering every 4-subset, fewest blocks. The repository's 151-block covering, relabelled from points 1..19 to 0..18, scores 151 (valid) with this evaluator.",
+    "as_of": "2026-10-12",
+    "attribution": "human"
+  },
+  "labels": {
+    "scientific_contribution": "open_problem",
+    "artifact": "construction",
+    "domain": "mathematics",
+    "area": "mathematics",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 1,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Determine the covering number C(19,7,4): the least number of 7-element blocks of a 19-point set such that every 4-element subset lies in a block.",
+    "importance_rationale": "Covering designs are central objects of combinatorial design theory (Turan-type covering problems, lottery and wheel systems, group testing and software testing). Exact covering numbers are known only for small parameters, and constructions for the open cases have been tabulated and improved by a long-running research effort, so a smaller covering is a new upper bound on a stated extremal function.",
+    "papers": [
+      {
+        "title": "New constructions for covering designs",
+        "url": "https://doi.org/10.1002/jcd.3180030404",
+        "primary_goal": "Give new general constructions of covering designs and tabulate improved upper bounds on covering numbers C(v,k,t) for small parameters.",
+        "task_relation": "The task asks for a (19,7,4) covering with fewer than 151 blocks, the best known value in the repository that grew out of this paper's tables.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Asymptotically optimal covering designs",
+        "url": "https://doi.org/10.1006/jcta.1996.0077",
+        "primary_goal": "Determine the asymptotic behaviour of covering numbers C(v,k,t) with explicit and probabilistic constructions.",
+        "task_relation": "Studies the same covering numbers; the task targets one small open case.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both papers have covering numbers as their main research objective, and the evaluator scores exactly a (v,k,t) covering by its number of blocks.",
+    "verification_basis": "Crossref metadata of both papers inspected; the record size, lower bound and improvement history read from the La Jolla Covering Repository (Zenodo version 1.2, coverdata.json); the record covering re-scored with the evaluator.",
+    "reviewed_at": "2026-10-12",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

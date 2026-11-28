@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 3600
   max_retries: 2
 
 prompt:
   system_message: |
     PDDL
 
-    PDDL task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.
+    Write a Python act(instruction, observation, valid_actions, history, llm) agent that plays AgentBoard's PDDL games (gripper, blockworld, barman, tyreworld) with one text action per step, using a budgeted OpenRouter model client; scored by the mean progress rate (fraction of goal literals reached) over 12 fixed problems, at most 30 steps each (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: AgentBoard's PDDL games (gripper, blockworld, barman, tyreworld; 60 problems), a fixed sample of 3 problems per game (12 episodes), at most 30 steps each; 'check valid actions' lists the grounded actions. Episode score: AgentBoard's progress rate (largest fraction of goal literals satisfied so far). Score: mean progress rate over the 12 episodes; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

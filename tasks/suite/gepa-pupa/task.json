@@ -2,13 +2,13 @@
   "schema_version": "1.0",
   "id": "gepa-pupa",
   "name": "PUPA",
-  "description": "PUPA",
+  "description": "Write a Python solve(user_query, llm, untrusted_llm) program that answers private user requests with a trusted model and, optionally, an external untrusted model; a judge model scores each item as (quality + (1 - PII leakage to the untrusted model)) / 2, averaged over a fixed 20-item sample of GEPA's PUPA test split (higher is better).",
   "paper_ids": [
     "gepa",
     "pairwise-validator"
   ],
   "kind": "upstream",
-  "status": "requires_setup",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2507.19457",
@@ -23,7 +23,17 @@
     {
       "url": "https://arxiv.org/pdf/2607.14408",
       "type": "paper",
-      "locator": "Section 5, Table 1 task inventory"
+      "locator": "Section 5.1 (Tasks), Table 2 and Appendix C (Table 8)"
+    },
+    {
+      "url": "https://huggingface.co/datasets/Columbia-NLP/PUPA/tree/9981b49b6ced0033988a224b6712895ebf119294",
+      "type": "benchmark",
+      "locator": "PUPA_New.csv (pupa_new), rows 222-442 = GEPA's 221-item test split"
+    },
+    {
+      "url": "https://github.com/gepa-ai/gepa-artifact/tree/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/papillon",
+      "type": "repository",
+      "locator": "papillon_data.py split, papillon_program.py pipeline, papillon_utils.py judge metric"
     }
   ],
   "requirements": {
@@ -39,7 +49,7 @@
     ]
   },
   "evaluation": {
-    "metric": "task-specific score",
+    "metric": "score",
     "paper_metric": "task-specific score",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -80,7 +90,7 @@
         ],
         "cwd": ".",
         "source_url": "https://github.com/gepa-ai/gepa-artifact/blob/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/scripts/run_experiments.py",
-        "notes": "Task-specific original artifact Baseline evaluation. Benchmark index/order, program0 class and LM config verified in get_benchmarks(), benchmark __init__.py files and LM_CONFIGS[1]. Uses paid model calls; OPENAI_API_KEY and WANDB_API_KEY required. Does not perform GEPA optimization."
+        "notes": "Task-specific original artifact Baseline evaluation. Benchmark index/order, program 0 class and LM config verified in get_benchmarks(), benchmark __init__.py files and LM_CONFIGS[1]. Uses paid model calls; OPENAI_API_KEY and WANDB_API_KEY required. Does not perform GEPA optimization."
       }
     ],
     "evaluator_adapter": null,
@@ -98,8 +108,8 @@
       "Exact source-valid per-task Baseline command with explicit benchmark/program selectors. Full GEPA runs additionally require optimizer budget/cache configuration; baseline evaluation alone does not reproduce optimized paper results."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_pupa",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -107,14 +117,13 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:PUPA"
+        "network:openrouter",
+        "file:data/llm_bench/pupa_test.json"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_api",
-      "unsupported_reason": "Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the PUPA benchmark. The suite embeds neither model calls nor the benchmark data."
+      "timeout": 1800,
+      "validity_key": "valid"
     }
   },
   "limitations": [
@@ -166,7 +175,7 @@
         ],
         "cwd": ".",
         "source_url": "https://github.com/gepa-ai/gepa-artifact/blob/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/scripts/run_experiments.py",
-        "notes": "Task-specific original artifact Baseline evaluation. Benchmark index/order, program0 class and LM config verified in get_benchmarks(), benchmark __init__.py files and LM_CONFIGS[1]. Uses paid model calls; OPENAI_API_KEY and WANDB_API_KEY required. Does not perform GEPA optimization."
+        "notes": "Task-specific original artifact Baseline evaluation. Benchmark index/order, program 0 class and LM config verified in get_benchmarks(), benchmark __init__.py files and LM_CONFIGS[1]. Uses paid model calls; OPENAI_API_KEY and WANDB_API_KEY required. Does not perform GEPA optimization."
       }
     ]
   },
@@ -179,15 +188,14 @@
   "labels": {
     "scientific_contribution": "benchmark",
     "science_tier": 3,
-    "artifact": "prompt",
+    "artifact": "agent",
     "domain": "language",
     "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "unavailable"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false
@@ -212,7 +220,7 @@
         {
           "url": "https://arxiv.org/pdf/2607.14408",
           "type": "paper",
-          "locator": "Section 5, Table 1 task inventory"
+          "locator": "Section 5.1 (Tasks), Table 2 and Appendix C (Table 8)"
         }
       ],
       "requirements": {
@@ -234,7 +242,7 @@
         "direction": "maximize",
         "benchmark": "PUPA",
         "protocol": "specified_only",
-        "source_locator": "Section 5, Table 1 task inventory"
+        "source_locator": "Section 5.1 (Tasks), Table 2 and Appendix C (Table 8)"
       },
       "execution": {
         "repository": null,

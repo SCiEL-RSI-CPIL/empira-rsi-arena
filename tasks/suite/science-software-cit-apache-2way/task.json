@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0",
+  "id": "science-software-cit-apache-2way",
+  "name": "Software engineering: pairwise covering array for the Apache configuration model",
+  "description": "Build a smallest pairwise covering array for the 172-option Apache web-server model of Cohen et al., avoiding its forbidden option combinations. Every feasible pair of option settings must appear in some test configuration; fewer configurations is better.",
+  "paper_ids": [
+    "science-software_engineering"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1109/TSE.2008.50",
+      "type": "paper",
+      "locator": "Cohen, Dwyer and Shi (TSE 2008): constrained interaction testing of highly configurable systems; introduces the SPIN, GCC, Apache and Bugzilla constraint models and a SAT-checked greedy construction."
+    },
+    {
+      "url": "https://doi.org/10.1109/ICSE.2015.71",
+      "type": "paper",
+      "locator": "Jia, Cohen, Harman and Petke (ICSE 2015): hyperheuristic search for constrained covering arrays; publishes the benchmark archive used here."
+    },
+    {
+      "url": "https://zenodo.org/records/581657",
+      "type": "archive",
+      "locator": "ICSE15_HHSA_Benchmarks.zip (CC BY 4.0): CASA-format model and constraint files; levels are numbered from 1."
+    },
+    {
+      "url": "https://github.com/jkunlin/fastca/blob/master/additional_table.pdf",
+      "type": "repository",
+      "locator": "Supplementary table of the FastCA repository: HHSA and CASA sizes (2-way and 3-way, 5-hour cutoff) on the same HHSA-format instance files."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "One CASA model from the ICSE 2015 CIT benchmark archive (Zenodo 581657, CC BY 4.0), prepared by scripts/prepare_software.py."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Software engineering: pairwise covering array for the Apache configuration model",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_software_cit",
+    "science_family": "science_software_cit",
+    "parameters": {
+      "instance": "apache-2way",
+      "cpu_seconds": 60,
+      "reference": 30,
+      "lower_bound": 30
+    },
+    "interface": "generate(model) -> list of rows. model = {'name': str, 'strength': t, 'values': [v_0, ..., v_{k-1}], 'forbidden': [[[p, level], ...], ...]}: parameter p takes a level in 0..v_p-1 and each forbidden entry lists parameter-level pairs that must not all occur in one row. Return a list of rows, each a list of k Python ints. Every row must avoid all forbidden combinations, and the rows together must contain every combination of levels of t distinct parameters that occurs in at least one valid configuration (the evaluator decides feasibility exactly). Score: number of rows, minimised; an array that misses a feasible combination or contains a forbidden one is invalid. generate() runs in a sandboxed subprocess (no files, network or subprocesses; CPU limit 60 s for pairwise and 120 s for 3-way tasks, 2 GB); it should be deterministic (seed any randomness, do not read clocks).",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "software_engineering",
+      "area": "software_engineering",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "additional_requires": [
+      "file:data/software/cit/apache-2way.json"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_software_cit",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/software/cit/apache-2way.json"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "Published sizes on these exact files: HHSA 30 rows and CASA 32 rows (FastCA repository supplementary table, minimum over runs with a 5-hour cutoff).",
+    "The array size is the only objective; generation time is bounded by the sandbox CPU limit and is not scored, whereas the published solvers ran for 1000 s to 5 h in C++.",
+    "Feasible combinations are decided by an exact search at preparation time and cross-checked with Z3 in the tests; a Z3 disagreement would change the required set.",
+    "The models are public; a candidate could embed a precomputed array. Scores are comparable with published sizes only for arrays generated within the contract."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/science-report.json",
+    "tests": "tests/test_software_cit.py"
+  },
+  "state_of_the_art": {
+    "kind": "optimum",
+    "value": 30,
+    "statement": "HHSA reports a 30-row pairwise array on this model (FastCA repository supplementary table). No valid array can have fewer rows: the 6-level and 5-level options have 30 feasible level pairs, which must occur in distinct rows (counting bound recomputed here). The published array itself was not re-checked here. The value therefore equals the counting lower bound: it is the optimum, so this instance cannot show a new state of the art.",
+    "sources": [
+      {
+        "title": "FastCA repository: supplementary table of HHSA and CASA results",
+        "url": "https://github.com/jkunlin/fastca/blob/master/additional_table.pdf"
+      },
+      {
+        "title": "Learning Combinatorial Interaction Test Generation Strategies Using Hyperheuristic Search",
+        "url": "https://doi.org/10.1109/ICSE.2015.71"
+      }
+    ],
+    "as_of": "2026-10-08"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "domain": "software_engineering",
+    "area": "software_engineering",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Combinatorial interaction testing of configurable software: choose as few test configurations as possible such that every feasible combination of t option settings is exercised, while respecting constraints that forbid some option combinations.",
+    "importance_rationale": "Configurable systems such as compilers, web servers and model checkers have astronomically many configurations; interaction faults are triggered by a few options together, so smaller constrained covering arrays reduce testing cost while keeping the interaction coverage guarantee. Constraint handling is a central open difficulty because invalid configurations cannot be executed.",
+    "papers": [
+      {
+        "title": "Constructing Interaction Test Suites for Highly-Configurable Systems in the Presence of Constraints: A Greedy Approach",
+        "url": "https://doi.org/10.1109/TSE.2008.50",
+        "primary_goal": "Generate small interaction test suites (constrained covering arrays) for real configurable software whose options are restricted by constraints.",
+        "task_relation": "The task asks for the same object, a constrained t-way covering array, on configuration models introduced in this paper (SPIN, GCC, Apache).",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Learning Combinatorial Interaction Test Generation Strategies Using Hyperheuristic Search",
+        "url": "https://doi.org/10.1109/ICSE.2015.71",
+        "primary_goal": "Construct smaller constrained covering arrays for configurable systems by learning search strategies with a hyperheuristic.",
+        "task_relation": "The task uses this paper's published benchmark archive and its objective (array size under constraints).",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

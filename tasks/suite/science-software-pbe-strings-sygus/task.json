@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0",
+  "id": "science-software-pbe-strings-sygus",
+  "name": "Software engineering: programming by example for string transformations (SyGuS-Comp PBE strings)",
+  "description": "Write a synthesiser that, from a few input-output examples and a grammar, returns a string-manipulation program (phone numbers, names, initials, university addresses) that also reproduces held-out examples of the same task. The score is the fraction of 27 SyGuS-Comp tasks solved.",
+  "paper_ids": [
+    "science-software_engineering"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1145/1926385.1926423",
+      "type": "paper",
+      "locator": "Gulwani (POPL 2011): FlashFill, synthesising string transformations in spreadsheets from input-output examples."
+    },
+    {
+      "url": "https://doi.org/10.1109/FMCAD.2013.6679385",
+      "type": "paper",
+      "locator": "Alur et al. (FMCAD 2013): syntax-guided synthesis, the problem format (grammar plus specification) of these tasks."
+    },
+    {
+      "url": "https://doi.org/10.1007/978-3-662-54577-5_18",
+      "type": "paper",
+      "locator": "Alur, Radhakrishna and Udupa (TACAS 2017): EUSolver, enumerative synthesis with divide and conquer, evaluated on SyGuS PBE string tasks."
+    },
+    {
+      "url": "https://doi.org/10.1007/978-3-030-25540-4_17",
+      "type": "paper",
+      "locator": "Padhi, Millstein, Nori and Sharma (CAV 2019): overfitting in synthesis, programs that fit the examples but not the intended function."
+    },
+    {
+      "url": "https://github.com/SyGuS-Org/benchmarks/tree/13c8deb68a873635879c9a69bc78caebd340f646/lib/PBE_SLIA_Track/from_2018",
+      "type": "benchmark",
+      "locator": "Pinned SyGuS benchmarks (no licence stated): the base and '-long' files of the 27 tasks."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [],
+    "environment_variables": [],
+    "datasets": "SyGuS-Org/benchmarks PBE_SLIA_Track/from_2018 at commit 13c8deb6 (no licence stated; fetched from the pinned URL and not redistributed), prepared by scripts/prepare_software.py."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Software engineering: programming by example for string transformations (SyGuS-Comp PBE strings)",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_software_pbe_strings",
+    "science_family": "science_software_pbe_strings",
+    "parameters": {
+      "cpu_seconds": 120
+    },
+    "interface": "synthesize(task) -> str. task = {'name': str, 'function': str, 'params': [[name, sort], ...], 'sort': 'String', 'start': nonterminal, 'grammar': [[nonterminal, sort, [productions]], ...], 'examples': [[[argument strings], output string], ...]} is a SyGuS PBE string problem: productions are parameter names, literals (string literals as {'str': value}, integers, true, false), other nonterminals or operator lists such as ['str.substr', 'ntString', 'ntInt', 'ntInt']. Return one SMT-LIB term (an S-expression string; string literals in double quotes with \"\" for a quote, negative numbers as -1 or (- 1)) that the grammar derives from 'start'. Operations follow SMT-LIB 2.6 string semantics (str.++, str.len, str.at, str.substr, str.indexof, str.replace, str.to.int, int.to.str, str.prefixof, str.suffixof, str.contains, +, -, =, ite, with the edge cases of the standard, e.g. out-of-range str.at and str.substr give \"\" and str.to.int of a non-numeral gives -1). A task is solved when the term reproduces the given examples and the held-out examples of the benchmark's '-long' variant. Score: fraction of the 27 tasks solved, maximised; a term that does not parse or leaves the grammar counts as unsolved, a non-str answer makes the evaluation invalid. synthesize() is called once per task, all tasks in one sandboxed subprocess (no files, network or subprocesses; 120 s CPU in total, 2 GB); it should be deterministic (seed any randomness, do not read clocks).",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "software_engineering",
+      "area": "software_engineering",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": []
+    },
+    "additional_requires": [
+      "file:data/software/pbe/tasks.json"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "science_software_pbe_strings",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/software/pbe/tasks.json"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "Only 27 tasks, from a few families (11 phone-number tasks, 4 name-combination tasks, 6 university-address tasks and 6 others), so scores move in steps of 1/27 and families are correlated.",
+    "Correctness is judged on examples: the given ones plus 8 to 94 held-out examples of the '-long' variant per task (3 to 94 distinct ones, because the long files repeat examples; bikes has 3); a program that agrees on all of them but differs elsewhere counts as solved.",
+    "SyGuS-Comp scored consistency with the given examples and solving time, not generalisation, so published solved counts are not comparable; the benchmark repository notes that errors and duplicates may exist.",
+    "The bottom-up enumeration seed solves 8 of 27 within its budget; the tasks are public and solutions could be remembered, which the contract excludes but cannot check.",
+    "The interpreter implements the SMT-LIB 2.6 string semantics used by SyGuS-Comp 2018 and was cross-checked against Z3 on random terms; a solver with different edge-case semantics could disagree on unusual programs."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/science-report.json",
+    "tests": "tests/test_software_pbe.py"
+  },
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "statement": "No published value measures generalisation to the held-out '-long' examples of these 27 tasks; the bottom-up enumeration seed solves 8 (computed here).",
+    "sources": [
+      {
+        "title": "Overfitting in Synthesis: Theory and Practice",
+        "url": "https://doi.org/10.1007/978-3-030-25540-4_17"
+      }
+    ],
+    "as_of": "2026-10-11"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "domain": "software_engineering",
+    "area": "software_engineering",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Programming by example: synthesise a program in a given language that maps the example inputs to their outputs and generalises to the user's intended transformation.",
+    "importance_rationale": "Most spreadsheet and data-wrangling users cannot program; synthesis from examples (FlashFill and its successors) automates such transformations, and finding a program that generalises from a few examples, rather than one that merely fits them, is the central difficulty.",
+    "papers": [
+      {
+        "title": "Automating string processing in spreadsheets using input-output examples",
+        "url": "https://doi.org/10.1145/1926385.1926423",
+        "primary_goal": "Synthesise string-manipulation programs from a few input-output examples for spreadsheet users.",
+        "task_relation": "The task asks for such programs for string transformations of the same kind.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Scaling Enumerative Program Synthesis via Divide and Conquer",
+        "url": "https://doi.org/10.1007/978-3-662-54577-5_18",
+        "primary_goal": "Make enumerative syntax-guided synthesis scale to larger programs and example sets.",
+        "task_relation": "The task's problems are SyGuS PBE string tasks of the kind EUSolver was evaluated on.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Overfitting in Synthesis: Theory and Practice",
+        "url": "https://doi.org/10.1007/978-3-030-25540-4_17",
+        "primary_goal": "Understand and reduce overfitting of synthesised programs to the given examples.",
+        "task_relation": "The task scores generalisation to held-out examples, i.e. the absence of overfitting.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

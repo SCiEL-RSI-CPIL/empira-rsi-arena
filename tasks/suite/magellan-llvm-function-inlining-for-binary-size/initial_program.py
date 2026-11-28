@@ -1,10 +1,6 @@
-"""Placeholder candidate: LLVM function inlining for binary size.
-
-This task is not executable inside the suite (toolchain); a real candidate would be the artifact the paper evolves for 'LLVM function inlining for binary size' (see README.md).
-"""
+"""Initial program for the suite task; SCiEL evolves the EVOLVE-BLOCK."""
 # EVOLVE-BLOCK-START
-
-
-def candidate():
-    raise NotImplementedError("magellan-llvm-function-inlining-for-binary-size is documented but not executable in this suite")
+def should_inline(features):
+    # Naive starting policy, as in Magellan's search: never inline (LLVM still performs mandatory inlining).
+    return False
 # EVOLVE-BLOCK-END

@@ -1,0 +1,644 @@
+{
+  "schema": "artask.llm_bench-checks/1",
+  "package": "llm_bench",
+  "tasks": {
+    "cocoevo-leetcode-contest": {
+      "seed_score": 0.6,
+      "seed_samples": 5,
+      "valid": null,
+      "seed_run_time": "2026-10-06T22:35:43",
+      "elapsed_seconds": 28.510999,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.011476,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str program text, got int"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        }
+      ],
+      "family": "llm_bench_code",
+      "protocol": "recreated_verified",
+      "unit_tests": "tests/test_llm_bench_code.py (correct/wrong/crashing code, forged __eq__ rejected, stdout spoofing ignored, timeouts keep finished tests, no API key in the child environment, encoding semantics, pass@1)",
+      "reference_check": "All 80 official solutions pass all 51,552 tests in the harness (4.8 s); every test parsed as entry_point(args) == literal.",
+      "data_check": "prepare_llm_bench.py hashes match the lock",
+      "installs": "pip install sortedcontainers into the sciel-env interpreter"
+    },
+    "elm-single-step-code-bug-repair": {
+      "seed_score": 1.0,
+      "seed_samples": 28,
+      "valid": null,
+      "seed_run_time": "2026-10-07T16:51:22",
+      "elapsed_seconds": 40.755127,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.006093,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str program text, got int"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        }
+      ],
+      "family": "llm_bench_code",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench_code.py (instances follow Appendix A.1; correct repairs score 1, echoing the buggy code scores 0)",
+      "reference_check": "The 5 buggy 4-Parity programs pass 0/16 tests and the 2 buggy Quadratic programs 128/320 and 32/320; the correct programs pass all tests. Seed (gemini-2.5-flash) repaired all 28 (program, attempt) pairs: the task is near saturation for current models.",
+      "data_check": "no external data: instances are built from the paper appendix"
+    },
+    "evoor-agent-nlp4lp": {
+      "seed_score": 0.8,
+      "seed_samples": 5,
+      "valid": null,
+      "seed_run_time": "2026-10-06T12:36:53",
+      "elapsed_seconds": 28.193431,
+      "elapsed_note": "uncached run of the final seed prompt (recorded as programs/qa_seed_v2.py, byte-identical prompt); the built seed replayed it from the cache",
+      "llm_cost_usd": 0.027108,
+      "seed_score_note": "the first seed (1024-token limit) scored 0.0 on the same 5 problems because every reply was truncated; the final seed scores 0.8",
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str answer, got int"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        }
+      ],
+      "family": "llm_bench_qa",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench.py (oracle within 5e-4 relative scores 1, 1% off scores 0)",
+      "reference_check": "Derived nlp4lp.json compared field by field with an independent extraction of the LLM4OR tarball at the same commit: 178 problems, 0 mismatches. The first seed (1024 tokens) truncated all 5 replies before the answer; the revised seed scores 0.8 on the same 5 problems.",
+      "data_check": "prepare_llm_bench.py tree digest over 356 files matches the lock"
+    },
+    "evoor-agent-resocratic": {
+      "seed_score": 0.8,
+      "seed_samples": 5,
+      "valid": null,
+      "seed_run_time": "2026-10-06T12:37:33",
+      "elapsed_seconds": 40.46188,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.035417,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str answer, got int"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        }
+      ],
+      "family": "llm_bench_qa",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench.py (oracle JSON with all quantities scores 1; objective-only replies score 0; requested names but no gold values appear in the question)",
+      "reference_check": "Requested-quantity names and values parsed for all 403 cleaned problems (394 ask for more than one quantity); seed replies inspected.",
+      "data_check": "prepare_llm_bench.py source and derived hashes match the lock"
+    },
+    "gepa-ifbench": {
+      "seed_score": 0.25,
+      "seed_samples": 8,
+      "valid": null,
+      "seed_run_time": "2026-10-06T22:27:35",
+      "elapsed_seconds": 26.567908,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.006571,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str response, got int"
+        },
+        {
+          "program": "syntax_error.py",
+          "valid": false,
+          "error": "SyntaxError: expected ':' (syntax_error.py, line 1)"
+        }
+      ],
+      "family": "llm_bench_ifbench",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench_ifbench.py (keyword counts, word-count range incl. the loose first-line rule, spaCy person names, NLTK POS tagger; socket connections blocked during scoring)",
+      "reference_check": "All 335 instructions of the 294 test prompts build and run on a fixed response with downloads disabled and no exceptions (smoke test); the three NLTK zips hash to the sha256 values in NLTK index.xml; 8 seed replies inspected by hand against their constraints.",
+      "data_check": "prepare_llm_bench.py hashes match the lock",
+      "installs": "pip install emoji syllapy into the sciel-env interpreter"
+    },
+    "gepa-pupa": {
+      "seed_score": 0.875,
+      "seed_samples": 4,
+      "valid": null,
+      "seed_run_time": "2026-10-07T21:46:53",
+      "elapsed_seconds": 153.508603,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.01718,
+      "invalid_candidate_checks": [
+        {
+          "program": "syntax_error.py",
+          "valid": false,
+          "error": "SyntaxError: expected ':' (syntax_error.py, line 1)"
+        },
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "the candidate must define solve(user_query, llm, untrusted_llm)"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        }
+      ],
+      "family": "llm_bench_pupa",
+      "protocol": "recreated",
+      "judge": {
+        "model": "openai/gpt-4.1-mini",
+        "rubric": "two-order quality preference vs the target response (yes if first verdict yes or both verdicts agree) and count of PII units present in prompts sent to the untrusted model; paraphrases of GEPA papillon_utils DSPy signatures"
+      },
+      "unit_tests": "tests/test_llm_bench_pupa.py (scripted judge: redacting candidate scores 1, leaking candidate 0.5, no untrusted call means no leakage judgement, recorder captures messages and system prompts, arity check)",
+      "reference_check": "Seed on 4 items: quality 0.75, leakage 0.0, score 0.875; the trusted model was asked to answer without thinking (Qwen3 /no_think).",
+      "data_check": "prepare_llm_bench.py hashes match the lock; 221 test items (rows 222-442)",
+      "seed_elapsed_note": "153.5 s for 4 items (Qwen3-8B latency); the family timeout is 1800 s for the default 20 items"
+    },
+    "hyperagents-conference-paper-acceptance-prediction": {
+      "seed_score": 1.0,
+      "seed_samples": 3,
+      "valid": null,
+      "seed_run_time": "2026-10-07T03:26:55",
+      "elapsed_seconds": 21.554979,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.024141,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str answer, got int"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        }
+      ],
+      "family": "llm_bench_qa",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench.py (decision rule, gzip data)",
+      "reference_check": "Derived split holds 50 accepted and 50 rejected papers (asserted at preparation); seed run limited to 3 papers because each prompt is about 20k tokens (cost 0.024 USD).",
+      "data_check": "prepare_llm_bench.py source hash and decompressed content hash match the lock"
+    },
+    "hyperagents-imo-gradingbench": {
+      "seed_score": 0.6,
+      "seed_samples": 5,
+      "valid": null,
+      "seed_run_time": "2026-10-07T03:24:48",
+      "elapsed_seconds": 26.749155,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.014097,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str answer, got int"
+        },
+        {
+          "program": "syntax_error.py",
+          "valid": false,
+          "error": "SyntaxError: expected ':' (syntax_error.py, line 1)"
+        }
+      ],
+      "family": "llm_bench_qa",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench.py (oracle accuracy 1 and MAE 0; always-correct baseline; unparsable answers count as error 7)",
+      "reference_check": "Subset label counts (35/35/24/6) are proportional to the filtered pool (300/300/171/41 of 812); every derived row keeps the Points/Reward pairing 0-Incorrect, 1-Partial, 6-Almost, 7-Correct. Identity with Hyperagents own split files is not verifiable (not distributed).",
+      "data_check": "prepare_llm_bench.py hashes match the lock"
+    },
+    "lmx-gore-vidal-sentence-sentiment": {
+      "seed_score": 3.324538230895996,
+      "seed_samples": null,
+      "valid": true,
+      "seed_run_time": "2026-10-07T03:33:43",
+      "elapsed_seconds": 3.088116,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.0,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a non-empty list of sentences"
+        },
+        {
+          "program": "lmx_multiline.py",
+          "valid": false,
+          "error": "each sentence must be one line of 5 to 400 characters"
+        }
+      ],
+      "family": "llm_bench_lmx",
+      "protocol": "recreated_verified",
+      "unit_tests": "tests/test_llm_bench_lmx.py (niche mapping, best fitness per niche, archive validation, quote passed to the candidate)",
+      "reference_check": "Fitness and embedding distance equal notebook-style transformers pipeline(top_k=3) and SentenceTransformer.encode calls within 1e-6 for 5 sentences, same bins (run offline with HF_HUB_OFFLINE=1).",
+      "data_check": "model weight SHA-256 checked by prepare_llm_bench.py --models",
+      "llm_note": "no model API calls: the seed does not use the optional client"
+    },
+    "lmx-homer-simpson-sentence-sentiment": {
+      "seed_score": 1.2940314710140228,
+      "seed_samples": null,
+      "valid": true,
+      "seed_run_time": "2026-10-07T03:33:46",
+      "elapsed_seconds": 3.100752,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.0,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a non-empty list of sentences"
+        }
+      ],
+      "family": "llm_bench_lmx",
+      "protocol": "recreated_verified",
+      "unit_tests": "tests/test_llm_bench_lmx.py (niche mapping, best fitness per niche, archive validation, quote passed to the candidate)",
+      "reference_check": "Fitness and embedding distance equal notebook-style transformers pipeline(top_k=3) and SentenceTransformer.encode calls within 1e-6 for 5 sentences, same bins (run offline with HF_HUB_OFFLINE=1).",
+      "data_check": "model weight SHA-256 checked by prepare_llm_bench.py --models",
+      "llm_note": "no model API calls: the seed does not use the optional client"
+    },
+    "lmx-woody-allen-sentence-sentiment": {
+      "seed_score": 2.7219422850757837,
+      "seed_samples": null,
+      "valid": true,
+      "seed_run_time": "2026-10-07T03:33:50",
+      "elapsed_seconds": 3.1187,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.0,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a non-empty list of sentences"
+        }
+      ],
+      "family": "llm_bench_lmx",
+      "protocol": "recreated_verified",
+      "unit_tests": "tests/test_llm_bench_lmx.py (niche mapping, best fitness per niche, archive validation, quote passed to the candidate)",
+      "reference_check": "Fitness and embedding distance equal notebook-style transformers pipeline(top_k=3) and SentenceTransformer.encode calls within 1e-6 for 5 sentences, same bins (run offline with HF_HUB_OFFLINE=1).",
+      "data_check": "model weight SHA-256 checked by prepare_llm_bench.py --models",
+      "llm_note": "no model API calls: the seed does not use the optional client"
+    },
+    "mce-finer": {
+      "seed_score": 0.8,
+      "seed_samples": 5,
+      "valid": null,
+      "seed_run_time": "2026-10-06T12:40:29",
+      "elapsed_seconds": 9.944293,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.004571,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str answer, got int"
+        },
+        {
+          "program": "syntax_error.py",
+          "valid": false,
+          "error": "SyntaxError: expected ':' (syntax_error.py, line 1)"
+        }
+      ],
+      "family": "llm_bench_qa",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench.py (MCE first-tag rule, prefixed tags rejected, questions carry no gold tag)",
+      "reference_check": "Derived test split reproduces the tag distribution stated in MCE env/finer/data/README.md (27/16/16/13/8/7/6/2/2/1/1/1 over the 12 tags); seed replies parsed by hand.",
+      "data_check": "prepare_llm_bench.py hashes match the lock"
+    },
+    "mce-uspto-50k": {
+      "seed_score": 0.2,
+      "seed_samples": 5,
+      "valid": null,
+      "seed_run_time": "2026-10-06T12:41:03",
+      "elapsed_seconds": 33.116363,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.015258,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str answer, got int"
+        },
+        {
+          "program": "syntax_error.py",
+          "valid": false,
+          "error": "SyntaxError: expected ':' (syntax_error.py, line 1)"
+        }
+      ],
+      "family": "llm_bench_qa",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench.py (order-free reactant set match, partial sets rejected)",
+      "reference_check": "Seed predictions inspected against gold for the 5 sampled reactions: 1 exact match; the 4 misses are genuine chemistry errors (wrong leaving group, missing reagent) or non-SMILES answers, not parser failures.",
+      "data_check": "prepare_llm_bench.py hashes match the lock"
+    },
+    "meta-harness-arxivmath": {
+      "seed_score": 0.2,
+      "seed_samples": 5,
+      "valid": null,
+      "seed_run_time": "2026-10-07T03:30:00",
+      "elapsed_seconds": 69.644467,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.037234,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str answer, got int"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        }
+      ],
+      "family": "llm_bench_qa",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench.py (symbolic equivalence incl. ordered tuples; the evaluator deadline alarm survives Math-Verify calls)",
+      "reference_check": "All 40 gold answers parse and verify against themselves; none is accepted for a different problem (40 shifted pairs). Seed: 3 of 5 replies hit the 4096-token limit before a final answer; 1 of the 2 answered was correct.",
+      "data_check": "prepare_llm_bench.py hashes match the lock",
+      "installs": "pip install math-verify==0.9.0 (with latex2sympy2_extended) into the sciel-env interpreter"
+    },
+    "meta-harness-imo-proofbench": {
+      "seed_score": 0.07142857142857142,
+      "seed_samples": 2,
+      "valid": null,
+      "seed_run_time": "2026-10-08T02:43:34",
+      "elapsed_seconds": 79.77256,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.137262,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str proof, got int"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        }
+      ],
+      "family": "llm_bench_proof",
+      "protocol": "recreated",
+      "judge": {
+        "model": "google/gemini-2.5-flash (default; ProofAutoGrader uses Gemini 2.5 Pro)",
+        "rubric": "paraphrase of IMO-Bench ProofAutoGrader: 7 complete and rigorous, 6 minor errors, 1 substantial progress named in the guidelines, 0 otherwise; reference solution and problem guidelines supplied; first <points> block, else last N out of 7 phrase"
+      },
+      "unit_tests": "tests/test_llm_bench_proof.py (points parsing incl. untagged fallback, grading prompt carries reference and guidelines, empty proof scores 0, unparsable grade scores 0)",
+      "reference_check": "Judge sanity check on PB-Basic-001 and PB-Basic-010: the reference solutions were graded 7/7 and a one-line bogus proof 0/7 (cost 0.0218 USD). Seed: the first seed (score 0.429) and the concise-proof seed (score 0.071) both produced 8,192-token proofs on the 2 sampled problems; one judge reply gave its score without tags, now parsed by the fallback.",
+      "data_check": "prepare_llm_bench.py hashes match the lock; 60 problems",
+      "seed_elapsed_note": "79.8 s for 2 problems with uncached model calls"
+    },
+    "mind-evolution-natural-plan-meeting-planning": {
+      "seed_score": 0.6,
+      "seed_samples": 5,
+      "valid": null,
+      "seed_run_time": "2026-10-06T22:30:12",
+      "elapsed_seconds": 11.513374,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.009891,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str plan, got int"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        }
+      ],
+      "family": "llm_bench_plan",
+      "protocol": "recreated_verified",
+      "unit_tests": "tests/test_llm_bench_plan.py (golden plan solves, fewer meetings fail, early/unknown/duplicate steps stop the simulation, only the prompt reaches the candidate)",
+      "reference_check": "Port vs official evaluate_meeting_planning.py (pinned natural-plan commit) on all 1000 shipped pred_5shot_pro responses: 0 disagreements, accuracy 0.384 with both; all 500 golden test plans score as solved.",
+      "data_check": "prepare_llm_bench.py hashes match the lock; 50 test problems per number of people"
+    },
+    "mind-evolution-travelplanner": {
+      "seed_score": 0.0,
+      "seed_samples": 4,
+      "valid": null,
+      "seed_run_time": "2026-10-07T16:46:51",
+      "elapsed_seconds": 14.967179,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.01382,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str plan, got int"
+        },
+        {
+          "program": "syntax_error.py",
+          "valid": false,
+          "error": "SyntaxError: expected ':' (syntax_error.py, line 1)"
+        }
+      ],
+      "family": "llm_bench_plan",
+      "protocol": "recreated_verified",
+      "unit_tests": "tests/test_llm_bench_plan.py (synthetic database: a valid plan passes with the expected total cost; budget, house rule, cuisine, repeated restaurant, unknown restaurant and missing day fail; reply parsing)",
+      "reference_check": "Port vs official TravelPlanner evaluation code (pinned commit, full database) on the 161 delivered plans of postprocess/example_evaluation.jsonl: identical verdicts for all 8 commonsense and 5 hard constraints and the final pass. With the restricted flight table: 27 sandbox verdicts differ (flights outside the reference information), 0 final verdicts differ. Seed: 4/4 plans parsed; all fail genuine constraints (missing breakfasts, repeated restaurant, minimum nights).",
+      "data_check": "prepare_llm_bench.py hashes match the lock (the 305 MB flight table is downloaded once to derive the 1,698-flight subset)"
+    },
+    "promptbreeder-addsub": {
+      "seed_score": 1.0,
+      "seed_samples": 5,
+      "valid": null,
+      "elapsed_seconds": 9.007139,
+      "llm_cost_usd": 0.005913,
+      "seed_run_time": "2026-10-06T12:37:42",
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str answer, got int"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        },
+        {
+          "program": "syntax_error.py",
+          "valid": false,
+          "error": "SyntaxError: expected ':' (syntax_error.py, line 1)"
+        }
+      ],
+      "family": "llm_bench_qa",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench.py (oracle answers score 1.0; crashes score 0; non-string answers are rejected)",
+      "reference_check": "Oracle solve (gold answers) scores 1.0 on fixture data; the seed run was inspected by hand: a 5/8 answer to a 0.625 item was initially missed, which led to fraction parsing (commit 2).",
+      "data_check": "scripts/prepare_llm_bench.py verified source and derived SHA-256 hashes (lock catalog/llm_bench-data-lock.json)",
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "seed_note": "seed revised to brief reasoning within 4096 tokens (commit 6); seed_score is from that seed"
+    },
+    "promptbreeder-singleeq": {
+      "seed_score": 1.0,
+      "seed_samples": 5,
+      "valid": null,
+      "elapsed_seconds": 7.158293,
+      "llm_cost_usd": 0.004841,
+      "seed_run_time": "2026-10-06T12:37:50",
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str answer, got int"
+        }
+      ],
+      "family": "llm_bench_qa",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench.py",
+      "reference_check": "Same scorer as AddSub; seed reply texts inspected; oracle path covered by unit tests.",
+      "data_check": "scripts/prepare_llm_bench.py verified source and derived SHA-256 hashes",
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "seed_note": "seed revised to brief reasoning within 4096 tokens; seed_score is from that seed"
+    },
+    "protegi-jailbreak": {
+      "seed_score": 0.6666666666666666,
+      "seed_samples": 10,
+      "valid": null,
+      "seed_run_time": "2026-10-06T12:43:18",
+      "elapsed_seconds": 14.387428,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.003019,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str answer, got int"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        }
+      ],
+      "family": "llm_bench_qa",
+      "protocol": "recreated",
+      "proxy": "public jackhhao/jailbreak-classification data replaces ProTeGi unreleased jailbreak set",
+      "unit_tests": "tests/test_llm_bench.py (yes-prefix rule, binary F1 incl. always-yes baseline 2/3 on a balanced fixture, crash counts as negative)",
+      "reference_check": "Seed replies inspected: 8/10 correct (per_item_accuracy 0.8, F1 0.667); one jailbreak prompt drew a one-character reply, scored as a negative prediction per the rule.",
+      "data_check": "prepare_llm_bench.py hashes match the lock; 262 prompts, 139 jailbreak / 123 benign, no duplicates"
+    },
+    "rqgm-code-review": {
+      "seed_score": 0.5,
+      "seed_samples": 6,
+      "valid": null,
+      "seed_run_time": "2026-10-07T03:22:26",
+      "elapsed_seconds": 20.023394,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.012554,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str answer, got int"
+        },
+        {
+          "program": "no_solve.py",
+          "valid": false,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'solve'"
+        }
+      ],
+      "family": "llm_bench_qa",
+      "protocol": "recreated",
+      "unit_tests": "tests/test_llm_bench.py (verdict normalisation; the question carries the patch but not the verdict)",
+      "reference_check": "Seed replies parsed by hand: the zero-shot reviewer approved all 6 sampled pull requests (3 approve, 3 request-changes), i.e. chance accuracy on the balanced split - the over-lenient baseline behaviour RQGM describes.",
+      "data_check": "prepare_llm_bench.py hashes match the lock; 134 items, 67 per label"
+    },
+    "sica-livecodebench": {
+      "seed_score": 0.8857142857142858,
+      "seed_samples": 5,
+      "valid": null,
+      "seed_run_time": "2026-10-06T22:45:20",
+      "elapsed_seconds": 58.685959,
+      "elapsed_note": "wall time of the last uncached seed run (model calls included)",
+      "llm_cost_usd": 0.006541,
+      "invalid_candidate_checks": [
+        {
+          "program": "returns_int.py",
+          "valid": false,
+          "error": "solve must return a str program text, got int"
+        },
+        {
+          "program": "syntax_error.py",
+          "valid": false,
+          "error": "SyntaxError: expected ':' (syntax_error.py, line 1)"
+        }
+      ],
+      "family": "llm_bench_code",
+      "protocol": "recreated_verified",
+      "unit_tests": "tests/test_llm_bench_code.py (fraction of tests, sica_loader mode, statement shows only public examples, SICA comparison rules)",
+      "reference_check": "(1) SICA from_raw run on the full release_v5 files with random.seed(2) selects exactly the 50 locked problems; (2) per-test verdicts of the local harness equal those of SICA test files (generated by SICA create_test, run in subprocesses) for 3 correct and 1 wrong solution over 125 tests; (3) SICA loader drops private tests for 20 problems (no base64 padding) - documented, reproducible via private_tests=sica_loader.",
+      "data_check": "prepare_llm_bench.py byte-range hashes and derived content hash match the lock",
+      "seed_elapsed_note": "41.8 s for 5 problems when model replies are cached; test execution dominates"
+    }
+  },
+  "dropped": {
+    "deevo-abcd": "DEEVO turns ABCD dialogues into its own recommendation task (customer profile and history -> pain point, objective, strategy and next action chosen from option lists, Appendix A.4); the input construction, label set and test split are unpublished and no code is released. ABCD's own intent or action labels would be a different task.",
+    "mipro-hover": "Faithful scoring needs multi-hop retrieval over the 5.2M-document Wikipedia 2017 abstracts corpus (608 MB compressed; the BM25 index used by GEPA/DSPy is several GB in memory). This exceeds the package's data and memory limits, and a reduced corpus would change the retrieval difficulty, so it is not a faithful proxy.",
+    "mind-evolution-stegpoet": "The 346 StegPoet instances (101 validation, 245 test) are unreleased and the paper gives only ranges for their generation (message length 10-30, mean gap B 3-7) without the number vocabulary, repetition schedule, topics, styles or answer format; a locally generated instance set would be a new benchmark rather than the paper's.",
+    "rqgm-paper-writing": "The APReS writer dataset (titles and abstracts) is unreleased and three of the four panel reviewers are evolved agents that are not published. A single fixed LLM reviewer scoring LLM-written papers is not a faithful proxy; RQGM itself documents reviewer self-preference in exactly this setting.",
+    "darwinian-evolver-vet-code-verification-prompt-evolution": "Imbue's blog reports end-to-end optimization of its Vet verifier but publishes neither the fitness definition nor the training or evaluation corpus; the public darwinian_evolver repository (commit 7f12365d) contains only different demonstration problems.",
+    "polymath-axi-hardware-module-configuration": "The industrial inputs (block diagram, ~100-page datasheet) and golden answers are private.",
+    "constitutional-evolution-multi-agent-society-constitution-optimization": "No public code or environment: the gridworld society (resource gathering, team projects, Overseer elimination) and its Societal Stability Score are described only in prose.",
+    "cocoevo-deveval-real-world-function-completion": "DevEval needs per-repository execution environments (dependencies of many real repositories) and repository-level tests; CoCoEvo's selected subset is not released separately.",
+    "rqgm-polyglot-coding": "Aider Polyglot needs six language toolchains (C++, Go, Java, JavaScript, Python, Rust) and RQGM's agentic editing harness; not available on this CPU-only, Python-only package."
+  },
+  "duplicates": {
+    "rqgm-olympiad-proof-grading": {
+      "same_as": "hyperagents-imo-gradingbench",
+      "reason": "RQGM anchors its grader on 100 held-out IMO-GradingBench items scored by exact match and normalized MAE, the protocol of the Hyperagents IMO grading domain it builds on; with no separately published RQGM split, the evaluator and parameters would be identical."
+    },
+    "rqgm-paper-reviewing": {
+      "same_as": "hyperagents-conference-paper-acceptance-prediction",
+      "reason": "RQGM's APReS splits are unreleased; the only public APReS-derived accept/reject data is Hyperagents' OpenReview subset, which would give the same evaluator and parameters as the Hyperagents task."
+    },
+    "rqgm-olympiad-proof-writing": {
+      "same_as": "meta-harness-imo-proofbench",
+      "reason": "RQGM's 20 IMO problems are not identified and two of its three panel graders are unpublished evolved agents; the only public route, IMO-ProofBench proofs graded by a ProofAutoGrader-style judge, is that task's evaluator."
+    }
+  },
+  "date": "2026-10-06",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "macOS-15.8.1-arm64-arm-64bit",
+    "packages": {
+      "numpy": "2.5.3",
+      "pandas": "2.2.3",
+      "datasets": "5.0.1",
+      "transformers": "5.17.0",
+      "torch": "2.14.0",
+      "sentence_transformers": "6.1.0",
+      "nltk": "3.10.3",
+      "spacy": "3.8.16",
+      "langdetect": "?",
+      "emoji": "2.16.0",
+      "syllapy": "0.8.0",
+      "math_verify": "?",
+      "rdkit": "2026.03.6",
+      "sklearn": "1.9.1"
+    },
+    "default_model": "google/gemini-2.5-flash (OpenRouter)"
+  },
+  "llm_spend_usd_total": 0.392994,
+  "llm_spend_note": "Sum of the OpenRouter costs reported for every verification call of this package (seed runs, a judge sanity check and one Qwen3-8B probe); replays of cached responses cost nothing. Final replay on 2026-10-08: all 22 seeds reproduce the recorded scores through the final code from cached responses.",
+  "final_replay": "2026-10-08: combined build of the 22 upgraded packages; every seed re-run (cached model replies) reproduced its recorded score; invalid candidates (wrong return type, missing or wrong-arity solve, syntax errors) are rejected with valid=false"
+}

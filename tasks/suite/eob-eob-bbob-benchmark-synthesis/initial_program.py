@@ -1,10 +1,10 @@
-"""Placeholder candidate: EoB-BBOB benchmark synthesis.
-
-This task is not executable inside the suite (dataset); a real candidate would be the artifact the paper evolves for 'EoB-BBOB benchmark synthesis' (see README.md).
-"""
+"""Initial program for the suite task; SCiEL evolves the EVOLVE-BLOCK."""
 # EVOLVE-BLOCK-START
+import numpy as np
 
 
-def candidate():
-    raise NotImplementedError("eob-eob-bbob-benchmark-synthesis is documented but not executable in this suite")
+def objective(X):
+    """Shifted Rastrigin-type function on [-5, 5]^10 (minimum 0 at x = 1.5)."""
+    z = X - 1.5
+    return np.sum(z ** 2, axis=1) + 10.0 * np.sum(1.0 - np.cos(2.0 * np.pi * z), axis=1)
 # EVOLVE-BLOCK-END

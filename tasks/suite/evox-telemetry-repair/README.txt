@@ -3,22 +3,24 @@
 **Paper:** EvoX: Meta-Evolution for Automated Discovery (https://arxiv.org/pdf/2602.23413)\
 **Paper:** AdaEvolve: Adaptive LLM Driven Zeroth-Order Optimization (https://arxiv.org/pdf/2602.20133)\
 **Task id:** `evox-telemetry-repair`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated_verified`\
 **Direction:** maximize\
 
 ## Task
 
-Telemetry repair
+Write a Python run_repair(telemetry, topology) function that repairs noisy, dropped or scaled rx/tx counters of Abilene backbone interfaces and returns (original, repaired, confidence) triples for every interface; scored over 30 fixed perturbed snapshots by 0.75 x counter repair quality + 0.05 x status accuracy + 0.2 x confidence calibration (higher is better).
 
 Benchmark named in the paper: ADRS. Paper metric: evaluator combined score.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+run_repair(telemetry: dict, topology: dict) -> dict. `telemetry` maps an interface id 'A_to_B' to {'interface_status': 'up' or 'down', 'rx_rate': float (Mbps received), 'tx_rate': float (Mbps sent), 'connected_to': the peer interface id 'B_to_A', 'local_router': 'A', 'remote_router': 'B'}; `topology` maps a router id to the list of its interface ids. The observed counters carry +-2% noise and one bug type per snapshot (counters dropped to 0 or scaled by 0.5-0.8 or 1.2-1.5, on single interfaces or on all interfaces of a router). Return, for EVERY interface id, a dict whose 'rx_rate' and 'tx_rate' are (original, repaired, confidence) triples with a finite repaired value and a confidence in [0, 1], and whose 'interface_status' is an (original, repaired, confidence) triple with a string status; other keys are ignored. Score: mean over 30 fixed perturbed Abilene snapshots of 0.75 x counter repair quality (1 - mean relative error, capped at 1 per counter, over counters whose true value is positive) + 0.05 x status accuracy + 0.2 x confidence calibration (confident good repairs and unconfident poor repairs score high); higher is better. A missing interface or malformed triple makes the candidate invalid
+
+Parameters: `{"seed": 42, "rows": 30}`
 
 ## Labels
 
-Scientific contribution: `engineering` (tier 3); artifact `model`, domain `machine_learning`, data `undistributed`, verification `none`, reference `none`, resources `unavailable`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `engineering` (tier 3); artifact `program`, domain `systems`, data `public_benchmark`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -29,15 +31,26 @@ Evidence status: **unreviewed**.
 
 No qualifying paper whose main objective is this underlying scientific or real-world problem has been established in the evidence registry. A task's use in an agent/framework evaluation is insufficient. This label describes the available evidence, not proof that the task has no scientific value.
 
-## Also evaluated by
+## Related paper and local records
 
-The same problem (same evaluator and parameters) appears in these papers; their records were merged into this task and their pinned upstream routes remain reachable with `run.py evaluate evox-telemetry-repair --route upstream --paper <paper>`.
+These records are grouped under this local package. Sharing a local evaluator does not establish identical paper experiments, datasets or candidate contracts. Configured upstream routes remain reachable with `run.py evaluate evox-telemetry-repair --route upstream --paper <paper>`; local reference aliases retain their recorded native interfaces.
 
 - AdaEvolve: Telemetry repair (`adaevolve-telemetry-repair`; ADRS)
 
 ## Evaluation protocol
 
-Not executable in this suite: The paper reports this ADRS task but the pinned public repository contains no implementation for it.
+Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
+
+- Source: the pre-release ADRS telemetry-repair example (openevolve/examples/ADRS/telemetry_repair in UCB-ADRS/ADRS at commit 259292f3ad1924c03be684996dbd83e6891c3e39, Apache-2.0), which the authors later removed from their main branch; byte-identical copies of evaluator.py and evaluation_data.csv are in mert-cemri/autoevolve (Apache-2.0), and mit-nms/Engram (MIT) differs only by one added constant. The pinned skydiscover release used for EvoX lists the task as 'Coming soon', so identity with the evaluator behind the EvoX and AdaEvolve tables is not established.
+- Protocol: the original evaluate() first looks for an input-validation-eval Dataset (six perturbation scenarios of 500 rows) that is not part of the repository and then falls back to evaluate_legacy; this task implements evaluate_legacy: 30 of the 40 rows of the Abilene snapshot drawn with random.seed(42), +-2% noise on every counter and one bug type per row (dropped, scaled, correlated dropped, correlated scaled), row score 0.75 counter repair + 0.05 status repair + 0.2 confidence calibration, averaged over rows.
+- Verification: the port and the original evaluate_legacy (run unchanged from the pinned file) give identical scores, to 1e-15, for three fixed candidates (the seed 0.0511, an echo-the-measurements program 0.8385, a peer-consistency heuristic 0.9434), and the original evaluator gives 0.8222 for the repository's reference program initial_program_reference_selfcontained.py (Hodor plus democratic trust propagation), which equals the human/SOTA value 0.8222 reported by EvoX (Table 3) and AdaEvolve (Table 2). Details in validation/llm_tools-checks.json.
+- Deviation (sandbox): the candidate runs in a resource-limited child without file, network or subprocess access, because evaluation_data.csv holds the ground truth. Inside the child the standard library and numpy are available but pandas and scipy cannot be imported (their imports load blocked modules), so the repository's reference programs, which use pandas, do not run here unchanged.
+- Deviation (leak fix): in the original, interfaces hit by a correlated bug are copied from the clean data and keep their _ground_truth_rx/_ground_truth_tx fields, so a candidate could read the true counters; these fields are removed before the candidate sees the telemetry.
+- Deviation (strict contract): the original skipped interfaces missing from the output (a candidate returning one well-repaired interface scored 1.0), accepted non-tuple values and scored a crashing row 0; here every interface must be present with (original, repaired, confidence) triples, a finite repaired counter and a confidence in [0, 1], and any crash or malformed output makes the candidate invalid. Lists are accepted in place of tuples (the sandbox returns JSON).
+- Deviation (randomness): in the original a candidate that draws from or reseeds Python's global random generator changes the perturbations of later rows; the reference program reseeds it, which is part of how 0.8222 arises: on this task's fixed scenarios the same program scores 0.7994 (computed in-process, because it imports pandas). Here the perturbations are drawn by the evaluator from its own random.Random(42) stream and are identical for every candidate; for candidates that do not touch the global generator they equal the original's perturbations.
+- Data and headroom: the snapshot covers 30 directed interfaces of the Abilene backbone (12 routers; the 40 rows are timestamps from March to September 2004) and every interface status is 'up', so status repair is trivially 1 for a pass-through. Simple baselines are strong: echoing the measured counters scores 0.838 and pairing each rx with the peer's tx scores 0.943, above the published human value 0.822; the published best evolved programs score about 0.95-0.96, so the remaining headroom is small.
+- The underlying Abilene measurements carry no stated licence of their own (the repository is Apache-2.0); the file is fetched and SHA-256 checked by scripts/prepare_llm_tools.py telemetry and is not redistributed.
+- The candidate runs in a resource-limited child process without file, network or subprocess access (software_sandbox); task capabilities reach it only as proxy callables served by the evaluator.
 
 ## Run
 
@@ -49,16 +62,15 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `dataset:ADRS private task`
+- `py:numpy`
+- `py:psutil`
+- `file:data/llm_tools/telemetry/evaluation_data.csv`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2602.23413 (Systems results and task-definition appendix)
 - repository: https://github.com/skydiscover-ai/skydiscover/tree/0d932b690670a7e544388ad362e9876c8bd256a0
 - paper: https://arxiv.org/pdf/2602.20133 (Systems results and task-definition appendix)
-
-## Limitations
-
-- Appendix task prose conflicts with standard circle-packing/Heilbronn definitions; the pinned evaluator is authoritative. Telemetry-repair directory is not present at inspected commit.
-- Telemetry Repair is explicitly marked Coming soon in pinned benchmarks/ADRS/README.md; no implementation released.
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.
+- repository: https://github.com/UCB-ADRS/ADRS/tree/259292f3ad1924c03be684996dbd83e6891c3e39/openevolve/examples/ADRS/telemetry_repair (evaluator.py (evaluate_legacy, apply_test_perturbations, scoring functions) and initial_program_reference_selfcontained.py)
+- benchmark: https://github.com/UCB-ADRS/ADRS/blob/259292f3ad1924c03be684996dbd83e6891c3e39/openevolve/examples/ADRS/telemetry_repair/ref_data/evaluation_data.csv (40 Abilene telemetry rows (787,281 bytes))
+- repository: https://github.com/mert-cemri/autoevolve/tree/main/examples_ADRS/telemetry_repair (identical copy of evaluator.py and evaluation_data.csv)

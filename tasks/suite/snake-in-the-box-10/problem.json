@@ -1,0 +1,100 @@
+{
+  "id": "snake-in-the-box-10",
+  "name": "Snake-in-the-box in the 10-cube",
+  "description": "Construct a snake that is as long as possible in the hypercube Q_10: the graph whose vertices are the integers 0 to 2^10 - 1, two of them adjacent when they differ in exactly one bit. A snake is an induced path: consecutive vertices of the path are adjacent, and no two vertices that are not consecutive on it are adjacent.",
+  "protocol": "recreated_verified",
+  "family": "snake",
+  "direction": "maximize",
+  "contract": "construct() -> list of at least two distinct integers in [0, 2**10): the vertices of the path in order. Consecutive vertices must differ in exactly one bit, and any two non-consecutive ones in at least two bits. Score: number of edges of the path (the number of vertices minus one), maximized.",
+  "parameters": {
+    "n": 10,
+    "best_known": 379
+  },
+  "requires": [
+    "py:numpy"
+  ],
+  "timeout": 300,
+  "notes": [
+    "The longest snake known has 379 edges: T. Ace's leaderboard (https://www.minortriad.com/snake/, read 2026-11-15) shows a snake of that length, and this task's verifier replayed it. arXiv:2607.15270 reported the records of July 2026.",
+    "No data files.",
+    "The longest-induced-path problem in the 10-dimensional hypercube, with the longest snake on T. Ace's leaderboard as the reference.",
+    "The records come from searches tuned for this problem (cube-surgery annealing, beam search with local rerouting).",
+    "The records move: in 2026 the leaderboard recorded improvements in every dimension of this family, several within weeks of each other. The record is the state on the day of the record validation and will fall behind."
+  ],
+  "labels": {
+    "scientific_contribution": "open_problem",
+    "science_tier": 1,
+    "artifact": "construction",
+    "domain": "mathematics",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "theoretical_computer_science",
+    "secondary_area": "mathematics",
+    "areas": [
+      "theoretical_computer_science",
+      "mathematics"
+    ],
+    "important_to_science": true
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "Snake-in-the-box in the 10-cube",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "maximize",
+  "sources": [
+    {
+      "url": "https://www.minortriad.com/snake/",
+      "type": "benchmark",
+      "locator": "T. Ace, Snake-in-the-Box lower bounds: the longest snake listed for dimension 10, with a sample snake"
+    },
+    {
+      "url": "https://arxiv.org/abs/2607.15270",
+      "type": "paper",
+      "locator": "A Census of New Snake-in-the-Box Records (the records of July 2026, source of the first version of this task)"
+    },
+    {
+      "url": "https://arxiv.org/html/2607.15270",
+      "type": "paper",
+      "locator": "Table 1 (lower bounds for dimensions 9 to 13: 191, 379, 746, 1476, 2924) and Definition 1: snake = induced path, length = number of edges."
+    }
+  ],
+  "limitations": [
+    "The records come from searches tuned for this problem (cube-surgery annealing, beam search with local rerouting).",
+    "The records move: in 2026 the leaderboard recorded improvements in every dimension of this family, several within weeks of each other. The record is the state on the day of the record validation and will fall behind.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://www.minortriad.com/snake/"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-15",
+    "reason": "Both papers have the longest induced path in the hypercube as their main objective; the 2026 paper set the records of July 2026 for dimensions 10 to 13 (others have lengthened those of dimensions 11 to 13 since), and the 2016 paper held the earlier bounds for dimensions 11 to 13; the verifier checks the induced-path property exactly.",
+    "scientific_problem": "Construct the longest induced path (snake) in the 10-dimensional hypercube Q_10, measured in edges.",
+    "importance_rationale": "The snake-in-the-box problem comes from coding theory (Kautz 1958, error-detecting unit-distance Gray codes) and is a standard test of combinatorial search; the maximum length is proven only up to dimension 8, so every longer snake in dimension 9 and above is a new lower bound.",
+    "papers": [
+      {
+        "title": "New Snake-in-the-Box Records via Snakepit Surgery and Learned Construction",
+        "url": "https://arxiv.org/abs/2607.15270",
+        "task_relation": "The task is the same problem in dimension 10 with an exact verifier counting edges; the paper's value for dimension 10 was the task's first reference; the reference is now the longest snake on the leaderboard that the paper cites, which is longer in dimensions 11 to 13.",
+        "primary_goal": "Find longer snakes (induced paths) in hypercubes of dimensions 9 to 13 with snakepit surgery and a learned constructor.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  }
+}

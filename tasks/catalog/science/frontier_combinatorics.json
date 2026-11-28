@@ -1,0 +1,1415 @@
+[
+ {
+  "id": "science-frontier-combinatorics-covering-design-24-7-3",
+  "name": "Covering design C(24,7,3)",
+  "description": "Choose as few 7-element blocks of 24 points as possible so that every 3-element subset lies in some block. The best known covering has 76 blocks (La Jolla Covering Repository) and the repository's lower bound is 69, so the covering number C(24,7,3) is open.",
+  "family": "science_frontier_combinatorics_covering_design",
+  "status": "ready",
+  "parameters": {
+   "v": 24,
+   "k": 7,
+   "t": 3,
+   "published": 76
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.5281/zenodo.10779736",
+    "type": "benchmark",
+    "locator": "La Jolla Covering Repository (D. Gordon), Zenodo version 1.2 (2026-04-24, CC BY 4.0): coverdata.json entry C(24,7,3) lists size 76, lower bound 69 and the improvement history; covers.json holds the 76-block covering submitted by Jan de Heer and Steve Muir on 2010-02-06."
+   },
+   {
+    "url": "https://doi.org/10.1002/jcd.3180030404",
+    "type": "paper",
+    "locator": "Gordon, Kuperberg and Patashnik (1995), New constructions for covering designs: covering numbers C(v,k,t), constructions and the tables the repository grew from."
+   },
+   {
+    "url": "https://coveringrepository.com",
+    "type": "benchmark",
+    "locator": "Successor repository that tracks improvements after the La Jolla freeze (March 2026); its latest-improvement listings showed no entry for these parameters on 2026-10-12."
+   }
+  ],
+  "limitations": [
+   "The La Jolla repository was frozen in March 2026; later improvements are tracked at coveringrepository.com, whose latest-improvement listings were checked on 2026-10-12 without an entry for C(24,7,3), but whose full table could not be queried (HTTP 403), so a recent unlisted improvement cannot be excluded.",
+   "The lower bound 69 is the repository's; the evaluator reports the weaker Schoenheim bound for orientation only and does not certify optimality.",
+   "The greedy seed has 108 blocks.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 76,
+   "statement": "The best known (24,7,3) covering has 76 blocks, submitted by Jan de Heer and Steve Muir on 2010-02-06 using their own search programs ('Private Tools'); earlier records were 91 (the repository's first entry, from the 1995 tables of Gordon, Kuperberg and Patashnik), then 88, 82 and 79 (R. Belic, 1996-1998), 86 (a construction from a C(25,8,4) covering, 1997), 80 and 78 (R. Gourgi, 1997-1998) and 77 (A. Tampakis, 2008). The repository's lower bound is 69, so C(24,7,3) is open.",
+   "sources": [
+    {
+     "title": "La Jolla Covering Repository (Zenodo dataset, version 1.2)",
+     "url": "https://doi.org/10.5281/zenodo.10779736",
+     "authors": "D. M. Gordon",
+     "year": 2026
+    },
+    {
+     "title": "New constructions for covering designs",
+     "url": "https://doi.org/10.1002/jcd.3180030404",
+     "authors": "D. M. Gordon, G. Kuperberg, O. Patashnik",
+     "year": 1995
+    }
+   ],
+   "comparability": "Same object and objective: blocks of size 7 on 24 points covering every 3-subset, fewest blocks. The repository's 76-block covering, relabelled from points 1..24 to 0..23, scores 76 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ },
+ {
+  "id": "science-frontier-combinatorics-covering-design-19-7-4",
+  "name": "Covering design C(19,7,4)",
+  "description": "Choose as few 7-element blocks of 19 points as possible so that every 4-element subset lies in some block. The best known covering has 151 blocks (La Jolla Covering Repository) and the repository's lower bound is 131, so the covering number C(19,7,4) is open.",
+  "family": "science_frontier_combinatorics_covering_design",
+  "status": "ready",
+  "parameters": {
+   "v": 19,
+   "k": 7,
+   "t": 4,
+   "published": 151
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.5281/zenodo.10779736",
+    "type": "benchmark",
+    "locator": "La Jolla Covering Repository (D. Gordon), Zenodo version 1.2 (2026-04-24, CC BY 4.0): coverdata.json entry C(19,7,4) lists size 151, lower bound 131 and the improvement history; covers.json holds the 151-block covering submitted by Marco Meoli on 2016-05-02."
+   },
+   {
+    "url": "https://doi.org/10.1002/jcd.3180030404",
+    "type": "paper",
+    "locator": "Gordon, Kuperberg and Patashnik (1995), New constructions for covering designs: covering numbers C(v,k,t), constructions and the tables the repository grew from."
+   },
+   {
+    "url": "https://coveringrepository.com",
+    "type": "benchmark",
+    "locator": "Successor repository that tracks improvements after the La Jolla freeze (March 2026); its latest-improvement listings showed no entry for these parameters on 2026-10-12."
+   }
+  ],
+  "limitations": [
+   "The La Jolla repository was frozen in March 2026; later improvements are tracked at coveringrepository.com, whose latest-improvement listings were checked on 2026-10-12 without an entry for C(19,7,4), but whose full table could not be queried (HTTP 403), so a recent unlisted improvement cannot be excluded.",
+   "The lower bound 131 is the repository's; the evaluator reports the weaker Schoenheim bound for orientation only and does not certify optimality.",
+   "The greedy seed has 217 blocks.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 151,
+   "statement": "The best known (19,7,4) covering has 151 blocks, submitted by Marco Meoli on 2016-05-02 using his own search programs; earlier records were 187 (the repository's first entry, from the 1995 tables of Gordon, Kuperberg and Patashnik), then 171 and 168 (hill climbing and dynamic programming, 1997), 167 (D. Pree and R. Belic, 1997), 153 (J. de Heer, 2001) and 152 (C. Dai, B. Li and M. Toulouse, 2006). The repository's lower bound is 131, so C(19,7,4) is open.",
+   "sources": [
+    {
+     "title": "La Jolla Covering Repository (Zenodo dataset, version 1.2)",
+     "url": "https://doi.org/10.5281/zenodo.10779736",
+     "authors": "D. M. Gordon",
+     "year": 2026
+    },
+    {
+     "title": "New constructions for covering designs",
+     "url": "https://doi.org/10.1002/jcd.3180030404",
+     "authors": "D. M. Gordon, G. Kuperberg, O. Patashnik",
+     "year": 1995
+    }
+   ],
+   "comparability": "Same object and objective: blocks of size 7 on 19 points covering every 4-subset, fewest blocks. The repository's 151-block covering, relabelled from points 1..19 to 0..18, scores 151 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ },
+ {
+  "id": "science-frontier-combinatorics-covering-design-19-8-5",
+  "name": "Covering design C(19,8,5)",
+  "description": "Choose as few 8-element blocks of 19 points as possible so that every 5-element subset lies in some block. The best known covering has 335 blocks (La Jolla Covering Repository) and the repository's lower bound is 264, so the covering number C(19,8,5) is open.",
+  "family": "science_frontier_combinatorics_covering_design",
+  "status": "ready",
+  "parameters": {
+   "v": 19,
+   "k": 8,
+   "t": 5,
+   "published": 335
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.5281/zenodo.10779736",
+    "type": "benchmark",
+    "locator": "La Jolla Covering Repository (D. Gordon), Zenodo version 1.2 (2026-04-24, CC BY 4.0): coverdata.json entry C(19,8,5) lists size 335, lower bound 264 and the improvement history; covers.json holds the 335-block covering submitted by Marco Meoli on 2015-10-31."
+   },
+   {
+    "url": "https://doi.org/10.1002/jcd.3180030404",
+    "type": "paper",
+    "locator": "Gordon, Kuperberg and Patashnik (1995), New constructions for covering designs: covering numbers C(v,k,t), constructions and the tables the repository grew from."
+   },
+   {
+    "url": "https://coveringrepository.com",
+    "type": "benchmark",
+    "locator": "Successor repository that tracks improvements after the La Jolla freeze (March 2026); its latest-improvement listings showed no entry for these parameters on 2026-10-12."
+   }
+  ],
+  "limitations": [
+   "The La Jolla repository was frozen in March 2026; later improvements are tracked at coveringrepository.com, whose latest-improvement listings were checked on 2026-10-12 without an entry for C(19,8,5), but whose full table could not be queried (HTTP 403), so a recent unlisted improvement cannot be excluded.",
+   "The lower bound 264 is the repository's; the evaluator reports the weaker Schoenheim bound for orientation only and does not certify optimality.",
+   "The greedy seed has 480 blocks.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 335,
+   "statement": "The best known (19,8,5) covering has 335 blocks, submitted by Marco Meoli on 2015-10-31 using his own search programs ('private tools'); earlier records were 419 (the repository's first entry, from the 1995 tables of Gordon, Kuperberg and Patashnik), then a sequence of improvements by R. Belic, D. Pree, F. Rodriguez Martin, J. de Heer, S. Muir and dynamic-programming constructions down to 346 (J. de Heer and S. Muir, 2008). The repository's lower bound is 264, so C(19,8,5) is open.",
+   "sources": [
+    {
+     "title": "La Jolla Covering Repository (Zenodo dataset, version 1.2)",
+     "url": "https://doi.org/10.5281/zenodo.10779736",
+     "authors": "D. M. Gordon",
+     "year": 2026
+    },
+    {
+     "title": "New constructions for covering designs",
+     "url": "https://doi.org/10.1002/jcd.3180030404",
+     "authors": "D. M. Gordon, G. Kuperberg, O. Patashnik",
+     "year": 1995
+    }
+   ],
+   "comparability": "Same object and objective: blocks of size 8 on 19 points covering every 5-subset, fewest blocks. The repository's 335-block covering, relabelled from points 1..19 to 0..18, scores 335 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ },
+ {
+  "id": "science-frontier-combinatorics-qap-tai256c",
+  "name": "Quadratic assignment: QAPLIB tai256c",
+  "description": "Assign the 256 facilities of the QAPLIB instance tai256c to 256 locations so that the sum of flow times distance is as small as possible. The best known assignment costs 44,759,294 and no optimality proof exists.",
+  "family": "science_frontier_combinatorics_qap",
+  "status": "ready",
+  "parameters": {
+   "instance": "tai256c",
+   "n": 256,
+   "sha256": "e7d72083d49f4768e5a15a02ee33fde038a794e7407e5e485c3c110f1509fafd",
+   "published": 44759294
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.7488/ds/3428",
+    "type": "benchmark",
+    "locator": "QAPLIB deposit (CC BY 4.0): tai256c.dat in qapdata.tar.gz (SHA-256 e7d72083d49f4768...) and the best known permutation tai256c.sln in qapsoln.tar.gz; the README table lists 44759294 for tai256c."
+   },
+   {
+    "url": "https://doi.org/10.1023/A:1008293323270",
+    "type": "paper",
+    "locator": "Burkard, Karisch and Rendl (1997), QAPLIB - a quadratic assignment problem library: instance definitions and conventions."
+   },
+   {
+    "url": "https://doi.org/10.2307/1907742",
+    "type": "paper",
+    "locator": "Koopmans and Beckmann (1957), Assignment problems and the location of economic activities: the quadratic assignment model."
+   },
+   {
+    "url": "https://doi.org/10.1007/s11590-024-02157-2",
+    "type": "paper",
+    "locator": "K. Fujii, S. Kim, M. Kojima, H. D. Mittelmann, Y. Shinano (2024), An exceptionally difficult binary quadratic optimization problem with symmetry: a challenge for the largest unsolved QAP instance Tai256c."
+   }
+  ],
+  "limitations": [
+   "Branch-and-bound lower bounds are within about 1.25% (Fujii, Kim, Kojima, Mittelmann and Shinano, 2024); QAPLIB's bound is 43,849,646.",
+   "The instance file is fetched by scripts/prepare_frontier_combinatorics.py and pinned by SHA-256; the evaluator refuses a file with another digest.",
+   "The rank-matching seed costs 98,685,678.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "method",
+   "artifact": "construction",
+   "domain": "combinatorial_optimisation",
+   "area": "optimization",
+   "data": "public_benchmark",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "QAPLIB instance tai256c.dat from the Edinburgh DataShare deposit (CC BY 4.0), fetched and SHA-256 checked by scripts/prepare_frontier_combinatorics.py into data/frontier_combinatorics/ of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 44759294,
+   "statement": "The best known solution of Taillard's grey-density instance tai256c (the largest unsolved QAPLIB instance) costs 44,759,294; it was found by an ant-colony algorithm (QAPLIB code ANT, T. Stuetzle's MAX-MIN ant system, 1997) and is recorded in QAPLIB. Branch-and-bound lower bounds are within about 1.25% (Fujii, Kim, Kojima, Mittelmann and Shinano, 2024); QAPLIB's bound is 43,849,646. No later improvement was found in the literature reviewed on 2026-10-12.",
+   "sources": [
+    {
+     "title": "QAPLIB - A Quadratic Assignment Problem Library - Problem instances and solutions (Edinburgh DataShare)",
+     "url": "https://doi.org/10.7488/ds/3428",
+     "authors": "R. E. Burkard, E. Cela, S. E. Karisch, F. Rendl, M. Anjos, P. Hahn",
+     "year": 2022
+    },
+    {
+     "title": "An exceptionally difficult binary quadratic optimization problem with symmetry: a challenge for the largest unsolved QAP instance Tai256c",
+     "url": "https://doi.org/10.1007/s11590-024-02157-2",
+     "authors": "K. Fujii, S. Kim, M. Kojima, H. D. Mittelmann, Y. Shinano",
+     "year": 2024
+    }
+   ],
+   "comparability": "Same instance file (SHA-256 checked) and the QAPLIB objective sum_ij a_ij b_p(i)p(j). The QAPLIB solution permutation scores 44,759,294 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  },
+  "requires": [
+   "file:data/frontier_combinatorics/tai256c.dat"
+  ]
+ },
+ {
+  "id": "science-frontier-combinatorics-qap-tho150",
+  "name": "Quadratic assignment: QAPLIB tho150",
+  "description": "Assign the 150 facilities of the QAPLIB instance tho150 to 150 locations so that the sum of flow times distance is as small as possible. The best known assignment costs 8,133,398 and no optimality proof exists.",
+  "family": "science_frontier_combinatorics_qap",
+  "status": "ready",
+  "parameters": {
+   "instance": "tho150",
+   "n": 150,
+   "sha256": "40136bc14aa404f92e7928c386e93218cf64437bd9c15f95830222701728690f",
+   "published": 8133398
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.7488/ds/3428",
+    "type": "benchmark",
+    "locator": "QAPLIB deposit (CC BY 4.0): tho150.dat in qapdata.tar.gz (SHA-256 40136bc14aa404f9...) and the best known permutation tho150.sln in qapsoln.tar.gz; the README table lists 8133398 for tho150."
+   },
+   {
+    "url": "https://doi.org/10.1023/A:1008293323270",
+    "type": "paper",
+    "locator": "Burkard, Karisch and Rendl (1997), QAPLIB - a quadratic assignment problem library: instance definitions and conventions."
+   },
+   {
+    "url": "https://doi.org/10.2307/1907742",
+    "type": "paper",
+    "locator": "Koopmans and Beckmann (1957), Assignment problems and the location of economic activities: the quadratic assignment model."
+   },
+   {
+    "url": "https://doi.org/10.15388/informatica.2003.037",
+    "type": "paper",
+    "locator": "A. Misevicius (2003), A modified simulated annealing algorithm for the quadratic assignment problem."
+   }
+  ],
+  "limitations": [
+   "QAPLIB lists the triangle-decomposition lower bound 7,620,628 (gap 6.30%).",
+   "The instance file is fetched by scripts/prepare_frontier_combinatorics.py and pinned by SHA-256; the evaluator refuses a file with another digest.",
+   "The rank-matching seed costs 9,527,466.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "method",
+   "artifact": "construction",
+   "domain": "combinatorial_optimisation",
+   "area": "optimization",
+   "data": "public_benchmark",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "QAPLIB instance tho150.dat from the Edinburgh DataShare deposit (CC BY 4.0), fetched and SHA-256 checked by scripts/prepare_frontier_combinatorics.py into data/frontier_combinatorics/ of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 8133398,
+   "statement": "The best known solution of Thonemann and Boelte's instance tho150 with rectangular distances costs 8,133,398; it was found by simulated annealing (QAPLIB code SIM-3, A. Misevicius, Informatica 2003) and is recorded in QAPLIB. QAPLIB lists the triangle-decomposition lower bound 7,620,628 (gap 6.30%). No later improvement was found in the literature reviewed on 2026-10-12.",
+   "sources": [
+    {
+     "title": "QAPLIB - A Quadratic Assignment Problem Library - Problem instances and solutions (Edinburgh DataShare)",
+     "url": "https://doi.org/10.7488/ds/3428",
+     "authors": "R. E. Burkard, E. Cela, S. E. Karisch, F. Rendl, M. Anjos, P. Hahn",
+     "year": 2022
+    },
+    {
+     "title": "A modified simulated annealing algorithm for the quadratic assignment problem",
+     "url": "https://doi.org/10.15388/informatica.2003.037",
+     "authors": "A. Misevicius",
+     "year": 2003
+    }
+   ],
+   "comparability": "Same instance file (SHA-256 checked) and the QAPLIB objective sum_ij a_ij b_p(i)p(j). The QAPLIB solution permutation scores 8,133,398 (valid) with this evaluator after inverting it: the published file lists the permutation in the opposite orientation, which reads as 9,722,822.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  },
+  "requires": [
+   "file:data/frontier_combinatorics/tho150.dat"
+  ]
+ },
+ {
+  "id": "science-frontier-combinatorics-qap-wil100",
+  "name": "Quadratic assignment: QAPLIB wil100",
+  "description": "Assign the 100 facilities of the QAPLIB instance wil100 to 100 locations so that the sum of flow times distance is as small as possible. The best known assignment costs 273,038 and no optimality proof exists.",
+  "family": "science_frontier_combinatorics_qap",
+  "status": "ready",
+  "parameters": {
+   "instance": "wil100",
+   "n": 100,
+   "sha256": "9477abe6459def2fc664ee49f612a592bba7b59c2a3027c4a0382d068c6aa4ca",
+   "published": 273038
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.7488/ds/3428",
+    "type": "benchmark",
+    "locator": "QAPLIB deposit (CC BY 4.0): wil100.dat in qapdata.tar.gz (SHA-256 9477abe6459def2f...) and the best known permutation wil100.sln in qapsoln.tar.gz; the README table lists 273038 for wil100."
+   },
+   {
+    "url": "https://doi.org/10.1023/A:1008293323270",
+    "type": "paper",
+    "locator": "Burkard, Karisch and Rendl (1997), QAPLIB - a quadratic assignment problem library: instance definitions and conventions."
+   },
+   {
+    "url": "https://doi.org/10.2307/1907742",
+    "type": "paper",
+    "locator": "Koopmans and Beckmann (1957), Assignment problems and the location of economic activities: the quadratic assignment model."
+   },
+   {
+    "url": "https://doi.org/10.1090/dimacs/016/08",
+    "type": "paper",
+    "locator": "C. Fleurent, J. A. Ferland (1994), Genetic hybrids for the quadratic assignment problem."
+   }
+  ],
+  "limitations": [
+   "QAPLIB lists the semidefinite lower bound 264,442 (gap 3.15%).",
+   "The instance file is fetched by scripts/prepare_frontier_combinatorics.py and pinned by SHA-256; the evaluator refuses a file with another digest.",
+   "The rank-matching seed costs 293,152.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "method",
+   "artifact": "construction",
+   "domain": "combinatorial_optimisation",
+   "area": "optimization",
+   "data": "public_benchmark",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "QAPLIB instance wil100.dat from the Edinburgh DataShare deposit (CC BY 4.0), fetched and SHA-256 checked by scripts/prepare_frontier_combinatorics.py into data/frontier_combinatorics/ of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 273038,
+   "statement": "The best known solution of Wilhelm and Ward's instance wil100 with rectangular distances costs 273,038; it was found by a genetic hybrid (QAPLIB code GEN, Fleurent and Ferland, 1994) and is recorded in QAPLIB. QAPLIB lists the semidefinite lower bound 264,442 (gap 3.15%). No later improvement was found in the literature reviewed on 2026-10-12.",
+   "sources": [
+    {
+     "title": "QAPLIB - A Quadratic Assignment Problem Library - Problem instances and solutions (Edinburgh DataShare)",
+     "url": "https://doi.org/10.7488/ds/3428",
+     "authors": "R. E. Burkard, E. Cela, S. E. Karisch, F. Rendl, M. Anjos, P. Hahn",
+     "year": 2022
+    },
+    {
+     "title": "Genetic hybrids for the quadratic assignment problem",
+     "url": "https://doi.org/10.1090/dimacs/016/08",
+     "authors": "C. Fleurent, J. A. Ferland",
+     "year": 1994
+    }
+   ],
+   "comparability": "Same instance file (SHA-256 checked) and the QAPLIB objective sum_ij a_ij b_p(i)p(j). The QAPLIB solution permutation scores 273,038 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  },
+  "requires": [
+   "file:data/frontier_combinatorics/wil100.dat"
+  ]
+ },
+ {
+  "id": "science-frontier-combinatorics-football-pool-6",
+  "name": "Football pool problem for 6 matches: ternary covering code K_3(6,1)",
+  "description": "Choose as few words of length 6 over the alphabet {0,1,2} as possible so that every one of the 729 words differs from some chosen word in at most one position. The best known code has 73 words (van Laarhoven, Aarts, van Lint and Wille, 1989) and the best lower bound is 71.",
+  "family": "science_frontier_combinatorics_covering_code",
+  "status": "ready",
+  "parameters": {
+   "q": 3,
+   "n": 6,
+   "radius": 1,
+   "published": 73
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+    "type": "paper",
+    "locator": "van Laarhoven, Aarts, van Lint and Wille (1989): simulated-annealing codes giving K_3(6,1) <= 73, K_3(7,1) <= 186 and K_3(8,1) <= 486, printed in the paper."
+   },
+   {
+    "url": "https://doi.org/10.1287/ijoc.1090.0334",
+    "type": "paper",
+    "locator": "J. Linderoth, F. Margot, D. Thain (2009), Improving bounds on the football pool problem by integer programming and high-throughput computing: lower bound K_3(6,1) >= 71."
+   },
+   {
+    "url": "https://github.com/florath/covering-codes-lean/blob/460df105545c2d6b04ba71f29de6b56dbda92825/CoveringCodes/Database/Sources/VanLaarhoven1989.lean",
+    "type": "repository",
+    "locator": "Kernel-checked Lean transcription (BSD-3-Clause) of the three published codes; the post-Keri bound table of the same repository lists the current bounds."
+   },
+   {
+    "url": "https://old.sztaki.hu/~keri/codes/index.htm",
+    "type": "benchmark",
+    "locator": "G. Keri's tables of bounds on covering codes: K_3(6,1) between the lower bound of its time and 73."
+   }
+  ],
+  "limitations": [
+   "Covering radius 1 over the ternary alphabet only; other alphabets and radii are separate problems.",
+   "The tetracode-based seed has 81 words.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 73,
+   "statement": "K_3(6,1) <= 73 by the simulated-annealing code of van Laarhoven, Aarts, van Lint and Wille (1989), still the best known in G. Keri's tables and in the 2026 post-Keri table of the covering-codes-lean project; the best lower bound is 71 (J. Linderoth, F. Margot, D. Thain, 2009).",
+   "sources": [
+    {
+     "title": "New upper bounds for the football pool problem for 6, 7, and 8 matches",
+     "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+     "authors": "P. J. M. van Laarhoven, E. H. L. Aarts, J. H. van Lint, L. T. Wille",
+     "year": 1989
+    },
+    {
+     "title": "Improving bounds on the football pool problem by integer programming and high-throughput computing",
+     "url": "https://doi.org/10.1287/ijoc.1090.0334",
+     "authors": "J. Linderoth, F. Margot, D. Thain",
+     "year": 2009
+    },
+    {
+     "title": "Tables for bounds on covering codes",
+     "url": "https://old.sztaki.hu/~keri/codes/index.htm",
+     "authors": "G. Keri",
+     "year": 2011
+    }
+   ],
+   "comparability": "Same object and objective: ternary words of length 6, covering radius 1, fewest codewords. The published code, decoded from the Lean transcription, scores 73 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ },
+ {
+  "id": "science-frontier-combinatorics-football-pool-7",
+  "name": "Football pool problem for 7 matches: ternary covering code K_3(7,1)",
+  "description": "Choose as few words of length 7 over the alphabet {0,1,2} as possible so that every one of the 2187 words differs from some chosen word in at most one position. The best known code has 186 words (van Laarhoven, Aarts, van Lint and Wille, 1989) and the best lower bound is 156.",
+  "family": "science_frontier_combinatorics_covering_code",
+  "status": "ready",
+  "parameters": {
+   "q": 3,
+   "n": 7,
+   "radius": 1,
+   "published": 186
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+    "type": "paper",
+    "locator": "van Laarhoven, Aarts, van Lint and Wille (1989): simulated-annealing codes giving K_3(6,1) <= 73, K_3(7,1) <= 186 and K_3(8,1) <= 486, printed in the paper."
+   },
+   {
+    "url": "https://doi.org/10.37236/945",
+    "type": "paper",
+    "locator": "W. Haas (2007), Lower bounds for the football pool problem for 7 and 8 matches: lower bound K_3(7,1) >= 156."
+   },
+   {
+    "url": "https://github.com/florath/covering-codes-lean/blob/460df105545c2d6b04ba71f29de6b56dbda92825/CoveringCodes/Database/Sources/VanLaarhoven1989.lean",
+    "type": "repository",
+    "locator": "Kernel-checked Lean transcription (BSD-3-Clause) of the three published codes; the post-Keri bound table of the same repository lists the current bounds."
+   },
+   {
+    "url": "https://old.sztaki.hu/~keri/codes/index.htm",
+    "type": "benchmark",
+    "locator": "G. Keri's tables of bounds on covering codes: K_3(7,1) between the lower bound of its time and 186."
+   }
+  ],
+  "limitations": [
+   "Covering radius 1 over the ternary alphabet only; other alphabets and radii are separate problems.",
+   "The tetracode-based seed has 243 words.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 186,
+   "statement": "K_3(7,1) <= 186 by the simulated-annealing code of van Laarhoven, Aarts, van Lint and Wille (1989), still the best known in G. Keri's tables and in the 2026 post-Keri table of the covering-codes-lean project; the best lower bound is 156 (W. Haas, 2007).",
+   "sources": [
+    {
+     "title": "New upper bounds for the football pool problem for 6, 7, and 8 matches",
+     "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+     "authors": "P. J. M. van Laarhoven, E. H. L. Aarts, J. H. van Lint, L. T. Wille",
+     "year": 1989
+    },
+    {
+     "title": "Lower bounds for the football pool problem for 7 and 8 matches",
+     "url": "https://doi.org/10.37236/945",
+     "authors": "W. Haas",
+     "year": 2007
+    },
+    {
+     "title": "Tables for bounds on covering codes",
+     "url": "https://old.sztaki.hu/~keri/codes/index.htm",
+     "authors": "G. Keri",
+     "year": 2011
+    }
+   ],
+   "comparability": "Same object and objective: ternary words of length 7, covering radius 1, fewest codewords. The published code, decoded from the Lean transcription, scores 186 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ },
+ {
+  "id": "science-frontier-combinatorics-football-pool-8",
+  "name": "Football pool problem for 8 matches: ternary covering code K_3(8,1)",
+  "description": "Choose as few words of length 8 over the alphabet {0,1,2} as possible so that every one of the 6561 words differs from some chosen word in at most one position. The best known code has 486 words (van Laarhoven, Aarts, van Lint and Wille, 1989) and the best lower bound is 403.",
+  "family": "science_frontier_combinatorics_covering_code",
+  "status": "ready",
+  "parameters": {
+   "q": 3,
+   "n": 8,
+   "radius": 1,
+   "published": 486
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+    "type": "paper",
+    "locator": "van Laarhoven, Aarts, van Lint and Wille (1989): simulated-annealing codes giving K_3(6,1) <= 73, K_3(7,1) <= 186 and K_3(8,1) <= 486, printed in the paper."
+   },
+   {
+    "url": "https://arxiv.org/abs/2504.01932",
+    "type": "paper",
+    "locator": "D. Gijswijt, S. Polak (2025), Semidefinite lower bounds for covering codes: lower bound K_3(8,1) >= 403."
+   },
+   {
+    "url": "https://github.com/florath/covering-codes-lean/blob/460df105545c2d6b04ba71f29de6b56dbda92825/CoveringCodes/Database/Sources/VanLaarhoven1989.lean",
+    "type": "repository",
+    "locator": "Kernel-checked Lean transcription (BSD-3-Clause) of the three published codes; the post-Keri bound table of the same repository lists the current bounds."
+   },
+   {
+    "url": "https://old.sztaki.hu/~keri/codes/index.htm",
+    "type": "benchmark",
+    "locator": "G. Keri's tables of bounds on covering codes: K_3(8,1) between the lower bound of its time and 486."
+   }
+  ],
+  "limitations": [
+   "Covering radius 1 over the ternary alphabet only; other alphabets and radii are separate problems.",
+   "The tetracode-based seed has 729 words.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 486,
+   "statement": "K_3(8,1) <= 486 by the simulated-annealing code of van Laarhoven, Aarts, van Lint and Wille (1989), still the best known in G. Keri's tables and in the 2026 post-Keri table of the covering-codes-lean project; the best lower bound is 403 (D. Gijswijt, S. Polak, 2025).",
+   "sources": [
+    {
+     "title": "New upper bounds for the football pool problem for 6, 7, and 8 matches",
+     "url": "https://doi.org/10.1016/0097-3165(89)90036-8",
+     "authors": "P. J. M. van Laarhoven, E. H. L. Aarts, J. H. van Lint, L. T. Wille",
+     "year": 1989
+    },
+    {
+     "title": "Semidefinite lower bounds for covering codes",
+     "url": "https://arxiv.org/abs/2504.01932",
+     "authors": "D. Gijswijt, S. Polak",
+     "year": 2025
+    },
+    {
+     "title": "Tables for bounds on covering codes",
+     "url": "https://old.sztaki.hu/~keri/codes/index.htm",
+     "authors": "G. Keri",
+     "year": 2011
+    }
+   ],
+   "comparability": "Same object and objective: ternary words of length 8, covering radius 1, fewest codewords. The published code, decoded from the Lean transcription, scores 486 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ },
+ {
+  "id": "science-frontier-combinatorics-superpermutation-7",
+  "name": "Shortest superpermutation on seven symbols",
+  "description": "Write the shortest word over the symbols 1 to 7 that contains every one of the 5040 permutations of 1..7 as seven consecutive symbols. The shortest known word has 5905 symbols (A. Teodorescu, August 2026) and the best published lower bound is 5884.",
+  "family": "science_frontier_combinatorics_superpermutation",
+  "status": "ready",
+  "parameters": {
+   "n": 7,
+   "published": 5905
+  },
+  "sources": [
+   {
+    "url": "https://groups.google.com/g/superpermutators/c/D5sKkV2jBuc",
+    "type": "archive",
+    "locator": "Superpermutators mailing list, 18 August 2026: A. Teodorescu posts four length-5905 superpermutations for n = 7 (two distinct up to symmetry) found with G. Egan's PermutationChains.c and KernelFinder.c; A. Balint and S. Street confirm that they contain all 5040 permutations."
+   },
+   {
+    "url": "https://www.gregegan.net/SCIENCE/Superpermutations/Superpermutations.html",
+    "type": "archive",
+    "locator": "G. Egan's page: the previous record 5906 (Egan and Houston, 27 February 2019), its word, and the search programs."
+   },
+   {
+    "url": "https://arxiv.org/abs/1408.5108",
+    "type": "paper",
+    "locator": "R. Houston (2014), Tackling the minimal superpermutation problem."
+   },
+   {
+    "url": "https://oeis.org/A180632/a180632.pdf",
+    "type": "paper",
+    "locator": "Anonymous 4chan poster, R. Houston, J. Pantone and V. Vatter (2018): lower bound n! + (n-1)! + (n-2)! + n - 3, which is 5884 for n = 7."
+   },
+   {
+    "url": "https://oeis.org/A180632",
+    "type": "benchmark",
+    "locator": "OEIS A180632 (minimal superpermutation lengths): a(7) <= 5906 recorded in 2019."
+   }
+  ],
+  "limitations": [
+   "The 5905 record was announced on a mailing list and checked there by several members; it has no peer-reviewed publication yet.",
+   "A lower bound of 5898 was also claimed on the same list in August 2026 without review; the published lower bound remains 5884.",
+   "The recursive seed has length 5913 = 1! + 2! + ... + 7!.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 5905,
+   "statement": "The shortest known superpermutation on 7 symbols has length 5905, posted by A. Teodorescu on 18 August 2026 and found with G. Egan's PermutationChains.c over millions of kernels from KernelFinder.c; it improved 5906 (G. Egan and R. Houston, 2019) and 5907 (B. Coanda, 2019). The best published lower bound is 5884 (Houston, Pantone and Vatter, 2018).",
+   "sources": [
+    {
+     "title": "n=7 superpermutation of length 5905 (superpermutators mailing list)",
+     "url": "https://groups.google.com/g/superpermutators/c/D5sKkV2jBuc",
+     "authors": "A. Teodorescu",
+     "year": 2026
+    },
+    {
+     "title": "Superpermutations",
+     "url": "https://www.gregegan.net/SCIENCE/Superpermutations/Superpermutations.html",
+     "authors": "G. Egan",
+     "year": 2019
+    },
+    {
+     "title": "A lower bound on the length of the shortest superpattern",
+     "url": "https://oeis.org/A180632/a180632.pdf",
+     "authors": "Anonymous 4chan poster, R. Houston, J. Pantone, V. Vatter",
+     "year": 2018
+    }
+   ],
+   "comparability": "Same object and objective: a word over 1..7 containing all 5040 permutations as contiguous blocks, shortest length. The posted word (first attachment) scores 5905 (valid) with this evaluator; Egan's 2019 word scores 5906.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ },
+ {
+  "id": "science-frontier-combinatorics-cage-4-10",
+  "name": "Small 4-regular graph of girth 10 (cage problem n(4,10))",
+  "description": "Construct a 4-regular graph with no cycle shorter than 10 on as few vertices as possible. The smallest known such graph has 320 vertices (Exoo, Goedgebeur, Jooken, Stubbe and Van den Eede, 2026) and the best lower bound is 243.",
+  "family": "science_frontier_combinatorics_cage",
+  "status": "ready",
+  "parameters": {
+   "k": 4,
+   "g": 10,
+   "max_vertices": 50000,
+   "published": 320
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.37236/14834",
+    "type": "paper",
+    "locator": "Exoo, Goedgebeur, Jooken, Stubbe and Van den Eede, Electron. J. Combin. 33(3) (2026) P3.48 (arXiv:2511.07247), Table 2: n(4,10) >= 243, previous upper bound 384, new upper bound 320; Figure 4 lists the base graph and the group SmallGroup(40,10) = C5 x D4 of the lift."
+   },
+   {
+    "url": "https://github.com/AGT-Kulak/smallRegGirthGraphs/tree/c2a1a4e334cd9f4dd31247f1ebfb6e18c004e4bc/genLifts/data/graphs/cage",
+    "type": "repository",
+    "locator": "Record graph n320_k4_g10.g6 in graph6 format (GPL-3.0)."
+   },
+   {
+    "url": "https://doi.org/10.37236/37",
+    "type": "paper",
+    "locator": "Exoo and Jajcay, Dynamic cage survey (Electron. J. Combin. DS16): definitions, Moore bound and record tables."
+   }
+  ],
+  "limitations": [
+   "The evaluator accepts at most 50,000 vertices; the explicit Lazebnik-Ustimenko-Woldar seed has 512 vertices.",
+   "Connectivity is not required; a disconnected graph only has more vertices than its components.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 320,
+   "statement": "The smallest known 4-regular graph of girth 10 has 320 vertices (Exoo, Goedgebeur, Jooken, Stubbe and Van den Eede, 2026), found by the authors' computer search over graph lifts with voltage group SmallGroup(40,10) = C5 x D4; it improved 384 (the Exoo-Jajcay dynamic cage survey). The best lower bound is 243, so n(4,10) is open.",
+   "sources": [
+    {
+     "title": "New small regular graphs of given girth: the cage problem and beyond",
+     "url": "https://doi.org/10.37236/14834",
+     "authors": "G. Exoo, J. Goedgebeur, J. Jooken, L. Stubbe, T. Van den Eede",
+     "year": 2026
+    },
+    {
+     "title": "Dynamic cage survey",
+     "url": "https://doi.org/10.37236/37",
+     "authors": "G. Exoo, R. Jajcay",
+     "year": 2013
+    }
+   ],
+   "comparability": "Same object and objective: a simple 4-regular graph of girth at least 10, fewest vertices. The published graph6 file decodes to 320 vertices and scores 320 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ },
+ {
+  "id": "science-frontier-combinatorics-cage-3-16",
+  "name": "Small 3-regular graph of girth 16 (cage problem n(3,16))",
+  "description": "Construct a 3-regular graph with no cycle shorter than 16 on as few vertices as possible. The smallest known such graph has 936 vertices (Exoo, Goedgebeur, Jooken, Stubbe and Van den Eede, 2026) and the best lower bound is 512.",
+  "family": "science_frontier_combinatorics_cage",
+  "status": "ready",
+  "parameters": {
+   "k": 3,
+   "g": 16,
+   "max_vertices": 50000,
+   "published": 936
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.37236/14834",
+    "type": "paper",
+    "locator": "Exoo, Goedgebeur, Jooken, Stubbe and Van den Eede, Electron. J. Combin. 33(3) (2026) P3.48 (arXiv:2511.07247), Table 2: n(3,16) >= 512, previous upper bound 960, new upper bound 936; Figure 4 lists the base graph and the group SmallGroup(117,1) = C13 semidirect C9 of the lift."
+   },
+   {
+    "url": "https://github.com/AGT-Kulak/smallRegGirthGraphs/tree/c2a1a4e334cd9f4dd31247f1ebfb6e18c004e4bc/genLifts/data/graphs/cage",
+    "type": "repository",
+    "locator": "Record graph n936_k3_g16.g6 in graph6 format (GPL-3.0)."
+   },
+   {
+    "url": "https://doi.org/10.37236/37",
+    "type": "paper",
+    "locator": "Exoo and Jajcay, Dynamic cage survey (Electron. J. Combin. DS16): definitions, Moore bound and record tables."
+   }
+  ],
+  "limitations": [
+   "The evaluator accepts at most 50,000 vertices; the explicit Lazebnik-Ustimenko-Woldar seed has 39366 vertices.",
+   "Connectivity is not required; a disconnected graph only has more vertices than its components.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 936,
+   "statement": "The smallest known 3-regular graph of girth 16 has 936 vertices (Exoo, Goedgebeur, Jooken, Stubbe and Van den Eede, 2026), found by the authors' computer search over graph lifts with voltage group SmallGroup(117,1) = C13 semidirect C9; it improved 960 (G. Exoo's 2004 voltage-graph construction). The best lower bound is 512, so n(3,16) is open.",
+   "sources": [
+    {
+     "title": "New small regular graphs of given girth: the cage problem and beyond",
+     "url": "https://doi.org/10.37236/14834",
+     "authors": "G. Exoo, J. Goedgebeur, J. Jooken, L. Stubbe, T. Van den Eede",
+     "year": 2026
+    },
+    {
+     "title": "Dynamic cage survey",
+     "url": "https://doi.org/10.37236/37",
+     "authors": "G. Exoo, R. Jajcay",
+     "year": 2013
+    }
+   ],
+   "comparability": "Same object and objective: a simple 3-regular graph of girth at least 16, fewest vertices. The published graph6 file decodes to 936 vertices and scores 936 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ },
+ {
+  "id": "science-frontier-combinatorics-cage-5-9",
+  "name": "Small 5-regular graph of girth 9 (cage problem n(5,9))",
+  "description": "Construct a 5-regular graph with no cycle shorter than 9 on as few vertices as possible. The smallest known such graph has 1116 vertices (Exoo, Goedgebeur, Jooken, Stubbe and Van den Eede, 2026) and the best lower bound is 428.",
+  "family": "science_frontier_combinatorics_cage",
+  "status": "ready",
+  "parameters": {
+   "k": 5,
+   "g": 9,
+   "max_vertices": 50000,
+   "published": 1116
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.37236/14834",
+    "type": "paper",
+    "locator": "Exoo, Goedgebeur, Jooken, Stubbe and Van den Eede, Electron. J. Combin. 33(3) (2026) P3.48 (arXiv:2511.07247), Table 2: n(5,9) >= 428, previous upper bound 1152, new upper bound 1116; Figure 4 lists the base graph and the group SmallGroup(279,1) = C31 semidirect C9 of the lift."
+   },
+   {
+    "url": "https://github.com/AGT-Kulak/smallRegGirthGraphs/tree/c2a1a4e334cd9f4dd31247f1ebfb6e18c004e4bc/genLifts/data/graphs/cage",
+    "type": "repository",
+    "locator": "Record graph n1116_k5_g9.g6 in graph6 format (GPL-3.0)."
+   },
+   {
+    "url": "https://doi.org/10.37236/37",
+    "type": "paper",
+    "locator": "Exoo and Jajcay, Dynamic cage survey (Electron. J. Combin. DS16): definitions, Moore bound and record tables."
+   }
+  ],
+  "limitations": [
+   "The evaluator accepts at most 50,000 vertices; the explicit Lazebnik-Ustimenko-Woldar seed has 6250 vertices.",
+   "Connectivity is not required; a disconnected graph only has more vertices than its components.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 1116,
+   "statement": "The smallest known 5-regular graph of girth 9 has 1116 vertices (Exoo, Goedgebeur, Jooken, Stubbe and Van den Eede, 2026), found by the authors' computer search over graph lifts with voltage group SmallGroup(279,1) = C31 semidirect C9; it improved 1152 (G. Exoo, 2025, a personal communication cited in the paper). The best lower bound is 428, so n(5,9) is open.",
+   "sources": [
+    {
+     "title": "New small regular graphs of given girth: the cage problem and beyond",
+     "url": "https://doi.org/10.37236/14834",
+     "authors": "G. Exoo, J. Goedgebeur, J. Jooken, L. Stubbe, T. Van den Eede",
+     "year": 2026
+    },
+    {
+     "title": "Dynamic cage survey",
+     "url": "https://doi.org/10.37236/37",
+     "authors": "G. Exoo, R. Jajcay",
+     "year": 2013
+    }
+   ],
+   "comparability": "Same object and objective: a simple 5-regular graph of girth at least 9, fewest vertices. The published graph6 file decodes to 1116 vertices and scores 1116 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ },
+ {
+  "id": "science-frontier-combinatorics-difference-triangle-set-7-5",
+  "name": "Difference triangle set (7,5)",
+  "description": "Choose 7 rows of 6 increasing integers starting at 0 so that all differences between two entries of the same row are distinct over all rows, with the largest entry as small as possible. The best known set has largest entry 112 (Shehadeh, Kingsford and Kschischang, 2025); the simple counting bound is 105.",
+  "family": "science_frontier_combinatorics_dts",
+  "status": "ready",
+  "parameters": {
+   "rows": 7,
+   "k": 5,
+   "published": 112
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.1002/jcd.22009",
+    "type": "paper",
+    "locator": "Shehadeh, Kingsford and Kschischang, J. Combin. Des. 34(1) (2026) 37-50 (CC BY 4.0; arXiv:2502.19517), Table I: m(7,5) <= 112, previous best 113; only the (14,4) and (15,4) sets are claimed optimal."
+   },
+   {
+    "url": "https://github.com/applecoffeecake/dts-search-hdl/blob/2ccff8e767c3fe6390fd3af056dfda11847011fc/new-dts-db-fpga/7-5-112-755.txt",
+    "type": "repository",
+    "locator": "The (7,5) set of scope 112 found by the FPGA search (MIT)."
+   },
+   {
+    "url": "https://doi.org/10.1109/18.32165",
+    "type": "paper",
+    "locator": "Klove (1989), Bounds and construction for difference triangle sets: the problem, its use for convolutional self-orthogonal codes and lower bounds."
+   }
+  ],
+  "limitations": [
+   "Differs from the catalog's Sidon-set tasks: those ask for one or two Sidon sets in a fixed interval, whereas this asks for 7 rulers with jointly distinct differences and minimizes the largest mark.",
+   "Only the counting bound n k (k+1) / 2 = 105 is reported by the evaluator; stronger linear-programming lower bounds exist in the literature.",
+   "The greedy seed has scope 278.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 112,
+   "statement": "The best known (7,5) difference triangle set has scope 112, found by a search implemented in FPGA hardware (Shehadeh, Kingsford and Kschischang, 2025); the previous best was 113. Optimality is not claimed for it; the counting bound is 105.",
+   "sources": [
+    {
+     "title": "New difference triangle sets by a field-programmable gate array-based search technique",
+     "url": "https://doi.org/10.1002/jcd.22009",
+     "authors": "M. Shehadeh, W. Kingsford, F. R. Kschischang",
+     "year": 2025
+    },
+    {
+     "title": "Bounds and construction for difference triangle sets",
+     "url": "https://doi.org/10.1109/18.32165",
+     "authors": "T. Klove",
+     "year": 1989
+    }
+   ],
+   "comparability": "Same object and objective: 7 normalized rows of 6 marks with distinct differences, minimal largest entry. The published set scores 112 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ },
+ {
+  "id": "science-frontier-combinatorics-difference-triangle-set-4-7",
+  "name": "Difference triangle set (4,7)",
+  "description": "Choose 4 rows of 8 increasing integers starting at 0 so that all differences between two entries of the same row are distinct over all rows, with the largest entry as small as possible. The best known set has largest entry 134 (Shehadeh, Kingsford and Kschischang, 2025); the simple counting bound is 112.",
+  "family": "science_frontier_combinatorics_dts",
+  "status": "ready",
+  "parameters": {
+   "rows": 4,
+   "k": 7,
+   "published": 134
+  },
+  "sources": [
+   {
+    "url": "https://doi.org/10.1002/jcd.22009",
+    "type": "paper",
+    "locator": "Shehadeh, Kingsford and Kschischang, J. Combin. Des. 34(1) (2026) 37-50 (CC BY 4.0; arXiv:2502.19517), Table I: m(4,7) <= 134, previous best 135; only the (14,4) and (15,4) sets are claimed optimal."
+   },
+   {
+    "url": "https://github.com/applecoffeecake/dts-search-hdl/blob/2ccff8e767c3fe6390fd3af056dfda11847011fc/new-dts-db-fpga/4-7-134-523.txt",
+    "type": "repository",
+    "locator": "The (4,7) set of scope 134 found by the FPGA search (MIT)."
+   },
+   {
+    "url": "https://doi.org/10.1109/18.32165",
+    "type": "paper",
+    "locator": "Klove (1989), Bounds and construction for difference triangle sets: the problem, its use for convolutional self-orthogonal codes and lower bounds."
+   }
+  ],
+  "limitations": [
+   "Differs from the catalog's Sidon-set tasks: those ask for one or two Sidon sets in a fixed interval, whereas this asks for 4 rulers with jointly distinct differences and minimizes the largest mark.",
+   "Only the counting bound n k (k+1) / 2 = 112 is reported by the evaluator; stronger linear-programming lower bounds exist in the literature.",
+   "The greedy seed has scope 358.",
+   "The record construction is public, so a candidate can reproduce the record by embedding it; the score measures the returned object, not the search that produced it, and only a strictly smaller score than the best known value is a new result.",
+   "Candidate Python runs inside the evaluator process as trusted research code; the evaluator recomputes every property of the returned object exactly and trusts nothing the candidate reports."
+  ],
+  "labels": {
+   "scientific_contribution": "open_problem",
+   "artifact": "construction",
+   "domain": "mathematics",
+   "area": "mathematics",
+   "data": "none",
+   "verification": "exact",
+   "reference": "published_value"
+  },
+  "requirements": {
+   "hardware": "CPU",
+   "dependencies": [
+    "numpy"
+   ],
+   "datasets": "None; the instance is defined by the parameters and no file is read at evaluation time."
+  },
+  "validation": {
+   "level": "automated_tests",
+   "upstream_reproduction": false,
+   "source_reviewed": "2026-10-12",
+   "tests": "tests/test_science_frontier_combinatorics.py",
+   "evidence": "validation/frontier_combinatorics-checks.json",
+   "human_results": "validation/human-results/frontier_combinatorics.json"
+  },
+  "provenance": {
+   "implementation_origin": "independent_reimplementation",
+   "upstream_code_reused": false,
+   "reference_libraries": [
+    "numpy"
+   ]
+  },
+  "state_of_the_art": {
+   "kind": "best_known",
+   "value": 134,
+   "statement": "The best known (4,7) difference triangle set has scope 134, found by a search implemented in FPGA hardware (Shehadeh, Kingsford and Kschischang, 2025); the previous best was 135. Optimality is not claimed for it; the counting bound is 112.",
+   "sources": [
+    {
+     "title": "New difference triangle sets by a field-programmable gate array-based search technique",
+     "url": "https://doi.org/10.1002/jcd.22009",
+     "authors": "M. Shehadeh, W. Kingsford, F. R. Kschischang",
+     "year": 2025
+    },
+    {
+     "title": "Bounds and construction for difference triangle sets",
+     "url": "https://doi.org/10.1109/18.32165",
+     "authors": "T. Klove",
+     "year": 1989
+    }
+   ],
+   "comparability": "Same object and objective: 4 normalized rows of 8 marks with distinct differences, minimal largest entry. The published set scores 134 (valid) with this evaluator.",
+   "as_of": "2026-10-12",
+   "attribution": "human"
+  }
+ }
+]

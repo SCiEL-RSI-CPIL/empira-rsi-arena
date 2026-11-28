@@ -1,0 +1,2089 @@
+{
+  "schema": "arena.task-review/1",
+  "reviewed_on": "2026-11-20",
+  "scope": "Independent review of the 318 task packages added from autoresearch-tasks commit 374288ac83ee35dc6b08b5ce2484f2af208c7e07: statement against checker code, seed, stated facts and sources, labels. Eight reviewers read every package and its checker; claims that led to a change were checked again against the code, a run or the cited source before the change was made.",
+  "summary": {
+    "tasks_reviewed": 318,
+    "tasks_without_findings": 230,
+    "findings": {
+      "across_tasks_note": 32,
+      "across_tasks_warning": 8,
+      "error": 22,
+      "note": 58,
+      "warning": 26
+    },
+    "statements_corrected": 228,
+    "code_corrections": 25,
+    "open_items": 9
+  },
+  "origin_tests": {
+    "what": "The origin's unittest modules that the added packages cite as validation evidence (tests/test_*.py). Since the evaluator audit of 2026-11-24 they are part of this library, adapted to its layout; before, they were run from the origin against this library's modules. One module per interpreter, 110-second limit per module, all optional packages and prepared data.",
+    "modules": 65,
+    "modules_passed": 65,
+    "tests_run": 552,
+    "tests_skipped": 10,
+    "modules_failed": [],
+    "modules_stopped_by_time_limit": [],
+    "skipped": "eight tests that need more than about 20 seconds run only with ARENA_SLOW_TESTS=1; two read receipts that only the origin has",
+    "ci_environment": {
+      "passed": 389,
+      "skipped": 165,
+      "failed": 0,
+      "note": "numpy and pytest only, no prepared data: tests that need another package or prepared data skip with the reason"
+    },
+    "run_on": "2026-11-24"
+  },
+  "corrected_statements": [
+    {
+      "task": "science-biology-hp-lattice-folding-3d",
+      "corrections": [
+        "5a number of chains"
+      ]
+    },
+    {
+      "task": "science-diameter-two-edge-critical-graphs",
+      "corrections": [
+        "4d solved instance: optimum 64"
+      ]
+    },
+    {
+      "task": "science-distance-product-fixed-diameter-8",
+      "corrections": [
+        "5h authors of arXiv:2603.07088"
+      ]
+    },
+    {
+      "task": "science-finance-cardinality-constrained-frontier",
+      "corrections": [
+        "5c FTSE tabu-search value"
+      ]
+    },
+    {
+      "task": "science-finance-covariance-minimum-variance",
+      "corrections": [
+        "5d estimation window of the cited paper"
+      ]
+    },
+    {
+      "task": "science-finance-optimal-execution",
+      "corrections": [
+        "5b number of numerically solved instances"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-sphere-covering-130",
+      "corrections": [
+        "1 reference value out of date",
+        "1 reference value out of date (shared limitation sentence)"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-sphere-covering-50",
+      "corrections": [
+        "1 reference value out of date (shared limitation sentence)"
+      ]
+    },
+    {
+      "task": "science-maximum-sum-pairwise-coprime-integers",
+      "corrections": [
+        "4a solved instance: optimum 7372"
+      ]
+    },
+    {
+      "task": "science-no-four-collinear-general-position-20",
+      "corrections": [
+        "5f Füredi's lower bound"
+      ]
+    },
+    {
+      "task": "science-number-theory-totient-multiple",
+      "corrections": [
+        "4c solved instance: optimum 143"
+      ]
+    },
+    {
+      "task": "science-short-square-product-extension",
+      "corrections": [
+        "4b solved instance: optimum 28"
+      ]
+    },
+    {
+      "task": "science-software-cit-healthcare4-2way",
+      "corrections": [
+        "5e authors of the cited paper"
+      ]
+    },
+    {
+      "task": "science-software-fault-localization-seeded",
+      "corrections": [
+        "5g block order in the contract"
+      ]
+    },
+    {
+      "task": "science-sums-of-two-powerful-numbers",
+      "corrections": [
+        "2 enforced limit of 1000 pairs not stated"
+      ]
+    },
+    {
+      "task": "science-tcs-cerny-reset-threshold-12",
+      "corrections": [
+        "4e solved instance: optimum 121"
+      ]
+    },
+    {
+      "task": "science-tournament-four-dominated",
+      "corrections": [
+        "3 wrong lower bound for f(4)"
+      ]
+    },
+    {
+      "task": "mcts-ahd-asp-constructive",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: notes"
+      ]
+    },
+    {
+      "task": "science-acyclic-vertex-coloring",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-additive-two-basis-212",
+      "corrections": [
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: sources",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-biology-balibase-protein-alignment",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes"
+      ]
+    },
+    {
+      "task": "science-biology-hp-lattice-folding-2d",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes"
+      ]
+    },
+    {
+      "task": "science-biology-hp-lattice-folding-3d",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes"
+      ]
+    },
+    {
+      "task": "science-biology-influenza-hospitalization-forecasting",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-biology-phylogeny-topology-recovery",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-biology-rna-secondary-structure",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: sources"
+      ]
+    },
+    {
+      "task": "science-cardinality-separated-subset-sums",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-chemistry-adme-mdr1-efflux-biogen",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-chemistry-adme-microsomal-clearance-biogen",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-chemistry-adme-rat-microsomal-clearance-biogen",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-chemistry-adme-solubility-biogen",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-chemistry-buchwald-hartwig-yield-additive-split",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes"
+      ]
+    },
+    {
+      "task": "science-chemistry-mmff94-drug-conformers",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-chemistry-morse-cluster-minima",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-chemistry-suzuki-miyaura-yield-random-split",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: notes"
+      ]
+    },
+    {
+      "task": "science-chowla-cosine-sixteen-frequencies",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-clique-transversal-instances",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-cluster-prime-difference-coverage",
+      "corrections": [
+        "audit of 2026-11-24: description"
+      ]
+    },
+    {
+      "task": "science-cochromatic-homogeneous-partition",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-common-vertex-edge-disjoint-cycles",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-consecutive-primes-arithmetic-progression-1e9",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-consecutive-squarefree-gap",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-consecutive-two-square-gap",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-coprime-abc-quality",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-coprime-reciprocal-distances-512",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-cycle-and-edge-decompositions",
+      "corrections": [
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-cycle-plus-triangles-colouring",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-distance-product-fixed-diameter-8",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: sources",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-distinct-divisor-counts-run-1e10",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-distinct-multiple-worst-window",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-distinct-subset-product-sets",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-distinct-totient-runs-1e12",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-earth-arctic-sea-ice-drift",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-earthquake-b-value-completeness",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-enso-nino34-forecast",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: sources"
+      ]
+    },
+    {
+      "task": "science-earth-global-aftershock-forecast",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-global-temperature-emulation",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-great-lakes-wave-hindcast",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-hurricane-intensity-forecast",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-hurricane-track-forecast",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-hurricane-wind-radii-forecast",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-mauna-loa-co2-forecast",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-river-nitrate-loads",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-snow-depth-to-swe",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-socal-earthquake-forecast",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: sources"
+      ]
+    },
+    {
+      "task": "science-earth-solar-irradiance-separation",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-species-distribution-models",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-temperature-homogenization",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-earth-two-stream-radiative-transfer",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-economics-fredmd-industrial-production-forecasting",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: sources"
+      ]
+    },
+    {
+      "task": "science-economics-fredmd-inflation-forecasting",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: sources"
+      ]
+    },
+    {
+      "task": "science-economics-fredmd-unemployment-forecasting",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: sources"
+      ]
+    },
+    {
+      "task": "science-economics-kidney-exchange",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-economics-maximum-nash-welfare",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-economics-school-choice-tie-breaking",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-equal-degree-three-path-avoidance",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-equal-divisor-sum-ratio-approximation",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-erdos-gyarfas-five-colours-k16",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: sources",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-few-monochromatic-four-progressions-256",
+      "corrections": [
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-finance-arbitrage-free-svi-surface",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-finance-cardinality-constrained-frontier",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-finance-covariance-minimum-variance",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-finance-equity-premium-prediction",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-finance-index-tracking",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-finance-market-making",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-finance-optimal-execution",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-finance-portfolio-choice-ff20",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-finance-portfolio-choice-industry10",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-finance-portfolio-choice-industry49",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-finance-volatility-forecasting",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-finance-yield-curve-forecasting",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-four-point-lines-sixteen-integer-points",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: sources",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-cage-3-16",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-cage-4-10",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-cage-5-9",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-covering-design-19-7-4",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-covering-design-19-8-5",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-covering-design-24-7-3",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-difference-triangle-set-4-7",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-difference-triangle-set-7-5",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-football-pool-6",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-football-pool-7",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-football-pool-8",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-qap-tai256c",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-qap-tho150",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-qap-wil100",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-combinatorics-superpermutation-7",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-circles-in-circle-300",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-circles-in-circle-50",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-circles-in-square-200",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-circles-in-square-50",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-log-energy-100",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-log-energy-150",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-sphere-covering-130",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-sphere-covering-50",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-spheres-in-cube-100",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-frontier-physics-spheres-in-cube-50",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-girth-degree-cycle-length-diversity",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-graphs-without-large-regular-induced-subgraphs",
+      "corrections": [
+        "audit of 2026-11-24: name",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: sources",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-integer-sum-product-maximum-20",
+      "corrections": [
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-jacobsthal-five-prime-gaps",
+      "corrections": [
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-lonely-runner-rational-time",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-many-solutions-k-sigma-k",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-materials-dzugutov-cluster-minima",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-materials-matbench-exfoliation-energy",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-materials-matbench-experimental-band-gap",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-materials-matbench-metal-classification",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: sources",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-materials-matbench-perovskite-formation-energy",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-materials-matbench-phonon-peak",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-materials-matbench-refractive-index",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-materials-matbench-shear-modulus",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-materials-matbench-steel-yield-strength",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-materials-sutton-chen-cluster-minima",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-mathematics-minimal-maximal-sidon-256",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-minimum-span-distinct-multiples",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-most-frequent-permutation-order-16",
+      "corrections": [
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-mutually-orthogonal-latin-squares",
+      "corrections": [
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-no-element-divides-two-others-44",
+      "corrections": [
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-number-theory-bounded-lcm",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-convex-primes",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-coprime-sumset",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-dissociated-reciprocals",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-egyptian-long",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-egyptian-maximum",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-equal-lcm-free",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-factorial-large-factors",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-factorial-valuation",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-inverse-free-interval",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-lcm-reciprocal-weight",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-noncoprime-forced",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-pair-sum-nondivisibility",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-power-residue-run",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-powerful-consecutive-counterexample",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: sources",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-powerful-parts",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-reciprocal-schur-free",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-reciprocal-subset-free",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-sidon-obstruction",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-signed-harmonic",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-smooth-adjacent",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-smooth-decomposition",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-smooth-parts",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-square-sum-free",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-number-theory-unit-fraction-packing",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-odd-covering-divisors-of-51975",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-oppositely-ordered-farey-pair-1000",
+      "corrections": [
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-ordinary-lines-twelve-rational-points",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: sources",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-paired-sidon-disjoint-differences-256",
+      "corrections": [
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-pairwise-sum-triple-free-sets",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-permutation-monotone-progression-128",
+      "corrections": [
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-physics-broadband-antireflection-coating",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-physics-cnot-budgeted-unitary-synthesis",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: notes"
+      ]
+    },
+    {
+      "task": "science-physics-heisenberg-product-formula",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-physics-nuclear-mass-extrapolation",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-physics-photonic-crystal-tm-band-gap",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-physics-spin-glass-torus-2d",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: sources"
+      ]
+    },
+    {
+      "task": "science-physics-spin-glass-torus-3d",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-planar-bipartite-list-colouring",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-powerful-numbers-between-squares",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description"
+      ]
+    },
+    {
+      "task": "science-practical-divisor-sum-5040",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-prime-additive-complement-256",
+      "corrections": [
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-prime-plus-power-of-two-1e8",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description"
+      ]
+    },
+    {
+      "task": "science-primitive-nonempty-subset-sums",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-property-p-divisibility-256",
+      "corrections": [
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-ramsey-induced-degree-diversity",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-random-graph-hamiltonian-arrival",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-random-hypergraph-matching-arrival",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-rough-numbers-in-consecutive-prime-gaps",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-runs-with-large-prime-factors",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-sidon-extension-of-1-2-5-11",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-small-prime-primitive-roots",
+      "corrections": [
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-smooth-runs-after-prime-squares",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-software-ci-prioritization-iofrol",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-ci-prioritization-paintcontrol",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-cit-apache-2way",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-cit-gcc-2way",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: parameters"
+      ]
+    },
+    {
+      "task": "science-software-cit-healthcare4-2way",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-cit-spins-3way",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-cit-spinv-2way",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-coalescing-large",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-coalescing-small",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-fault-localization-seeded",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations"
+      ]
+    },
+    {
+      "task": "science-software-fuzz-htmlparser",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-fuzz-plistlib",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-fuzz-re",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-fuzz-tomllib",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-log-parsing-loghub2k",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-loop-invariants-code2inv",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-mutation-fractions",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-software-mutation-statistics",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-software-mutation-textwrap",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-software-mutation-urllib-parse",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-software-pbe-strings-sygus",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes"
+      ]
+    },
+    {
+      "task": "science-software-quixbugs-repair",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-software-superoptimization-hackers-delight",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-sparse-random-graph-long-path",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-square-products-condition-200",
+      "corrections": [
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-strong-edge-colouring-instances",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-sum-free-subsets-instances",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-sums-of-three-prime-cubes-1e10",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description"
+      ]
+    },
+    {
+      "task": "science-sums-of-two-cubes-many-ways",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-sums-of-two-powerful-numbers",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: labels",
+        "audit of 2026-11-24: limitations",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-tcs-cerny-reset-threshold-12",
+      "corrections": [
+        "audit of 2026-11-24: labels"
+      ]
+    },
+    {
+      "task": "science-totient-value-with-1000-preimages",
+      "corrections": [
+        "audit of 2026-11-24: contract",
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance"
+      ]
+    },
+    {
+      "task": "science-transitive-subtournament-minimum-20",
+      "corrections": [
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-triangle-degree-sums-above-turan-16",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: sources"
+      ]
+    },
+    {
+      "task": "science-triangle-free-dense-halves-20",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: sources",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-triangles-above-turan-16",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: sources",
+        "audit of 2026-11-24: state_of_the_art"
+      ]
+    },
+    {
+      "task": "science-triple-systems-matching-two-12",
+      "corrections": [
+        "audit of 2026-11-24: description",
+        "audit of 2026-11-24: notes",
+        "audit of 2026-11-24: science_relevance",
+        "audit of 2026-11-24: sources"
+      ]
+    }
+  ],
+  "corrected_code_and_data": [
+    {
+      "tasks": [
+        "science-economics-fredmd-industrial-production-forecasting",
+        "science-economics-fredmd-inflation-forecasting",
+        "science-economics-fredmd-unemployment-forecasting"
+      ],
+      "file": "suite/_lib/autoresearch_suite/finance_macro.py",
+      "finding": "The autoregressive benchmark that normalises the score was computed from the history object after the candidate had received it, so a candidate could change the benchmark.",
+      "correction": "The benchmark is computed before the candidate is called."
+    },
+    {
+      "tasks": [
+        "science-earth-* (17 tasks)",
+        "science-biology-balibase-protein-alignment",
+        "science-biology-rna-secondary-structure",
+        "science-biology-influenza-hospitalization-forecasting",
+        "science-physics-nuclear-mass-extrapolation",
+        "science-physics-spin-glass-torus-2d",
+        "science-physics-spin-glass-torus-3d"
+      ],
+      "file": "suite/_lib/autoresearch_suite/earth_common.py, bio_physics_common.py",
+      "finding": "Derived data files are pinned by the SHA-256 of their gzip bytes. zlib writes its build's operating-system code into byte 9 of the header (3 on Linux, 19 on macOS, where the digests were recorded), so no file derived on Linux matched its pin and these tasks could not load their data.",
+      "correction": "The header byte is written as 19 on every platform. Files derived on Linux then reproduce the recorded digests unchanged; every other byte was already identical."
+    },
+    {
+      "tasks": [
+        "science-biology-influenza-hospitalization-forecasting"
+      ],
+      "file": "catalog/bio_physics-data-lock.json, scripts/prepare_bio_physics.py",
+      "finding": "The admissions file was recorded from the hub's main branch, which is rewritten weekly and revises earlier weeks, and the test for a live source compared the pinning text with the single word 'live', which never matched this lock.",
+      "correction": "The source URL names the commit (ae9b0627) whose file has exactly the recorded SHA-256 and size; the live-source test accepts the lock's wording."
+    },
+    {
+      "tasks": [
+        "science_prize_h and science_prize_i tasks"
+      ],
+      "file": "suite/_lib/autoresearch_suite/science_prize_h_arithmetic.py",
+      "finding": "The primality test was documented as deterministic below 3.3e24; with its twelve bases it is deterministic below 3.18e23 (318665857834031151167461 is reported prime). No task passes it a number above 1e18.",
+      "correction": "The two docstrings state the correct bound."
+    },
+    {
+      "tasks": [
+        "mcts-ahd-asp-constructive",
+        "funsearch-re-implementation-narrow-admissible-tuple"
+      ],
+      "file": "catalog/duplicates.json and both packages",
+      "finding": "The MCTS-AHD admissible-set task (constant-weight ternary vectors) was recorded as a duplicate of the FunSearch narrow admissible tuple task (integers avoiding residue classes). They are different problems.",
+      "correction": "The merge is removed and the MCTS-AHD task is its own package, as in the source since 2026-09-21."
+    },
+    {
+      "tasks": [
+        "science-software-quixbugs-repair"
+      ],
+      "file": "suite/_lib/autoresearch_suite/software_quixbugs.py",
+      "finding": "The candidate's patch runs in the sandbox process that also holds the expected outputs of every test, including the held-out ones, so passing them does not certify a repair. A decorator is not counted as a statement edit.",
+      "correction": "The child process that runs the patched program receives only the test inputs and returns its outputs; they are compared with the expected values in the evaluator process, so the patch never holds them. Decorators are counted as statements. A patch that read the expected value from the judge's frame scored 1.0 before and 0.0 after; the seed scores 0.1935 both times."
+    },
+    {
+      "tasks": [
+        "science-biology-influenza-hospitalization-forecasting"
+      ],
+      "file": "suite/_lib/autoresearch_suite/bio_flu.py",
+      "finding": "All forecast jobs are passed to one child process, so the histories of later reference dates, which contain the verifying weeks of earlier dates, are in the candidate's process. The contract says the candidate never sees later weeks.",
+      "correction": "The reference dates are released one at a time through the sandbox oracle: the next history is sent only after a valid forecast for the current date, inside one child process with the same 180 s CPU budget for the season. A forecaster that read later histories from the driver frame scored a mean WIS of 4.1 before and fails after; the seed scores 172.63 both times."
+    },
+    {
+      "tasks": [
+        "science-economics-fredmd-industrial-production-forecasting",
+        "science-economics-fredmd-inflation-forecasting",
+        "science-economics-fredmd-unemployment-forecasting",
+        "science-economics-kidney-exchange",
+        "science-economics-maximum-nash-welfare",
+        "science-economics-school-choice-tie-breaking",
+        "science-finance-arbitrage-free-svi-surface",
+        "science-finance-cardinality-constrained-frontier",
+        "science-finance-covariance-minimum-variance",
+        "science-finance-equity-premium-prediction",
+        "science-finance-index-tracking",
+        "science-finance-market-making",
+        "science-finance-optimal-execution",
+        "science-finance-portfolio-choice-ff20",
+        "science-finance-portfolio-choice-industry10",
+        "science-finance-portfolio-choice-industry49",
+        "science-finance-volatility-forecasting",
+        "science-finance-yield-curve-forecasting"
+      ],
+      "file": "suite/_lib/autoresearch_suite/finance_sandbox.py and the fourteen finance_*.py scoring modules",
+      "finding": "Candidates run in the evaluator's process with the library importable, including the reference solvers and stored optima that define the best score; the three FRED-MD seeds import the evaluator module. A candidate could read the realised target from the scoring loop's frame.",
+      "correction": "Every scoring loop is a generator driven through finance_sandbox.py: the candidate's function runs in the sandboxed child process of the earth tasks, which holds the candidate's source and the arguments released so far; the arguments of a call are sent only after the value of the previous call was received, and the evaluator package and data files cannot be reached from the child. The FRED-MD seeds carry their own copy of the benchmark autoregression. A forecaster that read the realised premium from the scoring loop's frame scored an out-of-sample R^2 of 100.0 before and 0.0 after; a school-choice candidate that called the evaluator's own solver scored 1.0 before and fails on the import after. All 18 seed scores are unchanged, and the origin's tests of these modules pass through the trusted in-process route that benchmarks and tests keep."
+    },
+    {
+      "tasks": [
+        "the 85 packages whose candidates run in a sandboxed child process (biology, chemistry, earth, finance, physics, software)"
+      ],
+      "file": "suite/_lib/autoresearch_suite/sandboxed.py, software_sandbox.py, chem_sandbox.py, earth_sandbox.py and the 85 evaluator.py wrappers",
+      "finding": "The shared template imported the candidate module in the evaluator's process before the sandboxed call, so module-level candidate code ran unsandboxed and could read prepared data or replace the scoring function. Three auditors showed it independently: a candidate scored RMS 0.0 keV on nuclear masses, MAE 0.0 on ADME solubility and 1.0 on log parsing.",
+      "correction": "The wrappers call sandboxed.run instead of runtime.run: the evaluator holds the file's path only and no statement of the candidate is executed in its process; entry points are checked in the parsed source (sandboxed.defines). The nuclear candidate now fails on its import and the ADME candidate scores 1.33. All 85 seed scores are unchanged (tasks/tests/test_candidate_isolation.py)."
+    },
+    {
+      "tasks": [
+        "science-earth-hurricane-track-forecast",
+        "science-earth-hurricane-intensity-forecast"
+      ],
+      "file": "suite/_lib/autoresearch_suite/earth_cyclone.py",
+      "finding": "The candidate's fit and forecast ran inside the evaluator's process, where the frames above forecast() hold the complete storm and the verifying indices; a frame-reading candidate scored 0.0 km.",
+      "correction": "The candidate runs through earth_sandbox.run_online and receives one truncated best track per forecast. The same candidate scores 967.7 km; both seed scores are unchanged."
+    },
+    {
+      "tasks": [
+        "science-earth-two-stream-radiative-transfer"
+      ],
+      "file": "suite/_lib/autoresearch_suite/earth_twostream.py",
+      "finding": "Coefficients may not depend on optical depth, but every (omega, g, mu0) triple occurred with one depth in a seeded public design, so a candidate could rebuild the design and fit each layer's depth (0.00148 against the seed's 0.01897). The reference fluxes were stored with seven decimals, two of them within ten times the solver noise of a rounding boundary.",
+      "correction": "The design is crossed: 3000 triples, each at one optical depth per decade of 0.01-100, scored with one coefficient set per triple; fluxes are stored with six decimals. The derived file and its digest changed; the seed scores 0.019173451460528373 (0.018968074676088107 on the old design)."
+    },
+    {
+      "tasks": [
+        "science-earth-arctic-sea-ice-drift",
+        "science-software-fault-localization-seeded",
+        "science-software-quixbugs-repair"
+      ],
+      "file": "scripts/prepare_earth.py, scripts/prepare_software.py, suite/_lib/autoresearch_suite/earth_icedrift.py, software_sbfl.py, software_quixbugs.py, software_data.py",
+      "finding": "The derivations ran for minutes in one process and, for QuixBugs, under a one-second CPU limit per test, so the data could not be prepared on a slower or time-limited machine and the three seeds had never been run in this library.",
+      "correction": "The derivations run in kept, resumable steps (--budget, --max-seconds; exit status 75 while steps remain) and give the bytes of the locks; QuixBugs tests are limited by a step count instead of CPU time. The three seeds run and equal the scores recorded in the origin (10.9757, 0.0506, 0.1935)."
+    },
+    {
+      "tasks": [
+        "science-earth-mauna-loa-co2-forecast",
+        "science-earth-river-nitrate-loads",
+        "science-earth-enso-nino34-forecast",
+        "science-earth-socal-earthquake-forecast"
+      ],
+      "file": "scripts/prepare_earth.py, catalog/earth-data-lock.json, suite/_lib/autoresearch_suite/earth_co2.py, earth_nitrate.py, earth_enso.py, earth_quakes.py",
+      "finding": "The publishers changed the live sources after the locks were recorded, so the derived files no longer matched their digests and the four seeds had never been run in this library.",
+      "correction": "CO2: the locked file is taken from a web-archive capture (new lock field archive_url) and the derived file no longer stores index months that no candidate receives. Nitrate: each record ends at a pinned date, which reproduces the recorded digest from today's files. ENSO and southern California: no archived copy exists, so the locks were recorded again on 2026-11-20 (ERSSTv5: 52 months of the field changed, the Nino indices not at all; ComCat: two aftershocks added and six magnitudes revised). All four seeds run and equal the origin's scores to 1e-13."
+    },
+    {
+      "tasks": [
+        "science-software-fault-localization-seeded"
+      ],
+      "file": "suite/_lib/autoresearch_suite/software_sbfl.py",
+      "finding": "Block and fault orders were seeded with the fault's list index, so a candidate that counted its calls could rebuild every permutation: it scored a mean EXAM of 0.004986, below the bound the statement gives.",
+      "correction": "Both orders are drawn from fresh randomness for every evaluation; the same candidate scores 0.50. The score of a formula of the counts does not depend on the order."
+    },
+    {
+      "tasks": [
+        "science-software-mutation-fractions",
+        "science-software-mutation-statistics",
+        "science-software-mutation-textwrap",
+        "science-software-mutation-urllib-parse",
+        "science-software-fuzz-htmlparser",
+        "science-software-fuzz-plistlib",
+        "science-software-fuzz-re",
+        "science-software-fuzz-tomllib"
+      ],
+      "file": "suite/_lib/autoresearch_suite/software_harness_pymod.py",
+      "finding": "Calls were cut by CPU time (0.2 s and 0.5 s), so a mutant's verdict and the fuzzing coverage depended on the speed of the machine, and a CPU-time signal arriving after a call had ended aborted the analysis.",
+      "correction": "Calls are cut by a count of function entries and loop iterations; CPU time remains as a safety net. The late signal is handled. Seed scores are unchanged."
+    },
+    {
+      "tasks": [
+        "science-software-quixbugs-repair",
+        "science-software-cit-gcc-2way",
+        "science-software-superoptimization-hackers-delight"
+      ],
+      "file": "suite/_lib/autoresearch_suite/software_quixbugs.py, software_superopt.py; suite/science-software-cit-gcc-2way/evaluator.py",
+      "finding": "A match statement counted as one statement, so a full rewrite passed the two-statement edit bound; the covering-array reference 18 was not the best published size (FastCA and TCA report 16 on a logically equivalent model); a non-string operation raised an internal error.",
+      "correction": "Case blocks are counted as statements; the reference is 16; the operation is reported as the candidate's error."
+    },
+    {
+      "tasks": [
+        "science-chowla-cosine-sixteen-frequencies"
+      ],
+      "file": "suite/_lib/autoresearch_suite/science_prize_g.py",
+      "finding": "cosine_minimum refined only the twelve lowest grid minima. For frequencies with a common factor it returned -3.235438605 where the minimum is -3.236006370, an error of 5.7e-4 in the direction of a false improvement.",
+      "correction": "The minimum is found by bisection of every interval that a second-derivative bound cannot exclude and is certified to 1e-11. The seed score is unchanged."
+    },
+    {
+      "tasks": [
+        "science-lehmer-small-mahler-measure-degree-12"
+      ],
+      "file": "suite/_lib/autoresearch_suite/science_prize_h.py",
+      "finding": "Repeated roots made the root finder inaccurate: Lehmer's polynomial times (x-1)^2 scored 1.1762808284 instead of 1.1762808183, and monomials c*x^k with |c| >= 2, which the contract admits, were rejected.",
+      "correction": "The product is taken over the exact squarefree layers of the cyclotomic-free part; a monomial scores |c|."
+    },
+    {
+      "tasks": [
+        "science-distance-product-fixed-diameter-8",
+        "science-strong-edge-colouring-instances",
+        "science-double-cover-primes-to-1000",
+        "science-prime-covers-with-reciprocal-budget"
+      ],
+      "file": "suite/_lib/autoresearch_suite/science_prize_g.py, science_prize_i.py, science_prize_h_sets.py",
+      "finding": "An absolute tolerance rejected small copies of a valid point set although the score is scale-free; the reported Erdős-Nešetřil bound for maximum degree 5 was 31 instead of 29; a covered run could exceed the stated cap by one.",
+      "correction": "Distinctness is exact and distances use hypot; the odd-degree formula is used; the count stops at the cap."
+    },
+    {
+      "tasks": [
+        "science-practical-divisor-sum-5040",
+        "science-cochromatic-homogeneous-partition",
+        "science-number-theory-egyptian-long",
+        "science-number-theory-sidon-obstruction",
+        "science-tree-packing-20"
+      ],
+      "file": "suite/<id>/initial_program.py",
+      "finding": "Four seeds already attained the optimum of their instance, so no candidate could improve on them, and the tree-packing seed did not contain the trees it has to pack.",
+      "correction": "The four seeds are simple valid constructions that are clearly worse (seed scores 5 to 49, 4 to 7, 10 to 38, 5 to 9; the optima are stated in the packages), and the tree generator is copied into the tree-packing seed (score unchanged)."
+    },
+    {
+      "tasks": [
+        "science-finance-volatility-forecasting",
+        "science-finance-optimal-execution",
+        "science-finance-portfolio-choice-ff20",
+        "science-finance-portfolio-choice-industry10",
+        "science-finance-portfolio-choice-industry49"
+      ],
+      "file": "suite/_lib/autoresearch_suite/finance_volatility.py, finance_execution.py, finance_portfolio.py, finance_stats.py",
+      "finding": "Since the candidate calls moved into the sandbox a forecaster whose update() returns an object failed on the transport of a value nobody reads; the 1e-6 tolerance on the order size let a schedule that undersells score below the optimum; positions of small common scale were rejected as summing to zero; the shared validators took booleans and numeric strings as numbers.",
+      "correction": "update()'s return value stays in the child; an accepted schedule is clipped at zero and rescaled to the order size; the zero-sum test is relative; booleans and text are rejected. All 18 seed scores are unchanged."
+    },
+    {
+      "tasks": [
+        "science-economics-fredmd-industrial-production-forecasting",
+        "science-economics-fredmd-inflation-forecasting",
+        "science-economics-fredmd-unemployment-forecasting"
+      ],
+      "file": "catalog/finance-data-lock.json, suite/_lib/autoresearch_suite/finance_macro.py, finance_sources.py",
+      "finding": "The pinned file was described as the 2024-10 vintage; its bytes are the official 2024-09 vintage (data to 2024-08).",
+      "correction": "Lock text, docstrings and statements name the 2024-09 vintage; hashes and scores are unchanged."
+    },
+    {
+      "tasks": [
+        "science-biology-hp-lattice-folding-2d",
+        "science-biology-hp-lattice-folding-3d",
+        "the 14 ADME, Matbench and reaction-yield packages",
+        "science-biology-rna-secondary-structure"
+      ],
+      "file": "suite/_lib/autoresearch_suite/bio_hp.py, chem_adme.py, chem_matbench.py, chem_yields.py; catalog/bio_physics-data-lock.json",
+      "finding": "Walks placed further than 10 n from the origin were rejected, a rule the contract does not state; finite but huge predictions made the evaluators exit without a result because overflowed details cannot be printed as JSON; the Rfam source pointed at the CURRENT release directory.",
+      "correction": "The coordinate bound only keeps integers exact; overflowed details are reported as null; the Rfam source is the 15.1 release directory, which reproduces the derived file."
+    },
+    {
+      "tasks": [
+        "all packages that read prepared data"
+      ],
+      "file": "catalog/*-data-lock.json, three QAP packages",
+      "finding": "Six data locks and three packages named suite/_lib/data and .cache as the data and download directories; the library reads and writes the task cache.",
+      "correction": "The texts name the task cache (ARENA_TASK_CACHE_DIR)."
+    },
+    {
+      "tasks": [
+        "all 317 science packages"
+      ],
+      "file": "tests/test_*.py (65 modules), scripts/check_state_of_the_art.py",
+      "finding": "Every package cites a test module as validation evidence, and fourteen cite scripts/check_state_of_the_art.py; none of these files had been brought over from the origin.",
+      "correction": "The 65 test modules and the script are part of the library and run in this layout; tests that need an optional package, prepared data or more than about 20 seconds skip with the reason."
+    }
+  ],
+  "open": [
+    {
+      "group": "labels",
+      "severity": "warning",
+      "tasks": [
+        "science-double-cover-primes-to-1000"
+      ],
+      "finding": "important_to_science is supported only by a survey. The five other packages of this item were relabelled (unreviewed, false) in the evaluator audit; for this one a manuscript of April 2026 claims a proof of the underlying problem.",
+      "why_open": "The manuscript is not published; its status and the evidence label need the library owner's decision."
+    },
+    {
+      "group": "labels",
+      "severity": "warning",
+      "tasks": [
+        "all 18 new collections"
+      ],
+      "finding": "Each collection record's paper_url is the first member task's source, so it is unrelated to the other members.",
+      "why_open": "The existing collections follow the same convention; it should be changed for all of them together."
+    },
+    {
+      "group": "evaluator isolation",
+      "severity": "warning",
+      "tasks": [
+        "science-finance-market-making"
+      ],
+      "finding": "The fills use a fixed public random stream (seeds 501 to 503). A candidate that regenerates the stream with numpy inside the sandbox scores 1.399 against 1 for the exact optimum. The package states this limitation.",
+      "why_open": "A deterministic public evaluator cannot prevent it; the repair is a redesign (exact expectation over the inventory chain)."
+    },
+    {
+      "group": "evaluator isolation",
+      "severity": "warning",
+      "tasks": [
+        "science-biology-phylogeny-topology-recovery",
+        "science-earth-earthquake-b-value-completeness",
+        "science-earth-temperature-homogenization"
+      ],
+      "finding": "The simulated truths can be regenerated from public seeds by a candidate that re-implements the generator (a demonstration scores 0.0 on the phylogeny task). The packages state this limitation.",
+      "why_open": "Needs instances drawn with seeds that are not in the evaluator's source."
+    },
+    {
+      "group": "data preparation",
+      "severity": "warning",
+      "tasks": [
+        "science-earth-enso-nino34-forecast",
+        "science-earth-socal-earthquake-forecast"
+      ],
+      "finding": "The locks were recorded again on live files. ERSSTv5 is regenerated every month and ComCat revises events, so the derived-file digests will stop matching again; the other live sources (global ComCat, SNOTEL, HadCRUT5, NDBC) carry the same risk.",
+      "why_open": "Needs the raw files deposited at an immutable public address and named as archive_url, which prepare_earth.py already uses."
+    },
+    {
+      "group": "data preparation",
+      "severity": "warning",
+      "tasks": [
+        "mcts-ahd-asp-constructive"
+      ],
+      "finding": "Not run in this library: it needs the pinned upstream checkout, and its requirements name PyTorch and SciPy although the pinned upstream evaluator of this problem imports only NumPy.",
+      "why_open": "The requirement should be reduced after a run with the checkout confirms it."
+    },
+    {
+      "group": "labels",
+      "severity": "warning",
+      "tasks": [
+        "science-physics-nuclear-mass-extrapolation"
+      ],
+      "finding": "Labelled discovery, as the label definition says for predictors fitted to real measurements, while the earth, ADME and yield predictors on real measurements are labelled method.",
+      "why_open": "One convention for all collections is the library owner's decision."
+    },
+    {
+      "group": "no headroom",
+      "severity": "note",
+      "tasks": [
+        "science-number-theory-powerful-consecutive-counterexample",
+        "science-distinct-totient-runs-1e12",
+        "science-sums-of-two-powerful-numbers",
+        "science-cycle-plus-triangles-colouring",
+        "science-planar-bipartite-list-colouring",
+        "science-frontier-physics-log-energy-100",
+        "science-frontier-physics-log-energy-150"
+      ],
+      "finding": "The best possible or best known score is reached by an elementary routine (a binary score, an attainable cap, a greedy or random-restart local optimisation). The packages now say so and give the value.",
+      "why_open": "More headroom needs other instances or objectives; a task-design decision."
+    },
+    {
+      "group": "statement",
+      "severity": "note",
+      "tasks": [
+        "science-practical-divisor-sum-5040",
+        "science-cochromatic-homogeneous-partition",
+        "science-number-theory-egyptian-long",
+        "science-number-theory-sidon-obstruction"
+      ],
+      "finding": "The receipts of the origin under validation/prize-expansion record the seed scores of 2026-09, before these four seeds were replaced in the audit.",
+      "why_open": "They are dated records of the origin; the current seed scores are in validation/suite-additions-report.json."
+    }
+  ],
+  "evaluator_audit": {
+    "audited_on": "2026-11-24",
+    "receipt": "validation/suite-additions-audit.json",
+    "what": "Second review after a maintainer reported missing and incorrect evaluators: every evaluator compared with the cited paper and any official implementation, cross-checked with an independent implementation, defects fixed with regression tests (tests/test_audit_*.py, tests/test_candidate_isolation.py). The receipt lists, for each package, what it was compared with, the checks, the findings and every statement change."
+  }
+}

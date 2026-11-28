@@ -22,7 +22,7 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 240
   max_retries: 2
 
 prompt:
@@ -31,7 +31,7 @@ prompt:
 
     XLA/Enzyme-JAX e-graph extraction task evaluated in Magellan: Autonomous Discovery of Novel Compiler Optimization Heuristics with AlphaEvolve.
 
-    Candidate interface: see evaluator.py
+    Candidate interface: extract(egraph) -> dict mapping e-class id (str) to the chosen e-node id (str). egraph is an egraph-serialize JSON object: nodes = {node id: {op, cost (float), eclass, children: [child e-node ids]}} where a child e-node id stands for that node's e-class, and root_eclasses = [e-class ids]. Every root and every e-class reachable from the roots through chosen e-nodes must be chosen, each chosen e-node must belong to its e-class and the chosen graph must be acyclic. Score (minimize): geometric mean over the e-graphs of the DAG cost (the chosen e-node cost of each reachable e-class, counted once) divided by a reference extractor's DAG cost; each extract call must finish within time_limit_s wall-clock seconds
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

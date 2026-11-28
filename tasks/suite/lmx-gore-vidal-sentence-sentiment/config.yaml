@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 600
   max_retries: 2
 
 prompt:
   system_message: |
     Gore Vidal sentence sentiment
 
-    Gore Vidal sentence sentiment: optimize the candidate specified by the paper and evaluate against the named benchmark.
+    Write a solve(question, llm) program that returns 1 to 300 one-line sentences rewriting the Gore Vidal quote 'Whenever a friend succeeds, a little something in me dies.' with positive sentiment; scored by QD score, the sum over 30 niches of MiniLM embedding distance to the quote of the best positive probability from a RoBERTa sentiment classifier (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> list[str]: an archive of 1 to 300 one-line sentences of 5 to 400 characters, each valid Unicode text (no unpaired surrogates) and at most 512 tokens for the sentiment classifier's tokenizer (400 characters of CJK text or of some emoji are more). `question` is the target quote; `llm(...)` is an optional budgeted OpenRouter client (it needs OPENROUTER_API_KEY only when called). Each sentence's fitness is the 'positive' probability of cardiffnlp/twitter-roberta-base-sentiment-latest and its niche is the Euclidean distance between its all-MiniLM-L6-v2 embedding and the quote's, clipped to [0, 1.25] and cut into 30 equal bins. Score: QD score, the sum over occupied niches of the best fitness (at most 30); higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

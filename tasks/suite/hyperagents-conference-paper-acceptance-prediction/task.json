@@ -2,12 +2,12 @@
   "schema_version": "1.0",
   "id": "hyperagents-conference-paper-acceptance-prediction",
   "name": "Conference paper acceptance prediction",
-  "description": "Conference paper acceptance prediction",
+  "description": "Write a Python solve(question, llm) agent that reads the full text of a machine-learning conference submission and answers accept or reject, using a budgeted OpenRouter model client; scored by accuracy against the observed decisions on a fixed 20-paper sample of a balanced 100-paper held-out test split (higher is better).",
   "paper_ids": [
     "hyperagents"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2603.19461",
@@ -18,6 +18,16 @@
       "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d",
       "type": "repository",
       "locator": "domains/paper_review"
+    },
+    {
+      "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/paper_review/dataset.csv",
+      "type": "benchmark",
+      "locator": "711 public OpenReview papers with decisions"
+    },
+    {
+      "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/paper_review/curate_subsets.py",
+      "type": "repository",
+      "locator": "balanced held-out 100-paper split"
     }
   ],
   "requirements": {
@@ -32,7 +42,7 @@
     ]
   },
   "evaluation": {
-    "metric": "binary accuracy",
+    "metric": "score",
     "paper_metric": "binary accuracy",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -62,8 +72,8 @@
       "Paper task identified; evaluator invocation not yet verified."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -71,17 +81,16 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "dataset:Conference paper acceptance prediction"
+        "py:numpy",
+        "env:OPENROUTER_API_KEY",
+        "network:openrouter",
+        "file:data/llm_bench/paper_review_test.json.gz"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "dataset",
-      "unsupported_reason": "Fitness requires the Conference paper acceptance prediction data and training pipeline, which are not redistributed with the suite."
+      "timeout": 900,
+      "validity_key": "valid"
     }
   },
-  "limitations": [
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-  ],
+  "limitations": [],
   "source_specification": {
     "name": "Conference paper acceptance prediction",
     "slug": "conference-paper-acceptance-prediction",
@@ -108,16 +117,16 @@
     "adapter_checks": null
   },
   "labels": {
-    "scientific_contribution": "engineering",
+    "scientific_contribution": "benchmark",
     "science_tier": 3,
-    "artifact": "model",
-    "domain": "machine_learning",
-    "area": "machine_learning",
-    "data": "undistributed",
-    "verification": "none",
+    "artifact": "agent",
+    "domain": "language",
+    "area": "language_and_agents",
+    "data": "public_benchmark",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "unavailable"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

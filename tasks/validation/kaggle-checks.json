@@ -1,0 +1,845 @@
+{
+  "schema": "artask.validation-receipt/1",
+  "package": "kaggle",
+  "date": "2026-10-10",
+  "scope": "Seed and invalid-candidate executions of the six generated kaggle packages (built in the work-package branch, then reverted to sources), the reference checks named per task, and the checks behind the twelve withdrawals. No model calls; no evolutionary search was run. Timings come from a 14-core machine shared with other agents.",
+  "commands": [
+    "python3 scripts/prepare_kaggle.py",
+    ".cache/sciel-env/bin/python -m unittest discover -s tests -t . -p \"test_kaggle*.py\"",
+    "python3 scripts/build_suite.py --only '^(<the six task ids>)$' --sciel ../SCiEL",
+    ".cache/sciel-env/bin/python suite/<id>/evaluator.py suite/<id>/initial_program.py",
+    ".cache/sciel-env/bin/python suite/<id>/evaluator.py <invalid candidate>"
+  ],
+  "unit_tests": {
+    "files": [
+      "tests/test_kaggle_sandbox.py",
+      "tests/test_kaggle_tasks.py"
+    ],
+    "tests": 28,
+    "result": "OK"
+  },
+  "llm_cost_usd_total": 0.0,
+  "pinned_reference": "openai/mle-bench 507f92e1138bb6e40dac5c6ee7a6758e6424bf97 (prepare.py, grade.py, checksums.yaml, utils.py of the six competitions; read, not vendored)",
+  "blocked_inputs": [
+    {
+      "what": "NOMAD repository (nomad-lab.eu API, DOI 10.17172/NOMAD/2019.06.14-1) and NOMAD GitLab (gitlab.mpcdf.mpg.de, tutorial-kaggle-competition)",
+      "status": "TLS connection reset by peer from this machine; not retried by another route",
+      "consequence": "geometry type checked against qmml.org NMD-18 and the authors' GitHub copy instead (verification only)"
+    },
+    {
+      "what": "Microsoft download page for the Kaggle cats and dogs images (details.aspx?id=54765)",
+      "status": "HTTP 403; not retried",
+      "consequence": "licence taken from the Hugging Face card of microsoft/cats_vs_dogs ('unknown')"
+    }
+  ],
+  "tasks": {
+    "eurekagent-jigsaw-toxic-comment": {
+      "family": "kaggle_jigsaw_toxic",
+      "protocol": "recreated",
+      "seed_score": 0.9752827060937341,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 15.676155,
+      "wall_seconds": 16.11,
+      "fit_predict_seconds": 12.426,
+      "budget_s": 600,
+      "seed_details": {
+        "combined_score": 0.9752827060937341,
+        "score": 0.9752827060937341,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "metric": "mean column-wise ROC AUC",
+        "per_class_auc": {
+          "toxic": 0.9610044658458301,
+          "severe_toxic": 0.9837201053045639,
+          "obscene": 0.9731556002394165,
+          "threat": 0.9909921985676973,
+          "insult": 0.9663558962517915,
+          "identity_hate": 0.9764679703531052
+        },
+        "test_rows": 63978,
+        "fit_predict_seconds": 12.426,
+        "load_seconds": 2.207,
+        "os_sandbox": "sandbox-exec",
+        "elapsed_seconds": 15.676155
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define fit_predict(train, test_inputs, time_budget_s)",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.12
+        },
+        {
+          "candidate": "wrong_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "jigsaw: predictions must have shape (63978, 6), got (3,)",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 2.03
+        },
+        {
+          "candidate": "nan.py",
+          "valid": false,
+          "score": null,
+          "error": "jigsaw: predictions must be finite",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 2.02
+        },
+        {
+          "candidate": "read_labels_jigsaw.py",
+          "valid": false,
+          "score": null,
+          "error": "fit_predict failed in the sandbox: PermissionError: sandbox: file access denied ('suite/_lib/data/kaggle/jigsaw/private/test_labels.csv', mode 'r')",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.98
+        }
+      ],
+      "reference_check": {
+        "compared": "(1) MLE-bench prepare.py (507f92e1, unchanged) run on the Hugging Face mirror vs the MD5 checksums MLE-bench records for the files it prepares from Kaggle's download; (2) MLE-bench grade.py vs the evaluator on the seed's predictions",
+        "result": "4/4 prepared files reproduce MLE-bench's MD5 (public train.csv, test.csv, sample_submission.csv; private test.csv); grade.py value equals the evaluator's (difference 0.0)",
+        "details": {
+          "checksums": {
+            "public/sample_submission.csv": {
+              "expected": "2af5ed06d19b00c13c0573b474edb165",
+              "reproduced": "2af5ed06d19b00c13c0573b474edb165",
+              "match": true
+            },
+            "public/test.csv": {
+              "expected": "d21e68ec9e3728be456aa0f477be230c",
+              "reproduced": "d21e68ec9e3728be456aa0f477be230c",
+              "match": true
+            },
+            "public/train.csv": {
+              "expected": "7ed6a529f1671bd558cf581831d3462b",
+              "reproduced": "7ed6a529f1671bd558cf581831d3462b",
+              "match": true
+            },
+            "private/test.csv": {
+              "expected": "c23029ecede85b3adfbc2527e7812b84",
+              "reproduced": "c23029ecede85b3adfbc2527e7812b84",
+              "match": true
+            }
+          },
+          "grade_py": {
+            "evaluator": 0.9752827060937341,
+            "mle_bench_grade_py": 0.9752827060937341,
+            "abs_difference": 0.0,
+            "seconds": 11.8
+          }
+        }
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14 (.cache/sciel-env)",
+        "platform": "macOS-15.8.1-arm64 (Darwin 24.6), Apple M4 Max, shared with other agents (load average 4-12)",
+        "numpy": "2.5.3",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "scipy": "1.18.1",
+        "torch": "2.14.0",
+        "pyarrow": "25.0.1",
+        "h5py": "3.16.0",
+        "pillow": "12.3.0",
+        "psutil": "7.2.2",
+        "threads": 4,
+        "os_sandbox": "sandbox-exec (macOS)"
+      },
+      "date": "2026-10-10"
+    },
+    "loongflow-denoising-dirty-documents": {
+      "family": "kaggle_noisyoffice_denoising",
+      "protocol": "recreated",
+      "seed_score": 0.0902844821517168,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.775874,
+      "wall_seconds": 1.16,
+      "fit_predict_seconds": 0.274,
+      "budget_s": 300,
+      "seed_details": {
+        "combined_score": -0.0902844821517168,
+        "score": 0.0902844821517168,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "metric": "pixel RMSE",
+        "test_images": 72,
+        "test_pixels": 14230080,
+        "fit_predict_seconds": 0.274,
+        "load_seconds": 0.426,
+        "os_sandbox": "sandbox-exec",
+        "elapsed_seconds": 0.775874
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define fit_predict(train, test_inputs, time_budget_s)",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 0.31
+        },
+        {
+          "candidate": "wrong_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "fit_predict failed in the sandbox: TypeError: fit_predict must return a list of arrays, got ndarray",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 0.64
+        },
+        {
+          "candidate": "nan.py",
+          "valid": false,
+          "score": null,
+          "error": "image 0: values must be finite",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 0.67
+        },
+        {
+          "candidate": "read_labels_noisyoffice.py",
+          "valid": false,
+          "score": null,
+          "error": "fit_predict failed in the sandbox: PermissionError: sandbox: file access denied ('suite/_lib/data/kaggle/noisyoffice/private/test_clean.npz', mode 'r')",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 0.64
+        }
+      ],
+      "reference_check": {
+        "compared": "MLE-bench grade.py (pooled pixel RMSE, ids image_row_col) vs the evaluator on the seed's predictions; image counts and sizes vs the Kaggle competition (216 images of 540 x 258 / 540 x 420)",
+        "result": "grade.py value equals the evaluator's (difference 0.0); 216 simulated noisy images, 54 clean pages, sizes 540 x 258 (18 pages) and 540 x 420 (36 pages); pixel identity with Kaggle's files not checked (no Kaggle access; MLE-bench's answers checksum cannot be reproduced without Kaggle's file ids)",
+        "details": {
+          "grade_py": {
+            "evaluator": 0.0902844821517168,
+            "mle_bench_grade_py": 0.0902844821517168,
+            "abs_difference": 0.0,
+            "seconds": 14.2
+          }
+        }
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14 (.cache/sciel-env)",
+        "platform": "macOS-15.8.1-arm64 (Darwin 24.6), Apple M4 Max, shared with other agents (load average 4-12)",
+        "numpy": "2.5.3",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "scipy": "1.18.1",
+        "torch": "2.14.0",
+        "pyarrow": "25.0.1",
+        "h5py": "3.16.0",
+        "pillow": "12.3.0",
+        "psutil": "7.2.2",
+        "threads": 4,
+        "os_sandbox": "sandbox-exec (macOS)"
+      },
+      "date": "2026-10-10"
+    },
+    "loongflow-histopathologic-cancer-detection": {
+      "family": "kaggle_pcam_histopathology",
+      "protocol": "recreated",
+      "seed_score": 0.8045938642942362,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 8.078042,
+      "wall_seconds": 8.55,
+      "fit_predict_seconds": 6.205,
+      "budget_s": 600,
+      "seed_details": {
+        "combined_score": 0.8045938642942362,
+        "score": 0.8045938642942362,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "metric": "ROC AUC",
+        "test_patches": 11672,
+        "test_positive_fraction": 0.401,
+        "fit_predict_seconds": 6.205,
+        "load_seconds": 1.117,
+        "os_sandbox": "sandbox-exec",
+        "elapsed_seconds": 8.078042
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define fit_predict(train, test_inputs, time_budget_s)",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 0.99
+        },
+        {
+          "candidate": "wrong_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "pcam: predictions must have shape (11672,), got (3,)",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.37
+        },
+        {
+          "candidate": "nan.py",
+          "valid": false,
+          "score": null,
+          "error": "pcam: predictions must be finite",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.45
+        },
+        {
+          "candidate": "read_labels_pcam.py",
+          "valid": false,
+          "score": null,
+          "error": "fit_predict failed in the sandbox: PermissionError: sandbox: file access denied ('suite/_lib/data/kaggle/pcam/private/test_labels.npz', mode 'r')",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.41
+        },
+        {
+          "candidate": "pcam_out_of_range.py",
+          "valid": false,
+          "score": null,
+          "error": "predictions must be probabilities in [0, 1]",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.49
+        }
+      ],
+      "reference_check": {
+        "compared": "MLE-bench grade.py (with utils.prepare_for_auroc_metric) vs the evaluator on the seed's predictions; Zenodo MD5s of the raw files; labels vs the metadata's center_tumor_patch flag",
+        "result": "grade.py value equals the evaluator's (difference 0.0); raw MD5s equal Zenodo's; labels equal center_tumor_patch for 65,536/65,536 patches; 8,045 exact duplicates removed, 57,491 kept; a 3-block CNN probe reached ROC AUC 0.865 in 508 s of fit_predict (machine shared)",
+        "details": {
+          "grade_py": {
+            "evaluator": 0.8045938642942362,
+            "mle_bench_grade_py": 0.8045938642942362,
+            "abs_difference": 0.0
+          },
+          "probe_cnn_auc": 0.864855867022629,
+          "probe_fit_predict_seconds": 508.054
+        }
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14 (.cache/sciel-env)",
+        "platform": "macOS-15.8.1-arm64 (Darwin 24.6), Apple M4 Max, shared with other agents (load average 4-12)",
+        "numpy": "2.5.3",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "scipy": "1.18.1",
+        "torch": "2.14.0",
+        "pyarrow": "25.0.1",
+        "h5py": "3.16.0",
+        "pillow": "12.3.0",
+        "psutil": "7.2.2",
+        "threads": 4,
+        "os_sandbox": "sandbox-exec (macOS)"
+      },
+      "date": "2026-10-10"
+    },
+    "loongflow-nomad2018-predict-transparent-conductors": {
+      "family": "kaggle_nomad2018_conductors",
+      "protocol": "recreated",
+      "seed_score": 0.06550117212077622,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 6.704529,
+      "wall_seconds": 7.22,
+      "fit_predict_seconds": 3.98,
+      "budget_s": 300,
+      "seed_details": {
+        "combined_score": -0.06550117212077622,
+        "score": 0.06550117212077622,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "metric": "mean column-wise RMSLE",
+        "rmsle": {
+          "formation_energy_ev_natom": 0.031580760969732724,
+          "bandgap_energy_ev": 0.09942158327181971
+        },
+        "test_materials": 300,
+        "fit_predict_seconds": 3.98,
+        "load_seconds": 1.562,
+        "os_sandbox": "sandbox-exec",
+        "elapsed_seconds": 6.704529
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define fit_predict(train, test_inputs, time_budget_s)",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.06
+        },
+        {
+          "candidate": "wrong_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "nomad: predictions must have shape (300, 2), got (3,)",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.41
+        },
+        {
+          "candidate": "nan.py",
+          "valid": false,
+          "score": null,
+          "error": "nomad: predictions must be finite",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.48
+        },
+        {
+          "candidate": "read_labels_nomad.py",
+          "valid": false,
+          "score": null,
+          "error": "fit_predict failed in the sandbox: PermissionError: sandbox: file access denied ('suite/_lib/data/kaggle/nomad/private/test_labels.csv', mode 'r')",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.47
+        },
+        {
+          "candidate": "nomad_negative.py",
+          "valid": false,
+          "score": null,
+          "error": "formation_energy_ev_natom: Root Mean Squared Logarithmic Error cannot be used when targets contain values less than or equal to -1.",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.42
+        },
+        {
+          "candidate": "sleeps_past_budget.py",
+          "valid": false,
+          "score": null,
+          "error": "fit_predict exceeded the time budget of 300 s (killed after 315 s)",
+          "rejected": true,
+          "wall_seconds": 316.44
+        }
+      ],
+      "reference_check": {
+        "compared": "ColabFit NMD-18 vs qmml.org NMD-18 (nmd18r relaxed, nmd18u Vegard) and the competition tables (GitHub csutton7, verified by MLE-bench checksums); evaluator table columns recomputed from Vegard geometries vs the competition tables; MLE-bench grade.py vs the evaluator",
+        "result": "ColabFit = relaxed geometries for 3,000/3,000 (5 within 1e-3 of the Vegard cells); recomputed columns match the competition tables to their 4-decimal rounding; formation energy x 5/2 and band gap match to 6e-17; csutton7 tables reproduce MLE-bench's MD5 for prepared train.csv, test.csv and answers; seed scores 0.0655 (relaxed) vs 0.0772 (Vegard, same split); grade.py equals the evaluator",
+        "details": {
+          "geometry_and_tables": {
+            "table_columns_from_vegard_geometry_max_abs_dev": {
+              "number_of_total_atoms": 0.0,
+              "percent_atom_al": 5.000000000000143e-05,
+              "percent_atom_ga": 5.000000000000143e-05,
+              "percent_atom_in": 5.000000000000143e-05,
+              "lattice_vector_1_ang": 5.000000000165983e-05,
+              "lattice_vector_2_ang": 5.000000000165983e-05,
+              "lattice_vector_3_ang": 5.000000000165983e-05,
+              "lattice_angle_alpha_degree": 5.000000000165983e-05,
+              "lattice_angle_beta_degree": 5.000000000165983e-05,
+              "lattice_angle_gamma_degree": 5.000000000165983e-05
+            },
+            "spacegroup_equal": true,
+            "targets_max_abs_dev": {
+              "formation_x2.5": 5.551115123125783e-17,
+              "bandgap": 0.0
+            },
+            "colabfit_rows_identical_to_relaxed": 3000,
+            "colabfit_rows_with_vegard_cell_within_1e-3": 5,
+            "prepared_train_equals_relaxed_rebuild": true,
+            "seed_score_relaxed_inputs": 0.06547412379373128,
+            "seed_score_vegard_inputs_same_split": 0.07721396992847047
+          },
+          "csutton7_checksums": {
+            "public/sample_submission.csv": {
+              "expected": "f6ca859f7a81041cad0594cf31f171d9",
+              "reproduced": null,
+              "match": false
+            },
+            "public/test.csv": {
+              "expected": "be4e478c19d962eae8ffde95163fe8b1",
+              "reproduced": "be4e478c19d962eae8ffde95163fe8b1",
+              "match": true
+            },
+            "public/train.csv": {
+              "expected": "27ef5faad359d2dd4ac872fab5c9010d",
+              "reproduced": "27ef5faad359d2dd4ac872fab5c9010d",
+              "match": true
+            },
+            "private/test.csv": {
+              "expected": "fc17cf7adf422874ce65f2b1b1265d98",
+              "reproduced": "fc17cf7adf422874ce65f2b1b1265d98",
+              "match": true
+            }
+          },
+          "grade_py": {
+            "evaluator": 0.06550117212077622,
+            "mle_bench_grade_py": 0.06550117212077622,
+            "abs_difference": 0.0,
+            "seconds": 4.4
+          }
+        }
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14 (.cache/sciel-env)",
+        "platform": "macOS-15.8.1-arm64 (Darwin 24.6), Apple M4 Max, shared with other agents (load average 4-12)",
+        "numpy": "2.5.3",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "scipy": "1.18.1",
+        "torch": "2.14.0",
+        "pyarrow": "25.0.1",
+        "h5py": "3.16.0",
+        "pillow": "12.3.0",
+        "psutil": "7.2.2",
+        "threads": 4,
+        "os_sandbox": "sandbox-exec (macOS)"
+      },
+      "date": "2026-10-10"
+    },
+    "loongflow-stanford-covid-vaccine": {
+      "family": "kaggle_openvaccine_degradation",
+      "protocol": "recreated",
+      "seed_score": 0.4237449331037537,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 1.559197,
+      "wall_seconds": 2.01,
+      "fit_predict_seconds": 0.245,
+      "budget_s": 300,
+      "seed_details": {
+        "combined_score": -0.4237449331037537,
+        "score": 0.4237449331037537,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "metric": "MCRMSE",
+        "rmse": {
+          "reactivity": 0.3695719158459183,
+          "deg_Mg_pH10": 0.47316045929371425,
+          "deg_Mg_50C": 0.42850242417162865
+        },
+        "test_sequences": 240,
+        "scored_positions": 68,
+        "fit_predict_seconds": 0.245,
+        "load_seconds": 0.421,
+        "os_sandbox": "sandbox-exec",
+        "elapsed_seconds": 1.559197
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define fit_predict(train, test_inputs, time_budget_s)",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.07
+        },
+        {
+          "candidate": "wrong_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "predictions must have shape (240, 68, 3) (sequences, seq_scored, 3), got (3,)",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.42
+        },
+        {
+          "candidate": "nan.py",
+          "valid": false,
+          "score": null,
+          "error": "predictions must be finite",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.45
+        },
+        {
+          "candidate": "read_labels_openvaccine.py",
+          "valid": false,
+          "score": null,
+          "error": "fit_predict failed in the sandbox: PermissionError: sandbox: file access denied ('suite/_lib/data/kaggle/openvaccine/private/test_labels.npz', mode 'r')",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.39
+        }
+      ],
+      "reference_check": {
+        "compared": "MLE-bench prepare.py (unchanged) on a 2,400-row train.json built from the public rows at their original index plus 811 placeholders vs the evaluator's split and MLE-bench's MD5 checksums; MLE-bench grade.py vs the evaluator",
+        "result": "same 240 test RNAs in the same order; answers agree to 4e-16; MLE-bench MD5 reproduced for private test.csv and sample_submission.csv, not for test.json (inputs; no column order or subset reproduces it) or train.json (811 rows missing); grade.py equals the evaluator",
+        "details": {
+          "replay": {
+            "mle_bench_test_rows": 240,
+            "placeholders_in_mle_bench_test": 0,
+            "same_test_ids_in_order": true,
+            "max_abs_answer_difference": 4.440892098500626e-16,
+            "mle_bench_train_rows": 2160,
+            "mle_bench_train_sn1_rows": 1349,
+            "same_sn1_train_ids_in_order": true,
+            "test_input_columns_mle_bench": [
+              "id",
+              "index",
+              "predicted_loop_type",
+              "seq_length",
+              "seq_scored",
+              "sequence",
+              "structure"
+            ],
+            "test_input_columns_here": [
+              "id",
+              "index",
+              "predicted_loop_type",
+              "seq_length",
+              "seq_scored",
+              "sequence",
+              "structure"
+            ]
+          },
+          "checksums": {
+            "public/sample_submission.csv": {
+              "expected": "5d6a8da1eae26187ec3158b68ec7d666",
+              "reproduced": "5d6a8da1eae26187ec3158b68ec7d666",
+              "match": true
+            },
+            "public/test.json": {
+              "expected": "86e2201a0168275ccadd49cafa6cab66",
+              "reproduced": "c9a70430264c5870ed053319587aeca1",
+              "match": false
+            },
+            "public/train.json": {
+              "expected": "0081f791ac8730984c147955a0c7bba9",
+              "reproduced": "a78634be89c4f4d4bdf995310a7996ee",
+              "match": false
+            },
+            "private/test.csv": {
+              "expected": "41f284c21e1f7e112f29e1d7b7c1fd73",
+              "reproduced": "41f284c21e1f7e112f29e1d7b7c1fd73",
+              "match": true
+            }
+          },
+          "grade_py": {
+            "evaluator": 0.4237449331037537,
+            "mle_bench_grade_py": 0.4237449331037537,
+            "abs_difference": 0.0,
+            "seconds": 0.5
+          }
+        }
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14 (.cache/sciel-env)",
+        "platform": "macOS-15.8.1-arm64 (Darwin 24.6), Apple M4 Max, shared with other agents (load average 4-12)",
+        "numpy": "2.5.3",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "scipy": "1.18.1",
+        "torch": "2.14.0",
+        "pyarrow": "25.0.1",
+        "h5py": "3.16.0",
+        "pillow": "12.3.0",
+        "psutil": "7.2.2",
+        "threads": 4,
+        "os_sandbox": "sandbox-exec (macOS)"
+      },
+      "date": "2026-10-10"
+    },
+    "loongflow-us-patent-phrase-to-phrase-matching": {
+      "family": "kaggle_patent_phrase_matching",
+      "protocol": "recreated",
+      "seed_score": 0.44956328199118734,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 3.497649,
+      "wall_seconds": 3.92,
+      "fit_predict_seconds": 1.341,
+      "budget_s": 300,
+      "seed_details": {
+        "combined_score": 0.44956328199118734,
+        "score": 0.44956328199118734,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "metric": "Pearson r",
+        "test_pairs": 9232,
+        "fit_predict_seconds": 1.341,
+        "load_seconds": 1.345,
+        "os_sandbox": "sandbox-exec",
+        "elapsed_seconds": 3.497649
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "missing.py",
+          "valid": false,
+          "score": null,
+          "error": "candidate must define fit_predict(train, test_inputs, time_budget_s)",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 0.84
+        },
+        {
+          "candidate": "wrong_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "patent: predictions must have shape (9232,), got (3,)",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.19
+        },
+        {
+          "candidate": "nan.py",
+          "valid": false,
+          "score": null,
+          "error": "patent: predictions must be finite",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.19
+        },
+        {
+          "candidate": "read_labels_patent.py",
+          "valid": false,
+          "score": null,
+          "error": "fit_predict failed in the sandbox: PermissionError: sandbox: file access denied ('suite/_lib/data/kaggle/patent/private/test_labels.csv', mode 'r')",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.21
+        },
+        {
+          "candidate": "patent_constant.py",
+          "valid": false,
+          "score": null,
+          "error": "constant predictions have no Pearson correlation",
+          "rejected": true,
+          "exit_status": 1,
+          "seconds": 1.21
+        }
+      ],
+      "reference_check": {
+        "compared": "split statistics vs the dataset paper (arXiv 2208.01171); MLE-bench grade.py vs the evaluator",
+        "result": "36,473 / 2,843 / 9,232 pairs (48,548 as in the paper), 733 / 57 / 183 anchors with no overlap, 106 contexts; grade.py equals the evaluator (difference 0.0); row identity with the competition file not checked (no ids in the copy)",
+        "details": {
+          "grade_py": {
+            "evaluator": 0.44956328199118734,
+            "mle_bench_grade_py": 0.44956328199118734,
+            "abs_difference": 0.0,
+            "seconds": 1.8
+          }
+        }
+      },
+      "llm_cost_usd": 0.0,
+      "environment": {
+        "python": "3.12.14 (.cache/sciel-env)",
+        "platform": "macOS-15.8.1-arm64 (Darwin 24.6), Apple M4 Max, shared with other agents (load average 4-12)",
+        "numpy": "2.5.3",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "scipy": "1.18.1",
+        "torch": "2.14.0",
+        "pyarrow": "25.0.1",
+        "h5py": "3.16.0",
+        "pillow": "12.3.0",
+        "psutil": "7.2.2",
+        "threads": 4,
+        "os_sandbox": "sandbox-exec (macOS)"
+      },
+      "date": "2026-10-10"
+    }
+  },
+  "withdraw": {
+    "eurekagent-dog-breed-identification": {
+      "reason": "No licensed public copy of the same data. The competition is a 120-breed subset of ImageNet taken from the Stanford Dogs dataset (MLE-bench description: 'a strictly canine subset of ImageNet', acknowledgement to the Stanford Dogs creators). The Stanford Dogs page states no licence and says the dataset was built from ImageNet images and annotations, which ImageNet distributes under non-commercial research terms; Hugging Face copies (e.g. Voxel51/StanfordDogs, amaye15/stanford-dogs) state no licence. Without pretrained weights (ImageNet-pretrained ones would also have seen these images) a CPU-only 120-class fine-grained task would not measure the competition's capability.",
+      "evidence": [
+        "http://vision.stanford.edu/aditya86/ImageNetDogs/main.html",
+        "https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/dog-breed-identification/description.md",
+        "https://huggingface.co/api/datasets?search=stanford_dogs"
+      ]
+    },
+    "eurekagent-tabular-playground-may-2022": {
+      "reason": "Kaggle-generated synthetic data ('(simulated) manufacturing control data', MLE-bench description) with no named source dataset and no public generator; the rows exist only on Kaggle, which is not accessible here (no credentials, no redistribution).",
+      "evidence": [
+        "https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/tabular-playground-series-may-2022/description.md"
+      ]
+    },
+    "eurekagent-the-icml-2013-whale-redux": {
+      "reason": "Duplicate of loongflow-the-icml-2013-whale-challenge-right-whale-redux: EurekAgent evaluates MLE-bench Lite, whose list (experiments/splits/low.txt) contains the-icml-2013-whale-challenge-right-whale-redux and no other whale competition. Withdrawn for the same reason as that task (labelled clip set only on Kaggle).",
+      "merge_into": "loongflow-the-icml-2013-whale-challenge-right-whale-redux",
+      "evidence": [
+        "https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/experiments/splits/low.txt"
+      ]
+    },
+    "loongflow-aerial-cactus-identification": {
+      "reason": "The competition data are resized 32 x 32 thumbnails of the authors' Kaggle dataset irvingvasquez/cactus-aerial-photos (MLE-bench description, acknowledgement); no copy outside Kaggle was found (Zenodo and Hugging Face searches for the cactus aerial photos returned none), and Kaggle downloads need credentials that are not available.",
+      "evidence": [
+        "https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/aerial-cactus-identification/description.md",
+        "https://zenodo.org/api/records?q=columnar%20cactus%20aerial",
+        "https://huggingface.co/api/datasets?search=cactus"
+      ]
+    },
+    "loongflow-detecting-insults-in-social-commentary": {
+      "reason": "Impermium's 2012 recruiting-competition data are distributed only through Kaggle; no copy with a stated licence was found (Hugging Face search for 'insult'/'impermium' and Zenodo search returned unrelated datasets).",
+      "evidence": [
+        "https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/detecting-insults-in-social-commentary/description.md",
+        "https://huggingface.co/api/datasets?search=impermium"
+      ]
+    },
+    "loongflow-dogs-vs-cats-redux-kernels-edition": {
+      "reason": "The images are Microsoft Research's Asirra/Petfinder photographs. The Hugging Face card of microsoft/cats_vs_dogs (pointing to Microsoft's download page) gives the licence as 'unknown' and its licensing section as 'More Information Needed'; Microsoft's download page (details.aspx?id=54765) returned HTTP 403 to this machine and was not retried by another route. Under the rule that the data must be public under a stated licence, the task is withdrawn; it would be implementable (seeded split, from-scratch log loss) only if the owner accepts unlicensed data.",
+      "evidence": [
+        "https://huggingface.co/datasets/microsoft/cats_vs_dogs",
+        "https://www.microsoft.com/en-us/download/details.aspx?id=54765 (HTTP 403)"
+      ]
+    },
+    "loongflow-google-quest-challenge": {
+      "reason": "The 30 crowd-sourced subjective labels were released only with the Kaggle competition; the GitHub repository google-research-datasets/quest is archived and empty (size 0, last push 2018, before the competition) and no other copy with a licence was found.",
+      "evidence": [
+        "https://github.com/google-research-datasets/quest",
+        "https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/google-quest-challenge/description.md"
+      ]
+    },
+    "loongflow-plant-pathology-2020-fgvc7": {
+      "reason": "The data paper (Thapa et al. 2020, Applications in Plant Sciences, PMC7526434) states that the image dataset is available on Kaggle only and gives no image licence (the CC BY licence covers the article); the authors' GitHub repository rthapa-26/FGVC-Plant-Pathology-2020-challenge-dataset- holds code only and no licence; no Zenodo or Hugging Face copy of this year's images was found.",
+      "evidence": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7526434/fullTextXML",
+        "https://github.com/rthapa-26/FGVC-Plant-Pathology-2020-challenge-dataset-"
+      ]
+    },
+    "loongflow-plant-pathology-2021-fgvc8": {
+      "reason": "Outside Kaggle only third-party Hugging Face re-uploads exist (timm/plant-pathology-2021: 16,768 + 1,864 images = the competition training set, 16.1 GB, licence field apache-2.0 asserted by the uploader without provenance; Elapsedf/Plant-Pathology: 10.8 GB zip, MIT asserted, no description). A self-asserted licence on a re-upload is not a licence from the data's creators, and the size exceeds the 2 GB per-task data limit.",
+      "evidence": [
+        "https://huggingface.co/datasets/timm/plant-pathology-2021",
+        "https://huggingface.co/datasets/Elapsedf/Plant-Pathology"
+      ]
+    },
+    "loongflow-predict-volcanic-eruptions-ingv-oe": {
+      "reason": "INGV's seismic segments are distributed only through Kaggle (Zenodo and Hugging Face searches found no copy), and the competition asks participants not to seek further metadata about the sensors; the waveform set is tens of GB (size not verified here, Kaggle not accessible), beyond the 2 GB per-task limit.",
+      "evidence": [
+        "https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/predict-volcanic-eruptions-ingv-oe/description.md",
+        "https://zenodo.org/api/records?q=INGV%20volcanic%20eruption%20prediction"
+      ]
+    },
+    "loongflow-tabular-playground-series-dec-2021": {
+      "reason": "The rows were synthesised by Kaggle with a CTGAN trained on the Forest Cover Type data (MLE-bench description) and exist only on Kaggle. UCI Covertype (CC BY 4.0) is the GAN's source, not the competition data: a different distribution and size, i.e. a separate classic benchmark rather than this task, so it is not substituted under this id.",
+      "evidence": [
+        "https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/tabular-playground-series-dec-2021/description.md"
+      ]
+    },
+    "loongflow-the-icml-2013-whale-challenge-right-whale-redux": {
+      "reason": "The labelled 2-second clip set (train2.zip, test2.zip; four days of training and three days of test recordings from Cornell's MARU archive) is distributed only through Kaggle. Public North Atlantic right whale recordings exist (e.g. the CC BY 4.0 PAMGuard tutorial subset on Zenodo 13880107 from 2009 Cape Cod Bay MARU data, and a NOAA NCEI annotation archive cited there, licence not checked), but clips cut from them would be a new analogue with a different sampling and labelling protocol, not a recreation; not built in this package.",
+      "evidence": [
+        "https://github.com/openai/mle-bench/blob/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/the-icml-2013-whale-challenge-right-whale-redux/description.md",
+        "https://zenodo.org/records/13880107"
+      ]
+    }
+  },
+  "duplicates": {
+    "eurekagent-the-icml-2013-whale-redux": "loongflow-the-icml-2013-whale-challenge-right-whale-redux"
+  }
+}

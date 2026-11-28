@@ -1,0 +1,119 @@
+{
+  "protocol": "recreated",
+  "family": "science_finance_covariance_gmv",
+  "direction": "minimize",
+  "contract": "estimate_covariance(returns) -> (49, 49) symmetric positive-definite float array. returns is a (126, 49) float array of the previous 126 daily returns (decimal, oldest first) of the 49 Fama-French industry portfolios. Called every 21 trading days from 1971-09 to 2025-09 (649 times); the evaluator forms the global minimum-variance weights w = S^-1 1 / (1' S^-1 1) from the estimate, holds them for the next 21 days and scores the annualized standard deviation (percent) of the 13,629 daily out-of-sample portfolio returns (minimize). The estimate must be finite, symmetric (1e-10 relative) and positive definite with condition number below 1e12. The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
+  "parameters": {},
+  "requires": [
+    "py:numpy",
+    "file:data/finance/ind49_vw_daily.csv"
+  ],
+  "timeout": 300,
+  "notes": [
+    "Out-of-sample global minimum-variance criterion of Ledoit and Wolf (2017) with monthly (21-day) rebalancing on daily industry-portfolio returns instead of their individual CRSP stocks, a 126-day window instead of 250 days, and N = 49. No published number is reproduced. Local references: sample covariance 11.97, Ledoit-Wolf shrinkage to the identity 10.82 (matches scikit-learn's LedoitWolf to 1e-19) and to constant correlation 10.90, an implementation of their analytical nonlinear shrinkage 10.80, and 1/N 16.79 (annualized percent)."
+  ],
+  "protocol_description": "Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.",
+  "id": "science-finance-covariance-minimum-variance",
+  "name": "Finance: Covariance estimation for minimum-variance portfolios",
+  "paper_ids": [
+    "science-finance_expansion"
+  ],
+  "description": "Estimate the covariance matrix of 49 US industry portfolios from the previous 126 daily returns so that the implied global minimum-variance portfolio has the lowest realized out-of-sample volatility. The evaluator forms the portfolio from each estimate every 21 trading days from 1971 to 2025 and scores the annualized standard deviation of its daily returns.",
+  "benchmark": "Finance: Covariance estimation for minimum-variance portfolios",
+  "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+  "paper_direction": null,
+  "sources": [
+    {
+      "url": "https://doi.org/10.1093/rfs/hhx052",
+      "type": "paper",
+      "locator": "Ledoit and Wolf (2017): covariance estimators judged by the out-of-sample standard deviation of the global minimum-variance portfolio with monthly (21-day) rebalancing on daily returns."
+    },
+    {
+      "url": "https://doi.org/10.1016/S0927-5398(03)00007-0",
+      "type": "paper",
+      "locator": "Ledoit and Wolf (2003): linear shrinkage of the sample covariance matrix for portfolio selection."
+    },
+    {
+      "url": "https://doi.org/10.1214/19-AOS1921",
+      "type": "paper",
+      "locator": "Ledoit and Wolf (2020): analytical nonlinear shrinkage estimator used as a local reference."
+    },
+    {
+      "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+      "type": "archive",
+      "locator": "49 industry portfolios, value-weighted daily returns (CRSP 202509 file, complete from 1971-03-12), pinned in catalog/finance-data-lock.json."
+    }
+  ],
+  "limitations": [
+    "Assets are 49 industry portfolios rather than individual stocks, so the cross-section is smaller and less noisy than in Ledoit and Wolf's experiments; N/T = 0.39 with the fixed 126-day window.",
+    "The evaluation period is public and fixed; estimators tuned on it overfit, and a candidate that reads the prepared file could look ahead. The interface only passes the trailing window.",
+    "Unconstrained minimum-variance weights are used (short positions allowed, no transaction costs or turnover limits), and returns are value-weighted CRSP portfolio returns of one data vintage.",
+    "The score is a single realized standard deviation over 54 years; differences of a few hundredths of a percentage point are within sampling error.",
+    "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "science-finance_expansion",
+      "title": "Finance and economics research: source-based research tasks",
+      "url": "https://doi.org/10.1093/rfs/hhm075"
+    }
+  ],
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "statement": "No published value exists for this local dataset and window. Local references (annualized percent): sample covariance 11.97 (the seed), Ledoit-Wolf linear shrinkage to the identity 10.82 and to constant correlation 10.90, an implementation of Ledoit-Wolf analytical nonlinear shrinkage 10.80, diagonal covariance 15.16 and 1/N 16.79.",
+    "sources": [
+      {
+        "title": "Nonlinear Shrinkage of the Covariance Matrix for Portfolio Selection: Markowitz Meets Goldilocks",
+        "url": "https://doi.org/10.1093/rfs/hhx052"
+      },
+      {
+        "title": "Analytical nonlinear shrinkage of large-dimensional covariance matrices",
+        "url": "https://doi.org/10.1214/19-AOS1921"
+      }
+    ],
+    "as_of": "2026-10-07"
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Estimate large covariance matrices of asset returns from short samples so that optimized portfolios have low realized risk.",
+    "importance_rationale": "The sample covariance matrix is badly conditioned when the number of assets is not small relative to the sample, which makes minimum-variance and mean-variance portfolios unstable; better estimators directly reduce realized portfolio risk.",
+    "papers": [
+      {
+        "title": "Nonlinear Shrinkage of the Covariance Matrix for Portfolio Selection: Markowitz Meets Goldilocks",
+        "url": "https://doi.org/10.1093/rfs/hhx052",
+        "primary_goal": "Develop covariance-matrix estimators that minimize the out-of-sample variance of optimized portfolios.",
+        "task_relation": "The task uses the paper's criterion, the realized standard deviation of the global minimum-variance portfolio with monthly rebalancing, on industry portfolios.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Improved estimation of the covariance matrix of stock returns with an application to portfolio selection",
+        "url": "https://doi.org/10.1016/S0927-5398(03)00007-0",
+        "primary_goal": "Improve covariance estimation for portfolio selection by shrinking the sample covariance matrix.",
+        "task_relation": "Shrinkage estimators of this paper are local references for the task's score.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both papers have covariance estimation for portfolio selection as their main research goal.",
+    "reviewed_at": "2026-10-07",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "domain": "finance",
+    "area": "finance",
+    "data": "real_measurements",
+    "verification": "sampled",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  }
+}

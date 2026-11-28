@@ -1,0 +1,1504 @@
+[
+  {
+    "id": "science-chemistry-morse-cluster-minima",
+    "name": "Morse cluster global minima across the range of the potential",
+    "description": "Find the lowest-energy arrangements of 38 to 80 atoms bound by Morse potentials of long, medium and short range (six instances). Energies are recomputed exactly and compared with the putative global minima of Doye and Wales.",
+    "family": "science_chemistry_morse_clusters",
+    "status": "ready",
+    "parameters": {},
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "scipy"
+      ],
+      "datasets": "None; reference energies are published values embedded in the evaluator."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_clusters.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1039/a706221d",
+        "type": "paper",
+        "locator": "Doye and Wales (1997): Morse potential in reduced units, Table 1 of putative global minima for N <= 80 at rho = 3, 6, 10, 14 (arXiv cond-mat/9709201)."
+      },
+      {
+        "url": "https://arxiv.org/abs/cond-mat/9709201",
+        "type": "archive",
+        "locator": "LaTeX source of Table 1, from which the six reference energies (six decimals) were read."
+      }
+    ],
+    "limitations": [
+      "The references are the 1997 putative minima; the Cambridge Cluster Database listed the same six energies on 2026-11-24, so no later improvement is recorded for these instances, and a score below zero would be a new putative minimum that needs independent confirmation. rho = 14, where later work reported new minima, is not used.",
+      "The putative minima are published with coordinates in the database, so a candidate that reproduces remembered structures scores well without searching; scores measure constructions, not search efficiency.",
+      "The score averages relative energy excesses (percent of |E|) over six instances with a 300 s budget for all of them; results depend on the machine speed for time-limited searches."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "natural_science",
+      "area": "chemistry",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.0,
+      "statement": "Matching the six putative global minima of Doye and Wales (1997) gives 0; the Cambridge Cluster Database listed the same six energies on 2026-11-24 and no lower energies for these instances were found in the literature.",
+      "sources": [
+        {
+          "title": "Structural consequences of the range of the interatomic potential: a menagerie of clusters",
+          "url": "https://doi.org/10.1039/a706221d"
+        }
+      ],
+      "as_of": "2026-11-24"
+    }
+  },
+  {
+    "id": "science-materials-sutton-chen-cluster-minima",
+    "name": "Sutton-Chen transition-metal cluster global minima",
+    "description": "Find the lowest-energy structures of 38- to 80-atom clusters of the Sutton-Chen many-body metal potential with the silver, nickel and gold parameter sets (six instances). Energies are recomputed exactly and compared with the putative global minima of Doye and Wales.",
+    "family": "science_materials_sutton_chen_clusters",
+    "status": "ready",
+    "parameters": {},
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "scipy"
+      ],
+      "datasets": "None; reference energies are published values embedded in the evaluator."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_clusters.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1039/a709249k",
+        "type": "paper",
+        "locator": "Doye and Wales (1998): Sutton-Chen 12-6, 9-6 and 10-8 clusters, table of putative global minima for N <= 80 (arXiv cond-mat/9711038)."
+      },
+      {
+        "url": "https://doi.org/10.1080/09500839008206493",
+        "type": "paper",
+        "locator": "Sutton and Chen (1990): the long-range Finnis-Sinclair potential and its (n, m, c) parameters."
+      },
+      {
+        "url": "https://doi.org/10.1021/acs.jctc.4c00365",
+        "type": "paper",
+        "locator": "Lopez-Castro, Ortiz-Chi and Merino (2024): GrowPAL search over Sutton-Chen clusters with 5-80 atoms; reports new lower minima for 12-6 N = 68 and 10-8 N = 58 (not used here)."
+      },
+      {
+        "url": "https://arxiv.org/abs/cond-mat/9711038",
+        "type": "archive",
+        "locator": "LaTeX source of the global-minimum table (four decimals)."
+      }
+    ],
+    "limitations": [
+      "References are the 1998 putative minima (four decimals); the Cambridge Cluster Database listed the same six energies on 2026-11-24, and its coordinate files score them with this evaluator within 5e-5. Lopez-Castro et al. (2024) report database-level minima for all sizes from 5 to 80 except three (lower energies for 12-6 N = 68 and 10-8 N = 58, not reproduced for 10-8 N = 60); those three are excluded.",
+      "Putative minima are public, so remembered structures score well without search; the energy is computed without a cutoff, as in the source, and differs from implementations that truncate the sums.",
+      "The score averages relative energy excesses over six instances within a shared 300 s budget."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.0,
+      "statement": "Matching the six putative global minima of Doye and Wales (1998) gives 0. The 2024 GrowPAL search reports lower energies than the Cambridge Cluster Database only for sizes not used here; the database entries for the six sizes used here equal the 1998 table (read on 2026-11-24).",
+      "sources": [
+        {
+          "title": "Global minima for transition metal clusters described by Sutton-Chen potentials",
+          "url": "https://doi.org/10.1039/a709249k"
+        },
+        {
+          "title": "An Efficient Growth Pattern Algorithm (GrowPAL) for Cluster Structure Prediction",
+          "url": "https://doi.org/10.1021/acs.jctc.4c00365"
+        }
+      ],
+      "as_of": "2026-11-24"
+    }
+  },
+  {
+    "id": "science-materials-dzugutov-cluster-minima",
+    "name": "Dzugutov cluster global minima (polytetrahedral model metal)",
+    "description": "Find the lowest-energy structures of 38- to 60-atom clusters bound by the Dzugutov potential, a model of glass- and quasicrystal-forming metals whose energy maximum favours polytetrahedral order (six instances). Energies are recomputed exactly and compared with the putative global minima of Doye, Wales and Simdyankin.",
+    "family": "science_materials_dzugutov_clusters",
+    "status": "ready",
+    "parameters": {},
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "scipy"
+      ],
+      "datasets": "None; reference energies are published values embedded in the evaluator."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_clusters.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1039/b008881l",
+        "type": "paper",
+        "locator": "Doye, Wales and Simdyankin (2001): Dzugutov potential parameters and table of putative global minima for N = 3-100 (arXiv cond-mat/0011018)."
+      },
+      {
+        "url": "https://doi.org/10.1103/physreva.46.r2984",
+        "type": "paper",
+        "locator": "Dzugutov (1992): the pair potential designed to suppress crystallisation in a monatomic liquid."
+      },
+      {
+        "url": "https://arxiv.org/abs/cond-mat/0011018",
+        "type": "archive",
+        "locator": "LaTeX source of the global-minimum table (six decimals)."
+      }
+    ],
+    "limitations": [
+      "The references are 2001 putative minima; the authors note that sizes above about 60 may have lower minima, so only sizes up to 60 are used, and the Cambridge Cluster Database listed the same six energies on 2026-11-24 (its coordinate files score them with this evaluator within 5e-7).",
+      "Putative minima are public, so remembered structures score well without search.",
+      "The score averages relative energy excesses over six instances within a shared 300 s budget."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.0,
+      "statement": "Matching the six putative global minima of Doye, Wales and Simdyankin (2001) gives 0.",
+      "sources": [
+        {
+          "title": "Global optimization and the energy landscapes of Dzugutov clusters",
+          "url": "https://doi.org/10.1039/b008881l"
+        }
+      ],
+      "as_of": "2026-10-10"
+    }
+  },
+  {
+    "id": "science-chemistry-mmff94-drug-conformers",
+    "name": "Lowest-energy MMFF94 conformers of eight drug molecules",
+    "description": "Find, for each of eight flexible drug molecules, the conformer with the lowest MMFF94 force-field energy while keeping the molecule's connectivity and stereochemistry. The evaluator recomputes the energy of the returned coordinates and compares it with minima from an extensive reference search.",
+    "family": "science_chemistry_mmff_conformers",
+    "status": "ready",
+    "parameters": {},
+    "sources": [
+      {
+        "url": "https://doi.org/10.1039/C9CP06869D",
+        "type": "paper",
+        "locator": "Pracht, Bohle and Grimme (2020): automated search for low-energy conformers and rotamers (CREST)."
+      },
+      {
+        "url": "https://doi.org/10.1021/ja952478m",
+        "type": "paper",
+        "locator": "Kolossvary and Guida (1996): low-mode search for efficient global conformational analysis."
+      },
+      {
+        "url": "https://doi.org/10.1021/acs.jcim.5b00654",
+        "type": "paper",
+        "locator": "Riniker and Landrum (2015): ETKDG conformer generation, used by the seed and the reference search."
+      },
+      {
+        "url": "https://doi.org/10.1002/(SICI)1096-987X(199604)17:5/6%3C490::AID-JCC1%3E3.0.CO;2-P",
+        "type": "paper",
+        "locator": "Halgren (1996): the MMFF94 force field (RDKit implementation used here)."
+      },
+      {
+        "url": "https://www.ebi.ac.uk/chembl/",
+        "type": "benchmark",
+        "locator": "ChEMBL records CHEMBL941, CHEMBL192, CHEMBL1487, CHEMBL1229, CHEMBL83, CHEMBL1064, CHEMBL6966 and CHEMBL1404 for the structures."
+      }
+    ],
+    "limitations": [
+      "The references are the lowest energies found by this collection's own reference search (ETKDGv3 sampling, MMFF94 minimisation and torsional basin hopping with three or more independent seeds; per-seed results in validation/chemistry-checks.json), not published values and not proven global minima; a negative score means the candidate found lower minima.",
+      "MMFF94 in vacuum with a constant dielectric favours intramolecular hydrogen bonds and folded conformers; the force-field minimum is not the bioactive or solution conformer, so the task measures search, not conformational realism.",
+      "Atom order and energies depend on the RDKit version (2026.03 here). Verapamil and ranolazine are racemic drugs of which one enantiomer is fixed. The time budget (300 s for all eight molecules) is checked only as a whole."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "natural_science",
+      "area": "chemistry",
+      "data": "none",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit"
+      ],
+      "datasets": "None; eight structures from ChEMBL are embedded in the evaluator."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_conformers.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "rdkit",
+        "numpy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published global minima exist for these molecules under this protocol; the scored references come from the collection's own reference search (validation/chemistry-checks.json).",
+      "sources": [],
+      "as_of": "2026-10-10"
+    }
+  },
+  {
+    "id": "science-chemistry-adme-solubility-biogen",
+    "name": "ADME: aqueous solubility of drug-like compounds (Biogen public set)",
+    "description": "Predict the aqueous solubility at pH 6.8 (log10 ug/mL) of 435 test compounds from 1738 training compounds measured in the same Biogen assay. The evaluator scores the mean absolute error on the authors' official test split.",
+    "family": "science_chemistry_biogen_adme",
+    "status": "ready",
+    "parameters": {
+      "endpoint": "solubility"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1021/acs.jcim.3c00160",
+        "type": "paper",
+        "locator": "Fang et al. (2023): prospective validation of ML models for six in vitro ADME endpoints; disclosure of the 3521-compound public set."
+      },
+      {
+        "url": "https://github.com/molecularinformatics/Computational-ADME/tree/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN",
+        "type": "repository",
+        "locator": "Official train/test CSV files of each endpoint (pinned commit), MIT licence."
+      }
+    ],
+    "limitations": [
+      "The test values are public in the authors' repository; a candidate that embeds them, or hyperparameters tuned on them, overfits. Treat scores as development scores.",
+      "The split files differ slightly from the values in ADME_public_set_3521.csv (up to 0.1-0.3 log units for a few compounds), and one MDR1-MDCK test compound equals a training compound after canonicalisation; the official split files are used unchanged.",
+      "The article's own results on this split could not be read (publisher site not reachable), so no published value is reproduced.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "chemistry",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "Biogen ADME split files (solubility). Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "rdkit"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/adme/solubility_train.csv",
+      "file:data/chemistry/adme/solubility_test.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No verified published value exists for this exact split in the sources we could read; the training-mean predictor's MAE is reported with every score for scale.",
+      "sources": [],
+      "as_of": "2026-10-10"
+    }
+  },
+  {
+    "id": "science-chemistry-adme-microsomal-clearance-biogen",
+    "name": "ADME: human liver microsomal clearance (Biogen public set)",
+    "description": "Predict the human liver microsomal intrinsic clearance (log10 mL/min/kg) of 618 test compounds from 2469 training compounds measured in the same Biogen assay. The evaluator scores the mean absolute error on the authors' official test split.",
+    "family": "science_chemistry_biogen_adme",
+    "status": "ready",
+    "parameters": {
+      "endpoint": "hlm"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1021/acs.jcim.3c00160",
+        "type": "paper",
+        "locator": "Fang et al. (2023): prospective validation of ML models for six in vitro ADME endpoints; disclosure of the 3521-compound public set."
+      },
+      {
+        "url": "https://github.com/molecularinformatics/Computational-ADME/tree/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN",
+        "type": "repository",
+        "locator": "Official train/test CSV files of each endpoint (pinned commit), MIT licence."
+      }
+    ],
+    "limitations": [
+      "The test values are public in the authors' repository; a candidate that embeds them, or hyperparameters tuned on them, overfits. Treat scores as development scores.",
+      "The split files differ slightly from the values in ADME_public_set_3521.csv (up to 0.1-0.3 log units for a few compounds), and one MDR1-MDCK test compound equals a training compound after canonicalisation; the official split files are used unchanged.",
+      "The article's own results on this split could not be read (publisher site not reachable), so no published value is reproduced.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "chemistry",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "Biogen ADME split files (hlm). Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "rdkit"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/adme/hlm_train.csv",
+      "file:data/chemistry/adme/hlm_test.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No verified published value exists for this exact split in the sources we could read; the training-mean predictor's MAE is reported with every score for scale.",
+      "sources": [],
+      "as_of": "2026-10-10"
+    }
+  },
+  {
+    "id": "science-chemistry-adme-mdr1-efflux-biogen",
+    "name": "ADME: MDR1-MDCK efflux ratio (Biogen public set)",
+    "description": "Predict the MDR1-MDCK efflux ratio (log10 of B-A over A-B permeability) of 529 test compounds from 2113 training compounds measured in the same Biogen assay. The evaluator scores the mean absolute error on the authors' official test split.",
+    "family": "science_chemistry_biogen_adme",
+    "status": "ready",
+    "parameters": {
+      "endpoint": "mdr1_er"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1021/acs.jcim.3c00160",
+        "type": "paper",
+        "locator": "Fang et al. (2023): prospective validation of ML models for six in vitro ADME endpoints; disclosure of the 3521-compound public set."
+      },
+      {
+        "url": "https://github.com/molecularinformatics/Computational-ADME/tree/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN",
+        "type": "repository",
+        "locator": "Official train/test CSV files of each endpoint (pinned commit), MIT licence."
+      }
+    ],
+    "limitations": [
+      "The test values are public in the authors' repository; a candidate that embeds them, or hyperparameters tuned on them, overfits. Treat scores as development scores.",
+      "The split files differ slightly from the values in ADME_public_set_3521.csv (up to 0.1-0.3 log units for a few compounds), and one MDR1-MDCK test compound equals a training compound after canonicalisation; the official split files are used unchanged.",
+      "The article's own results on this split could not be read (publisher site not reachable), so no published value is reproduced.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "chemistry",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "Biogen ADME split files (mdr1_er). Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "rdkit"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/adme/mdr1_er_train.csv",
+      "file:data/chemistry/adme/mdr1_er_test.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No verified published value exists for this exact split in the sources we could read; the training-mean predictor's MAE is reported with every score for scale.",
+      "sources": [],
+      "as_of": "2026-10-10"
+    }
+  },
+  {
+    "id": "science-chemistry-adme-rat-microsomal-clearance-biogen",
+    "name": "ADME: rat liver microsomal clearance (Biogen public set)",
+    "description": "Predict the rat liver microsomal intrinsic clearance (log10 mL/min/kg) of 611 test compounds from 2443 training compounds measured in the same Biogen assay. The evaluator scores the mean absolute error on the authors' official test split.",
+    "family": "science_chemistry_biogen_adme",
+    "status": "ready",
+    "parameters": {
+      "endpoint": "rlm"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1021/acs.jcim.3c00160",
+        "type": "paper",
+        "locator": "Fang et al. (2023): prospective validation of ML models for six in vitro ADME endpoints; disclosure of the 3521-compound public set."
+      },
+      {
+        "url": "https://github.com/molecularinformatics/Computational-ADME/tree/b00df003de117ce9e5b381afd886095c5f2af2d5/MPNN",
+        "type": "repository",
+        "locator": "Official train/test CSV files of each endpoint (pinned commit), MIT licence."
+      }
+    ],
+    "limitations": [
+      "The test values are public in the authors' repository; a candidate that embeds them, or hyperparameters tuned on them, overfits. Treat scores as development scores.",
+      "The split files differ slightly from the values in ADME_public_set_3521.csv (up to 0.1-0.3 log units for a few compounds), and one MDR1-MDCK test compound equals a training compound after canonicalisation; the official split files are used unchanged.",
+      "The article's own results on this split could not be read (publisher site not reachable), so no published value is reproduced.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "chemistry",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "Biogen ADME split files (rlm). Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "rdkit"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/adme/rlm_train.csv",
+      "file:data/chemistry/adme/rlm_test.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No verified published value exists for this exact split in the sources we could read; the training-mean predictor's MAE is reported with every score for scale.",
+      "sources": [],
+      "as_of": "2026-10-10"
+    }
+  },
+  {
+    "id": "science-materials-matbench-steel-yield-strength",
+    "name": "Matbench: steel yield strength from composition",
+    "description": "Predict the yield strength (MPa) of 312 steels from their elemental composition alone. The evaluator scores the mean absolute error over Matbench's five official cross-validation folds.",
+    "family": "science_materials_matbench_composition",
+    "status": "ready",
+    "parameters": {
+      "task": "steels"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1007/s11431-020-1599-5",
+        "type": "paper",
+        "locator": "Xiong, Zhang and Shi (2020): machine learning of yield strength and other mechanical properties of steels from composition and processing."
+      },
+      {
+        "url": "https://doi.org/10.1038/s41524-020-00406-3",
+        "type": "benchmark",
+        "locator": "Dunn et al. (2020): Matbench v0.1 tasks, nested cross-validation protocol and MAE metric."
+      },
+      {
+        "url": "https://github.com/materialsproject/matbench/tree/936176db18ca4cd7b38cbd957c017a5bac770c6b",
+        "type": "repository",
+        "locator": "matbench_v0.1_validation.json (official folds) and stored per-fold predictions of published submissions (pinned commit)."
+      },
+      {
+        "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_steels/",
+        "type": "benchmark",
+        "locator": "Per-task Matbench v0.1 leaderboard (mean MAE over the five folds)."
+      }
+    ],
+    "limitations": [
+      "All targets are public in the Matbench files and every sample is a test sample of one fold; candidates or settings tuned on these folds overfit, so treat scores as development scores.",
+      "Leaderboard entries were trained without this task's limits (170 s and at most 4 CPU threads per fold, CPU only), so leaderboard values are reference points rather than targets attainable under the same budget.",
+      "Only 312 steels, so fold MAEs vary by about 10 MPa; compositions omit processing history, which strongly affects strength; the Citrine source states no licence.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "matbench_steels with the official folds. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/matbench/steels.json"
+    ],
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 75.5426,
+      "statement": "Best mean MAE on the Matbench v0.1 leaderboard for matbench_steels: 75.5426 MPa (Atomic-AffQRF), read on 2026-11-24; TabPFN-HYD has 76.5947 and TPOT-Mat 79.9468.",
+      "sources": [
+        {
+          "title": "Matbench leaderboard: matbench_steels",
+          "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_steels/"
+        }
+      ],
+      "as_of": "2026-11-24"
+    }
+  },
+  {
+    "id": "science-materials-matbench-experimental-band-gap",
+    "name": "Matbench: experimental band gap from composition",
+    "description": "Predict the experimentally measured band gap (eV) of 4604 inorganic compounds from their composition alone. The evaluator scores the mean absolute error over Matbench's five official cross-validation folds.",
+    "family": "science_materials_matbench_composition",
+    "status": "ready",
+    "parameters": {
+      "task": "expt_gap"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1021/acs.jpclett.8b00124",
+        "type": "paper",
+        "locator": "Zhuo, Mansouri Tehrani and Brgoch (2018): predicting band gaps of inorganic solids by machine learning from composition; source of the measurements."
+      },
+      {
+        "url": "https://doi.org/10.1038/s41524-020-00406-3",
+        "type": "benchmark",
+        "locator": "Dunn et al. (2020): Matbench v0.1 tasks, nested cross-validation protocol and MAE metric."
+      },
+      {
+        "url": "https://github.com/materialsproject/matbench/tree/936176db18ca4cd7b38cbd957c017a5bac770c6b",
+        "type": "repository",
+        "locator": "matbench_v0.1_validation.json (official folds) and stored per-fold predictions of published submissions (pinned commit)."
+      },
+      {
+        "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_expt_gap/",
+        "type": "benchmark",
+        "locator": "Per-task Matbench v0.1 leaderboard (mean MAE over the five folds)."
+      }
+    ],
+    "limitations": [
+      "All targets are public in the Matbench files and every sample is a test sample of one fold; candidates or settings tuned on these folds overfit, so treat scores as development scores.",
+      "Leaderboard entries were trained without this task's limits (170 s and at most 4 CPU threads per fold, CPU only), so leaderboard values are reference points rather than targets attainable under the same budget.",
+      "Polymorphs with the same composition share one value (deduplicated by composition), and 53% of the entries are metals with zero gap; the source states no licence.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "matbench_expt_gap with the official folds. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/matbench/expt_gap.json"
+    ],
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.2773,
+      "statement": "Best mean MAE on the Matbench v0.1 leaderboard for matbench_expt_gap: 0.2773 eV (XStack), read on 2026-11-24; Darwin follows with 0.2865.",
+      "sources": [
+        {
+          "title": "Matbench leaderboard: matbench_expt_gap",
+          "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_expt_gap/"
+        }
+      ],
+      "as_of": "2026-11-24"
+    }
+  },
+  {
+    "id": "science-materials-matbench-exfoliation-energy",
+    "name": "Matbench: exfoliation energy of layered materials",
+    "description": "Predict the DFT exfoliation energy (meV/atom) of 636 layered crystals from their structure. The evaluator scores the mean absolute error over Matbench's five official cross-validation folds.",
+    "family": "science_materials_matbench_structure",
+    "status": "ready",
+    "parameters": {
+      "task": "jdft2d"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1038/s41598-017-05402-0",
+        "type": "paper",
+        "locator": "Choudhary et al. (2017): high-throughput identification of exfoliable two-dimensional materials from DFT exfoliation energies (JARVIS-DFT)."
+      },
+      {
+        "url": "https://doi.org/10.1038/s41524-020-00406-3",
+        "type": "benchmark",
+        "locator": "Dunn et al. (2020): Matbench v0.1 tasks, nested cross-validation protocol and MAE metric."
+      },
+      {
+        "url": "https://github.com/materialsproject/matbench/tree/936176db18ca4cd7b38cbd957c017a5bac770c6b",
+        "type": "repository",
+        "locator": "matbench_v0.1_validation.json (official folds) and stored per-fold predictions of published submissions (pinned commit)."
+      },
+      {
+        "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_jdft2d/",
+        "type": "benchmark",
+        "locator": "Per-task Matbench v0.1 leaderboard (mean MAE over the five folds)."
+      }
+    ],
+    "limitations": [
+      "All targets are public in the Matbench files and every sample is a test sample of one fold; candidates or settings tuned on these folds overfit, so treat scores as development scores.",
+      "Leaderboard entries were trained without this task's limits (170 s and at most 4 CPU threads per fold, CPU only), so leaderboard values are reference points rather than targets attainable under the same budget.",
+      "Targets are OptB88vdW DFT values, not measurements, with a heavy tail (up to 1604 meV/atom) that dominates fold MAEs; 636 samples.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "matbench_jdft2d with the official folds. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/matbench/jdft2d.json"
+    ],
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 29.9916,
+      "statement": "Best mean MAE on the Matbench v0.1 leaderboard for matbench_jdft2d: 29.9916 meV/atom (TabPFN-HYD-FT), read on 2026-11-24; MODNet (v0.1.12) follows with 33.1918.",
+      "sources": [
+        {
+          "title": "Matbench leaderboard: matbench_jdft2d",
+          "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_jdft2d/"
+        }
+      ],
+      "as_of": "2026-11-24"
+    }
+  },
+  {
+    "id": "science-materials-matbench-phonon-peak",
+    "name": "Matbench: highest phonon DOS peak frequency",
+    "description": "Predict the frequency (cm^-1) of the highest-frequency peak of the phonon density of states of 1265 crystals from their structure. The evaluator scores the mean absolute error over Matbench's five official cross-validation folds.",
+    "family": "science_materials_matbench_structure",
+    "status": "ready",
+    "parameters": {
+      "task": "phonons"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1021/acs.chemmater.7b00789",
+        "type": "paper",
+        "locator": "Legrain et al. (2017): predicting vibrational free energies and entropies of solids from composition with machine learning."
+      },
+      {
+        "url": "https://doi.org/10.1038/sdata.2018.65",
+        "type": "paper",
+        "locator": "Petretto et al. (2018): high-throughput DFPT phonon calculations for inorganic materials; source of the targets."
+      },
+      {
+        "url": "https://doi.org/10.1038/s41524-020-00406-3",
+        "type": "benchmark",
+        "locator": "Dunn et al. (2020): Matbench v0.1 tasks, nested cross-validation protocol and MAE metric."
+      },
+      {
+        "url": "https://github.com/materialsproject/matbench/tree/936176db18ca4cd7b38cbd957c017a5bac770c6b",
+        "type": "repository",
+        "locator": "matbench_v0.1_validation.json (official folds) and stored per-fold predictions of published submissions (pinned commit)."
+      },
+      {
+        "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_phonons/",
+        "type": "benchmark",
+        "locator": "Per-task Matbench v0.1 leaderboard (mean MAE over the five folds)."
+      }
+    ],
+    "limitations": [
+      "All targets are public in the Matbench files and every sample is a test sample of one fold; candidates or settings tuned on these folds overfit, so treat scores as development scores.",
+      "Leaderboard entries were trained without this task's limits (170 s and at most 4 CPU threads per fold, CPU only), so leaderboard values are reference points rather than targets attainable under the same budget.",
+      "Targets are harmonic DFPT results, not measurements, for compounds within 150 meV of the convex hull; 1265 samples.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "matbench_phonons with the official folds. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/matbench/phonons.json"
+    ],
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 28.7606,
+      "statement": "Best mean MAE on the Matbench v0.1 leaderboard for matbench_phonons: 28.7606 cm^-1 (MegNet (kgcnn v2.1.0)), read on 2026-10-10.",
+      "sources": [
+        {
+          "title": "Matbench leaderboard: matbench_phonons",
+          "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_phonons/"
+        }
+      ],
+      "as_of": "2026-10-10"
+    }
+  },
+  {
+    "id": "science-materials-matbench-refractive-index",
+    "name": "Matbench: refractive index of inorganic crystals",
+    "description": "Predict the DFT refractive index of 4764 inorganic crystals from their structure. The evaluator scores the mean absolute error over Matbench's five official cross-validation folds.",
+    "family": "science_materials_matbench_structure",
+    "status": "ready",
+    "parameters": {
+      "task": "dielectric"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1038/sdata.2016.134",
+        "type": "paper",
+        "locator": "Petousis et al. (2017): high-throughput DFPT screening of inorganic compounds for dielectric and optical materials; source of the targets."
+      },
+      {
+        "url": "https://doi.org/10.1038/s41524-020-00406-3",
+        "type": "benchmark",
+        "locator": "Dunn et al. (2020): Matbench v0.1 tasks, nested cross-validation protocol and MAE metric."
+      },
+      {
+        "url": "https://github.com/materialsproject/matbench/tree/936176db18ca4cd7b38cbd957c017a5bac770c6b",
+        "type": "repository",
+        "locator": "matbench_v0.1_validation.json (official folds) and stored per-fold predictions of published submissions (pinned commit)."
+      },
+      {
+        "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_dielectric/",
+        "type": "benchmark",
+        "locator": "Per-task Matbench v0.1 leaderboard (mean MAE over the five folds)."
+      }
+    ],
+    "limitations": [
+      "All targets are public in the Matbench files and every sample is a test sample of one fold; candidates or settings tuned on these folds overfit, so treat scores as development scores.",
+      "Leaderboard entries were trained without this task's limits (170 s and at most 4 CPU threads per fold, CPU only), so leaderboard values are reference points rather than targets attainable under the same budget.",
+      "Targets are DFT (DFPT) refractive indices with a few extreme values (up to 62) that dominate fold maxima; Materials Project data retrieved in 2019.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "matbench_dielectric with the official folds. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/matbench/dielectric.json"
+    ],
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.2711,
+      "statement": "Best mean MAE on the Matbench v0.1 leaderboard for matbench_dielectric: 0.2711 dimensionless (MODNet (v0.1.12)), read on 2026-10-10.",
+      "sources": [
+        {
+          "title": "Matbench leaderboard: matbench_dielectric",
+          "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_dielectric/"
+        }
+      ],
+      "as_of": "2026-10-10"
+    }
+  },
+  {
+    "id": "science-materials-matbench-shear-modulus",
+    "name": "Matbench: shear modulus of inorganic crystals",
+    "description": "Predict the base-10 logarithm of the DFT Voigt-Reuss-Hill shear modulus (GPa) of 10987 inorganic crystals from their structure. The evaluator scores the mean absolute error over Matbench's five official cross-validation folds.",
+    "family": "science_materials_matbench_structure",
+    "status": "ready",
+    "parameters": {
+      "task": "log_gvrh"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1038/srep34256",
+        "type": "paper",
+        "locator": "de Jong et al. (2016): statistical learning of bulk and shear moduli of inorganic polycrystalline compounds."
+      },
+      {
+        "url": "https://doi.org/10.1038/sdata.2015.9",
+        "type": "paper",
+        "locator": "de Jong et al. (2015): DFT elastic tensors of inorganic crystals; source of the targets."
+      },
+      {
+        "url": "https://doi.org/10.1038/s41524-020-00406-3",
+        "type": "benchmark",
+        "locator": "Dunn et al. (2020): Matbench v0.1 tasks, nested cross-validation protocol and MAE metric."
+      },
+      {
+        "url": "https://github.com/materialsproject/matbench/tree/936176db18ca4cd7b38cbd957c017a5bac770c6b",
+        "type": "repository",
+        "locator": "matbench_v0.1_validation.json (official folds) and stored per-fold predictions of published submissions (pinned commit)."
+      },
+      {
+        "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_log_gvrh/",
+        "type": "benchmark",
+        "locator": "Per-task Matbench v0.1 leaderboard (mean MAE over the five folds)."
+      }
+    ],
+    "limitations": [
+      "All targets are public in the Matbench files and every sample is a test sample of one fold; candidates or settings tuned on these folds overfit, so treat scores as development scores.",
+      "Leaderboard entries were trained without this task's limits (170 s and at most 4 CPU threads per fold, CPU only), so leaderboard values are reference points rather than targets attainable under the same budget.",
+      "Targets are DFT moduli filtered for mechanical consistency, not measurements; 10987 samples.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "matbench_log_gvrh with the official folds. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/matbench/log_gvrh.json"
+    ],
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.067,
+      "statement": "Best mean MAE on the Matbench v0.1 leaderboard for matbench_log_gvrh: 0.067 log10(GPa) (coNGN), read on 2026-10-10.",
+      "sources": [
+        {
+          "title": "Matbench leaderboard: matbench_log_gvrh",
+          "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_log_gvrh/"
+        }
+      ],
+      "as_of": "2026-10-10"
+    }
+  },
+  {
+    "id": "science-materials-matbench-perovskite-formation-energy",
+    "name": "Matbench: formation energy of cubic perovskites",
+    "description": "Predict the DFT heat of formation (eV per five-atom cell) of 18928 cubic perovskites from their structure. The evaluator scores the mean absolute error over Matbench's five official cross-validation folds.",
+    "family": "science_materials_matbench_structure",
+    "status": "ready",
+    "parameters": {
+      "task": "perovskites"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1039/C2EE22341D",
+        "type": "paper",
+        "locator": "Castelli et al. (2012): computational screening of cubic perovskites for one- and two-photon water splitting; source of the formation energies."
+      },
+      {
+        "url": "https://doi.org/10.1038/s41524-020-00406-3",
+        "type": "benchmark",
+        "locator": "Dunn et al. (2020): Matbench v0.1 tasks, nested cross-validation protocol and MAE metric."
+      },
+      {
+        "url": "https://github.com/materialsproject/matbench/tree/936176db18ca4cd7b38cbd957c017a5bac770c6b",
+        "type": "repository",
+        "locator": "matbench_v0.1_validation.json (official folds) and stored per-fold predictions of published submissions (pinned commit)."
+      },
+      {
+        "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_perovskites/",
+        "type": "benchmark",
+        "locator": "Per-task Matbench v0.1 leaderboard (mean MAE over the five folds)."
+      }
+    ],
+    "limitations": [
+      "All targets are public in the Matbench files and every sample is a test sample of one fold; candidates or settings tuned on these folds overfit, so treat scores as development scores.",
+      "Leaderboard entries were trained without this task's limits (170 s and at most 4 CPU threads per fold, CPU only), so leaderboard values are reference points rather than targets attainable under the same budget.",
+      "Targets are RPBE DFT energies of hypothetical cubic perovskites with an oxygen reference taken from water vapour, so they are not comparable with other formation-energy datasets.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "matbench_perovskites with the official folds. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/matbench/perovskites.json"
+    ],
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.0269,
+      "statement": "Best mean MAE on the Matbench v0.1 leaderboard for matbench_perovskites: 0.0269 eV/unit cell (coGN), read on 2026-10-10.",
+      "sources": [
+        {
+          "title": "Matbench leaderboard: matbench_perovskites",
+          "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_perovskites/"
+        }
+      ],
+      "as_of": "2026-10-10"
+    }
+  },
+  {
+    "id": "science-materials-matbench-metal-classification",
+    "name": "Matbench: metal or non-metal from composition",
+    "description": "Classify 4921 inorganic compounds as metals or non-metals from their composition alone, using experimental band-gap reports. The evaluator scores the balanced accuracy (Matbench's ROC AUC for label predictions) over the five official cross-validation folds.",
+    "family": "science_materials_matbench_classification",
+    "status": "ready",
+    "parameters": {
+      "task": "expt_is_metal"
+    },
+    "sources": [
+      {
+        "url": "https://doi.org/10.1021/acs.jpclett.8b00124",
+        "type": "paper",
+        "locator": "Zhuo, Mansouri Tehrani and Brgoch (2018): machine-learning classification of metals and prediction of band gaps from composition; source of the labels."
+      },
+      {
+        "url": "https://doi.org/10.1038/s41524-020-00406-3",
+        "type": "benchmark",
+        "locator": "Dunn et al. (2020): Matbench v0.1 tasks, nested cross-validation protocol (StratifiedKFold with seed 18012019 for classification) and metrics (MAE for regression, ROC AUC for classification)."
+      },
+      {
+        "url": "https://github.com/materialsproject/matbench/tree/936176db18ca4cd7b38cbd957c017a5bac770c6b",
+        "type": "repository",
+        "locator": "matbench_v0.1_validation.json (official folds) and stored per-fold predictions of published submissions (pinned commit)."
+      },
+      {
+        "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_expt_is_metal/",
+        "type": "benchmark",
+        "locator": "Per-task Matbench v0.1 leaderboard (mean balanced accuracy over the five folds for every entry; probability ROC AUC for the entries that saved probabilities)."
+      }
+    ],
+    "limitations": [
+      "All labels are public in the Matbench file and every sample is a test sample of one fold; candidates or settings tuned on these folds overfit, so treat scores as development scores.",
+      "Leaderboard entries were trained without this task's limits (170 s and at most 4 CPU threads per fold), so leaderboard values are reference points.",
+      "Only 0/1 labels are accepted, so the score is the balanced accuracy; ROC AUC from probabilities, which Matbench also accepts, would not be comparable with the leaderboard entries that submitted labels. Labels are deduplicated by composition, so polymorphs share one label.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "materials_science",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "leaderboard"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "matbench_expt_is_metal with the official folds. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/matbench/expt_is_metal.json"
+    ],
+    "state_of_the_art": {
+      "kind": "best_known",
+      "value": 0.9598,
+      "statement": "Best mean balanced accuracy on the Matbench v0.1 leaderboard for matbench_expt_is_metal: 0.9598 (Darwin, hard labels), read on 2026-11-24. This is the leaderboard column this task scores. The leaderboard lists probability ROC AUC separately, only for entries that saved probabilities (best 0.9850, XStack, whose balanced accuracy is 0.9433); it is not comparable with this task's score.",
+      "sources": [
+        {
+          "title": "Matbench leaderboard: matbench_expt_is_metal",
+          "url": "https://matbench.materialsproject.org/Leaderboards%20Per-Task/matbench_v0.1_matbench_expt_is_metal/"
+        }
+      ],
+      "as_of": "2026-11-24"
+    }
+  },
+  {
+    "id": "science-chemistry-buchwald-hartwig-yield-additive-split",
+    "name": "Buchwald-Hartwig yield prediction for unseen additives",
+    "description": "Predict the yields of palladium-catalysed C-N couplings that use isoxazole additives never seen in training, on the four out-of-sample tests of Ahneman et al. The evaluator scores the mean coefficient of determination (R^2) over the four tests.",
+    "family": "science_chemistry_buchwald_hartwig_yield",
+    "status": "ready",
+    "parameters": {},
+    "sources": [
+      {
+        "url": "https://doi.org/10.1126/science.aar5169",
+        "type": "paper",
+        "locator": "Ahneman et al. (2018): machine-learning prediction of C-N cross-coupling yields from 4608 nanomole-scale experiments; out-of-sample additive tests 1-4."
+      },
+      {
+        "url": "https://doi.org/10.1088/2632-2153/abc81d",
+        "type": "paper",
+        "locator": "Schwaller et al. (2021): Yield-BERT; split boundaries of the out-of-sample tests and published R^2 values."
+      },
+      {
+        "url": "https://github.com/rxn4chemistry/rxn_yields/tree/d9e6b87ce1b881978490d68bfc00021e3b48127a/data",
+        "type": "repository",
+        "locator": "Buchwald-Hartwig spreadsheet (Test1-Test4 sheets) and Suzuki-Miyaura random splits used by Yield-BERT (pinned commit, MIT)."
+      },
+      {
+        "url": "https://arxiv.org/abs/2204.14062",
+        "type": "paper",
+        "locator": "Baraka and El Kerdawy (2022): comparison tables of published R^2 values on both datasets (Yield-BERT, DFT random forest, MFF and others), from which the comparison values were read."
+      }
+    ],
+    "limitations": [
+      "One reaction class with 15 aryl halides, 4 ligands, 3 bases and 23 isoxazole additives that act as deliberate poisons (22 of them occur in the 3955 reactions used here); generalisation to unseen additives says little about other substrates or reaction types.",
+      "The test yields are public in the source repository; candidates or settings tuned on these splits overfit, so treat scores as development scores.",
+      "Published values were read from the comparison table of Baraka and El Kerdawy (2022) because the primary articles' sites were not reachable; they are compared, not reproduced, and no published predictions are available.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container.",
+      "The fingerprint random-forest seed (0.753) already exceeds the published Yield-BERT mean (0.73), so the published values are not an upper bound."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "chemistry",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "Dreher_and_Doyle_input_data.xlsx (Ahneman et al. 2018) via rxn_yields. Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "rdkit",
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/yields/buchwald_hartwig.json"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No best-known value was verified. Published comparison values: Yield-BERT (Schwaller et al. 2021) R^2 0.84, 0.84, 0.75 and 0.49 on Tests 1-4 (mean 0.73) and the DFT-descriptor random forest of Ahneman et al. 0.80, 0.77, 0.64 and 0.54 (mean 0.69), as tabulated by Baraka and El Kerdawy (2022). Later work may report higher values, and this task's fingerprint random-forest seed already scores 0.753.",
+      "sources": [
+        {
+          "title": "Prediction of chemical reaction yields using deep learning",
+          "url": "https://doi.org/10.1088/2632-2153/abc81d"
+        },
+        {
+          "title": "Predicting reaction performance in C-N cross-coupling using machine learning",
+          "url": "https://doi.org/10.1126/science.aar5169"
+        },
+        {
+          "title": "Multimodal Transformer-based Model for Buchwald-Hartwig and Suzuki-Miyaura Reaction Yield Prediction",
+          "url": "https://arxiv.org/abs/2204.14062"
+        }
+      ],
+      "as_of": "2026-10-10"
+    }
+  },
+  {
+    "id": "science-chemistry-suzuki-miyaura-yield-random-split",
+    "name": "Suzuki-Miyaura yield prediction on random splits",
+    "description": "Predict the yields of 5760 Suzuki-Miyaura couplings screened by Perera et al. across electrophiles, nucleophiles, ligands, bases and solvents, on ten random 70/30 splits. The evaluator scores the mean coefficient of determination (R^2) over the splits.",
+    "family": "science_chemistry_suzuki_miyaura_yield",
+    "status": "ready",
+    "parameters": {},
+    "sources": [
+      {
+        "url": "https://doi.org/10.1126/science.aap9112",
+        "type": "paper",
+        "locator": "Perera et al. (2018): automated nanomole-scale screening of 5760 Suzuki-Miyaura reactions; source of the yields."
+      },
+      {
+        "url": "https://doi.org/10.1088/2632-2153/abc81d",
+        "type": "paper",
+        "locator": "Schwaller et al. (2021): Yield-BERT; the ten random splits (first 4032 reactions training) and published R^2."
+      },
+      {
+        "url": "https://github.com/rxn4chemistry/rxn_yields/tree/d9e6b87ce1b881978490d68bfc00021e3b48127a/data",
+        "type": "repository",
+        "locator": "Buchwald-Hartwig spreadsheet (Test1-Test4 sheets) and Suzuki-Miyaura random splits used by Yield-BERT (pinned commit, MIT)."
+      },
+      {
+        "url": "https://arxiv.org/abs/2204.14062",
+        "type": "paper",
+        "locator": "Baraka and El Kerdawy (2022): comparison tables of published R^2 values on both datasets (Yield-BERT, DFT random forest, MFF and others), from which the comparison values were read."
+      }
+    ],
+    "limitations": [
+      "Random splits of a full factorial screen interpolate between measured combinations of the same components; they do not test transfer to new substrates or conditions.",
+      "The test yields are public in the source repository; candidates or settings tuned on these splits overfit, so treat scores as development scores.",
+      "Published values were read from the comparison table of Baraka and El Kerdawy (2022) because the primary articles' sites were not reachable; they are compared, not reproduced, and no published predictions are available.",
+      "Candidates run in a separate process that never receives held-out values, but the process isolation is an audit-hook policy for honest program search, not a security boundary (ctypes stays available for scientific libraries); run adversarial evaluations in a container."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "area": "chemistry",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "rdkit",
+        "scikit-learn"
+      ],
+      "datasets": "rxn_yields random_split_0..9.tsv (Perera et al. 2018). Fetched by python3 scripts/prepare_chemistry.py from pinned sources and verified by SHA-256 (catalog/chemistry-data-lock.json); not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_chem_predictions.py",
+      "evidence": "validation/chemistry-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "rdkit",
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_chemistry.py",
+      "documentation": "catalog/chemistry-data-lock.json"
+    },
+    "requires": [
+      "file:data/chemistry/yields/suzuki_miyaura.json"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No best-known value was verified. Published comparison values: Yield-BERT (Schwaller et al. 2021) mean R^2 0.81 +- 0.01 over the ten splits and the multimodal BERT of Baraka and El Kerdawy (2022) 0.833 +- 0.01; later work may report higher values, and this task's seed scores 0.823.",
+      "sources": [
+        {
+          "title": "Prediction of chemical reaction yields using deep learning",
+          "url": "https://doi.org/10.1088/2632-2153/abc81d"
+        },
+        {
+          "title": "Multimodal Transformer-based Model for Buchwald-Hartwig and Suzuki-Miyaura Reaction Yield Prediction",
+          "url": "https://arxiv.org/abs/2204.14062"
+        }
+      ],
+      "as_of": "2026-10-10"
+    }
+  }
+]

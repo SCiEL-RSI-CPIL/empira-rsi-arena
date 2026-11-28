@@ -1,19 +1,30 @@
 {
-  "protocol": "unsupported",
-  "family": null,
+  "protocol": "recreated",
+  "family": "llm_bench_qa",
   "direction": "maximize",
-  "contract": null,
-  "parameters": {},
+  "contract": "solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. `question` is MCE's 139-tag US GAAP context, the question 'What is best tag for entity ... in sentence ...' and a request for one tag name. Answer rule (MCE's FiNER check): the first comma-separated element of the final answer (the text after the last 'Answer:' marker, else the last \\boxed{...}, else the last non-empty line), stripped of quotes and backticks, must equal the gold tag case-insensitively. Score: accuracy on a fixed 30-item sample of MCE's 100-item FiNER test split; higher is better",
+  "parameters": {
+    "benchmark": "finer",
+    "samples": 30,
+    "seed": 0
+  },
   "requires": [
-    "service:llm_api",
+    "py:numpy",
     "env:OPENROUTER_API_KEY",
-    "dataset:FiNER"
+    "network:openrouter",
+    "file:data/llm_bench/finer.json"
   ],
-  "timeout": 30,
-  "notes": [],
-  "unsupported_category": "llm_api",
-  "unsupported_reason": "Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the FiNER benchmark. The suite embeds neither model calls nor the benchmark data.",
-  "protocol_description": "Not executable in this suite: Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the FiNER benchmark. The suite embeds neither model calls nor the benchmark data.",
+  "timeout": 900,
+  "notes": [
+    "Data: MCE artifact (metaevo-ai/mce-artifact at commit c63300daef93404e22e2569b3d08e72843e7123b), env/finer/data/test.jsonl: 100 FiNER-139 instances of 12 debt and credit tags sampled by the MCE authors from the ACE copy of FiNER, with the 139-tag context string of env/finer/finer_context.py (read as a literal, not executed). FiNER-139 is CC-BY-SA-4.0.",
+    "Metric: MCE's _finer_answer_is_correct reduced to single-tag answers (the first comma-separated element must match, case-insensitively). MCE reads the generator's JSON final_answer field; locally the final-answer text rule of the contract is used.",
+    "Candidate: MCE co-evolves context-engineering skills and learned context files that a fixed generator (DeepSeek-V3.1 in the paper) consumes, learning from a 200-instance training split. Here the candidate is a free-form solve(question, llm) program (any learned context must live in the program); the training split is not supplied by the evaluator, and the default model is google/gemini-2.5-flash at temperature 0.",
+    "Not verified: the paper's accuracies were not reproduced; a fixed 30-item sample is evaluated.",
+    "MCE learns from separate 200/100 train/validation splits and evaluates on the held-out test split; here the candidate is optimised against the test items it is scored on. Meta-Harness uses FiNER only as an out-of-distribution transfer dataset for a harness searched on other datasets (GPT-OSS-120B, online setting, unstated subset).",
+    "The candidate runs as trusted code in the evaluator's process, and the reference answers are stored in data/llm_bench of the task cache (ARENA_TASK_CACHE_DIR), so a candidate could read them; it can also replace the evaluator's scoring functions, raise the model client's budget attribute and read OPENROUTER_API_KEY from the environment, so the per-evaluation budget bounds an honest program only. Scores assume a candidate that does none of this.",
+    "Model-driven evaluation: the score is an estimate on a fixed seeded sample and depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0), the sample size (task parameter `samples`, overridden by ARTASK_LLM_SAMPLES) and the per-evaluation budget (ARTASK_LLM_BUDGET_USD, default 0.25). Responses are cached under llm-cache in the task cache (ARTASK_LLM_CACHE overrides) and shared by all candidates: a repeated call, also one at temperature > 0, returns the stored reply, and a cached reply costs nothing against the budget. `valid` is null because a sampled model score cannot certify a candidate."
+  ],
+  "protocol_description": "Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.",
   "id": "mce-finer",
   "name": "FiNER",
   "paper_ids": [
@@ -44,6 +55,11 @@
       "url": "https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact/tree/57fefdb2ff84af3fd81b69d67814acbe69bd0743",
       "type": "repository",
       "locator": null
+    },
+    {
+      "url": "https://github.com/metaevo-ai/mce-artifact/tree/c63300daef93404e22e2569b3d08e72843e7123b/env/finer",
+      "type": "repository",
+      "locator": "data/test.jsonl, finer_context.py and finer_environment.py (_finer_answer_is_correct)"
     }
   ],
   "limitations": [
@@ -70,11 +86,10 @@
     "domain": "language",
     "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "unavailable"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

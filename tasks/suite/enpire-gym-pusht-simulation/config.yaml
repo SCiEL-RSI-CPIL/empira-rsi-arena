@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 600
   max_retries: 2
 
 prompt:
   system_message: |
     Gym-PushT simulation
 
-    Gym-PushT simulation
+    Write a Python class Policy whose act(observation) returns the pushing disc's target position in gym-pusht's PushT-v0 from the state vector (agent position, T-block position and angle); scored by the fraction of 100 fixed episodes (reset seeds 0-99, at most 300 steps each) in which the block covers more than 95% of the goal region (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: class Policy with __init__(self) and act(self, observation) -> (x, y): a heuristic controller for gym-pusht's PushT-v0 with obs_type='state'. observation is a float array [agent_x, agent_y, block_x, block_y, block_angle]: pixels in [0, 512] (block_x, block_y is the T's body origin, the midpoint of the outer edge of its bar) and the block angle in radians in [0, 2 pi). In its body frame (y up) the T is the union of the bar [-60, 60] x [0, 30] and the stem [-15, 15] x [30, 120]; the goal pose is fixed at (256, 256, pi / 4). The action is the target position (pixels) of the 15-pixel pushing disc, which gym-pusht's PD controller tracks for 0.1 s (10 physics steps) per step; actions are clipped to [0, 512] and must be finite. Each of 100 fixed episodes (gym-pusht reset seeds 0-99) is played by a fresh Policy instance in a fresh sandboxed process (NumPy available; no file, network or process access; 10 s CPU per episode) that receives only the observations; an episode ends on gym-pusht's own success test (coverage of the goal region above 0.95) or after 300 steps. Score: fraction of successful episodes (maximize)
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

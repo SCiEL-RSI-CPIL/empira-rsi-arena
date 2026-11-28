@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 900
   max_retries: 2
 
 prompt:
   system_message: |
     BallBalance
 
-    BallBalance: optimize the candidate specified by the paper and evaluate against the named benchmark.
+    Write a Python reward(observation, action, next_observation, info) for a CPU MuJoCo analogue of IsaacGymEnvs BallBalance (ball thrown onto a tilting tray); a linear policy is trained under it by the cross-entropy method, and the score is the policy's mean episode length in steps before the ball drops, at most 500, over 50 held-out throws (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: reward(observation, action, next_observation, info) -> float: the per-step reward used to train a policy for a CPU MuJoCo analogue of IsaacGymEnvs BallBalance (a ball thrown onto a 0.5 m tray that tilts on a two-axis gimbal; one step is 0.01 s). observation and next_observation are float arrays [tilt_x, tilt_y, tilt_rate_x, tilt_rate_y, ball_x, ball_y, ball_z, ball_vx, ball_vy, ball_vz] (rad, rad/s, m, m/s; clipped to +-5) before and after the step; action holds the policy's 2 tilt-rate commands in [-1, 1]; info is a dict of the state after the step: ball_position (3), ball_velocity (3), tray_tilt (2), tray_tilt_velocity (2), tray_normal (3), tray_position (3, the fixed tray centre at height 0.559 m), ball_radius (0.1), progress (steps so far), max_episode_length (500) and terminated (True on the step the ball falls). The evaluator trains a linear policy tanh(W obs + b) with the cross-entropy method (80 generations of 24 candidates, each scored by its summed candidate reward on the same 4 throws, 4 elites) and reports the fitness of the final mean policy: the mean episode length in steps (until the ball's centre drops below 0.15 m, at most 500) over 50 held-out throws (maximize). The reward runs in a sandboxed process that only receives the recorded training transitions; it must be deterministic and return a finite number
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

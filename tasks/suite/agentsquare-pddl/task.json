@@ -2,12 +2,12 @@
   "schema_version": "1.0",
   "id": "agentsquare-pddl",
   "name": "PDDL",
-  "description": "PDDL task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.",
+  "description": "Write a Python act(instruction, observation, valid_actions, history, llm) agent that plays AgentBoard's PDDL games (gripper, blockworld, barman, tyreworld) with one text action per step, using a budgeted OpenRouter model client; scored by the mean progress rate (fraction of goal literals reached) over 12 fixed problems, at most 30 steps each (higher is better).",
   "paper_ids": [
     "agentsquare"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2410.06153",
@@ -18,6 +18,31 @@
       "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c",
       "type": "repository",
       "locator": null
+    },
+    {
+      "url": "https://arxiv.org/abs/2410.06153",
+      "type": "paper",
+      "locator": "Section 4.1 and Appendix A.1 (tasks and metrics)"
+    },
+    {
+      "url": "https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/sciworld/agentboard/environment/pddl_env",
+      "type": "repository",
+      "locator": "PDDL environment code only (no runner)"
+    },
+    {
+      "url": "https://github.com/hkust-nlp/AgentBoard/tree/bb7255e2daf1989069a186dad9e53f70680961db/agentboard/tasks/pddl.py",
+      "type": "repository",
+      "locator": "episode protocol and progress rate"
+    },
+    {
+      "url": "https://github.com/hkust-nlp/AgentBoard/tree/bb7255e2daf1989069a186dad9e53f70680961db/agentboard/environment/pddl_env",
+      "type": "repository",
+      "locator": "PDDL environment and problems (used unchanged)"
+    },
+    {
+      "url": "https://huggingface.co/datasets/hkust-nlp/agentboard/tree/0680548ef773505788d3cced65640a0fd511242f",
+      "type": "benchmark",
+      "locator": "data/pddl/test.jsonl (difficulty labels)"
     }
   ],
   "requirements": {
@@ -32,7 +57,7 @@
     ]
   },
   "evaluation": {
-    "metric": "progress rate",
+    "metric": "score",
     "paper_metric": "progress rate",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -78,8 +103,8 @@
       "PDDL task path not identified in the official tree."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "agent_bench_textenv",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -87,18 +112,19 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "environment:PDDL"
+        "network:openrouter",
+        "file:../../.cache/agent_bench-env/bin/python",
+        "file:data/agent_bench/agentboard/pddl_env/pddl_env.py",
+        "file:data/agent_bench/agentboard/pddl-test.jsonl"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_agent_env",
-      "unsupported_reason": "Candidates are LLM agents scored inside the PDDL environment (tools, web, games or code sandboxes); the environment and model access are external."
+      "timeout": 3600,
+      "validity_key": "valid"
     }
   },
   "limitations": [
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
+    "The 12 episodes are a fixed list of public benchmark items that every evaluation replays, and act may return actions without calling the model. A program that replays memorised answers or actions for these episodes is scored like an agent, so the score says nothing about other episodes of the benchmark."
   ],
   "source_specification": {
     "name": "PDDL",
@@ -131,14 +157,13 @@
     "scientific_contribution": "benchmark",
     "science_tier": 3,
     "artifact": "agent",
-    "domain": "software_engineering",
-    "area": "software_engineering",
+    "domain": "language",
+    "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "simulator"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

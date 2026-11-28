@@ -22,7 +22,7 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 900
   max_retries: 2
 
 prompt:
@@ -31,7 +31,7 @@ prompt:
 
     ArXivMath task evaluated in Meta-Harness: End-to-End Optimization of Model Harnesses.
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. `question` is an ArXivMath problem followed by 'Put your final answer within \boxed{}.' Answer rule: the content of the reply's last \boxed{...} (else the final answer text after the last 'Answer:' marker or the last line) is parsed as LaTeX and must be equivalent to the gold answer under Math-Verify 0.9.0 (symbolic and numeric equivalence; ordered tuples must match in order). Score: accuracy over all 40 ArXivMath December 2025 and January 2026 problems; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

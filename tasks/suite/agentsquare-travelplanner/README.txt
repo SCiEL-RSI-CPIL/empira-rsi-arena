@@ -2,22 +2,24 @@
 
 **Paper:** AgentSquare: Automatic LLM Agent Search in Modular Design Space (https://arxiv.org/pdf/2410.06153)\
 **Task id:** `agentsquare-travelplanner`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-TravelPlanner task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.
+Write a Python act(instruction, observation, valid_actions, history, llm) agent that gathers flights, lodging, restaurants and attractions with TravelPlanner's search tools and submits a JSON travel plan, using a budgeted OpenRouter model client; scored by the mean commonsense-constraint pass rate (of 8) on 10 hard validation queries, at most 30 actions each (higher is better).
 
 Benchmark named in the paper: TravelPlanner. Paper metric: micro pass rate.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: TravelPlanner in two-stage (tool-use) mode: each reply is one action Tool[arguments] with the tools FlightSearch, GoogleDistanceMatrix, AccommodationSearch, RestaurantSearch, AttractionSearch, CitySearch and NotebookWrite, and Finish[<JSON plan>] submits the plan (the JSON day-record format of the instruction); a fixed sample of 10 of the validation queries 151-180, at most 30 actions. Episode score: the commonsense-constraint micro pass rate of the submitted plan (passed commonsense constraints / 8; 0 without a plan; TravelPlanner's checks pass vacuously on absent entries, so a plan of '-' entries already scores 0.625). Score: mean over the 10 queries; higher is better
+
+Parameters: `{"adapter": "travel", "first": 151, "last": 180, "samples": 10, "seed": 0, "max_steps": 30, "budget_usd": 0.5}`
 
 ## Labels
 
-Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `software_engineering`, data `public_benchmark`, verification `none`, reference `none`, resources `model_api, simulator`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `language`, data `public_benchmark`, verification `sampled`, reference `none`, resources `model_api`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -30,7 +32,19 @@ No qualifying paper whose main objective is this underlying scientific or real-w
 
 ## Evaluation protocol
 
-Not executable in this suite: Candidates are LLM agents scored inside the TravelPlanner environment (tools, web, games or code sandboxes); the environment and model access are external.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Setting: AgentSquare's TravelPlanner task runs the two-stage mode (a ReAct agent gathers information with the search tools, a planner writes the plan) on validation queries 151-180 (all hard, 5 and 7 days) with at most 30 steps; here a fixed sample of 10 of these 30 queries (SHA-256 order, seed 0). This differs from the suite's Mind Evolution TravelPlanner task, which is sole-planning with the reference information given; the constraint checker and database loading are shared with it (llm_bench_travel_checks).
+- Metric: the paper says 'micro pass rate'; AgentSquare's runner (tasks/travelplanner/agents/eval_main.py at the pinned commit) returns the 'Commonsense Constraint Micro Pass Rate' of its copy of TravelPlanner's evaluation, so the commonsense-constraint micro pass rate is used (per plan: passed commonsense constraints / 8, 0 when no plan is delivered). AgentSquare's copy divides the number of passed constraints of the 30 queries by 300 instead of 240 (30 x 8), so the values it reports are 0.8 times the rate computed here. The hard-constraint micro pass rate and the final pass are reported in the details.
+- Tools: ports of TravelPlanner's tools/*/apis.py and the argument checks of agents/tool_agents.py (OSU-NLP-Group/TravelPlanner at commit e52c87f4ac348a3410c46dc3553c519db5ec5e23, MIT) on the benchmark database (CC-BY-4.0). The Planner tool, which in TravelPlanner calls a model on the notebook, is replaced by Finish[<JSON plan>]: the candidate writes the plan with its own model calls and returns TravelPlanner's JSON day records directly instead of text that GPT-4 converts to JSON. Invalid-city messages are shortened (TravelPlanner prints the whole city list).
+- Metric caveat: a plan whose entries are all '-' passes 5 of the 8 commonsense constraints (score 0.625), because TravelPlanner's checks pass vacuously on absent entries; the official micro pass rate has the same property. The details report the number of commonsense constraints passed, the hard-constraint counts and the final pass so that such plans can be recognised.
+- Check: for all 180 validation queries, each of the 2,700 reference-information entries (flights, accommodations, restaurants, attractions, self-driving and taxi distances), which TravelPlanner produced with its original tools, is reproduced exactly (whitespace-normalised) by the ported tools on the prepared tables.
+- Flight table: restricted to flights between the origin and the destination-state cities of each validation query on the query's dates (52,270 of 3.8 million flights, derived by scripts/prepare_agent_bench.py travel). A plan that passes the commonsense checks can only use such flights; FlightSearch on other routes or dates answers 'There is no flight', where the full table might list flights.
+- Data reuse: the accommodations, restaurants, attractions, distance and city tables and the validation queries are the files of the llm_bench package (scripts/prepare_llm_bench.py).
+- Candidate: AgentSquare searches over agent module code (planning, reasoning, tool use, memory with a uniform interface) with module evolution, recombination and a performance predictor; those belong to the search method. Here the candidate is the agent program itself, act(...) called once per step; it may implement any modules internally. The AgentSquare repository has no licence, so its code is only read to recover the protocol; the environments come from the benchmarks' own releases.
+- Model: AgentSquare runs GPT-3.5-turbo-0125 and GPT-4o; the default client model here is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it), so absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.
+- Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions.
+- Model-driven agent evaluation: the score is an estimate on a fixed, seeded list of episodes and depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0) and on the per-evaluation budget (task parameter budget_usd, overridden by ARTASK_LLM_BUDGET_USD); exhausting the budget makes the evaluation invalid. ARTASK_AGENT_EPISODES truncates the episode list for quick checks. The candidate runs in a resource-limited child process (one per episode) that receives only the instruction, observations, listed valid actions, its own history and a model client; the environment runs in a separate server process. Responses are cached under llm-cache of the task cache. `valid` is null because a sampled model score cannot certify a candidate.
 
 ## Run
 
@@ -42,15 +56,28 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `service:llm_api`
+- `py:numpy`
 - `env:OPENROUTER_API_KEY`
-- `environment:TravelPlanner`
+- `network:openrouter`
+- `py:pandas`
+- `file:data/agent_bench/travel/flights.csv`
+- `file:data/llm_bench/travelplanner_validation.json`
+- `file:data/llm_bench/travel_accommodations.csv`
+- `file:data/llm_bench/travel_restaurants.csv`
+- `file:data/llm_bench/travel_attractions.csv`
+- `file:data/llm_bench/travel_distance.csv`
+- `file:data/llm_bench/travel_city_states.txt`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2410.06153 (Appendix A.1)
 - repository: https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c (tasks/travelplanner)
+- paper: https://arxiv.org/abs/2410.06153 (Section 4.1 and Appendix A.1 (tasks and metrics))
+- repository: https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/travelplanner (Two-stage mode.txt; agents/eval_main.py (queries 151-180, ReactAgent max_steps 30))
+- repository: https://github.com/OSU-NLP-Group/TravelPlanner/tree/e52c87f4ac348a3410c46dc3553c519db5ec5e23/tools (tool implementations (ported))
+- archive: https://huggingface.co/spaces/osunlp/TravelPlannerLeaderboard/tree/a57daf2e45155a5378dcf75ee9fe374e671ee048/database (benchmark database)
+- benchmark: https://huggingface.co/datasets/osunlp/TravelPlanner/tree/8736504ecfc31b7f8b7e40122873c337e83fff7c (validation.csv)
 
 ## Limitations
 
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.
+- The 10 episodes are a fixed list of public benchmark items that every evaluation replays, and act may return actions without calling the model. A program that replays memorised answers or actions for these episodes is scored like an agent, so the score says nothing about other episodes of the benchmark.

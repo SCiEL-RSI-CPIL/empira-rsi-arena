@@ -1,0 +1,122 @@
+{
+  "protocol": "recreated",
+  "family": "earth_research_sea_ice_drift",
+  "direction": "minimize",
+  "contract": "fit_drift_model(training) -> model; model.forecast(history, today) -> float array (n, 2) of the eastward and northward ice velocity (cm/s) of each buoy listed in today over that day (displacement from 00 UTC to 00 UTC of the next day). training and history are dicts of numpy arrays, one row per buoy-day, with day (days since 2000-01-01), buoy (id), lat and lon (00 UTC position, deg; buoys at 70-90 N from the IABP product C), slp_hpa, ug and vg (geostrophic wind, m/s east and north, from a weighted plane fit to NCEP/NCAR daily-mean sea-level pressure within 500 km, air density 1.3) and u, v (the observed velocity, cm/s); training covers 2000-2014. Forecasts are requested in order for every day of 2015-2024 with active buoys; today holds day, buoy, lat, lon, slp_hpa, ug and vg of that day's buoys (the geostrophic wind is the daily mean over the forecast day); history holds all rows of earlier days, including the previous day's velocities, and nothing later. The candidate runs in a separate sandboxed process (numpy, scipy, scikit-learn and pandas importable; no file, network or subprocess access; one thread) with 240 s of CPU time for fitting and all predictions together; seed any randomness so that results are deterministic. Score: root-mean-square vector error sqrt(mean((u - u_obs)^2 + (v - v_obs)^2)) in cm/s over all 356683 buoy-days; lower is better. Wrong shapes, NaN or values outside [-200, 200] cm/s are invalid",
+  "parameters": {},
+  "requires": [
+    "py:numpy",
+    "file:data/earth/icedrift/iabp_buoys_ncep_geostrophic_2000_2024.json.gz"
+  ],
+  "timeout": 480,
+  "notes": [
+    "Scores are recomputed from pinned public data prepared by scripts/prepare_earth.py; held-out data never enter the candidate's sandboxed process. The held-out observations are public, so a fixed candidate should be checked on later data before any scientific claim."
+  ],
+  "protocol_description": "Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.",
+  "id": "science-earth-arctic-sea-ice-drift",
+  "name": "Earth science: daily Arctic sea-ice drift from geostrophic winds",
+  "paper_ids": [
+    "science-earth_research"
+  ],
+  "description": "Learn how Arctic sea ice drifts in response to the wind from 2000-2014 drifting-buoy tracks and reanalysis sea-level pressure, then predict the daily velocity of every buoy north of 70 N for each day of 2015-2024 from that day's geostrophic wind and the past buoy record. The score is the root-mean-square vector error of the predicted velocities.",
+  "benchmark": "Earth science: daily Arctic sea-ice drift from geostrophic winds",
+  "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+  "paper_direction": null,
+  "sources": [
+    {
+      "url": "https://doi.org/10.1029/JC087iC08p05845",
+      "type": "paper",
+      "locator": "Thorndike and Colony (1982): sea-ice velocity as a linear response to the geostrophic wind (about 1 percent of the wind speed, a few degrees to the right) plus a mean current; the seed and reference use this model."
+    },
+    {
+      "url": "https://doi.org/10.1175/1520-0442(2002)015<2648:ROSITT>2.0.CO;2",
+      "type": "paper",
+      "locator": "Rigor, Wallace and Colony (2002): IABP buoy and pressure analyses of Arctic ice motion and its response to atmospheric circulation."
+    },
+    {
+      "url": "https://doi.org/10.1175/1520-0477(1996)077<0437:TNYRP>2.0.CO;2",
+      "type": "paper",
+      "locator": "Kalnay et al. (1996): the NCEP/NCAR reanalysis providing the daily-mean sea-level pressure."
+    },
+    {
+      "url": "https://iabp.apl.uw.edu/Data_Products/C/",
+      "type": "archive",
+      "locator": "IABP product C, interpolated Arctic buoy positions, 2000-2024 (no licence stated; not redistributed; retrieved 2026-10-11)."
+    },
+    {
+      "url": "https://downloads.psl.noaa.gov/Datasets/ncep.reanalysis.dailyavgs/surface/",
+      "type": "archive",
+      "locator": "NCEP/NCAR Reanalysis 1 daily-mean sea-level pressure, 2000-2024 (public domain)."
+    }
+  ],
+  "limitations": [
+    "The geostrophic wind is computed from 2.5-degree reanalysis pressure by a local plane fit and given for the forecast day itself (a perfect-prognosis forcing); surface winds, ice concentration, thickness and ocean currents are not provided.",
+    "Velocities are 24-hour displacements of interpolated buoy positions, so position noise and the interpolation of the product C add error; buoys include ones in the marginal ice zone and in summer, where the free-drift relation is weaker than in the central Arctic.",
+    "The number of buoys grows strongly after 2014, so the test years weight recent conditions and regions with dense deployments.",
+    "The IABP product states no licence; it is downloaded by the preparation script and not redistributed.",
+    "A better score is a better statistical model of ice drift on these buoys, not a scientific discovery; the held-out tracks are public, so search feedback can overfit them.",
+    "The candidate runs in a sandboxed child process that never receives positions after the start of a forecast day, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "science-earth_research",
+      "title": "Earth and environmental science research: source-based research tasks",
+      "url": "https://doi.org/10.1175/1520-0434(1998)013<1005:FDTCTF>2.0.CO;2"
+    }
+  ],
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "as_of": "2026-10-11",
+    "statement": "No published value exists for this protocol. The Thorndike-Colony complex linear model fitted on 2000-2014 (factor 1.03 percent of the geostrophic wind, turned 4.2 degrees to the right; the seed) scores 10.98 cm/s and explains 39 percent of the 2015-2024 velocity variance; zero drift scores 14.10 cm/s. Thorndike and Colony (1982) report that the geostrophic wind explains more than 70 percent of daily ice-velocity variance in the central Arctic.",
+    "sources": [
+      {
+        "title": "Sea ice motion in response to geostrophic winds",
+        "url": "https://doi.org/10.1029/JC087iC08p05845"
+      }
+    ]
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Predict the drift of Arctic sea ice from atmospheric forcing.",
+    "importance_rationale": "Ice drift redistributes sea ice and freshwater, controls ice export through Fram Strait and is needed for navigation, search and rescue, and for the dynamics of sea-ice models.",
+    "papers": [
+      {
+        "title": "Sea ice motion in response to geostrophic winds",
+        "url": "https://doi.org/10.1029/JC087iC08p05845",
+        "primary_goal": "Quantify how Arctic sea-ice motion responds to the geostrophic wind and the mean ocean circulation.",
+        "task_relation": "The task scores predictions of daily buoy drift from the geostrophic wind on held-out years; the seed is the paper's linear model.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Response of Sea Ice to the Arctic Oscillation",
+        "url": "https://doi.org/10.1175/1520-0442(2002)015<2648:ROSITT>2.0.CO;2",
+        "primary_goal": "Relate Arctic sea-ice motion and its changes to atmospheric circulation using IABP data.",
+        "task_relation": "Same observational basis (IABP buoys and sea-level pressure) and the same physical question of wind-driven drift.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "The cited papers' main goal is understanding and predicting wind-driven sea-ice motion, the problem the local task scores; no reproduction of their numbers is claimed.",
+    "verification_basis": "Crossref metadata (including the 1982 abstract) checked on 2026-10-11; the fitted free-drift factor and turning angle checked against the classic values; evaluator run on the pinned data.",
+    "reviewed_at": "2026-10-11",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  },
+  "labels": {
+    "area": "earth_and_environment",
+    "domain": "natural_science",
+    "scientific_contribution": "method",
+    "artifact": "model",
+    "data": "real_measurements",
+    "verification": "simulation",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  }
+}

@@ -1,0 +1,74 @@
+# Morse cluster global minima across the range of the potential
+
+**Source collection:** [Molecular and materials design research: source-based research tasks](../../papers/science-chemistry_research.md)\
+**Task id:** `science-chemistry-morse-cluster-minima`\
+**Protocol:** `recreated_verified`\
+**Direction:** minimize\
+
+## Task
+
+Find the lowest-energy arrangements of 38 to 80 atoms bound by Morse potentials of long, medium and short range (six instances). Energies are recomputed exactly and compared with the putative global minima of Doye and Wales.
+
+Source-derived local benchmark; the exact objective and adaptations are specified below.
+
+## Candidate interface
+
+construct(instance) -> array of shape (n, 3): Cartesian coordinates of n atoms in reduced units (pair equilibrium distance 1). instance = {'potential': 'morse', 'rho': range parameter, 'n': atoms}; called once for each of six instances (rho, n) = (3, 80), (6, 38), (6, 75), (10, 38), (10, 50), (10, 80); all six calls together must finish within 300 s (enforced) and should use at most 4 threads (not enforced by the evaluator). The evaluator recomputes E = sum_{i<j} exp(rho(1-r_ij))(exp(rho(1-r_ij)) - 2) (well depth 1); atoms must be at least 0.5 apart. Score: mean over instances of 100*(E - E_pub)/|E_pub| against the putative global minima tabulated by Doye and Wales (1997) (minimize; 0 matches all six, negative is lower than published). chem_clusters.relax(positions, 'morse', rho) and chem_clusters.morse_energy_gradient(positions, rho) may be called
+
+## State of the art
+
+Matching the six putative global minima of Doye and Wales (1997) gives 0; the Cambridge Cluster Database listed the same six energies on 2026-11-24 and no lower energies for these instances were found in the literature.
+
+Reference value: best known value `0.0` (reviewed 2026-11-24).
+
+- [Structural consequences of the range of the interatomic potential: a menagerie of clusters](https://doi.org/10.1039/a706221d)
+
+## Labels
+
+Scientific contribution: `method` (tier 2); artifact `construction`, domain `natural_science`, data `none`, verification `exact`, reference `published_value`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
+
+Research area: `chemistry`.
+
+## Importance to science
+
+A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.
+
+Evidence status: **supported**.
+
+Underlying problem: Find the lowest-energy structure of an atomic cluster for a given interatomic potential (global optimisation on a rugged energy landscape). Here: Morse clusters whose structure changes with the range of the potential.
+
+Why it matters: Cluster global minima determine structure, stability and magic numbers of nanoparticles, and the dependence on interaction range explains when icosahedral, decahedral or close-packed clusters form; the hard instances remain benchmarks for structure prediction methods.
+
+- [Structural consequences of the range of the interatomic potential: a menagerie of clusters](https://doi.org/10.1039/a706221d): Main research objective: Locate the global minima of Morse clusters up to 80 atoms as a function of the range parameter and explain the structural transitions. Task connection: The task scores six of the size/range combinations tabulated there against the published putative minima.
+
+The cited papers' main objective is the underlying problem the task scores; the local data, splits and limits are stated in the task's limitations.
+
+## Evaluation protocol
+
+Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.
+
+- Energies are recomputed independently in double precision without cutoff. Reference check (tests/test_chem_clusters.py): relaxed icosahedra and truncated octahedra reproduce the published Morse minima for (rho, n) = (3, 13), (6, 13), (6, 55), (10, 13), (10, 38) within the six published decimals. The six scored minima are those of Doye and Wales (1997, Table 1); the Cambridge Cluster Database listed the same six energies on 2026-11-24, and its coordinate files score them with this evaluator within the six published decimals (structures stored at rho = 6 were relaxed at the task's rho); rho = 14, where later work reported new minima, is not used.
+
+## Run
+
+```
+python evaluator.py initial_program.py
+```
+
+The evaluator prints a JSON result with `combined_score` (the value SCiEL maximizes), `score` (the task metric in its own direction), `valid` and `error`. `config.yaml` is a ready SCiEL configuration; copied SCiEL examples keep their upstream configuration.
+
+## Requirements
+
+- `py:numpy`
+- `py:scipy`
+
+## Sources
+
+- paper: https://doi.org/10.1039/a706221d (Doye and Wales (1997): Morse potential in reduced units, Table 1 of putative global minima for N <= 80 at rho = 3, 6, 10, 14 (arXiv cond-mat/9709201).)
+- archive: https://arxiv.org/abs/cond-mat/9709201 (LaTeX source of Table 1, from which the six reference energies (six decimals) were read.)
+
+## Limitations
+
+- The references are the 1997 putative minima; the Cambridge Cluster Database listed the same six energies on 2026-11-24, so no later improvement is recorded for these instances, and a score below zero would be a new putative minimum that needs independent confirmation. rho = 14, where later work reported new minima, is not used.
+- The putative minima are published with coordinates in the database, so a candidate that reproduces remembered structures scores well without searching; scores measure constructions, not search efficiency.
+- The score averages relative energy excesses (percent of |E|) over six instances with a 300 s budget for all of them; results depend on the machine speed for time-limited searches.

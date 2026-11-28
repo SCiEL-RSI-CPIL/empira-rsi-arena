@@ -1,0 +1,211 @@
+{
+  "schema_version": "1.0",
+  "id": "qaplib-sko90",
+  "name": "Quadratic assignment, QAPLIB sko90",
+  "description": "Quadratic assignment problem, QAPLIB instance sko90: given two 90 x 90 integer matrices a and b, find a permutation p of 0..89 that minimises the cost, the sum over all i and j of a[i, j] * b[p[i], p[j]]. In the usual reading one matrix holds the flows between facilities and the other the distances between locations, and p assigns the one to the other; the cost formula is what is scored.",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "requires_setup",
+  "sources": [
+    {
+      "url": "https://doi.org/10.7488/ds/3428",
+      "type": "benchmark",
+      "locator": "sko90"
+    },
+    {
+      "url": "https://qaplib.mgi.polymtl.ca/",
+      "type": "benchmark",
+      "locator": "QAPLIB, table of instances and solutions: sko90 (best known value and lower bound)"
+    },
+    {
+      "url": "https://doi.org/10.2307/1907742",
+      "type": "paper",
+      "locator": "Assignment Problems and the Location of Economic Activities"
+    },
+    {
+      "url": "https://doi.org/10.1287/ijoc.2.1.33",
+      "type": "paper",
+      "locator": "Tabu Search Applied to the Quadratic Assignment Problem"
+    },
+    {
+      "url": "https://doi.org/10.1016/S0167-8191(05)80147-4",
+      "type": "paper",
+      "locator": "Robust taboo search for the quadratic assignment problem"
+    },
+    {
+      "url": "https://coral.ise.lehigh.edu/data-sets/qaplib/",
+      "type": "benchmark",
+      "locator": "QAPLIB instance descriptions (sections Skorin-Kapov, Taillard, Thonemann and Boelte, Wilhelm and Ward), best known values with their method codes, and lower bounds."
+    },
+    {
+      "url": "https://doi.org/10.1023/A:1008293323270",
+      "type": "paper",
+      "locator": "Burkard, Karisch and Rendl (1997), QAPLIB - a quadratic assignment problem library: instance definitions and conventions (library paper, not evidence)."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "sko90.dat from the QAPLIB deposit (Edinburgh DataShare, doi 10.7488/ds/3428, CC BY 4.0)"
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Quadratic assignment, QAPLIB sko90",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "qap",
+    "science_family": "qap",
+    "parameters": {
+      "instance": "sko90",
+      "n": 90,
+      "lower_bound": 112423,
+      "best_known": 115534
+    },
+    "interface": "solve(a, b) -> permutation p of 0..n-1 (a list of n integers, each exactly once). a and b are the first and second matrix of the QAPLIB file (int64 arrays of shape (n, n), passed as copies). Score: the exact integer cost, the sum over all i and j of a[i, j] * b[p[i], p[j]], minimized.",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "combinatorial_optimisation",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "published_value",
+      "area": "optimization",
+      "areas": [
+        "optimization"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "sko90.dat from the QAPLIB deposit (Edinburgh DataShare, doi 10.7488/ds/3428, CC BY 4.0)"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "qap",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/arnew/qap/sko90.dat"
+      ],
+      "timeout": 120,
+      "validity_key": "valid"
+    },
+    "declared_status": "requires_setup"
+  },
+  "limitations": [
+    "Same evaluator contract as the existing QAPLIB tasks tai256c, tho150 and wil100 in autoresearch-tasks.",
+    "The record construction is public, so a candidate can embed the QAPLIB solution file; compare only genuinely searched results.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "real_instance_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
+    "upstream_reproduction": true,
+    "record_level": "record_reproduced",
+    "unsure": false,
+    "record_validation": {
+      "record": 115534,
+      "checks": [
+        "published permutation (direct, 1-based) evaluated by our verifier = 115534",
+        "equals the value in the .sln file and in the registry",
+        "the maintained QAPLIB table (copy of 2026-05-09) lists best known 115534 and lower bound 112423"
+      ],
+      "sources": [
+        "sources/qapsoln.tar.gz",
+        "sources/qaplib_polymtl_2026.html",
+        "data/qap/sko90.dat"
+      ],
+      "notes": [],
+      "validated": "2026-11-18"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "areas": [
+      "optimization"
+    ],
+    "important_to_science": true
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "Each cited paper has the quadratic assignment problem, or the search for good QAPLIB solutions, as its main objective; the evaluator scores exactly the QAP cost of a permutation on the pinned instance.",
+    "scientific_problem": "Find a minimum-cost Koopmans-Beckmann quadratic assignment of 90 facilities to 90 locations for the QAPLIB instance sko90, which is not solved to optimality.",
+    "importance_rationale": "The quadratic assignment problem models facility and hospital layout, keyboard design, backboard wiring and the generation of grey patterns. It is NP-hard and hard in practice: QAPLIB instances above about 30 facilities are mostly unsolved, and the best known solutions of the larger ones have stood for many years, so a cheaper permutation is a new best known solution of a standard open instance.",
+    "papers": [
+      {
+        "title": "Assignment Problems and the Location of Economic Activities",
+        "url": "https://doi.org/10.2307/1907742",
+        "task_relation": "The task's objective is the Koopmans-Beckmann quadratic assignment cost of the QAPLIB instance sko90.",
+        "primary_goal": "Formulate the assignment of indivisible economic activities to locations, introducing the quadratic assignment problem.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Tabu Search Applied to the Quadratic Assignment Problem",
+        "url": "https://doi.org/10.1287/ijoc.2.1.33",
+        "task_relation": "QAPLIB credits the Skorin-Kapov instance set (rectangular-grid distances, pseudorandom flows) to this paper, and lists strict tabu search from it as a heuristic; sko90 belongs to that set.",
+        "primary_goal": "Apply tabu search to the quadratic assignment problem.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Robust taboo search for the quadratic assignment problem",
+        "url": "https://doi.org/10.1016/S0167-8191(05)80147-4",
+        "task_relation": "QAPLIB credits the best known solution of sko90 to robust tabu search (Ro-TS), which this paper introduces; the task asks to improve it.",
+        "primary_goal": "Introduce the robust tabu search heuristic for the quadratic assignment problem and report results on test instances.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  },
+  "source_specification": {
+    "name": "Quadratic assignment, QAPLIB sko90",
+    "slug": "qaplib-sko90",
+    "description": "Quadratic assignment problem, QAPLIB instance sko90: given two 90 x 90 integer matrices a and b, find a permutation p of 0..89 that minimises the cost, the sum over all i and j of a[i, j] * b[p[i], p[j]]. In the usual reading one matrix holds the flows between facilities and the other the distances between locations, and p assigns the one to the other; the cost formula is what is scored.",
+    "benchmark": "Quadratic assignment, QAPLIB sko90",
+    "dataset": "sko90.dat from the QAPLIB deposit (Edinburgh DataShare, doi 10.7488/ds/3428, CC BY 4.0)",
+    "metric": "score",
+    "direction": "minimize",
+    "source_url": "https://doi.org/10.7488/ds/3428",
+    "source_locator": "sko90",
+    "upstream_path": null,
+    "requirements": [
+      "py:numpy",
+      "file:data/qap/sko90.dat"
+    ],
+    "execution_notes": "sko90.dat from the QAPLIB deposit (Edinburgh DataShare, doi 10.7488/ds/3428, CC BY 4.0)"
+  }
+}

@@ -8,7 +8,7 @@
     "meta-harness"
   ],
   "kind": "upstream",
-  "status": "requires_setup",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2601.21557",
@@ -29,6 +29,11 @@
       "url": "https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact/tree/57fefdb2ff84af3fd81b69d67814acbe69bd0743",
       "type": "repository",
       "locator": null
+    },
+    {
+      "url": "https://github.com/metaevo-ai/mce-artifact/tree/c63300daef93404e22e2569b3d08e72843e7123b/env/finer",
+      "type": "repository",
+      "locator": "data/test.jsonl, finer_context.py and finer_environment.py (_finer_answer_is_correct)"
     }
   ],
   "requirements": {
@@ -44,7 +49,7 @@
     ]
   },
   "evaluation": {
-    "metric": "pass@1 prediction accuracy",
+    "metric": "score",
     "paper_metric": "pass@1 prediction accuracy",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -118,8 +123,8 @@
     "setup_steps": [],
     "notes": [],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -127,14 +132,13 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:FiNER"
+        "network:openrouter",
+        "file:data/llm_bench/finer.json"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_api",
-      "unsupported_reason": "Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the FiNER benchmark. The suite embeds neither model calls nor the benchmark data."
+      "timeout": 900,
+      "validity_key": "valid"
     }
   },
   "limitations": [
@@ -183,11 +187,10 @@
     "domain": "language",
     "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "unavailable"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

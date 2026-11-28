@@ -1,0 +1,69 @@
+{
+  "schema": "artask.upgrades/1",
+  "package": "metaopt",
+  "reviewed_on": "2026-10-10",
+  "tasks": {
+    "lasr-big-bench-llm-scaling-law-discovery": {
+      "family": "bigbench_scaling_law",
+      "sources": [
+        {
+          "url": "https://github.com/google/BIG-bench/tree/092b196c1f8f14a54bbc62f24759d43bde46dd3b",
+          "type": "benchmark",
+          "locator": "bigbench/benchmark_tasks/*/results/scores_*.json: per-model evaluation records (preferred score, multiple-choice grade, number of shots, model hyperparameters)"
+        }
+      ],
+      "params": {
+        "split_seed": 0,
+        "starts": 8,
+        "start_seed": 0,
+        "max_nfev": 400,
+        "max_params": 5,
+        "max_literals": 10,
+        "cpu_seconds": 120
+      },
+      "protocol": "recreated",
+      "requires": [],
+      "notes": [
+        "Data: rebuilt from the BIG-bench evaluation records at google/BIG-bench@092b196c1f8f14a54bbc62f24759d43bde46dd3b (Apache-2.0): 9,085 bigbench/benchmark_tasks/*/results/scores_*.json files fetched by scripts/prepare_metaopt.py with a sparse git checkout and checked against catalog/metaopt-data-lock.json. Rows are the score entries whose preferred_score is multiple_choice_grade (58,033) minus the 4,221 entries of models whose record states no decoding temperature (PaLM 3,793, Gopher 372, T5-LM, T0, T0+ and T0++ 14 each), which leaves 53,812 rows, the paper's count; the remaining models are BIG-G (T=0 and T=1), BIG-G sparse and GPT-3. The data are not redistributed.",
+        "Target and inputs: the raw multiple_choice_grade (0..1) of each entry; the rows comprise 19,180 task-level aggregate entries and 34,632 subtask entries (an aggregate summarises its subtasks), 42 models and 0-3 shots. The candidate sees the model's training steps, training batch size, total, non-embedding and FLOP-matched non-embedding parameters, the number of shots and the decoding temperature, not the task identity.",
+        "Split: LaSR does not publish its split, and it cannot be recovered; a fixed-seed random row split (numpy default_rng(0) permutation; 43,049 rows for fitting, 10,763 held out) reproduces only the paper's counts. Rows of the same task and model fall on both sides, as in any random row split. The held-out MSE is also the score that a search over laws optimises; the paper reports held-out MSEs only for the four laws of Table 4 and does not say whether its LaSR search saw the held-out rows.",
+        "Fitting: constants are fitted by a NumPy Levenberg-Marquardt least-squares routine from 8 fixed starts inside the sandbox, which cannot load SciPy (SciPy needs ctypes, which the sandbox blocks); a unit test checks the routine against scipy.optimize.least_squares. LaSR's own procedure (PySR/LaSR constant optimisation, a per-group 'matrix of parameters' and a monotonicity regulariser in training steps, Appendix A.6) is not specified in enough detail and is not reproduced; the simplicity-accuracy Pareto front is replaced by a cap of 5 free constants plus source limits (at most 10 numeric literals other than integers in [-10, 10], 64 numeric literals in all, 1,000 characters of non-docstring string literals and 20,000 characters), which also make it impractical to embed a table of the public BIG-bench grades in the source.",
+        "Near-saturated target (measured 2026-10-10, validation/metaopt-checks.json): the grade variance is 0.0363 and the held-out MSE of a fitted constant is 0.03642, of LaSR's Eq. 4 refitted 0.03625, of the seed 0.03633, of a four-parameter log-linear law 0.03545, of a Chinchilla-form law 0.03535 and of the modified Chinchilla form 0.03534, while per-(model, shots, temperature) training means, the best any function of these inputs can do in expectation, reach 0.03519. Simple laws thus come within 0.0002-0.0003 of this ceiling and even a constant is only 0.0012 (3.4 % of the variance) above it: most of the variance (task difficulty) is not explained by model hyperparameters, so differences between good laws are small.",
+        "Paper values are not reproduced: LaSR's Table 4 reports held-out MSEs of 0.03598 (Eq. 4), 0.03610 (Chinchilla), 0.03598 (modified Chinchilla) and 0.09324 (constant). On this reconstruction a constant reaches 0.0364 and the paper's Eq. 5 constants give 0.0367 without refitting, so local scores are not comparable with the paper's.",
+        "Isolation: the fit and the held-out predictions run in a sandboxed child process (no file access, no network) that receives the training rows and the held-out inputs only; a second child recomputes the held-out predictions from the reported constants. The suite template imports the candidate module in the evaluator process, so module-level code is not sandboxed; scores assume a candidate that does not read the prepared data at import time."
+      ]
+    },
+    "eob-eob-bbob-benchmark-synthesis": {
+      "family": "eob_benchmark_synthesis",
+      "sources": [
+        {
+          "url": "https://hal.inria.fr/inria-00362633",
+          "type": "paper",
+          "locator": "BBOB noiseless function definitions (Hansen et al., 2009) used for the 24 anchor functions of the landscape-similarity score"
+        }
+      ],
+      "params": {
+        "runs": 10,
+        "evals_per_dim": 500,
+        "seed": 0,
+        "samples": 500,
+        "sample_seed": 2026
+      },
+      "protocol": "recreated",
+      "requires": [],
+      "notes": [
+        "Clean-room recreation from the paper (Sections 3.2.2, 4.1 and 4.2): the EoB repository has no licence, so no EoB code or data were used; the scorer follows the paper's definitions.",
+        "Candidate: one 10-dimensional function on [-5, 5]^10. EoB-BBOB consists of 24 10-dimensional functions; the paper does not state their domain ([-5, 5] is the BBOB box). EoB evolves a population of programs with an LLM and collects the 24 non-dominated functions over several runs (2-3 per its Section 4.2); this task scores a single function.",
+        "LSI: Eq. 3 as printed (unsquared Euclidean distance divided by sigma^2). NeurELA, the paper's 16-dimensional landscape embedding, has no licence and is not used; 16 classical exploratory-landscape-analysis features (metaopt_ela.py) on a fixed 500-point Latin-hypercube sample replace it. Each of the 24 BBOB targets is the centroid of five instances' features computed with the suite's BBOB implementation (standard definitions with local random shifts and rotations, not COCO's official instances); features are scaled by their pooled across-instance standard deviation, and sigma^2 (not stated in the paper) is the median distance of an instance to the centroid of the other instances of its function (4.12), so a new instance of a BBOB function scores about 0.5. In the recorded check (validation/metaopt-checks.json), unseen BBOB instances (instance 9) scored 0.30-0.75 and were nearest to their own function in 20 of 24 cases; two non-BBOB functions scored 0.23 and 0.40, and a plain sphere and Rastrigin function with optima near the centre of the box scored 0.34 and 0.33: the BBOB instances place the optimum anywhere in [-4, 4]^10 and apply BBOB's transformations, and the features also reflect where the optimum lies in the box.",
+        "ADC: Eq. 4, with the paper's 'min-max normalization on the Obj matrix' read as one normalisation over the whole 10 x 10 result matrix (runs x optimisers) and the population standard deviation across optimisers. The paper's pool (Vanilla DE, JDE21, MadDE, NL-SHADE-LBC, PSO, GLPSO, sDMS-PSO, SAHLPSO, CMA-ES, Sep-CMA-ES) is replaced by local implementations of DE/rand/1/bin, jDE, JADE, L-SHADE, constriction PSO, ring-topology PSO, CLPSO, DMS-PSO without its local search, CMA-ES and sep-CMA-ES, written from the original publications with default parameters, clipping to the box and fixed seeds. B = 10 runs as in the paper; the per-run budget of 5,000 evaluations (500 x dim) is a local choice because the paper does not state one.",
+        "Scalarisation: EoB optimises LSI and ADC jointly (MOEA/D with PBI, theta = 5, 32 reference vectors); the single score sqrt(LSI x min(1, ADC / 0.5)) is a suite convention (0.5 is the largest possible standard deviation of values in [0, 1]).",
+        "The paper's min-max normalisation makes ADC scale-free: a function on which all optimisers end within a small relative range can still reach a sizeable ADC (in the recorded check, a Schwefel-type function on which all ten optimisers ended between 3,570 and 3,670 scored ADC 0.16).",
+        "Validity: outputs must be finite at every evaluated point; determinism and batch independence are checked only on the feature sample and 32 single rows, so the evaluator reports valid = None. The candidate runs in the evaluator process (no held-out data are involved). The BBOB definitions are public in the suite, so a candidate can copy a BBOB instance; because each target is a five-instance centroid, a copy scores like any new instance of that function rather than 1. The 500-point feature sample is fixed and public; the features are therefore also computed on a copy of the sample shifted by a tiny candidate-specific offset (1e-5 of the box width, seeded by the SHA-256 of the candidate file) and the smaller LSI counts, so special-casing the public sample points does not pay (unit test). A function that recomputes the offset from its own source text would not be detected, and the optimisers' seeds are public.",
+        "Not verified against the paper: NeurELA, the paper's optimiser implementations and its LSI and ADC values are not available locally, so scores are not comparable with the paper's figures."
+      ],
+      "superseded_limitations": [
+        "Official EoB release pinned; the search needs a DeepSeek-compatible API key in config.py and PyTorch; the LSI/ADC scoring of evolved functions runs inside the search loop."
+      ]
+    }
+  }
+}

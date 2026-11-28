@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 480
   max_retries: 2
 
 prompt:
   system_message: |
     nomad2018-predict-transparent-conductors
 
-    Predict formation_energy_ev_natom and bandgap_energy_ev; average their RMSLE values.
+    Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 2,700 (Al, Ga, In)2O3 materials given as DFT-relaxed structures and predicts formation energy per cation and band gap for 300 held-out materials, within a 300 s wall-clock budget on 4 CPU threads; scored by the mean of the two columns' RMSLE (lower is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: fit_predict(train, test_inputs, time_budget_s) -> float array of shape (n_test, 2): formation energy (eV per cation, the competition's formation_energy_ev_natom) and band gap (eV) of each test material. train: pandas.DataFrame, one row per (Al_x Ga_y In_z)2 O3 crystal: id, spacegroup, number_of_total_atoms, percent_atom_al/ga/in (cation fractions), lattice_vector_1/2/3_ang (lengths), lattice_angle_alpha/beta/gamma_degree, lattice_vectors (3 x 3 list, Angstrom, rows are the cell vectors), elements (list of symbols), positions (list of Cartesian [x, y, z] in Angstrom), formation_energy_ev_natom and bandgap_energy_ev; test_inputs: the same columns without the two targets. Geometries are DFT-relaxed structures. time_budget_s = 300. fit_predict runs in a sandboxed child process: 4 CPU threads (thread settings of the numerical libraries, not an operating-system limit), no GPU, no network, no child processes, no pretrained weights or external data, reads limited to the Python installation and the task's public inputs, writes limited to a temporary working directory, memory limit 3.5 GB. time_budget_s wall-clock seconds start when the candidate's source starts executing in the child (imports and module-level code count); the process is killed 15 s after the budget (score: invalid). The evaluator holds the test labels and recomputes the metric; nothing the candidate reports is trusted. Score (minimize): mean of the root mean squared logarithmic errors of the two columns (MLE-bench grade.py; values scikit-learn's RMSLE rejects, i.e. <= -1, are invalid)
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

@@ -2,22 +2,24 @@
 
 **Paper:** EurekAgent: Agent Environment Engineering is All You Need For Autonomous Scientific Discovery (https://arxiv.org/pdf/2606.13662)\
 **Task id:** `eurekagent-jigsaw-toxic-comment`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-jigsaw-toxic-comment
+Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 159,571 labelled Wikipedia comments of the Jigsaw toxic-comment competition and returns scores for six toxicity labels on its 63,978 scored test comments, within a 600 s wall-clock budget on 4 CPU threads without pretrained weights; scored by mean column-wise ROC AUC (higher is better).
 
 Benchmark named in the paper: MLE-Bench Lite. Paper metric: competition score and medal threshold.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+fit_predict(train, test_inputs, time_budget_s) -> float array of shape (n_test, 6). train: pandas.DataFrame with columns id (str), comment_text (str) and the 0/1 int labels toxic, severe_toxic, obscene, threat, insult, identity_hate (159,571 Wikipedia talk-page comments, the competition training file); test_inputs: DataFrame with id and comment_text (the 63,978 competition test comments that were scored); return one finite score per comment and label, columns in that label order (only the ranking matters). time_budget_s = 600. fit_predict runs in a sandboxed child process: 4 CPU threads (thread settings of the numerical libraries, not an operating-system limit), no GPU, no network, no child processes, no pretrained weights or external data, reads limited to the Python installation and the task's public inputs, writes limited to a temporary working directory, memory limit 3.5 GB. time_budget_s wall-clock seconds start when the candidate's source starts executing in the child (imports and module-level code count); the process is killed 15 s after the budget (score: invalid). The evaluator holds the test labels and recomputes the metric; nothing the candidate reports is trusted. Score (maximize): mean over the six labels of the ROC AUC (MLE-bench grade.py)
+
+Parameters: `{"budget_s": 600, "memory_mb": 3500}`
 
 ## Labels
 
-Scientific contribution: `engineering` (tier 3); artifact `model`, domain `machine_learning`, data `undistributed`, verification `none`, reference `none`, resources `gpu, unavailable`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `engineering` (tier 3); artifact `model`, domain `machine_learning`, data `public_benchmark`, verification `simulation`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -30,7 +32,15 @@ No qualifying paper whose main objective is this underlying scientific or real-w
 
 ## Evaluation protocol
 
-Not executable in this suite: MLE-bench competitions require the Kaggle data and model training; neither is redistributed.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Data: the competition files from a Hugging Face mirror (thesofakillers, revision 50f3c926; CC0 per the card, which restates the competition data page; comment text from Wikipedia under CC BY-SA 3.0), fetched and hash-locked by scripts/prepare_kaggle.py. Verified identical to the data MLE-bench uses: MLE-bench's prepare.py (openai/mle-bench 507f92e1, unchanged) run on the mirror reproduces the MD5 checksums MLE-bench records for all four files it prepares from Kaggle's download (public train.csv, test.csv, sample_submission.csv, private test.csv). Counts: 159,571 training comments (positives: toxic 15,294, severe_toxic 1,595, obscene 8,449, threat 478, insult 7,877, identity_hate 1,405), 153,164 test comments, of which 63,978 carry labels and 89,186 are marked -1 (all six labels together).
+- Split and metric follow MLE-bench: train on the competition training file, score the labelled competition test rows with sklearn's roc_auc_score(average='macro') over the six labels as in its grade.py; on the seed's predictions MLE-bench's grade.py (with the -1 rows included in the answers, as MLE-bench stores them) returns exactly the evaluator's value. Deviation: the candidate receives only the 63,978 scored test comments; MLE-bench hands over all 153,164 (the unscored ones only deter hand labelling), so they are not available as unlabelled text here. Every candidate is scored on these test labels and that score is the search signal (the evaluator holds back no validation split), so scores reached by search are selected on the test set; the paper says only that EurekAgent's agents receive official scores from a hidden grading service, not what that service computed during its MLE-Bench runs.
+- The score covers all scored test rows, i.e. Kaggle's public and private leaderboard rows together (as in MLE-bench); Kaggle leaderboard values and medal thresholds come from the private rows only and are not directly comparable.
+- Compute: fit_predict runs on CPU with 4 threads in a sandboxed child process (no network, no GPU, no pretrained weights or embeddings, no external data, 3.5 GB memory) and is killed 15 s after a 600 s wall-clock budget. MLE-bench agents had a GPU, 24 hours and internet access to pretrained models, which the strongest solutions of this competition used; scores here measure what can be trained from scratch in 10 CPU-minutes. The budget is wall-clock time, so scores depend on the machine's speed and load.
+- Label isolation: held-out labels live in data/kaggle/jigsaw/private and the raw download cache; the child receives only public file paths; the evaluator never imports the candidate; its source runs only in the child, which on Linux with unprivileged user namespaces runs in its own user, mount, PID, network and IPC namespaces where data/kaggle and kaggle-raw of the task cache are empty except this task's public directory and every file system but the working directory and /dev/shm is read-only, on macOS under sandbox-exec, and elsewhere only under an audit hook that native code can bypass; the result field os_sandbox names what was in force.
+- Seed (word TF-IDF and one logistic regression per label) scores 0.9753 in 9-12 s of fit_predict on an Apple M4 Max shared with other jobs.
+- Competition training and test files with the released test labels; test rows marked -1 (not scored) are removed from the test inputs.
 
 ## Run
 
@@ -42,15 +52,18 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `dataset:MLE-bench`
-- `hardware:gpu`
+- `py:numpy`
+- `py:sklearn`
+- `py:pandas`
+- `py:psutil`
+- `file:data/kaggle/jigsaw/public/train.csv`
+- `file:data/kaggle/jigsaw/public/test.csv`
+- `file:data/kaggle/jigsaw/private/test_labels.csv`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2606.13662 (Appendix B)
 - repository: https://github.com/THU-Team-Eureka/EurekAgent/tree/fb96df897dfb99797a77623aa0dd9ee178fe89d2
-
-## Limitations
-
-- Task appears in the paper MLE evaluation but no corresponding dataset wrapper, run config or evaluator package is present in the pinned public EurekAgent repository.
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.
+- benchmark: https://huggingface.co/datasets/thesofakillers/jigsaw-toxic-comment-classification-challenge/tree/50f3c926ec8c07b440cb17b55d8cd80e8484497e (train.csv, test.csv and test_labels.csv of the Toxic Comment Classification Challenge (dataset card: CC0, comment text CC BY-SA 3.0))
+- repository: https://github.com/openai/mle-bench/tree/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/jigsaw-toxic-comment-classification-challenge (prepare.py (competition test set with released labels) and grade.py (mean column-wise ROC AUC, rows marked -1 dropped))
+- benchmark: https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge (competition definition (task, labels, metric))

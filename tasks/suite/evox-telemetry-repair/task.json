@@ -2,13 +2,13 @@
   "schema_version": "1.0",
   "id": "evox-telemetry-repair",
   "name": "Telemetry repair",
-  "description": "Telemetry repair",
+  "description": "Write a Python run_repair(telemetry, topology) function that repairs noisy, dropped or scaled rx/tx counters of Abilene backbone interfaces and returns (original, repaired, confidence) triples for every interface; scored over 30 fixed perturbed snapshots by 0.75 x counter repair quality + 0.05 x status accuracy + 0.2 x confidence calibration (higher is better).",
   "paper_ids": [
     "evox",
     "adaevolve"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2602.23413",
@@ -24,6 +24,21 @@
       "url": "https://arxiv.org/pdf/2602.20133",
       "type": "paper",
       "locator": "Systems results and task-definition appendix"
+    },
+    {
+      "url": "https://github.com/UCB-ADRS/ADRS/tree/259292f3ad1924c03be684996dbd83e6891c3e39/openevolve/examples/ADRS/telemetry_repair",
+      "type": "repository",
+      "locator": "evaluator.py (evaluate_legacy, apply_test_perturbations, scoring functions) and initial_program_reference_selfcontained.py"
+    },
+    {
+      "url": "https://github.com/UCB-ADRS/ADRS/blob/259292f3ad1924c03be684996dbd83e6891c3e39/openevolve/examples/ADRS/telemetry_repair/ref_data/evaluation_data.csv",
+      "type": "benchmark",
+      "locator": "40 Abilene telemetry rows (787,281 bytes)"
+    },
+    {
+      "url": "https://github.com/mert-cemri/autoevolve/tree/main/examples_ADRS/telemetry_repair",
+      "type": "repository",
+      "locator": "identical copy of evaluator.py and evaluation_data.csv"
     }
   ],
   "requirements": {
@@ -38,7 +53,7 @@
     ]
   },
   "evaluation": {
-    "metric": "evaluator combined score",
+    "metric": "score",
     "paper_metric": "evaluator combined score",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -64,8 +79,8 @@
       "Paper/task descriptions differ across revisions; use pinned upstream evaluator as execution authority."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated_verified",
+      "family": "llm_tools_telemetry",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -73,19 +88,15 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "dataset:ADRS private task"
+        "py:numpy",
+        "py:psutil",
+        "file:data/llm_tools/telemetry/evaluation_data.csv"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "dataset",
-      "unsupported_reason": "The paper reports this ADRS task but the pinned public repository contains no implementation for it."
+      "timeout": 180,
+      "validity_key": "valid"
     }
   },
-  "limitations": [
-    "Appendix task prose conflicts with standard circle-packing/Heilbronn definitions; the pinned evaluator is authoritative. Telemetry-repair directory is not present at inspected commit.",
-    "Telemetry Repair is explicitly marked Coming soon in pinned benchmarks/ADRS/README.md; no implementation released.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-  ],
+  "limitations": [],
   "source_specification": {
     "name": "Telemetry repair",
     "slug": "telemetry-repair",
@@ -113,14 +124,14 @@
   "labels": {
     "scientific_contribution": "engineering",
     "science_tier": 3,
-    "artifact": "model",
-    "domain": "machine_learning",
-    "area": "machine_learning",
-    "data": "undistributed",
-    "verification": "none",
-    "reference": "none",
+    "artifact": "program",
+    "domain": "systems",
+    "area": "systems_and_hardware",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
     "resources": [
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false

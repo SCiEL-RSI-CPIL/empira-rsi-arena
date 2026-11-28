@@ -1,6 +1,7 @@
 // Read-only DOM behavior with synthetic fixtures; no research execution.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { PAGE_SIZE } from '../../web/arena-model.js';
 import {
   source,
   task,
@@ -176,11 +177,11 @@ test('scientific direction cards retain exact corpus counts and open real chemis
       doc.getElementById('arena-result-count').textContent,
       `${expected.length} of ${catalog.tasks.length.toLocaleString('en-US')} tasks`,
     );
+    // The direction now holds more tasks than one page of the list; the first page is shown in catalog order.
+    assert.ok(expected.length > PAGE_SIZE);
     assert.deepEqual(
-      [...doc.querySelectorAll('#arena-results .arena-task-id')]
-        .map((node) => node.textContent)
-        .sort(),
-      expected.map((item) => item.id).sort(),
+      [...doc.querySelectorAll('#arena-results .arena-task-id')].map((node) => node.textContent),
+      expected.slice(0, PAGE_SIZE).map((item) => item.id),
     );
     const example = doc.querySelector('[data-field-detail="chemistry-materials"] .field-example a');
     const id = new URL(example.href).searchParams.get('task'),
@@ -275,16 +276,11 @@ test('all 24 scientific examples explain the task and research value with safe p
         contexts.set(id, summary);
         if (task.executable) executableExamples++;
         else sourceOnlyExamples++;
-        if (['earth-environment', 'finance-economics'].includes(domain.id))
-          assert.equal(task.executable, false);
       }
     }
     assert.equal(contexts.size, 24);
-    assert.ok(executableExamples > 0);
-    assert.ok(
-      sourceOnlyExamples >= 4,
-      'Source-only Earth and Finance examples must remain visible',
-    );
+    assert.equal(executableExamples, 24);
+    assert.equal(sourceOnlyExamples, 0);
     const matrix = contexts.get('alphaevolve-matrix-multiplication-4-4-4');
     assert.match(matrix, /4[×x]4/);
     assert.match(matrix, /49/);
@@ -298,10 +294,10 @@ test('all 24 scientific examples explain the task and research value with safe p
           `${id} must not inherit matrix multiplication history`,
         );
     }
-    const forest = contexts.get('loongflow-tabular-playground-series-dec-2021');
-    assert.match(forest, /synthetic/i);
-    assert.match(forest, /generat(?:ed|ion)|modeled on/i);
-    assert.match(forest, /class(?:es|ification)/i);
+    const co2 = contexts.get('science-earth-mauna-loa-co2-forecast');
+    assert.match(co2, /Mauna Loa/);
+    assert.match(co2, /twelve monthly/i);
+    assert.match(co2, /ENSO|El Nino/);
     const packing = contexts.get('alphaevolve-circle-packing-in-unit-square');
     assert.match(packing, /26/);
     assert.match(packing, /lower bound/i);

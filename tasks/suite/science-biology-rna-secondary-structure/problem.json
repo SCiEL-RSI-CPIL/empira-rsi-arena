@@ -1,0 +1,113 @@
+{
+  "protocol": "recreated_verified",
+  "family": "biology_research_rna_structure",
+  "direction": "maximize",
+  "contract": "predict_structure(sequence) -> dot-bracket string of the same length as sequence, containing only '.', '(' and ')' with balanced brackets. sequence is an ACGU string of 40 to 150 nucleotides from an Rfam family that has a three-dimensional structure. predict_structure is called once per sequence in a sandboxed subprocess with a 180 s CPU budget for all 90 sequences. Score (maximize): mean F1 of the predicted base-pair set against the reference pairs, i.e. the harmonic mean of sensitivity and precision; sensitivity and precision are reported separately",
+  "parameters": {
+    "cpu_seconds": 180
+  },
+  "requires": [
+    "py:numpy",
+    "file:data/bio_physics/rna/rfam_consensus_structures.json.gz"
+  ],
+  "timeout": 240,
+  "notes": [
+    "Reference pairings are the Rfam covariance-model consensus structures projected onto each sequence, keeping the canonical pairs whose columns are both present; they are comparative-sequence-analysis structures, not per-sequence experimental structures, and pseudoknots and non-canonical pairs are dropped. Two sequences per family at most, families describing viral elements or CRISPR loci excluded. ViennaRNA is not a requirement of this task and may be absent; where its Python module RNA is installed a candidate may call a thermodynamic folding engine, and improving on it is the research content (the task authors measured ViennaRNA 2.6.4 minimum-free-energy folding at mean F1 0.609 on this set, against 0.401 for the seed)."
+  ],
+  "protocol_description": "Locally implemented evaluator with recorded reference checks; consult the task-specific tests and evidence for their exact scope. This label alone does not establish reproduction of the paper's full experiment.",
+  "id": "science-biology-rna-secondary-structure",
+  "name": "Biology: RNA secondary-structure prediction against Rfam consensus structures",
+  "paper_ids": [
+    "science-biology_research"
+  ],
+  "description": "Predict the secondary structure of 90 non-coding RNA sequences from 47 Rfam families that have experimentally determined three-dimensional structures. The evaluator compares the predicted base pairs with the family's consensus pairing projected onto each sequence and scores the mean F1.",
+  "benchmark": "Biology: RNA secondary-structure prediction against Rfam consensus structures",
+  "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+  "paper_direction": null,
+  "sources": [
+    {
+      "url": "https://doi.org/10.1073/pnas.0401799101",
+      "type": "paper",
+      "locator": "Mathews et al. (2004): incorporating chemical modification constraints into a dynamic programming algorithm for RNA secondary structure prediction, the problem and accuracy measures used here."
+    },
+    {
+      "url": "https://doi.org/10.1186/1748-7188-6-26",
+      "type": "paper",
+      "locator": "Lorenz et al. (2011), ViennaRNA Package 2.0: the thermodynamic folding algorithms that define the state of practice for single-sequence prediction."
+    },
+    {
+      "url": "https://doi.org/10.1093/nar/gkaa1047",
+      "type": "archive",
+      "locator": "Rfam (CC0): seed alignments and consensus secondary structures; this task uses Rfam.3d.seed.gz of release 15.1, the families with three-dimensional structures."
+    }
+  ],
+  "limitations": [
+    "Reference structures are consensus structures from comparative sequence analysis projected onto individual sequences, not per-sequence experimental structures; pseudoknots, non-canonical pairs and pairs involving gapped columns are dropped.",
+    "Only canonical nested pairs with a span of at least four nucleotides are scored, and at most two sequences per family are used, so the set is small (90 sequences, 47 families).",
+    "Where ViennaRNA is installed (it is optional, not a requirement of the task) a candidate can call a thermodynamic folding engine; an improvement over that engine on this set is a method result on 47 families, not a general advance in RNA folding.",
+    "Families describing viral elements or CRISPR loci are excluded by name, so the set is biased towards riboswitches, ribozymes, small RNAs and spliceosomal RNAs.",
+    "The source is the file of the Rfam 15.1 release directory (https://ftp.ebi.ac.uk/pub/databases/Rfam/15.1/Rfam.3d.seed.gz), pinned by SHA-256; the derived file's hash pins the exact sequences and structures used."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "science-biology_research",
+      "title": "Biology research: source-based research tasks",
+      "url": "https://doi.org/10.1021/ma00200a030"
+    }
+  ],
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "as_of": "2026-10-10",
+    "statement": "No published value for this exact set. Measured during task construction: ViennaRNA 2.6.4 minimum-free-energy folding reaches mean F1 0.609, and the Nussinov-style seed 0.401.",
+    "sources": [
+      {
+        "title": "ViennaRNA Package 2.0",
+        "url": "https://doi.org/10.1186/1748-7188-6-26"
+      }
+    ]
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Predict which bases pair with which in a non-coding RNA molecule from its sequence alone.",
+    "importance_rationale": "Secondary structure determines how structured RNAs function, and single-sequence prediction accuracy has plateaued around 60-70 % of pairs for thermodynamic models, so improvements are an active research goal.",
+    "papers": [
+      {
+        "title": "Incorporating chemical modification constraints into a dynamic programming algorithm for prediction of RNA secondary structure",
+        "url": "https://doi.org/10.1073/pnas.0401799101",
+        "primary_goal": "Improve the accuracy of RNA secondary-structure prediction and measure it as sensitivity and precision of predicted base pairs.",
+        "task_relation": "The task scores predicted base-pair sets against reference structures with the same sensitivity and precision combined into F1.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "ViennaRNA Package 2.0",
+        "url": "https://doi.org/10.1186/1748-7188-6-26",
+        "primary_goal": "Provide and improve algorithms for predicting RNA secondary structure from sequence.",
+        "task_relation": "Defines the state of practice the task measures against; the evaluator used it as an independent baseline (mean F1 0.609).",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "The cited papers' main goal is RNA secondary-structure prediction from sequence, exactly what the evaluator scores.",
+    "verification_basis": "Crossref metadata inspected; the Rfam 3D seed alignments (CC0) were downloaded and parsed, the projected reference pairs checked to be canonical and nested, and a ViennaRNA baseline was computed with the same scorer.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  },
+  "labels": {
+    "area": "biology",
+    "domain": "natural_science",
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  }
+}

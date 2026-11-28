@@ -1,10 +1,8 @@
-"""Placeholder candidate: IMO-ProofBench.
-
-This task is not executable inside the suite (llm_api); a real candidate would be the artifact the paper evolves for 'IMO-ProofBench' (see README.md).
-"""
+"""Initial program for the suite task; SCiEL evolves the EVOLVE-BLOCK."""
 # EVOLVE-BLOCK-START
-
-
-def candidate():
-    raise NotImplementedError("meta-harness-imo-proofbench is documented but not executable in this suite")
+def solve(question, llm):
+    """Single-pass proof writing."""
+    system = ("You are an expert olympiad mathematician. Write a complete and rigorous but concise proof (at most about 1,200 words) "
+              "and justify every step.")
+    return llm(question, system=system, max_tokens=8192)
 # EVOLVE-BLOCK-END

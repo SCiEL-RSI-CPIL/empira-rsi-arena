@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0",
+  "id": "miplib-lr1dr04vc05v17a-t360",
+  "name": "MIPLIB 2017 open instance lr1dr04vc05v17a-t360",
+  "description": "Find a feasible solution of the MIPLIB 2017 instance lr1dr04vc05v17a-t360 with as low an objective value as possible (a maximisation model is negated, so that lower is better for every instance). A solution is feasible when every variable bound, every row bound and the integrality of every integer variable hold within an absolute tolerance of 1e-6 on the values as they are returned; integer variables are not rounded first.",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "requires_setup",
+  "sources": [
+    {
+      "url": "https://miplib.zib.de/tag_open.html",
+      "type": "benchmark",
+      "locator": "lr1dr04vc05v17a-t360"
+    },
+    {
+      "url": "https://doi.org/10.1287/ijoc.2014.0601",
+      "type": "paper",
+      "locator": "Two-Stage Decomposition Algorithms for Single Product Maritime Inventory Routing"
+    },
+    {
+      "url": "https://doi.org/10.1007/s12532-020-00194-3",
+      "type": "benchmark",
+      "locator": "Gleixner et al. (2021), MIPLIB 2017: data-driven compilation of the 6th mixed-integer programming library (benchmark paper, not evidence)."
+    },
+    {
+      "url": "https://miplib.zib.de/",
+      "type": "benchmark",
+      "locator": "Instance pages with submitter, group, status and best known objective."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "scipy",
+      "highspy"
+    ],
+    "environment_variables": [],
+    "datasets": "https://miplib.zib.de/WebData/instances/lr1dr04vc05v17a-t360.mps.gz (size varies; some files are large)"
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "MIPLIB 2017 open instance lr1dr04vc05v17a-t360",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "miplib",
+    "science_family": "miplib",
+    "parameters": {
+      "instance": "lr1dr04vc05v17a-t360",
+      "best_known": 252093.332601676
+    },
+    "interface": "solve(model) -> numpy array of num_cols values, one per column. model has name, mps_path (the uncompressed MPS file), num_cols, num_rows, A (scipy CSR matrix of the rows), col_cost, col_lower, col_upper, row_lower, row_upper, integrality (bool array), offset, maximise and indicators (a list of (row, column, value): such a row has to hold only when that column equals the value; empty for most instances). Score: col_cost @ x + offset in minimisation form (negated when maximise is true), minimized; an infeasible vector is invalid.",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "combinatorial_optimisation",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "published_value",
+      "area": "optimization",
+      "areas": [
+        "optimization"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "https://miplib.zib.de/WebData/instances/lr1dr04vc05v17a-t360.mps.gz (size varies; some files are large)"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "miplib",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:scipy",
+        "py:highspy",
+        "file:data/arnew/miplib/lr1dr04vc05v17a-t360.mps.gz"
+      ],
+      "timeout": 900,
+      "validity_key": "valid"
+    },
+    "declared_status": "requires_setup"
+  },
+  "limitations": [
+    "The objective listed on the open-instances page may have been improved since 2026-11-11 (the list did not change between 2026-11-02 and 2026-11-11).",
+    "Candidates may call HiGHS through highspy; a stronger solver is a method, not a discovery by the workflow.",
+    "The starting program finds no feasible solution of this instance (HiGHS with a 30 s limit, run of 2026-11-11), so a search starts from an invalid candidate.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "real_instance_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
+    "upstream_reproduction": true,
+    "record_level": "record_reproduced",
+    "unsure": false,
+    "record_validation": {
+      "record": 252093.332601676,
+      "checks": [
+        "open-instances page lists 252093.332601676",
+        "published solution file header =obj= 252093.332601676",
+        "the published solution, checked by our verifier: feasible within 1e-6, objective 252093.33260167588"
+      ],
+      "sources": [
+        "sources/miplib_tag_open.html",
+        "sources/miplib_details/lr1dr04vc05v17a-t360.html",
+        "sources/miplib_sol/lr1dr04vc05v17a-t360.sol.gz",
+        "data/miplib/lr1dr04vc05v17a-t360.mps.gz"
+      ],
+      "notes": [],
+      "validated": "2026-11-11"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "areas": [
+      "optimization"
+    ],
+    "important_to_science": true
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "The paper has solving single-product maritime inventory routing problems of this class as its main objective.",
+    "scientific_problem": "Route a fleet of vessels between loading and discharging ports and schedule the loads so that port inventories stay within bounds at minimum cost, for the MIRPLib instance lr1dr04vc05v17a-t360.",
+    "importance_rationale": "Maritime inventory routing is a real shipping problem (for example liquefied natural gas or ore); the library instances stay open for commercial MIP solvers, as the MIPLIB page states.",
+    "papers": [
+      {
+        "title": "Two-Stage Decomposition Algorithms for Single Product Maritime Inventory Routing",
+        "url": "https://doi.org/10.1287/ijoc.2014.0601",
+        "task_relation": "The task instances are MIRPLib Group 1 or 2 models of the same problem class; the MIPLIB page and the MIRPLib page credit the instance definitions to the library paper, so it was not verified that this paper solves these exact instances.",
+        "primary_goal": "Solve single-product deep-sea maritime inventory routing problems with two-stage decomposition algorithms.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  },
+  "source_specification": {
+    "name": "MIPLIB 2017 open instance lr1dr04vc05v17a-t360",
+    "slug": "miplib-lr1dr04vc05v17a-t360",
+    "description": "Find a feasible solution of the MIPLIB 2017 instance lr1dr04vc05v17a-t360 with as low an objective value as possible (a maximisation model is negated, so that lower is better for every instance). A solution is feasible when every variable bound, every row bound and the integrality of every integer variable hold within an absolute tolerance of 1e-6 on the values as they are returned; integer variables are not rounded first.",
+    "benchmark": "MIPLIB 2017 open instance lr1dr04vc05v17a-t360",
+    "dataset": "https://miplib.zib.de/WebData/instances/lr1dr04vc05v17a-t360.mps.gz (size varies; some files are large)",
+    "metric": "score",
+    "direction": "minimize",
+    "source_url": "https://miplib.zib.de/tag_open.html",
+    "source_locator": "lr1dr04vc05v17a-t360",
+    "upstream_path": null,
+    "requirements": [
+      "py:numpy",
+      "py:scipy",
+      "py:highspy",
+      "file:data/miplib/lr1dr04vc05v17a-t360.mps.gz"
+    ],
+    "execution_notes": "https://miplib.zib.de/WebData/instances/lr1dr04vc05v17a-t360.mps.gz (size varies; some files are large)"
+  }
+}

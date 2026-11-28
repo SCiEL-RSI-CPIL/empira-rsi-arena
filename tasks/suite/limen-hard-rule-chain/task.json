@@ -2,12 +2,12 @@
   "schema_version": "1.0",
   "id": "limen-hard-rule-chain",
   "name": "Hard rule-chain",
-  "description": "13x13 multiroom ordered subgoals; 400-step horizon",
+  "description": "Write JAX get_observation(state) and compute_reward(state, action, next_state) for a 13 x 13 four-room XLand-MiniGrid task (blue pyramid becomes a green ball; place it next to the yellow hex); LIMEN's evaluator trains PPO on them and scores the mean success rate within 400 steps over three 5M-step seeds, or a 3M-step cascade run's rate if below 1 % (higher is better).",
   "paper_ids": [
     "limen"
   ],
   "kind": "upstream",
-  "status": "requires_setup",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2605.03408",
@@ -18,6 +18,16 @@
       "url": "https://github.com/Lossfunk/LIMEN/tree/cf0b44da37f7e7ee038920c860a8cb00c610c9af",
       "type": "repository",
       "locator": "configs/hard_rule_chain.yaml"
+    },
+    {
+      "url": "https://github.com/Lossfunk/LIMEN/tree/cf0b44da37f7e7ee038920c860a8cb00c610c9af",
+      "type": "repository",
+      "locator": "limen/evaluator.py (CascadeEvaluator), limen/train.py (PPO), limen/adapters/xminigrid.py, configs/hard_rule_chain.yaml, rulesets/hard_rule_chain.py and examples/evolved_interfaces/hard_rule_chain.py (MIT); run unchanged by the evaluator"
+    },
+    {
+      "url": "https://github.com/dunnolab/xland-minigrid/tree/0d306d1414dcb6e451358d94e7d9a91879462ee1",
+      "type": "repository",
+      "locator": "XLand-MiniGrid 0.9.3 (Apache-2.0): environments, goal checks and rules; byte-identical to the PyPI wheel xminigrid==0.9.3"
     }
   ],
   "requirements": {
@@ -34,7 +44,7 @@
     ]
   },
   "evaluation": {
-    "metric": "mean success rate across three seeds",
+    "metric": "score",
     "paper_metric": "mean success rate across three seeds",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -74,8 +84,8 @@
       "Paper task identified; evaluator invocation not yet verified."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "original",
+      "family": "limen_xland_hard_rule_chain",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -83,12 +93,18 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "environment:XLand-MiniGrid"
+        "py:numpy",
+        "py:jax",
+        "py:flax",
+        "py:distrax",
+        "py:xminigrid",
+        "py:openai",
+        "py:dacite",
+        "py:yaml",
+        "py:psutil",
+        "file:data/jax_station/limen-cf0b44da/limen/evaluator.py"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "simulator",
-      "unsupported_reason": "Fitness requires a physics simulator or reinforcement-learning training loop (XLand-MiniGrid) that is not bundled."
+      "timeout": 900
     }
   },
   "limitations": [
@@ -133,13 +149,13 @@
     "scientific_contribution": "engineering",
     "science_tier": 3,
     "artifact": "reward",
-    "domain": "robotics",
-    "area": "robotics_and_control",
+    "domain": "machine_learning",
+    "area": "machine_learning",
     "data": "simulator",
-    "verification": "none",
+    "verification": "simulation",
     "reference": "none",
     "resources": [
-      "simulator"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false

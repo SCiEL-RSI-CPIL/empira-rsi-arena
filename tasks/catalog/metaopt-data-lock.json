@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "package": "metaopt",
+  "sources": {
+    "bigbench-results": {
+      "url": "https://github.com/google/BIG-bench/tree/092b196c1f8f14a54bbc62f24759d43bde46dd3b/bigbench/benchmark_tasks",
+      "commit": "092b196c1f8f14a54bbc62f24759d43bde46dd3b",
+      "pattern": "bigbench/benchmark_tasks/*/results/scores_*.json",
+      "files": 9085,
+      "size": 130818413,
+      "sha256": "f1db681f357aeb4c6f3721ed1a0b65de35a0c994199b61a24405de7721148613",
+      "digest": "sha256 over sorted 'path git-blob-id' lines",
+      "license": "Apache-2.0 (google/BIG-bench repository licence). Not redistributed by this repository."
+    }
+  },
+  "prepared": {
+    "bigbench_mcg.csv.gz": {
+      "sha256": "dc5dd63e36e5d6d6120299d4652112cef6b2217b2fb940e15475bb4676a3cf3e",
+      "digest": "sha256 of the decompressed CSV",
+      "rows": 53812,
+      "statistics": {
+        "files": 9085,
+        "mcg_entries": 58033,
+        "rows": 53812,
+        "dropped_no_temperature": 4221,
+        "dropped_missing_value": 0
+      },
+      "derived_from": "bigbench-results"
+    }
+  }
+}

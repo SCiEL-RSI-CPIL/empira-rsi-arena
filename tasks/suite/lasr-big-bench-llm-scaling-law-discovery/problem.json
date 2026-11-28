@@ -1,41 +1,61 @@
 {
-  "protocol": "unsupported",
-  "family": null,
-  "direction": "maximize",
-  "contract": null,
-  "parameters": {},
+  "protocol": "recreated",
+  "family": "bigbench_scaling_law",
+  "direction": "minimize",
+  "contract": "N_PARAMS = k (an int, 1 <= k <= 5) and scaling_law(X, params) -> float array of predicted multiple-choice grades (fraction of questions answered correctly, 0..1), one per row. X is a dict of equal-length float arrays: training_steps, batch_size (training batch size in tokens), total_params, non_embedding_params, flop_matched_params (FLOP-matched non-embedding parameters; differs from non_embedding_params only for sparse models), shots (number of in-context examples) and temperature (decoding temperature, 0 or 1); params is a float array of length N_PARAMS. Optional initial_params() -> N_PARAMS finite starting values (default all ones). The evaluator fits params on a fixed-seed 80 % training split (43,049 rows) by nonlinear least squares (Levenberg-Marquardt with a forward-difference Jacobian, from initial_params and 7 seeded perturbations p0 + N(0, 1) * (1 + |p0|), at most 400 residual evaluations each, best training MSE kept; residuals are clipped to +-1000 and non-finite predictions count as 1000) and scores the mean squared error of the fitted law on the other 10,763 rows (minimize). Limits on the source (against embedded lookup tables): at most 10 numeric literals other than integers in [-10, 10], at most 64 numeric literals in all, at most 1,000 characters of string literals outside docstrings and at most 20,000 characters. Fitting and prediction run in a sandbox without file access; scaling_law must return real numbers (not strings, booleans or complex values), and the held-out predictions are recomputed from the reported constants on the held-out rows in a fresh random order, so predictions that depend on a row's position rather than its inputs invalidate the candidate",
+  "parameters": {
+    "split_seed": 0,
+    "starts": 8,
+    "start_seed": 0,
+    "max_nfev": 400,
+    "max_params": 5,
+    "max_literals": 10,
+    "cpu_seconds": 120
+  },
   "requires": [
-    "dataset:BIG-Bench"
+    "py:numpy",
+    "file:data/metaopt/bigbench_mcg.csv.gz"
   ],
-  "timeout": 30,
-  "notes": [],
-  "unsupported_category": "dataset",
-  "unsupported_reason": "BIG-Bench scaling-law discovery needs the BIG-Bench evaluation records.",
-  "protocol_description": "Not executable in this suite: BIG-Bench scaling-law discovery needs the BIG-Bench evaluation records.",
+  "timeout": 300,
+  "notes": [
+    "Data: rebuilt from the BIG-bench evaluation records at google/BIG-bench@092b196c1f8f14a54bbc62f24759d43bde46dd3b (Apache-2.0): 9,085 bigbench/benchmark_tasks/*/results/scores_*.json files fetched by scripts/prepare_metaopt.py with a sparse git checkout and checked against catalog/metaopt-data-lock.json. Rows are the score entries whose preferred_score is multiple_choice_grade (58,033) minus the 4,221 entries of models whose record states no decoding temperature (PaLM 3,793, Gopher 372, T5-LM, T0, T0+ and T0++ 14 each), which leaves 53,812 rows, the paper's count; the remaining models are BIG-G (T=0 and T=1), BIG-G sparse and GPT-3. The data are not redistributed.",
+    "Target and inputs: the raw multiple_choice_grade (0..1) of each entry; the rows comprise 19,180 task-level aggregate entries and 34,632 subtask entries (an aggregate summarises its subtasks), 42 models and 0-3 shots. The candidate sees the model's training steps, training batch size, total, non-embedding and FLOP-matched non-embedding parameters, the number of shots and the decoding temperature, not the task identity.",
+    "Split: LaSR does not publish its split, and it cannot be recovered; a fixed-seed random row split (numpy default_rng(0) permutation; 43,049 rows for fitting, 10,763 held out) reproduces only the paper's counts. Rows of the same task and model fall on both sides, as in any random row split. The held-out MSE is also the score that a search over laws optimises; the paper reports held-out MSEs only for the four laws of Table 4 and does not say whether its LaSR search saw the held-out rows.",
+    "Fitting: constants are fitted by a NumPy Levenberg-Marquardt least-squares routine from 8 fixed starts inside the sandbox, which cannot load SciPy (SciPy needs ctypes, which the sandbox blocks); a unit test checks the routine against scipy.optimize.least_squares. LaSR's own procedure (PySR/LaSR constant optimisation, a per-group 'matrix of parameters' and a monotonicity regulariser in training steps, Appendix A.6) is not specified in enough detail and is not reproduced; the simplicity-accuracy Pareto front is replaced by a cap of 5 free constants plus source limits (at most 10 numeric literals other than integers in [-10, 10], 64 numeric literals in all, 1,000 characters of non-docstring string literals and 20,000 characters), which bound the number of constants but do not prevent tables carried in docstrings, identifiers or long integer literals; a table of held-out grades by row position is rejected by the recomputation on reordered rows, but a table of held-out means per input combination (168 entries) is not detectable and reaches the reported memorisation_floor_mse (0.03437), below the 0.03519 of per-group training means: scores below reference_group_mean_mse indicate memorisation of the public held-out rows, not a better law.",
+    "Near-saturated target (measured 2026-10-10, validation/metaopt-checks.json): the grade variance is 0.0363 and the held-out MSE of a fitted constant is 0.03642, of LaSR's Eq. 4 refitted 0.03625, of the seed 0.03633, of a four-parameter log-linear law 0.03545, of a Chinchilla-form law 0.03535 and of the modified Chinchilla form 0.03534, while per-(model, shots, temperature) training means, the best any function of these inputs can do in expectation, reach 0.03519. Simple laws thus come within 0.0002-0.0003 of this ceiling and even a constant is only 0.0012 (3.4 % of the variance) above it: most of the variance (task difficulty) is not explained by model hyperparameters, so differences between good laws are small.",
+    "Paper values are not reproduced: LaSR's Table 4 reports held-out MSEs of 0.03598 (Eq. 4), 0.03610 (Chinchilla), 0.03598 (modified Chinchilla) and 0.09324 (constant). On this reconstruction a constant reaches 0.0364 and the paper's Eq. 5 constants give 0.0367 without refitting, so local scores are not comparable with the paper's.",
+    "Isolation: the fit and the held-out predictions run in a sandboxed child process (no file access, no network) that receives the training rows and the held-out inputs only; a second child recomputes the held-out predictions from the reported constants. The candidate file is never imported by the evaluator (sandboxed.run): N_PARAMS is also read in a sandboxed child, so module-level code runs only in the sandbox.",
+    "Rows rebuilt from the BIG-bench evaluation records (google/BIG-bench@092b196c, Apache-2.0); fixed-seed 80/20 split; constants fitted by least squares; held-out MSE."
+  ],
+  "protocol_description": "Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.",
   "id": "lasr-big-bench-llm-scaling-law-discovery",
   "name": "BIG-Bench LLM scaling-law discovery",
   "paper_ids": [
     "lasr"
   ],
-  "description": "BIG-Bench LLM scaling-law discovery: optimize the candidate specified by the paper and evaluate against the named benchmark.",
+  "description": "Write a Python scaling_law(X, params) formula with at most five free constants that predicts BIG-bench multiple-choice grades from model size, training steps, batch size, shots and decoding temperature; the evaluator fits the constants by least squares on 43,049 rows and scores the mean squared error on 10,763 held-out rows (lower is better).",
   "benchmark": "BIG-Bench LLM scaling-law discovery",
-  "paper_metric": "exact symbolic recovery / MSE (symbolic regression); scaling-law predictive fit",
+  "paper_metric": "predictive fit to BIG-Bench multiple-choice grades; equation-complexity tradeoff",
   "paper_direction": null,
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2409.09359",
       "type": "paper",
-      "locator": "Sections 4.1–4.5 and Appendix A.4–A.6"
+      "locator": "Section 4.6 and Appendix A.6"
     },
     {
       "url": "https://github.com/trishullab/LibraryAugmentedSymbolicRegression.jl/tree/776196e339191736e20d4eb6eed7c468aa6e4472",
       "type": "repository",
       "locator": null
+    },
+    {
+      "url": "https://github.com/google/BIG-bench/tree/092b196c1f8f14a54bbc62f24759d43bde46dd3b",
+      "type": "benchmark",
+      "locator": "bigbench/benchmark_tasks/*/results/scores_*.json: per-model evaluation records (preferred score, multiple-choice grade, number of shots, model hyperparameters)"
     }
   ],
   "limitations": [
-    "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
+    "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed."
   ],
   "evaluator": "evaluator.py",
   "initial_program": "initial_program.py",
@@ -53,19 +73,38 @@
     "domain": "machine_learning",
     "area": "machine_learning",
     "data": "real_measurements",
-    "verification": "none",
+    "verification": "exact",
     "reference": "none",
     "resources": [
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
-    "important_to_science": false
+    "important_to_science": true
   },
   "science_relevance": {
     "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
     "criterion": "primary_research_goal",
-    "status": "unreviewed",
-    "papers": [],
-    "reason": "No qualifying paper whose main objective is this underlying scientific or real-world problem has been established in the evidence registry. A task's use in an agent/framework evaluation is insufficient. This label describes the available evidence, not proof that the task has no scientific value."
+    "status": "supported",
+    "papers": [
+      {
+        "title": "How predictable is language model benchmark performance?",
+        "url": "https://arxiv.org/abs/2401.04757",
+        "primary_goal": "Measure how well aggregate and per-task BIG-bench performance can be predicted and extrapolated as a function of training compute.",
+        "task_relation": "The local task fits a closed-form law that predicts BIG-bench multiple-choice grades from model scale, shots and temperature and scores it on held-out rows; it uses a random row split (interpolation) and per-entry grades rather than the paper's extrapolation across compute.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Observational Scaling Laws and the Predictability of Language Model Performance",
+        "url": "https://arxiv.org/abs/2405.10938",
+        "primary_goal": "Build scaling laws from about 100 publicly available models that predict language-model benchmark performance.",
+        "task_relation": "Same problem (predicting downstream benchmark performance from model scale); the local task uses only BIG-bench's own model families and hyperparameters, not the paper's capability-space method or data.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both cited papers have predicting language-model benchmark performance from scale as their main goal, which is what the local task scores on BIG-bench records; no reproduction of their numbers is claimed, and the local target is near-saturated (see the task notes).",
+    "scientific_problem": "Predict how well language models perform on downstream benchmark tasks from their scale (parameters, training steps, batch tokens) and inference settings (number of shots, decoding temperature).",
+    "importance_rationale": "Forecasting capabilities from scale guides model development and capability forecasting; BIG-bench is a standard testbed for asking whether benchmark performance follows predictable scaling trends.",
+    "verification_basis": "arXiv metadata and abstracts of 2401.04757 and 2405.10938 inspected on 2026-10-10; local evaluator run on the rebuilt 53,812-row BIG-bench subset.",
+    "reviewed_at": "2026-10-10"
   }
 }

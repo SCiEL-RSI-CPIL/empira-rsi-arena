@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0",
+  "id": "science-physics-spin-glass-torus-3d",
+  "name": "Physics: three-dimensional spin-glass ground states on fixed instances",
+  "description": "Find ground states of nine Edwards-Anderson spin glasses on 5x5x5, 6x6x6 and 7x7x7 periodic cubic lattices with Gaussian couplings. The evaluator recomputes the cut weight of every spin configuration and compares it with the exact optimum computed for these instances by branch-and-cut.",
+  "paper_ids": [
+    "science-physics_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1002/3527603794.ch4",
+      "type": "paper",
+      "locator": "Liers, Juenger, Reinelt and Rinaldi (2004) compute exact ground states of these three-dimensional toroidal Ising spin glasses by branch-and-cut."
+    },
+    {
+      "url": "https://doi.org/10.1088/0305-4470/15/10/028",
+      "type": "paper",
+      "locator": "Barahona (1982) proves that finding spin-glass ground states on three-dimensional lattices is NP-hard, which is why these instances are hard for heuristics."
+    },
+    {
+      "url": "https://biqmac.aau.at/biqmaclib.html",
+      "type": "benchmark",
+      "locator": "Biq Mac library: the t3g torus instances (ising_all.tar.gz) and their optimal cut values in Table 10 of biqmaclib.pdf; no licence stated, so the archive is downloaded by the user and not redistributed here."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "Derived from the pinned Biq Mac archive by python3 scripts/prepare_bio_physics.py (hashes in catalog/bio_physics-data-lock.json)."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Physics: three-dimensional spin-glass ground states on fixed instances",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "physics_research_spin_glass_torus_3d",
+    "science_family": "physics_research_spin_glass_torus_3d",
+    "parameters": {
+      "dimension": 3,
+      "cpu_seconds": 240
+    },
+    "interface": "ground_state(instance) -> list of instance['nodes'] spins, each -1 or +1. instance has keys name, nodes, side, dimension and edges (list of [i, j, weight] with integer weights and 0-based node indices) of a 3-dimensional periodic grid of side 5, 6 and 7 with Gaussian couplings. ground_state is called once per instance in a sandboxed subprocess with a 240 s CPU budget for all nine instances together. Score (maximize): mean over the instances of cut_weight / published_optimal_cut, where the evaluator recomputes the cut weight from the edge list; 1.0 means reaching the exact optimum everywhere. The spin-glass energy of the couplings J = -weight is sum(weight) - 2 * cut_weight, so a larger cut is a lower energy",
+    "label_spec": {
+      "area": "physics",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "additional_requires": [
+      "file:data/bio_physics/spinglass/torus_3d.json.gz"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "physics_research_spin_glass_torus_3d",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/bio_physics/spinglass/torus_3d.json.gz"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "The reference values come from branch-and-cut runs without a time limit; this task gives a few minutes of CPU for nine instances, so the score is budget-dependent and not comparable with exact solvers.",
+    "Only these nine fixed instances are scored, so a better score is a better heuristic on them rather than a physical result about the three-dimensional Edwards-Anderson model.",
+    "Couplings are the integer-scaled Gaussian weights of the published instances; the evaluator reports the corresponding energy but scores the cut weight.",
+    "Ground-state degeneracy is not examined: the task only measures how close the recomputed cut weight comes to the published optimum.",
+    "NP-hardness is a worst-case statement and these instances have at most 343 spins: simulated annealing with a few hundred replicas reaches the published optimum of eight of the nine instances within seconds each (the ninth to within 3e-4), so a score close to 1.0 is attainable inside the budget and the headroom of the task is the gap between the seed (0.885) and 1.0."
+  ],
+  "validation": {
+    "level": "source_seed_executed",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-10-10",
+    "evidence": "validation/bio_physics-checks.json",
+    "tests": "tests/test_phys_spinglass.py"
+  },
+  "state_of_the_art": {
+    "kind": "optimum",
+    "value": 1.0,
+    "as_of": "2026-10-10",
+    "statement": "The optimal cut weights of these nine instances are known exactly (10933215, 11582216, 11552046 for 5x5x5; 17434469, 20217380, 19475011 for 6x6x6; 28302918, 33611981, 29118445 for 7x7x7), so a score of 1.0 is attainable and cannot be exceeded.",
+    "sources": [
+      {
+        "title": "Biq Mac Library documentation, Table 10",
+        "url": "https://biqmac.aau.at/biqmaclib.pdf"
+      },
+      {
+        "title": "Computing exact ground states of hard Ising spin glass problems by branch-and-cut",
+        "url": "https://doi.org/10.1002/3527603794.ch4"
+      }
+    ]
+  },
+  "labels": {
+    "area": "physics",
+    "domain": "natural_science",
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Find the ground states of three-dimensional Edwards-Anderson Ising spin glasses on finite cubic lattices with Gaussian couplings, an NP-hard problem.",
+    "importance_rationale": "Ground-state energies and their finite-size scaling are the basis for studying the spin-glass phase, stiffness exponents and the computational complexity boundary between two and three dimensions; exact ground states had to be computed with branch-and-cut, and heuristics are still measured against them.",
+    "papers": [
+      {
+        "title": "Computing exact ground states of hard Ising spin glass problems by branch-and-cut",
+        "url": "https://doi.org/10.1002/3527603794.ch4",
+        "primary_goal": "Compute exact ground states of Ising spin glasses on two- and three-dimensional toroidal lattices.",
+        "task_relation": "The task uses those instances and their exact optima as the reference and asks a candidate to approach them heuristically.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "On the computational complexity of Ising spin glass models",
+        "url": "https://doi.org/10.1088/0305-4470/15/10/028",
+        "primary_goal": "Determine the computational complexity of finding spin-glass ground states on planar and three-dimensional lattices.",
+        "task_relation": "Explains why the two-dimensional instances are tractable in principle and the three-dimensional ones are not.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "The cited papers' main goal is the spin-glass ground-state problem itself, which the evaluator scores exactly against published optima.",
+    "verification_basis": "Crossref metadata inspected; instances parsed and checked for degree 6; an independent annealing search reproduced the published optima of two of the three 5x5x5 instances.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

@@ -1,0 +1,427 @@
+{
+  "schema": "artask.data-lock/1",
+  "package": "kaggle",
+  "reviewed_on": "2026-10-10",
+  "raw_cache": "kaggle-raw of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "data_directory": "data/kaggle of the task cache (ARENA_TASK_CACHE_DIR, default ~/.cache/empira/tasks)",
+  "note": "Raw files are streamed from the pinned URLs and verified by size and SHA-256; derived files are byte-stable functions of them (suite/_lib/autoresearch_suite/kaggle_derive*.py). Nothing listed here is redistributed by this repository. Sources with role 'verification' are not downloaded by scripts/prepare_kaggle.py; they were read once to check facts recorded in validation/kaggle-checks.json and state no licence, so they are never redistributed or used by an evaluator.",
+  "sources": [
+    {
+      "id": "jigsaw-train",
+      "task": "jigsaw",
+      "filename": "train.csv",
+      "publisher": "Conversation AI / Jigsaw, Toxic Comment Classification Challenge files, mirrored on Hugging Face by thesofakillers",
+      "description": "Competition training file: 159,571 Wikipedia talk-page comments with six 0/1 toxicity labels",
+      "url": "https://huggingface.co/datasets/thesofakillers/jigsaw-toxic-comment-classification-challenge/resolve/50f3c926ec8c07b440cb17b55d8cd80e8484497e/train.csv",
+      "landing_page": "https://huggingface.co/datasets/thesofakillers/jigsaw-toxic-comment-classification-challenge/tree/50f3c926ec8c07b440cb17b55d8cd80e8484497e",
+      "license": "CC0 (dataset card, restating the competition data page); comment text from Wikipedia under CC BY-SA 3.0",
+      "sha256": "bd4084611bd27c939ba98e5e63bc3e5a2c1a4e99477dcba46c829e4c986c429d",
+      "size": 68802655
+    },
+    {
+      "id": "jigsaw-test",
+      "task": "jigsaw",
+      "filename": "test.csv",
+      "publisher": "Conversation AI / Jigsaw (Hugging Face mirror by thesofakillers)",
+      "description": "Competition test file: 153,164 comments without labels",
+      "url": "https://huggingface.co/datasets/thesofakillers/jigsaw-toxic-comment-classification-challenge/resolve/50f3c926ec8c07b440cb17b55d8cd80e8484497e/test.csv",
+      "landing_page": "https://huggingface.co/datasets/thesofakillers/jigsaw-toxic-comment-classification-challenge/tree/50f3c926ec8c07b440cb17b55d8cd80e8484497e",
+      "license": "CC0 (dataset card); comment text CC BY-SA 3.0",
+      "sha256": "c2513ce4abb98c4d1d216e3ca0d4377d57589a0989aa8c06a840509a16c786e8",
+      "size": 60354593
+    },
+    {
+      "id": "jigsaw-test-labels",
+      "task": "jigsaw",
+      "filename": "test_labels.csv",
+      "publisher": "Conversation AI / Jigsaw (Hugging Face mirror by thesofakillers)",
+      "description": "Test labels released after the competition; -1 marks the 89,186 rows that were not scored",
+      "url": "https://huggingface.co/datasets/thesofakillers/jigsaw-toxic-comment-classification-challenge/resolve/50f3c926ec8c07b440cb17b55d8cd80e8484497e/test_labels.csv",
+      "landing_page": "https://huggingface.co/datasets/thesofakillers/jigsaw-toxic-comment-classification-challenge/tree/50f3c926ec8c07b440cb17b55d8cd80e8484497e",
+      "license": "CC0 (dataset card)",
+      "sha256": "2a56dcbeba5c05f965a636f56cb5ae972bad60c3b952c239b49be18d7ab70f49",
+      "size": 4976930
+    },
+    {
+      "id": "noisyoffice",
+      "task": "noisyoffice",
+      "filename": "noisyoffice.zip",
+      "publisher": "S. Espana-Boquera, J. Pastor-Pellicer, M.J. Castro-Bleda, F. Zamora-Martinez (UCI Machine Learning Repository, dataset 318, doi:10.24432/C5G31N)",
+      "description": "NoisyOffice corpus; the evaluator uses SimulatedNoisyOffice: 216 grey-level images (3 text passages, one per partition TR/VA/TE, typeset in 18 fonts, each page with 4 synthetic noise types) and the 54 clean grey-level pages",
+      "url": "https://archive.ics.uci.edu/static/public/318/noisyoffice.zip",
+      "landing_page": "https://archive.ics.uci.edu/dataset/318/noisyoffice",
+      "license": "CC BY 4.0 (UCI dataset page)",
+      "sha256": "611fc7b660a7b342cc72ec6b3e0454d57cc97ad07c594d4ef2b8939976a8ea11",
+      "size": 446643512
+    },
+    {
+      "id": "pcam-valid-x",
+      "task": "pcam",
+      "filename": "camelyonpatch_level_2_split_valid_x.h5.gz",
+      "publisher": "B. S. Veeling, J. Linmans, J. Winkens, T. Cohen, M. Welling (Zenodo record 2546921, PatchCamelyon)",
+      "description": "PatchCamelyon file named 'valid' on Zenodo (named 'test' in the GitHub README; same MD5): 32,768 RGB patches of 96 x 96 pixels",
+      "url": "https://zenodo.org/records/2546921/files/camelyonpatch_level_2_split_valid_x.h5.gz?download=1",
+      "landing_page": "https://zenodo.org/records/2546921",
+      "zenodo_md5": "d5b63470df7cfa627aeec8b9dc0c066e",
+      "license": "CC0 (github.com/basveeling/pcam README, following Camelyon16); MIT (Zenodo record licence field)",
+      "sha256": "f82ee1670d027b4ec388048d9eabc2186b77c009655dae76d624c0ecb053ccb2",
+      "size": 805965320
+    },
+    {
+      "id": "pcam-valid-y",
+      "task": "pcam",
+      "filename": "camelyonpatch_level_2_split_valid_y.h5.gz",
+      "publisher": "B. S. Veeling et al. (Zenodo record 2546921)",
+      "description": "Labels of pcam-valid-x (1 = tumour tissue in the central 32 x 32 region)",
+      "url": "https://zenodo.org/records/2546921/files/camelyonpatch_level_2_split_valid_y.h5.gz?download=1",
+      "landing_page": "https://zenodo.org/records/2546921",
+      "zenodo_md5": "2b85f58b927af9964a4c15b8f7e8f179",
+      "license": "CC0 (README); MIT (Zenodo)",
+      "sha256": "ce1ae30f08feb468447971cfd0472e7becd0ad96d877c64120c72571439ae48c",
+      "size": 3038
+    },
+    {
+      "id": "pcam-valid-meta",
+      "task": "pcam",
+      "filename": "camelyonpatch_level_2_split_valid_meta.csv",
+      "publisher": "B. S. Veeling et al. (Zenodo record 2546921)",
+      "description": "Patch metadata of pcam-valid-x: coordinates, tumour flags and the Camelyon16 whole-slide image (wsi) of each patch",
+      "url": "https://zenodo.org/records/2546921/files/camelyonpatch_level_2_split_valid_meta.csv?download=1",
+      "landing_page": "https://zenodo.org/records/2546921",
+      "zenodo_md5": "67589e00a4a37ec317f2d1932c7502ca",
+      "license": "CC0 (README); MIT (Zenodo)",
+      "sha256": "8ea89aed388b946c2e869db3dc2f3c0816b643247a830a838ce47e74dfbcd82b",
+      "size": 1850810
+    },
+    {
+      "id": "pcam-test-x",
+      "task": "pcam",
+      "filename": "camelyonpatch_level_2_split_test_x.h5.gz",
+      "publisher": "B. S. Veeling et al. (Zenodo record 2546921)",
+      "description": "PatchCamelyon file named 'test' on Zenodo: 32,768 RGB patches of 96 x 96 pixels from Camelyon16 test slides",
+      "url": "https://zenodo.org/records/2546921/files/camelyonpatch_level_2_split_test_x.h5.gz?download=1",
+      "landing_page": "https://zenodo.org/records/2546921",
+      "zenodo_md5": "d8c2d60d490dbd479f8199bdfa0cf6ec",
+      "license": "CC0 (README); MIT (Zenodo)",
+      "sha256": "79174c2201ad521602a5888be8f36ee10875f37403dd3f2086caf2182ef87245",
+      "size": 800875929
+    },
+    {
+      "id": "pcam-test-y",
+      "task": "pcam",
+      "filename": "camelyonpatch_level_2_split_test_y.h5.gz",
+      "publisher": "B. S. Veeling et al. (Zenodo record 2546921)",
+      "description": "Labels of pcam-test-x",
+      "url": "https://zenodo.org/records/2546921/files/camelyonpatch_level_2_split_test_y.h5.gz?download=1",
+      "landing_page": "https://zenodo.org/records/2546921",
+      "zenodo_md5": "60a7035772fbdb7f34eb86d4420cf66a",
+      "license": "CC0 (README); MIT (Zenodo)",
+      "sha256": "0a522005fccc8bbd04c5a117bfaf81d8da2676f03a29d7499f71d0a0bd6068ef",
+      "size": 3040
+    },
+    {
+      "id": "pcam-test-meta",
+      "task": "pcam",
+      "filename": "camelyonpatch_level_2_split_test_meta.csv",
+      "publisher": "B. S. Veeling et al. (Zenodo record 2546921)",
+      "description": "Patch metadata of pcam-test-x",
+      "url": "https://zenodo.org/records/2546921/files/camelyonpatch_level_2_split_test_meta.csv?download=1",
+      "landing_page": "https://zenodo.org/records/2546921",
+      "zenodo_md5": "3455fd69135b66734e1008f3af684566",
+      "license": "CC0 (README); MIT (Zenodo)",
+      "sha256": "88872bc3dd1c6e0eb42b383aae696bf6bf08629589265e570beb269e7119ded0",
+      "size": 1608584
+    },
+    {
+      "id": "nmd18-colabfit",
+      "task": "nomad",
+      "filename": "co_0.parquet",
+      "publisher": "C. Sutton, L. M. Ghiringhelli et al. (NMD-18), curated by ColabFit (doi:10.60732/e4af85f8), Hugging Face colabfit/NMD-18",
+      "description": "3,000 (Al_x Ga_y In_z)2 O3 crystals of the NOMAD 2018 Kaggle challenge (training and test materials) with DFT-PBE formation energy per atom and band gap; geometries are the DFT-relaxed structures",
+      "url": "https://huggingface.co/datasets/colabfit/NMD-18/resolve/113a5d43829c7b3b9f86b5235d970e481f45d1da/co/co_0.parquet",
+      "landing_page": "https://huggingface.co/datasets/colabfit/NMD-18/tree/113a5d43829c7b3b9f86b5235d970e481f45d1da",
+      "license": "CC0-1.0 (dataset card and ColabFit dataset record)",
+      "sha256": "4c67f31b0329e8b33c99b7efa42814f0d265b31642395065db1349854eda9c31",
+      "size": 5277925
+    },
+    {
+      "id": "openvaccine-trainset",
+      "task": "openvaccine",
+      "filename": "Kaggle_RYOS_trainset.csv",
+      "publisher": "Eterna / Das Lab, GitHub eternagame/KaggleOpenVaccine (Wayment-Steele et al. 2022, Nat. Mach. Intell.)",
+      "description": "The 1,589 rows of the competition's train.json with SN_filter = 1, with their original row index and the competition columns (plus derived columns the evaluator drops)",
+      "url": "https://raw.githubusercontent.com/eternagame/KaggleOpenVaccine/b95af835cc38bd7dc55ed6e7397d124787f86996/data/Kaggle_RYOS_data/Kaggle_RYOS_trainset.csv",
+      "landing_page": "https://github.com/eternagame/KaggleOpenVaccine/tree/b95af835cc38bd7dc55ed6e7397d124787f86996/data/Kaggle_RYOS_data",
+      "license": "MIT (repository LICENSE, The Board of Trustees of the Leland Stanford Junior University)",
+      "sha256": "04c60d9e3b1232cc49e43d8b3911fc783f3a816b1a6f87e6b4affc13e6707411",
+      "size": 16107094
+    },
+    {
+      "id": "patent-train",
+      "task": "patent",
+      "filename": "train-00000-of-00001-fc998f31a2e3db8b.parquet",
+      "publisher": "G. Aslanyan, I. Wetherbee (Google), Patents Phrase to Phrase Semantic Matching Dataset (arXiv:2208.01171), Hugging Face copy tasksource/patent-phrase-similarity",
+      "description": "Training split: 36,473 rated phrase pairs, 733 anchors",
+      "url": "https://huggingface.co/datasets/tasksource/patent-phrase-similarity/resolve/ff1868796e44ac9ec02e870b447fde6c5bf2d6e4/data/train-00000-of-00001-fc998f31a2e3db8b.parquet",
+      "landing_page": "https://huggingface.co/datasets/tasksource/patent-phrase-similarity/tree/ff1868796e44ac9ec02e870b447fde6c5bf2d6e4",
+      "license": "CC BY 4.0 (original release, kaggle.com/datasets/google/google-patent-phrase-similarity-dataset; Hugging Face card)",
+      "sha256": "3c77a78cee867eadbd654202d00b37b1dc752dd23340c154c1dc0262f6ead3c0",
+      "size": 539801
+    },
+    {
+      "id": "patent-validation",
+      "task": "patent",
+      "filename": "validation-00000-of-00001-1849cdbe62d2b3ab.parquet",
+      "publisher": "G. Aslanyan, I. Wetherbee (Google); Hugging Face copy tasksource/patent-phrase-similarity",
+      "description": "Validation split: 2,843 pairs, 57 anchors",
+      "url": "https://huggingface.co/datasets/tasksource/patent-phrase-similarity/resolve/ff1868796e44ac9ec02e870b447fde6c5bf2d6e4/data/validation-00000-of-00001-1849cdbe62d2b3ab.parquet",
+      "landing_page": "https://huggingface.co/datasets/tasksource/patent-phrase-similarity/tree/ff1868796e44ac9ec02e870b447fde6c5bf2d6e4",
+      "license": "CC BY 4.0",
+      "sha256": "5b3683937165a0cd24a56e259da41302dc70a2ba9be5b2a7ae0c5580198299f3",
+      "size": 43266
+    },
+    {
+      "id": "patent-test",
+      "task": "patent",
+      "filename": "test-00000-of-00001-c5556affccbcc71f.parquet",
+      "publisher": "G. Aslanyan, I. Wetherbee (Google); Hugging Face copy tasksource/patent-phrase-similarity",
+      "description": "Test split: 9,232 pairs, 183 anchors disjoint from the training and validation anchors",
+      "url": "https://huggingface.co/datasets/tasksource/patent-phrase-similarity/resolve/ff1868796e44ac9ec02e870b447fde6c5bf2d6e4/data/test-00000-of-00001-c5556affccbcc71f.parquet",
+      "landing_page": "https://huggingface.co/datasets/tasksource/patent-phrase-similarity/tree/ff1868796e44ac9ec02e870b447fde6c5bf2d6e4",
+      "license": "CC BY 4.0",
+      "sha256": "583014566ba7c9f967cef7cacb93ed8e5de8cf04c1fcad9a95e21e0839d0fdfc",
+      "size": 138062
+    },
+    {
+      "id": "nmd18-qmml",
+      "task": "nomad",
+      "role": "verification",
+      "filename": "nmd-18.zip",
+      "publisher": "M. Rupp, qmml.org (NMD-18, both geometry sets)",
+      "description": "nmd18u.xyz (Vegard's-law geometries used in the competition, competition order) and nmd18r.xyz (relaxed); used once to establish that the ColabFit copy holds the relaxed geometries",
+      "url": "https://qmml.org/Datasets/nmd-18.zip",
+      "license": "not stated",
+      "sha256": "a2724e2bd1d0ebbee8a7339fa1bf90eb4408c6229f91bd8c630f31af9e85c870",
+      "size": 8591378
+    },
+    {
+      "id": "nomad2018-csutton7",
+      "task": "nomad",
+      "role": "verification",
+      "filename": "train.csv, labeled_test.csv",
+      "publisher": "C. Sutton, GitHub csutton7/nomad_2018_kaggle_dataset (commit 8ab1dd29), cited by the npj Comput. Mater. 5, 111 (2019) data statement",
+      "description": "The competition files; used once to check targets, units and geometry against the other copies",
+      "url": "https://github.com/csutton7/nomad_2018_kaggle_dataset/tree/8ab1dd297a3692a3ec24fa9528c18bd0883ce85f",
+      "license": "not stated",
+      "sha256": {
+        "train.csv": "2be6168b578c4be91b7380e7404a2b58912790d8e03c51b28f4f279f2d8bb872",
+        "labeled_test.csv": "9662ace5143d2d5b96904acaf0b5de1b87930178ce5fd762960ac7b695a32e84"
+      },
+      "size": {
+        "train.csv": 218636,
+        "labeled_test.csv": 54353
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "jigsaw/private/test_labels.csv",
+      "task": "jigsaw",
+      "derived_from": [
+        "jigsaw-train",
+        "jigsaw-test",
+        "jigsaw-test-labels"
+      ],
+      "sha256": "5862d5d2aee96558b34e3295da20e73f08e1f7f3b2348b24d2a871d15b1e429e",
+      "size": 1855420
+    },
+    {
+      "path": "jigsaw/public/test.csv",
+      "task": "jigsaw",
+      "derived_from": [
+        "jigsaw-train",
+        "jigsaw-test",
+        "jigsaw-test-labels"
+      ],
+      "sha256": "a99fa46370cae00634e675e5699e6b9c3bf2c70f9648f8e5a909f3db447e3821",
+      "size": 26342320
+    },
+    {
+      "path": "jigsaw/public/train.csv",
+      "task": "jigsaw",
+      "derived_from": [
+        "jigsaw-train",
+        "jigsaw-test",
+        "jigsaw-test-labels"
+      ],
+      "sha256": "bd4084611bd27c939ba98e5e63bc3e5a2c1a4e99477dcba46c829e4c986c429d",
+      "size": 68802655
+    },
+    {
+      "path": "noisyoffice/private/test_clean.npz",
+      "task": "noisyoffice",
+      "derived_from": [
+        "noisyoffice"
+      ],
+      "sha256": "a69e5e68c998ec9e723875e6afbea65e7ac3fc49ff3504ecf96de9ecddfdc3fa",
+      "size": 14247218
+    },
+    {
+      "path": "noisyoffice/public/test_noisy.npz",
+      "task": "noisyoffice",
+      "derived_from": [
+        "noisyoffice"
+      ],
+      "sha256": "6f3f28ae1f234d494b11f469c034572763f3b1f490fff14bb235bb46a6f358bb",
+      "size": 14247218
+    },
+    {
+      "path": "noisyoffice/public/train_clean.npz",
+      "task": "noisyoffice",
+      "derived_from": [
+        "noisyoffice"
+      ],
+      "sha256": "971fe147f4043632661b32a47caad2f8e9f242e41b812bede530c000c51e5d20",
+      "size": 28494522
+    },
+    {
+      "path": "noisyoffice/public/train_noisy.npz",
+      "task": "noisyoffice",
+      "derived_from": [
+        "noisyoffice"
+      ],
+      "sha256": "2cd992c3ececd65afc3c8b839e0bed736ecbd1abd4f732cf22c107b2b8b10490",
+      "size": 28494522
+    },
+    {
+      "path": "nomad/private/test_labels.csv",
+      "task": "nomad",
+      "derived_from": [
+        "nmd18-colabfit"
+      ],
+      "sha256": "3569646eafd8306413c8fa8198533b2fc18f80e1dcb65cb3b847c5e74df55ef2",
+      "size": 5265
+    },
+    {
+      "path": "nomad/public/test.jsonl",
+      "task": "nomad",
+      "derived_from": [
+        "nmd18-colabfit"
+      ],
+      "sha256": "0cd958faf1a93e699b6b69d574651bec3e6e9582a6a95efced9755653c56e467",
+      "size": 873002
+    },
+    {
+      "path": "nomad/public/train.jsonl",
+      "task": "nomad",
+      "derived_from": [
+        "nmd18-colabfit"
+      ],
+      "sha256": "2dfd8812576db5d9f6b8b4342e29485ccf29999cecba1e54625124f7663a531e",
+      "size": 7965560
+    },
+    {
+      "path": "openvaccine/private/test_labels.npz",
+      "task": "openvaccine",
+      "derived_from": [
+        "openvaccine-trainset"
+      ],
+      "sha256": "0e273d8c8c32f34bbeb2aec02e40cab958c80c615454d8bd20177a16ec1b5d3e",
+      "size": 422906
+    },
+    {
+      "path": "openvaccine/public/test.jsonl",
+      "task": "openvaccine",
+      "derived_from": [
+        "openvaccine-trainset"
+      ],
+      "sha256": "787074165459b2c927f2088525ad13d22b25e4c6d6d525f41a43ee8c4d891245",
+      "size": 105970
+    },
+    {
+      "path": "openvaccine/public/train.jsonl",
+      "task": "openvaccine",
+      "derived_from": [
+        "openvaccine-trainset"
+      ],
+      "sha256": "7a96590a0f7490f039815756495cdc2f4573df66b5ba465fd2a4ac9318ef49e2",
+      "size": 10604956,
+      "note": "signal_to_noise is float() of the source text. The file first locked here (SHA-256 55e34e0d27c5549cd9a272fe670ce1ea8323e7d229e6befda565cfa2b4f04ae9, 10,604,419 bytes) held 41 values one unit in the last place off, as pandas 2 on arm64 parsed them; no other field differs."
+    },
+    {
+      "path": "patent/private/test_labels.csv",
+      "task": "patent",
+      "derived_from": [
+        "patent-train",
+        "patent-validation",
+        "patent-test"
+      ],
+      "sha256": "ad84a684bd4c81bf4b9e822d1028d63071d717b6eea1281af8d63a4032d2ed2a",
+      "size": 114707
+    },
+    {
+      "path": "patent/public/test.csv",
+      "task": "patent",
+      "derived_from": [
+        "patent-train",
+        "patent-validation",
+        "patent-test"
+      ],
+      "sha256": "b092dab79303852f0d36ff72c5872342f26b86ad3f8012e62c11a93763dcba47",
+      "size": 419513
+    },
+    {
+      "path": "patent/public/train.csv",
+      "task": "patent",
+      "derived_from": [
+        "patent-train",
+        "patent-validation",
+        "patent-test"
+      ],
+      "sha256": "ab2fa3f03a5000d8aa0b5bd2200abb064e9015102a5cf943325bbd73de4d954c",
+      "size": 1977694
+    },
+    {
+      "path": "pcam/private/test_labels.npz",
+      "task": "pcam",
+      "derived_from": [
+        "pcam-valid-x",
+        "pcam-valid-y",
+        "pcam-valid-meta",
+        "pcam-test-x",
+        "pcam-test-y",
+        "pcam-test-meta"
+      ],
+      "sha256": "dc960afd3c358f61ebba9ff5682bfaeeb5668bb41b3935c1045e1a2a5107ac7d",
+      "size": 1961406
+    },
+    {
+      "path": "pcam/public/test.npz",
+      "task": "pcam",
+      "derived_from": [
+        "pcam-valid-x",
+        "pcam-valid-y",
+        "pcam-valid-meta",
+        "pcam-test-x",
+        "pcam-test-y",
+        "pcam-test-meta"
+      ],
+      "sha256": "9ff18872b6b553704b689b91b2bbf447f659a4072e4d6f101f6eac140915ee51",
+      "size": 80677130
+    },
+    {
+      "path": "pcam/public/train.npz",
+      "task": "pcam",
+      "derived_from": [
+        "pcam-valid-x",
+        "pcam-valid-y",
+        "pcam-valid-meta",
+        "pcam-test-x",
+        "pcam-test-y",
+        "pcam-test-meta"
+      ],
+      "sha256": "cd73535a54cea4bd1d4f830567edb528624515cd5c40c4b426ed3001b143df6e",
+      "size": 317067990
+    }
+  ]
+}

@@ -3,22 +3,24 @@
 **Paper:** LoongFlow: Directed Evolutionary Search via a Cognitive Plan-Execute-Summarize Paradigm (https://arxiv.org/pdf/2512.24077)\
 **Paper:** EurekAgent: Agent Environment Engineering is All You Need For Autonomous Scientific Discovery (https://arxiv.org/pdf/2606.13662)\
 **Task id:** `loongflow-histopathologic-cancer-detection`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-Predict metastatic cancer presence in histopathology image patches.
+Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 45,819 labelled 48 x 48 PatchCamelyon lymph-node patch crops and returns a tumour probability in [0, 1] for each of 11,672 test crops from held-out whole-slide images, within a 600 s wall-clock budget on 4 CPU threads; scored by ROC AUC (higher is better).
 
 Benchmark named in the paper: MLE-bench. Paper metric: ROC AUC.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+fit_predict(train, test_inputs, time_budget_s) -> float array of shape (n_test,). train: dict with 'images' (uint8 array (n, 48, 48, 3), RGB centre crops of 96 x 96 PatchCamelyon patches of lymph-node sections) and 'labels' (int array (n,), 1 when the central 32 x 32 pixel region contains tumour tissue); test_inputs: dict with 'images'; return the probability of tumour for each test crop, in [0, 1]. time_budget_s = 600. fit_predict runs in a sandboxed child process: 4 CPU threads (thread settings of the numerical libraries, not an operating-system limit), no GPU, no network, no child processes, no pretrained weights or external data, reads limited to the Python installation and the task's public inputs, writes limited to a temporary working directory, memory limit 3.5 GB. time_budget_s wall-clock seconds start when the candidate's source starts executing in the child (imports and module-level code count); the process is killed 15 s after the budget (score: invalid). The evaluator holds the test labels and recomputes the metric; nothing the candidate reports is trusted. Score (maximize): ROC AUC (MLE-bench grade.py; predictions outside [0, 1] are invalid)
+
+Parameters: `{"budget_s": 600, "memory_mb": 3500}`
 
 ## Labels
 
-Scientific contribution: `engineering` (tier 3); artifact `model`, domain `machine_learning`, data `undistributed`, verification `none`, reference `none`, resources `gpu, unavailable`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `engineering` (tier 3); artifact `model`, domain `natural_science`, data `real_measurements`, verification `simulation`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -29,15 +31,24 @@ Evidence status: **unreviewed**.
 
 No qualifying paper whose main objective is this underlying scientific or real-world problem has been established in the evidence registry. A task's use in an agent/framework evaluation is insufficient. This label describes the available evidence, not proof that the task has no scientific value.
 
-## Also evaluated by
+## Related paper and local records
 
-The same problem (same evaluator and parameters) appears in these papers; their records were merged into this task and their pinned upstream routes remain reachable with `run.py evaluate loongflow-histopathologic-cancer-detection --route upstream --paper <paper>`.
+These records are grouped under this local package. Sharing a local evaluator does not establish identical paper experiments, datasets or candidate contracts. Configured upstream routes remain reachable with `run.py evaluate loongflow-histopathologic-cancer-detection --route upstream --paper <paper>`; local reference aliases retain their recorded native interfaces.
 
 - EurekAgent: histopathologic-cancer-detection (`eurekagent-histopathologic-cancer-detection`; MLE-Bench Lite)
 
 ## Evaluation protocol
 
-Not executable in this suite: MLE-bench competitions require the Kaggle data and model training; neither is redistributed.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Analogue built from PatchCamelyon (PCam), labelled as such: the Kaggle competition uses PCam without its duplicate patches and otherwise keeps PCam's data and splits (competition data page), but its files are not used here. Data: PCam's 'valid' and 'test' files from Zenodo record 2546921 (the GitHub README swaps the two names; the MD5s agree), 65,536 RGB patches of 96 x 96 pixels from 183 Camelyon16 whole-slide images (54 Camelyon16 training slides, 129 test slides); labels equal the metadata's center_tumor_patch flag for every patch. PCam's 6 GB training file is not used.
+- Preparation: 8,045 exact duplicate patches (identical pixels; no label conflicts) are removed, leaving 57,491; each patch is cut to its central 48 x 48 pixels (the labelled central 32 x 32 region plus an 8-pixel margin) to keep CPU training feasible, while the competition provides the full 96 x 96 patches.
+- Split by whole-slide image: slides are drawn in a seeded order (numpy RandomState(0) permutation of the sorted slide names) into the test set until it holds at least 20% of the patches: 39 slides with 11,672 test patches (40.1% positive) and 144 slides with 45,819 training patches (43.7% positive). MLE-bench re-splits Kaggle's training images at random (test ratio about 0.21, no slide grouping), so patches of one slide appear on both sides there; the training set here is also about a fifth of Kaggle's. Scores are not comparable with Kaggle or MLE-bench values, and medal thresholds do not apply. Every candidate is scored on these test labels and that score is the search signal (the evaluator holds back no validation split); LoongFlow's released MLE-bench evaluator (agents/ml_agent/examples/mlebench/eval_program.py at 945c78bc) instead scores candidates on their out-of-fold predictions for the training data and grades the test submission only in a debug mode, and EurekAgent's paper does not say what its hidden grading service returned during its MLE-Bench runs.
+- Metric: ROC AUC of the predicted probabilities (sklearn roc_auc_score as in MLE-bench's grade.py; predictions outside [0, 1] are invalid as in MLE-bench's prepare_for_auroc_metric); on the seed's predictions MLE-bench's grade.py returns exactly the evaluator's value.
+- Compute: fit_predict runs on CPU with 4 threads in a sandboxed child process (no network, no GPU, no pretrained weights, 3.5 GB memory) and is killed 15 s after a 600 s wall-clock budget; scores depend on the machine's speed and load. A small three-block CNN trained for 480 s on a shared Apple M-series machine reached ROC AUC 0.865 (probe, not part of the task). EurekAgent ran each MLE-Bench Lite competition once with 24 hours and one GPU (its Section 4.3) and its agents had web access; LoongFlow states no budget or hardware for its MLE-bench runs.
+- Label isolation: test labels are in data/kaggle/pcam/private and the raw downloads in kaggle-raw of the task cache, which the child cannot read: the evaluator never imports the candidate; its source runs only in the child, which on Linux with unprivileged user namespaces runs in its own user, mount, PID, network and IPC namespaces where data/kaggle and kaggle-raw of the task cache are empty except this task's public directory and every file system but the working directory and /dev/shm is read-only, on macOS under sandbox-exec, and elsewhere only under an audit hook that native code can bypass; the result field os_sandbox names what was in force.
+- Seed (logistic regression on colour statistics of the crop and its centre) scores ROC AUC 0.8046 in about 6 s.
+- PatchCamelyon valid and test files, duplicates removed, re-split by whole-slide image.
 
 ## Run
 
@@ -49,8 +60,13 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `dataset:MLE-bench`
-- `hardware:gpu`
+- `py:numpy`
+- `py:sklearn`
+- `py:pandas`
+- `py:psutil`
+- `file:data/kaggle/pcam/public/train.npz`
+- `file:data/kaggle/pcam/public/test.npz`
+- `file:data/kaggle/pcam/private/test_labels.npz`
 
 ## Sources
 
@@ -58,8 +74,7 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 - repository: https://github.com/baidu-baige/LoongFlow/tree/945c78bc1554f8281aac40320b3599bd68d528d7 (agents/ml_agent/examples/mlebench/eval_program.py)
 - paper: https://arxiv.org/pdf/2606.13662 (Appendix B)
 - repository: https://github.com/THU-Team-Eureka/EurekAgent/tree/fb96df897dfb99797a77623aa0dd9ee178fe89d2
-
-## Limitations
-
-- Direct CPU checks found upstream square seed rejected by strict overlap test and rectangle seed incompatible with its evaluator. Original Autocorrelation II and Erdos overlap seeds passed; a new simple square grid fixture passed. These are integration checks, not reproduced paper results.
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.
+- archive: https://zenodo.org/records/2546921 (PatchCamelyon valid and test files: images, labels and slide metadata (data CC0 per github.com/basveeling/pcam; MIT per the Zenodo record))
+- benchmark: https://github.com/basveeling/pcam (README: labels refer to the central 32 x 32 pixel region; splits are slide-disjoint; data licence)
+- repository: https://github.com/openai/mle-bench/tree/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/histopathologic-cancer-detection (grade.py (ROC AUC; utils.prepare_for_auroc_metric requires probabilities in [0, 1]))
+- benchmark: https://www.kaggle.com/c/histopathologic-cancer-detection (competition definition: PCam without duplicate patches)

@@ -1,0 +1,206 @@
+{
+  "schema_version": "1.0",
+  "id": "tdc-admet-solubility-aqsoldb",
+  "name": "TDC ADMET Solubility_AqSolDB",
+  "description": "Predict the solubility of a compound in water (logarithm of the solubility in mol/L) from its molecular structure, given as a SMILES string (endpoint Solubility_AqSolDB of the Therapeutics Data Commons ADMET benchmark group). The measured compounds are split by molecular scaffold into a training, a validation and a test part. The test part is fixed; the candidate is run five times (seeds 1 to 5), each time with a different division of the other compounds into training and validation. It receives the training and validation compounds with their values and the test compounds without, and returns one prediction per test compound. Each of the five runs is a separate process that receives only these arguments: it cannot read the evaluator's files, start other processes or open network connections, and it has 700 seconds. The score is the mean absolute error on the test compounds, averaged over the five runs; lower is better.",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "requires_setup",
+  "sources": [
+    {
+      "url": "https://tdcommons.ai/benchmark/admet_group/overview/",
+      "type": "benchmark",
+      "locator": "Solubility_AqSolDB"
+    },
+    {
+      "url": "https://doi.org/10.1038/s41597-019-0151-1",
+      "type": "paper",
+      "locator": "AqSolDB, a curated reference set of aqueous solubility and 2D descriptors for a diverse set of compounds"
+    },
+    {
+      "url": "https://doi.org/10.1021/ci034243x",
+      "type": "paper",
+      "locator": "ESOL: Estimating Aqueous Solubility Directly from Molecular Structure"
+    },
+    {
+      "url": "https://tdcommons.ai/single_pred_tasks/adme/",
+      "type": "benchmark",
+      "locator": "Solubility, AqSolDB: regression, 9,982 drugs, reference Sorkun et al. 2019 Sci Data."
+    },
+    {
+      "url": "https://doi.org/10.1038/s41589-022-01131-2",
+      "type": "paper",
+      "locator": "Huang et al. (2022), Artificial intelligence foundation for therapeutic science (Nat Chem Biol): the Therapeutics Data Commons paper linked from the TDC site, benchmark paper only; also arXiv 2102.09548, Therapeutics Data Commons: Machine Learning Datasets and Tasks for Drug Discovery and Development."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "sklearn",
+      "rdkit",
+      "PyTDC"
+    ],
+    "environment_variables": [],
+    "datasets": "Downloaded by PyTDC at first use into data/admet"
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "TDC ADMET Solubility_AqSolDB",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "admet",
+    "science_family": "admet",
+    "parameters": {
+      "name": "Solubility_AqSolDB",
+      "metric": "mae",
+      "best_known": 0.741
+    },
+    "interface": "fit_predict(train_smiles, train_y, valid_smiles, valid_y, test_smiles, info) -> sequence of finite numbers, one per test molecule in the given order: the predicted value. train_smiles, valid_smiles and test_smiles are lists of SMILES strings, train_y and valid_y lists of numbers; info has name, metric, kind ('regression' or 'binary') and seed. Score: mean over the seeds 1 to 5 of the mean absolute error on the test part, minimized.",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "model",
+      "domain": "natural_science",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "leaderboard",
+      "area": "chemistry",
+      "secondary_area": "biology",
+      "areas": [
+        "chemistry",
+        "biology",
+        "machine_learning"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "Downloaded by PyTDC at first use into data/admet"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "admet",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:sklearn",
+        "py:rdkit",
+        "py:PyTDC"
+      ],
+      "timeout": 3600,
+      "validity_key": "valid"
+    },
+    "declared_status": "requires_setup"
+  },
+  "limitations": [
+    "Leaders are large tuned ensembles or foundation-model fine-tunes.",
+    "Needs PyTDC and rdkit: not in .venv-tasks, so the evaluator restarts itself under tools/venv-admet (created by the README's setup steps).",
+    "Every scoring call of the candidate runs in the main suite's sandbox (a child process with an audit hook, 700 s and 6 GB for one call): it keeps a search from coming across the test labels and is not a security boundary against a candidate written to attack the evaluator.",
+    "One evaluation of the starting program took 1500 s in the run of 2026-11-11, more than the arena's default limit of 120 s: raise AR_EVAL_TIMEOUT for this task.",
+    "The record was found in a hashed snapshot of its source; it is not replayed. See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "real_instance_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
+    "upstream_reproduction": false,
+    "record_level": "record_matches_pinned_source",
+    "unsure": false,
+    "record_validation": {
+      "record": 0.741,
+      "checks": [
+        "leaderboard rank 1 (MAE): MiniMol Blazej Banaszewski 0.741"
+      ],
+      "sources": [
+        "sources/tdc/06aqsol.html"
+      ],
+      "notes": [
+        "leaderboard page is a live snapshot, undated"
+      ],
+      "validated": "2026-11-11"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "model",
+    "domain": "natural_science",
+    "data": "real_measurements",
+    "verification": "sampled",
+    "reference": "leaderboard",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "chemistry",
+    "secondary_area": "biology",
+    "areas": [
+      "chemistry",
+      "biology",
+      "machine_learning"
+    ],
+    "important_to_science": true
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "The cited paper(s) have the prediction or measurement of this property as their main objective; the task scores a structure-based predictor of the same property.",
+    "scientific_problem": "Predict the logarithm of the aqueous solubility (mol/L) of an organic compound from its structure.",
+    "importance_rationale": "Poor aqueous solubility limits absorption and complicates formulation and assays, so predicting it from structure guides compound design and chemical risk assessment.",
+    "papers": [
+      {
+        "title": "AqSolDB, a curated reference set of aqueous solubility and 2D descriptors for a diverse set of compounds",
+        "url": "https://doi.org/10.1038/s41597-019-0151-1",
+        "task_relation": "The task predicts the logS values of this curated set; the paper's purpose is the data set itself, so it is a data source more than a modelling paper.",
+        "primary_goal": "Curate a reference set of experimental aqueous solubilities of about 10,000 compounds, merged from nine datasets, for building solubility predictors.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "ESOL: Estimating Aqueous Solubility Directly from Molecular Structure",
+        "url": "https://doi.org/10.1021/ci034243x",
+        "task_relation": "The task predicts aqueous solubility from structure like this paper, but on the larger AqSolDB set and with an unrestricted model.",
+        "primary_goal": "Estimate the aqueous solubility of organic compounds directly from molecular structure with a simple regression on computable descriptors.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  },
+  "source_specification": {
+    "name": "TDC ADMET Solubility_AqSolDB",
+    "slug": "tdc-admet-solubility-aqsoldb",
+    "description": "Predict the solubility of a compound in water (logarithm of the solubility in mol/L) from its molecular structure, given as a SMILES string (endpoint Solubility_AqSolDB of the Therapeutics Data Commons ADMET benchmark group). The measured compounds are split by molecular scaffold into a training, a validation and a test part. The test part is fixed; the candidate is run five times (seeds 1 to 5), each time with a different division of the other compounds into training and validation. It receives the training and validation compounds with their values and the test compounds without, and returns one prediction per test compound. Each of the five runs is a separate process that receives only these arguments: it cannot read the evaluator's files, start other processes or open network connections, and it has 700 seconds. The score is the mean absolute error on the test compounds, averaged over the five runs; lower is better.",
+    "benchmark": "TDC ADMET Solubility_AqSolDB",
+    "dataset": "Downloaded by PyTDC at first use into data/admet",
+    "metric": "score",
+    "direction": "minimize",
+    "source_url": "https://tdcommons.ai/benchmark/admet_group/overview/",
+    "source_locator": "Solubility_AqSolDB",
+    "upstream_path": null,
+    "requirements": [
+      "py:numpy",
+      "py:sklearn",
+      "py:rdkit",
+      "py:PyTDC"
+    ],
+    "execution_notes": "Downloaded by PyTDC at first use into data/admet"
+  }
+}

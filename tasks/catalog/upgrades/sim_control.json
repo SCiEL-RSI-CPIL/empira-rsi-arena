@@ -1,0 +1,112 @@
+{
+  "schema": "artask.upgrades/1",
+  "package": "sim_control",
+  "reviewed_on": "2026-10-11",
+  "tasks": {
+    "enpire-gym-pusht-simulation": {
+      "family": "pusht_heuristic_controller",
+      "params": {
+        "episodes": 100,
+        "first_seed": 0,
+        "horizon": 300,
+        "episode_cpu_seconds": 10
+      },
+      "protocol": "recreated",
+      "requires": [],
+      "notes": [
+        "Simulator: gym-pusht 0.1.6 from PyPI (Apache-2.0), unchanged, environment gym_pusht/PushT-v0 with obs_type='state' and its registered 300-step limit. It runs in a separate Python 3.12 environment, .cache/sim_control-env (pymunk 6.11.1, gymnasium 1.3.0, NumPy 2.5.3, shapely 2.1.2; created by scripts/prepare_sim_control.py --setup-environment), because gym-pusht calls pymunk's Space.add_collision_handler, which pymunk 7 removed; the shared suite environment was not modified. Keypoint and pixel observations are not offered. The paper does not say which observation its agents' controllers received (Section 3.1 describes the heuristics as synthesised perception and control tool calls), so the exact state vector, which needs no perception, is a local choice.",
+        "Source protocol: in ENPIRE's simulated Push-T experiment (Section 3.1, Figure 5) coding agents learn heuristics, i.e. write non-learned controllers, through immutable Gym interfaces, and Claude Code and Codex reach 95% success in about two hours. The text inspected does not state how many episodes the simulation evaluation used (the autoresearch prompt of the real-robot stations, Figure 10, asks for 100% success over every window of 50 consecutive episodes), and the pinned ENPIRE release (NVlabs/ENPIRE@99ee90ac) has no gym-pusht entry point; the 100 evaluation episodes, the reset seeds 0-99 and the per-episode isolation are therefore local choices, and the agents' wall-clock research time is not measured. The earlier catalog reason (specialised hardware) did not apply to this simulation task.",
+        "Score: fraction of the 100 episodes that reach gym-pusht's own success test (info['is_success']: the block covers more than 95% of the goal T); an episode ends at the first success or after 300 steps. Details report each episode's steps and maximum coverage. The paper measures task success as completing the task in one rollout given up to eight retries made after witnessing the previous failure (Section 3) and does not say whether its simulated Push-T used retries; here each seed is one episode without retries.",
+        "Isolation: the simulator runs in a separate trusted server process; each episode is played by a fresh sandboxed child (software_sandbox: reads limited to the Python installation, no writes, network, subprocesses or ctypes; 10 s CPU and 1 GB per episode) that creates one Policy and receives only the 5-number observation of each step. Its target positions are validated (two finite numbers), clipped to [0, 512] and forwarded to the server, so the candidate cannot reset, inspect or modify the environment and never sees the coverage or the success flag; module state cannot carry over between episodes. As in the other sandboxed suite tasks, the suite template imports the candidate module once in the evaluator process before scoring, so module-level code is not sandboxed.",
+        "Seed: a greedy contact-pushing controller written for this task (one-step lookahead with a frictionless point-push model, a detour around the block, pushes fixed in world coordinates). It was tuned on reset seeds 1000-1099 and 2000-2099 (67% and 64% success) and scores 0.60 (60 of 100 episodes) on the evaluation seeds 0-99."
+      ],
+      "sources": [
+        {
+          "url": "https://pypi.org/project/gym-pusht/0.1.6/",
+          "type": "benchmark",
+          "locator": "gym_pusht/envs/pusht.py: PushT-v0 state observation, PD-controlled agent, coverage-based success (success_threshold 0.95); gym_pusht/__init__.py: max_episode_steps 300"
+        },
+        {
+          "url": "https://github.com/huggingface/gym-pusht",
+          "type": "repository",
+          "locator": "Apache-2.0 source of the Push-T simulator used unchanged"
+        }
+      ],
+      "superseded_limitations": [
+        "Official ENPIRE harness pinned (Apache-2.0); every paper task needs a physical station or a simulator that the release does not bundle.",
+        "The pinned release ships the real-world PushT bridge and a hardware-free hello-environment example, but no gym-pusht simulation task entry point was found."
+      ]
+    },
+    "elm-sodarace-walker-program-evolution": {
+      "family": "sodarace_walker_design",
+      "params": {
+        "updates": 80,
+        "update_ms": 350,
+        "cpu_seconds": 30
+      },
+      "protocol": "recreated",
+      "requires": [],
+      "notes": [
+        "Simulator: OpenELM's Sodarace simulator (CarperAI/OpenELM@c844e149e3f59fef546e0bc55f4e12e0f192feb9, src/openelm/environments/sodaracer: simulator.py, helpers.py, walker/walk_creator.py; MIT, licence header kept), itself a Python translation of OptimusLime/iesor-physics (Box2D), is vendored in sim_control_sodarace_sim.py without its drawing framework and JSON export; Box2D 2.3.10 from the suite environment. With OpenELM's muscle order enabled, the port reproduced the upstream code exactly on OpenELM's seven seed walkers (square, radial, galloper, runner, wheel, CPPN fixed and mutable): identical node positions over 80 updates and identical OpenELM fitness values (validation/sim_control-checks.json; tests/test_sim_control_sodarace.py repeats the comparison when the upstream checkout is present).",
+        "Correction of an upstream slip: OpenELM constructs Muscle(id, joint, amplitude, phase) positionally while its dataclass declares (id, joint, phase, amplitude), so upstream springs oscillate with the walker's phase value as amplitude and its amplitude as phase (the C++ iesor-physics code that OpenELM translates passes the two in the same swapped order but also overwrites the phase with the amplitude while loading, so there every spring keeps its amplitude and all springs share one phase; it also scales the rest length multiplicatively, (1 + amplitude * cos) * L0, where OpenELM adds amplitude * cos to L0). This evaluator assigns them by name, as the ELM paper describes springs (an amplitude and a phase), which also keeps OpenELM's cap on amplitudes effective. Walkers with oscillating springs therefore move differently than in OpenELM; OpenELM's additive spring-length rule is kept (L0 + 0.3 * (a + 1) / 2 * cos(3 t + 2 pi * phase), rigid bone for a < -0.6). Because that rule gives every spring with a >= -0.6 an oscillation amplitude of 0.15 (a + 1), the springs the ELM paper calls distance muscles (added without amplitude; its square seed calls only the other prongs 'active') oscillate here with amplitude 0.15, whereas in OpenELM a spring whose phase value is 0 does not oscillate; the ELM paper does not say whether its distance springs move.",
+        "Fitness: the ELM paper measures how far the walker's centre of mass moves along the x-axis in a fixed time but does not state the time. OpenELM's default (1000 ms, i.e. two update_world(350) calls = 0.7 s of simulated time, less than one 2.1 s muscle period and mostly the initial fall) returns abs(min_x + offsetX), which is not a displacement. The LMX paper, the task's second source, ran Sodarace in OpenELM's implementation and measured fitness as the horizontal distance travelled after 1 second of simulation time (its Section 4.5 and Appendix E); it does not say whether that is OpenELM's 1000 ms evaluate value. This task scores the absolute x displacement of the mass-weighted mean node position after 80 update_world(350) calls (1,680 Box2D steps of 1/60 s = 28 s, about 13 muscle periods; the walker first falls about 190 units onto the ground). The duration is a local choice; Box2D's translation limit (2 units per step) keeps every walker's centre of mass above the 7,000-unit ground within it.",
+        "Interface and validity: candidates use ELM's walker_creator (add_joint, add_muscle, get_walker), injected by the evaluator; make_walker() runs once in a sandboxed child (30 s CPU, no file or network access) and only the joint and spring lists are returned. OpenELM's Walker.validate rules are re-checked independently (amplitude at most 10, applied to every spring whatever its type label; at most 10 springs per joint; joints at least 0.003 apart), plus local caps (at most 100 joints and 500 springs, all joints within a 30 x 30 box of scaled units, |phase| at most 1000, finite values). A run in which a node passes through the ground or a position becomes non-finite is rejected. The walker_creator is OpenELM's version, which differs from the programs printed in the ELM paper (Figures 6 and 7, Appendices B, F and G): there add_muscle takes a boolean third argument before amplitude and phase, joint coordinates appear unscaled (OpenELM scales them by 0.22 and flips y), the square seed's springs given amplitudes 5, 10 and 2 appear with amplitude 2.12, and some programs use amplitudes up to 30 (the Appendix F.2 galloper, the Appendix G.2 hopper). The paper's programs therefore do not run unchanged here, its amplitude limit is not stated, and OpenELM's galloper and runner seeds fail the amplitude rule of 10 (validation/sim_control-checks.json).",
+        "Not reproduced: ELM's MAP-Elites search with diff models, the invention pipeline and its terrains, LMX's quality-diversity score; the simulator used by the ELM authors is not public. Seed: ELM's hand-designed square walker, which scores 0.79 simulator units; in a local probe, 292 random valid walkers with 3-11 joints moved a median 3.5 and at most 40.9 units."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/CarperAI/OpenELM/tree/c844e149e3f59fef546e0bc55f4e12e0f192feb9/src/openelm/environments/sodaracer",
+          "type": "repository",
+          "locator": "simulator.py, helpers.py and walker/walk_creator.py (MIT), vendored in sim_control_sodarace_sim.py; walker/*.py seed walkers used for the cross-check"
+        },
+        {
+          "url": "https://github.com/OptimusLime/iesor-physics/tree/c8235cfee83ebe1534aab154d2e4636222e161e0",
+          "type": "repository",
+          "locator": "Physics/IESoR/Simulation/iesorWorld.cpp and iesorWorld.h: the C++ simulator OpenELM translates (Muscle constructor, addMuscleJoint, updateWorld)"
+        }
+      ]
+    },
+    "eureka-ballbalance": {
+      "family": "isaac_ballbalance_reward_design",
+      "params": {
+        "task": "ballbalance",
+        "iterations": 80,
+        "population": 24,
+        "elite": 4,
+        "episodes": 4,
+        "init_std": 0.1,
+        "min_std": 0.02,
+        "train_seed": 0,
+        "eval_seed": 2026,
+        "eval_episodes": 50,
+        "cpu_seconds": 600,
+        "wall_seconds": 840
+      },
+      "protocol": "recreated",
+      "requires": [],
+      "notes": [
+        "Clearly labelled proxy (protocol recreated): a CPU MuJoCo analogue of IsaacGymEnvs BallBalance as pinned in the Eureka repository (eureka-research/Eureka@9eee4280, isaacgymenvs/tasks/ball_balance.py and cfg/task/BallBalance.yaml; NVIDIA BSD-3-Clause headers; no code copied). Kept from the source: tray (radius 0.5 m, 0.02 m thick, density 100) at Isaac's height 0.559 m, ball (radius 0.1 m, density 200), the throw distribution of reset_idx, the control step (0.01 s), action integration (targets += 0.01 * 20 * action, actions clipped to [-1, 1]), observation clipping at 5, termination (ball centre below 0.15 m or 500 steps) and the task fitness of compute_bbot_reward (average episode length).",
+        "Simplified mechanism: Isaac's tray stands on three two-link legs whose feet are held by PhysX rigid-body attractors; a direct MuJoCo translation with equality constraints was unstable in the triage pilot, so the tray tilts on a fixed-base two-axis gimbal driven by position actuators (kp 400, kv 20, tilt limit 30 degrees). The policy therefore has 2 actions (tilt rates) instead of 3 leg rates and a 10-dimensional observation (tilts, tilt rates, ball position and velocity) instead of 24 (leg joints and three force/torque sensors). A step on which MuJoCo reports a numerical instability ends the episode as a failure.",
+        "Training: Eureka trains PPO (rl_games) for 3,000 iterations with 4,096 GPU environments per reward sample and ranks samples by the maximum consecutive_successes logged during training. Here a linear policy tanh(W obs + b) is trained by the cross-entropy method on one CPU: 80 generations of 24 parameter vectors drawn from a diagonal Gaussian (initial standard deviation 0.1, floor 0.02), each scored by its summed candidate reward on the same 4 throws of that generation, with the 4 best kept; the final mean policy is evaluated on 50 held-out throws and the mean episode length is the score (24 s for the seed and 55 s for the human reward on the development machine). Training seed 0 only: differences between candidates of less than about 90 steps are within training-seed noise. The paper scores each final reward by the average over 5 PPO runs of the maximum task fitness reached at 10 checkpoints and reports Isaac tasks as human normalized scores, (Method - Sparse) / |Human - Sparse| (its Section 4.2; intermediate rewards get 1 PPO run, Appendix D); here the raw fitness of the final policy of one CEM run is the score, so it is not on the paper's normalized scale.",
+        "Noise gate (validation/sim_control-checks.json), released budget, training seeds 0-4, through the sandboxed scoring path: Eureka's human reward (compute_bbot_reward, ported to the analogue's state) reached 357.6 +- 87.5 steps (mean +- sample standard deviation), a zero reward 65.9 +- 32.5 and an alive bonus of 1 per step 146.0 +- 3.0; the human reward exceeds them by 4.4 and 3.4 pooled seed standard deviations. A policy that never tilts the tray keeps the ball for 227.8 steps on the same 50 throws: CEM under the zero reward or the alive bonus ends worse than doing nothing, CEM under the human reward ends better.",
+        "Seed: the alive bonus (Eureka's sparse reward for this task, one unit per step), which scores 147.5 at training seed 0; the human reward scores 366.7 there.",
+        "Isolation: the simulator, the CEM update and the fitness evaluation run in the evaluator process. The reward runs in a sandboxed child (software_sandbox: no file writes, reads outside the Python installation, network or subprocesses; CPU-time and memory limits) that receives, generation by generation, only the recorded raw states and actions of the training rollouts and returns one return per rollout; it never holds the simulator, the held-out throws or the fitness, so it can only rank the population. Sandboxed and in-process training give bit-identical policies (tests/test_sim_control_eureka.py). The suite template imports the candidate module once in the evaluator process before scoring, so module-level code is not sandboxed."
+      ],
+      "sources": [
+        {
+          "url": "https://github.com/eureka-research/Eureka/blob/9eee42808b52d8abc14845d1547bfde886403ccc/isaacgymenvs/isaacgymenvs/tasks/ball_balance.py",
+          "type": "repository",
+          "locator": "_create_balance_bot_asset (geometry), reset_idx (throws), pre_physics_step (action integration), compute_bbot_reward (human reward, episode-length fitness)"
+        },
+        {
+          "url": "https://github.com/eureka-research/Eureka/blob/9eee42808b52d8abc14845d1547bfde886403ccc/isaacgymenvs/isaacgymenvs/cfg/task/BallBalance.yaml",
+          "type": "repository",
+          "locator": "dt 0.01, maxEpisodeLength 500, actionSpeedScale 20, clipObservations 5, clipActions 1"
+        }
+      ],
+      "superseded_limitations": [
+        "Pinned cfg/config.yaml selects historical model gpt-4-0314 and the legacy OpenAI SDK. Configure a compatible available endpoint/model before execution; changing models changes reproduction conditions."
+      ]
+    }
+  }
+}

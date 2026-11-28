@@ -1,0 +1,610 @@
+[
+  {
+    "id": "science-physics-spin-glass-torus-2d",
+    "name": "Physics: two-dimensional spin-glass ground states on fixed instances",
+    "description": "Find ground states of nine Edwards-Anderson spin glasses on 10x10, 15x15 and 20x20 periodic square lattices with Gaussian couplings. The evaluator recomputes the cut weight of every returned spin configuration and compares it with the exact optimum computed for these instances by branch-and-cut.",
+    "family": "physics_research_spin_glass_torus_2d",
+    "parameters": {
+      "dimension": 2,
+      "cpu_seconds": 180
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1002/3527603794.ch4",
+        "type": "paper",
+        "locator": "Liers, Juenger, Reinelt and Rinaldi (2004) compute exact ground states of Ising spin glasses by branch-and-cut and introduce these toroidal grid instances with Gaussian couplings."
+      },
+      {
+        "url": "https://doi.org/10.1088/0305-4470/15/10/028",
+        "type": "paper",
+        "locator": "Barahona (1982) shows that the spin-glass ground-state problem is polynomially solvable on two-dimensional lattices without a field and NP-hard in three dimensions and in two dimensions with a field. The instances of this task are periodic in both directions (toroidal, not planar); for the torus, polynomial algorithms are known for integer couplings bounded by a polynomial in the lattice size (Galluccio, Loebl and Vondrak, Math. Program. 90 (2001) 273-290, doi:10.1007/PL00011425)."
+      },
+      {
+        "url": "https://biqmac.aau.at/biqmaclib.html",
+        "type": "benchmark",
+        "locator": "Biq Mac library: the t2g torus instances (ising_all.tar.gz) and their optimal cut values in Table 10 of biqmaclib.pdf; no licence stated, so the archive is downloaded by the user and not redistributed here."
+      }
+    ],
+    "limitations": [
+      "The reference values are the optimal cut weights published with the library, obtained by branch-and-cut with no time limit; the task gives a candidate a few minutes of CPU for nine instances, so matching them is hard and the score is budget-dependent.",
+      "Planar two-dimensional lattices without a field are polynomially solvable by matching (Barahona 1982), but these instances are toroidal: for graphs on the torus, polynomial algorithms are known when the integer couplings are bounded by a polynomial in the lattice size (Pfaffian enumeration; Galluccio, Loebl and Vondrak 2001, who credit Barahona 1982 for toroidal square lattices). The couplings here are integers up to about 3.8e5, so that method is pseudo-polynomial for these instances. A transfer-matrix dynamic programme over rows solves the three 10x10 instances exactly in seconds and confirms their published optima; it does not scale to 15x15 and 20x20 within the budget, where the task is a test of heuristics.",
+      "Only these nine fixed instances are scored: a better score is a better heuristic on them, not a statement about the Edwards-Anderson model in general.",
+      "Couplings are the integer-scaled Gaussian weights of the published instances; the evaluator reports the corresponding spin-glass energy but scores the cut weight."
+    ],
+    "labels": {
+      "area": "physics",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "environment_variables": [],
+      "datasets": "Derived from the pinned Biq Mac archive by python3 scripts/prepare_bio_physics.py (hashes in catalog/bio_physics-data-lock.json)."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_phys_spinglass.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "requires": [
+      "file:data/bio_physics/spinglass/torus_2d.json.gz"
+    ],
+    "state_of_the_art": {
+      "kind": "optimum",
+      "value": 1.0,
+      "as_of": "2026-10-10",
+      "statement": "The optimal cut weights of these nine instances are known exactly (6049461, 5757868, 6509837 for 10x10; 15051133, 15763716, 15269399 for 15x15; 24838942, 29290570, 28349398 for 20x20), so a score of 1.0 is attainable and cannot be exceeded.",
+      "sources": [
+        {
+          "title": "Biq Mac Library documentation, Table 10",
+          "url": "https://biqmac.aau.at/biqmaclib.pdf"
+        },
+        {
+          "title": "Computing exact ground states of hard Ising spin glass problems by branch-and-cut",
+          "url": "https://doi.org/10.1002/3527603794.ch4"
+        }
+      ]
+    }
+  },
+  {
+    "id": "science-physics-spin-glass-torus-3d",
+    "name": "Physics: three-dimensional spin-glass ground states on fixed instances",
+    "description": "Find ground states of nine Edwards-Anderson spin glasses on 5x5x5, 6x6x6 and 7x7x7 periodic cubic lattices with Gaussian couplings. The evaluator recomputes the cut weight of every spin configuration and compares it with the exact optimum computed for these instances by branch-and-cut.",
+    "family": "physics_research_spin_glass_torus_3d",
+    "parameters": {
+      "dimension": 3,
+      "cpu_seconds": 240
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1002/3527603794.ch4",
+        "type": "paper",
+        "locator": "Liers, Juenger, Reinelt and Rinaldi (2004) compute exact ground states of these three-dimensional toroidal Ising spin glasses by branch-and-cut."
+      },
+      {
+        "url": "https://doi.org/10.1088/0305-4470/15/10/028",
+        "type": "paper",
+        "locator": "Barahona (1982) proves that finding spin-glass ground states on three-dimensional lattices is NP-hard, which is why these instances are hard for heuristics."
+      },
+      {
+        "url": "https://biqmac.aau.at/biqmaclib.html",
+        "type": "benchmark",
+        "locator": "Biq Mac library: the t3g torus instances (ising_all.tar.gz) and their optimal cut values in Table 10 of biqmaclib.pdf; no licence stated, so the archive is downloaded by the user and not redistributed here."
+      }
+    ],
+    "limitations": [
+      "The reference values come from branch-and-cut runs without a time limit; this task gives a few minutes of CPU for nine instances, so the score is budget-dependent and not comparable with exact solvers.",
+      "Only these nine fixed instances are scored, so a better score is a better heuristic on them rather than a physical result about the three-dimensional Edwards-Anderson model.",
+      "Couplings are the integer-scaled Gaussian weights of the published instances; the evaluator reports the corresponding energy but scores the cut weight.",
+      "Ground-state degeneracy is not examined: the task only measures how close the recomputed cut weight comes to the published optimum.",
+      "NP-hardness is a worst-case statement and these instances have at most 343 spins: simulated annealing with a few hundred replicas reaches the published optimum of eight of the nine instances within seconds each (the ninth to within 3e-4), so a score close to 1.0 is attainable inside the budget and the headroom of the task is the gap between the seed (0.885) and 1.0."
+    ],
+    "labels": {
+      "area": "physics",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "environment_variables": [],
+      "datasets": "Derived from the pinned Biq Mac archive by python3 scripts/prepare_bio_physics.py (hashes in catalog/bio_physics-data-lock.json)."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_phys_spinglass.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "requires": [
+      "file:data/bio_physics/spinglass/torus_3d.json.gz"
+    ],
+    "state_of_the_art": {
+      "kind": "optimum",
+      "value": 1.0,
+      "as_of": "2026-10-10",
+      "statement": "The optimal cut weights of these nine instances are known exactly (10933215, 11582216, 11552046 for 5x5x5; 17434469, 20217380, 19475011 for 6x6x6; 28302918, 33611981, 29118445 for 7x7x7), so a score of 1.0 is attainable and cannot be exceeded.",
+      "sources": [
+        {
+          "title": "Biq Mac Library documentation, Table 10",
+          "url": "https://biqmac.aau.at/biqmaclib.pdf"
+        },
+        {
+          "title": "Computing exact ground states of hard Ising spin glass problems by branch-and-cut",
+          "url": "https://doi.org/10.1002/3527603794.ch4"
+        }
+      ]
+    }
+  },
+  {
+    "id": "science-physics-cnot-budgeted-unitary-synthesis",
+    "name": "Physics: exact quantum circuit synthesis within published CNOT budgets",
+    "description": "Compile seven fixed two- and three-qubit unitaries (CNOT, iSWAP, SWAP, the Toffoli gate and three generic unitaries) into single-qubit rotations and CNOT gates without exceeding the CNOT counts known to suffice for each. The evaluator rebuilds every circuit's unitary exactly and scores the mean phase-insensitive distance to the targets.",
+    "family": "physics_research_unitary_synthesis",
+    "parameters": {
+      "cpu_seconds": 150
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1109/TCAD.2005.855930",
+        "type": "paper",
+        "locator": "Shende, Bullock and Markov (2006), Synthesis of quantum-logic circuits: quantum Shannon decomposition with twenty CNOTs for any three-qubit unitary and the lower bound of fourteen."
+      },
+      {
+        "url": "https://doi.org/10.1103/PhysRevA.69.032315",
+        "type": "paper",
+        "locator": "Vatan and Williams (2004), Optimal quantum circuits for general two-qubit gates: three CNOTs suffice for every two-qubit unitary and SWAP needs three."
+      },
+      {
+        "url": "https://arxiv.org/abs/0803.2316",
+        "type": "paper",
+        "locator": "Shende and Markov (2009), On the CNOT-cost of TOFFOLI gates: six CNOTs are necessary and sufficient for the Toffoli gate."
+      }
+    ],
+    "limitations": [
+      "Each CNOT budget is known to be achievable, so the optimum score (0) is known; the task measures whether a synthesis procedure finds exact circuits numerically within a fixed CPU budget, not whether it beats a published bound.",
+      "The gate set is limited to U3 rotations and CNOTs on all-to-all connectivity; hardware topology, gate errors and compilation time are not modelled.",
+      "The two-qubit and three-qubit generic targets are three fixed matrices defined in the evaluator, so the score does not average over the unitary group.",
+      "Distances below about 1e-12 are at floating-point resolution and count as exact."
+    ],
+    "labels": {
+      "area": "quantum_information",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "scipy"
+      ],
+      "environment_variables": [],
+      "datasets": "None downloaded; the targets and the Hamiltonian are defined in the evaluator."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_phys_quantum.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "requires": [],
+    "state_of_the_art": {
+      "kind": "optimum",
+      "value": 0.0,
+      "as_of": "2026-10-10",
+      "statement": "Exact synthesis within every budget is known to be possible: three CNOTs for any two-qubit unitary (two for iSWAP, one for CNOT), six for the Toffoli gate and twenty for any three-qubit unitary, so the minimum score 0 is attainable.",
+      "sources": [
+        {
+          "title": "Synthesis of quantum-logic circuits",
+          "url": "https://doi.org/10.1109/TCAD.2005.855930"
+        },
+        {
+          "title": "Optimal quantum circuits for general two-qubit gates",
+          "url": "https://doi.org/10.1103/PhysRevA.69.032315"
+        },
+        {
+          "title": "On the CNOT-cost of TOFFOLI gates",
+          "url": "https://arxiv.org/abs/0803.2316"
+        }
+      ]
+    }
+  },
+  {
+    "id": "science-physics-heisenberg-product-formula",
+    "name": "Physics: product-formula design for Heisenberg-chain time evolution",
+    "description": "Choose the coefficients of a twelve-stage product formula that approximates the time evolution of a six-site Heisenberg chain split into even and odd bonds. The evaluator builds every factor and the exact propagator and scores the mean spectral-norm error at three evolution times.",
+    "family": "physics_research_trotter_splitting",
+    "parameters": {
+      "stages": 12,
+      "times": [
+        0.25,
+        0.5,
+        1.0
+      ],
+      "sites": 6,
+      "delta": 0.8,
+      "field": 0.3,
+      "cpu_seconds": 60
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1103/PhysRevX.11.011020",
+        "type": "paper",
+        "locator": "Childs, Su, Tran, Wiebe and Zhu (2021), Theory of Trotter error with commutator scaling: commutator bounds on the spectral-norm error of product formulas for quantum simulation."
+      },
+      {
+        "url": "https://doi.org/10.1016/0375-9601(90)90962-N",
+        "type": "paper",
+        "locator": "Suzuki (1990), Fractal decomposition of exponential operators: the higher-order product formulas built from symmetric splittings."
+      },
+      {
+        "url": "https://doi.org/10.1016/S0377-0427(01)00492-7",
+        "type": "paper",
+        "locator": "Blanes and Moan (2002), Practical symplectic partitioned Runge-Kutta and Runge-Kutta-Nystrom methods: optimized splitting coefficients for a fixed number of stages."
+      }
+    ],
+    "limitations": [
+      "The error is measured on one six-site chain and three evolution times; coefficients tuned here need not be optimal for other Hamiltonians, system sizes or step sizes.",
+      "The fixed stage count fixes the cost per step only in this two-group splitting; circuit depth and hardware costs of a quantum implementation are not modelled.",
+      "Errors are computed on the full 64-dimensional Hilbert space by dense linear algebra; this is exact for this size but does not scale to larger chains.",
+      "No published value exists for this exact chain, stage count and set of times."
+    ],
+    "labels": {
+      "area": "quantum_information",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "data": "none",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "scipy"
+      ],
+      "environment_variables": [],
+      "datasets": "None downloaded; the targets and the Hamiltonian are defined in the evaluator."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_phys_quantum.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "requires": [],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "as_of": "2026-10-10",
+      "statement": "No published value for this chain and protocol. For context, the evaluator gives 0.046 for repeated Strang splitting (the seed) and 0.31 for Suzuki's fourth-order formula with five Strang substeps, which loses at the largest time because its large coefficients amplify the error at big steps.",
+      "sources": [
+        {
+          "title": "Theory of Trotter error with commutator scaling",
+          "url": "https://doi.org/10.1103/PhysRevX.11.011020"
+        }
+      ]
+    }
+  },
+  {
+    "id": "science-physics-broadband-antireflection-coating",
+    "name": "Physics: broadband antireflection coating design",
+    "description": "Design a stack of at most twenty low- and high-index layers (1.38 and 2.35) on glass that minimizes the mean reflectance between 400 and 800 nm at normal incidence, with at most 1000 nm of total coating. The evaluator checks the constraints and computes the reflectance spectrum exactly with the thin-film characteristic-matrix method.",
+    "family": "physics_research_antireflection_coating",
+    "parameters": {
+      "band_nm": [
+        400,
+        800
+      ],
+      "points": 401,
+      "max_layers": 20,
+      "max_total_nm": 1000,
+      "max_layer_nm": 400,
+      "cpu_seconds": 60
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1364/AO.35.000644",
+        "type": "paper",
+        "locator": "Dobrowolski, Tikhonravov, Trubetskov, Sullivan and Verly (1996), Optimal single-band normal-incidence antireflection coatings: how the lowest attainable average reflectance depends on bandwidth, index contrast and total optical thickness."
+      },
+      {
+        "url": "https://doi.org/10.1364/AO.35.005493",
+        "type": "paper",
+        "locator": "Tikhonravov, Trubetskov and DeBell (1996), Application of the needle optimization technique to the design of optical coatings: the standard numerical method for this design problem."
+      }
+    ],
+    "limitations": [
+      "Layers are lossless and non-dispersive with fixed indices, and only normal incidence is scored; real coatings need dispersion data, absorption, oblique incidence and tolerance to thickness errors.",
+      "The specification (two materials, 400-800 nm, 20 layers, 1000 nm) is a local choice in the spirit of Dobrowolski et al. (1996); no published optimum exists for it, so scores compare designs under this model only.",
+      "The mean is taken over 401 equally spaced wavelengths, so a design could in principle exploit the sampling between grid points; the reported maximum reflectance helps to spot that."
+    ],
+    "labels": {
+      "area": "physics",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "data": "none",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "environment_variables": [],
+      "datasets": "None downloaded; the materials and specification are defined in the evaluator."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_phys_coating.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "requires": [],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "as_of": "2026-10-10",
+      "statement": "No published value for this exact specification. For context, bare glass reflects 4.26 %, the single quarter-wave seed gives 1.58 %, and a multistart local optimization of alternating 14-layer stacks run during task construction reached 0.084 %.",
+      "sources": [
+        {
+          "title": "Optimal single-band normal-incidence antireflection coatings",
+          "url": "https://doi.org/10.1364/AO.35.000644"
+        }
+      ]
+    }
+  },
+  {
+    "id": "science-physics-photonic-crystal-tm-band-gap",
+    "name": "Physics: photonic-crystal unit cell with a large higher-order TM band gap",
+    "description": "Design a symmetric 32x32-pixel unit cell of air and dielectric (epsilon 12) for a two-dimensional square-lattice photonic crystal that opens the largest gap between the fourth and fifth TM bands. The evaluator solves the band structure with an exact-coefficient plane-wave method over the irreducible Brillouin zone and scores the gap-midgap ratio.",
+    "family": "physics_research_photonic_band_gap",
+    "parameters": {
+      "lower_band": 4,
+      "cpu_seconds": 120
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1137/S0036139998338455",
+        "type": "paper",
+        "locator": "Cox and Dobson (1999), Maximizing band gaps in two-dimensional photonic crystals: the gap-maximization problem for TM and TE polarizations on a square lattice."
+      },
+      {
+        "url": "https://doi.org/10.1016/j.jcp.2010.01.023",
+        "type": "paper",
+        "locator": "Men, Nguyen, Freund, Parrilo and Peraire (2010): band-gap optimization of symmetric square-lattice cells on a 1/32 grid with air and a dielectric, including higher TM gaps such as the fourth."
+      },
+      {
+        "url": "https://doi.org/10.1103/PhysRevLett.100.153904",
+        "type": "paper",
+        "locator": "Sigmund and Hougaard (2008), Geometric properties of optimal photonic crystals: topology-optimized band-gap structures."
+      },
+      {
+        "url": "https://mpb.readthedocs.io/en/latest/Python_Tutorial/",
+        "type": "repository",
+        "locator": "MPB Python tutorial: the rod crystal (epsilon 12, radius 0.2a) has TM gaps of 38.95 % (bands 1-2) and 3.84 % (bands 4-5); used to check the local solver."
+      }
+    ],
+    "limitations": [
+      "The evaluator is a 289-plane-wave Galerkin solver on a 32-pixel grid: designs are scored under this discretization, which is converged to about 0.1 percentage points on test structures but is not a full-wave simulation of a fabricated device.",
+      "Band extrema are searched on 30 wave vectors of the irreducible zone (boundary plus interior samples), standard for symmetric cells but able to miss extrema between samples.",
+      "Only one polarization and one gap (TM bands 4-5) are optimized; complete band gaps and fabrication constraints such as minimum feature size are not part of the score.",
+      "Published optimized gaps (Men et al. 2010) use an eigenvalue-based gap ratio and a finite-element discretization, so they are not directly comparable with this score."
+    ],
+    "labels": {
+      "area": "physics",
+      "domain": "natural_science",
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "data": "none",
+      "verification": "simulation",
+      "reference": "none"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "scipy"
+      ],
+      "environment_variables": [],
+      "datasets": "None downloaded; the materials, lattice and solver are defined in the evaluator."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_phys_photonic.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "requires": [],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "as_of": "2026-11-24",
+      "statement": "No published value under this exact discretization and gap measure. For context, the textbook rod crystal (the seed) gives 0.0431 here, against 3.84 % in the MPB tutorial for the same nominal structure (the difference comes from the pixelated circle and from the tutorial's grid resolution), and a 150-second greedy pixel-flip search run during task construction reached 0.311.",
+      "sources": [
+        {
+          "title": "MPB Python tutorial",
+          "url": "https://mpb.readthedocs.io/en/latest/Python_Tutorial/"
+        }
+      ]
+    }
+  },
+  {
+    "id": "science-physics-nuclear-mass-extrapolation",
+    "name": "Physics: predicting newly measured nuclear masses from the AME2016 evaluation",
+    "description": "Fit a nuclear mass model on the experimental masses of the 2016 Atomic Mass Evaluation and predict the mass excesses of the 71 nuclides first measured in time for AME2020. The candidate never sees the AME2020 values, and the score is the root-mean-square deviation from them in keV.",
+    "family": "physics_research_nuclear_mass_extrapolation",
+    "parameters": {
+      "cpu_seconds": 120
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1016/j.adt.2015.10.002",
+        "type": "paper",
+        "locator": "Moeller, Sierk, Ichikawa and Sagawa (2016), FRDM(2012): a global macroscopic-microscopic model whose purpose is predicting ground-state masses of known and unknown nuclei."
+      },
+      {
+        "url": "https://doi.org/10.1103/PhysRevC.52.R23",
+        "type": "paper",
+        "locator": "Duflo and Zuker (1995), Microscopic mass formulas: a compact global mass model fitted to measured masses and used to extrapolate."
+      },
+      {
+        "url": "https://doi.org/10.1016/j.physletb.2014.05.049",
+        "type": "paper",
+        "locator": "Wang, Liu, Wu and Meng (2014), Surface diffuseness correction in global mass formula (WS4): a mass model built for accurate extrapolation."
+      },
+      {
+        "url": "https://doi.org/10.1088/1674-1137/41/3/030003",
+        "type": "archive",
+        "locator": "AME2016 tables (Wang et al. 2017); experimental entries form the training data and the '#' estimates the context baseline. File: https://www-nds.iaea.org/amdc/ame2016/mass16.txt."
+      },
+      {
+        "url": "https://doi.org/10.1088/1674-1137/abddaf",
+        "type": "archive",
+        "locator": "AME2020 tables (Wang et al. 2021, CC BY 3.0); the experimental entries absent from AME2016 are the held-out targets. File: https://www-nds.iaea.org/amdc/ame2020/mass_1.mas20.txt."
+      }
+    ],
+    "limitations": [
+      "The held-out set is small (71 nuclides) and defined by which masses happened to be measured between the two evaluations, so it is not a uniform sample of the unknown region and the RMS is noisy.",
+      "Both evaluations are public and so are their later successors, so a candidate tuned on this split can overfit it; any improvement should be checked on masses measured after AME2020 before a scientific claim.",
+      "Training uses the AME2016 values as published; some of them were revised in AME2020, and the AME2020 targets carry their own uncertainties, which the unweighted RMS ignores.",
+      "The AMDC files state no licence; they are downloaded by the prepare script and not redistributed."
+    ],
+    "labels": {
+      "area": "physics",
+      "domain": "natural_science",
+      "scientific_contribution": "discovery",
+      "artifact": "model",
+      "data": "real_measurements",
+      "verification": "simulation",
+      "reference": "none"
+    },
+    "requirements": {
+      "python": ">=3.10",
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "environment_variables": [],
+      "datasets": "Derived from the pinned AME2016 and AME2020 AMDC files by python3 scripts/prepare_bio_physics.py (hashes in catalog/bio_physics-data-lock.json)."
+    },
+    "validation": {
+      "level": "source_seed_executed",
+      "upstream_reproduction": false,
+      "source_reviewed": "2026-10-10",
+      "evidence": "validation/bio_physics-checks.json",
+      "tests": "tests/test_phys_nuclear.py"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "requires": [
+      "file:data/bio_physics/nuclear/ame2016_to_ame2020.json.gz"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "as_of": "2026-10-10",
+      "statement": "No published value for this exact split. For context, the AME2016 evaluators' own extrapolated estimates of 69 of the 71 targets deviate from the AME2020 measurements by 213 keV RMS (computed from the two published tables), and the liquid-drop seed gives 3121 keV.",
+      "sources": [
+        {
+          "title": "The AME2016 atomic mass evaluation (II)",
+          "url": "https://doi.org/10.1088/1674-1137/41/3/030003"
+        },
+        {
+          "title": "The AME 2020 atomic mass evaluation (II)",
+          "url": "https://doi.org/10.1088/1674-1137/abddaf"
+        }
+      ]
+    }
+  }
+]

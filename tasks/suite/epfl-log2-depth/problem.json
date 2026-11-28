@@ -1,0 +1,122 @@
+{
+  "id": "epfl-log2-depth",
+  "name": "EPFL log2, LUT-6 levels",
+  "description": "Optimise the EPFL combinational benchmark circuit log2 (the base-2 logarithm of a 32-bit number; 32 inputs, 32 outputs) with the logic-synthesis tool ABC and map it to lookup tables (LUTs) with at most 6 inputs, minimising the number of LUT levels, the largest number of LUTs on a path from an input to an output. The result must compute the same function as the original circuit.",
+  "protocol": "recreated_verified",
+  "family": "epfl",
+  "direction": "minimize",
+  "contract": "script() -> string of ABC commands separated by `;` or newlines. The evaluator runs `read <circuit>; <script>` in ABC and writes out the network the script leaves. That network must consist only of LUTs with at most 6 inputs (in ABC a LUT mapper such as `if -K 6` produces one; library gates or a wider node are invalid), and it must be equivalent to the original circuit, which a separate ABC process checks with `cec`. The script may not contain the characters ! / \\ ~, may not use commands that read or write files, change the session or start other programs (read*, write*, load*, dump*, save* and their short forms, source, alias, set, unset, history, cd, ls, pwd, quit, exit), and may not ask for LUTs wider than 6 inputs (-K above 6). Time limits: 1200 s for the script, 900 s for the equivalence check. A script that is refused, fails, runs out of time or changes the function is invalid. Score: the largest number of LUTs with two or more inputs on a path from an input to an output (buffers, inverters and constants are not counted), minimized.",
+  "parameters": {
+    "circuit": "log2",
+    "folder": "arithmetic",
+    "metric": "depth",
+    "best_known": 51
+  },
+  "requires": [
+    "abc",
+    "file:data/arnew/epfl/log2.aig"
+  ],
+  "timeout": 2400,
+  "notes": [
+    "Best known LUT-6 levels: 51.",
+    "arithmetic/log2.aig from github.com/lsils/benchmarks",
+    "EPFL combinational benchmark 'Log2' (32 inputs, 32 outputs; Amaru, Gaillardon and De Micheli, IWLS 2015, tables I and II): computes the base-2 logarithm of a 32-bit number. The task maps it to 6-input LUTs and scores the number of LUT levels.",
+    "Most records come from SAT-based exact synthesis of subcircuits, which an ABC script cannot express.",
+    "Requires the Berkeley ABC binary (set ARNEW_ABC).",
+    "LUTs and levels are counted from the written network by the convention of the EPFL table (single-input nodes are free), not from ABC's print_stats."
+  ],
+  "labels": {
+    "scientific_contribution": "engineering",
+    "science_tier": 3,
+    "artifact": "program",
+    "domain": "systems",
+    "data": "public_benchmark",
+    "verification": "simulation",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "systems_and_hardware",
+    "secondary_area": "theoretical_computer_science",
+    "areas": [
+      "systems_and_hardware",
+      "theoretical_computer_science"
+    ],
+    "important_to_science": true
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "EPFL log2, LUT-6 levels",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "minimize",
+  "sources": [
+    {
+      "url": "https://github.com/lsils/benchmarks/tree/master/best_results",
+      "type": "benchmark",
+      "locator": "log2"
+    },
+    {
+      "url": "https://doi.org/10.1109/43.273754",
+      "type": "paper",
+      "locator": "FlowMap: an optimal technology mapping algorithm for delay optimization in lookup-table based FPGA designs"
+    },
+    {
+      "url": "https://doi.org/10.1609/aaai.v37i4.25524",
+      "type": "paper",
+      "locator": "Circuit Minimization with QBF-Based Exact Synthesis"
+    },
+    {
+      "url": "https://github.com/lsils/benchmarks",
+      "type": "benchmark",
+      "locator": "EPFL benchmark repository: log2 circuit files and best_results/README.md (best LUT-6 counts and levels, 2026)."
+    },
+    {
+      "url": "https://infoscience.epfl.ch/record/207551/files/IWLS15.pdf",
+      "type": "paper",
+      "locator": "Amaru, Gaillardon and De Micheli (2015), The EPFL Combinational Benchmark Suite (title read in the PDF text): circuit descriptions and input/output counts for log2; a benchmark paper, so not primary evidence."
+    }
+  ],
+  "limitations": [
+    "Most records come from SAT-based exact synthesis of subcircuits, which an ABC script cannot express.",
+    "Requires the Berkeley ABC binary (set ARNEW_ABC).",
+    "LUTs and levels are counted from the written network by the convention of the EPFL table (single-input nodes are free), not from ABC's print_stats.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://github.com/lsils/benchmarks/tree/master/best_results"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "The cited papers have LUT technology mapping and the minimisation of benchmark circuits as their main objective, and the evaluator scores exactly the LUT count or level count of an equivalence-checked 6-LUT network; the local candidate is an ABC script, which is narrower than the methods of the record holders.",
+    "scientific_problem": "Implement the EPFL benchmark circuit log2 as a network of lookup tables with at most six inputs, with an ABC command script, minimising the number of LUT levels.",
+    "importance_rationale": "Mapping logic to k-input lookup tables fixes the area and delay of an FPGA implementation, and the EPFL suite is the community reference for logic optimisation, with best LUT-6 counts and levels lowered by new synthesis methods every few years. A better result is a smaller or shallower implementation of a standard circuit; the best-known networks mostly come from SAT-based exact synthesis, which a script of ABC commands cannot express.",
+    "papers": [
+      {
+        "title": "FlowMap: an optimal technology mapping algorithm for delay optimization in lookup-table based FPGA designs",
+        "url": "https://doi.org/10.1109/43.273754",
+        "task_relation": "Defines depth-optimal LUT mapping for a given network structure; the task scores the LUT levels after any ABC script, so restructuring can go below the mapping depth.",
+        "primary_goal": "Give a mapping algorithm that is optimal in depth for K-input LUT networks.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Circuit Minimization with QBF-Based Exact Synthesis",
+        "url": "https://doi.org/10.1609/aaai.v37i4.25524",
+        "task_relation": "The record holder's method family (exact resynthesis of subcircuits) applied to benchmark circuits; an ABC script cannot express it, so the task is the script-restricted version.",
+        "primary_goal": "Minimise Boolean circuits by exact resynthesis of small subcircuits encoded as QBF.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  }
+}

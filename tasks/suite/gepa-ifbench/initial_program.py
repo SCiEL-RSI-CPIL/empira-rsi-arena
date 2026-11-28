@@ -1,10 +1,7 @@
-"""Placeholder candidate: IFBench.
-
-This task is not executable inside the suite (llm_api); a real candidate would be the artifact the paper evolves for 'IFBench' (see README.md).
-"""
+"""Initial program for the suite task; SCiEL evolves the EVOLVE-BLOCK."""
 # EVOLVE-BLOCK-START
-
-
-def candidate():
-    raise NotImplementedError("gepa-ifbench is documented but not executable in this suite")
+def solve(question, llm):
+    """Answer the request directly; the whole reply is checked against its output constraints."""
+    system = "Follow every formatting and content constraint in the request exactly. Reply with the response only."
+    return llm(question, system=system, max_tokens=4096)
 # EVOLVE-BLOCK-END

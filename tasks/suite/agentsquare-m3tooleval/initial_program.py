@@ -1,10 +1,10 @@
-"""Placeholder candidate: M3ToolEval.
-
-This task is not executable inside the suite (llm_agent_env); a real candidate would be the artifact the paper evolves for 'M3ToolEval' (see README.md).
-"""
+"""Initial program for the suite task; SCiEL evolves the EVOLVE-BLOCK."""
 # EVOLVE-BLOCK-START
-
-
-def candidate():
-    raise NotImplementedError("agentsquare-m3tooleval is documented but not executable in this suite")
+def act(instruction, observation, valid_actions, history, llm):
+    """Chat-format tool-use agent (CodeAct's M3ToolEval loop): the task prompt, then alternating replies and tool results."""
+    messages = [{"role": "user", "content": instruction}]
+    for action, seen, _ in history:
+        messages.append({"role": "assistant", "content": action})
+        messages.append({"role": "user", "content": seen})
+    return llm(messages, max_tokens=512)
 # EVOLVE-BLOCK-END

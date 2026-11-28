@@ -1,0 +1,108 @@
+{
+  "id": "tdc-admet-cyp2d6-substrate-carbonmangels",
+  "name": "TDC ADMET CYP2D6_Substrate_CarbonMangels",
+  "description": "Predict whether a drug is a substrate of (is metabolised by) the enzyme cytochrome P450 2D6 (1) or not (0) from its molecular structure, given as a SMILES string (endpoint CYP2D6_Substrate_CarbonMangels of the Therapeutics Data Commons ADMET benchmark group). The measured compounds are split by molecular scaffold into a training, a validation and a test part. The test part is fixed; the candidate is run five times (seeds 1 to 5), each time with a different division of the other compounds into training and validation. It receives the training and validation compounds with their values and the test compounds without, and returns one prediction per test compound. Each of the five runs is a separate process that receives only these arguments: it cannot read the evaluator's files, start other processes or open network connections, and it has 700 seconds. The score is the area under the precision-recall curve on the test compounds, with class 1 as the positive class, averaged over the five runs; higher is better.",
+  "protocol": "recreated",
+  "family": "admet",
+  "direction": "maximize",
+  "contract": "fit_predict(train_smiles, train_y, valid_smiles, valid_y, test_smiles, info) -> sequence of finite numbers, one per test molecule in the given order: a score that is larger for class 1 (for example its probability). train_smiles, valid_smiles and test_smiles are lists of SMILES strings, train_y and valid_y lists of numbers; info has name, metric, kind ('regression' or 'binary') and seed. Score: mean over the seeds 1 to 5 of the area under the precision-recall curve (class 1 positive) on the test part, maximized.",
+  "parameters": {
+    "name": "CYP2D6_Substrate_CarbonMangels",
+    "metric": "auprc",
+    "best_known": 0.736
+  },
+  "requires": [
+    "py:numpy",
+    "py:sklearn",
+    "py:rdkit",
+    "py:PyTDC"
+  ],
+  "timeout": 3600,
+  "notes": [
+    "Top entry ContextPred: 0.736.",
+    "Downloaded by PyTDC at first use into data/admet",
+    "Predicts the binary CYP2D6 substrate label (1 = substrate) of 664 drugs from their SMILES strings, scored by AUPRC.",
+    "Leaders are large tuned ensembles or foundation-model fine-tunes.",
+    "Needs PyTDC and rdkit: not in .venv-tasks, so the evaluator restarts itself under tools/venv-admet (created by the README's setup steps).",
+    "Every scoring call of the candidate runs in the main suite's sandbox (a child process with an audit hook, 700 s and 6 GB for one call): it keeps a search from coming across the test labels and is not a security boundary against a candidate written to attack the evaluator."
+  ],
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "model",
+    "domain": "natural_science",
+    "data": "real_measurements",
+    "verification": "sampled",
+    "reference": "leaderboard",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "chemistry",
+    "secondary_area": "biology",
+    "areas": [
+      "chemistry",
+      "biology",
+      "machine_learning"
+    ],
+    "important_to_science": false
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "TDC ADMET CYP2D6_Substrate_CarbonMangels",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "maximize",
+  "sources": [
+    {
+      "url": "https://tdcommons.ai/benchmark/admet_group/overview/",
+      "type": "benchmark",
+      "locator": "CYP2D6_Substrate_CarbonMangels"
+    },
+    {
+      "url": "https://tdcommons.ai/single_pred_tasks/adme/",
+      "type": "benchmark",
+      "locator": "CYP2D6 Substrate, Carbon-Mangels et al.: binary classification, 664 drugs, merged from six publications."
+    },
+    {
+      "url": "https://doi.org/10.1002/minf.201100069",
+      "type": "paper",
+      "locator": "Carbon-Mangels and Hutter (2011), Selecting Relevant Descriptors for Classification by Bayesian Estimates: descriptor-selection method paper whose disparate data sets include the CYP substrate sets; its main objective is the method, so it is not primary evidence."
+    },
+    {
+      "url": "https://doi.org/10.1021/ci300367a",
+      "type": "paper",
+      "locator": "Cheng et al. (2012), admetSAR: a database and web tool of ADMET properties; cited by TDC as second reference for the substrate sets."
+    },
+    {
+      "url": "https://doi.org/10.1038/s41589-022-01131-2",
+      "type": "paper",
+      "locator": "Huang et al. (2022), Artificial intelligence foundation for therapeutic science (Nat Chem Biol): the Therapeutics Data Commons paper linked from the TDC site, benchmark paper only; also arXiv 2102.09548, Therapeutics Data Commons: Machine Learning Datasets and Tasks for Drug Discovery and Development."
+    }
+  ],
+  "limitations": [
+    "Leaders are large tuned ensembles or foundation-model fine-tunes.",
+    "Needs PyTDC and rdkit: not in .venv-tasks, so the evaluator restarts itself under tools/venv-admet (created by the README's setup steps).",
+    "Every scoring call of the candidate runs in the main suite's sandbox (a child process with an audit hook, 700 s and 6 GB for one call): it keeps a search from coming across the test labels and is not a security boundary against a candidate written to attack the evaluator.",
+    "The record was found in a hashed snapshot of its source; it is not replayed. See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://tdcommons.ai/benchmark/admet_group/overview/"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "unreviewed",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reason": "The dataset paper (Carbon-Mangels and Hutter 2011) is a feature-selection methods paper that uses the CYP substrate sets among several disparate data sets; admetSAR (Cheng et al. 2012) is a database and tool paper. Neither has CYP substrate prediction as its main objective.",
+    "papers": [],
+    "scientific_problem": "Classify drugs as substrates or non-substrates of the cytochrome P450 isozyme CYP2D6 from their structure.",
+    "reviewed_at": "2026-11-11"
+  }
+}

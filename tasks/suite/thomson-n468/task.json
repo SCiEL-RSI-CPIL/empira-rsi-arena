@@ -1,0 +1,219 @@
+{
+  "schema_version": "1.0",
+  "id": "thomson-n468",
+  "name": "Thomson problem, N = 468",
+  "description": "Place 468 equal point charges on the unit sphere in R^3 so that their Coulomb energy, the sum of 1/distance over all pairs of points, is as small as possible (the Thomson problem).",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Thomson_problem",
+      "type": "benchmark",
+      "locator": "N = 468"
+    },
+    {
+      "url": "https://doi.org/10.1088/0305-4470/24/23/008",
+      "type": "paper",
+      "locator": "Equilibrium configurations of N equal charges on a sphere"
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevB.74.212101",
+      "type": "paper",
+      "locator": "Structure and dynamics of spherical crystals characterized for the Thomson problem"
+    },
+    {
+      "url": "https://doi.org/10.1103/PhysRevB.79.224115",
+      "type": "paper",
+      "locator": "Defect motifs for spherical topologies"
+    },
+    {
+      "url": "https://www-wales.ch.cam.ac.uk/~wales/CCD/Thomson/table.html",
+      "type": "archive",
+      "locator": "Cambridge Cluster Database, global minima for the Thomson problem (N, energy, point group, coordinates), with updates from W. Deeter's site."
+    },
+    {
+      "url": "https://doi.org/10.1080/14786440409463107",
+      "type": "paper",
+      "locator": "J. J. Thomson (1904), On the structure of the atom: the corpuscle model that gave the problem its name (rings of corpuscles in a charged sphere; the surface problem is the later idealisation)."
+    },
+    {
+      "url": "https://doi.org/10.1080/10586458.2013.766570",
+      "type": "paper",
+      "locator": "Schwartz (2013), The Five-Electron Case of Thomson's Problem: computer-assisted proof for N = 5; outside the N range of this family."
+    },
+    {
+      "url": "https://doi.org/10.1002/9780470141571.ch5",
+      "type": "paper",
+      "locator": "Erber and Hockney (1997), Complex Systems: Equilibrium Configurations of N Equal Charges on a Sphere (2 <= N <= 112), Adv. Chem. Phys.: extended tables."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "No data files."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Thomson problem, N = 468",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "thomson",
+    "science_family": "thomson",
+    "parameters": {
+      "n": 468,
+      "best_known": 103920.871715127
+    },
+    "interface": "construct() -> array of shape (468, 3): one point per row (the verifier scales every row to unit length; a zero or non-finite row is invalid, and so are two points that coincide). Score: sum over all pairs of points of 1/(Euclidean distance), minimized.",
+    "label_spec": {
+      "scientific_contribution": "open_problem",
+      "artifact": "construction",
+      "domain": "natural_science",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value",
+      "area": "physics",
+      "secondary_area": "mathematics",
+      "areas": [
+        "physics",
+        "mathematics",
+        "chemistry",
+        "optimization"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "No data files."
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "thomson",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "Only N = 2 to 6 and N = 12 have a published rigorous proof (a proof for N = 7 was announced in 2026 and is not peer reviewed); the other energies are putative minima that many groups have optimised for decades, so matching is the likely outcome.",
+    "The record has 9 decimals; a result counts as an improvement only below it by more than 1e-8.",
+    "The record was found in a hashed snapshot of its source; it is not replayed. See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "family_tests_and_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
+    "upstream_reproduction": false,
+    "record_level": "record_matches_pinned_source",
+    "unsure": false,
+    "record_validation": {
+      "record": 103920.871715127,
+      "checks": [
+        "energy 103920.871715127 found in the pinned Wikipedia table",
+        "N > 150: optimiser reproduction not attempted"
+      ],
+      "sources": [
+        "data/thomson/thomson_problem.wikitext",
+        "sources/thomson_wiki_html.html"
+      ],
+      "notes": [
+        "the Wikipedia table carries a 'citation needed' tag"
+      ],
+      "validated": "2026-11-11"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "open_problem",
+    "science_tier": 1,
+    "artifact": "construction",
+    "domain": "natural_science",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "physics",
+    "secondary_area": "mathematics",
+    "areas": [
+      "physics",
+      "mathematics",
+      "chemistry",
+      "optimization"
+    ],
+    "important_to_science": true
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "Erber and Hockney (global search for N equal charges on a sphere) and Wales and Ulker (the global minima that the table of record energies reproduces) have the Thomson problem for many N as their main objective; the evaluator scores the Coulomb energy of N points on the unit sphere.",
+    "scientific_problem": "Find the arrangement of 468 unit point charges on the unit sphere with the smallest Coulomb energy, the sum of 1/distance over all pairs (the Thomson problem).",
+    "importance_rationale": "The Thomson problem is the classical model of repelling charges confined to a sphere, which Thomson posed in his 1904 atom model and which now serves as a model for spherical crystals and shells; its energy landscape has exponentially many local minima, so global minima beyond N around 100 are putative. Only a few N (2 to 6 and 12) are rigorously proven, so a lower energy would be a new putative global minimum.",
+    "papers": [
+      {
+        "title": "Equilibrium configurations of N equal charges on a sphere",
+        "url": "https://doi.org/10.1088/0305-4470/24/23/008",
+        "task_relation": "The task asks for the minimum-energy configuration of N charges (the sum of 1/distance); this paper's search tables are an early record source for small N, while the task's N is larger in most cases.",
+        "primary_goal": "Find, by numerical minimisation, equilibrium configurations of N equal charges on a sphere and their energies.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Structure and dynamics of spherical crystals characterized for the Thomson problem",
+        "url": "https://doi.org/10.1103/PhysRevB.74.212101",
+        "task_relation": "The Cambridge Cluster Database table of global minima that carries the paper's name is the source of the smallest known energies (Wikipedia reproduces it); the task asks to lower the energy for a given N.",
+        "primary_goal": "Characterise putative global minima of the Thomson problem and the structure and dynamics of the resulting spherical crystals.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Defect motifs for spherical topologies",
+        "url": "https://doi.org/10.1103/PhysRevB.79.224115",
+        "task_relation": "Its configurations are also reproduced in the Cambridge Cluster Database; the task asks to lower the energy of a given N.",
+        "primary_goal": "Study the defect motifs of low-energy configurations on the sphere, including the Thomson problem, extending the global-minimum search to larger N.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  },
+  "source_specification": {
+    "name": "Thomson problem, N = 468",
+    "slug": "thomson-n468",
+    "description": "Place 468 equal point charges on the unit sphere in R^3 so that their Coulomb energy, the sum of 1/distance over all pairs of points, is as small as possible (the Thomson problem).",
+    "benchmark": "Thomson problem, N = 468",
+    "dataset": "No data files.",
+    "metric": "score",
+    "direction": "minimize",
+    "source_url": "https://en.wikipedia.org/wiki/Thomson_problem",
+    "source_locator": "N = 468",
+    "upstream_path": null,
+    "requirements": [
+      "py:numpy"
+    ],
+    "execution_notes": "No data files."
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "id": "jssp-dmu72",
+  "name": "Job-shop scheduling dmu72",
+  "description": "Schedule 50 jobs on 15 machines (job-shop benchmark instance dmu72). Every job is a sequence of 15 operations, one on each machine, that must run in the given order; an operation occupies its machine for its whole duration without interruption, and a machine processes one operation at a time. Minimise the makespan, the time at which the last operation ends.",
+  "protocol": "recreated_verified",
+  "family": "jssp",
+  "direction": "minimize",
+  "contract": "solve(inst) -> starts, a list of n_jobs lists of non-negative integers: starts[j][k] is the start time of operation k of job j. inst has name, n_jobs, n_machines and jobs[j] = list of (machine, duration) pairs in processing order, machines numbered from 0. Operation k + 1 of a job may not start before operation k has ended, and two operations on one machine may not overlap (one may start at the moment the other ends). Score: the makespan, minimized.",
+  "parameters": {
+    "instance": "dmu72",
+    "lower_bound": 6434,
+    "best_known": 6448
+  },
+  "requires": [
+    "py:numpy",
+    "file:data/arnew/jssp/dmu72.txt"
+  ],
+  "timeout": 300,
+  "notes": [
+    "Lower bound 6434, best known makespan 6448 (O. Shylo's bounds pages and the ScheduleOpt benchmark library, 2026-11-11).",
+    "dmu72 split from instance_data.txt of thomasWeise/jsspInstancesAndResults (819 KB, all instances in one file)",
+    "Demirkol, Mehta and Uzsoy (1998) benchmark instance dmu72 of the cscmax subfamily, 50 jobs x 15 machines.",
+    "The bounds are those of 2026-11-11 (larger lower bound and smaller upper bound of the two tables); both tables change several times a year, so read them again before claiming a record.",
+    "The record lies 0.22% above the lower bound."
+  ],
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "secondary_area": "theoretical_computer_science",
+    "areas": [
+      "optimization",
+      "theoretical_computer_science"
+    ],
+    "important_to_science": true
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "Job-shop scheduling dmu72",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "minimize",
+  "sources": [
+    {
+      "url": "https://optimizizer.com/jobshop.php",
+      "type": "benchmark",
+      "locator": "dmu72: bounds, and the schedule of the upper bound"
+    },
+    {
+      "url": "https://github.com/ScheduleOpt/benchmarks/tree/main/jobshop",
+      "type": "benchmark",
+      "locator": "dmu72: best-known bounds"
+    },
+    {
+      "url": "https://github.com/thomasWeise/jsspInstancesAndResults",
+      "type": "benchmark",
+      "locator": "dmu72: instance data"
+    },
+    {
+      "url": "https://doi.org/10.1287/moor.1.2.117",
+      "type": "paper",
+      "locator": "The Complexity of Flowshop and Jobshop Scheduling"
+    },
+    {
+      "url": "https://doi.org/10.1016/S0377-2217(98)00113-1",
+      "type": "paper",
+      "locator": "Deterministic job-shop scheduling: Past, present and future"
+    },
+    {
+      "url": "https://doi.org/10.1016/S0377-2217(97)00019-2",
+      "type": "paper",
+      "locator": "Demirkol, Mehta and Uzsoy (1998), Benchmarks for shop scheduling problems: defines the 80 DMU job-shop instances (rcmax and cscmax subfamilies); benchmark paper, not primary evidence."
+    },
+    {
+      "url": "https://doi.org/10.1016/0377-2217(93)90182-M",
+      "type": "paper",
+      "locator": "Taillard (1993), Benchmarks for basic scheduling problems: defines the Taillard (ta) job-shop instances; benchmark paper, not primary evidence."
+    },
+    {
+      "url": "https://doi.org/10.1287/mnsc.38.10.1495",
+      "type": "paper",
+      "locator": "Storer, Wu and Vaccari (1992), New Search Spaces for Sequencing Problems with Application to Job Shop Scheduling: origin of the SWV instances."
+    },
+    {
+      "url": "https://doi.org/10.1007/s10951-017-0547-8",
+      "type": "paper",
+      "locator": "van Hoorn (2018), The Current state of bounds on benchmark instances of the job-shop scheduling problem: compiled bounds as of 2017."
+    },
+    {
+      "url": "https://doi.org/10.2139/ssrn.4938242",
+      "type": "paper",
+      "locator": "Heinz, Hanzalek and Vilim (2024), Reinforcement Learning for Search Tree Size Minimization in Constraint Programming: New Results on Scheduling Benchmarks; Shylo's page credits most older lower bounds to it (code RL2024), but the task's lower bound is the larger OptalCP value of the ScheduleOpt table for almost every instance."
+    }
+  ],
+  "limitations": [
+    "The bounds are those of 2026-11-11 (larger lower bound and smaller upper bound of the two tables); both tables change several times a year, so read them again before claiming a record.",
+    "The record lies 0.22% above the lower bound.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://optimizizer.com/jobshop.php"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "The problem papers qualify (job-shop scheduling is their main objective); the record for these instances is credited to a solver submission or unpublished work, which is not cited as a paper.",
+    "scientific_problem": "Find machine sequences, as start times, of minimum makespan for the open job-shop benchmark instance dmu72.",
+    "importance_rationale": "Job-shop scheduling is the canonical model of machine scheduling in manufacturing and is NP-hard in the strong sense; the instances of this family are still open, meaning the best known makespan is above the best proven lower bound, so a shorter schedule is a new best known upper bound.",
+    "papers": [
+      {
+        "title": "The Complexity of Flowshop and Jobshop Scheduling",
+        "url": "https://doi.org/10.1287/moor.1.2.117",
+        "task_relation": "The task is the makespan job-shop problem on the fixed benchmark instance dmu72.",
+        "primary_goal": "Establish the computational complexity of flow-shop and job-shop makespan scheduling, showing the job-shop problem NP-complete in the strong sense.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Deterministic job-shop scheduling: Past, present and future",
+        "url": "https://doi.org/10.1016/S0377-2217(98)00113-1",
+        "task_relation": "The task is the makespan job-shop problem on the fixed benchmark instance dmu72.",
+        "primary_goal": "Survey the formulations, solution methods and benchmark results for the deterministic job-shop scheduling problem.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  }
+}

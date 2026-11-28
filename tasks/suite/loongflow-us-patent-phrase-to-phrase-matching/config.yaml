@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 480
   max_retries: 2
 
 prompt:
   system_message: |
     us-patent-phrase-to-phrase-matching
 
-    Predict semantic similarity scores for patent phrase pairs.
+    Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 39,316 scored patent phrase pairs with their CPC context and predicts the similarity of 9,232 test pairs whose anchors never occur in training, within a 300 s wall-clock budget on 4 CPU threads without pretrained models; scored by Pearson correlation (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: fit_predict(train, test_inputs, time_budget_s) -> float array of shape (n_test,): predicted semantic similarity of each (anchor, target) phrase pair in the given CPC context. train: pandas.DataFrame with columns id, anchor, target, context (CPC class such as 'H01') and score (0, 0.25, 0.5, 0.75 or 1); test_inputs: id, anchor, target, context; test anchors never occur in train. time_budget_s = 300. fit_predict runs in a sandboxed child process: 4 CPU threads (thread settings of the numerical libraries, not an operating-system limit), no GPU, no network, no child processes, no pretrained weights or external data, reads limited to the Python installation and the task's public inputs, writes limited to a temporary working directory, memory limit 3.5 GB. time_budget_s wall-clock seconds start when the candidate's source starts executing in the child (imports and module-level code count); the process is killed 15 s after the budget (score: invalid). The evaluator holds the test labels and recomputes the metric; nothing the candidate reports is trusted. Score (maximize): Pearson correlation with the annotated scores (MLE-bench grade.py; constant predictions are invalid)
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

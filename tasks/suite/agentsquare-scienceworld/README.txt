@@ -2,22 +2,24 @@
 
 **Paper:** AgentSquare: Automatic LLM Agent Search in Modular Design Space (https://arxiv.org/pdf/2410.06153)\
 **Task id:** `agentsquare-scienceworld`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-ScienceWorld task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.
+Write a Python act(instruction, observation, valid_actions, history, llm) agent that issues one text command per step in ScienceWorld science tasks under AgentBoard's protocol, using a budgeted OpenRouter model client; scored by the mean progress rate (fraction of the variation's subgoal patterns matched) over 10 fixed task variations of AgentBoard's 90, at most 30 steps each (higher is better).
 
 Benchmark named in the paper: ScienceWorld. Paper metric: progress rate.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: ScienceWorld through AgentBoard's protocol, a fixed sample of 10 of AgentBoard's 90 test task variations, at most 30 steps each; 'check valid actions' lists the action templates. Episode score: AgentBoard's progress rate (fraction of the variation's subgoal patterns matched in the observations so far). Score: mean progress rate over the 10 episodes; higher is better
+
+Parameters: `{"adapter": "sciworld", "runtime": "pinned", "samples": 10, "seed": 0, "max_steps": 30, "env_step_limit": 30, "budget_usd": 0.5}`
 
 ## Labels
 
-Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `software_engineering`, data `public_benchmark`, verification `none`, reference `none`, resources `model_api, simulator`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `language`, data `public_benchmark`, verification `sampled`, reference `none`, resources `model_api`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -30,7 +32,19 @@ No qualifying paper whose main objective is this underlying scientific or real-w
 
 ## Evaluation protocol
 
-Not executable in this suite: Candidates are LLM agents scored inside the ScienceWorld environment (tools, web, games or code sandboxes); the environment and model access are external.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Environment: scienceworld 1.2.1 (allenai/ScienceWorld, Apache-2.0; bundled simulator JAR, needs Java) in the pinned runtime, with a port of AgentBoard's environment/scienceworld_env.py and the episode setup of tasks/scienceworld.py (hkust-nlp/AgentBoard at commit bb7255e2daf1989069a186dad9e53f70680961db, code Apache-2.0): AgentBoard's simplifications, rewritten goal, first observation plus inventory, 'check valid actions', subgoal matching with re.search and success when every subgoal is matched.
+- Data: AgentBoard's ScienceWorld labels (GPL-2.0, 90 variations; AgentSquare's run script points to AgentBoard's run configuration, which uses this file with a 30-step limit; with a planning module, which AgentSquare's best SciWorld agent has (Voyager, its Table A.4), AgentSquare's runner instead allows up to 6 actions per planned subtask without the 30-step cap, whereas here every agent has at most 30 steps). The labels are fetched from the byte-identical copy in AgentSquare's repository (checked against data/scienceworld/test.jsonl inside AgentBoard's data.tar.gz on 2026-10-10); the separately published test.jsonl of the AgentBoard dataset lacks the task names and variations.
+- Sample: the paper does not state which or how many variations it evaluates. AgentSquare's runner scores every row of the label file its configuration names (AgentBoard's configuration names the 90-variation test.jsonl), but AgentSquare's repository also holds subsets of 30, 20 and 5 variations, and the task indices in its tasks/sciworld/error_log.txt fit the 30-variation sampled_tasks1.jsonl (23 of 26 logged task-index pairs) rather than test.jsonl, so whether the paper's numbers cover all 90 variations is not known. Here a fixed sample of 10 of the 90 (SHA-256 order of the label ids, seed 0).
+- Simulator version: AgentBoard pins no ScienceWorld version; 1.2.1 is the release that was current during AgentSquare's experiments (July to October 2024). Check: replaying the simulator's own gold action sequences matches every subgoal pattern of 74 of the 90 labels with 1.2.1 and the reproducible JVM setting below (70 to 74 in default runs, where the gold routes vary; 71 with 1.1.3, 55 with the latest 1.2.3); in most of the others the label names one of several valid objects (the find-* tasks) or a step the gold sequence skips, so those variations can be completed but not along every valid route.
+- Reproducibility (deviation): the simulator iterates hash-based collections keyed by Java identity hash codes, so replaying the same actions gave differently ordered room and container listings and slightly different temperatures (for example 166 versus 167 degrees Celsius) in 21 of the 90 labels; reordering the observation text alone would not remove the temperature differences. The evaluator therefore starts the simulator's JVM with -XX:+UnlockExperimentalVMOptions -XX:hashCode=2 (constant identity hash codes, so these collections iterate in insertion order). With this setting the gold sequences and all observations replayed identically for the 90 labels within and across processes. The agent sees the simulator's own text, and the progress rate is computed as before; the simulator dynamics follow one fixed processing order instead of a varying one.
+- Instruction: AgentBoard's command overview from prompts/VanillaAgent/scienceworld_base.json with the goal; its few-shot example belongs to the agent and is not included.
+- Candidate: AgentSquare searches over agent module code (planning, reasoning, tool use, memory with a uniform interface) with module evolution, recombination and a performance predictor; those belong to the search method. Here the candidate is the agent program itself, act(...) called once per step; it may implement any modules internally. The AgentSquare repository has no licence, so its code is only read to recover the protocol; the environments come from the benchmarks' own releases.
+- Model: AgentSquare runs GPT-3.5-turbo-0125 and GPT-4o; the default client model here is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it), so absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.
+- Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions.
+- Model-driven agent evaluation: the score is an estimate on a fixed, seeded list of episodes and depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0) and on the per-evaluation budget (task parameter budget_usd, overridden by ARTASK_LLM_BUDGET_USD); exhausting the budget makes the evaluation invalid. ARTASK_AGENT_EPISODES truncates the episode list for quick checks. The candidate runs in a resource-limited child process (one per episode) that receives only the instruction, observations, listed valid actions, its own history and a model client; the environment runs in a separate server process. Responses are cached under llm-cache of the task cache. `valid` is null because a sampled model score cannot certify a candidate.
+- Reward: the reward of each history triple is AgentBoard's running progress rate, the fraction of the variation's subgoal patterns matched so far. AgentBoard does not show this value to its agents, which receive the goal and the observations only; here an agent sees at once whether an action matched one of the hidden subgoal patterns.
 
 ## Run
 
@@ -42,15 +56,24 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `service:llm_api`
+- `py:numpy`
 - `env:OPENROUTER_API_KEY`
-- `environment:ScienceWorld`
+- `network:openrouter`
+- `file:../../.cache/agent_bench-env/bin/python`
+- `file:data/agent_bench/agentboard/scienceworld-test.jsonl`
+- `file:data/agent_bench/agentboard/prompts/scienceworld_base.json`
+- `bin:java`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2410.06153 (Appendix A.1)
 - repository: https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c (tasks/sciworld)
+- paper: https://arxiv.org/abs/2410.06153 (Section 4.1 and Appendix A.1 (tasks and metrics))
+- repository: https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/sciworld (AgentBoard-based ScienceWorld runner and run configuration)
+- repository: https://github.com/hkust-nlp/AgentBoard/tree/bb7255e2daf1989069a186dad9e53f70680961db/agentboard/environment/scienceworld_env.py (subgoal progress rate (ported))
+- benchmark: https://huggingface.co/datasets/hkust-nlp/agentboard/tree/0680548ef773505788d3cced65640a0fd511242f (data.tar.gz: data/scienceworld/test.jsonl)
+- benchmark: https://pypi.org/project/scienceworld/1.2.1/ (ScienceWorld simulator (pinned version))
 
 ## Limitations
 
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.
+- The 10 episodes are a fixed list of public benchmark items that every evaluation replays, and act may return actions without calling the model. A program that replays memorised answers or actions for these episodes is scored like an agent, so the score says nothing about other episodes of the benchmark.

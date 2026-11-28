@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0",
+  "id": "science-maximum-sum-pairwise-coprime-integers",
+  "name": "Maximum sum of pairwise-coprime interval integers",
+  "description": "construct() -> nonempty distinct Python integers from 1..256. Every pair must have greatest common divisor one. Maximize their exact sum. Integer one is allowed once. The local inclusive interval [1,256] is G(257) under the source’s strict endpoint convention. The prime baseline is a local elementary construction; no asymptotic result or global characterization is claimed, and the optimal score 7372 is the published value a(256) of OEIS A186736.",
+  "paper_ids": [
+    "science-prize_c"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://users.renyi.hu/~p_erdos/1984-16.pdf",
+      "type": "paper",
+      "locator": "Paul Erdős, On two unconventional number theoretic functions and on some related problems (1984 bibliography; scanned volume marked 1983). Page 120, equation (29), defines G(n) as the maximum sum of pairwise-coprime positive integers below n; equation (30) states an asymptotic result credited jointly to Erdős and van Lint."
+    },
+    {
+      "url": "https://github.com/TheJustinSunPrize/awards/blob/bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2/problems/catalog-0701-0800.md#JSP-000730",
+      "type": "benchmark",
+      "locator": "JSP-000730; pinned revision bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2. Independently paraphrased finite adaptation; catalog contributor claims are not accepted as proof."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [],
+    "environment_variables": [],
+    "datasets": "No downloads. Fixed input arrays are fully recorded in parameters; arithmetic/combinatorial validation uses the Python standard library."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "maximize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Maximum sum of pairwise-coprime interval integers",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_prize_c_730",
+    "science_family": "science_prize_c_730",
+    "parameters": {
+      "n": 256
+    },
+    "interface": "construct() -> nonempty distinct Python integers from 1..256. Every pair must have greatest common divisor one. Maximize their exact sum. Integer one is allowed once.",
+    "label_spec": {
+      "scientific_contribution": "rediscovery",
+      "artifact": "construction",
+      "domain": "mathematics",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value",
+      "area": "mathematics"
+    },
+    "provenance": {
+      "category": "independent_reimplementation",
+      "upstream_evaluator_reused": false,
+      "borrowed_component": "The prime-set baseline follows elementary pairwise coprimality and is independently encoded. The source attributes the related asymptotic formula to Erdős and van Lint; neither published optimizing set nor implementation is copied.",
+      "prize_problem_id": "JSP-000730",
+      "prize_catalog_revision": "bcf1866ea9a4ae82b32bd95b82ffd812b9ee80d2"
+    },
+    "additional_requires": [],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_prize_c_730",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [],
+      "timeout": 60,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "Independent finite computational adaptation. Not a Lean proof, prize submission, general conjecture solution, or guarantee of novelty.",
+    "The local inclusive interval [1,256] is G(257) under the source’s strict endpoint convention. The prime baseline is a local elementary construction; no asymptotic result or global characterization is claimed, and the optimal score 7372 is the published value a(256) of OEIS A186736.",
+    "Candidate Python code is trusted code; the evaluator process is not a security sandbox.",
+    "The exact problem and prior result are source-verified. Importance remains unreviewed because the inspected paper’s principal objectives concern other arithmetic functions; its related-problem discussion alone is insufficient under the dataset’s strict primary-goal rule."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-22",
+    "evidence": "validation/prize-expansion/c-checks.json",
+    "tests": "tests/test_science_prize_c.py",
+    "lean_verified": false
+  },
+  "state_of_the_art": {
+    "kind": "optimum",
+    "value": 7372,
+    "statement": "The maximum sum of pairwise-coprime integers in 1..256 is 7372 (OEIS A186736, a(256) in the b-file).",
+    "sources": [
+      {
+        "title": "On two unconventional number theoretic functions and on some related problems",
+        "url": "https://users.renyi.hu/~p_erdos/1984-16.pdf",
+        "authors": "Paul Erdős",
+        "year": 1984
+      },
+      {
+        "title": "OEIS A186736: Maximum sum of relatively prime integers no larger than n",
+        "url": "https://oeis.org/A186736"
+      }
+    ],
+    "as_of": "2026-11-20"
+  },
+  "labels": {
+    "scientific_contribution": "rediscovery",
+    "artifact": "construction",
+    "domain": "mathematics",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "area": "mathematics",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": false
+  },
+  "science_relevance": {
+    "status": "unreviewed",
+    "scientific_problem": "Determine the maximum sum and structure of pairwise-coprime integer sets in a bounded interval.",
+    "importance_rationale": "Precise attribution is verified, but direct primary-goal evidence for this exact task is not established.",
+    "papers": [],
+    "reason": "The exact problem and prior result are source-verified. Importance remains unreviewed because the inspected paper’s principal objectives concern other arithmetic functions; its related-problem discussion alone is insufficient under the dataset’s strict primary-goal rule.",
+    "reviewed_at": "2026-09-22",
+    "verification_basis": "Page 120, equation (29), defines G(n) as the maximum sum of pairwise-coprime positive integers below n; equation (30) states an asymptotic result credited jointly to Erdős and van Lint.",
+    "related_source_notes": [
+      {
+        "title": "Paul Erdős, On two unconventional number theoretic functions and on some related problems (1984 bibliography; scanned volume marked 1983)",
+        "url": "https://users.renyi.hu/~p_erdos/1984-16.pdf",
+        "primary_goal": "Determine the maximum sum and structure of pairwise-coprime integer sets in a bounded interval.",
+        "task_relation": "The local inclusive interval [1,256] is G(257) under the source’s strict endpoint convention. The prime baseline is a local elementary construction; no asymptotic result or global characterization is claimed, and the optimal score 7372 is the published value a(256) of OEIS A186736.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

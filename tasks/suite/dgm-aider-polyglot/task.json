@@ -2,14 +2,14 @@
   "schema_version": "1.0",
   "id": "dgm-aider-polyglot",
   "name": "Aider Polyglot",
-  "description": "Aider Polyglot",
+  "description": "Write solve(exercise, llm), a Python coding agent that may call a budgeted model client and returns new contents for the solution files of one Aider Polyglot (Exercism) exercise; the score is pass@1, the fraction of DGM's 10 first-stage exercises in C++, Go, Java, JavaScript, Python and Rust whose hidden unit tests then pass (higher is better).",
   "paper_ids": [
     "dgm",
     "gea",
     "hyperagents"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2505.22954",
@@ -40,6 +40,21 @@
       "url": "https://github.com/facebookresearch/Hyperagents/tree/59a68f672dfb92c74aeb7e61535d776fb36e172d",
       "type": "repository",
       "locator": "domains/polyglot"
+    },
+    {
+      "url": "https://github.com/Aider-AI/polyglot-benchmark/tree/7e0611e77b54e2dea774cdc0aa00cf9f7ed6144f",
+      "type": "benchmark",
+      "locator": "225 Exercism practice exercises with stubs, tests and reference solutions"
+    },
+    {
+      "url": "https://github.com/jennyzzt/dgm/blob/a565fd2d1dca504ef5104a7cc0f3bdc4ab9b4fd2/polyglot/subsets/small.json",
+      "type": "repository",
+      "locator": "the 10-exercise first evaluation stage (with polyglot/harness.py and polyglot/constants.py: agent input, empty-patch rule, test commands)"
+    },
+    {
+      "url": "https://github.com/Aider-AI/aider/blob/f5a512ba656ab109356f6ab53aaf039423c1d189/benchmark/benchmark.py",
+      "type": "repository",
+      "locator": "run_test_real and run_unit_tests: instructions, test commands, @Disabled removal, 180 s limit; benchmark/Dockerfile for the toolchains"
     }
   ],
   "requirements": {
@@ -55,7 +70,7 @@
     ]
   },
   "evaluation": {
-    "metric": "pass@1 task success",
+    "metric": "score",
     "paper_metric": "pass@1 task success",
     "paper_direction": "maximize",
     "direction": "maximize",
@@ -83,8 +98,8 @@
       "README provides dataset setup and DGM_outer.py evolution entry point."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "polyglot_agent",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -92,19 +107,18 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
+        "docker",
         "env:OPENROUTER_API_KEY",
-        "environment:Aider Polyglot"
+        "network:openrouter",
+        "file:data/polyglot/manifest.json",
+        "file:data/polyglot/subsets/small.json"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_agent_env",
-      "unsupported_reason": "Candidates are LLM agents scored inside the Aider Polyglot environment (tools, web, games or code sandboxes); the environment and model access are external."
+      "timeout": 1800,
+      "validity_key": "valid"
     }
   },
-  "limitations": [
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-  ],
+  "limitations": [],
   "source_specification": {
     "name": "Aider Polyglot",
     "slug": "aider-polyglot",
@@ -138,11 +152,11 @@
     "domain": "software_engineering",
     "area": "software_engineering",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "simulator"
+      "docker",
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false
@@ -230,72 +244,12 @@
         ],
         "setup_steps": [],
         "notes": [
-          "P",
-          "a",
-          "p",
-          "e",
-          "r",
-          " ",
-          "t",
-          "a",
-          "s",
-          "k",
-          " ",
-          "i",
-          "d",
-          "e",
-          "n",
-          "t",
-          "i",
-          "f",
-          "i",
-          "e",
-          "d",
-          ";",
-          " ",
-          "e",
-          "v",
-          "a",
-          "l",
-          "u",
-          "a",
-          "t",
-          "o",
-          "r",
-          " ",
-          "i",
-          "n",
-          "v",
-          "o",
-          "c",
-          "a",
-          "t",
-          "i",
-          "o",
-          "n",
-          " ",
-          "n",
-          "o",
-          "t",
-          " ",
-          "y",
-          "e",
-          "t",
-          " ",
-          "v",
-          "e",
-          "r",
-          "i",
-          "f",
-          "i",
-          "e",
-          "d",
-          ".",
+          "Paper task identified; evaluator invocation not yet verified.",
           "Source pinned on 2026-09-19; see docs/TASKS.md."
         ]
       },
       "limitations": [
-        "No official implementation repository link identified in the inspected source. Paper specification is recorded; runnable reproduction is not verified.",
+        "The inspected paper links no readable official repository; the official release was identified separately and is pinned (see below).",
         "Official GEA release pinned (Apache-2.0); runs need Docker, the pinned SWE-bench harness, prepared Polyglot data and paid model APIs.",
         "Execution interface inspected in pinned source. Full paper experiments have not been reproduced here."
       ],

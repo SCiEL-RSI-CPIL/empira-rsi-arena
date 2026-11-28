@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0",
+  "id": "science-software-coalescing-small",
+  "name": "Software engineering: optimal register coalescing on the challenge graphs with fewer than 3,000 nodes",
+  "description": "Colour the 452 smaller interference graphs of the Appel-George Optimal Coalescing Challenge with 6 registers so that as much move (affinity) weight as possible joins nodes of the same colour. The score is the mean share of affinity weight left uncoalesced; lower is better.",
+  "paper_ids": [
+    "science-software_engineering"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://www.cs.princeton.edu/~appel/coalesce/",
+      "type": "benchmark",
+      "locator": "Appel and George, Optimal Coalescing Challenge (2000): 474 interference graphs with affinities, problem and solution format, checker and published solution sets."
+    },
+    {
+      "url": "https://doi.org/10.1145/378795.378854",
+      "type": "paper",
+      "locator": "Appel and George (PLDI 2001): optimal spilling by integer programming followed by coalescing; source of the challenge graphs."
+    },
+    {
+      "url": "https://doi.org/10.1145/229542.229546",
+      "type": "paper",
+      "locator": "George and Appel (TOPLAS 1996): iterated register coalescing, the heuristic behind the published greedy solution set."
+    },
+    {
+      "url": "https://doi.org/10.1007/978-3-540-71229-9_8",
+      "type": "paper",
+      "locator": "Grund and Hack (CC 2007): cutting-plane ILP for optimal coalescing; their solutions of all 474 challenge instances are on the challenge page."
+    },
+    {
+      "url": "https://doi.org/10.1145/1011508.1011512",
+      "type": "paper",
+      "locator": "Park and Moon (TOPLAS 2004): optimistic register coalescing, the basis of the published optimistic solution set."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy"
+    ],
+    "environment_variables": [],
+    "datasets": "Optimal Coalescing Challenge graphs and the published Grund-Hack, iterated-coalescing and optimistic solution sets (no licence stated; fetched from the pinned URLs and not redistributed), prepared by scripts/prepare_software.py."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Software engineering: optimal register coalescing on the challenge graphs with fewer than 3,000 nodes",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_software_coalescing",
+    "science_family": "science_software_coalescing",
+    "parameters": {
+      "group": "small",
+      "cpu_seconds": 120
+    },
+    "interface": "coalesce(problem) -> list of int. problem = {'name': str, 'nodes': N, 'registers': K (6 in every instance), 'interference': [[i, j], ...], 'affinities': [[i, j, w], ...]} with nodes numbered 0..N-1: nodes 0..K-1 are machine registers and node i < K must get colour i; every other node interferes with fewer than K nodes, so a legal colouring always exists; affinities are move-related pairs with positive integer weights. Return N Python ints in 0..K-1 such that no interference pair shares a colour. Cost of an instance: total weight of the affinity pairs whose two nodes get different colours. Score: mean over the task's instances of cost divided by the instance's total affinity weight (the share of move weight not coalesced), minimised; 0 means every move is coalesced. An illegal colouring of any instance makes the evaluation invalid. coalesce() is called once per instance, all instances in one sandboxed subprocess (no files, network or subprocesses; 120 s CPU in total, 3 GB); it should be deterministic (seed any randomness, do not read clocks).",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "systems",
+      "area": "systems_and_hardware",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "additional_requires": [
+      "file:data/software/coalesce/small.json"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_software_coalescing",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "file:data/software/coalesce/small.json"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "All 452 best-known costs are the published Grund-Hack ILP solutions, which CPLEX reported optimal; this evaluator recomputed their costs exactly but did not re-prove optimality.",
+    "The score averages per-instance shares of uncoalesced affinity weight; the challenge itself evaluates instances separately, so totals in the literature are not the same number.",
+    "All graphs come from one compiler (SML/NJ) with six registers after optimal spilling; methods tuned on them may not transfer to other register files or allocators.",
+    "The instances are public; a candidate could embed precomputed colourings, which the contract excludes.",
+    "The candidate gets 120 s of CPU time in total in a Python sandbox; published solvers had no comparable limit."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/science-report.json",
+    "tests": "tests/test_software_coalesce.py"
+  },
+  "state_of_the_art": {
+    "kind": "optimum",
+    "value": 0.011594356318094336,
+    "statement": "Mean uncoalesced share of the Grund-Hack ILP solutions, reported optimal by CPLEX for every instance in this group and recomputed here. The published iterated-register-coalescing and optimistic-coalescing solution sets score 0.0230 and 0.0148.",
+    "sources": [
+      {
+        "title": "A Fast Cutting-Plane Algorithm for Optimal Coalescing",
+        "url": "https://doi.org/10.1007/978-3-540-71229-9_8"
+      },
+      {
+        "title": "Optimal Coalescing Challenge: Solutions (Grund)",
+        "url": "https://www.cs.princeton.edu/~appel/coalesce/grund"
+      }
+    ],
+    "as_of": "2026-10-10"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "domain": "systems",
+    "area": "systems_and_hardware",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Register coalescing in compilers: colour an interference graph with the available registers so that the endpoints of as many weighted copy instructions as possible share a register, which removes those copies.",
+    "importance_rationale": "Register allocation is a core compiler phase; coalescing removes move instructions in hot code, and finding the optimal coalescing is NP-hard, so heuristics and exact methods are compared on the published challenge graphs.",
+    "papers": [
+      {
+        "title": "Iterated register coalescing",
+        "url": "https://doi.org/10.1145/229542.229546",
+        "primary_goal": "Remove as many move instructions as possible during graph-colouring register allocation without introducing spills.",
+        "task_relation": "The task optimises the same objective (coalesced move weight) under the same colouring constraints.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Optimal spilling for CISC machines with few registers",
+        "url": "https://doi.org/10.1145/378795.378854",
+        "primary_goal": "Allocate registers optimally for machines with few registers by separating optimal spilling from coalescing.",
+        "task_relation": "The challenge graphs are the coalescing problems left after this optimal spilling; the task solves them.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "A Fast Cutting-Plane Algorithm for Optimal Coalescing",
+        "url": "https://doi.org/10.1007/978-3-540-71229-9_8",
+        "primary_goal": "Solve the register coalescing problem to optimality fast enough for compilers.",
+        "task_relation": "Their optimal solutions of the challenge graphs are the task's reference values.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

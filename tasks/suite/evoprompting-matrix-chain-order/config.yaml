@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 1800
   max_retries: 2
 
 prompt:
   system_message: |
     Matrix Chain Order
 
-    Evaluate the discovered graph-neural-network architecture on the CLRS Matrix Chain Order algorithmic reasoning problem, including out-of-distribution sequence lengths.
+    Write build_processor(hidden_dim), returning the graph-neural-network processor (a PyTorch module) that the CLRS encode-process-decode network uses to learn the Matrix Chain Order dynamic program of CLRS-30. The network is trained for 100 steps on 16-node instances; the score is the accuracy of the predicted split-point table on the 32 out-of-distribution 64-node test instances (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: build_processor(hidden_dim: int) -> torch.nn.Module (CPU, float32), called once with hidden_dim = 128. The module's forward(node_fts, edge_fts, graph_fts, adj, hidden) receives float32 tensors node_fts (B, N, H), edge_fts (B, N, N, H), graph_fts (B, H), adj (B, N, N) (0/1 adjacency with self-loops built from the input edges and pointer inputs/hints) and hidden (B, N, H) (the processor's previous node output, zeros at the first step), H = hidden_dim, and returns either the new node embeddings (B, N, H) or a pair (node embeddings (B, N, H), edge embeddings (B, N, N, H) or None); outputs must be finite float32 tensors. It is called once per algorithm step (hint frame), on N = 16 nodes during training and N = 64 at test (string matchers 20 and 80, optimal BST 17 and 65, segments intersect 4 and 4), so it must work for any N. At most 1,000,000 processor parameters. The program may import only torch, math, numpy, functools, itertools, typing, dataclasses, collections and operator; eval/exec/open/getattr-style dynamic access and dunder attributes (other than __init__) are rejected, and training runs in a separate process that, where the kernel permits it, cannot read the task cache holding the prepared data and its test outputs (on Linux with unprivileged user namespaces it runs in its own user, mount, PID, network and IPC namespaces in which the task cache is empty and every file system is read-only except its working directory; on macOS under sandbox-exec), and in which an audit hook also blocks Python-level file, network and process access; the result field os_sandbox names what was in force (linux-namespaces, sandbox-exec or audit-hook-only). With audit-hook-only the hook is defence in depth for honest program search, not a security boundary: native readers such as torch.from_file, and frame references to the trainer, are not blocked. The evaluator owns the CLRS encoders, decoders, losses and training (Adam, learning rate 1e-3, batch 32 trajectories, gradient clipping 1.0, the task's fixed number of steps on the CLRS-30 train split of 16-node trajectories with hints, best validation checkpoint) and scores the out-of-distribution test split: the mean over the algorithm's output probes of the CLRS metric (pointer accuracy, mask F1 or one-hot accuracy) on hard predictions, in [0, 1]. The score depends only on the fixed step budget, not on wall time. Training and prediction run on 4 CPU threads under safety limits: they must finish within parameter wall_seconds (1700 s) and stay under parameter memory_mb (resident memory of the training process); a candidate that exceeds either is invalid. Higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

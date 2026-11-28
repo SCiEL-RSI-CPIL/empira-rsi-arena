@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0",
+  "id": "science-chemistry-morse-cluster-minima",
+  "name": "Morse cluster global minima across the range of the potential",
+  "description": "Find the lowest-energy arrangements of 38 to 80 atoms bound by Morse potentials of long, medium and short range (six instances). Energies are recomputed exactly and compared with the putative global minima of Doye and Wales.",
+  "paper_ids": [
+    "science-chemistry_research"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1039/a706221d",
+      "type": "paper",
+      "locator": "Doye and Wales (1997): Morse potential in reduced units, Table 1 of putative global minima for N <= 80 at rho = 3, 6, 10, 14 (arXiv cond-mat/9709201)."
+    },
+    {
+      "url": "https://arxiv.org/abs/cond-mat/9709201",
+      "type": "archive",
+      "locator": "LaTeX source of Table 1, from which the six reference energies (six decimals) were read."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "scipy"
+    ],
+    "environment_variables": [],
+    "datasets": "None; reference energies are published values embedded in the evaluator."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Morse cluster global minima across the range of the potential",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_chemistry_morse_clusters",
+    "science_family": "science_chemistry_morse_clusters",
+    "parameters": {},
+    "interface": "construct(instance) -> array of shape (n, 3): Cartesian coordinates of n atoms in reduced units (pair equilibrium distance 1). instance = {'potential': 'morse', 'rho': range parameter, 'n': atoms}; called once for each of six instances (rho, n) = (3, 80), (6, 38), (6, 75), (10, 38), (10, 50), (10, 80); all six calls together must finish within 300 s (enforced) and should use at most 4 threads (not enforced by the evaluator). The evaluator recomputes E = sum_{i<j} exp(rho(1-r_ij))(exp(rho(1-r_ij)) - 2) (well depth 1); atoms must be at least 0.5 apart. Score: mean over instances of 100*(E - E_pub)/|E_pub| against the putative global minima tabulated by Doye and Wales (1997) (minimize; 0 matches all six, negative is lower than published). chem_clusters.relax(positions, 'morse', rho) and chem_clusters.morse_energy_gradient(positions, rho) may be called",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "natural_science",
+      "area": "chemistry",
+      "data": "none",
+      "verification": "exact",
+      "reference": "published_value"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "additional_requires": [],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "science_chemistry_morse_clusters",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:scipy"
+      ],
+      "timeout": 300,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "The references are the 1997 putative minima; the Cambridge Cluster Database listed the same six energies on 2026-11-24, so no later improvement is recorded for these instances, and a score below zero would be a new putative minimum that needs independent confirmation. rho = 14, where later work reported new minima, is not used.",
+    "The putative minima are published with coordinates in the database, so a candidate that reproduces remembered structures scores well without searching; scores measure constructions, not search efficiency.",
+    "The score averages relative energy excesses (percent of |E|) over six instances with a 300 s budget for all of them; results depend on the machine speed for time-limited searches."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/chemistry-checks.json",
+    "tests": "tests/test_chem_clusters.py"
+  },
+  "state_of_the_art": {
+    "kind": "best_known",
+    "value": 0.0,
+    "statement": "Matching the six putative global minima of Doye and Wales (1997) gives 0; the Cambridge Cluster Database listed the same six energies on 2026-11-24 and no lower energies for these instances were found in the literature.",
+    "sources": [
+      {
+        "title": "Structural consequences of the range of the interatomic potential: a menagerie of clusters",
+        "url": "https://doi.org/10.1039/a706221d"
+      }
+    ],
+    "as_of": "2026-11-24"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "construction",
+    "domain": "natural_science",
+    "area": "chemistry",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Find the lowest-energy structure of an atomic cluster for a given interatomic potential (global optimisation on a rugged energy landscape). Here: Morse clusters whose structure changes with the range of the potential.",
+    "importance_rationale": "Cluster global minima determine structure, stability and magic numbers of nanoparticles, and the dependence on interaction range explains when icosahedral, decahedral or close-packed clusters form; the hard instances remain benchmarks for structure prediction methods.",
+    "papers": [
+      {
+        "title": "Structural consequences of the range of the interatomic potential: a menagerie of clusters",
+        "url": "https://doi.org/10.1039/a706221d",
+        "primary_goal": "Locate the global minima of Morse clusters up to 80 atoms as a function of the range parameter and explain the structural transitions.",
+        "evidence_role": "primary_problem",
+        "task_relation": "The task scores six of the size/range combinations tabulated there against the published putative minima."
+      }
+    ],
+    "reason": "The cited papers' main objective is the underlying problem the task scores; the local data, splits and limits are stated in the task's limitations.",
+    "reviewed_at": "2026-10-10",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

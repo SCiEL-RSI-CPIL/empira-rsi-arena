@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0",
+  "id": "epfl-alu-control-unit-size",
+  "name": "EPFL alu-control-unit, LUT-6 count",
+  "description": "Optimise the EPFL combinational benchmark circuit alu-control-unit (the control unit of an ALU; 7 inputs, 26 outputs) with the logic-synthesis tool ABC and map it to lookup tables (LUTs) with at most 6 inputs, minimising the number of LUTs. The result must compute the same function as the original circuit.",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "requires_setup",
+  "sources": [
+    {
+      "url": "https://github.com/lsils/benchmarks/tree/master/best_results",
+      "type": "benchmark",
+      "locator": "alu-control-unit"
+    },
+    {
+      "url": "https://doi.org/10.1109/TCAD.2006.887925",
+      "type": "paper",
+      "locator": "Improvements to Technology Mapping for LUT-Based FPGAs"
+    },
+    {
+      "url": "https://doi.org/10.1609/aaai.v37i4.25524",
+      "type": "paper",
+      "locator": "Circuit Minimization with QBF-Based Exact Synthesis"
+    },
+    {
+      "url": "https://github.com/lsils/benchmarks",
+      "type": "benchmark",
+      "locator": "EPFL benchmark repository: ctrl circuit files and best_results/README.md (best LUT-6 counts and levels, 2026)."
+    },
+    {
+      "url": "https://infoscience.epfl.ch/record/207551/files/IWLS15.pdf",
+      "type": "paper",
+      "locator": "Amaru, Gaillardon and De Micheli (2015), The EPFL Combinational Benchmark Suite (title read in the PDF text): circuit descriptions and input/output counts for ctrl; a benchmark paper, so not primary evidence."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [],
+    "environment_variables": [],
+    "datasets": "random_control/ctrl.aig from github.com/lsils/benchmarks"
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "EPFL alu-control-unit, LUT-6 count",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "epfl",
+    "science_family": "epfl",
+    "parameters": {
+      "circuit": "ctrl",
+      "folder": "random_control",
+      "metric": "size",
+      "best_known": 25
+    },
+    "interface": "script() -> string of ABC commands separated by `;` or newlines. The evaluator runs `read <circuit>; <script>` in ABC and writes out the network the script leaves. That network must consist only of LUTs with at most 6 inputs (in ABC a LUT mapper such as `if -K 6` produces one; library gates or a wider node are invalid), and it must be equivalent to the original circuit, which a separate ABC process checks with `cec`. The script may not contain the characters ! / \\ ~, may not use commands that read or write files, change the session or start other programs (read*, write*, load*, dump*, save* and their short forms, source, alias, set, unset, history, cd, ls, pwd, quit, exit), and may not ask for LUTs wider than 6 inputs (-K above 6). Time limits: 1200 s for the script, 900 s for the equivalence check. A script that is refused, fails, runs out of time or changes the function is invalid. Score: the number of LUTs with two or more inputs (buffers, inverters and constants are not counted), minimized.",
+    "label_spec": {
+      "scientific_contribution": "engineering",
+      "artifact": "program",
+      "domain": "systems",
+      "data": "public_benchmark",
+      "verification": "simulation",
+      "reference": "published_value",
+      "area": "systems_and_hardware",
+      "secondary_area": "theoretical_computer_science",
+      "areas": [
+        "systems_and_hardware",
+        "theoretical_computer_science"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "random_control/ctrl.aig from github.com/lsils/benchmarks"
+    ],
+    "suite": {
+      "protocol": "recreated_verified",
+      "family": "epfl",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "abc",
+        "file:data/arnew/epfl/ctrl.aig"
+      ],
+      "timeout": 2400,
+      "validity_key": "valid"
+    },
+    "declared_status": "requires_setup"
+  },
+  "limitations": [
+    "Most records come from SAT-based exact synthesis of subcircuits, which an ABC script cannot express.",
+    "Requires the Berkeley ABC binary (set ARNEW_ABC).",
+    "LUTs and levels are counted from the written network by the convention of the EPFL table (single-input nodes are free), not from ABC's print_stats.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "real_instance_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
+    "upstream_reproduction": true,
+    "record_level": "record_reproduced",
+    "unsure": false,
+    "record_validation": {
+      "record": 25,
+      "checks": [
+        "README table lists 25",
+        "the published circuit has 25 LUTs and 2 levels (EPFL convention), largest LUT 6 inputs",
+        "ABC cec (inputs and outputs matched by name): equivalent to the benchmark circuit"
+      ],
+      "sources": [
+        "sources/epfl_best_results_README.md",
+        "sources/epfl_best/size/ctrl_size_2023.blif",
+        "data/epfl/ctrl.aig"
+      ],
+      "notes": [],
+      "validated": "2026-11-11"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "engineering",
+    "science_tier": 3,
+    "artifact": "program",
+    "domain": "systems",
+    "data": "public_benchmark",
+    "verification": "simulation",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "systems_and_hardware",
+    "secondary_area": "theoretical_computer_science",
+    "areas": [
+      "systems_and_hardware",
+      "theoretical_computer_science"
+    ],
+    "important_to_science": true
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "The cited papers have LUT technology mapping and the minimisation of benchmark circuits as their main objective, and the evaluator scores exactly the LUT count or level count of an equivalence-checked 6-LUT network; the local candidate is an ABC script, which is narrower than the methods of the record holders.",
+    "scientific_problem": "Implement the EPFL benchmark circuit ctrl as a network of lookup tables with at most six inputs, with an ABC command script, minimising the size (LUT count for size, LUT levels for depth).",
+    "importance_rationale": "Mapping logic to k-input lookup tables fixes the area and delay of an FPGA implementation, and the EPFL suite is the community reference for logic optimisation, with best LUT-6 counts and levels lowered by new synthesis methods every few years. A better result is a smaller or shallower implementation of a standard circuit; the best-known networks mostly come from SAT-based exact synthesis, which a script of ABC commands cannot express.",
+    "papers": [
+      {
+        "title": "Improvements to Technology Mapping for LUT-Based FPGAs",
+        "url": "https://doi.org/10.1109/TCAD.2006.887925",
+        "task_relation": "Defines the K-LUT mapping problem whose LUT count or level count the task scores; ABC's `if` command implements the method.",
+        "primary_goal": "Improve LUT-based FPGA technology mapping (area and delay) through better cut-based mapping and area recovery.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Circuit Minimization with QBF-Based Exact Synthesis",
+        "url": "https://doi.org/10.1609/aaai.v37i4.25524",
+        "task_relation": "The record holder's method family (exact resynthesis of subcircuits) applied to benchmark circuits; an ABC script cannot express it, so the task is the script-restricted version.",
+        "primary_goal": "Minimise Boolean circuits by exact resynthesis of small subcircuits encoded as QBF.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  },
+  "source_specification": {
+    "name": "EPFL alu-control-unit, LUT-6 count",
+    "slug": "epfl-alu-control-unit-size",
+    "description": "Optimise the EPFL combinational benchmark circuit alu-control-unit (the control unit of an ALU; 7 inputs, 26 outputs) with the logic-synthesis tool ABC and map it to lookup tables (LUTs) with at most 6 inputs, minimising the number of LUTs. The result must compute the same function as the original circuit.",
+    "benchmark": "EPFL alu-control-unit, LUT-6 count",
+    "dataset": "random_control/ctrl.aig from github.com/lsils/benchmarks",
+    "metric": "score",
+    "direction": "minimize",
+    "source_url": "https://github.com/lsils/benchmarks/tree/master/best_results",
+    "source_locator": "alu-control-unit",
+    "upstream_path": null,
+    "requirements": [
+      "abc",
+      "file:data/epfl/ctrl.aig"
+    ],
+    "execution_notes": "random_control/ctrl.aig from github.com/lsils/benchmarks"
+  }
+}

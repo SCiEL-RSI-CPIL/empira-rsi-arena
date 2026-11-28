@@ -1,0 +1,149 @@
+{
+  "id": "gset-maxcut-g23",
+  "name": "Max-cut, G-set G23",
+  "description": "Partition the 2000 vertices of the G-set graph G23 into two sides so that the total weight of the edges whose endpoints are on different sides is as large as possible (max-cut). The graph is undirected and has 19990 edges, each given once; every edge has weight 1.",
+  "protocol": "recreated",
+  "family": "maxcut",
+  "direction": "maximize",
+  "contract": "solve(n, edges) -> sequence of n integers, each 0 or 1: the side of every vertex. edges is an int64 array with one row (i, j, w) per edge, vertices numbered from 0. Score: total weight of the edges whose endpoints are on different sides, maximized.",
+  "parameters": {
+    "instance": "G23",
+    "best_known": null
+  },
+  "requires": [
+    "py:numpy",
+    "file:data/arnew/gset/G23"
+  ],
+  "timeout": 600,
+  "notes": [
+    "The best-known cut was not read for this instance; check the G-set literature before claiming a record.",
+    "G-set file G23 from https://web.stanford.edu/~yyye/yyye/Gset/G23",
+    "G-set graph G23: a sparse random graph of density 1 percent (2000 vertices, 19990 edges, all weights 1, average degree 20.0); the weight of a cut is the sum of the weights of edges whose endpoints lie on different sides.",
+    "Specialised solvers (breakout local search, simulated bifurcation, GES-PR) are strong on this set.",
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it."
+  ],
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "none",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "secondary_area": "physics",
+    "areas": [
+      "optimization",
+      "physics",
+      "theoretical_computer_science",
+      "systems_and_hardware"
+    ],
+    "important_to_science": true
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "Max-cut, G-set G23",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "maximize",
+  "sources": [
+    {
+      "url": "https://web.stanford.edu/~yyye/yyye/Gset/",
+      "type": "benchmark",
+      "locator": "G23"
+    },
+    {
+      "url": "https://arxiv.org/abs/2505.18508",
+      "type": "paper",
+      "locator": "2025 report of G81 14060 and related cuts"
+    },
+    {
+      "url": "https://doi.org/10.1287/opre.36.3.493",
+      "type": "paper",
+      "locator": "An Application of Combinatorial Optimization to Statistical Physics and Circuit Layout Design"
+    },
+    {
+      "url": "https://doi.org/10.1145/227683.227684",
+      "type": "paper",
+      "locator": "Improved approximation algorithms for maximum cut and satisfiability problems using semidefinite programming"
+    },
+    {
+      "url": "https://doi.org/10.1137/S1052623400382467",
+      "type": "paper",
+      "locator": "Rank-Two Relaxation Heuristics for MAX-CUT and Other Binary Quadratic Programs"
+    },
+    {
+      "url": "https://doi.org/10.1016/j.engappai.2012.09.001",
+      "type": "paper",
+      "locator": "Breakout Local Search for the Max-Cutproblem"
+    },
+    {
+      "url": "https://doi.org/10.1137/s1052623497328987",
+      "type": "paper",
+      "locator": "Helmberg and Rendl (2000), A Spectral Bundle Method for Semidefinite Programming (title per Crossref): a semidefinite programming method, not a max-cut paper; the brief credits it with the first use of the G-set, which was not checked."
+    },
+    {
+      "url": "https://arxiv.org/abs/2510.21105",
+      "type": "paper",
+      "locator": "Khan and Shukla (2025), New Best-Known Max-Cut Solution for the G63 Instance in the G-Set Benchmark: describes the set as random, toroidal and planar graphs with 1 or +-1 weights, and gives the earlier best value for G63."
+    }
+  ],
+  "limitations": [
+    "Specialised solvers (breakout local search, simulated bifurcation, GES-PR) are strong on this set.",
+    "The data file digest is not pinned until scripts/new_open_problems/prepare_new_data.py has fetched it.",
+    "The task states no record. See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://web.stanford.edu/~yyye/yyye/Gset/"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "The cited papers have the max-cut problem (its applications, its semidefinite relaxation and heuristics for large instances) as their main objective, and the evaluator scores exactly the cut weight on a pinned G-set graph.",
+    "scientific_problem": "Find a partition of the vertices of the G-set graph G23 into two sides that maximises the total weight of the edges between the sides (max-cut).",
+    "importance_rationale": "Max-cut asks for the heaviest cut of a weighted graph and is NP-hard. It is equivalent to finding a ground state of an Ising spin glass without external field, and it models via minimisation in circuit layout; its semidefinite relaxation gave one of the best-known approximation algorithms. The G-set graphs (800 to 20,000 vertices) have been a standard test bed for heuristics and Ising machines for about 25 years, and for the large sparse graphs a better cut is a better solution of an open or unproven instance.",
+    "papers": [
+      {
+        "title": "An Application of Combinatorial Optimization to Statistical Physics and Circuit Layout Design",
+        "url": "https://doi.org/10.1287/opre.36.3.493",
+        "task_relation": "States why max-cut matters (spin-glass ground states, layout); the task scores the max-cut weight of the G-set graph G23, with a heuristic instead of a cutting-plane method.",
+        "primary_goal": "Reduce spin-glass ground states and via minimisation in circuit layout to max-cut and solve the resulting instances with a cutting-plane algorithm.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Improved approximation algorithms for maximum cut and satisfiability problems using semidefinite programming",
+        "url": "https://doi.org/10.1145/227683.227684",
+        "task_relation": "Introduces the semidefinite relaxation that bounds and approximates the quantity the task maximises; the task has no guarantee requirement.",
+        "primary_goal": "Give a randomised approximation algorithm for max-cut based on a semidefinite programming relaxation.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Rank-Two Relaxation Heuristics for MAX-CUT and Other Binary Quadratic Programs",
+        "url": "https://doi.org/10.1137/S1052623400382467",
+        "task_relation": "A heuristic for large max-cut graphs of the kind the task poses; the task asks for a better cut on one fixed graph. The paper's use of the G-set files was not read.",
+        "primary_goal": "Develop fast rank-two relaxation heuristics for large max-cut instances and compare them with semidefinite programming codes.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Breakout Local Search for the Max-Cutproblem",
+        "url": "https://doi.org/10.1016/j.engappai.2012.09.001",
+        "task_relation": "A heuristic whose main objective is the cut weight the task scores on G-set graphs. The title is as Crossref spells it; its tables were not read (publisher page blocked).",
+        "primary_goal": "Design a breakout local search heuristic for max-cut and report improved cuts on benchmark graphs.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  }
+}

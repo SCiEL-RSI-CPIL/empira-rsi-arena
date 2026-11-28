@@ -2,7 +2,7 @@
 
 **Paper:** LLM-Guided Evolutionary Search for Constraint Model Reformulation to Improve Solver Efficiency (https://arxiv.org/pdf/2607.28268)\
 **Task id:** `pdr-social-golfer-csplib-10`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
@@ -13,11 +13,13 @@ Benchmark named in the paper: CSPLib / AutoIG. Paper metric: geometric mean base
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+build_model(data) -> (cpmpy.Model, extractor) written with CPMpy 0.10.1 (import cpmpy as cp); data keys weeks, groups, group_size (golfers = groups * group_size); extractor() -> {'schedule': weeks x golfers matrix of group indices}, every group of every week has group_size golfers and no pair of golfers meets twice. Satisfaction models only (no objective); cpmpy, numpy and a small standard-library subset may be imported. Score (maximize): PAR2 runtime speedup over the baseline model on a fixed set of generated satisfiable instances = sum of baseline seconds / sum of candidate seconds, where an instance's seconds are the CPU time of the model module's top-level code + build_model + CPMpy-to-OR-Tools transformation and export (in a sandboxed child process, measured from outside it) + CP-SAT Solve (1 worker, seed 42, separate process) + extractor (child), and an instance not finished within its cap (max(cap_floor, cap_factor x baseline)) counts 2 x cap; a wrong answer or an infeasibility claim makes the candidate invalid
+
+Parameters: `{"problem": "social_golfers", "instances": [{"weeks": 4, "groups": 4, "group_size": 4}, {"weeks": 5, "groups": 5, "group_size": 4}, {"weeks": 5, "groups": 5, "group_size": 5}, {"weeks": 7, "groups": 6, "group_size": 3}, {"weeks": 6, "groups": 8, "group_size": 4}, {"weeks": 6, "groups": 5, "group_size": 5}, {"weeks": 7, "groups": 5, "group_size": 3}, {"weeks": 7, "groups": 8, "group_size": 4}], "cap_factor": 3.0, "cap_floor": 1.0, "baseline_cap": 60.0}`
 
 ## Labels
 
-Scientific contribution: `method` (tier 2); artifact `program`, domain `combinatorial_optimisation`, data `public_benchmark`, verification `none`, reference `none`, resources `unavailable`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `method` (tier 2); artifact `program`, domain `combinatorial_optimisation`, data `synthetic`, verification `simulation`, reference `none`, resources `cpu`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -30,7 +32,16 @@ No qualifying paper whose main objective is this underlying scientific or real-w
 
 ## Evaluation protocol
 
-Not executable in this suite: Evaluation depends on an external toolchain (CSPLib / AutoIG) that is not bundled.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Social golfer instances are (weeks, groups, group size) triples known to be solvable and selected by baseline runtime; there is no randomness.
+- Instances: the paper draws AutoIG-generated pools (Spracklen et al. 2023), keeps satisfiable instances with baseline runtimes of 1-300 s and splits them 8/8/16 into training, validation and test sets; those pools are not released and are not reproduced. This task uses 8 locally generated satisfiable instances (instance parameters in the task parameters; these instances involve no random generation), graded so that the baseline needs roughly 0.1-6 CPU seconds each on an Apple M-series CPU.
+- There is one fixed instance set and no validation/test split, so a candidate can overfit these instances (the paper selects the final model on validation instances and reports held-out test speedups). The paper does not include instance parameter values in its prompts; here they are published in the task parameters, README and evaluator, so the scored instances are fully known to the optimiser.
+- Runtime measure: CPU seconds of the model module's top-level code + build_model + CPMpy 0.10.1 transformation to OR-Tools + export of the transformed model in protobuf text format (all in a sandboxed child process, a fresh one per instance and model, whose CPU clock the evaluator reads from outside when the child reports each step) + CP-SAT Solve (OR-Tools 9.14.6206, one search worker, random seed 42, in a separate clean process) + extractor (in the child; any CPU the child uses while the solver runs counts here too). The baseline goes through the same path. Compared with the earlier in-process measurement, the module's top-level code and the text export now count (the export is about 5% of the baselines' build time); a model whose build or extractor does not finish within the cap is stopped and counts 2 x cap. The paper reports solving time (time to first solution) without saying whether it is wall-clock or CPU time or whether model construction and the CPMpy transformation count (CPMpy 0.10.1 and CP-SAT with one search worker, up to eight concurrent single-core runs on an Intel Core i7-12700, Section 5; seed 42, Appendix A; a 300 s per-instance limit, Appendix B), so counting build and transformation time here may itself differ from the paper. CP-SAT's deterministic time is not used: it excludes presolve work (instances closed in presolve report 0) and its work units are not comparable across constraint types. CPU time has run-to-run noise of about 1% on an idle machine and more under load; scores are ratios measured on the same machine in the same evaluation.
+- Score: sum of baseline seconds / sum of candidate seconds over the instances (the paper's per-run speedup T_S(B)/T_S(m) with PAR2); an instance not finished within its cap of max(cap_floor, cap_factor x baseline seconds) = max(1 s, 3 x baseline) counts 2 x cap. The paper uses a fixed 300 s per-instance limit and, during search, caps the total training evaluation at C_B = max(T_B, min(1.5 T_B, 900)) s (Section 5); no such cap is applied here. The per-instance geometric-mean speedup is reported in the details.
+- Validity: the paper accepts an answer when fixing it into the baseline model leaves it satisfiable; here an independent checker of the CSPLib definition verifies every answer (equivalent when the baseline is correct). A wrong answer, a claim that an instance is infeasible, an objective, a model OR-Tools rejects, or an import outside cpmpy, numpy and a standard-library allowlist makes the candidate invalid (the import and dunder-attribute checks are guards, kept as defence in depth). The module's top-level code, build_model and the extractor run only in the sandboxed child process (audit-hook policy, CPU, wall-clock and memory limits; the candidate is never imported by the evaluator); the evaluator solves the model the child sends, checks the answer and measures the child's CPU time in its own processes, so model code cannot reach the scoring. The sandbox is defence in depth for honest model search, not a boundary against hostile native code. A transformed model with an objective, a solution hint, a search strategy, symmetry information or assumptions, or a child that breaks the message protocol, is invalid. Only the answers are verified, not how they were obtained: a model that returns stored answers for the published instances (from its extractor, or by fixing its variables to them) is valid; only instances the candidate cannot know, such as the paper's held-out test split, would rule that out.
+- Baseline: a local direct translation of the CSPLib Essence model (github.com/csplib/csplib, Problems/probNNN/models/*.essence); the paper's baseline models are not released. The baseline is remeasured in every evaluation, as in the paper.
+- Candidates follow the PDR paper's contract (CPMpy build_model(data) -> (model, extractor), same answer structure as the baseline). The baseline is a local translation of the problem's CSPLib model (for covering arrays, of the baseline printed in the paper); instances are chosen locally and every answer is verified by an independent checker of the CSPLib definition.
 
 ## Run
 
@@ -42,14 +53,16 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `toolchain:CSPLib / AutoIG`
+- `py:numpy`
+- `py:cpmpy`
+- `py:ortools`
 
 ## Sources
 
-- paper: https://arxiv.org/pdf/2607.28268 (Section 5, Experimental setup)
+- paper: https://arxiv.org/pdf/2607.28268 (Section 5 (Experiments: problem list, Configurations, Instances and Measures) and Appendices A-B)
+- benchmark: https://www.csplib.org/Problems/prob010/ (CSPLib problem 10 (social golfers): specification and reference model translated by the local baseline)
 
 ## Limitations
 
 - No official public runnable implementation verified from the inspected paper. External benchmark code may exist separately.
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.
 - No publicly accessible, paper-linked implementation with a verified immutable revision was established.

@@ -1,0 +1,124 @@
+{
+  "protocol": "recreated",
+  "family": "science_software_ci_prioritization",
+  "direction": "maximize",
+  "contract": "prioritize(cycle, history) -> list of int. cycle = {'cycle': int, 'tests': [{'id': int, 'duration': int}, ...]} lists the test cases of one continuous-integration cycle, sorted by id (durations are the data set's approximate run times). history lists every earlier cycle in order as {'cycle': int, 'tests': [{'id', 'duration', 'failed': bool}, ...]}. Return a permutation of the cycle's test ids, the test to run first first. A cycle's verdicts are revealed, by appending it to history, only after its order has been committed. Score: mean APFD over the cycles that contain both failing and passing tests, maximised; APFD = 1 - (sum of the 1-based positions of the m failing tests) / (n m) + 1 / (2 n) for a cycle of n tests, so a random order scores 0.5 in expectation. prioritize() is called once per cycle, all cycles in one sandboxed subprocess (no files, network or subprocesses; 60 s CPU in total, 2 GB); module-level state persists between calls. It should be deterministic (seed any randomness, do not read clocks); an invalid order makes the evaluation invalid.",
+  "parameters": {
+    "dataset": "iofrol",
+    "cpu_seconds": 60
+  },
+  "requires": [
+    "py:numpy",
+    "file:data/software/tcp/iofrol.json"
+  ],
+  "timeout": 240,
+  "notes": [
+    "Data: the ABB Paint Control and IOF/ROL CI data sets of Spieker et al. (ISSTA 2017) from HelgeS/atcs-data (MIT) at commit 85bae8b6. Repeated executions of a test within one cycle are merged (failed if any execution failed). The metric is plain APFD over cycles with both outcomes; the source paper reports NAPFD under a 50 % time budget and other studies use APFD over all failing cycles (reported in the details), so published numbers are not directly comparable. Each failing test is counted as one fault because the data sets do not link failures to faults."
+  ],
+  "protocol_description": "Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.",
+  "id": "science-software-ci-prioritization-iofrol",
+  "name": "Software engineering: history-based test prioritisation in continuous integration (ABB IOF/ROL)",
+  "paper_ids": [
+    "science-software_engineering"
+  ],
+  "description": "Order the test cases of each of the 320 continuous-integration cycles of ABB's IOF/ROL system so that failing tests run early, using only the verdicts of earlier cycles. Each cycle's verdicts are revealed after its order is committed; the score is the mean APFD over cycles with both failing and passing tests.",
+  "benchmark": "Software engineering: history-based test prioritisation in continuous integration (ABB IOF/ROL)",
+  "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+  "paper_direction": null,
+  "sources": [
+    {
+      "url": "https://doi.org/10.1145/3092703.3092709",
+      "type": "paper",
+      "locator": "Spieker, Gotlieb, Marijan and Mossige (ISSTA 2017): reinforcement learning for test prioritisation and selection in CI; introduces the ABB Paint Control and IOF/ROL data."
+    },
+    {
+      "url": "https://bitbucket.org/HelgeS/atcs-data/src/85bae8b6dd58ef7d49c4c15690ba628a5187d4f7/",
+      "type": "repository",
+      "locator": "Pinned atcs-data commit (MIT licence): paintcontrol.csv and iofrol.csv with cycle, test, duration and verdict columns."
+    },
+    {
+      "url": "https://doi.org/10.1145/2635868.2635910",
+      "type": "paper",
+      "locator": "Elbaum, Rothermel and Penix (FSE 2014): history-based test prioritisation and selection in continuous integration at Google."
+    },
+    {
+      "url": "https://doi.org/10.1109/32.962562",
+      "type": "paper",
+      "locator": "Rothermel, Untch, Chu and Harrold (TSE 2001): test case prioritisation and the APFD metric."
+    }
+  ],
+  "limitations": [
+    "The verdicts are historical: the order cannot change which tests fail, and every test of a cycle is assumed to run.",
+    "Plain APFD with each failing test counted as one fault; the source paper reports NAPFD under a time budget, so its numbers are not directly comparable. Durations are given to the candidate but not used by the metric.",
+    "Repeated executions of a test within one cycle are merged (failed if any execution failed); the data set's LastRun and LastResults columns and its row order are not passed on.",
+    "Ordering failing tests first gives 0.815 on this data; a last-verdict heuristic (the seed) gives 0.585, and 99 of the 320 cycles contain a single test.",
+    "The verdicts are public; embedding them is outside the contract but cannot be checked automatically.",
+    "The suite's evaluator template imports the candidate module in the evaluator process before scoring; every scored call runs in the sandbox, which cannot read the held-out data, but deliberately hostile import-time code could. Untrusted evaluations should run in a container without the prepared files."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "science-software_engineering",
+      "title": "Software engineering research: source-based research tasks",
+      "url": "https://doi.org/10.1109/TSE.2008.50"
+    }
+  ],
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "statement": "Published results on this data use NAPFD under a time budget or other aggregations, so no directly comparable value is embedded; the best possible score for this metric (failing tests first) is reported in the evaluator details.",
+    "sources": [
+      {
+        "title": "Reinforcement learning for automatic test case prioritization and selection in continuous integration",
+        "url": "https://doi.org/10.1145/3092703.3092709"
+      }
+    ],
+    "as_of": "2026-10-10"
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Regression test prioritisation in continuous integration: order a cycle's tests from their execution history so that failures are revealed as early as possible.",
+    "importance_rationale": "Continuous integration runs large regression suites many times a day; earlier failure detection shortens feedback to developers and lowers testing cost, and history-based prioritisation is a main research line for it.",
+    "papers": [
+      {
+        "title": "Reinforcement learning for automatic test case prioritization and selection in continuous integration",
+        "url": "https://doi.org/10.1145/3092703.3092709",
+        "primary_goal": "Prioritise and select test cases in continuous integration from their history so that failing tests are executed early.",
+        "task_relation": "The task uses this paper's ABB data and the same online setting, in which verdicts become known after each cycle.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Techniques for improving regression testing in continuous integration development environments",
+        "url": "https://doi.org/10.1145/2635868.2635910",
+        "primary_goal": "Make regression testing in continuous integration cheaper and faster by selecting and prioritising tests from failure history.",
+        "task_relation": "The task's candidate is such a history-based prioritisation policy.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Prioritizing test cases for regression testing",
+        "url": "https://doi.org/10.1109/32.962562",
+        "primary_goal": "Order regression tests to increase the rate of fault detection, measured by APFD.",
+        "task_relation": "The task scores orders with APFD.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "domain": "software_engineering",
+    "area": "software_engineering",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  }
+}

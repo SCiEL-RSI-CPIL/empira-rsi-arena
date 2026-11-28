@@ -2,22 +2,24 @@
 
 **Paper:** AgentSquare: Automatic LLM Agent Search in Modular Design Space (https://arxiv.org/pdf/2410.06153)\
 **Task id:** `agentsquare-m3tooleval`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-M3ToolEval task evaluated in AgentSquare: Automatic LLM Agent Search in Modular Design Space.
+Write a Python act(instruction, observation, valid_actions, history, llm) agent that solves M3ToolEval tasks by calling tools or answering in CodeAct's text-as-action format, using a budgeted OpenRouter model client; scored by the success rate over 20 fixed tasks (4 per domain), at most 10 turns each (higher is better).
 
 Benchmark named in the paper: M3ToolEval. Paper metric: success rate.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+act(instruction: str, observation: str, valid_actions: list[str], history: list[tuple[str, str, float]], llm) -> str: the next action. `instruction` is the episode's fixed task text, `observation` the environment's latest text, `valid_actions` the actions the environment lists for this state (empty when it lists none), `history` the (action, observation, reward) triples of the current episode and `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` a budgeted, cached OpenRouter chat client. act must return a str (anything else invalidates the evaluation); a crash or timeout ends the episode with the environment's score at that point; exhausting the model budget invalidates the evaluation. The agent runs in a sandboxed child process (one per episode; module state persists within an episode only) that sees nothing but these arguments. Environment: M3ToolEval (CodeAct) in text-as-action mode: `instruction` is CodeAct's task prompt with the tool list, each reply is one assistant turn ('Action: tool, arg, ... End Action' or 'Answer: ...'), `observation` the tool result or feedback; a fixed sample of 4 tasks per domain (20 episodes), at most 10 turns. Episode score: 1 when solved, else 0. Score: success rate over the 20 episodes; higher is better
+
+Parameters: `{"adapter": "m3tool", "per_domain": 4, "seed": 0, "max_steps": 10, "budget_usd": 0.5}`
 
 ## Labels
 
-Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `software_engineering`, data `public_benchmark`, verification `none`, reference `none`, resources `model_api, simulator`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `benchmark` (tier 3); artifact `agent`, domain `language`, data `public_benchmark`, verification `sampled`, reference `none`, resources `model_api`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -30,7 +32,15 @@ No qualifying paper whose main objective is this underlying scientific or real-w
 
 ## Evaluation protocol
 
-Not executable in this suite: Candidates are LLM agents scored inside the M3ToolEval environment (tools, web, games or code sandboxes); the environment and model access are external.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Environment: CodeAct's own M3ToolEval task package (xingyaoww/code-act at commit d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8, scripts/eval/m3tooleval, MIT), fetched by scripts/prepare_agent_bench.py and imported with one replacement: CodeAct's `calculator` tool is eval(expression), which would execute the agent's text as Python in the environment server next to the expected outputs; it is replaced by an arithmetic evaluator (numbers, + - * / // % **, parentheses, abs, round, int, float; integers up to 4096 bits), and every other expression gets CodeAct's 'Failed to evaluate expression' reply. Its IPython-based REPL, needed only for the code-as-action mode, and its tqdm progress bar are stubbed out. Turns follow CodeAct's run_task: post-processing to the first Action/Answer block, CodeAct's parser, tool execution, the 'incorrect, try again' message after a wrong answer, success on a correct answer or (for single-tool tasks) a tool result equal to the expected output, 10-turn limit. AgentSquare's own runner also accepts a correct answer at any turn within 10 turns.
+- Action mode: text-as-action (CodeAct's default, the mode AgentSquare runs); the JSON and code modes are not offered.
+- Sample: AgentSquare evaluates all 82 tasks of the five domains; here a fixed sample of 4 tasks per domain (20) in SHA-256 order (seed 0).
+- Candidate: AgentSquare searches over agent module code (planning, reasoning, tool use, memory with a uniform interface) with module evolution, recombination and a performance predictor; those belong to the search method. Here the candidate is the agent program itself, act(...) called once per step; it may implement any modules internally. The AgentSquare repository has no licence, so its code is only read to recover the protocol; the environments come from the benchmarks' own releases.
+- Model: AgentSquare runs GPT-3.5-turbo-0125 and GPT-4o; the default client model here is google/gemini-2.5-flash at temperature 0 (ARTASK_LLM_MODEL overrides it), so absolute scores are not comparable with the paper. Not verified: the paper's numbers were not reproduced.
+- Isolation: the candidate runs in a resource-limited child process (software_sandbox) that cannot read files outside the Python installation; model calls and steps are forwarded to the evaluator, and the environment (including any gold plan or answer) runs in a separate server process, so the candidate cannot see labels or solutions.
+- Model-driven agent evaluation: the score is an estimate on a fixed, seeded list of episodes and depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0) and on the per-evaluation budget (task parameter budget_usd, overridden by ARTASK_LLM_BUDGET_USD); exhausting the budget makes the evaluation invalid. ARTASK_AGENT_EPISODES truncates the episode list for quick checks. The candidate runs in a resource-limited child process (one per episode) that receives only the instruction, observations, listed valid actions, its own history and a model client; the environment runs in a separate server process. Responses are cached under llm-cache of the task cache. `valid` is null because a sampled model score cannot certify a candidate.
 
 ## Run
 
@@ -42,15 +52,20 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `service:llm_api`
+- `py:numpy`
 - `env:OPENROUTER_API_KEY`
-- `environment:M3ToolEval`
+- `network:openrouter`
+- `file:data/agent_bench/m3tooleval/tasks/base.py`
 
 ## Sources
 
 - paper: https://arxiv.org/pdf/2410.06153 (Appendix A.1)
 - repository: https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c (tasks/m3tooleval/m3tool_run.py)
+- paper: https://arxiv.org/abs/2410.06153 (Section 4.1 and Appendix A.1 (tasks and metrics))
+- repository: https://github.com/tsinghua-fib-lab/AgentSquare/tree/8f5b3fe5d8a32f9b59d20370823bef2a2c86928c/tasks/m3tooleval/main.py (AgentSquare's M3ToolEval loop)
+- benchmark: https://github.com/xingyaoww/code-act/tree/d607f56c9cfe9e8632ebaf65dcaf2b4b7fe1c6f8/scripts/eval/m3tooleval (tasks, tools, prompt, parser and answer check (used unchanged))
 
 ## Limitations
 
-- No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap.
+- CodeAct's answer check converts the expected output with int() before comparing, so for a non-integer expected number it also accepts the integer part (expected 161.25: '161' is accepted). This affects 14 of the 82 tasks and 4 of the 20 sampled ones; the check is kept because it is the benchmark's own.
+- The 20 episodes are a fixed list of public benchmark items that every evaluation replays, and act may return actions without calling the model. A program that replays memorised answers or actions for these episodes is scored like an agent, so the score says nothing about other episodes of the benchmark.

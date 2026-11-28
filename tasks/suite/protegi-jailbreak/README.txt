@@ -1,23 +1,25 @@
-# Jailbreak
+# Jailbreak detection
 
 **Paper:** Automatic Prompt Optimization with “Gradient Descent” and Beam Search (https://arxiv.org/pdf/2305.03495)\
 **Task id:** `protegi-jailbreak`\
-**Protocol:** `unsupported`\
+**Protocol:** `recreated`\
 **Direction:** maximize\
 
 ## Task
 
-Jailbreak: optimize the candidate specified by the paper and evaluate against the named benchmark.
+Write a classifier that decides whether a single English user message is a jailbreak attempt, scored with binary F1 on a fixed sample of the public jackhhao/jailbreak-classification data; a clearly labelled proxy of ProTeGi's unreleased multilingual jailbreak-detection set.
 
-Benchmark named in the paper: Jailbreak. Paper metric: F1.
+Benchmark named in the paper: Jailbreak detection. Paper metric: binary F1.
 
 ## Candidate interface
 
-See the docstring in `evaluator.py`.
+solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client. `question` is a user message followed by the question whether it is a jailbreak attack (answer Yes or No). Prediction rule (ProTeGi's binary predictor): the message is predicted to be a jailbreak exactly when the final answer (the text after the last 'Answer:' marker, else the last \boxed{...}, else the last non-empty line) starts with 'yes', case-insensitively; a crashing call predicts 'not a jailbreak'. Score: binary F1 of the jailbreak class over a fixed 40-message sample of the public jackhhao/jailbreak-classification test split (accuracy is reported as per_item_accuracy); higher is better
+
+Parameters: `{"benchmark": "jailbreak", "samples": 40, "seed": 0}`
 
 ## Labels
 
-Scientific contribution: `benchmark` (tier 3); artifact `prompt`, domain `language`, data `public_benchmark`, verification `none`, reference `none`, resources `model_api, unavailable`. See [docs/LABELS.md](../../docs/LABELS.md).
+Scientific contribution: `benchmark` (tier 3); artifact `prompt`, domain `language`, data `public_benchmark`, verification `sampled`, reference `none`, resources `model_api`. See [docs/LABELS.md](../../docs/LABELS.md).
 
 ## Importance to science
 
@@ -30,7 +32,15 @@ No qualifying paper whose main objective is this underlying scientific or real-w
 
 ## Evaluation protocol
 
-Not executable in this suite: Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the Jailbreak benchmark. The suite embeds neither model calls nor the benchmark data.
+Locally implemented or adapted evaluator for the cited task or benchmark. Data sources, generated instances, evaluation budgets and protocol differences are specified in the candidate contract, requirements and notes; scores are not automatically comparable with published results.
+
+- Proxy data (clearly labelled substitution): ProTeGi's jailbreak set (452 multilingual, human-annotated user inputs to an LLM continuation API) was never released; the pinned LMOps code expects private data/jailbreak/train.tsv and test.tsv. This task uses the public, English jackhhao/jailbreak-classification balanced test split at revision 2f2ceeb39658696fd3f462403562b6eea5306287 (262 prompts: 139 jailbreak prompts from verazuo/jailbreak_llms, 123 benign prompts from OpenOrca and GPTeacher; Apache-2.0). It measures the same capability, binary jailbreak detection, on different data, so scores are not comparable with the paper.
+- Metric: the paper reports binary F1, used here for the jailbreak class over the sample. The pinned LMOps code (prompt_optimization/tasks.py) computes sklearn f1_score(average='micro'), which equals accuracy for this task; that value is reported as per_item_accuracy.
+- Candidate: a free-form solve(question, llm) program replaces ProTeGi's beam-searched classification prompt (GPT-3.5/GPT-4 in the paper); the default model is google/gemini-2.5-flash at temperature 0.
+- Not verified: the paper's results were not reproduced (its data are unavailable); a fixed 40-message sample is evaluated.
+- No training or development data are provided: the candidate is optimised against the 40-message sample it is scored on, whereas ProTeGi optimises on training minibatches and reports a separate 150-example test sample averaged over three trials. ProTeGi's classifier emits a short Yes/No completion (LMOps max_tokens=4); the local candidate may reason at length before its final answer.
+- The candidate runs as trusted code in the evaluator's process, and the reference answers are stored in data/llm_bench of the task cache (ARENA_TASK_CACHE_DIR), so a candidate could read them; it can also replace the evaluator's scoring functions, raise the model client's budget attribute and read OPENROUTER_API_KEY from the environment, so the per-evaluation budget bounds an honest program only. Scores assume a candidate that does none of this.
+- Model-driven evaluation: the score is an estimate on a fixed seeded sample and depends on the model (ARTASK_LLM_MODEL, default google/gemini-2.5-flash at temperature 0), the sample size (task parameter `samples`, overridden by ARTASK_LLM_SAMPLES) and the per-evaluation budget (ARTASK_LLM_BUDGET_USD, default 0.25). Responses are cached under llm-cache in the task cache (ARTASK_LLM_CACHE overrides) and shared by all candidates: a repeated call, also one at temperature > 0, returns the stored reply, and a cached reply costs nothing against the budget. `valid` is null because a sampled model score cannot certify a candidate.
 
 ## Run
 
@@ -42,14 +52,17 @@ The evaluator prints a JSON result with `combined_score` (the value SCiEL maximi
 
 ## Requirements
 
-- `service:llm_api`
+- `py:numpy`
 - `env:OPENROUTER_API_KEY`
-- `dataset:Jailbreak`
+- `network:openrouter`
+- `file:data/llm_bench/jailbreak.json`
 
 ## Sources
 
-- paper: https://arxiv.org/pdf/2305.03495 (Section 4)
+- paper: https://arxiv.org/pdf/2305.03495 (Section 3 (3.1 Data, 3.2 Setup, 3.4 Experimental Results, Tables 1-3))
 - repository: https://github.com/microsoft/LMOps/tree/6f53ef41c951de0962bbf27fe3f5819eabc8ce0e (prompt_optimization/main.py)
+- benchmark: https://huggingface.co/datasets/jackhhao/jailbreak-classification/tree/2f2ceeb39658696fd3f462403562b6eea5306287 (balanced/jailbreak_dataset_test_balanced.csv (proxy for the unreleased ProTeGi data))
+- repository: https://github.com/microsoft/LMOps/blob/6f53ef41c951de0962bbf27fe3f5819eabc8ce0e/prompt_optimization/predictors.py (BinaryPredictor yes-prefix rule)
 
 ## Limitations
 

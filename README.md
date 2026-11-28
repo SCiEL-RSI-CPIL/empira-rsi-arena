@@ -6,8 +6,8 @@
 
 **An arena for research on recursive self-improvement.**
 
-[![959 tasks](.github/assets/tasks-badge.svg)](tasks/suite)
-[![702 evaluator definitions](.github/assets/evaluators-badge.svg)](registry/catalog.json)
+[![2578 tasks](.github/assets/tasks-badge.svg)](tasks/suite)
+[![1023 evaluator definitions](.github/assets/evaluators-badge.svg)](registry/catalog.json)
 [![98 research papers](.github/assets/papers-badge.svg)](registry/participant-corpus.json)
 [![Python 3.11+](.github/assets/python-badge.svg)](#quick-start)
 [![Hugging Face mirror](.github/assets/huggingface-badge.svg)](https://huggingface.co/datasets/autoresearchTasksSciel/autoresearch-tasks)
@@ -29,20 +29,19 @@ Researchers can inspect the problems a system works on, follow changes to its co
 
 ## Release snapshot — v0.1.0
 
-As of **22 September 2026**, the collection contains **959 task packages** across **153 task families** and **11 research domains**, drawing on a **98-paper research corpus** and supplementary scientific collections.
+As of **27 November 2026**, the collection contains **2,403 task packages** across **489 task families** and **11 research domains**, drawing on a **98-paper research corpus** and supplementary scientific collections.
 
-Our contribution is turning research problems into task packages with a shared evaluation interface. Of the **705 packages with executable evaluator definitions**, **84.54% use evaluators implemented or adapted in the task library**; **15.46% reuse upstream evaluators**.
+Our contribution is turning research problems into task packages with a shared evaluation interface. All **2,403 packages have executable evaluator definitions**: **95.30% use evaluators implemented or adapted in the task library**; **4.70% reuse upstream evaluators**.
 
 | How evaluation is provided | Task packages | Share of the full catalog |
 | --- | ---: | ---: |
-| Implemented or adapted in the task library | **596** | **62.15%** |
-| Reused from upstream implementations | 109 | 11.37% |
-| Research tasks awaiting evaluation integration | 254 | 26.49% |
-| **Total** | **959** | **100.00%** |
+| Implemented or adapted in the task library | **2,290** | **95.30%** |
+| Reused from upstream implementations | 113 | 4.70% |
+| **Total** | **2,403** | **100.00%** |
 
-Evaluator definitions cover **73.51%** of the catalog. **81** adapted definitions are recorded as verified reconstructions. Recorded numeric seed baselines are available for **646 packages (67.36%)**; **75 (7.82%)** include published numeric references.
+Evaluator definitions cover **100%** of the catalog. **1,296** adapted definitions are recorded as verified reconstructions. Recorded numeric seed baselines are available for **961 packages (39.99%)**; **100 (4.16%)** include published numeric references.
 
-Counts refer to task packages, including distinct parameter settings and protocols. The split describes evaluator implementation; validation and runtime requirements are recorded separately for each task.
+Tasks that the source library withdrew because no faithful local evaluator can be built are not part of the collection; `tasks/catalog/withdrawn.json` records each with its reason and evidence. Counts refer to task packages, including distinct parameter settings and protocols. The split describes evaluator implementation; validation and runtime requirements are recorded separately for each task.
 
 Release data: [task library](tasks/suite), [task catalog](registry/catalog.json), [research domains](registry/insights.json), [reference evidence](registry/references.json).
 
@@ -70,7 +69,7 @@ Tasks and system versions enter through GitHub PRs. Run access is granted separa
 
 ### Catalog campaigns
 
-On a provisioned Linux worker, campaigns move through four stages: **pin the release → check seeds → prepare private templates → admit bounded batches**. The inventory retains all **959 tasks**. Currently **349** match the declared CPU dependency profile; only successful seed receipts for the exact task library and evaluator image make a task eligible for preparation. Prepared templates still require their first native run to establish runtime conformance.
+On a provisioned Linux worker, campaigns move through four stages: **pin the release → check seeds → prepare private templates → admit bounded batches**. The inventory retains all **2,578 tasks**. Currently **1,311** match the declared CPU dependency profile; only successful seed receipts for the exact task library and evaluator image make a task eligible for preparation. Prepared templates still require their first native run to establish runtime conformance.
 
 1. **Pin the engine and environment.** Build the private SCiEL image with [`build_sciel_engine.py`](scripts/deployment/build_sciel_engine.py), selecting an immutable source commit and a new Arena version. The current catalog preparer targets `0.2.0+arena.a6c0d215.worker1`. Register and approve its private deployment, and pin the evaluator image by digest. [`build_catalog_cpu_image.py`](scripts/deployment/build_catalog_cpu_image.py) prepares the extended CPU dependencies with a hashed wheel lock.
 2. **Check the seeds.** Run the preflight below. It evaluates candidates without calling a model and retains tasks awaiting environment or evaluator integration in its manifest.

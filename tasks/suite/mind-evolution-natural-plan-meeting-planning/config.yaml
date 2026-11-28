@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 900
   max_retries: 2
 
 prompt:
   system_message: |
     Natural Plan Meeting Planning
 
-    Natural Plan Meeting Planning: optimize the candidate specified by the paper and evaluate against the named benchmark.
+    Write a solve(question, llm) program that uses a budgeted OpenRouter LLM client to answer Natural Plan meeting-planning prompts (meet as many San Francisco friends as possible under availability and travel-time constraints); scored by success rate on a fixed 30-problem test sample, a plan succeeding when its simulated valid meetings match the golden plan's count (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `question` is Natural Plan's 5-shot Meeting Planning prompt (meet as many friends as possible in San Francisco under availability, location and travel-time constraints; answer starting with 'SOLUTION:' in the shown step format). `llm(...)` is a budgeted, cached OpenRouter chat client. Plan checker (port of Natural Plan's evaluate_meeting_planning.py): the text after 'SOLUTION:' is split on periods and simulated step by step ('You start/travel/wait/meet ...'); the count of valid meetings before the first invalid step must equal that of the golden plan. Score: success rate on a fixed 30-problem sample of Mind Evolution's 500-problem test split; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

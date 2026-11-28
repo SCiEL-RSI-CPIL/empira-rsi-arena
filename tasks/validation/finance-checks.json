@@ -1,0 +1,1173 @@
+{
+  "schema": "artask.validation-receipt/1",
+  "package": "finance",
+  "date": "2026-10-08",
+  "scope": "Seed and invalid-candidate executions of the generated finance packages (built in the work-package branch, then reverted to sources), plus the reference checks named per task. No model calls; no evolutionary search was run.",
+  "commands": [
+    "python3 scripts/prepare_finance.py",
+    ".cache/sciel-env/bin/python -m unittest discover -s tests -t . -p \"test_finance*.py\"",
+    "python3 -c \"import sys; sys.path.insert(0,'scripts'); import import_science; import_science.write_packages(topics={'finance_expansion'})\"",
+    "python3 scripts/build_suite.py --only '^(<task ids>)$'",
+    ".cache/sciel-env/bin/python suite/<id>/evaluator.py suite/<id>/initial_program.py"
+  ],
+  "llm_cost_usd_total": 0.0,
+  "tasks": {
+    "science-finance-portfolio-choice-industry10": {
+      "seed_score": 0.15329800834955942,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.01237,
+      "wall_seconds": 0.059,
+      "problem_protocol": "recreated_verified",
+      "seed_details": {
+        "score": 0.15329800834955942,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "dataset": "industry10_market",
+        "first_month": "197307",
+        "last_month": "202509",
+        "months": 627,
+        "window": 120,
+        "cost_rate": 0.005,
+        "net_sharpe": 0.15329800834955942,
+        "gross_sharpe": 0.1558458061747574,
+        "net_mean": 0.006720824633891516,
+        "net_std": 0.04384156523786195,
+        "net_ceq_gamma1": 0.005759783212638663,
+        "mean_turnover": 0.022292125740849367,
+        "max_gross_exposure": 1.0,
+        "equal_weight_net_sharpe": 0.15329800834955942,
+        "equal_weight_gross_sharpe": 0.1558458061747574,
+        "sharpe_minus_equal_weight": 0.0,
+        "jobson_korkie_memmel_z": 0.0,
+        "one_sided_p_value_vs_equal_weight": 0.5,
+        "elapsed_seconds": 0.01237
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "portfolio_bad_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "positions must have shape (11,), got (12,)",
+          "rejected": true
+        },
+        {
+          "candidate": "portfolio_leverage.py",
+          "valid": false,
+          "score": null,
+          "error": "gross exposure 59.000 exceeds the limit 20.0",
+          "rejected": true
+        },
+        {
+          "candidate": "portfolio_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'choose_weights'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-06",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "portfolio_improved.py",
+        "valid": true,
+        "score": 0.1609980163830567,
+        "error": null,
+        "elapsed_seconds": 0.564988
+      },
+      "reference_check": {
+        "compared": "Evaluator backtest of 1/N and of the market portfolio on DGU sample 1963-07..2004-11 (gross returns, M=120, 377 out-of-sample months) versus DeMiguel, Garlappi and Uppal (2009) Table 3 (Sharpe) and Table 5 (1/N turnover).",
+        "published": {
+          "one_over_n_sharpe": 0.1353,
+          "one_over_n_turnover": 0.0216,
+          "market_sharpe": 0.1138
+        },
+        "recomputed": {
+          "one_over_n_sharpe": 0.1353,
+          "one_over_n_turnover": 0.022,
+          "market_sharpe": 0.1163
+        },
+        "result": "agrees within data-revision noise (current CRSP 202509 vintage of the French files versus the 2005 vintage used by DGU)"
+      }
+    },
+    "science-finance-portfolio-choice-ff20": {
+      "seed_score": 0.1500803355334654,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.015563,
+      "wall_seconds": 0.061,
+      "problem_protocol": "recreated_verified",
+      "seed_details": {
+        "score": 0.1500803355334654,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "dataset": "ff20_market",
+        "first_month": "197307",
+        "last_month": "202509",
+        "months": 627,
+        "window": 120,
+        "cost_rate": 0.005,
+        "net_sharpe": 0.1500803355334654,
+        "gross_sharpe": 0.15152581755024638,
+        "net_mean": 0.008272307797142015,
+        "net_std": 0.05511919844620436,
+        "net_ceq_gamma1": 0.006753244778465986,
+        "mean_turnover": 0.015900047982009627,
+        "max_gross_exposure": 1.0000000000000002,
+        "equal_weight_net_sharpe": 0.1500803355334654,
+        "equal_weight_gross_sharpe": 0.15152581755024638,
+        "sharpe_minus_equal_weight": 0.0,
+        "jobson_korkie_memmel_z": 0.0,
+        "one_sided_p_value_vs_equal_weight": 0.5,
+        "elapsed_seconds": 0.015563
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "portfolio_bad_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "positions must have shape (21,), got (22,)",
+          "rejected": true
+        },
+        {
+          "candidate": "portfolio_leverage.py",
+          "valid": false,
+          "score": null,
+          "error": "gross exposure 59.000 exceeds the limit 20.0",
+          "rejected": true
+        },
+        {
+          "candidate": "portfolio_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'choose_weights'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-06",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "portfolio_improved.py",
+        "valid": true,
+        "score": 0.1574845212220699,
+        "error": null,
+        "elapsed_seconds": 1.266199
+      },
+      "reference_check": {
+        "compared": "Evaluator backtest of 1/N and of the market portfolio on DGU sample 1963-07..2004-11 (gross returns, M=120, 377 out-of-sample months) versus DeMiguel, Garlappi and Uppal (2009) Table 3 (Sharpe) and Table 5 (1/N turnover).",
+        "published": {
+          "one_over_n_sharpe": 0.1623,
+          "one_over_n_turnover": 0.0162,
+          "market_sharpe": 0.1138
+        },
+        "recomputed": {
+          "one_over_n_sharpe": 0.1613,
+          "one_over_n_turnover": 0.0164,
+          "market_sharpe": 0.1163
+        },
+        "result": "agrees within data-revision noise (current CRSP 202509 vintage of the French files versus the 2005 vintage used by DGU)"
+      }
+    },
+    "science-finance-portfolio-choice-industry49": {
+      "seed_score": 0.15712310131886248,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.018943,
+      "wall_seconds": 0.064,
+      "problem_protocol": "recreated",
+      "seed_details": {
+        "score": 0.15712310131886248,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "dataset": "industry49",
+        "first_month": "197907",
+        "last_month": "202509",
+        "months": 555,
+        "window": 120,
+        "cost_rate": 0.005,
+        "net_sharpe": 0.15712310131886248,
+        "gross_sharpe": 0.16054321448418074,
+        "net_mean": 0.0075165235933037375,
+        "net_std": 0.04783843706120499,
+        "net_ceq_gamma1": 0.006372265563074302,
+        "mean_turnover": 0.032719676593442,
+        "max_gross_exposure": 0.9999999999999999,
+        "equal_weight_net_sharpe": 0.15712310131886248,
+        "equal_weight_gross_sharpe": 0.16054321448418074,
+        "sharpe_minus_equal_weight": 0.0,
+        "jobson_korkie_memmel_z": 0.0,
+        "one_sided_p_value_vs_equal_weight": 0.5,
+        "elapsed_seconds": 0.018943
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "portfolio_bad_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "positions must have shape (49,), got (50,)",
+          "rejected": true
+        },
+        {
+          "candidate": "portfolio_leverage.py",
+          "valid": false,
+          "score": null,
+          "error": "gross exposure 59.000 exceeds the limit 20.0",
+          "rejected": true
+        },
+        {
+          "candidate": "portfolio_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'choose_weights'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-06",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "portfolio_improved.py",
+        "valid": true,
+        "score": 0.1730292621906568,
+        "error": null,
+        "elapsed_seconds": 4.222367
+      },
+      "reference_check": {
+        "compared": "No published counterpart for this dataset; the shared backtest machinery is checked on DGU datasets 2 and 5 (see the other two portfolio tasks) and by tests/test_finance_portfolio.py arithmetic tests.",
+        "result": "not applicable"
+      }
+    },
+    "science-finance-equity-premium-prediction": {
+      "seed_score": 0.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.026271,
+      "wall_seconds": 0.073,
+      "problem_protocol": "recreated",
+      "seed_details": {
+        "score": 0.0,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "first_target_month": 196501,
+        "last_target_month": 202512,
+        "forecasts": 732,
+        "oos_r2_percent": 0.0,
+        "msfe": 0.0019057460435445868,
+        "msfe_prevailing_mean": 0.0019057460435445868,
+        "clark_west_statistic": 0.0,
+        "clark_west_one_sided_p": 0.5,
+        "oos_r2_percent_before_2000": 0.0,
+        "oos_r2_percent_from_2000": 0.0,
+        "share_negative_forecasts": 0.0,
+        "mean_forecast": 0.00516578309900689,
+        "elapsed_seconds": 0.026271
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "premium_nan.py",
+          "valid": false,
+          "score": null,
+          "error": "forecast for 196501 must be finite",
+          "rejected": true
+        },
+        {
+          "candidate": "premium_bound.py",
+          "valid": false,
+          "score": null,
+          "error": "forecast for 196501=0.75 is outside [-0.5, 0.5]",
+          "rejected": true
+        },
+        {
+          "candidate": "premium_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'forecast_premium'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-06",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "premium_combination.py",
+        "valid": true,
+        "score": 0.22526055753465668,
+        "error": null,
+        "elapsed_seconds": 0.454038
+      },
+      "reference_check": {
+        "compared": "Prevailing-mean benchmark recomputed independently of the candidate (seed must score exactly 0); hand-computed OOS R^2 and Clark-West statistics on synthetic data (tests/test_finance_premium.py); a Rapach-Strauss-Zhou mean combination of 14 univariate Welch-Goyal predictors with Campbell-Thompson truncation as an informed candidate.",
+        "result": "seed 0.0 exactly; combination candidate OOS R^2 0.2253% (Clark-West one-sided p 0.069; 0.35% before 2000, 0.06% from 2000), consistent in sign and size with the small positive monthly values reported in the literature; no published value is reproduced because published tables use other samples, adjusted R^2 or simple returns."
+      }
+    },
+    "science-finance-optimal-execution": {
+      "seed_score": 221.43362593249705,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.571091,
+      "wall_seconds": 0.672,
+      "problem_protocol": "recreated_verified",
+      "seed_details": {
+        "score": 221.43362593249705,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "max_excess_percent": 731.1676041134763,
+        "elapsed_seconds": 0.571091
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "exec_negative.py",
+          "valid": false,
+          "score": null,
+          "error": "ac-table1: a sell program cannot buy (negative trade)",
+          "rejected": true
+        },
+        {
+          "candidate": "exec_short.py",
+          "valid": false,
+          "score": null,
+          "error": "ac-table1: trades sum to 900000, not the order size 1e+06",
+          "rejected": true
+        },
+        {
+          "candidate": "exec_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "trades for ac-table1 must have shape (5,), got (1,)",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-06",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "exec_optimal.py",
+        "valid": true,
+        "score": -2.5621489684369484e-09,
+        "error": null,
+        "elapsed_seconds": 0.93354
+      },
+      "reference_check": {
+        "compared": "Closed-form Almgren-Chriss trajectory for Table 1 parameters versus the published kappa (about 0.6/day, kappa*T about 3); closed form versus the CVXPY/Clarabel convex solve; every reference optimum versus an independent SLSQP solve; the objective formula versus 400,000 simulated shortfall paths of the AC price process (tests/test_finance_execution.py).",
+        "result": "kappa = 0.6071/day, kappa*T = 3.035; closed form and convex solve agree to 1e-15 relative; SLSQP within 1e-8 relative of all 12 optima (an SLSQP candidate scores -2.6e-9); simulated mean and variance agree with the formula within Monte Carlo error."
+      }
+    },
+    "science-finance-arbitrage-free-svi-surface": {
+      "seed_score": 5.946309537468145,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.008882,
+      "wall_seconds": 0.055,
+      "problem_protocol": "recreated_verified",
+      "seed_details": {
+        "score": 5.946309537468145,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "rmse_vol_points": 5.946309537468145,
+        "max_abs_error_vol_points": 30.75,
+        "min_durrleman_g": 1.0,
+        "min_calendar_gap": 0.006578709890410962,
+        "quotes": 104,
+        "elapsed_seconds": 0.008882
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "svi_vogt.py",
+          "valid": false,
+          "score": null,
+          "error": "slice 7: butterfly arbitrage, min g(k) = -3.286e-02 at k = 0.8795",
+          "rejected": true
+        },
+        {
+          "candidate": "svi_calendar.py",
+          "valid": false,
+          "score": null,
+          "error": "slices 0->1: calendar arbitrage, min w difference -5.000e-03 at k = -6.0000",
+          "rejected": true
+        },
+        {
+          "candidate": "svi_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "SVI parameters must have shape (8, 5), got (7, 5)",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-06",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "svi_constrained.py",
+        "valid": true,
+        "score": 0.28382857075386,
+        "error": null,
+        "elapsed_seconds": 10.15049
+      },
+      "reference_check": {
+        "compared": "(1) Independent Heston characteristic-function pricer (Gauss-Laguerre, 160 nodes), Black implied-volatility inversion and Levenberg-Marquardt calibration on the extracted DAX quotes with QuantLib's conventions (week-rounded maturities, linear zero-rate interpolation, OTM options) versus QuantLib testDAXCalibration's published squared error 177.2 +- 1; (2) the evaluator's Durrleman function on Gatheral and Jacquier's arbitrageable Vogt parameters; (3) sign of g versus a finite-difference risk-neutral density of the implied Black prices.",
+        "result": "(1) 177.233 (parameters v0 0.1957, kappa 15.66, theta 0.0746, sigma 3.36, rho -0.511); (2) g < 0 for k in [0.64, 1.26], minimum -0.0329 at k 0.879, matching the example; (3) signs agree on all tested points. An unconstrained per-slice SVI fit (0.275 vol points) is rejected for arbitrage; a constrained slice-by-slice SLSQP fit scores 0.2838."
+      }
+    },
+    "science-economics-kidney-exchange": {
+      "seed_score": 0.860668380462725,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.494243,
+      "wall_seconds": 0.543,
+      "problem_protocol": "recreated_verified",
+      "seed_details": {
+        "score": 0.860668380462725,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "transplants": 1674,
+        "optimum_transplants": 1945,
+        "elapsed_seconds": 0.494243
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "kidney_bad_edge.py",
+          "valid": false,
+          "score": null,
+          "error": "00036-00000151: donor of pair 0 is not compatible with the patient of pair 1",
+          "rejected": true
+        },
+        {
+          "candidate": "kidney_overlap.py",
+          "valid": false,
+          "score": null,
+          "error": "00036-00000151: a pair appears in two cycles",
+          "rejected": true
+        },
+        {
+          "candidate": "kidney_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'select_exchanges'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-07",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "kidney_hybrid.py",
+        "valid": true,
+        "score": 0.9470437017994858,
+        "error": null,
+        "elapsed_seconds": 22.131495
+      },
+      "reference_check": {
+        "compared": "Recorded optima versus an independent exact solve (all 2- and 3-cycles enumerated; HiGHS cycle formulation, relative MIP gap 0), with the optimal cycle sets passed through the evaluator's edge-by-edge feasibility check; raw PrefLib files re-hashed against independent downloads.",
+        "result": "Proven optima 166, 175, 158, 145 (256 pairs; 3.7-7.9 s each) and 351, 337, 300, 313 (512 pairs; 83-153 s each); the optimal certificates score exactly 1.0. Also: a time-limited (40 s) cycle-formulation candidate found no incumbent on the 512-pair pools (score 0.331), while an exact-small/heuristic-large hybrid scores 0.947."
+      }
+    },
+    "science-economics-maximum-nash-welfare": {
+      "seed_score": 0.871978163969993,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.008109,
+      "wall_seconds": 0.052,
+      "problem_protocol": "recreated_verified",
+      "seed_details": {
+        "score": 0.871978163969993,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "ef1_instances": 8,
+        "elapsed_seconds": 0.008109
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "fair_short.py",
+          "valid": false,
+          "score": null,
+          "error": "allocate must return 16 agent indices, one per good",
+          "rejected": true
+        },
+        {
+          "candidate": "fair_bool.py",
+          "valid": false,
+          "score": null,
+          "error": "every good needs an integer agent index in [0, 4)",
+          "rejected": true
+        },
+        {
+          "candidate": "fair_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'allocate'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-07",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "fair_local_search.py",
+        "valid": true,
+        "score": 0.996312971789924,
+        "error": null,
+        "elapsed_seconds": 0.03725
+      },
+      "reference_check": {
+        "compared": "Exact integer-utility program (Caragiannis et al.) versus brute-force enumeration on four small instances (2x9, 3x7, 3x8, 4x6); recorded optima re-solved; envy-freeness up to one good of every optimal allocation (theorem of Caragiannis et al.).",
+        "result": "Brute force and the program agree to 1e-9; recorded optima reproduced to 1e-11 relative (first five in the default tests, all eight with FINANCE_SLOW_TESTS=1); all eight optimal allocations are EF1. A round-robin-plus-local-search candidate scores 0.9963."
+      }
+    },
+    "science-economics-school-choice-tie-breaking": {
+      "seed_score": 0.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.017363,
+      "wall_seconds": 0.066,
+      "problem_protocol": "recreated_verified",
+      "seed_details": {
+        "score": 0.0,
+        "direction": "maximize",
+        "valid": true,
+        "error": null,
+        "elapsed_seconds": 0.017363
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "school_drop.py",
+          "valid": false,
+          "score": null,
+          "error": "instance 0: student 0 and school 1 block the matching",
+          "rejected": true
+        },
+        {
+          "candidate": "school_offlist.py",
+          "valid": false,
+          "score": null,
+          "error": "student 0 is assigned to school 5, which is not on her list",
+          "rejected": true
+        },
+        {
+          "candidate": "school_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'assign_students'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-07",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "school_best_lottery.py",
+        "valid": true,
+        "score": 0.3500837520938023,
+        "error": null,
+        "elapsed_seconds": 1.393631
+      },
+      "reference_check": {
+        "compared": "Integer program for the rank-minimal weakly stable matching versus brute-force enumeration on four 8-student markets; recorded DA-STB ranks and optima recomputed; DA-STB and optimal matchings checked by the evaluator's exact blocking-pair test.",
+        "result": "Brute force agrees on all four small markets; optima 252, 324, 337, 391, 609, 406 (total 2319 versus 2916 under DA-STB) proven with gap 0 in at most 4.2 s each and blocking-free; the DA-STB seed scores 0.0, the optimal matchings 1.0, and a best-of-200-lotteries candidate 0.350."
+      }
+    },
+    "science-finance-covariance-minimum-variance": {
+      "seed_score": 11.974179890110419,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.237293,
+      "wall_seconds": 0.28,
+      "problem_protocol": "recreated",
+      "seed_details": {
+        "score": 11.974179890110419,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "assets": 49,
+        "first_day": "19710910",
+        "last_day": "20250930",
+        "days": 13629,
+        "rebalances": 649,
+        "window": 126,
+        "holding_days": 21,
+        "mean_gross_exposure": 4.79292592324794,
+        "max_gross_exposure": 11.15538585611057,
+        "sample_covariance_sd": 11.974179890110419,
+        "equal_weight_sd": 16.788774887350538,
+        "relative_to_sample_covariance": 1.0,
+        "elapsed_seconds": 0.237293
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "cov_singular.py",
+          "valid": false,
+          "score": null,
+          "error": "covariance estimate must be positive definite (condition number below 1e12)",
+          "rejected": true
+        },
+        {
+          "candidate": "cov_asym.py",
+          "valid": false,
+          "score": null,
+          "error": "covariance estimate must be symmetric and nonzero",
+          "rejected": true
+        },
+        {
+          "candidate": "cov_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'estimate_covariance'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-07",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "cov_estimators.py",
+        "valid": true,
+        "score": 10.799601624462952,
+        "error": null,
+        "elapsed_seconds": 0.357294
+      },
+      "reference_check": {
+        "compared": "Local implementations of published estimators run through the evaluator: Ledoit-Wolf shrinkage to the identity (checked equal to scikit-learn LedoitWolf to 5e-20), Ledoit-Wolf constant-correlation shrinkage, Ledoit-Wolf (2020) analytical nonlinear shrinkage; 1/N and diagonal covariance as simple baselines. No published number exists for this dataset.",
+        "result": "Annualized out-of-sample SD (percent): sample 11.974 (seed), identity shrinkage 10.823, constant correlation 10.895, analytical nonlinear 10.800, diagonal 15.160, 1/N 16.789; the ordering matches the qualitative findings of Ledoit and Wolf."
+      }
+    },
+    "science-finance-volatility-forecasting": {
+      "seed_score": -7.562745814012316,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.200199,
+      "wall_seconds": 0.244,
+      "problem_protocol": "recreated",
+      "seed_details": {
+        "score": -7.562745814012316,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "series": 50,
+        "training_days": 7280,
+        "evaluation_days": 6475,
+        "first_day": "20000103",
+        "last_day": "20250930",
+        "market_qlike": -8.108391975659103,
+        "riskmetrics_qlike": -7.612522419475178,
+        "qlike_minus_riskmetrics": 0.049776605462862555,
+        "diebold_mariano_vs_riskmetrics": 4.836339676546122,
+        "one_sided_p_better_than_riskmetrics": 0.9999993387407606,
+        "series_beating_riskmetrics": 1,
+        "elapsed_seconds": 0.200199
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "vol_zero.py",
+          "valid": false,
+          "score": null,
+          "error": "variance forecasts for 20000103 must lie in [1e-10, 1] (daily, decimal returns squared)",
+          "rejected": true
+        },
+        {
+          "candidate": "vol_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "variance forecast for 20000103 must have shape (50,), got (49,)",
+          "rejected": true
+        },
+        {
+          "candidate": "vol_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'make_forecaster'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-07",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "vol_garch.py",
+        "valid": true,
+        "score": -7.610047073611756,
+        "error": null,
+        "elapsed_seconds": 6.339887
+      },
+      "reference_check": {
+        "compared": "Causality of the protocol (a spy forecaster receives training data of 7,280 days and then each day's returns in order, only after forecasting); QLIKE minimized by the true variance on simulated data; benchmark forecasters run through the evaluator: RiskMetrics EWMA, GARCH(1,1) and GJR-GARCH(1,1) estimated by Gaussian QMLE on 1990-1999.",
+        "result": "Mean QLIKE: rolling-63 seed -7.5627, RiskMetrics -7.6125, GARCH(1,1) -7.5984, GJR-GARCH -7.6100 (34 of 50 series better than RiskMetrics, Diebold-Mariano one-sided p 0.75). No published number is reproduced."
+      }
+    },
+    "science-finance-yield-curve-forecasting": {
+      "seed_score": 1.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.008635,
+      "wall_seconds": 0.051,
+      "problem_protocol": "recreated",
+      "seed_details": {
+        "score": 1.0,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "origins": 415,
+        "first_origin": 199001,
+        "last_origin": 202407,
+        "diebold_mariano_h1": 0.0,
+        "one_sided_p_better_than_random_walk_h1": 0.5,
+        "diebold_mariano_h6": 0.0,
+        "one_sided_p_better_than_random_walk_h6": 0.5,
+        "diebold_mariano_h12": 0.0,
+        "one_sided_p_better_than_random_walk_h12": 0.5,
+        "elapsed_seconds": 0.008635
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "yields_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "forecast at 199001 must have shape (3, 10), got (2, 10)",
+          "rejected": true
+        },
+        {
+          "candidate": "yields_inf.py",
+          "valid": false,
+          "score": null,
+          "error": "forecast at 199001 must be finite",
+          "rejected": true
+        },
+        {
+          "candidate": "yields_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'forecast_yields'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-07",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "yields_momentum.py",
+        "valid": true,
+        "score": 0.9925628121720558,
+        "error": null,
+        "elapsed_seconds": 0.009688
+      },
+      "reference_check": {
+        "compared": "Random-walk seed must score exactly 1 and an oracle that reads future yields exactly 0 (arithmetic check, tests only); information set ends at each origin (spy test); a local Diebold-Li dynamic Nelson-Siegel AR(1) implementation as a literature reference; GSW raw file re-hashed against an independent download.",
+        "result": "random walk 1.0, oracle 0.0, Diebold-Li DNS-AR(1) 1.171 (1.09/1.20/1.22 at 1/6/12 months), random walk plus 0.1 times the recent change 0.9926. No published value is reproduced (different data and period)."
+      }
+    },
+    "science-economics-fredmd-industrial-production-forecasting": {
+      "seed_score": 1.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.938895,
+      "wall_seconds": 0.981,
+      "problem_protocol": "recreated",
+      "seed_details": {
+        "score": 1.0,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "target": "INDPRO",
+        "origins": 404,
+        "first_origin": 199001,
+        "last_origin": 202308,
+        "one_sided_p_better_than_ar_h1": 0.5,
+        "one_sided_p_better_than_ar_h6": 0.5,
+        "one_sided_p_better_than_ar_h12": 0.5,
+        "elapsed_seconds": 0.938895
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "macro_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "forecast at 199001 must have shape (3,), got (2,)",
+          "rejected": true
+        },
+        {
+          "candidate": "macro_nan.py",
+          "valid": false,
+          "score": null,
+          "error": "forecast at 199001 must be finite",
+          "rejected": true
+        },
+        {
+          "candidate": "macro_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'forecast_target'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-07",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "macro_combo_candidate.py",
+        "valid": true,
+        "score": 1.0025659714076032,
+        "error": null,
+        "elapsed_seconds": 2.882929
+      },
+      "reference_check": {
+        "compared": "Benchmark direct AR-BIC seed must score exactly 1; the information set ends at each origin (spy test); target arithmetic checked by hand in tests; a local Stock-Watson style diffusion index (four principal components of the McCracken-Ng transformed panel plus two target lags) and its equal-weight combination with the benchmark as informed candidates; FRED-MD raw file re-hashed against an independent download.",
+        "result": "seed 1.0; diffusion index 1.06; combination 1.0026 (mean RMSE ratio over 1/6/12 months, target windows touching 2020-03..2020-12 excluded). No published value is reproduced (one vintage, different period)."
+      }
+    },
+    "science-economics-fredmd-inflation-forecasting": {
+      "seed_score": 1.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.964682,
+      "wall_seconds": 1.008,
+      "problem_protocol": "recreated",
+      "seed_details": {
+        "score": 1.0,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "target": "CPIAUCSL",
+        "origins": 404,
+        "first_origin": 199001,
+        "last_origin": 202308,
+        "one_sided_p_better_than_ar_h1": 0.5,
+        "one_sided_p_better_than_ar_h6": 0.5,
+        "one_sided_p_better_than_ar_h12": 0.5,
+        "elapsed_seconds": 0.964682
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "macro_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "forecast at 199001 must have shape (3,), got (2,)",
+          "rejected": true
+        },
+        {
+          "candidate": "macro_nan.py",
+          "valid": false,
+          "score": null,
+          "error": "forecast at 199001 must be finite",
+          "rejected": true
+        },
+        {
+          "candidate": "macro_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'forecast_target'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-07",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "macro_combo_candidate.py",
+        "valid": true,
+        "score": 0.9847650820153987,
+        "error": null,
+        "elapsed_seconds": 2.824775
+      },
+      "reference_check": {
+        "compared": "Benchmark direct AR-BIC seed must score exactly 1; the information set ends at each origin (spy test); target arithmetic checked by hand in tests; a local Stock-Watson style diffusion index (four principal components of the McCracken-Ng transformed panel plus two target lags) and its equal-weight combination with the benchmark as informed candidates; FRED-MD raw file re-hashed against an independent download.",
+        "result": "seed 1.0; diffusion index 1.044; combination 0.9848 (mean RMSE ratio over 1/6/12 months, target windows touching 2020-03..2020-12 excluded). No published value is reproduced (one vintage, different period)."
+      }
+    },
+    "science-economics-fredmd-unemployment-forecasting": {
+      "seed_score": 1.0,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.841493,
+      "wall_seconds": 0.885,
+      "problem_protocol": "recreated",
+      "seed_details": {
+        "score": 1.0,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "target": "UNRATE",
+        "origins": 404,
+        "first_origin": 199001,
+        "last_origin": 202308,
+        "one_sided_p_better_than_ar_h1": 0.5,
+        "one_sided_p_better_than_ar_h6": 0.5,
+        "one_sided_p_better_than_ar_h12": 0.5,
+        "elapsed_seconds": 0.841493
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "macro_shape.py",
+          "valid": false,
+          "score": null,
+          "error": "forecast at 199001 must have shape (3,), got (2,)",
+          "rejected": true
+        },
+        {
+          "candidate": "macro_nan.py",
+          "valid": false,
+          "score": null,
+          "error": "forecast at 199001 must be finite",
+          "rejected": true
+        },
+        {
+          "candidate": "macro_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'forecast_target'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-07",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "macro_combo_candidate.py",
+        "valid": true,
+        "score": 0.9686745809505091,
+        "error": null,
+        "elapsed_seconds": 2.647145
+      },
+      "reference_check": {
+        "compared": "Benchmark direct AR-BIC seed must score exactly 1; the information set ends at each origin (spy test); target arithmetic checked by hand in tests; a local Stock-Watson style diffusion index (four principal components of the McCracken-Ng transformed panel plus two target lags) and its equal-weight combination with the benchmark as informed candidates; FRED-MD raw file re-hashed against an independent download.",
+        "result": "seed 1.0; diffusion index 1.008; combination 0.9687 (mean RMSE ratio over 1/6/12 months, target windows touching 2020-03..2020-12 excluded). No published value is reproduced (one vintage, different period)."
+      }
+    },
+    "science-finance-cardinality-constrained-frontier": {
+      "seed_score": 1.5349469216791403,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 2.086785,
+      "wall_seconds": 2.19,
+      "problem_protocol": "recreated",
+      "seed_details": {
+        "score": 1.5349469216791403,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "targets_per_market": 51,
+        "K": 10,
+        "elapsed_seconds": 2.086785
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "ccef_nine.py",
+          "valid": false,
+          "score": null,
+          "error": "Hang Seng portfolio 0: must hold exactly 10 assets, holds 9",
+          "rejected": true
+        },
+        {
+          "candidate": "ccef_cluster.py",
+          "valid": false,
+          "score": null,
+          "error": "Hang Seng portfolio 0: expected return 0.0103585800 differs from the target 0.0027843363",
+          "rejected": true
+        },
+        {
+          "candidate": "ccef_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'build_frontier'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-08",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "ccef_swap.py",
+        "valid": true,
+        "score": 1.3810392774433287,
+        "error": null,
+        "elapsed_seconds": 73.055816
+      },
+      "reference_check": {
+        "compared": "Independent long-only minimum-variance quadratic programs (CVXPY/Clarabel) on the parsed OR-Library means, standard deviations and correlations versus the published frontier files portef1-portef5; percentage error zero on frontier points; a clustering candidate (one portfolio for every target) rejected by the return targets.",
+        "result": "Frontier variances reproduced to at most 2.5e-5 relative error at sampled points in all five markets; seed 1.535 (Hang Seng 0.673, DAX 1.792, FTSE 1.352, S&P 3.635, Nikkei 0.223); single-swap local search 1.381. Published lambda-sweep values are not comparable with the target-return protocol."
+      }
+    },
+    "science-finance-index-tracking": {
+      "seed_score": 1.0871127788974557,
+      "valid": true,
+      "error": null,
+      "elapsed_seconds": 0.216849,
+      "wall_seconds": 0.3,
+      "problem_protocol": "recreated",
+      "seed_details": {
+        "score": 1.0871127788974557,
+        "direction": "minimize",
+        "valid": true,
+        "error": null,
+        "weeks": 145,
+        "K": 10,
+        "cost_rate": 0.01,
+        "elapsed_seconds": 0.216849
+      },
+      "invalid_candidates": [
+        {
+          "candidate": "track_eleven.py",
+          "valid": false,
+          "score": null,
+          "error": "week 145: need nonnegative weights on 1 to 10 stocks",
+          "rejected": true
+        },
+        {
+          "candidate": "track_none.py",
+          "valid": false,
+          "score": null,
+          "error": "an initial portfolio is required at week 145",
+          "rejected": true
+        },
+        {
+          "candidate": "track_missing.py",
+          "valid": false,
+          "score": null,
+          "error": "AttributeError: module 'candidate_program' has no attribute 'rebalance'",
+          "rejected": true
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.3",
+        "scipy": "1.18.1",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.9.1",
+        "platform": "macOS-15.8.1-arm64-arm-64bit"
+      },
+      "date": "2026-10-08",
+      "llm_cost_usd": 0.0,
+      "improvement_check": {
+        "candidate": "track_greedy.py",
+        "valid": true,
+        "score": 0.7634705736927548,
+        "error": null,
+        "elapsed_seconds": 0.445654
+      },
+      "reference_check": {
+        "compared": "Buy-and-hold portfolio returns recomputed by hand for a fixed ten-stock portfolio; index returns from the raw prices; the transaction-cost bisection checked against its budget equation; information set ends at each rebalancing week; raw OR-Library files re-hashed against independent downloads.",
+        "result": "Hand computations agree to 1e-13; seed 1.087 (Hang Seng 1.428, DAX 0.886, FTSE 0.890, S&P 0.722, Nikkei 1.510); greedy forward selection refreshed every 26 weeks 0.764. No published number is reproduced (different rebalancing and cost model)."
+      }
+    }
+  },
+  "missing": []
+}

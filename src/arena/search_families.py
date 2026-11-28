@@ -33,6 +33,12 @@ SUPPLEMENT_FAMILIES = {
         "science-climate", "science-chemistry", "science-biology_expansion",
         "science-materials_expansion", "science-earth_expansion", "science-earth_data",
         "science-physics_expansion", "science-economics_expansion", "science-tcs_expansion",
+        "science-biology_research", "science-chemistry_research", "science-earth_research",
+        "science-physics_research", "science-finance_expansion", "science-software_engineering",
+        "science-frontier_combinatorics", "science-frontier_physics", "science-prize",
+        "science-prize_a", "science-prize_b", "science-prize_c", "science-prize_d", "science-prize_e",
+        "science-prize_f", "science-prize_g", "science-prize_h", "science-prize_i",
+        "open-problems-2026-11",
     )},
 }
 SUPPLEMENT_GROUPS = {FAMILY_IDS[label] for label in SUPPLEMENT_FAMILIES.values()}
@@ -80,7 +86,11 @@ def validate_sources(data, catalog):
         for task in catalog["tasks"]:
             if task["id"] in declared:
                 _require(paper["id"] in task["paper_ids"], "Source paper/task association contradicts catalog")
-    _require(ids == {paper for task in catalog["tasks"] for paper in task["paper_ids"]}, "Captured paper IDs do not cover catalog source groups")
+    linked = {paper for task in catalog["tasks"] for paper in task["paper_ids"]}
+    _require(linked <= ids, "Captured paper IDs do not cover catalog source groups")
+    # A corpus paper whose every task was withdrawn stays in the corpus without tasks.
+    _require(all(not paper["declared_task_ids"] for paper in papers if paper["id"] not in linked),
+             "A captured paper without catalog tasks still declares tasks")
     return data
 
 

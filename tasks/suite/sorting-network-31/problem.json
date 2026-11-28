@@ -1,0 +1,113 @@
+{
+  "id": "sorting-network-31",
+  "name": "Sorting network on 31 inputs",
+  "description": "Construct a sorting network on 31 wires with as few comparators as possible. A comparator (i, j) with i < j compares the values on wires i and j and puts the smaller one on wire i and the larger one on wire j; the comparators are applied in the given order. The network must sort every input, that is, leave the values in non-decreasing order along wires 0 to 30.",
+  "protocol": "recreated_verified",
+  "family": "sortnet",
+  "direction": "minimize",
+  "contract": "construct() -> list of comparators (i, j) with 0 <= i < j < 31, in the order in which they are applied (at least one). The network is verified on all 2^31 inputs of zeros and ones, which is equivalent to sorting every input. Score: number of comparators, minimized (the depth is not scored).",
+  "parameters": {
+    "n": 31,
+    "best_known": 180,
+    "lower_bound": 130
+  },
+  "requires": [
+    "py:numpy"
+  ],
+  "timeout": 900,
+  "notes": [
+    "Best known size 180 (Dobbelaere's list), proven lower bound 130 (the list withdrew its stronger bounds for 13 or more inputs on 2026-11-20 because of an error in a proof of Van Voorhis 1972; 130 is 39, the proven optimum for 12 inputs, plus ceil(log2 k) for each further input k).",
+    "No data files.",
+    "The size-minimisation problem for sorting networks on 31 wires, from Dobbelaere's list of smallest known sorting networks.",
+    "Exact 0-1 verification over all 2^31 inputs, in blocks of 2^24; one evaluation takes a few seconds for n = 30 and up to about half a minute for n = 32.",
+    "SorterHunter and symmetry-based searches have worked on these sizes for years.",
+    "For this n the list gives the size of a Batcher odd-even merge of the best known smaller networks, not a dedicated search result, so the record is easier to reach than for n <= 29."
+  ],
+  "labels": {
+    "scientific_contribution": "open_problem",
+    "science_tier": 1,
+    "artifact": "construction",
+    "domain": "mathematics",
+    "data": "none",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "theoretical_computer_science",
+    "secondary_area": "systems_and_hardware",
+    "areas": [
+      "theoretical_computer_science",
+      "systems_and_hardware"
+    ],
+    "important_to_science": true
+  },
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "benchmark": "Sorting network on 31 inputs",
+  "paper_metric": "Record comparison; see notes",
+  "paper_direction": "minimize",
+  "sources": [
+    {
+      "url": "https://bertdobbelaere.github.io/sorting_networks.html",
+      "type": "benchmark",
+      "locator": "n = 31"
+    },
+    {
+      "url": "https://jmlr.org/papers/v14/valsalam13a.html",
+      "type": "paper",
+      "locator": "Using Symmetry and Evolutionary Search to Minimize Sorting Networks"
+    },
+    {
+      "url": "https://arxiv.org/abs/1507.01428",
+      "type": "paper",
+      "locator": "Codish et al. (2015), Sorting Networks: to the End and Back Again: new networks for 17 to 20 inputs, mainly about depth (layers), so not evidence for the size objective."
+    },
+    {
+      "url": "https://arxiv.org/abs/1410.2736",
+      "type": "paper",
+      "locator": "Ehlers and Mueller (2014), Faster Sorting Networks for 17, 19 and 20 Inputs: depth upper bounds, not size."
+    },
+    {
+      "url": "https://arxiv.org/abs/2511.04107",
+      "type": "paper",
+      "locator": "Depth-13 Sorting Networks for 28 Channels (2025): depth upper bounds for 27 and 28 inputs, not size."
+    }
+  ],
+  "limitations": [
+    "Exact 0-1 verification over all 2^31 inputs, in blocks of 2^24; one evaluation takes a few seconds for n = 30 and up to about half a minute for n = 32.",
+    "SorterHunter and symmetry-based searches have worked on these sizes for years.",
+    "For this n the list gives the size of a Batcher odd-even merge of the best known smaller networks, not a dedicated search result, so the record is easier to reach than for n <= 29.",
+    "The record was reproduced by this task's verifier from a published solution (or an optimiser run). See VALIDITY.md."
+  ],
+  "evaluator": "evaluator.py",
+  "initial_program": "initial_program.py",
+  "papers": [
+    {
+      "id": "open-problems-2026-11",
+      "title": "Open problems with a public record (compiled 2026-11-02, see OPEN_PROBLEMS_REGISTRY.md)",
+      "url": "https://bertdobbelaere.github.io/sorting_networks.html"
+    }
+  ],
+  "protocol_description": "Natively written evaluator for a public instance or benchmark with a public record. The candidate returns a solution that the evaluator verifies exactly (or by the official scorer); scores are comparable with the listed record only when the instance and rules match the source.",
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "Valsalam and Miikkulainen's main objective is the comparator count of sorting networks with up to 32 inputs, which is exactly what the task scores; the record itself comes from Dobbelaere's SorterHunter-based list, which is a web page and not a paper, so only one paper qualifies and the status rests on it.",
+    "scientific_problem": "Construct a sorting network on 31 wires with as few comparators as possible.",
+    "importance_rationale": "Sorting networks are oblivious sorting procedures used in hardware, SIMD and GPU sorting, and the minimum number of comparators is known only for up to 12 inputs; for 13 and more inputs the best known sizes are upper bounds that have been lowered by evolutionary and SAT searches, so a smaller network is a new upper bound.",
+    "papers": [
+      {
+        "title": "Using Symmetry and Evolutionary Search to Minimize Sorting Networks",
+        "url": "https://jmlr.org/papers/v14/valsalam13a.html",
+        "task_relation": "Its Table 2 gives the same size for 31 inputs as the task's reference (a merge of smaller networks), so the reference is not a search result of the paper; the paper addresses the same minimisation problem up to 32 inputs.",
+        "primary_goal": "Minimise the number of comparators of sorting networks with a method combining problem symmetry and evolutionary search (SENSO).",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  }
+}

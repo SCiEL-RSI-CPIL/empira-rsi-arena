@@ -1,0 +1,491 @@
+{
+  "schema_version": "1.0",
+  "package": "llm_bench",
+  "sources": {
+    "addsub-raw": {
+      "url": "https://raw.githubusercontent.com/kojima-takeshi188/zero_shot_cot/5ef330fcdeec0cd26aee27943504f91f8ec1c33c/dataset/AddSub/AddSub.json",
+      "sha256": "21930fa90385c72b5a15f4b9a4dda27276b889ae9ff44285505cdd9fa0a20df8",
+      "size": 131373,
+      "license": "No license file in the zero_shot_cot repository; AddSub (Hosseini et al., EMNLP 2014) is redistributed there for research. Not redistributed by this repository."
+    },
+    "arxivmath-0126": {
+      "url": "https://huggingface.co/datasets/MathArena/arxivmath-0126/resolve/bac939ba603c93f905aa48072980ea681a2824cd/data/train-00000-of-00001.parquet",
+      "sha256": "44a802bcc18e4a2154d73f2917c82bf7353ca719a9313aa08d07d4483f1cbd29",
+      "size": 13465,
+      "license": "CC-BY-SA-4.0 (MathArena ArXivMath; questions written from recent arXiv papers). Not redistributed by this repository."
+    },
+    "arxivmath-1225": {
+      "url": "https://huggingface.co/datasets/MathArena/arxivmath-1225/resolve/90c60aa1eadbb72168640169d82154b079cdeaac/data/train-00000-of-00001.parquet",
+      "sha256": "e95cc6bd7c5677077ad6cc8b28d1ce5702728265b2bd2fde3877a2ec2e71146e",
+      "size": 12584,
+      "license": "CC-BY-SA-4.0 (MathArena ArXivMath; questions written from recent arXiv papers). Not redistributed by this repository."
+    },
+    "crave-test": {
+      "url": "https://huggingface.co/datasets/TuringEnterprises/CRAVE/resolve/4d94975d6c9b70d7bcf611b15aadf3d89fe22870/test.parquet",
+      "sha256": "a39dce8698245e47c4ba4f2ccb6d4fa9960dfe1a8fd3bf3119c802cfaacdc186",
+      "size": 392801,
+      "license": "MIT (TuringEnterprises/CRAVE); patches and pull-request text come from public GitHub repositories under their own licenses. Not redistributed by this repository."
+    },
+    "hyperagents-paper-review": {
+      "url": "https://raw.githubusercontent.com/facebookresearch/Hyperagents/59a68f672dfb92c74aeb7e61535d776fb36e172d/domains/paper_review/dataset.csv",
+      "sha256": "efa8e77721d6d41c5d9ea69aaab8f0c16664618876e2c9dfe897a3852bb242c9",
+      "size": 50796201,
+      "license": "CC-BY-NC-SA-4.0 (Hyperagents repository); paper texts and decisions of public OpenReview submissions collected by APReS (Zhao et al., 2026). Not redistributed by this repository."
+    },
+    "ifbench-instructions.py": {
+      "url": "https://raw.githubusercontent.com/gepa-ai/gepa-artifact/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/IFBench/utils_ifbench/instructions.py",
+      "sha256": "4b3559bb2d5b4e0a040246d1eb506cffdbdd150d1d6bc24b04e91e9161354398",
+      "size": 77639,
+      "license": "gepa-artifact repository (MIT); IFBench test prompts and instruction checkers come from allenai/IFBench (Apache-2.0 code, ODC-BY data), itself extending google-research IFEval checkers (Apache-2.0). Not redistributed by this repository."
+    },
+    "ifbench-instructions_ifeval.py": {
+      "url": "https://raw.githubusercontent.com/gepa-ai/gepa-artifact/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/IFBench/utils_ifbench/instructions_ifeval.py",
+      "sha256": "1df003c58f28797f6504f0b2c3aaa1146aaf1f032a4e9814724089f5e2e60c18",
+      "size": 57038,
+      "license": "gepa-artifact repository (MIT); IFBench test prompts and instruction checkers come from allenai/IFBench (Apache-2.0 code, ODC-BY data), itself extending google-research IFEval checkers (Apache-2.0). Not redistributed by this repository."
+    },
+    "ifbench-instructions_registry.py": {
+      "url": "https://raw.githubusercontent.com/gepa-ai/gepa-artifact/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/IFBench/utils_ifbench/instructions_registry.py",
+      "sha256": "042422686d6ed61897fb0b25923f592ae1963956eba3561c2d04c2a1fd0ffec2",
+      "size": 4695,
+      "license": "gepa-artifact repository (MIT); IFBench test prompts and instruction checkers come from allenai/IFBench (Apache-2.0 code, ODC-BY data), itself extending google-research IFEval checkers (Apache-2.0). Not redistributed by this repository."
+    },
+    "ifbench-instructions_registry_ifeval.py": {
+      "url": "https://raw.githubusercontent.com/gepa-ai/gepa-artifact/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/IFBench/utils_ifbench/instructions_registry_ifeval.py",
+      "sha256": "f9dfa4b7a34bcd09044f0f84029110b80f01fdb59f9b0f6cef076a64ae10ea71",
+      "size": 7239,
+      "license": "gepa-artifact repository (MIT); IFBench test prompts and instruction checkers come from allenai/IFBench (Apache-2.0 code, ODC-BY data), itself extending google-research IFEval checkers (Apache-2.0). Not redistributed by this repository."
+    },
+    "ifbench-instructions_util.py": {
+      "url": "https://raw.githubusercontent.com/gepa-ai/gepa-artifact/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/IFBench/utils_ifbench/instructions_util.py",
+      "sha256": "ab845134085826f6cfb400f5ac74c2062c5b1590e611732831c2fc62c8c5fa7c",
+      "size": 25373,
+      "license": "gepa-artifact repository (MIT); IFBench test prompts and instruction checkers come from allenai/IFBench (Apache-2.0 code, ODC-BY data), itself extending google-research IFEval checkers (Apache-2.0). Not redistributed by this repository."
+    },
+    "ifbench-instructions_util_ifeval.py": {
+      "url": "https://raw.githubusercontent.com/gepa-ai/gepa-artifact/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/IFBench/utils_ifbench/instructions_util_ifeval.py",
+      "sha256": "4b79a54a5aa98ed336e9a2c494713e36f40d635955f73e58b8cc78a81d93da89",
+      "size": 26829,
+      "license": "gepa-artifact repository (MIT); IFBench test prompts and instruction checkers come from allenai/IFBench (Apache-2.0 code, ODC-BY data), itself extending google-research IFEval checkers (Apache-2.0). Not redistributed by this repository."
+    },
+    "ifbench-test": {
+      "url": "https://raw.githubusercontent.com/gepa-ai/gepa-artifact/cbefbc1aa0f43dd39874ec4bf42211365dbda42e/gepa_artifact/benchmarks/IFBench/data/IFBench_test.jsonl",
+      "sha256": "11c3d683dcc7f4908a4d3cacd05c9a8bbd5484af2f8fde969e7abe2b8bad3e34",
+      "size": 419877,
+      "license": "gepa-artifact repository (MIT); IFBench test prompts and instruction checkers come from allenai/IFBench (Apache-2.0 code, ODC-BY data), itself extending google-research IFEval checkers (Apache-2.0). Not redistributed by this repository."
+    },
+    "imobench-gradingbench": {
+      "url": "https://raw.githubusercontent.com/google-deepmind/superhuman/c1ee02e03d4cdb2ab21cd01ac927d895f5287fc8/imobench/gradingbench.csv",
+      "sha256": "e85a520c2bbb5a89f2db35088c7935d485922f26cf2bbd04f15e1d967af26cfe",
+      "size": 11111436,
+      "license": "CC-BY-4.0 data, Apache-2.0 code (google-deepmind/superhuman, IMO-Bench). Not redistributed by this repository."
+    },
+    "imobench-proofbench": {
+      "url": "https://raw.githubusercontent.com/google-deepmind/superhuman/c1ee02e03d4cdb2ab21cd01ac927d895f5287fc8/imobench/proofbench.csv",
+      "sha256": "c03ad2d9788ba147022031d90ecf192d16c038939eb432759914902598a87d6d",
+      "size": 187512,
+      "license": "CC-BY-4.0 data, Apache-2.0 code (google-deepmind/superhuman, IMO-Bench). Not redistributed by this repository."
+    },
+    "jailbreak-test": {
+      "url": "https://huggingface.co/datasets/jackhhao/jailbreak-classification/resolve/2f2ceeb39658696fd3f462403562b6eea5306287/balanced/jailbreak_dataset_test_balanced.csv",
+      "sha256": "809ef0d7c82fa05c31e818e9c3ff68f769632ac6d11cc3b43254cada577869a9",
+      "size": 369990,
+      "license": "Apache-2.0 (jackhhao/jailbreak-classification; jailbreak prompts from verazuo/jailbreak_llms, benign prompts from OpenOrca and GPTeacher). Not redistributed by this repository."
+    },
+    "lcb-sica-test": {
+      "url": "https://huggingface.co/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test.jsonl",
+      "sha256": "22efd09f50b627beb9a80bfbf4ca115d3af9ecffe47118c8baca81979a602c3c",
+      "size": 10504847,
+      "license": "livecodebench/code_generation_lite (dataset card: license 'cc'; problems scraped from LeetCode, AtCoder and Codeforces contests). Only 50 problem lines are fetched; not redistributed by this repository.",
+      "ranges": 24
+    },
+    "lcb-sica-test2": {
+      "url": "https://huggingface.co/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test2.jsonl",
+      "sha256": "cc1a67ede60feaed9786e8d1cc499b3bc38ee5fedbe2d983b570aa988e99a175",
+      "size": 14478345,
+      "license": "livecodebench/code_generation_lite (dataset card: license 'cc'; problems scraped from LeetCode, AtCoder and Codeforces contests). Only 50 problem lines are fetched; not redistributed by this repository.",
+      "ranges": 9
+    },
+    "lcb-sica-test3": {
+      "url": "https://huggingface.co/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test3.jsonl",
+      "sha256": "b3c29488e585ce91bb102285b18f0e3939a64cfdd12b350c90d2c54c034810a2",
+      "size": 1126000,
+      "license": "livecodebench/code_generation_lite (dataset card: license 'cc'; problems scraped from LeetCode, AtCoder and Codeforces contests). Only 50 problem lines are fetched; not redistributed by this repository.",
+      "ranges": 8
+    },
+    "lcb-sica-test4": {
+      "url": "https://huggingface.co/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test4.jsonl",
+      "sha256": "e0a53f967cf00037269c541fd5ddd1c3c82762758fd34a235eb3657639dfe529",
+      "size": 5480864,
+      "license": "livecodebench/code_generation_lite (dataset card: license 'cc'; problems scraped from LeetCode, AtCoder and Codeforces contests). Only 50 problem lines are fetched; not redistributed by this repository.",
+      "ranges": 5
+    },
+    "lcb-sica-test5": {
+      "url": "https://huggingface.co/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test5.jsonl",
+      "sha256": "afac071e4637c2efd49ab291e85fdef6bf61ba7132af8d3a79334b5548d05591",
+      "size": 8167936,
+      "license": "livecodebench/code_generation_lite (dataset card: license 'cc'; problems scraped from LeetCode, AtCoder and Codeforces contests). Only 50 problem lines are fetched; not redistributed by this repository.",
+      "ranges": 4
+    },
+    "leetcode-contest": {
+      "url": "https://huggingface.co/datasets/lbaf23/LeetCode-Contest/resolve/05db6cfbad9648c312e0aff99144e21aa5781514/test.jsonl",
+      "sha256": "8602a4e24b35f09e8c29312754e72c0afd0a3a83a3ef0f33a5b90056e51f3c71",
+      "size": 229697569,
+      "license": "MIT (lbaf23/LeetCode-Contest, CoCoEvo); problem statements and tests collected from LeetCode contests. Not redistributed by this repository."
+    },
+    "llm4or-nlp4lp": {
+      "url": "https://raw.githubusercontent.com/LLM4OR/LLM4OR/75962df5ddf531906fda76f8708c658114e63c0e/static/clean_benchmarks/NL4LP",
+      "files": 356,
+      "sha256": "88e75feedbbf4149ee909de9afc7ed01b2ac1db17e9e19d6da66ab49e4ba03c0",
+      "size": 110260,
+      "license": "The LLM4OR repository (cleaned benchmarks of Xiao et al., 'A Survey of Optimization Modeling Meets LLMs', IJCAI 2025) declares no license; the underlying sets are NLP4LP (OptiMUS, AhmadiTeshnizi et al.) and OptiBench/ReSocratic (Yang et al., ICML 2024, Apache-2.0 repository). Not redistributed by this repository."
+    },
+    "llm4or-resocratic": {
+      "url": "https://raw.githubusercontent.com/LLM4OR/LLM4OR/75962df5ddf531906fda76f8708c658114e63c0e/static/clean_benchmarks/ReSocratic.jsonl",
+      "sha256": "eaa71af0be1c13597cbdf5f0fd00b99e60376a39117f915d2f5fc9b942765540",
+      "size": 337356,
+      "license": "The LLM4OR repository (cleaned benchmarks of Xiao et al., 'A Survey of Optimization Modeling Meets LLMs', IJCAI 2025) declares no license; the underlying sets are NLP4LP (OptiMUS, AhmadiTeshnizi et al.) and OptiBench/ReSocratic (Yang et al., ICML 2024, Apache-2.0 repository). Not redistributed by this repository."
+    },
+    "mce-finer-context": {
+      "url": "https://raw.githubusercontent.com/metaevo-ai/mce-artifact/c63300daef93404e22e2569b3d08e72843e7123b/env/finer/finer_context.py",
+      "sha256": "f2fe1446d1875845a45f578207055834a93e31e5b338458b06d8a43837127197",
+      "size": 13476,
+      "license": "MCE artifact repository (pyproject declares MIT; no LICENSE file). FiNER-139 (Loukas et al., ACL 2022) is CC-BY-SA-4.0; USPTO-50k (Schneider et al., 2016) derives from Lowe's USPTO reaction extraction (CC0). Not redistributed by this repository."
+    },
+    "mce-finer-test": {
+      "url": "https://raw.githubusercontent.com/metaevo-ai/mce-artifact/c63300daef93404e22e2569b3d08e72843e7123b/env/finer/data/test.jsonl",
+      "sha256": "e4685e8017af80384749caa21854078adf6da0451b22af101b862be19bf33ddc",
+      "size": 44133,
+      "license": "MCE artifact repository (pyproject declares MIT; no LICENSE file). FiNER-139 (Loukas et al., ACL 2022) is CC-BY-SA-4.0; USPTO-50k (Schneider et al., 2016) derives from Lowe's USPTO reaction extraction (CC0). Not redistributed by this repository."
+    },
+    "mce-uspto-test": {
+      "url": "https://raw.githubusercontent.com/metaevo-ai/mce-artifact/c63300daef93404e22e2569b3d08e72843e7123b/env/uspto/data/test.jsonl",
+      "sha256": "e2730f05f215363687ec0c6a1f75ce808ed697749b181becdae62cd7991c67e4",
+      "size": 19046,
+      "license": "MCE artifact repository (pyproject declares MIT; no LICENSE file). FiNER-139 (Loukas et al., ACL 2022) is CC-BY-SA-4.0; USPTO-50k (Schneider et al., 2016) derives from Lowe's USPTO reaction extraction (CC0). Not redistributed by this repository."
+    },
+    "natural-plan-meeting": {
+      "url": "https://raw.githubusercontent.com/google-deepmind/natural-plan/ca76db336072ff8931db43bc1ca8d381038cf073/data/meeting_planning.json",
+      "sha256": "cabd5537667e97d15faf0c3f0187b8eefc720abf0e03fedf8e52dd01c596d53a",
+      "size": 23857401,
+      "license": "CC-BY-4.0 data, Apache-2.0 code (google-deepmind/natural-plan). Not redistributed by this repository."
+    },
+    "nltk-averaged_perceptron_tagger_eng": {
+      "url": "https://raw.githubusercontent.com/nltk/nltk_data/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages/taggers/averaged_perceptron_tagger_eng.zip",
+      "sha256": "6025f530624335c67d6547d44757b357b4e79bae030a0383e9887a92c1718f0b",
+      "size": 1539115,
+      "license": "Averaged perceptron tagger (MIT License per the NLTK index)"
+    },
+    "nltk-punkt_tab": {
+      "url": "https://raw.githubusercontent.com/nltk/nltk_data/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages/tokenizers/punkt_tab.zip",
+      "sha256": "e57f64187974277726a3417ca6f181ec5403676c717672eef6a748a7b20e0106",
+      "size": 4319076,
+      "license": "Punkt tokenizer models (Jan Strunk); NLTK data package, no license field in the NLTK index"
+    },
+    "nltk-stopwords": {
+      "url": "https://raw.githubusercontent.com/nltk/nltk_data/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages/corpora/stopwords.zip",
+      "sha256": "48c0e52d8b52546e827f53761fb30300c0ab94f70660d28bd65ba0a86270946b",
+      "size": 37733,
+      "license": "Stopwords corpus; NLTK data package, no license field in the NLTK index"
+    },
+    "pupa-new": {
+      "url": "https://huggingface.co/datasets/Columbia-NLP/PUPA/resolve/9981b49b6ced0033988a224b6712895ebf119294/PUPA_New.csv",
+      "sha256": "72d7659c717706bc987f0d296d9714f63db5e75c6645376ec75380e6638b8f91",
+      "size": 2854027,
+      "license": "MIT (Columbia-NLP/PUPA, PAPILLON). Not redistributed by this repository."
+    },
+    "singleeq-raw": {
+      "url": "https://raw.githubusercontent.com/kojima-takeshi188/zero_shot_cot/5ef330fcdeec0cd26aee27943504f91f8ec1c33c/dataset/SingleEq/questions.json",
+      "sha256": "051507bd2b489c257057b485774a83d2710c23a4bc0f4a58e1822ae2773ef05e",
+      "size": 137870,
+      "license": "No license file in the zero_shot_cot repository; SingleEq (Koncel-Kedziorski et al., TACL 2015) is redistributed there for research. Not redistributed by this repository."
+    },
+    "travelplanner-flights": {
+      "url": "https://huggingface.co/spaces/osunlp/TravelPlannerLeaderboard/resolve/a57daf2e45155a5378dcf75ee9fe374e671ee048/database/flights/clean_Flights_2022.csv",
+      "sha256": "8dafdb0e3f8b79ce599a1e612a772865295bc226b46e5fb278368f7255b11cee",
+      "size": 304807007,
+      "license": "CC-BY-4.0 (TravelPlanner dataset and leaderboard-space database; evaluation code MIT). Not redistributed by this repository."
+    },
+    "travelplanner-travel_accommodations": {
+      "url": "https://huggingface.co/spaces/osunlp/TravelPlannerLeaderboard/resolve/a57daf2e45155a5378dcf75ee9fe374e671ee048/database/accommodations/clean_accommodations_2022.csv",
+      "sha256": "7e70cc8cb573e824267be47153a3cf7934c839f01c955fb523d18be405921d86",
+      "size": 520458,
+      "license": "CC-BY-4.0 (TravelPlanner dataset and leaderboard-space database; evaluation code MIT). Not redistributed by this repository."
+    },
+    "travelplanner-travel_attractions": {
+      "url": "https://huggingface.co/spaces/osunlp/TravelPlannerLeaderboard/resolve/a57daf2e45155a5378dcf75ee9fe374e671ee048/database/attractions/attractions.csv",
+      "sha256": "8007fa851ba5b3adb205fbd298169c95116b297cef7ccd21dbea26ecce2605d8",
+      "size": 817982,
+      "license": "CC-BY-4.0 (TravelPlanner dataset and leaderboard-space database; evaluation code MIT). Not redistributed by this repository."
+    },
+    "travelplanner-travel_city_states": {
+      "url": "https://huggingface.co/spaces/osunlp/TravelPlannerLeaderboard/resolve/a57daf2e45155a5378dcf75ee9fe374e671ee048/database/background/citySet_with_states.txt",
+      "sha256": "a3d18b5c692857cd561cbb4ad8d221ac3eb6c47af7c787a3489e3ffa184ca4d6",
+      "size": 5921,
+      "license": "CC-BY-4.0 (TravelPlanner dataset and leaderboard-space database; evaluation code MIT). Not redistributed by this repository."
+    },
+    "travelplanner-travel_distance": {
+      "url": "https://huggingface.co/spaces/osunlp/TravelPlannerLeaderboard/resolve/a57daf2e45155a5378dcf75ee9fe374e671ee048/database/googleDistanceMatrix/distance.csv",
+      "sha256": "44726ca74a335fd2d4824fc748f8832813550bfead37376fd51d6521a93a8b3b",
+      "size": 777824,
+      "license": "CC-BY-4.0 (TravelPlanner dataset and leaderboard-space database; evaluation code MIT). Not redistributed by this repository."
+    },
+    "travelplanner-travel_restaurants": {
+      "url": "https://huggingface.co/spaces/osunlp/TravelPlannerLeaderboard/resolve/a57daf2e45155a5378dcf75ee9fe374e671ee048/database/restaurants/clean_restaurant_2022.csv",
+      "sha256": "a38ef00a3398b1ef78306a9b1851c491723d27899c6a1d4a3d6fe042929c0f26",
+      "size": 683023,
+      "license": "CC-BY-4.0 (TravelPlanner dataset and leaderboard-space database; evaluation code MIT). Not redistributed by this repository."
+    },
+    "travelplanner-validation": {
+      "url": "https://huggingface.co/datasets/osunlp/TravelPlanner/resolve/8736504ecfc31b7f8b7e40122873c337e83fff7c/validation.csv",
+      "sha256": "0e54b26b13c0b6d50e8683765e930bffca949488c44634e530da899914d40e80",
+      "size": 4833771,
+      "license": "CC-BY-4.0 (TravelPlanner dataset and leaderboard-space database; evaluation code MIT). Not redistributed by this repository."
+    }
+  },
+  "derived": {
+    "addsub.json": {
+      "sha256": "9519a6dfa4c8015d0cef04ca78e4c74aeddaf72ed64d1db3d0329977cf45180f",
+      "size": 82037,
+      "sources": [
+        "addsub-raw"
+      ]
+    },
+    "arxivmath.json": {
+      "sha256": "6bb9acaa7d80f157f117717f22847fa563fef6fec2238373bc7db3a47dfff0b2",
+      "size": 30631,
+      "sources": [
+        "arxivmath-0126",
+        "arxivmath-1225"
+      ]
+    },
+    "crave_test.json": {
+      "sha256": "7963e94db72577b440802592e33eb011e2725ad8bfefd1ddf2d80a504bd2b515",
+      "size": 1232354,
+      "sources": [
+        "crave-test"
+      ]
+    },
+    "finer.json": {
+      "sha256": "a19b465d9b85b65a0d02b1cda481ad49337092b9b08a7546fbcc4a1b6abede5a",
+      "size": 51199,
+      "sources": [
+        "mce-finer-test",
+        "mce-finer-context"
+      ]
+    },
+    "gradingbench_test.json": {
+      "sha256": "34779c23112b80b291b2b617fd87d19975f2806f46d5444d4bcb9a4e1790d638",
+      "size": 1154990,
+      "sources": [
+        "imobench-gradingbench"
+      ]
+    },
+    "ifbench_checkers/__init__.py": {
+      "sha256": "824f9d3be4a5a5dc5942a5267fd21b8473b61da2f1f5f61d194fbf8f7ef93b62",
+      "size": 91,
+      "sources": []
+    },
+    "ifbench_checkers/instructions.py": {
+      "sha256": "4b3559bb2d5b4e0a040246d1eb506cffdbdd150d1d6bc24b04e91e9161354398",
+      "size": 77639,
+      "sources": [
+        "ifbench-instructions.py"
+      ]
+    },
+    "ifbench_checkers/instructions_ifeval.py": {
+      "sha256": "1df003c58f28797f6504f0b2c3aaa1146aaf1f032a4e9814724089f5e2e60c18",
+      "size": 57038,
+      "sources": [
+        "ifbench-instructions_ifeval.py"
+      ]
+    },
+    "ifbench_checkers/instructions_registry.py": {
+      "sha256": "042422686d6ed61897fb0b25923f592ae1963956eba3561c2d04c2a1fd0ffec2",
+      "size": 4695,
+      "sources": [
+        "ifbench-instructions_registry.py"
+      ]
+    },
+    "ifbench_checkers/instructions_registry_ifeval.py": {
+      "sha256": "f9dfa4b7a34bcd09044f0f84029110b80f01fdb59f9b0f6cef076a64ae10ea71",
+      "size": 7239,
+      "sources": [
+        "ifbench-instructions_registry_ifeval.py"
+      ]
+    },
+    "ifbench_checkers/instructions_util.py": {
+      "sha256": "ab845134085826f6cfb400f5ac74c2062c5b1590e611732831c2fc62c8c5fa7c",
+      "size": 25373,
+      "sources": [
+        "ifbench-instructions_util.py"
+      ]
+    },
+    "ifbench_checkers/instructions_util_ifeval.py": {
+      "sha256": "4b79a54a5aa98ed336e9a2c494713e36f40d635955f73e58b8cc78a81d93da89",
+      "size": 26829,
+      "sources": [
+        "ifbench-instructions_util_ifeval.py"
+      ]
+    },
+    "ifbench_test.json": {
+      "sha256": "359fe518fe040cf9fb4a3498cfacb8b00eea9d0d405deb7f525bd25c6084938a",
+      "size": 485725,
+      "sources": [
+        "ifbench-test"
+      ]
+    },
+    "jailbreak.json": {
+      "sha256": "baa556f7dd6557f55a66efe652df531c9f4f43f8d108e52cbbf2503ecee71539",
+      "size": 381320,
+      "sources": [
+        "jailbreak-test"
+      ]
+    },
+    "leetcode_contest.json": {
+      "sha256": "66dae9cf994eeaf2c84b878fb12ecd9927b7c775400058ae8b22710ae071b1d0",
+      "size": 9001578,
+      "sources": [
+        "leetcode-contest"
+      ]
+    },
+    "livecodebench_sica.json.gz": {
+      "sha256": "61b82ddd521e8149510eb2bd8ab255c0cf5664cbc52cedb7bd3fb14b05f8f017",
+      "size": 99230564,
+      "sources": [
+        "lcb-sica-test",
+        "lcb-sica-test2",
+        "lcb-sica-test3",
+        "lcb-sica-test4",
+        "lcb-sica-test5"
+      ]
+    },
+    "meeting_planning_test.json": {
+      "sha256": "58586486ebc536863371a1a3637b2e20b2266f1db7484bf7ceaeff0d45b9f293",
+      "size": 10500061,
+      "sources": [
+        "natural-plan-meeting"
+      ]
+    },
+    "nlp4lp.json": {
+      "sha256": "758bd6f5c3501c7afe5ea6391e86ca0e9313e478e0c5a726cdc2ba2c3d1ef2b6",
+      "size": 104817,
+      "sources": [
+        "llm4or-nlp4lp"
+      ]
+    },
+    "nltk_data/corpora/stopwords.zip": {
+      "sha256": "48c0e52d8b52546e827f53761fb30300c0ab94f70660d28bd65ba0a86270946b",
+      "size": 37733,
+      "sources": [
+        "nltk-stopwords"
+      ]
+    },
+    "nltk_data/taggers/averaged_perceptron_tagger_eng.zip": {
+      "sha256": "6025f530624335c67d6547d44757b357b4e79bae030a0383e9887a92c1718f0b",
+      "size": 1539115,
+      "sources": [
+        "nltk-averaged_perceptron_tagger_eng"
+      ]
+    },
+    "nltk_data/tokenizers/punkt_tab.zip": {
+      "sha256": "e57f64187974277726a3417ca6f181ec5403676c717672eef6a748a7b20e0106",
+      "size": 4319076,
+      "sources": [
+        "nltk-punkt_tab"
+      ]
+    },
+    "paper_review_test.json.gz": {
+      "sha256": "73db62d966c3cfe9c3d7b5b2ad1e5ade71dd138d8f3cd4ca2efc92ff743732bc",
+      "size": 7632208,
+      "sources": [
+        "hyperagents-paper-review"
+      ]
+    },
+    "proofbench.json": {
+      "sha256": "0105796d0e2a16155e323e9f666049d766f022f8f9e1da7dc5cabd0158ebb07e",
+      "size": 199330,
+      "sources": [
+        "imobench-proofbench"
+      ]
+    },
+    "pupa_test.json": {
+      "sha256": "74899f53877c32949007a23abd88d65b3c15d658b63e544cc1c83ec95b347830",
+      "size": 621816,
+      "sources": [
+        "pupa-new"
+      ]
+    },
+    "resocratic.json": {
+      "sha256": "71b8d75d1f960e341d3a2d297a859da35ff8718b1dbe41656f520c2a234f8181",
+      "size": 344246,
+      "sources": [
+        "llm4or-resocratic"
+      ]
+    },
+    "singleeq.json": {
+      "sha256": "62c9f627160bbd8ab56bd523ff6ef00569aa48726b5a739139e0c7adcceb8de1",
+      "size": 100770,
+      "sources": [
+        "singleeq-raw"
+      ]
+    },
+    "travel_accommodations.csv": {
+      "sha256": "7e70cc8cb573e824267be47153a3cf7934c839f01c955fb523d18be405921d86",
+      "size": 520458,
+      "sources": [
+        "travelplanner-travel_accommodations"
+      ]
+    },
+    "travel_attractions.csv": {
+      "sha256": "8007fa851ba5b3adb205fbd298169c95116b297cef7ccd21dbea26ecce2605d8",
+      "size": 817982,
+      "sources": [
+        "travelplanner-travel_attractions"
+      ]
+    },
+    "travel_city_states.txt": {
+      "sha256": "a3d18b5c692857cd561cbb4ad8d221ac3eb6c47af7c787a3489e3ffa184ca4d6",
+      "size": 5921,
+      "sources": [
+        "travelplanner-travel_city_states"
+      ]
+    },
+    "travel_distance.csv": {
+      "sha256": "44726ca74a335fd2d4824fc748f8832813550bfead37376fd51d6521a93a8b3b",
+      "size": 777824,
+      "sources": [
+        "travelplanner-travel_distance"
+      ]
+    },
+    "travel_flights.csv": {
+      "sha256": "ecb13acf2937b26616517865cbed14ced8830321831ef8205592e3e361386f9e",
+      "size": 134243,
+      "sources": [
+        "travelplanner-flights",
+        "travelplanner-validation"
+      ]
+    },
+    "travel_restaurants.csv": {
+      "sha256": "a38ef00a3398b1ef78306a9b1851c491723d27899c6a1d4a3d6fe042929c0f26",
+      "size": 683023,
+      "sources": [
+        "travelplanner-travel_restaurants"
+      ]
+    },
+    "travelplanner_validation.json": {
+      "sha256": "283a9566bde8e2e5737b46af59b0fa84572c79b2e747aab67138dfc1934c6b47",
+      "size": 4918790,
+      "sources": [
+        "travelplanner-validation"
+      ]
+    },
+    "uspto.json": {
+      "sha256": "258191b7266ef02cbf553cf6d26a3654b0c712f40165ea777bf79d9f5a964e4b",
+      "size": 20139,
+      "sources": [
+        "mce-uspto-test"
+      ]
+    }
+  }
+}

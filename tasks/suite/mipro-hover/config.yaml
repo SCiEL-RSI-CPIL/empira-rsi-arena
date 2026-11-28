@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 1800
   max_retries: 2
 
 prompt:
   system_message: |
     HoVer
 
-    HoVer: optimize the candidate specified by the paper and evaluate against the named benchmark.
+    Write a Python solve(claim, search, llm) program that retrieves, with at most 3 BM25 searches and 24 documents over 5.2 million 2017 Wikipedia abstracts and a budgeted OpenRouter model, the three gold supporting documents of a HoVer claim; scored by the fraction of claims whose gold titles were all retrieved, on a fixed 30-claim sample (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(claim: str, search, llm) -> any (the return value is not used). search(query: str, k: int = 7) -> list[str] returns up to k documents 'title | abstract' ranked by BM25 (bm25s, k1 0.9, b 0.4, English stopwords, Snowball stemming) over the 5.2 million 2017 Wikipedia abstracts; per claim at most 3 search calls, k from 1 to 10 per call and at most 24 documents in total (a call beyond the budget raises RuntimeError). llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str is a budgeted, cached OpenRouter chat client. A claim is solved when the titles of all its gold supporting documents (three distinct Wikipedia articles) are among the documents that search returned for it (titles compared after NFD normalisation, lower-casing and removal of punctuation, articles and extra spaces). Score: fraction of solved claims on a fixed seeded sample of GEPA's HoVer test split; higher is better. The program runs in a sandbox without file or network access (standard library and numpy only)
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

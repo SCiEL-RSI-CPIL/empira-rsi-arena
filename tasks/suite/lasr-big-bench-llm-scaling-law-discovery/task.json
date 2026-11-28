@@ -2,22 +2,27 @@
   "schema_version": "1.0",
   "id": "lasr-big-bench-llm-scaling-law-discovery",
   "name": "BIG-Bench LLM scaling-law discovery",
-  "description": "BIG-Bench LLM scaling-law discovery: optimize the candidate specified by the paper and evaluate against the named benchmark.",
+  "description": "Write a Python scaling_law(X, params) formula with at most five free constants that predicts BIG-bench multiple-choice grades from model size, training steps, batch size, shots and decoding temperature; the evaluator fits the constants by least squares on 43,049 rows and scores the mean squared error on 10,763 held-out rows (lower is better).",
   "paper_ids": [
     "lasr"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2409.09359",
       "type": "paper",
-      "locator": "Sections 4.1–4.5 and Appendix A.4–A.6"
+      "locator": "Section 4.6 and Appendix A.6"
     },
     {
       "url": "https://github.com/trishullab/LibraryAugmentedSymbolicRegression.jl/tree/776196e339191736e20d4eb6eed7c468aa6e4472",
       "type": "repository",
       "locator": null
+    },
+    {
+      "url": "https://github.com/google/BIG-bench/tree/092b196c1f8f14a54bbc62f24759d43bde46dd3b",
+      "type": "benchmark",
+      "locator": "bigbench/benchmark_tasks/*/results/scores_*.json: per-model evaluation records (preferred score, multiple-choice grade, number of shots, model hyperparameters)"
     }
   ],
   "requirements": {
@@ -25,20 +30,20 @@
     "hardware": "See upstream requirements and task notes.",
     "dependencies": [],
     "environment_variables": [],
-    "datasets": "BIG-Bench LLM scaling-law discovery",
+    "datasets": "BIG-Bench multiple-choice-grade subset: 53,812 scored model/task observations",
     "notes": [
       "Julia",
       "LLM backend"
     ]
   },
   "evaluation": {
-    "metric": "exact symbolic recovery / MSE (symbolic regression); scaling-law predictive fit",
-    "paper_metric": "exact symbolic recovery / MSE (symbolic regression); scaling-law predictive fit",
+    "metric": "score",
+    "paper_metric": "predictive fit to BIG-Bench multiple-choice grades; equation-complexity tradeoff",
     "paper_direction": null,
-    "direction": null,
+    "direction": "minimize",
     "benchmark": "BIG-Bench LLM scaling-law discovery",
     "protocol": "specified_only",
-    "source_locator": "Sections 4.1–4.5 and Appendix A.4–A.6"
+    "source_locator": "Section 4.6 and Appendix A.6"
   },
   "execution": {
     "repository": "https://github.com/trishullab/LibraryAugmentedSymbolicRegression.jl",
@@ -65,11 +70,12 @@
       }
     ],
     "notes": [
-      "Feynman suite contains 100 equations; algorithm repository has examples but no verified paper experiment driver."
+      "This task concerns scaling-law discovery, distinct from LaSR Feynman exact-equation recovery.",
+      "Paper algorithm repository exists, but the exact scaling-law dataset preparation and experiment driver are not verified locally."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "bigbench_scaling_law",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -77,35 +83,34 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "dataset:BIG-Bench"
+        "py:numpy",
+        "file:data/metaopt/bigbench_mcg.csv.gz"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "dataset",
-      "unsupported_reason": "BIG-Bench scaling-law discovery needs the BIG-Bench evaluation records."
+      "timeout": 300,
+      "validity_key": "valid"
     }
   },
   "limitations": [
-    "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
+    "Upstream commands and dependencies were inspected; costly training, paid APIs, and hardware experiments were not executed."
   ],
   "source_specification": {
     "name": "BIG-Bench LLM scaling-law discovery",
     "slug": "big-bench-llm-scaling-law-discovery",
-    "description": "BIG-Bench LLM scaling-law discovery: optimize the candidate specified by the paper and evaluate against the named benchmark.",
+    "description": "Discover equations predicting BIG-Bench multiple-choice grades from model and dataset hyperparameters, using the paper's 53,812-point subset, regularization and a simplicity/accuracy Pareto frontier. This inventory specifies no executable scalar loss.",
     "benchmark": "BIG-Bench LLM scaling-law discovery",
-    "dataset": "BIG-Bench LLM scaling-law discovery",
-    "metric": "exact symbolic recovery / MSE (symbolic regression); scaling-law predictive fit",
+    "dataset": "BIG-Bench multiple-choice-grade subset: 53,812 scored model/task observations",
+    "metric": "predictive fit to BIG-Bench multiple-choice grades; equation-complexity tradeoff",
     "direction": null,
     "source_url": "https://arxiv.org/pdf/2409.09359",
-    "source_locator": "Sections 4.1–4.5 and Appendix A.4–A.6",
+    "source_locator": "Section 4.6 and Appendix A.6",
     "upstream_path": null,
     "requirements": [
       "Julia",
       "LLM backend"
     ],
     "execution_notes": [
-      "Feynman suite contains 100 equations; algorithm repository has examples but no verified paper experiment driver."
+      "This task concerns scaling-law discovery, distinct from LaSR Feynman exact-equation recovery.",
+      "Paper algorithm repository exists, but the exact scaling-law dataset preparation and experiment driver are not verified locally."
     ],
     "implementation_status": "paper_inventory_only"
   },
@@ -122,19 +127,38 @@
     "domain": "machine_learning",
     "area": "machine_learning",
     "data": "real_measurements",
-    "verification": "none",
+    "verification": "exact",
     "reference": "none",
     "resources": [
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
-    "important_to_science": false
+    "important_to_science": true
   },
   "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Predict how well language models perform on downstream benchmark tasks from their scale (parameters, training steps, batch tokens) and inference settings (number of shots, decoding temperature).",
+    "importance_rationale": "Forecasting capabilities from scale guides model development and capability forecasting; BIG-bench is a standard testbed for asking whether benchmark performance follows predictable scaling trends.",
+    "papers": [
+      {
+        "title": "How predictable is language model benchmark performance?",
+        "url": "https://arxiv.org/abs/2401.04757",
+        "primary_goal": "Measure how well aggregate and per-task BIG-bench performance can be predicted and extrapolated as a function of training compute.",
+        "task_relation": "The local task fits a closed-form law that predicts BIG-bench multiple-choice grades from model scale, shots and temperature and scores it on held-out rows; it uses a random row split (interpolation) and per-entry grades rather than the paper's extrapolation across compute.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Observational Scaling Laws and the Predictability of Language Model Performance",
+        "url": "https://arxiv.org/abs/2405.10938",
+        "primary_goal": "Build scaling laws from about 100 publicly available models that predict language-model benchmark performance.",
+        "task_relation": "Same problem (predicting downstream benchmark performance from model scale); the local task uses only BIG-bench's own model families and hyperparameters, not the paper's capability-space method or data.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both cited papers have predicting language-model benchmark performance from scale as their main goal, which is what the local task scores on BIG-bench records; no reproduction of their numbers is claimed, and the local target is near-saturated (see the task notes).",
+    "verification_basis": "arXiv metadata and abstracts of 2401.04757 and 2405.10938 inspected on 2026-10-10; local evaluator run on the rebuilt 53,812-row BIG-bench subset.",
+    "reviewed_at": "2026-10-10",
     "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
-    "criterion": "primary_research_goal",
-    "status": "unreviewed",
-    "papers": [],
-    "reason": "No qualifying paper whose main objective is this underlying scientific or real-world problem has been established in the evidence registry. A task's use in an agent/framework evaluation is insufficient. This label describes the available evidence, not proof that the task has no scientific value."
+    "criterion": "primary_research_goal"
   }
 }

@@ -1,23 +1,33 @@
 {
   "schema_version": "1.0",
   "id": "protegi-jailbreak",
-  "name": "Jailbreak",
-  "description": "Jailbreak: optimize the candidate specified by the paper and evaluate against the named benchmark.",
+  "name": "Jailbreak detection",
+  "description": "Write a classifier that decides whether a single English user message is a jailbreak attempt, scored with binary F1 on a fixed sample of the public jackhhao/jailbreak-classification data; a clearly labelled proxy of ProTeGi's unreleased multilingual jailbreak-detection set.",
   "paper_ids": [
     "protegi"
   ],
   "kind": "upstream",
-  "status": "requires_setup",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2305.03495",
       "type": "paper",
-      "locator": "Section 4"
+      "locator": "Section 3 (3.1 Data, 3.2 Setup, 3.4 Experimental Results, Tables 1-3)"
     },
     {
       "url": "https://github.com/microsoft/LMOps/tree/6f53ef41c951de0962bbf27fe3f5819eabc8ce0e",
       "type": "repository",
       "locator": "prompt_optimization/main.py"
+    },
+    {
+      "url": "https://huggingface.co/datasets/jackhhao/jailbreak-classification/tree/2f2ceeb39658696fd3f462403562b6eea5306287",
+      "type": "benchmark",
+      "locator": "balanced/jailbreak_dataset_test_balanced.csv (proxy for the unreleased ProTeGi data)"
+    },
+    {
+      "url": "https://github.com/microsoft/LMOps/blob/6f53ef41c951de0962bbf27fe3f5819eabc8ce0e/prompt_optimization/predictors.py",
+      "type": "repository",
+      "locator": "BinaryPredictor yes-prefix rule"
     }
   ],
   "requirements": {
@@ -25,7 +35,7 @@
     "hardware": "See upstream requirements and task notes.",
     "dependencies": [],
     "environment_variables": [],
-    "datasets": "Jailbreak",
+    "datasets": "Jailbreak detection conversations",
     "notes": [
       "Python",
       "requests",
@@ -39,13 +49,13 @@
     ]
   },
   "evaluation": {
-    "metric": "F1",
-    "paper_metric": "F1",
+    "metric": "score",
+    "paper_metric": "binary F1",
     "paper_direction": "maximize",
     "direction": "maximize",
-    "benchmark": "Jailbreak",
+    "benchmark": "Jailbreak detection",
     "protocol": "upstream",
-    "source_locator": "Section 4"
+    "source_locator": "Section 3 (3.1 Data, 3.2 Setup, 3.4 Experimental Results, Tables 1-3)"
   },
   "execution": {
     "repository": "https://github.com/microsoft/LMOps",
@@ -95,8 +105,8 @@
       "Upstream operation: prompt_search_and_evaluation"
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "llm_bench_qa",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -104,14 +114,13 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "service:llm_api",
+        "py:numpy",
         "env:OPENROUTER_API_KEY",
-        "dataset:Jailbreak"
+        "network:openrouter",
+        "file:data/llm_bench/jailbreak.json"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "llm_api",
-      "unsupported_reason": "Candidates are prompts, agent scaffolds or workflows whose fitness is measured by querying a language model on the Jailbreak benchmark. The suite embeds neither model calls nor the benchmark data."
+      "timeout": 900,
+      "validity_key": "valid"
     }
   },
   "limitations": [
@@ -120,15 +129,15 @@
     "Execution interface inspected in pinned source. Full paper experiments have not been reproduced here."
   ],
   "source_specification": {
-    "name": "Jailbreak",
+    "name": "Jailbreak detection",
     "slug": "jailbreak",
-    "description": "Jailbreak: optimize the candidate specified by the paper and evaluate against the named benchmark.",
-    "benchmark": "Jailbreak",
-    "dataset": "Jailbreak",
-    "metric": "F1",
+    "description": "Optimize a prompt for binary detection of jailbreak attempts in input conversations; evaluate classification with binary F1.",
+    "benchmark": "Jailbreak detection",
+    "dataset": "Jailbreak detection conversations",
+    "metric": "binary F1",
     "direction": "maximize",
     "source_url": "https://arxiv.org/pdf/2305.03495",
-    "source_locator": "Section 4",
+    "source_locator": "Section 3 (3.1 Data, 3.2 Setup, 3.4 Experimental Results, Tables 1-3)",
     "upstream_path": "prompt_optimization/main.py",
     "requirements": [
       "Python",
@@ -145,11 +154,7 @@
       "Create data/jailbreak/train.tsv and test.tsv. Each line is a JSON conversation, tab, binary integer label; conversation is a list of objects with role/text fields. The evaluator joins role=user text. The original dataset is not included.",
       "The task selector, prompt file, evaluator and data loader are source-verified. Dataset preparation is still required; these commands do not establish the paper’s exact data split.",
       "The prompt is included. Output is written to jailbreak_results.out under prompt_optimization.",
-      "Configure historical model identifiers/endpoints in the upstream predictor/optimizer modules before use.",
-      "requests, tqdm, pandas, scikit-learn and the imported ProTeGi module dependencies",
-      "Set OPENAI_KEY in prompt_optimization/config.py",
-      "Prepare missing dataset in the exact tasks.py schema",
-      "Upstream operation: prompt_search_and_evaluation"
+      "Configure historical model identifiers/endpoints in the upstream predictor/optimizer modules before use."
     ],
     "implementation_status": "source_verified_command_requires_setup",
     "execution": {
@@ -192,11 +197,10 @@
     "domain": "language",
     "area": "language_and_agents",
     "data": "public_benchmark",
-    "verification": "none",
+    "verification": "sampled",
     "reference": "none",
     "resources": [
-      "model_api",
-      "unavailable"
+      "model_api"
     ],
     "cost": "not_run",
     "important_to_science": false

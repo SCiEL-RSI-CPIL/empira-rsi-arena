@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 900
   max_retries: 2
 
 prompt:
   system_message: |
     ReSocratic
 
-    ReSocratic
+    Write a Python solve(question, llm) agent that, using a budgeted OpenRouter model client and optionally local numpy/scipy code, returns a JSON object with every requested quantity of an OptiBench/ReSocratic optimization problem; scored by the fraction of a fixed 30-problem sample (of 403 cleaned problems) where all values are within max(1e-4, 1e-3*|gold|) (higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: solve(question: str, llm) -> str. `llm(prompt_or_messages, system=None, max_tokens=None, temperature=None, json_mode=False) -> str` is a budgeted, cached OpenRouter chat client; the program may also run code locally (numpy and scipy, including scipy.optimize.milp and linprog, are available). `question` is an OptiBench/ReSocratic optimization problem followed by the JSON list of quantity names to report. Answer rule: the reply must contain a JSON object (read from the final answer (the text after the last 'Answer:' marker, else the last \boxed{...}, else the last non-empty line), else the JSON object that ends last in the reply) mapping every requested name (case and whitespace insensitive) to a number; the problem scores 1 only if every value satisfies |value - gold| <= max(1e-4, 1e-3 * |gold|). Score: accuracy on a fixed 30-problem sample of the 403 cleaned problems; higher is better
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

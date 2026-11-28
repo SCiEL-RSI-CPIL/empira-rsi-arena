@@ -2,12 +2,12 @@
   "schema_version": "1.0",
   "id": "loongflow-stanford-covid-vaccine",
   "name": "stanford-covid-vaccine",
-  "description": "Predict RNA reactivity, deg_Mg_pH10 and deg_Mg_50C; score the mean of three RMSE values on rows selected by the answers keep mask.",
+  "description": "Write a Python fit_predict(train, test_inputs, time_budget_s) function that learns from 1,349 OpenVaccine RNA sequences with per-position degradation measurements and predicts reactivity, deg_Mg_pH10 and deg_Mg_50C at the first 68 positions of 240 test RNAs, within a 300 s wall-clock budget on 4 CPU threads; scored by MCRMSE (lower is better).",
   "paper_ids": [
     "loongflow"
   ],
   "kind": "specification",
-  "status": "blocked",
+  "status": "ready",
   "sources": [
     {
       "url": "https://arxiv.org/pdf/2512.24077",
@@ -18,6 +18,26 @@
       "url": "https://github.com/baidu-baige/LoongFlow/tree/945c78bc1554f8281aac40320b3599bd68d528d7",
       "type": "repository",
       "locator": "agents/ml_agent/examples/mlebench/eval_program.py"
+    },
+    {
+      "url": "https://github.com/eternagame/KaggleOpenVaccine/tree/b95af835cc38bd7dc55ed6e7397d124787f86996/data/Kaggle_RYOS_data",
+      "type": "repository",
+      "locator": "Kaggle_RYOS_trainset.csv (MIT): the SN_filter = 1 rows of the competition's train.json"
+    },
+    {
+      "url": "https://doi.org/10.1038/s42256-022-00571-8",
+      "type": "paper",
+      "locator": "Wayment-Steele et al. 2022, Deep learning models for predicting RNA degradation via dual crowdsourcing"
+    },
+    {
+      "url": "https://github.com/openai/mle-bench/tree/507f92e1138bb6e40dac5c6ee7a6758e6424bf97/mlebench/competitions/stanford-covid-vaccine",
+      "type": "repository",
+      "locator": "prepare.py (240 SN_filter > 0 test rows, random_state 0) and grade.py (MCRMSE over reactivity, deg_Mg_pH10, deg_Mg_50C on scored positions)"
+    },
+    {
+      "url": "https://www.kaggle.com/c/stanford-covid-vaccine",
+      "type": "benchmark",
+      "locator": "competition definition"
     }
   ],
   "requirements": {
@@ -33,7 +53,7 @@
     ]
   },
   "evaluation": {
-    "metric": "mean columnwise root mean squared error",
+    "metric": "score",
     "paper_metric": "mean columnwise root mean squared error",
     "paper_direction": "minimize",
     "direction": "minimize",
@@ -81,8 +101,8 @@
       "Source inconsistency: config.yaml labels the grader multi-class-log-loss, but grade.py actually computes mean columnwise RMSE; this task uses the executable grading definition."
     ],
     "suite": {
-      "protocol": "unsupported",
-      "family": null,
+      "protocol": "recreated",
+      "family": "kaggle_openvaccine_degradation",
       "evaluator": "evaluator.py",
       "initial_program": "initial_program.py",
       "callable": "evaluate",
@@ -90,19 +110,19 @@
       "score_key": "score",
       "error_key": "error",
       "requires": [
-        "dataset:MLE-bench",
-        "hardware:gpu"
+        "py:numpy",
+        "py:sklearn",
+        "py:pandas",
+        "py:psutil",
+        "file:data/kaggle/openvaccine/public/train.jsonl",
+        "file:data/kaggle/openvaccine/public/test.jsonl",
+        "file:data/kaggle/openvaccine/private/test_labels.npz"
       ],
-      "timeout": 30,
-      "validity_key": "valid",
-      "unsupported_category": "dataset",
-      "unsupported_reason": "MLE-bench competitions require the Kaggle data and model training; neither is redistributed."
+      "timeout": 480,
+      "validity_key": "valid"
     }
   },
-  "limitations": [
-    "Direct CPU checks found upstream square seed rejected by strict overlap test and rectangle seed incompatible with its evaluator. Original Autocorrelation II and Erdos overlap seeds passed; a new simple square grid fixture passed. These are integration checks, not reproduced paper results.",
-    "No complete, verified execution adapter has been established for this exact task; this package is an explicit implementation gap."
-  ],
+  "limitations": [],
   "source_specification": {
     "name": "stanford-covid-vaccine",
     "slug": "stanford-covid-vaccine",
@@ -143,14 +163,13 @@
     "scientific_contribution": "engineering",
     "science_tier": 3,
     "artifact": "model",
-    "domain": "machine_learning",
-    "area": "machine_learning",
-    "data": "undistributed",
-    "verification": "none",
+    "domain": "natural_science",
+    "area": "biology",
+    "data": "real_measurements",
+    "verification": "simulation",
     "reference": "none",
     "resources": [
-      "gpu",
-      "unavailable"
+      "cpu"
     ],
     "cost": "not_run",
     "important_to_science": false

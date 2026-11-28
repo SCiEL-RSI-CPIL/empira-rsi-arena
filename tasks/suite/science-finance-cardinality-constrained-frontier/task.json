@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0",
+  "id": "science-finance-cardinality-constrained-frontier",
+  "name": "Finance: Cardinality-constrained mean-variance frontier (OR-Library)",
+  "description": "Build mean-variance portfolios of exactly ten assets, each held between 1% and 100%, at 51 fixed target returns for five OR-Library stock markets with 31 to 225 assets. The evaluator checks every constraint and scores Chang et al.'s mean percentage deviation from the published unconstrained efficient frontier.",
+  "paper_ids": [
+    "science-finance_expansion"
+  ],
+  "kind": "native",
+  "status": "ready",
+  "sources": [
+    {
+      "url": "https://doi.org/10.1016/s0305-0548(99)00074-x",
+      "type": "paper",
+      "locator": "Chang, Meade, Beasley and Sharaiha (2000): cardinality-constrained mean-variance model (exactly K assets, holding bounds), the five OR-Library markets, K = 10, epsilon = 0.01, delta = 1, and the percentage-error measure against the unconstrained frontier."
+    },
+    {
+      "url": "https://doi.org/10.1016/j.ejor.2011.03.030",
+      "type": "paper",
+      "locator": "Woodside-Oriakhi, Lucas and Beasley (2011): heuristic algorithms for the same cardinality-constrained frontier and its evaluation against the unconstrained frontier."
+    },
+    {
+      "url": "https://arxiv.org/abs/2101.03312",
+      "type": "paper",
+      "locator": "Restates Chang et al.'s percentage error (Eqs. 20-23: standard-deviation and return errors by linear interpolation on the published frontier, minimum of the two, averaged) and their GA, SA and TS results (Table 5)."
+    },
+    {
+      "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/portinfo.html",
+      "type": "benchmark",
+      "locator": "OR-Library portfolio files port1-port5 (means, standard deviations, correlations) and portef1-portef5 (2000 frontier points each), pinned by SHA-256 in catalog/finance-data-lock.json."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "cvxpy"
+    ],
+    "environment_variables": [],
+    "datasets": "OR-Library port1-port5 and portef1-portef5 fetched by scripts/prepare_finance.py and verified by SHA-256; not redistributed."
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "Finance: Cardinality-constrained mean-variance frontier (OR-Library)",
+    "paper_metric": "Local protocol; see candidate contract and source adaptation notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "science_finance_cardinality_frontier",
+    "science_family": "science_finance_cardinality_frontier",
+    "parameters": {},
+    "interface": "build_frontier(problem) -> (51, N) float array: one portfolio per target return. problem = {'name': market, 'mean': (N,) expected weekly returns, 'cov': (N, N) covariance, 'K': 10, 'min_weight': 0.01, 'max_weight': 1.0, 'target_returns': (51,) evenly spaced from the return of the unconstrained minimum-variance portfolio to the highest return attainable with the constraints}. Every portfolio must hold exactly 10 assets (|w| <= 1e-12 counts as not held), each held weight in [0.01, 1], weights summing to 1 and expected return equal to its target (all within 1e-8). Called once for each OR-Library market: Hang Seng (N = 31), DAX 100 (85), FTSE 100 (89), S&P 100 (98), Nikkei 225 (225). Score: Chang et al.'s percentage error of each portfolio against the published unconstrained efficient frontier, min(100|s - s*(r)|/s*(r), 100|r - r*(s)|/r*(s)) by linear interpolation on the 2000 published frontier points (s = standard deviation, r = return), averaged over the 51 targets and then over the five markets (minimize). The candidate runs in a separate sandboxed process: numpy, scipy, scikit-learn and the other installed packages are importable, while the evaluator's library, its data files, the network and subprocesses are not accessible; one thread and 3 GB of memory. It receives only the arguments described here, one call at a time: the arguments of a call are sent after the value of the previous call has been received. Arguments and return values travel as numbers, strings, lists, dicts with string keys and numeric numpy arrays, so a tuple arrives as a list",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "finance",
+      "area": "finance",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "cvxpy"
+      ]
+    },
+    "setup_instructions": [
+      "python3 scripts/prepare_finance.py",
+      "catalog/finance-data-lock.json"
+    ],
+    "additional_requires": [
+      "file:data/finance/orlib_port1.csv",
+      "file:data/finance/orlib_port2.csv",
+      "file:data/finance/orlib_port3.csv",
+      "file:data/finance/orlib_port4.csv",
+      "file:data/finance/orlib_port5.csv",
+      "file:data/finance/orlib_portef1.csv",
+      "file:data/finance/orlib_portef2.csv",
+      "file:data/finance/orlib_portef3.csv",
+      "file:data/finance/orlib_portef4.csv",
+      "file:data/finance/orlib_portef5.csv"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "science_finance_cardinality_frontier",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:cvxpy",
+        "file:data/finance/orlib_port1.csv",
+        "file:data/finance/orlib_port2.csv",
+        "file:data/finance/orlib_port3.csv",
+        "file:data/finance/orlib_port4.csv",
+        "file:data/finance/orlib_port5.csv",
+        "file:data/finance/orlib_portef1.csv",
+        "file:data/finance/orlib_portef2.csv",
+        "file:data/finance/orlib_portef3.csv",
+        "file:data/finance/orlib_portef4.csv",
+        "file:data/finance/orlib_portef5.csv"
+      ],
+      "timeout": 600,
+      "validity_key": "valid"
+    }
+  },
+  "limitations": [
+    "Portfolios are required at 51 fixed target returns rather than at the 51 risk-aversion weights of the published lambda sweep, so published mean percentage errors (for example 1.0957 for Hang Seng by simulated annealing) are not directly comparable with this score.",
+    "The unconstrained frontier is a relaxation: no cardinality-constrained portfolio reaches zero error, and the attainable minimum per market is unknown (the problem is NP-hard).",
+    "Means and covariances are in-sample estimates from weekly prices of 1992-1997; the score measures optimization quality on these fixed inputs, not out-of-sample investment performance. Transaction costs, round lots and turnover are ignored.",
+    "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+  ],
+  "validation": {
+    "level": "automated_tests",
+    "upstream_reproduction": false,
+    "source_reviewed": "2026-09-20",
+    "evidence": "validation/finance-checks.json",
+    "tests": "tests/test_finance_ccef.py"
+  },
+  "state_of_the_art": {
+    "kind": "none",
+    "value": null,
+    "statement": "No published value exists for the target-return protocol. Under the lambda sweep, Chang et al. report mean percentage errors of 1.0974/1.0957/1.1217 (GA/SA/TS) for Hang Seng, 2.5424/2.9297/3.3049 for DAX, 1.1076/1.4623/1.6080 for FTSE, 1.9328/3.0696/3.3092 for S&P and 0.7961/0.6732/0.8975 for Nikkei. Local references here: the frontier-support seed 1.535 and a single-swap local search 1.381 (mean over markets).",
+    "sources": [
+      {
+        "title": "Heuristics for cardinality constrained portfolio optimisation",
+        "url": "https://doi.org/10.1016/s0305-0548(99)00074-x"
+      },
+      {
+        "title": "Markowitz-based cardinality constrained portfolio selection using Asexual Reproduction Optimization (ARO)",
+        "url": "https://arxiv.org/abs/2101.03312"
+      }
+    ],
+    "as_of": "2026-10-08"
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "artifact": "program",
+    "domain": "finance",
+    "area": "finance",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "none",
+    "science_tier": 2,
+    "resources": [
+      "cpu"
+    ],
+    "cost": "fast",
+    "important_to_science": true
+  },
+  "science_relevance": {
+    "status": "supported",
+    "scientific_problem": "Trace the mean-variance efficient frontier when portfolios must hold a fixed small number of assets with minimum and maximum holdings.",
+    "importance_rationale": "Practical portfolios limit the number of holdings and position sizes; these constraints make mean-variance optimization NP-hard and change the shape of the efficient frontier, so efficient algorithms are needed by portfolio managers.",
+    "papers": [
+      {
+        "title": "Heuristics for cardinality constrained portfolio optimisation",
+        "url": "https://doi.org/10.1016/s0305-0548(99)00074-x",
+        "primary_goal": "Find the cardinality-constrained efficient frontier with heuristic algorithms and study how the constraints change it.",
+        "task_relation": "The task uses the paper's model, parameters, OR-Library markets and percentage-error measure, with portfolios required at fixed target returns.",
+        "evidence_role": "primary_problem"
+      },
+      {
+        "title": "Heuristic algorithms for the cardinality constrained efficient frontier",
+        "url": "https://doi.org/10.1016/j.ejor.2011.03.030",
+        "primary_goal": "Develop better heuristics for the cardinality-constrained efficient frontier.",
+        "task_relation": "Candidate programs are heuristics for the same frontier problem.",
+        "evidence_role": "primary_problem"
+      }
+    ],
+    "reason": "Both papers have the cardinality-constrained efficient frontier as their main research goal.",
+    "reviewed_at": "2026-10-08",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal"
+  }
+}

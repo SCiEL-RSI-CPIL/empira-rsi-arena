@@ -22,16 +22,16 @@ database:
     - "complexity"
 
 evaluator:
-  timeout: 30
+  timeout: 300
   max_retries: 2
 
 prompt:
   system_message: |
     EoB-BBOB benchmark synthesis
 
-    EoB-BBOB benchmark synthesis
+    Write a Python objective(X) function defining a deterministic, vectorised minimisation problem on [-5, 5]^10; scored by sqrt(LSI x min(1, ADC / 0.5)), combining landscape-feature similarity to the 24 BBOB functions with the spread of mean results of ten local optimisers (10 runs of 5,000 evaluations each; higher is better).
 
-    Candidate interface: see evaluator.py
+    Candidate interface: objective(X) -> float array of shape (n,): a deterministic, vectorised minimisation problem on the box [-5, 5]^10; X is a float array of shape (n, 10) whose rows are independent points (the candidate receives a copy). Values must be real numbers (strings, booleans and complex values are rejected), finite, with magnitude at most 1e100 and must not depend on the batch composition or on earlier calls; a constant function is rejected. Score (maximize): sqrt(LSI x min(1, ADC / 0.5)). LSI = 1 / (1 + d / sigma^2), where d is the Euclidean distance between the candidate's 16 landscape features (fixed 500-point Latin-hypercube sample; y-distribution, meta-model, local-rank, dispersion, nearest-better, information-content and fitness-distance features, scaled by their across-instance standard deviation) and the nearest of 24 BBOB anchors (each the centroid of five random instances of a BBOB function), and sigma^2 is the median distance from an instance to the centroid of the other instances of its function; LSI is also computed on a copy of the sample shifted by a tiny offset seeded by the SHA-256 of the candidate file, and the smaller value counts. ADC = standard deviation over 10 optimisers (DE/rand/1/bin, jDE, JADE, L-SHADE, constriction PSO, ring PSO, CLPSO, DMS-PSO, CMA-ES, sep-CMA-ES; 10 seeded runs of 5,000 evaluations each) of their mean final best value, after min-max normalisation of the 10 x 10 result matrix
 
     Only modify code between the EVOLVE-BLOCK markers; keep the interface unchanged.
   num_top_programs: 3

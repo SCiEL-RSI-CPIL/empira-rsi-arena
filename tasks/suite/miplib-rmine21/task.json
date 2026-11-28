@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0",
+  "id": "miplib-rmine21",
+  "name": "MIPLIB 2017 open instance rmine21",
+  "description": "Find a feasible solution of the MIPLIB 2017 instance rmine21 with as low an objective value as possible (a maximisation model is negated, so that lower is better for every instance). A solution is feasible when every variable bound, every row bound and the integrality of every integer variable hold within an absolute tolerance of 1e-6 on the values as they are returned; integer variables are not rounded first.",
+  "paper_ids": [
+    "open-problems-2026-11"
+  ],
+  "kind": "native",
+  "status": "requires_setup",
+  "sources": [
+    {
+      "url": "https://miplib.zib.de/tag_open.html",
+      "type": "benchmark",
+      "locator": "rmine21"
+    },
+    {
+      "url": "https://doi.org/10.1016/j.endm.2010.05.052",
+      "type": "paper",
+      "locator": "Large-scale multi-period precedence constrained knapsack problem: A mining application"
+    },
+    {
+      "url": "https://doi.org/10.1007/s12532-020-00194-3",
+      "type": "benchmark",
+      "locator": "Gleixner et al. (2021), MIPLIB 2017: data-driven compilation of the 6th mixed-integer programming library (benchmark paper, not evidence)."
+    },
+    {
+      "url": "https://miplib.zib.de/",
+      "type": "benchmark",
+      "locator": "Instance pages with submitter, group, status and best known objective."
+    }
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "hardware": "CPU",
+    "dependencies": [
+      "numpy",
+      "scipy",
+      "highspy"
+    ],
+    "environment_variables": [],
+    "datasets": "https://miplib.zib.de/WebData/instances/rmine21.mps.gz (size varies; some files are large)"
+  },
+  "evaluation": {
+    "metric": "score",
+    "direction": "minimize",
+    "protocol": "paper_reimplementation",
+    "benchmark": "MIPLIB 2017 open instance rmine21",
+    "paper_metric": "Record comparison; see problem.json notes",
+    "profiles": [
+      "evaluation"
+    ]
+  },
+  "execution": {
+    "native_kind": "miplib",
+    "science_family": "miplib",
+    "parameters": {
+      "instance": "rmine21",
+      "best_known": -10618.750838372318
+    },
+    "interface": "solve(model) -> numpy array of num_cols values, one per column. model has name, mps_path (the uncompressed MPS file), num_cols, num_rows, A (scipy CSR matrix of the rows), col_cost, col_lower, col_upper, row_lower, row_upper, integrality (bool array), offset, maximise and indicators (a list of (row, column, value): such a row has to hold only when that column equals the value; empty for most instances). Score: col_cost @ x + offset in minimisation form (negated when maximise is true), minimized; an infeasible vector is invalid.",
+    "label_spec": {
+      "scientific_contribution": "method",
+      "artifact": "construction",
+      "domain": "combinatorial_optimisation",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "published_value",
+      "area": "optimization",
+      "areas": [
+        "optimization"
+      ]
+    },
+    "additional_requires": [],
+    "repository": null,
+    "commit": null,
+    "commands": [],
+    "notes": [
+      "https://miplib.zib.de/WebData/instances/rmine21.mps.gz (size varies; some files are large)"
+    ],
+    "suite": {
+      "protocol": "recreated",
+      "family": "miplib",
+      "evaluator": "evaluator.py",
+      "initial_program": "initial_program.py",
+      "callable": "evaluate",
+      "env": {},
+      "score_key": "score",
+      "error_key": "error",
+      "requires": [
+        "py:numpy",
+        "py:scipy",
+        "py:highspy",
+        "file:data/arnew/miplib/rmine21.mps.gz"
+      ],
+      "timeout": 900,
+      "validity_key": "valid"
+    },
+    "declared_status": "requires_setup"
+  },
+  "limitations": [
+    "The objective listed on the open-instances page may have been improved since 2026-11-11 (the list did not change between 2026-11-02 and 2026-11-11).",
+    "Candidates may call HiGHS through highspy; a stronger solver is a method, not a discovery by the workflow.",
+    "The record was found in a hashed snapshot of its source; it is not replayed. See VALIDITY.md."
+  ],
+  "validation": {
+    "level": "real_instance_seed_run",
+    "source_reviewed": "2026-11-02",
+    "evidence": "tests/test_audit_open_problems.py",
+    "tests": "tests/test_audit_open_problems.py",
+    "upstream_reproduction": false,
+    "record_level": "record_matches_pinned_source",
+    "unsure": false,
+    "record_validation": {
+      "record": -10618.750838372318,
+      "checks": [
+        "open-instances page lists -10618.75083837232",
+        "published solution file header =obj= -10618.750838372318"
+      ],
+      "sources": [
+        "sources/miplib_tag_open.html",
+        "sources/miplib_details/rmine21.html",
+        "sources/miplib_sol/rmine21.sol.gz",
+        "data/miplib/rmine21.mps.gz"
+      ],
+      "notes": [
+        "our verifier does not accept the published solution: an integer variable is not integral (largest violations: rows 5.0e-09, bounds 0.0e+00, integrality 6.6e-06). MIPLIB's own check is looser than this task's absolute 1e-6, so matching the record here needs a cleaner solution; a result that beats it here also beats it there"
+      ],
+      "validated": "2026-11-11"
+    }
+  },
+  "labels": {
+    "scientific_contribution": "method",
+    "science_tier": 2,
+    "artifact": "construction",
+    "domain": "combinatorial_optimisation",
+    "data": "public_benchmark",
+    "verification": "exact",
+    "reference": "published_value",
+    "resources": [
+      "cpu"
+    ],
+    "cost": "not_run",
+    "area": "optimization",
+    "areas": [
+      "optimization"
+    ],
+    "important_to_science": true
+  },
+  "subtasks": [],
+  "science_relevance": {
+    "status": "supported",
+    "definition": "A task is important to science when it addresses a substantive scientific or real-world problem, and a cited research paper's main objective is to solve that problem or advance understanding of it. The evidence must explain why the problem matters and how the local task represents it. Using a task to evaluate an agent, framework, or general-purpose model, or citing only a benchmark, dataset, or tool, does not establish scientific importance.",
+    "criterion": "primary_research_goal",
+    "reviewed_at": "2026-11-11",
+    "reason": "The cited paper's main objective is the large-scale multi-period precedence constrained knapsack problem arising in mining, which the page describes as the source of these instances.",
+    "scientific_problem": "Choose the blocks to extract and the period of extraction in each period of an open-pit mine cube, respecting block precedences and two knapsack (capacity) constraints per period, to maximise the objective of the model rmine21.",
+    "importance_rationale": "Open-pit mine planning decides what to mine and when, and the multi-period model is a large precedence-constrained knapsack problem whose size makes exact solution hard.",
+    "papers": [
+      {
+        "title": "Large-scale multi-period precedence constrained knapsack problem: A mining application",
+        "url": "https://doi.org/10.1016/j.endm.2010.05.052",
+        "task_relation": "The MIPLIB page describes the instances as open pit mining over a cube with several periods and two knapsack constraints per period; the link to this paper is by problem description and co-authorship of the submitter, not an explicit citation on the page.",
+        "primary_goal": "Study and solve large-scale multi-period precedence constrained knapsack problems that arise in mine production scheduling.",
+        "evidence_role": "primary_problem"
+      }
+    ]
+  },
+  "source_specification": {
+    "name": "MIPLIB 2017 open instance rmine21",
+    "slug": "miplib-rmine21",
+    "description": "Find a feasible solution of the MIPLIB 2017 instance rmine21 with as low an objective value as possible (a maximisation model is negated, so that lower is better for every instance). A solution is feasible when every variable bound, every row bound and the integrality of every integer variable hold within an absolute tolerance of 1e-6 on the values as they are returned; integer variables are not rounded first.",
+    "benchmark": "MIPLIB 2017 open instance rmine21",
+    "dataset": "https://miplib.zib.de/WebData/instances/rmine21.mps.gz (size varies; some files are large)",
+    "metric": "score",
+    "direction": "minimize",
+    "source_url": "https://miplib.zib.de/tag_open.html",
+    "source_locator": "rmine21",
+    "upstream_path": null,
+    "requirements": [
+      "py:numpy",
+      "py:scipy",
+      "py:highspy",
+      "file:data/miplib/rmine21.mps.gz"
+    ],
+    "execution_notes": "https://miplib.zib.de/WebData/instances/rmine21.mps.gz (size varies; some files are large)"
+  }
+}

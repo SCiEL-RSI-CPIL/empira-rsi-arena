@@ -9,7 +9,7 @@ import sys
 
 import pytest
 
-from arena.registry import (RegistryError, get_catalog,
+from arena.registry import (RegistryError, catalog_summary, get_catalog,
     get_participants, validate_catalog, validate_participant, validate_registration, validate_registry)
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,8 +30,8 @@ def catalog():
 
 def test_pinned_catalog_is_available_without_runtime_or_frameworks(catalog):
     assert catalog["summary"] == {
-        "task_count": 959, "executable_count": 705, "unsupported_count": 254,
-        "protocol_counts": {"original": 109, "recreated_verified": 81, "recreated": 515, "unsupported": 254},
+        "task_count": 2403, "executable_count": 2403, "unsupported_count": 0,
+        "protocol_counts": {"original": 113, "recreated_verified": 1296, "recreated": 994, "unsupported": 0},
         "runtime_readiness": "not_verified"}
     assert catalog["sources"][0]["kind"] == "bundled"
     assert catalog["sources"][0]["id"] == "arena-tasks"
@@ -53,8 +53,18 @@ def test_invalid_catalog_rejected(catalog, mutate):
         validate_catalog(catalog)
 
 
+def unsupported_stub(catalog):
+    """A documented-only task; the shipped catalog has none since the withdrawn tasks were removed."""
+    task = catalog["tasks"][0]
+    task.update(protocol="unsupported", executable=False, family=None, declared_status="blocked",
+                unsupported_reason="Fixture: the evaluator is not bundled.", unsupported_category="simulator")
+    catalog["summary"] = catalog_summary(catalog["tasks"])
+    assert validate_catalog(catalog) is catalog
+    return task
+
+
 def test_unsupported_evaluator_stub_does_not_become_executable(catalog):
-    task = next(task for task in catalog["tasks"] if task["protocol"] == "unsupported")
+    task = unsupported_stub(catalog)
     task["executable"] = True
     with pytest.raises(RegistryError, match="contradicts"):
         validate_catalog(catalog)
@@ -71,7 +81,7 @@ def test_current_source_dependency_declarations_agree(catalog):
 
 def test_evaluator_definition_can_require_setup_without_claiming_runtime_readiness(catalog):
     pending = [task for task in catalog["tasks"] if task["executable"] and task["declared_status"] == "requires_setup"]
-    assert len(pending) == 31
+    assert len(pending) == 609
     assert all(task["runtime_readiness"] == "not_verified" for task in pending)
     assert validate_catalog(catalog) is catalog
     pending[0]["declared_status"] = "blocked"
@@ -80,7 +90,7 @@ def test_evaluator_definition_can_require_setup_without_claiming_runtime_readine
 
 
 def test_missing_evaluator_cannot_claim_ready(catalog):
-    task = next(task for task in catalog["tasks"] if not task["executable"])
+    task = unsupported_stub(catalog)
     task["declared_status"] = "requires_setup"
     validate_catalog(catalog)
     task["declared_status"] = "ready"
@@ -91,7 +101,7 @@ def test_missing_evaluator_cannot_claim_ready(catalog):
 def test_get_catalog_returns_detached_values():
     first = get_catalog()
     first["tasks"].clear()
-    assert len(get_catalog()["tasks"]) == 959
+    assert len(get_catalog()["tasks"]) == 2403
 
 
 def test_input_output_contracts_are_bound_to_pinned_problem_files(catalog):

@@ -1,0 +1,1505 @@
+[
+  {
+    "id": "science-finance-portfolio-choice-industry10",
+    "name": "Finance: Out-of-sample portfolio choice against 1/N (ten industries and the market)",
+    "description": "Choose each month's portfolio of ten US industry portfolios and the market using only the previous 120 months of returns. The evaluator recomputes the Sharpe ratio of the next-month returns net of 50 bp trading costs over 1973-07 to 2025-09 and compares it with the 1/N rule.",
+    "family": "science_finance_portfolio_choice_dgu",
+    "parameters": {
+      "dataset": "industry10_market",
+      "start": "196307",
+      "end": "202509",
+      "window": 120,
+      "cost": 0.005,
+      "max_gross": 20.0
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1093/rfs/hhm075",
+        "type": "paper",
+        "locator": "Sections 2-3 and Tables 2-5: dataset 2 (ten industry portfolios and the market, N = 11), 120-month rolling windows, relative weights, Sharpe ratio and 50 bp costs."
+      },
+      {
+        "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+        "type": "archive",
+        "locator": "10 industry portfolios (value-weighted) and Fama/French market and T-bill series, monthly; CRSP 202509 files pinned in catalog/finance-data-lock.json."
+      }
+    ],
+    "limitations": [
+      "The evaluation months are public and fixed. Strategies or hyperparameters tuned on them overfit, and a candidate that reads the prepared files or embeds remembered returns could look ahead; the evaluator only prevents look-ahead through its interface. Treat scores as development scores and freeze a candidate before testing it on months after 2025-09.",
+      "A monthly Sharpe ratio estimated from 50 to 52 years of returns has a standard error of about 0.04, so differences from 1/N below that size are not statistically meaningful; the one-sided Jobson-Korkie-Memmel p-value against 1/N is reported in the details.",
+      "Returns are value-weighted CRSP portfolio returns from the CRSP 202509 vintage of the French library; later vintages revise history slightly. Costs are a flat 50 bp of traded value with no market impact, borrowing spread, short-sale fees or taxes, and positions are financed at the one-month T-bill rate.",
+      "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "policy",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "Kenneth R. French Data Library monthly tables (ind10_vw_monthly.csv, ff_factors_monthly.csv; CRSP 202509 vintage) fetched by scripts/prepare_finance.py from pinned Internet Archive snapshots and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_portfolio.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/ind10_vw_monthly.csv",
+      "file:data/finance/ff_factors_monthly.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for this exact protocol. On DGU's 1963-07 to 2004-11 sample, 1/N has a monthly Sharpe ratio of 0.1353 for this dataset and none of DGU's 14 optimizing rules beats it significantly; the local 1/N seed scores 0.1533 net of costs over 1973-07 to 2025-09.",
+      "sources": [
+        {
+          "title": "Optimal Versus Naive Diversification: How Inefficient is the 1/N Portfolio Strategy?",
+          "url": "https://doi.org/10.1093/rfs/hhm075"
+        }
+      ],
+      "as_of": "2026-10-06"
+    }
+  },
+  {
+    "id": "science-finance-portfolio-choice-ff20",
+    "name": "Finance: Out-of-sample portfolio choice against 1/N (20 size and value portfolios and the market)",
+    "description": "Choose each month's portfolio of 20 size and book-to-market portfolios and the market using only the previous 120 months of returns. The evaluator recomputes the Sharpe ratio of the next-month returns net of 50 bp trading costs over 1973-07 to 2025-09 and compares it with the 1/N rule.",
+    "family": "science_finance_portfolio_choice_dgu",
+    "parameters": {
+      "dataset": "ff20_market",
+      "start": "196307",
+      "end": "202509",
+      "window": 120,
+      "cost": 0.005,
+      "max_gross": 20.0
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1093/rfs/hhm075",
+        "type": "paper",
+        "locator": "Sections 2-3 and Tables 2-5: dataset 5 (FF-1-factor: 20 size/book-to-market portfolios and the market, N = 21), 120-month rolling windows, relative weights, Sharpe ratio and 50 bp costs."
+      },
+      {
+        "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+        "type": "archive",
+        "locator": "25 portfolios formed on size and book-to-market (value-weighted; the five largest-size portfolios are dropped as in DGU) and Fama/French market and T-bill series, monthly; CRSP 202509 files pinned in catalog/finance-data-lock.json."
+      }
+    ],
+    "limitations": [
+      "The evaluation months are public and fixed. Strategies or hyperparameters tuned on them overfit, and a candidate that reads the prepared files or embeds remembered returns could look ahead; the evaluator only prevents look-ahead through its interface. Treat scores as development scores and freeze a candidate before testing it on months after 2025-09.",
+      "A monthly Sharpe ratio estimated from 50 to 52 years of returns has a standard error of about 0.04, so differences from 1/N below that size are not statistically meaningful; the one-sided Jobson-Korkie-Memmel p-value against 1/N is reported in the details.",
+      "Returns are value-weighted CRSP portfolio returns from the CRSP 202509 vintage of the French library; later vintages revise history slightly. Costs are a flat 50 bp of traded value with no market impact, borrowing spread, short-sale fees or taxes, and positions are financed at the one-month T-bill rate.",
+      "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "policy",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "Kenneth R. French Data Library monthly tables (ff25_vw_monthly.csv, ff_factors_monthly.csv; CRSP 202509 vintage) fetched by scripts/prepare_finance.py from pinned Internet Archive snapshots and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_portfolio.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/ff25_vw_monthly.csv",
+      "file:data/finance/ff_factors_monthly.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for this exact protocol. On DGU's 1963-07 to 2004-11 sample, 1/N has a monthly Sharpe ratio of 0.1623 for this dataset and the constrained minimum-variance rule 0.1546; the local 1/N seed scores 0.1501 net of costs over 1973-07 to 2025-09.",
+      "sources": [
+        {
+          "title": "Optimal Versus Naive Diversification: How Inefficient is the 1/N Portfolio Strategy?",
+          "url": "https://doi.org/10.1093/rfs/hhm075"
+        }
+      ],
+      "as_of": "2026-10-06"
+    }
+  },
+  {
+    "id": "science-finance-portfolio-choice-industry49",
+    "name": "Finance: Out-of-sample portfolio choice against 1/N (49 industries)",
+    "description": "Choose each month's portfolio of 49 US industry portfolios using only the previous 120 months of returns, a setting where estimation error is severe. The evaluator recomputes the Sharpe ratio of the next-month returns net of 50 bp trading costs over 1979-07 to 2025-09 and compares it with the 1/N rule.",
+    "family": "science_finance_portfolio_choice",
+    "parameters": {
+      "dataset": "industry49",
+      "start": "196907",
+      "end": "202509",
+      "window": 120,
+      "cost": 0.005,
+      "max_gross": 20.0
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1093/rfs/hhm075",
+        "type": "paper",
+        "locator": "Sections 2-3: rolling-window protocol, relative weights, Sharpe ratio and 50 bp costs; the 49-industry dataset is not one of DGU's datasets."
+      },
+      {
+        "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+        "type": "archive",
+        "locator": "49 industry portfolios (value-weighted, complete from 1969-07) and the Fama/French T-bill series, monthly; CRSP 202509 files pinned in catalog/finance-data-lock.json."
+      }
+    ],
+    "limitations": [
+      "DGU did not study this 49-industry dataset; the protocol is theirs but no published number is reproduced for it, and with N = 49 and a 120-month window the sample covariance matrix is poorly conditioned.",
+      "The evaluation months are public and fixed. Strategies or hyperparameters tuned on them overfit, and a candidate that reads the prepared files or embeds remembered returns could look ahead; the evaluator only prevents look-ahead through its interface. Treat scores as development scores and freeze a candidate before testing it on months after 2025-09.",
+      "A monthly Sharpe ratio estimated from 46 years of returns (555 months) has a standard error of about 0.04, so differences from 1/N below that size are not statistically meaningful; the one-sided Jobson-Korkie-Memmel p-value against 1/N is reported in the details.",
+      "Returns are value-weighted CRSP portfolio returns from the CRSP 202509 vintage of the French library; later vintages revise history slightly. Costs are a flat 50 bp of traded value with no market impact, borrowing spread, short-sale fees or taxes, and positions are financed at the one-month T-bill rate.",
+      "Deviations from DeMiguel, Garlappi and Uppal: the scored period extends to 2025-09, returns are net of costs (their Sharpe table is gross), the first allocation is free, gross exposure is capped at 20 and a strategy whose wealth reaches zero is invalid.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "policy",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "Kenneth R. French Data Library monthly tables (ind49_vw_monthly.csv, ff_factors_monthly.csv; CRSP 202509 vintage) fetched by scripts/prepare_finance.py from pinned Internet Archive snapshots and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_portfolio.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/ind49_vw_monthly.csv",
+      "file:data/finance/ff_factors_monthly.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for this local dataset and period. The local 1/N seed scores 0.1571 net of costs over 1979-07 to 2025-09; the unconstrained sample minimum-variance rule scores 0.0332 because of estimation error.",
+      "sources": [
+        {
+          "title": "Optimal Versus Naive Diversification: How Inefficient is the 1/N Portfolio Strategy?",
+          "url": "https://doi.org/10.1093/rfs/hhm075"
+        }
+      ],
+      "as_of": "2026-10-06"
+    }
+  },
+  {
+    "id": "science-finance-equity-premium-prediction",
+    "name": "Finance: Out-of-sample equity-premium prediction",
+    "description": "Forecast next month's US equity premium (the log S&P 500 return over the T-bill rate) from the Welch-Goyal predictors observed up to the forecast origin. The evaluator recomputes the out-of-sample R^2 against the prevailing historical mean over 732 monthly forecasts from 1965-01 to 2025-12.",
+    "family": "science_finance_equity_premium",
+    "parameters": {
+      "start": 196501,
+      "end": 202512
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1093/rfs/hhm014",
+        "type": "paper",
+        "locator": "Welch and Goyal (2008): predictor definitions, recursive out-of-sample forecasts against the prevailing mean, one-month publication lag for inflation (Sections 1-5, Table 3 for monthly data)."
+      },
+      {
+        "url": "https://doi.org/10.1093/rfs/hhm055",
+        "type": "paper",
+        "locator": "Campbell and Thompson (2008): out-of-sample R^2 against the historical average and economically motivated forecast restrictions."
+      },
+      {
+        "url": "https://doi.org/10.1093/rfs/hhae044",
+        "type": "paper",
+        "locator": "Goyal, Welch and Zafirov (2024): updated and revised predictor data and evidence through 2021; the data file used here extends it to 2025."
+      },
+      {
+        "url": "https://sites.google.com/view/agoyal145",
+        "type": "archive",
+        "locator": "Amit Goyal's data page: updated Welch-Goyal monthly predictor data to 2025-12 (file pinned by SHA-256 in catalog/finance-data-lock.json)."
+      }
+    ],
+    "limitations": [
+      "The evaluation months are public. A candidate that reads the prepared file, embeds remembered returns or is tuned on 1965-2025 can look ahead; the interface only passes data up to the origin. Treat scores as development scores and freeze a candidate before testing it on later months.",
+      "Monthly out-of-sample R^2 values in this literature are fractions of a percent with sampling error of the same order; the Clark-West statistic is reported, but a small positive score is not by itself evidence of predictability.",
+      "One data vintage (the 2025 update, which revises some historical series) is used as if it were available in real time; apart from the one-month inflation lag, publication delays and revisions of the predictors are not modelled.",
+      "The score uses log equity premia and the unadjusted out-of-sample R^2; it does not measure economic value (certainty-equivalent gains, trading costs or leverage limits), and csp is only available until 2002-12.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "discovery",
+      "artifact": "model",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "Updated Welch-Goyal monthly predictor data (Amit Goyal, to 2025-12) fetched by scripts/prepare_finance.py and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_premium.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/goyal_welch_monthly.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for this exact protocol (log premia, targets 1965-01 to 2025-12, 2025 data vintage). Welch and Goyal (2008) and Goyal, Welch and Zafirov (2024) find negative out-of-sample R^2 for most single predictors; with Campbell-Thompson restrictions the best monthly values in Welch and Goyal's Table 3 are about 0.3% on 1927-2004 data, and Rapach, Strauss and Zhou (2010) report gains from combining forecasts. The prevailing-mean seed scores exactly 0.",
+      "sources": [
+        {
+          "title": "A Comprehensive Look at The Empirical Performance of Equity Premium Prediction",
+          "url": "https://doi.org/10.1093/rfs/hhm014"
+        },
+        {
+          "title": "Predicting Excess Stock Returns Out of Sample: Can Anything Beat the Historical Average?",
+          "url": "https://doi.org/10.1093/rfs/hhm055"
+        },
+        {
+          "title": "A Comprehensive 2022 Look at the Empirical Performance of Equity Premium Prediction",
+          "url": "https://doi.org/10.1093/rfs/hhae044"
+        },
+        {
+          "title": "Out-of-Sample Equity Premium Prediction: Combination Forecasts and Links to the Real Economy",
+          "url": "https://doi.org/10.1093/rfs/hhp063"
+        }
+      ],
+      "as_of": "2026-10-06"
+    }
+  },
+  {
+    "id": "science-finance-optimal-execution",
+    "name": "Finance: Optimal execution under Almgren-Chriss market impact",
+    "description": "Schedule the sale of a large block of shares over a fixed horizon to minimize expected trading cost plus a variance penalty in the Almgren-Chriss market-impact model, including power-law impact and an intraday liquidity profile. The evaluator recomputes each schedule's cost-risk objective exactly and compares it with the known optimum on 12 fixed instances.",
+    "family": "science_finance_optimal_execution",
+    "parameters": {},
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.21314/JOR.2001.041",
+        "type": "paper",
+        "locator": "Almgren and Chriss (2000/2001), Sections 2-3: discrete trading model, linear permanent and temporary impact, mean-variance objective, closed-form efficient trajectories, Table 1 parameters (S0 = 50, X = 10^6, T = 5 days, sigma = 0.95, epsilon = 0.0625, gamma = 2.5e-7, eta = 2.5e-6, lambda = 10^-6)."
+      },
+      {
+        "url": "https://doi.org/10.1080/135048602100056",
+        "type": "paper",
+        "locator": "Almgren (2003): optimal execution with nonlinear (power-law) temporary impact functions."
+      }
+    ],
+    "limitations": [
+      "This is a model-based rediscovery task: the optimum of every instance is known (closed form or a convex solve), so a perfect score reproduces known solutions and says nothing about real trading costs.",
+      "Impact parameters follow the stylized Almgren-Chriss example rather than estimates for a specific stock; the intraday volume and volatility profiles are stylized U shapes, not measured curves.",
+      "Prices follow an arithmetic random walk without drift or information; the schedule is static (no adaptation to realized prices), permanent impact is zero in the power-law instances to keep the problem convex, and buying back shares is not allowed.",
+      "The reference optimum is computed numerically for six of the twelve instances; scores within about 1e-7 percent of zero are optimal to solver tolerance and can be marginally negative.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "rediscovery",
+      "artifact": "program",
+      "domain": "finance",
+      "area": "finance",
+      "data": "synthetic",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "cvxpy"
+      ],
+      "datasets": "No data; twelve fixed model instances defined in finance_execution.py."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_execution.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "cvxpy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "optimum",
+      "value": 0.0,
+      "statement": "Every instance has a known optimum: the Almgren-Chriss closed-form trajectory for constant linear impact and the unique minimizer of a strictly convex program otherwise, so the optimal score is 0. The TWAP seed scores about 221 and the closed form applied only where it is exact (TWAP elsewhere) about 151.",
+      "sources": [
+        {
+          "title": "Optimal execution of portfolio transactions",
+          "url": "https://doi.org/10.21314/JOR.2001.041"
+        },
+        {
+          "title": "Optimal execution with nonlinear impact functions and trading-enhanced risk",
+          "url": "https://doi.org/10.1080/135048602100056"
+        }
+      ],
+      "as_of": "2026-10-06"
+    }
+  },
+  {
+    "id": "science-finance-arbitrage-free-svi-surface",
+    "name": "Finance: Arbitrage-free SVI implied-volatility surface for DAX options",
+    "description": "Fit a raw SVI smile to each of the eight maturities of a real DAX option implied-volatility surface (2002-07-05, 104 quotes) without static arbitrage. The evaluator checks butterfly and calendar-spread arbitrage on a dense moneyness grid and scores the root-mean-square implied-volatility error in volatility points.",
+    "family": "science_finance_svi_surface",
+    "parameters": {},
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1080/14697688.2013.819986",
+        "type": "paper",
+        "locator": "Gatheral and Jacquier (2014): raw SVI parameterization, Durrleman's condition g(k) >= 0 for butterfly arbitrage (Lemma 2.2), calendar-spread condition on total variance, wing bound, and the arbitrageable Vogt example (Section 3)."
+      },
+      {
+        "url": "https://github.com/lballabio/QuantLib/blob/ea1ca12e7311813abc42353ab88e127b60ee9848/test-suite/hestonmodel.cpp",
+        "type": "repository",
+        "locator": "QuantLib test-suite/hestonmodel.cpp at a pinned commit: getDAXCalibrationMarketData() (13 strikes x 8 maturities, spot 4468.17, zero rates) and testDAXCalibration's reference error 177.2."
+      },
+      {
+        "url": "https://doi.org/10.2139/ssrn.1412333",
+        "type": "paper",
+        "locator": "A. Sepp, Pricing European-style options under jump diffusion processes with stochastic volatility: QuantLib's test attributes the DAX quotes of 2002-07-05 to this paper."
+      }
+    ],
+    "limitations": [
+      "One historical surface with 104 quotes (mid implied volatilities without bid-ask spreads); a better fit on this surface is a development result, and quotes may themselves contain small arbitrages or rounding to four decimals.",
+      "The no-arbitrage check is numerical: Durrleman's g and calendar spreads are evaluated on a dense grid of |k| <= 6 refined near every SVI vertex with tolerance 1e-10, plus exact wing conditions; it is not a proof for every strike, and the surface between quoted maturities is not checked.",
+      "The candidate is restricted to raw SVI slices; other arbitrage-free parameterizations (for example SSVI, which is a special case, or non-parametric surfaces) must be expressed as raw SVI per maturity.",
+      "Forwards use QuantLib's zero rates and no dividends (the DAX is a total-return index); maturities use the original day counts rather than QuantLib's week-rounded ones.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "DAX implied volatilities of 2002-07-05 extracted from QuantLib's test suite (pinned commit, QuantLib license) by scripts/prepare_finance.py and verified by SHA-256."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_volsurface.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/dax_2002_surface.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published SVI fit to this surface is known. An unconstrained per-slice SVI least-squares fit reaches about 0.275 volatility points but violates the arbitrage conditions; a simple slice-by-slice constrained fit reaches about 0.284; the flat seed scores about 5.95. For comparison, QuantLib's five-parameter Heston calibration to the same quotes has squared error 177.2 (about 1.31 volatility points RMSE with week-rounded maturities).",
+      "sources": [
+        {
+          "title": "Arbitrage-free SVI volatility surfaces",
+          "url": "https://doi.org/10.1080/14697688.2013.819986"
+        },
+        {
+          "title": "QuantLib test-suite/hestonmodel.cpp (testDAXCalibration)",
+          "url": "https://github.com/lballabio/QuantLib/blob/ea1ca12e7311813abc42353ab88e127b60ee9848/test-suite/hestonmodel.cpp"
+        }
+      ],
+      "as_of": "2026-10-06"
+    }
+  },
+  {
+    "id": "science-economics-kidney-exchange",
+    "name": "Economics: Kidney exchange clearing with two- and three-way cycles",
+    "description": "Choose vertex-disjoint two- and three-way exchange cycles in eight public kidney-exchange pools of 256 and 512 incompatible patient-donor pairs to maximize the number of transplants. The evaluator verifies every donor-patient compatibility on the chosen cycles and compares the transplant count with the proven optimum.",
+    "family": "science_economics_kidney_exchange",
+    "parameters": {},
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1257/aer.97.3.828",
+        "type": "paper",
+        "locator": "Roth, Sonmez and Unver (2007): kidney exchange with two- and three-way exchanges among incompatible patient-donor pairs and the gains from three-way cycles."
+      },
+      {
+        "url": "https://doi.org/10.1145/1250910.1250954",
+        "type": "paper",
+        "locator": "Abraham, Blum and Sandholm (2007): the clearing problem with a cycle-length cap, its NP-hardness for caps of 3 or more, and exact integer-programming clearing for nationwide pools."
+      },
+      {
+        "url": "https://doi.org/10.1097/01.tp.0000195775.77081.25",
+        "type": "paper",
+        "locator": "Saidman et al. (2006): the pool generator (blood types, PRA levels, spousal donors) used for the PrefLib instances."
+      },
+      {
+        "url": "https://github.com/PrefLib/PrefLib-Data/tree/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney",
+        "type": "benchmark",
+        "locator": "PrefLib dataset 00036 (kidney), pinned commit: pools 00036-00000151..154 (256 pairs) and 00036-00000191..194 (512 pairs), no altruists."
+      }
+    ],
+    "limitations": [
+      "The pools are synthetic (Saidman et al. generator, donated to PrefLib by John Dickerson), not registry data; PrefLib removed other faulty kidney instances in September 2026 and only pools without altruists are used here.",
+      "Static, single-period clearing that maximizes the number of transplants: no altruist-initiated chains, no crossmatch-failure probabilities, no patient priorities or weights and no dynamic arrivals, all of which matter in practice.",
+      "Every pool's optimum is known, so a score of 1 reproduces the integer-programming solution; the 600 s limit makes the task about fast clearing on the larger pools, and time-limited candidates can depend on hardware.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "finance",
+      "area": "finance",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "Eight PrefLib kidney pools (GPL-3.0) fetched from a pinned commit by scripts/prepare_finance.py and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_kidney.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/kidney_preflib_pools.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "optimum",
+      "value": 1.0,
+      "statement": "The optimum of every pool is proven by an exact integer program over all 2- and 3-cycles (optimal transplants 166, 175, 158, 145, 351, 337, 300 and 313; 1945 in total), so the best possible score is 1. The greedy two-cycle seed scores 0.861.",
+      "sources": [
+        {
+          "title": "Clearing algorithms for barter exchange markets: enabling nationwide kidney exchanges",
+          "url": "https://doi.org/10.1145/1250910.1250954"
+        },
+        {
+          "title": "PrefLib dataset 00036 (kidney)",
+          "url": "https://github.com/PrefLib/PrefLib-Data/tree/0ee5e34c15ed20d93d870f6b3905e0f664bdb8c0/datasets/00036%20-%20kidney"
+        }
+      ],
+      "as_of": "2026-10-07"
+    }
+  },
+  {
+    "id": "science-economics-maximum-nash-welfare",
+    "name": "Economics: Maximum Nash welfare allocation of indivisible goods",
+    "description": "Allocate indivisible goods among agents with additive Spliddit-style valuations to maximize Nash welfare, the geometric mean of the agents' utilities. The evaluator recomputes each allocation's Nash welfare and compares it with the proven optimum on eight fixed instances with 4 to 15 agents.",
+    "family": "science_economics_nash_welfare",
+    "parameters": {},
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1145/3355902",
+        "type": "paper",
+        "locator": "Caragiannis, Kurokawa, Moulin, Procaccia, Shah and Wang (2019): maximum Nash welfare is envy-free up to one good and Pareto optimal; integer-utility mixed-integer program used on Spliddit (point splits of 1000)."
+      },
+      {
+        "url": "https://doi.org/10.1137/15m1053682",
+        "type": "paper",
+        "locator": "Cole and Gkatzelis (2018): computing maximum Nash welfare with indivisible goods is hard to approximate; first constant-factor approximation."
+      }
+    ],
+    "limitations": [
+      "Instances are synthetic Spliddit-style point splits (common good quality times idiosyncratic taste), not data from Spliddit users.",
+      "Every instance's optimum is known (exact program solved in at most about 30 s), so a perfect score reproduces known optima; instance sizes are small enough for exact solution and do not test scalability.",
+      "Only Nash welfare is scored; envy-freeness up to one good is reported but not required, and strategic misreporting of values is ignored.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "finance",
+      "area": "finance",
+      "data": "synthetic",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "scipy"
+      ],
+      "datasets": "No data; eight instances generated from fixed legacy NumPy random streams and guarded by SHA-256."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_fairdiv.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "optimum",
+      "value": 1.0,
+      "statement": "The maximum Nash welfare of every instance is proven by the exact integer-utility program of Caragiannis et al., so the best possible score is 1; all eight optimal allocations are envy-free up to one good. The round-robin seed scores 0.872.",
+      "sources": [
+        {
+          "title": "The Unreasonable Fairness of Maximum Nash Welfare",
+          "url": "https://doi.org/10.1145/3355902"
+        }
+      ],
+      "as_of": "2026-10-07"
+    }
+  },
+  {
+    "id": "science-economics-school-choice-tie-breaking",
+    "name": "Economics: Efficient school choice under coarse priorities",
+    "description": "Assign students to schools when school priorities have many ties, improving on deferred acceptance with a single tie-breaking lottery (DA-STB) while keeping the matching weakly stable. The evaluator checks every student-school pair for blocking and scores the share of the possible reduction in total preference rank achieved on six synthetic markets.",
+    "family": "science_economics_school_choice",
+    "parameters": {},
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1257/000282803322157061",
+        "type": "paper",
+        "locator": "Abdulkadiroglu and Sonmez (2003): school choice as mechanism design; student-proposing deferred acceptance and stability with respect to school priorities."
+      },
+      {
+        "url": "https://doi.org/10.1257/aer.98.3.669",
+        "type": "paper",
+        "locator": "Erdil and Ergin (2008): tie-breaking makes DA inefficient under coarse priorities; stable improvement cycles reach student-optimal weakly stable matchings."
+      },
+      {
+        "url": "https://doi.org/10.1257/aer.99.5.1954",
+        "type": "paper",
+        "locator": "Abdulkadiroglu, Pathak and Roth (2009): single versus multiple tie-breaking and the efficiency-strategy-proofness trade-off in the redesigned NYC high-school match."
+      },
+      {
+        "url": "https://doi.org/10.1016/S0304-3975(01)00206-7",
+        "type": "paper",
+        "locator": "Manlove, Irving, Iwama, Miyazaki and Morita (2002): optimization over weakly stable matchings with ties is NP-hard in general (motivates the integer-programming reference)."
+      }
+    ],
+    "limitations": [
+      "Markets are synthetic (random homes and schools on a unit square, school quality, distance and taste shocks, nested walk zones and 5% siblings); they mimic coarse NYC-style priorities but are not real application data.",
+      "Preferences are taken as truthful: the score measures welfare given reported preferences, and mechanisms that exploit it can be manipulable; Abdulkadiroglu, Pathak and Roth show no strategy-proof mechanism dominates DA-STB.",
+      "Total rank with unassigned students counted as list length + 1 is one welfare criterion among several (for example rank profiles or the number assigned); the proven optimum depends on that choice.",
+      "Instances are small enough for exact optimization (150 to 300 students) and their optima are known, so a perfect score reproduces the integer-programming solution.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "finance",
+      "area": "finance",
+      "data": "synthetic",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "scipy"
+      ],
+      "datasets": "No data; six markets generated from fixed legacy NumPy random streams and guarded by SHA-256."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_school.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "optimum",
+      "value": 1.0,
+      "statement": "The minimum total rank over weakly stable matchings is proven for every instance (total 2319 versus 2916 under DA-STB), so the best possible score is 1; the DA-STB seed scores 0.",
+      "sources": [
+        {
+          "title": "What's the Matter with Tie-Breaking? Improving Efficiency in School Choice",
+          "url": "https://doi.org/10.1257/aer.98.3.669"
+        }
+      ],
+      "as_of": "2026-10-07"
+    }
+  },
+  {
+    "id": "science-finance-covariance-minimum-variance",
+    "name": "Finance: Covariance estimation for minimum-variance portfolios",
+    "description": "Estimate the covariance matrix of 49 US industry portfolios from the previous 126 daily returns so that the implied global minimum-variance portfolio has the lowest realized out-of-sample volatility. The evaluator forms the portfolio from each estimate every 21 trading days from 1971 to 2025 and scores the annualized standard deviation of its daily returns.",
+    "family": "science_finance_covariance_gmv",
+    "parameters": {},
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1093/rfs/hhx052",
+        "type": "paper",
+        "locator": "Ledoit and Wolf (2017): covariance estimators judged by the out-of-sample standard deviation of the global minimum-variance portfolio with monthly (21-day) rebalancing on daily returns."
+      },
+      {
+        "url": "https://doi.org/10.1016/S0927-5398(03)00007-0",
+        "type": "paper",
+        "locator": "Ledoit and Wolf (2003): linear shrinkage of the sample covariance matrix for portfolio selection."
+      },
+      {
+        "url": "https://doi.org/10.1214/19-AOS1921",
+        "type": "paper",
+        "locator": "Ledoit and Wolf (2020): analytical nonlinear shrinkage estimator used as a local reference."
+      },
+      {
+        "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+        "type": "archive",
+        "locator": "49 industry portfolios, value-weighted daily returns (CRSP 202509 file, complete from 1971-03-12), pinned in catalog/finance-data-lock.json."
+      }
+    ],
+    "limitations": [
+      "Assets are 49 industry portfolios rather than individual stocks, so the cross-section is smaller and less noisy than in Ledoit and Wolf's experiments; N/T = 0.39 with the fixed 126-day window.",
+      "The evaluation period is public and fixed; estimators tuned on it overfit, and a candidate that reads the prepared file could look ahead. The interface only passes the trailing window.",
+      "Unconstrained minimum-variance weights are used (short positions allowed, no transaction costs or turnover limits), and returns are value-weighted CRSP portfolio returns of one data vintage.",
+      "The score is a single realized standard deviation over 54 years; differences of a few hundredths of a percentage point are within sampling error.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "Kenneth R. French Data Library daily 49-industry returns (CRSP 202509 vintage) fetched by scripts/prepare_finance.py from a pinned Internet Archive snapshot and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_covariance.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/ind49_vw_daily.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for this local dataset and window. Local references (annualized percent): sample covariance 11.97 (the seed), Ledoit-Wolf linear shrinkage to the identity 10.82 and to constant correlation 10.90, an implementation of Ledoit-Wolf analytical nonlinear shrinkage 10.80, diagonal covariance 15.16 and 1/N 16.79.",
+      "sources": [
+        {
+          "title": "Nonlinear Shrinkage of the Covariance Matrix for Portfolio Selection: Markowitz Meets Goldilocks",
+          "url": "https://doi.org/10.1093/rfs/hhx052"
+        },
+        {
+          "title": "Analytical nonlinear shrinkage of large-dimensional covariance matrices",
+          "url": "https://doi.org/10.1214/19-AOS1921"
+        }
+      ],
+      "as_of": "2026-10-07"
+    }
+  },
+  {
+    "id": "science-finance-volatility-forecasting",
+    "name": "Finance: Daily volatility forecasting for US equity portfolios",
+    "description": "Forecast the next day's return variance of the US stock market and 49 industry portfolios, updating the forecasts day by day from 2000 to 2025 after a training period ending in 1999. The evaluator reveals each day's returns only after the forecasts are made and scores the QLIKE loss against squared returns.",
+    "family": "science_finance_volatility_forecast",
+    "parameters": {},
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1002/jae.800",
+        "type": "paper",
+        "locator": "Hansen and Lunde (2005): out-of-sample comparison of many volatility models against GARCH(1,1) with several loss functions."
+      },
+      {
+        "url": "https://doi.org/10.1016/j.jeconom.2010.03.034",
+        "type": "paper",
+        "locator": "Patton (2011): loss functions, including QLIKE, that rank volatility forecasts consistently when the true variance is replaced by a noisy proxy such as the squared return."
+      },
+      {
+        "url": "https://doi.org/10.1016/0304-4076(86)90063-1",
+        "type": "paper",
+        "locator": "Bollerslev (1986): the GARCH model, the classic benchmark for conditional variance forecasts."
+      },
+      {
+        "url": "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html",
+        "type": "archive",
+        "locator": "Daily Fama/French factors (market = Mkt-RF + RF) and value-weighted 49 industry portfolio returns, CRSP 202509 files pinned in catalog/finance-data-lock.json."
+      }
+    ],
+    "limitations": [
+      "Squared daily returns are a noisy proxy for the daily variance; QLIKE ranks forecasts consistently with this proxy but the loss level is not a variance-accuracy measure, and intraday realized variances are not available here.",
+      "Forecasts are for close-to-close total returns (no mean adjustment); weekends, holidays and overnight effects are treated like any other trading day.",
+      "The evaluation period 2000-2025 is public. A candidate that reads the prepared files or memorizes returns can look ahead; the interface only passes returns up to the previous day. Treat scores as development scores.",
+      "One data vintage of CRSP value-weighted portfolio returns is used; the 50 series are strongly correlated, so they do not provide 50 independent comparisons.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "discovery",
+      "artifact": "model",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "Kenneth R. French Data Library daily factors and 49-industry returns (CRSP 202509 vintage) fetched by scripts/prepare_finance.py from pinned Internet Archive snapshots and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_volatility.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/ind49_vw_daily.csv",
+      "file:data/finance/ff_factors_daily.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for this local protocol. Local references (mean QLIKE): rolling 63-day variance -7.563 (the seed), RiskMetrics EWMA -7.6125, GARCH(1,1) -7.598 and GJR-GARCH(1,1) -7.610 with parameters estimated on 1990-1999 and kept fixed; a candidate has to beat RiskMetrics to show a useful improvement.",
+      "sources": [
+        {
+          "title": "A forecast comparison of volatility models: does anything beat a GARCH(1,1)?",
+          "url": "https://doi.org/10.1002/jae.800"
+        }
+      ],
+      "as_of": "2026-10-07"
+    }
+  },
+  {
+    "id": "science-finance-yield-curve-forecasting",
+    "name": "Finance: Forecasting the US Treasury yield curve",
+    "description": "Forecast end-of-month US Treasury zero-coupon yields at maturities of 1 to 10 years, 1, 6 and 12 months ahead, from the curves observed up to each origin between 1990 and 2024. The evaluator recomputes the forecast errors and scores the root-mean-square error relative to the random walk.",
+    "family": "science_finance_yield_curve_forecast",
+    "parameters": {},
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1016/j.jeconom.2005.03.005",
+        "type": "paper",
+        "locator": "Diebold and Li (2006): dynamic Nelson-Siegel forecasting of the yield curve, recursive out-of-sample forecasts 1, 6 and 12 months ahead, RMSE compared with the random walk."
+      },
+      {
+        "url": "https://doi.org/10.1016/j.jmoneco.2007.06.029",
+        "type": "paper",
+        "locator": "Gurkaynak, Sack and Wright (2007): the daily fitted Svensson zero-coupon curve used as data."
+      },
+      {
+        "url": "https://www.federalreserve.gov/data/yield-curve-tables/feds200628.htm",
+        "type": "archive",
+        "locator": "Federal Reserve Board page of the GSW yield-curve tables (feds200628.csv, file pinned via an Internet Archive snapshot of 2025-08-09 in catalog/finance-data-lock.json)."
+      }
+    ],
+    "limitations": [
+      "GSW yields are smoothed fitted values from a Svensson curve, not observed bond yields; fitting error and smoothing make them easier to forecast than raw yields, and maturities below one year are excluded because GSW caution against them.",
+      "The evaluation origins (1990-2024) and the data file are public; tuning on them or reading the prepared file can produce look-ahead. Forecasts at different origins overlap for the 6- and 12-month horizons, so the effective sample is smaller than 415.",
+      "One data vintage (archived 2025-08-09) is used as if it were real-time; the live file is revised without notice.",
+      "RMSE ratios against the random walk have wide sampling uncertainty; Diebold-Mariano statistics per horizon are reported but a ratio slightly below 1 is weak evidence.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "discovery",
+      "artifact": "model",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "Federal Reserve Board GSW zero-coupon yield file (public domain) fetched by scripts/prepare_finance.py from a pinned Internet Archive snapshot and verified by SHA-256; month-end yields derived locally."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_yields.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/gsw_yields_monthly.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for this local protocol. Diebold and Li (2006) found their dynamic Nelson-Siegel forecasts beat the random walk at 6- and 12-month horizons on 1994-2000 Fama-Bliss data; on this 1990-2024 sample a local implementation with AR(1) factors scores 1.171 (worse than the random walk), while a random walk plus a small momentum term scores 0.993.",
+      "sources": [
+        {
+          "title": "Forecasting the term structure of government bond yields",
+          "url": "https://doi.org/10.1016/j.jeconom.2005.03.005"
+        }
+      ],
+      "as_of": "2026-10-07"
+    }
+  },
+  {
+    "id": "science-economics-fredmd-industrial-production-forecasting",
+    "name": "Economics: Forecasting US industrial production with FRED-MD",
+    "description": "Forecast annualized US industrial-production growth 1, 6 and 12 months ahead from the 126-series FRED-MD panel available at each month-end origin from 1990 to 2023. The evaluator recomputes the targets and scores the root-mean-square error relative to a direct autoregressive benchmark with BIC lag selection.",
+    "family": "science_economics_fredmd_forecast",
+    "parameters": {
+      "target": "INDPRO"
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1198/073500102317351921",
+        "type": "paper",
+        "locator": "Stock and Watson (2002): forecasting US macroeconomic series with diffusion indexes (principal components of many predictors), direct multi-step forecasts and comparison with autoregressions."
+      },
+      {
+        "url": "https://doi.org/10.1080/07350015.2015.1086655",
+        "type": "paper",
+        "locator": "McCracken and Ng (2016): the FRED-MD monthly database, its 128 (here 126) series and transformation codes."
+      },
+      {
+        "url": "https://www.stlouisfed.org/research/economists/mccracken/fred-databases",
+        "type": "archive",
+        "locator": "FRED-MD databases page of the St. Louis Fed; the 2024-09 vintage (current.csv as archived on 2024-10-29, byte-identical to the official 2024-09.csv; data to 2024-08) is pinned in catalog/finance-data-lock.json."
+      }
+    ],
+    "limitations": [
+      "A single data vintage (2024-09, data to 2024-08) is used as if it were available in real time: data revisions and publication lags (ragged edges) of the 126 series are ignored, so forecasts are pseudo-out-of-sample.",
+      "Forecasts whose target window includes March-December 2020 are excluded from the RMSE; the pandemic months would otherwise dominate the comparison. The 2021-2023 inflation episode is included.",
+      "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "discovery",
+      "artifact": "model",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "FRED-MD 2024-09 vintage (the monthly file as archived on 2024-10-29) fetched by scripts/prepare_finance.py from a pinned Internet Archive snapshot and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_macro.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/fredmd_2024_10.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for this local protocol. Local references (mean RMSE ratio to the autoregressive benchmark): four-factor diffusion index 1.060, its equal-weight combination with the benchmark 1.003; Stock and Watson (2002) reported large gains for industrial production on earlier data (1970-1998).",
+      "sources": [
+        {
+          "title": "Macroeconomic Forecasting Using Diffusion Indexes",
+          "url": "https://doi.org/10.1198/073500102317351921"
+        }
+      ],
+      "as_of": "2026-10-07"
+    }
+  },
+  {
+    "id": "science-economics-fredmd-inflation-forecasting",
+    "name": "Economics: Forecasting US CPI inflation with FRED-MD",
+    "description": "Forecast annualized US CPI inflation 1, 6 and 12 months ahead from the 126-series FRED-MD panel available at each month-end origin from 1990 to 2023. The evaluator recomputes the targets and scores the root-mean-square error relative to a direct autoregressive benchmark with BIC lag selection.",
+    "family": "science_economics_fredmd_forecast",
+    "parameters": {
+      "target": "CPIAUCSL"
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1198/073500102317351921",
+        "type": "paper",
+        "locator": "Stock and Watson (2002): forecasting US macroeconomic series with diffusion indexes (principal components of many predictors), direct multi-step forecasts and comparison with autoregressions."
+      },
+      {
+        "url": "https://doi.org/10.1080/07350015.2015.1086655",
+        "type": "paper",
+        "locator": "McCracken and Ng (2016): the FRED-MD monthly database, its 128 (here 126) series and transformation codes."
+      },
+      {
+        "url": "https://www.stlouisfed.org/research/economists/mccracken/fred-databases",
+        "type": "archive",
+        "locator": "FRED-MD databases page of the St. Louis Fed; the 2024-09 vintage (current.csv as archived on 2024-10-29, byte-identical to the official 2024-09.csv; data to 2024-08) is pinned in catalog/finance-data-lock.json."
+      }
+    ],
+    "limitations": [
+      "A single data vintage (2024-09, data to 2024-08) is used as if it were available in real time: data revisions and publication lags (ragged edges) of the 126 series are ignored, so forecasts are pseudo-out-of-sample.",
+      "Forecasts whose target window includes March-December 2020 are excluded from the RMSE; the pandemic months would otherwise dominate the comparison. The 2021-2023 inflation episode is included.",
+      "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "discovery",
+      "artifact": "model",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "FRED-MD 2024-09 vintage (the monthly file as archived on 2024-10-29) fetched by scripts/prepare_finance.py from a pinned Internet Archive snapshot and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_macro.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/fredmd_2024_10.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for this local protocol. Local references (mean RMSE ratio to the autoregressive benchmark): four-factor diffusion index 1.044, its equal-weight combination with the benchmark 0.985.",
+      "sources": [
+        {
+          "title": "Macroeconomic Forecasting Using Diffusion Indexes",
+          "url": "https://doi.org/10.1198/073500102317351921"
+        }
+      ],
+      "as_of": "2026-10-07"
+    }
+  },
+  {
+    "id": "science-economics-fredmd-unemployment-forecasting",
+    "name": "Economics: Forecasting US unemployment with FRED-MD",
+    "description": "Forecast the change in the US unemployment rate 1, 6 and 12 months ahead from the 126-series FRED-MD panel available at each month-end origin from 1990 to 2023. The evaluator recomputes the targets and scores the root-mean-square error relative to a direct autoregressive benchmark with BIC lag selection.",
+    "family": "science_economics_fredmd_forecast",
+    "parameters": {
+      "target": "UNRATE"
+    },
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1198/073500102317351921",
+        "type": "paper",
+        "locator": "Stock and Watson (2002): forecasting US macroeconomic series with diffusion indexes (principal components of many predictors), direct multi-step forecasts and comparison with autoregressions."
+      },
+      {
+        "url": "https://doi.org/10.1080/07350015.2015.1086655",
+        "type": "paper",
+        "locator": "McCracken and Ng (2016): the FRED-MD monthly database, its 128 (here 126) series and transformation codes."
+      },
+      {
+        "url": "https://www.stlouisfed.org/research/economists/mccracken/fred-databases",
+        "type": "archive",
+        "locator": "FRED-MD databases page of the St. Louis Fed; the 2024-09 vintage (current.csv as archived on 2024-10-29, byte-identical to the official 2024-09.csv; data to 2024-08) is pinned in catalog/finance-data-lock.json."
+      }
+    ],
+    "limitations": [
+      "A single data vintage (2024-09, data to 2024-08) is used as if it were available in real time: data revisions and publication lags (ragged edges) of the 126 series are ignored, so forecasts are pseudo-out-of-sample.",
+      "Forecasts whose target window includes March-December 2020 are excluded from the RMSE; the pandemic months would otherwise dominate the comparison. The 2021-2023 inflation episode is included.",
+      "The evaluation period is public; a candidate that reads the prepared file or is tuned on 1990-2024 can look ahead. RMSE ratios near 1 have wide sampling uncertainty (overlapping multi-step forecasts); per-horizon Diebold-Mariano p-values are reported.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "discovery",
+      "artifact": "model",
+      "domain": "finance",
+      "area": "finance",
+      "data": "real_measurements",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "FRED-MD 2024-09 vintage (the monthly file as archived on 2024-10-29) fetched by scripts/prepare_finance.py from a pinned Internet Archive snapshot and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_macro.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/fredmd_2024_10.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for this local protocol. Local references (mean RMSE ratio to the autoregressive benchmark): four-factor diffusion index 1.008, its equal-weight combination with the benchmark 0.969.",
+      "sources": [
+        {
+          "title": "Macroeconomic Forecasting Using Diffusion Indexes",
+          "url": "https://doi.org/10.1198/073500102317351921"
+        }
+      ],
+      "as_of": "2026-10-07"
+    }
+  },
+  {
+    "id": "science-finance-cardinality-constrained-frontier",
+    "name": "Finance: Cardinality-constrained mean-variance frontier (OR-Library)",
+    "description": "Build mean-variance portfolios of exactly ten assets, each held between 1% and 100%, at 51 fixed target returns for five OR-Library stock markets with 31 to 225 assets. The evaluator checks every constraint and scores Chang et al.'s mean percentage deviation from the published unconstrained efficient frontier.",
+    "family": "science_finance_cardinality_frontier",
+    "parameters": {},
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1016/s0305-0548(99)00074-x",
+        "type": "paper",
+        "locator": "Chang, Meade, Beasley and Sharaiha (2000): cardinality-constrained mean-variance model (exactly K assets, holding bounds), the five OR-Library markets, K = 10, epsilon = 0.01, delta = 1, and the percentage-error measure against the unconstrained frontier."
+      },
+      {
+        "url": "https://doi.org/10.1016/j.ejor.2011.03.030",
+        "type": "paper",
+        "locator": "Woodside-Oriakhi, Lucas and Beasley (2011): heuristic algorithms for the same cardinality-constrained frontier and its evaluation against the unconstrained frontier."
+      },
+      {
+        "url": "https://arxiv.org/abs/2101.03312",
+        "type": "paper",
+        "locator": "Restates Chang et al.'s percentage error (Eqs. 20-23: standard-deviation and return errors by linear interpolation on the published frontier, minimum of the two, averaged) and their GA, SA and TS results (Table 5)."
+      },
+      {
+        "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/portinfo.html",
+        "type": "benchmark",
+        "locator": "OR-Library portfolio files port1-port5 (means, standard deviations, correlations) and portef1-portef5 (2000 frontier points each), pinned by SHA-256 in catalog/finance-data-lock.json."
+      }
+    ],
+    "limitations": [
+      "Portfolios are required at 51 fixed target returns rather than at the 51 risk-aversion weights of the published lambda sweep, so published mean percentage errors (for example 1.0957 for Hang Seng by simulated annealing) are not directly comparable with this score.",
+      "The unconstrained frontier is a relaxation: no cardinality-constrained portfolio reaches zero error, and the attainable minimum per market is unknown (the problem is NP-hard).",
+      "Means and covariances are in-sample estimates from weekly prices of 1992-1997; the score measures optimization quality on these fixed inputs, not out-of-sample investment performance. Transaction costs, round lots and turnover are ignored.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "program",
+      "domain": "finance",
+      "area": "finance",
+      "data": "public_benchmark",
+      "verification": "exact",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "cvxpy"
+      ],
+      "datasets": "OR-Library port1-port5 and portef1-portef5 fetched by scripts/prepare_finance.py and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_ccef.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "cvxpy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/orlib_port1.csv",
+      "file:data/finance/orlib_port2.csv",
+      "file:data/finance/orlib_port3.csv",
+      "file:data/finance/orlib_port4.csv",
+      "file:data/finance/orlib_port5.csv",
+      "file:data/finance/orlib_portef1.csv",
+      "file:data/finance/orlib_portef2.csv",
+      "file:data/finance/orlib_portef3.csv",
+      "file:data/finance/orlib_portef4.csv",
+      "file:data/finance/orlib_portef5.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for the target-return protocol. Under the lambda sweep, Chang et al. report mean percentage errors of 1.0974/1.0957/1.1217 (GA/SA/TS) for Hang Seng, 2.5424/2.9297/3.3049 for DAX, 1.1076/1.4623/1.6080 for FTSE, 1.9328/3.0696/3.3092 for S&P and 0.7961/0.6732/0.8975 for Nikkei. Local references here: the frontier-support seed 1.535 and a single-swap local search 1.381 (mean over markets).",
+      "sources": [
+        {
+          "title": "Heuristics for cardinality constrained portfolio optimisation",
+          "url": "https://doi.org/10.1016/s0305-0548(99)00074-x"
+        },
+        {
+          "title": "Markowitz-based cardinality constrained portfolio selection using Asexual Reproduction Optimization (ARO)",
+          "url": "https://arxiv.org/abs/2101.03312"
+        }
+      ],
+      "as_of": "2026-10-08"
+    }
+  },
+  {
+    "id": "science-finance-index-tracking",
+    "name": "Finance: Index tracking with few stocks and transaction costs (OR-Library)",
+    "description": "Track five stock indices (Hang Seng, DAX 100, FTSE 100, S&P 100 and Nikkei 225) with buy-and-hold positions in at most ten constituents, formed from the first 145 weeks of prices and optionally rebalanced every 13 weeks at a 1% cost. The evaluator recomputes the portfolio values and scores the out-of-sample tracking error over the last 145 weeks.",
+    "family": "science_finance_index_tracking",
+    "parameters": {},
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1016/s0377-2217(02)00425-3",
+        "type": "paper",
+        "locator": "Beasley, Meade and Chang (2003): index tracking with buy-and-hold positions in at most K stocks, holding bounds, transaction costs, tracking error (sum of |portfolio - index log return|^alpha / T)^(1/alpha), and the five OR-Library markets."
+      },
+      {
+        "url": "https://doi.org/10.1016/j.ejor.2008.03.015",
+        "type": "paper",
+        "locator": "Canakgoz and Beasley (2009): mixed-integer programming approaches for index tracking on the same OR-Library data."
+      },
+      {
+        "url": "https://people.brunel.ac.uk/~mastjjb/jeb/orlib/indtrackinfo.html",
+        "type": "benchmark",
+        "locator": "OR-Library indtrack1-indtrack5 (weekly prices of the index and its constituents, weeks 0-290), pinned by SHA-256 in catalog/finance-data-lock.json."
+      }
+    ],
+    "limitations": [
+      "The protocol (optional rebalancing every 13 weeks with costs charged to the portfolio, free initial purchase, at most K stocks, pure tracking without an excess-return objective) differs from Beasley et al.'s single-rebalance model with a cost budget, so their published tracking errors are not directly comparable.",
+      "Weekly prices of 1992-1997 for constituents at the end of the sample; survivorship and constituent changes are not modelled, and dividends are ignored as in the OR-Library data.",
+      "The out-of-sample period (145 weeks) is public and short; candidates tuned on it overfit, and tracking errors from one period have wide sampling uncertainty.",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "method",
+      "artifact": "policy",
+      "domain": "finance",
+      "area": "finance",
+      "data": "public_benchmark",
+      "verification": "sampled",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy",
+        "scipy"
+      ],
+      "datasets": "OR-Library indtrack1-indtrack5 fetched by scripts/prepare_finance.py and verified by SHA-256; not redistributed."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_tracking.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy",
+        "scipy"
+      ]
+    },
+    "setup": {
+      "command": "python3 scripts/prepare_finance.py",
+      "documentation": "catalog/finance-data-lock.json"
+    },
+    "requires": [
+      "file:data/finance/orlib_indtrack1.csv",
+      "file:data/finance/orlib_indtrack2.csv",
+      "file:data/finance/orlib_indtrack3.csv",
+      "file:data/finance/orlib_indtrack4.csv",
+      "file:data/finance/orlib_indtrack5.csv"
+    ],
+    "state_of_the_art": {
+      "kind": "none",
+      "value": null,
+      "statement": "No published value exists for this protocol. Local references (mean weekly tracking error in percent): the correlation/NNLS buy-and-hold seed 1.087 and greedy forward selection on the last 104 weeks refreshed every 26 weeks 0.764.",
+      "sources": [
+        {
+          "title": "An evolutionary heuristic for the index tracking problem",
+          "url": "https://doi.org/10.1016/s0377-2217(02)00425-3"
+        }
+      ],
+      "as_of": "2026-10-08"
+    }
+  },
+  {
+    "id": "science-finance-market-making",
+    "name": "Finance: Optimal market making with inventory risk",
+    "description": "Set bid and ask quotes around the mid price in the Avellaneda-Stoikov limit-order-book model to earn the spread while controlling inventory risk, in three simulated market regimes. The evaluator simulates fills on fixed random numbers and scores the risk-adjusted profit relative to the exact optimal quoting policy.",
+    "family": "science_finance_market_making",
+    "parameters": {},
+    "status": "ready",
+    "sources": [
+      {
+        "url": "https://doi.org/10.1080/14697680701381228",
+        "type": "paper",
+        "locator": "Avellaneda and Stoikov (2008): dealer quoting model with Brownian mid price and fill intensity A exp(-k depth); their simulation example (sigma 2, A 140, k 1.5, T 1)."
+      },
+      {
+        "url": "https://doi.org/10.1007/s11579-012-0087-0",
+        "type": "paper",
+        "locator": "Gueant, Lehalle and Fernandez-Tapia (2013): inventory bounds, exact solution through a linear system and closed-form approximations of the optimal quotes."
+      },
+      {
+        "url": "https://doi.org/10.1080/1350486x.2017.1342552",
+        "type": "paper",
+        "locator": "Gueant (2017): the risk-adjusted expectation objective (running penalty (gamma/2) sigma^2 q^2) and its closed-form quote approximation."
+      }
+    ],
+    "limitations": [
+      "The market is simulated: Brownian mid price, independent Poisson fills with exponential intensity, no adverse selection, latency, queue position or tick size. Good scores do not imply profitable trading in real limit-order books.",
+      "The optimal policy of this discrete model is known (computed by dynamic programming), so a score of about 1 reproduces a known solution; the closed-form approximation of the literature already scores 0.998.",
+      "Scores are Monte Carlo estimates on 4000 fixed paths per regime; the random stream is fixed and visible in the evaluator source, so a candidate that reproduces it could anticipate fills (treat this as cheating).",
+      "The candidate runs in a sandboxed child process that never receives later data, realised outcomes or reference solutions, and no statement of the candidate is executed in the evaluator's process; outside macOS (kernel sandbox) deliberately hostile native code could bypass the file policy."
+    ],
+    "labels": {
+      "scientific_contribution": "rediscovery",
+      "artifact": "policy",
+      "domain": "finance",
+      "area": "finance",
+      "data": "simulator",
+      "verification": "simulation",
+      "reference": "none"
+    },
+    "requirements": {
+      "hardware": "CPU",
+      "dependencies": [
+        "numpy"
+      ],
+      "datasets": "No data; simulated paths from fixed seeds."
+    },
+    "validation": {
+      "level": "automated_tests",
+      "upstream_reproduction": false,
+      "tests": "tests/test_finance_marketmaking.py",
+      "evidence": "validation/finance-checks.json"
+    },
+    "provenance": {
+      "implementation_origin": "independent_reimplementation",
+      "upstream_code_reused": false,
+      "reference_libraries": [
+        "numpy"
+      ]
+    },
+    "state_of_the_art": {
+      "kind": "optimum",
+      "value": 1.0,
+      "statement": "The exact optimal policy of the discrete model is computed by dynamic programming and scores 1 by construction; the closed-form approximation of Gueant, Lehalle and Fernandez-Tapia (model B form of Gueant 2017) scores 0.998 and the inventory-blind seed 0.742.",
+      "sources": [
+        {
+          "title": "Dealing with the inventory risk: a solution to the market making problem",
+          "url": "https://doi.org/10.1007/s11579-012-0087-0"
+        },
+        {
+          "title": "Optimal market making",
+          "url": "https://doi.org/10.1080/1350486x.2017.1342552"
+        }
+      ],
+      "as_of": "2026-10-08"
+    }
+  }
+]
